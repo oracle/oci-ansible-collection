@@ -54,9 +54,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on application
   oci_functions_application_actions:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -72,13 +72,13 @@ application:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the application.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the application. The display name is unique within the compartment containing the application.

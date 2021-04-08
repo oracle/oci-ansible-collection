@@ -59,8 +59,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on steering_policy
   oci_dns_steering_policy_actions:
-    steering_policy_id: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 """
@@ -77,7 +77,7 @@ steering_policy:
                 - The OCID of the compartment containing the steering policy.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the steering policy. Does not have to be unique and can be changed.
@@ -104,7 +104,7 @@ steering_policy:
                   Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
             returned: on success
             type: string
-            sample: ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
         template:
             description:
                 - A set of predefined rules based on the desired purpose of the steering policy. Each
@@ -357,7 +357,7 @@ steering_policy:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.

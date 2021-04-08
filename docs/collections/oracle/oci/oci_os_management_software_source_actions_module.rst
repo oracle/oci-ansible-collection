@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_software_source_actions -- Perform actions on a Sof
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -168,6 +168,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -311,7 +312,7 @@ Examples
 
     - name: Perform action change_compartment on software_source
       oci_os_management_software_source_actions:
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action remove_packages on software_source

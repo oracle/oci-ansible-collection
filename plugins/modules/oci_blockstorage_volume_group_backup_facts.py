@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple VolumeGroupBackup resou
 description:
     - Fetches details about one or multiple VolumeGroupBackup resources in Oracle Cloud Infrastructure
     - Lists the volume group backups in the specified compartment. You can filter the results by volume group.
-      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
     - If I(volume_group_backup_id) is specified, the details of a single VolumeGroupBackup will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -37,7 +37,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple volume_group_backups.
         type: str
     volume_group_id:
@@ -100,7 +100,7 @@ volume_group_backups:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -126,7 +126,7 @@ volume_group_backups:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict

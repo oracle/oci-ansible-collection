@@ -94,12 +94,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create container_repository
   oci_artifacts_container_repository:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
 - name: Update container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_artifacts_container_repository:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     is_immutable: true
     is_public: true
@@ -111,16 +111,16 @@ EXAMPLES = """
   oci_artifacts_container_repository:
     is_immutable: true
     is_public: true
-    repository_id: ocid1.containerrepo.oc1..exampleuniqueID
+    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
 
 - name: Delete container_repository
   oci_artifacts_container_repository:
-    repository_id: ocid1.containerrepo.oc1..exampleuniqueID
+    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
     state: absent
 
 - name: Delete container_repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_artifacts_container_repository:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -138,7 +138,7 @@ container_repository:
                 - The OCID of the compartment in which the container repository exists.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The id of the user or principal that created the resource.
@@ -157,7 +157,7 @@ container_repository:
                 - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
             returned: on success
             type: string
-            sample: ocid1.containerrepo.oc1..exampleuniqueID
+            sample: "ocid1.containerrepo.oc1..exampleuniqueID"
         image_count:
             description:
                 - Total number of images.

@@ -83,7 +83,7 @@ EXAMPLES = """
 - name: Create snapshot
   oci_file_storage_snapshot:
     name: "snapshot-1"
-    file_system_id: "ocid1.filesystem.oc1.phx.exampleaaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa"
+    file_system_id: "ocid1.filesystem.oc1..unique_ID"
 
 - name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
@@ -101,7 +101,7 @@ EXAMPLES = """
 
 - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
-    file_system_id: ocid1.filesystem.oc1..unique_ID
+    file_system_id: "ocid1.filesystem.oc1..unique_ID"
     name: snapshot-1
     state: absent
 
@@ -157,7 +157,7 @@ snapshot:
                   See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
             returned: on success
             type: string
-            sample: ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_source:
             description:
                 - Specifies whether the snapshot has been cloned.

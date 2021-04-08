@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image -- Manage an Image resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,12 +44,12 @@ Synopsis
 
 - This module allows the user to create, update and delete an Image resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a boot disk image for the specified instance or imports an exported image from the Oracle Cloud Infrastructure Object Storage service.
-- When creating a new image, you must provide the OCID of the instance you want to use as the basis for the image, and the OCID of the compartment containing that instance. For more information about images, see `Managing Custom Images <https://docs.cloud.oracle.com/Content/Compute/Tasks/managingcustomimages.htm>`_.
+- When creating a new image, you must provide the OCID of the instance you want to use as the basis for the image, and the OCID of the compartment containing that instance. For more information about images, see `Managing Custom Images <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm>`_.
 - When importing an exported image from Object Storage, you specify the source information in `ImageSourceDetails <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceDetails>`_.
 - When importing an image based on the namespace, bucket name, and object name, use `ImageSourceViaObjectStorageTupleDetails <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageTupleDetails>`_.
-- When importing an image based on the Object Storage URL, use `ImageSourceViaObjectStorageUriDetails <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails>`_. See `Object Storage URLs <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs>`_ and `Using Pre-Authenticated Requests <https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm>`_ for constructing URLs for image import/export.
-- For more information about importing exported images, see `Image Import/Export <https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm>`_.
-- You may optionally specify a *display name* for the image, which is simply a friendly name or description. It does not have to be unique, and you can change it. See `UpdateImage <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/20160918/Image/UpdateImage>`_. Avoid entering confidential information.
+- When importing an image based on the Object Storage URL, use `ImageSourceViaObjectStorageUriDetails <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails>`_. See `Object Storage URLs <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs>`_ and `Using Pre-Authenticated Requests <https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm>`_ for constructing URLs for image import/export.
+- For more information about importing exported images, see `Image Import/Export <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm>`_.
+- You may optionally specify a *display name* for the image, which is simply a friendly name or description. It does not have to be unique, and you can change it. See `UpdateImage <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Image/UpdateImage>`_. Avoid entering confidential information.
 - This resource has the following action operations in the :ref:`oci_image_actions <ansible_collections.oci_image_actions_module>` module: change_compartment, export.
 
 
@@ -153,6 +153,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -219,7 +220,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -275,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -723,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Image resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_features&#x27;: {&#x27;is_management_supported&#x27;: True, &#x27;is_monitoring_supported&#x27;: True}, &#x27;base_image_id&#x27;: &#x27;ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_image_allowed&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My custom Oracle Linux image&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;operating_system&#x27;: &#x27;Oracle Linux&#x27;, &#x27;operating_system_version&#x27;: &#x27;7.2&#x27;, &#x27;size_in_mbs&#x27;: 47694, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_features&#x27;: {&#x27;is_management_supported&#x27;: True, &#x27;is_monitoring_supported&#x27;: True}, &#x27;base_image_id&#x27;: &#x27;ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_image_allowed&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My custom Oracle Linux image&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;operating_system&#x27;: &#x27;Oracle Linux&#x27;, &#x27;operating_system_version&#x27;: &#x27;7.2&#x27;, &#x27;size_in_mbs&#x27;: 47694, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -848,7 +849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -887,7 +888,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1016,7 +1017,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Deprecated. Instead use `isPvEncryptionInTransitEnabled` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails'>LaunchInstanceDetails</a>.</div>
+                                            <div>Deprecated. Instead use `isPvEncryptionInTransitEnabled` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails'>LaunchInstanceDetails</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1082,6 +1083,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-image/listing_type"></div>
+                    <b>listing_type</b>
+                    <a class="ansibleOptionLink" href="#return-image/listing_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The listing type of the image. The default value is &quot;NONE&quot;.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMMUNITY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-image/operating_system"></div>
                     <b>operating_system</b>
                     <a class="ansibleOptionLink" href="#return-image/operating_system" title="Permalink to this return value"></a>
@@ -1129,7 +1148,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes). Note this is not the same as the size of the image when it was exported or the actual size of the image.</div>
+                                            <div>The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes). Note this is not the same as the size of the image when it was exported or the actual size of the image.</div>
                                             <div>Example: `47694`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

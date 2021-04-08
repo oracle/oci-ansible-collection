@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_analytics_cluster_actions -- Perform actions on an Analytic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,10 +43,10 @@ Synopsis
 .. Description
 
 - Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
-- For *action=add*, adds an Analytics Cluster to the DB System.
-- For *action=restart*, restarts the Analytics Cluster.
-- For *action=start*, starts the Analytics Cluster.
-- For *action=stop*, stops the Analytics Cluster.
+- For *action=add*, dEPRECATED -- please use HeatWave API instead. Adds an Analytics Cluster to the DB System.
+- For *action=restart*, dEPRECATED -- please use HeatWave API instead. Restarts the Analytics Cluster.
+- For *action=start*, dEPRECATED -- please use HeatWave API instead. Starts the Analytics Cluster.
+- For *action=stop*, dEPRECATED -- please use HeatWave API instead. Stops the Analytics Cluster.
 
 
 .. Aliases
@@ -170,6 +170,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

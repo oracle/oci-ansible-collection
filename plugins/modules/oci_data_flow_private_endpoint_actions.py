@@ -52,9 +52,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on private_endpoint
   oci_data_flow_private_endpoint_actions:
-    compartment_id: compartmentId
-    private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "compartmentId"
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -70,7 +70,7 @@ private_endpoint:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -111,7 +111,7 @@ private_endpoint:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
@@ -144,7 +144,7 @@ private_endpoint:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -157,7 +157,7 @@ private_endpoint:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.

@@ -59,7 +59,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on scheduled_job
   oci_os_management_scheduled_job_actions:
-    scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action run_scheduled_job_now on scheduled_job

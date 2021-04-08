@@ -144,7 +144,7 @@ bds_instances:
             sample: true
         network_config:
             description:
-                - Additional configuration of customer's network.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -162,7 +162,7 @@ bds_instances:
                     sample: 172.16.0.0/16
         cluster_details:
             description:
-                - Specific info about a Hadoop cluster
+                - ""
             returned: on success
             type: complex
             contains:
@@ -349,7 +349,7 @@ bds_instances:
                     sample: 2019-03-29T09:36:42.000+0000
         cloud_sql_details:
             description:
-                - The information about added Cloud SQL capability
+                - ""
             returned: on success
             type: complex
             contains:

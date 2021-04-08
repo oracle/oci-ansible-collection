@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume -- Manage a Volume resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Volume resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new volume in the specified compartment. Volumes can be created in sizes ranging from 50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB). For general information about block volumes, see `Overview of Block Volume Service <https://docs.cloud.oracle.com/Content/Block/Concepts/overview.htm>`_.
-- A volume and instance can be in separate compartments but must be in the same availability domain. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_. For information about availability domains, see `Regions and Availability Domains <https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm>`_. To get a list of availability domains, use the `ListAvailabilityDomains` operation in the Identity and Access Management Service API.
+- For *state=present*, creates a new volume in the specified compartment. Volumes can be created in sizes ranging from 50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB). For general information about block volumes, see `Overview of Block Volume Service <https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm>`_.
+- A volume and instance can be in separate compartments but must be in the same availability domain. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about availability domains, see `Regions and Availability Domains <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm>`_. To get a list of availability domains, use the `ListAvailabilityDomains` operation in the Identity and Access Management Service API.
 - You may optionally specify a *display name* for the volume, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - This resource has the following action operations in the :ref:`oci_volume_actions <ansible_collections.oci_volume_actions_module>` module: change_compartment.
 
@@ -149,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -247,7 +248,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -301,7 +302,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -535,7 +536,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm'>Block Volume Elastic Performance</a> for more information.</div>
+                                            <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm'>Block Volume Elastic Performance</a> for more information.</div>
                                             <div>Allowed values:</div>
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>
@@ -736,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -773,7 +774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1025,7 +1026,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm'>Block Volume Elastic Performance</a> for more information.</div>
+                                            <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm'>Block Volume Elastic Performance</a> for more information.</div>
                                             <div>Allowed values:</div>
                                             <div>* `0`: Represents Lower Cost option.</div>
                                             <div>* `10`: Represents Balanced option.</div>

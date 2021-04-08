@@ -53,9 +53,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on application
   oci_data_flow_application_actions:
-    compartment_id: compartmentId
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "compartmentId"
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -108,7 +108,7 @@ application:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -161,7 +161,7 @@ application:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -192,7 +192,7 @@ application:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -230,7 +230,7 @@ application:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.

@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_db_system -- Manage a DbSystem resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -181,6 +181,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -199,7 +200,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Availability Domain where the primary instance should be located.</div>
+                                            <div>The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.</div>
+                                            <div>In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains and the MySQL instance in that domain is promoted to the primary instance. This redirection does not affect the IP address of the DB System in any way.</div>
+                                            <div>For a standalone DB System, this defines the availability domain in which the DB System is placed.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -475,7 +478,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the Fault Domain the DB System is located in.</div>
+                                            <div>The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.</div>
+                                            <div>In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains and the MySQL instance in that domain is promoted to the primary instance. This redirection does not affect the IP address of the DB System in any way.</div>
+                                            <div>For a standalone DB System, this defines the fault domain in which the DB System is placed.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -545,6 +550,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The IP address the DB System is configured to listen on. A private IP address of your choice to assign to the primary endpoint of the DB System. Must be an available IP address within the subnet&#x27;s CIDR. If you don&#x27;t specify a value, Oracle automatically assigns a private IP address from the subnet. This should be a &quot;dotted-quad&quot; style IPv4 address.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_highly_available"></div>
+                    <b>is_highly_available</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_highly_available" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies if the DB System is highly available.</div>
+                                            <div>When creating a DB System with High Availability, three instances are created and placed according to your region- and subnet-type. The secondaries are placed automatically in the other two availability or fault domains.  You can choose the preferred location of your primary instance, only.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -878,6 +904,7 @@ Examples
         display_name: DBSystem001
         description: MySQL Database Service
         compartment_id: "ocid1.compartment.oc1..UniqueID"
+        is_highly_available: true
         availability_domain: Uocm:PHX-AD-1
         fault_domain: fault_domain_example
         configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
@@ -946,7 +973,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;analytics_cluster&#x27;: {&#x27;cluster_size&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;channels&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;source&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;port&#x27;: 56, &#x27;source_type&#x27;: &#x27;MYSQL&#x27;, &#x27;ssl_ca_certificate&#x27;: {&#x27;certificate_type&#x27;: &#x27;PEM&#x27;, &#x27;contents&#x27;: &#x27;contents_example&#x27;}, &#x27;ssl_mode&#x27;: &#x27;VERIFY_IDENTITY&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target&#x27;: {&#x27;applier_username&#x27;: &#x27;applier_username_example&#x27;, &#x27;channel_name&#x27;: &#x27;channel_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;DBSYSTEM&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_analytics_cluster_attached&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;source&#x27;: {&#x27;backup_id&#x27;: &#x27;ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;NONE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;analytics_cluster&#x27;: {&#x27;cluster_size&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;channels&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;source&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;port&#x27;: 56, &#x27;source_type&#x27;: &#x27;MYSQL&#x27;, &#x27;ssl_ca_certificate&#x27;: {&#x27;certificate_type&#x27;: &#x27;PEM&#x27;, &#x27;contents&#x27;: &#x27;contents_example&#x27;}, &#x27;ssl_mode&#x27;: &#x27;VERIFY_IDENTITY&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target&#x27;: {&#x27;applier_username&#x27;: &#x27;applier_username_example&#x27;, &#x27;channel_name&#x27;: &#x27;channel_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;DBSYSTEM&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_placement&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;}, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;heat_wave_cluster&#x27;: {&#x27;cluster_size&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;lifecycle_state_example&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_analytics_cluster_attached&#x27;: True, &#x27;is_heat_wave_cluster_attached&#x27;: True, &#x27;is_highly_available&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;source&#x27;: {&#x27;backup_id&#x27;: &#x27;ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;NONE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1073,7 +1100,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Availability Domain where the primary DB System should be located.</div>
+                                            <div>The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.</div>
+                                            <div>In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains and the MySQL instance in that domain is promoted to the primary instance. This redirection does not affect the IP address of the DB System in any way.</div>
+                                            <div>For a standalone DB System, this defines the availability domain in which the DB System is placed.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -1721,6 +1750,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/current_placement"></div>
+                    <b>current_placement</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/current_placement" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/current_placement/availability_domain"></div>
+                    <b>availability_domain</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/current_placement/availability_domain" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The availability domain in which the DB System is placed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/current_placement/fault_domain"></div>
+                    <b>fault_domain</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/current_placement/fault_domain" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The fault domain in which the DB System is placed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">fault_domain_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-db_system/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_system/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -1950,7 +2034,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the Fault Domain the DB System is located in.</div>
+                                            <div>The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.</div>
+                                            <div>In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains and the MySQL instance in that domain is promoted to the primary instance. This redirection does not affect the IP address of the DB System in any way.</div>
+                                            <div>For a standalone DB System, this defines the fault domain in which the DB System is placed.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">fault_domain_example</div>
@@ -1974,6 +2060,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster"></div>
+                    <b>heat_wave_cluster</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster/cluster_size"></div>
+                    <b>cluster_size</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster/cluster_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of analytics-processing compute instances, of the specified shape, in the HeatWave cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the MySQL HeatWave cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_state_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster/shape_name"></div>
+                    <b>shape_name</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster/shape_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The shape determines resources to allocate to the HeatWave nodes - CPU cores, memory.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the HeatWave cluster was created, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/heat_wave_cluster/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/heat_wave_cluster/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the HeatWave cluster was last updated, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
@@ -2040,7 +2238,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>If the DB System has an Analytics Cluster attached.</div>
+                                            <div>DEPRECATED -- please use `isHeatWaveClusterAttached` instead. If the DB System has an Analytics Cluster attached.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/is_heat_wave_cluster_attached"></div>
+                    <b>is_heat_wave_cluster_attached</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/is_heat_wave_cluster_attached" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If the DB System has a HeatWave Cluster attached.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-db_system/is_highly_available"></div>
+                    <b>is_highly_available</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/is_highly_available" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If the policy is to enable high availability of the instance, by maintaining secondary/failover capacity as necessary.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

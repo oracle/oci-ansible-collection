@@ -23,7 +23,8 @@ module: oci_log_analytics_log_group
 short_description: Manage a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Log-Analytics group.
+    - For I(state=present), creates a new log group in the specified compartment with the input display name. You may also specify optional information such as
+      description, defined tags, and free-form tags.
     - "This resource has the following action operations in the M(oci_log_analytics_log_group_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)

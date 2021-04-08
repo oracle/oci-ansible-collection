@@ -24,6 +24,7 @@ short_description: Manage a Table resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Table resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new table.
+    - "This resource has the following action operations in the M(oci_table_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

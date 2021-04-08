@@ -32,19 +32,23 @@ author: Oracle (@oracle)
 options:
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
             - Required to get a specific instance.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple instances.
         type: str
     availability_domain:
         description:
             - The name of the availability domain.
             - "Example: `Uocm:PHX-AD-1`"
+        type: str
+    capacity_reservation_id:
+        description:
+            - The OCID of the compute capacity reservation.
         type: str
     display_name:
         description:
@@ -115,6 +119,14 @@ instances:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        capacity_reservation_id:
+            description:
+                - The OCID of the compute capacity reservation this instance is launched under.
+                  When this field contains an empty string or is null, the instance is not currently in a capacity reservation.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: string
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
@@ -130,7 +142,7 @@ instances:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -169,7 +181,7 @@ instances:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -204,7 +216,7 @@ instances:
                   iqn.2015-02.oracle.boot."
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
-                  L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                  L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                 - For more information about iPXE, see http://ipxe.org.
             returned: on success
             type: string
@@ -274,7 +286,7 @@ instances:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -338,7 +350,7 @@ instances:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -551,13 +563,13 @@ instances:
                 type:
                     description:
                         - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`
+                          `type` is `AMD_MILAN_BM`.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
                 numa_nodes_per_socket:
                     description:
-                        - The number of NUMA nodes per socket.
+                        - The number of NUMA nodes per socket (NPS).
                     returned: on success
                     type: string
                     sample: NPS0
@@ -575,6 +587,7 @@ instances:
             sample: 140.34.93.209
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -680,6 +693,7 @@ class InstanceFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "availability_domain",
+            "capacity_reservation_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -711,6 +725,7 @@ def main():
             instance_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
+            capacity_reservation_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

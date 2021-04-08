@@ -28,11 +28,11 @@ description:
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=export), exports the specified image to the Oracle Cloud Infrastructure Object Storage service. You can use the Object Storage URL,
       or the namespace, bucket name, and object name when specifying the location to export to.
-      For more information about exporting images, see L(Image Import/Export,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm).
+      For more information about exporting images, see L(Image Import/Export,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm).
       To perform an image export, you need write access to the Object Storage bucket for the image,
-      see L(Let Users Write Objects to Object Storage Buckets,https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm#Let4).
-      See L(Object Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
-      Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+      see L(Let Users Write Objects to Object Storage Buckets,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/commonpolicies.htm#Let4).
+      See L(Object Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
+      Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
       for constructing URLs for image import/export.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -59,7 +59,14 @@ options:
             - "objectStorageTuple"
     export_format:
         description:
-            - "The format of the image to be exported. The default value is \\"OCI\\"."
+            - The format to export the image to. The default value is `OCI`.
+            - "The following image formats are available:"
+            - "- `OCI` - Oracle Cloud Infrastructure file with a QCOW2 image and Oracle Cloud Infrastructure metadata (.oci).
+              Use this format to export a custom image that you want to import into other tenancies or regions.
+              - `QCOW2` - QEMU Copy On Write (.qcow2)
+              - `VDI` - Virtual Disk Image (.vdi) for Oracle VM VirtualBox
+              - `VHD` - Virtual Hard Disk (.vhd) for Hyper-V
+              - `VMDK` - Virtual Machine Disk (.vmdk)"
             - Applicable only for I(action=export).
         type: str
         choices:
@@ -71,8 +78,8 @@ options:
     destination_uri:
         description:
             - The Object Storage URL to export the image to. See L(Object
-              Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs)
-              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+              Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs)
+              and L(Using Pre-Authenticated Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
               for constructing URLs for image import/export.
             - Applicable only for I(action=export).
             - Required when destination_type is 'objectStorageUri'
@@ -115,7 +122,7 @@ EXAMPLES = """
 
 - name: Perform action export on image
   oci_compute_image_actions:
-    object_name: "exported-image.oci"
+    object_name: "my-exported-image.oci"
     bucket_name: "MyBucket"
     namespace_name: "MyNamespace"
     destination_type: "objectStorageTuple"
@@ -124,7 +131,7 @@ EXAMPLES = """
 
 - name: Perform action export on image
   oci_compute_image_actions:
-    object_name: "exported-image.oci"
+    object_name: "my-exported-image.vmdk"
     bucket_name: "MyBucket"
     namespace_name: "MyNamespace"
     destination_type: "objectStorageTuple"
@@ -164,7 +171,7 @@ image:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -182,7 +189,7 @@ image:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -258,7 +265,7 @@ image:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -306,9 +313,15 @@ image:
                     returned: on success
                     type: bool
                     sample: true
+        listing_type:
+            description:
+                - "The listing type of the image. The default value is \\"NONE\\"."
+            returned: on success
+            type: string
+            sample: COMMUNITY
         size_in_mbs:
             description:
-                - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
+                - The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes).
                   Note this is not the same as the size of the image when it was exported or the actual size of the image.
                 - "Example: `47694`"
             returned: on success
@@ -345,6 +358,7 @@ image:
             "is_monitoring_supported": true,
             "is_management_supported": true
         },
+        "listing_type": "COMMUNITY",
         "size_in_mbs": 47694,
         "time_created": "2016-08-25T21:10:29.600Z"
     }

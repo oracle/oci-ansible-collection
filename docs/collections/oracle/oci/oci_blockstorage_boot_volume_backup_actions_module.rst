@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_boot_volume_backup_actions -- Perform actions on a B
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a BootVolumeBackup resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a boot volume backup into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
-- For *action=copy*, creates a boot volume backup copy in specified region. For general information about volume backups, see `Overview of Boot Volume Backups <https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumebackups.htm>`_
+- For *action=change_compartment*, moves a boot volume backup into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
+- For *action=copy*, creates a boot volume backup copy in specified region. For general information about volume backups, see `Overview of Boot Volume Backups <https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/bootvolumebackups.htm>`_
 
 
 .. Aliases
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -200,7 +201,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the boot volume backup to.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the boot volume backup to.</div>
                                             <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
@@ -281,7 +282,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the Key Management key in the destination region which will be the master encryption key for the copied boot volume backup. If you do not specify this attribute the boot volume backup will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.</div>
-                                            <div>For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
                                             <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
@@ -469,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -524,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -579,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the Key Management master encryption assigned to the boot volume backup. For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
+                                            <div>The OCID of the Key Management master encryption assigned to the boot volume backup. For more information about the Key Management service and encryption keys, see <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm'>Overview of Key Management</a> and <a href='https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm'>Using Keys</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>

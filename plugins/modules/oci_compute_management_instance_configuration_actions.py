@@ -27,7 +27,7 @@ description:
       If the instance configuration does not include all of the parameters that are
       required to launch an instance, such as the availability domain and subnet ID, you must
       provide these parameters when you launch an instance from the instance configuration.
-      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/InstanceConfiguration/)
+      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/)
       resource.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -115,7 +115,8 @@ options:
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -128,7 +129,7 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     kms_key_id:
@@ -140,8 +141,8 @@ options:
                         description:
                             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
                               representing the Block Volume service's elastic performance options.
-                              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for
-                              more information.
+                              See L(Block Volume Elastic
+                              Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
                             - "Allowed values:"
                             - " * `0`: Represents Lower Cost option."
                             - " * `10`: Represents Balanced option."
@@ -182,6 +183,10 @@ options:
                     - The availability domain of the instance.
                     - "Example: `Uocm:PHX-AD-1`"
                 type: str
+            capacity_reservation_id:
+                description:
+                    - The OCID of the compute capacity reservation this instance is launched under.
+                type: str
             compartment_id:
                 description:
                     - The OCID of the compartment.
@@ -194,13 +199,14 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                               for more information.
                         type: bool
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -213,43 +219,43 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
                               See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
                               See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
                               See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
                               See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
             display_name:
@@ -272,7 +278,7 @@ options:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
                 type: dict
             ipxe_script:
@@ -294,7 +300,7 @@ options:
                       iqn.2015-02.oracle.boot."
                     - For more information about the Bring Your Own Image feature of
                       Oracle Cloud Infrastructure, see
-                      L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                      L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                     - For more information about iPXE, see http://ipxe.org.
                 type: str
             metadata:
@@ -340,7 +346,7 @@ options:
                     - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                       and other resources allocated to the instance.
                     - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                      us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
                 type: str
             shape_config:
                 description:
@@ -363,7 +369,7 @@ options:
                     type:
                         description:
                             - The type of platform being configured. The only supported
-                              `type` is `AMD_MILAN_BM`
+                              `type` is `AMD_MILAN_BM`.
                         type: str
                         choices:
                             - "AMD_MILAN_BM"
@@ -506,7 +512,7 @@ options:
                         description:
                             - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
                               L(InstanceConfigurationLaunchInstanceDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/datatypes/InstanceConfigurationLaunchInstanceDetails).
+                              us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationLaunchInstanceDetails).
                         type: bool
                     is_consistent_volume_naming_enabled:
                         description:
@@ -631,13 +637,14 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                               for more information.
                         type: bool
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -650,38 +657,38 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
                               See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
                               See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
                               See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
                               See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
             display_name:
                 description:
@@ -694,7 +701,7 @@ options:
                       Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                       you add a secondary VNIC to one of these instances, you can specify which NIC
                       the VNIC will use. For more information, see
-                      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
                 type: int
     action:
         description:
@@ -729,6 +736,14 @@ instance:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        capacity_reservation_id:
+            description:
+                - The OCID of the compute capacity reservation this instance is launched under.
+                  When this field contains an empty string or is null, the instance is not currently in a capacity reservation.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: string
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
@@ -744,7 +759,7 @@ instance:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -783,7 +798,7 @@ instance:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -818,7 +833,7 @@ instance:
                   iqn.2015-02.oracle.boot."
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
-                  L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                  L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                 - For more information about iPXE, see http://ipxe.org.
             returned: on success
             type: string
@@ -888,7 +903,7 @@ instance:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -952,7 +967,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -1165,18 +1180,19 @@ instance:
                 type:
                     description:
                         - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`
+                          `type` is `AMD_MILAN_BM`.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
                 numa_nodes_per_socket:
                     description:
-                        - The number of NUMA nodes per socket.
+                        - The number of NUMA nodes per socket (NPS).
                     returned: on success
                     type: string
                     sample: NPS0
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -1389,6 +1405,7 @@ def main():
                 type="dict",
                 options=dict(
                     availability_domain=dict(type="str"),
+                    capacity_reservation_id=dict(type="str"),
                     compartment_id=dict(type="str"),
                     create_vnic_details=dict(
                         type="dict",

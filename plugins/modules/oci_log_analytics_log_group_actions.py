@@ -23,7 +23,7 @@ module: oci_log_analytics_log_group_actions
 short_description: Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), updates the compartment of the Log-Analytics group with the given id.
+    - For I(action=change_compartment), moves the specified log group to a different compartment.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

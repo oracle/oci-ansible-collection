@@ -71,7 +71,7 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on managed_instance_group
   oci_os_management_managed_instance_group_actions:
-    managed_instance_group_id: ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_managed_instance on managed_instance_group

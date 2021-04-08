@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
         type: str
         required: true
     is_available:

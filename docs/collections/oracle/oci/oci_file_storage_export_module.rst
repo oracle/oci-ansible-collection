@@ -20,7 +20,7 @@ oracle.oci.oci_file_storage_export -- Manage an Export resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -531,7 +532,7 @@ Examples
     
     - name: Create export
       oci_file_storage_export:
-        export_set_id: ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
+        export_set_id: "ocid1.exportset.oc1..unique_ID"
         file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         path: /mediafiles
 

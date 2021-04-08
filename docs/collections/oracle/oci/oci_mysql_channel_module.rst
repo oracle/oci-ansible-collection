@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_channel -- Manage a Channel resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -717,29 +718,34 @@ Examples
     
     - name: Create channel
       oci_mysql_channel:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        is_enabled: "false"
         source:
-          source_type: MYSQL
+          source_type: "MYSQL"
+          hostname: "hostname.my.company.com"
+          username: "username"
+          password: "password"
+          ssl_mode: "REQUIRED"
         target:
-          target_type: DBSYSTEM
+          target_type: "DBSYSTEM"
+          db_system_id: "ocid1.dbsystem.oc1.TargetDbSystemOCID"
 
     - name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_mysql_channel:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
-        is_enabled: true
-        source:
-          source_type: MYSQL
+        is_enabled: "true"
         target:
-          target_type: DBSYSTEM
-        description: description_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+          target_type: "DBSYSTEM"
+          applier_username: "admin"
+
+    - name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_mysql_channel:
+        source:
+          ssl_mode: "VERIFY_IDENTITY"
+          ssl_ca_certificate:
+            certificate_type: "PEM"
+            contents: "CA certificate in PEM format"
 
     - name: Update channel
       oci_mysql_channel:
-        display_name: display_name_example
-        is_enabled: true
         channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete channel

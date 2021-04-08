@@ -20,7 +20,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -285,9 +286,9 @@ Examples
     
     - name: Perform action change_compartment on auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration_actions:
-        compartment_id: ocid1.compartment.oc1..&lt;unique_ID&gt;
-        auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-        action: change_compartment
+        compartment_id: "ocid1.compartment.oc1..&lt;unique_ID&gt;"
+        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
 
 
 

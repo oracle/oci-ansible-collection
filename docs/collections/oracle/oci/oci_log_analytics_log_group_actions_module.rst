@@ -20,7 +20,7 @@ oracle.oci.oci_log_analytics_log_group_actions -- Perform actions on a LogAnalyt
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, updates the compartment of the Log-Analytics group with the given id.
+- For *action=change_compartment*, moves the specified log group to a different compartment.
 
 
 .. Aliases
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

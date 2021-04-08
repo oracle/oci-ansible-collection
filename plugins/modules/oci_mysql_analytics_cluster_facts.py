@@ -23,7 +23,8 @@ module: oci_mysql_analytics_cluster_facts
 short_description: Fetches details about a AnalyticsCluster resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AnalyticsCluster resource in Oracle Cloud Infrastructure
-    - Gets information about the Analytics Cluster.
+    - "DEPRECATED -- please use HeatWave API instead.
+      Gets information about the Analytics Cluster."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

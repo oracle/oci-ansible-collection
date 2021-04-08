@@ -23,8 +23,9 @@ module: oci_mysql_analytics_cluster_memory_estimate_facts
 short_description: Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
-    - Gets the most recent Analytics Cluster memory estimate that can be used to determine a suitable
-      Analytics Cluster size.
+    - "DEPRECATED -- please use HeatWave API instead.
+      Gets the most recent Analytics Cluster memory estimate that can be used to determine a suitable
+      Analytics Cluster size."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

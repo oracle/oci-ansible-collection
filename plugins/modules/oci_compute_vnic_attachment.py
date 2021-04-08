@@ -25,7 +25,7 @@ description:
     - This module allows the user to create and delete a VnicAttachment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a secondary VNIC and attaches it to the specified instance.
       For more information about secondary VNICs, see
-      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -54,13 +54,13 @@ options:
                       about the public IP limits, see
                       L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
-                    - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
+                    - If you specify a `vlanId`, then `assignPublicIp` must be set to false. See
                       L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: bool
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
             display_name:
@@ -73,7 +73,7 @@ options:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
                 type: dict
             hostname_label:
@@ -95,8 +95,8 @@ options:
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
-                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
-                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
+                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN
+                      can not be assigned a hostname. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
             nsg_ids:
                 description:
@@ -169,7 +169,7 @@ options:
               Certain bare metal instance shapes have two active physical NICs (0 and 1). If
               you add a secondary VNIC to one of these instances, you can specify which NIC
               the VNIC will use. For more information, see
-              L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+              L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
         type: int
     vnic_attachment_id:
         description:
@@ -179,7 +179,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -266,7 +266,7 @@ vnic_attachment:
                   Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                   you add a secondary VNIC to one of these instances, you can specify which NIC
                   the VNIC will use. For more information, see
-                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
             returned: on success
             type: int
             sample: 56
@@ -280,7 +280,7 @@ vnic_attachment:
             description:
                 - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
                   of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - An error is returned if the instance already has a VNIC attached to it from this VLAN.
             returned: on success
             type: string
@@ -298,7 +298,7 @@ vnic_attachment:
                   attachment process is complete.
                 - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
                   the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int

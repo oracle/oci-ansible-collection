@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_analytics_cluster_memory_estimate_actions -- Perform action
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
-- For *action=generate*, sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory.
+- For *action=generate*, dEPRECATED -- please use HeatWave API instead. Sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory.
 
 
 .. Aliases
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

@@ -19,6 +19,20 @@ def get_base64_encoded_stack_tf_config(client, stack_id):
     return b64encode(response.content).decode("ascii")
 
 
+def get_base64_encoded_template_tf_config(client, template_id):
+    """
+    Get base 64 encoded terraform config zip file for a template.
+
+    @param client: ResourceManagerClient
+    @param template_id: str - OCID for template id
+    :returns: str (ascii) base 64 encoded terraform zip file
+    """
+    response = oci_common_utils.call_with_backoff(
+        client.get_template_tf_config, template_id=template_id
+    ).data
+    return b64encode(response.content).decode("ascii")
+
+
 class StackHelperCustom:
     def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
         existing_resource_dict = super(
@@ -28,23 +42,44 @@ class StackHelperCustom:
             "key_by"
         ) and "config_source" not in self.module.params.get("key_by"):
             return existing_resource_dict
-        if not (
-            self.module.params.get("config_source")
-            and self.module.params.get("config_source").get("config_source_type")
-            == "ZIP_UPLOAD"
-            and self.module.params.get("config_source").get("zip_file_base64_encoded")
-        ):
-            return existing_resource_dict
         if (
             existing_resource_dict.get("config_source")
             and existing_resource_dict.get("config_source").get("config_source_type")
             == "ZIP_UPLOAD"
+            and self.module.params.get("config_source")
         ):
-            existing_resource_dict["config_source"][
-                "zip_file_base64_encoded"
-            ] = get_base64_encoded_stack_tf_config(
+            stack_tf_config = get_base64_encoded_stack_tf_config(
                 self.client, existing_resource_dict.get("id")
             )
+
+            # Compare the tf config of the existing stack against the
+            # tf config of the template being used to create the new one.
+            if self.module.params.get("config_source").get(
+                "config_source_type"
+            ) == "TEMPLATE_CONFIG_SOURCE" and self.module.params.get(
+                "config_source"
+            ).get(
+                "template_id"
+            ):
+                template_id = self.module.params.get("config_source").get("template_id")
+                template_tf_config = get_base64_encoded_template_tf_config(
+                    self.client, template_id
+                )
+                if stack_tf_config == template_tf_config:
+                    # tf configs match, populate the existing resource dict, i.e. the get model
+                    # with the template id similar to the create model for new resource
+                    existing_resource_dict["config_source"][
+                        "config_source_type"
+                    ] = "TEMPLATE_CONFIG_SOURCE"
+                    existing_resource_dict["config_source"]["template_id"] = template_id
+            elif self.module.params.get("config_source").get(
+                "config_source_type"
+            ) == "ZIP_UPLOAD" and self.module.params.get("config_source").get(
+                "zip_file_base64_encoded"
+            ):
+                existing_resource_dict["config_source"][
+                    "zip_file_base64_encoded"
+                ] = stack_tf_config
         return existing_resource_dict
 
     def get_existing_resource_dict_for_update(self):

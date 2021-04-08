@@ -23,7 +23,8 @@ module: oci_log_analytics_log_group_facts
 short_description: Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
-    - Returns a list of Log-Analytics groups.
+    - Returns a list of log groups in a compartment. You may limit the number of log groups, provide sorting options, and filter the results by specifying a
+      display name.
     - If I(log_analytics_log_group_id) is specified, the details of a single LogAnalyticsLogGroup will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

@@ -23,10 +23,14 @@ module: oci_mysql_analytics_cluster_actions
 short_description: Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
-    - For I(action=add), adds an Analytics Cluster to the DB System.
-    - For I(action=restart), restarts the Analytics Cluster.
-    - For I(action=start), starts the Analytics Cluster.
-    - For I(action=stop), stops the Analytics Cluster.
+    - "For I(action=add), dEPRECATED -- please use HeatWave API instead.
+      Adds an Analytics Cluster to the DB System."
+    - "For I(action=restart), dEPRECATED -- please use HeatWave API instead.
+      Restarts the Analytics Cluster."
+    - "For I(action=start), dEPRECATED -- please use HeatWave API instead.
+      Starts the Analytics Cluster."
+    - "For I(action=stop), dEPRECATED -- please use HeatWave API instead.
+      Stops the Analytics Cluster."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

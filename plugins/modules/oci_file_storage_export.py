@@ -139,7 +139,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create export
   oci_file_storage_export:
-    export_set_id: ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
+    export_set_id: "ocid1.exportset.oc1..unique_ID"
     file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     path: /mediafiles
 

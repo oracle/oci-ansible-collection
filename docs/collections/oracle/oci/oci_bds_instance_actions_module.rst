@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -176,6 +176,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -304,7 +305,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Inidividial worker nodes groups details</div>
+                                            <div></div>
                                             <div>Required for <em>action=change_shape</em>.</div>
                                                         </td>
             </tr>
@@ -321,7 +322,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>cloudsql node shape</div>
+                                            <div>Change shape of cloudsql node to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -337,7 +338,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>master nodes shape</div>
+                                            <div>Change shape of master nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -353,7 +354,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>utility nodes shape</div>
+                                            <div>Change shape of utility nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -369,7 +370,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>worker nodes shape</div>
+                                            <div>Change shape of worker nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                     
@@ -586,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The information about added Cloud SQL capability</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -737,7 +738,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specific info about a Hadoop cluster</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1180,7 +1181,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional configuration of customer&#x27;s network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

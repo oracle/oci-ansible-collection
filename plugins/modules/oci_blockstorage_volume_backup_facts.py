@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple volume_backups.
         type: str
     volume_id:
@@ -115,7 +115,7 @@ volume_backups:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -148,7 +148,7 @@ volume_backups:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -163,8 +163,8 @@ volume_backups:
             description:
                 - The OCID of the Key Management key which is the master encryption key for the volume backup.
                   For more information about the Key Management service and encryption keys, see
-                  L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-                  L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+                  L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+                  L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

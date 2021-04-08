@@ -53,9 +53,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on file_system
   oci_file_storage_file_system_actions:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -89,7 +89,7 @@ file_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the file system.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -103,7 +103,7 @@ file_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the file system.
@@ -141,7 +141,7 @@ file_system:
                   file system.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         source_details:
             description:
                 - ""
@@ -155,7 +155,7 @@ file_system:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
                 source_snapshot_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
@@ -163,7 +163,7 @@ file_system:
                           See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.

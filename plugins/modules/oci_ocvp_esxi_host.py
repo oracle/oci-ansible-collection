@@ -26,7 +26,7 @@ description:
     - For I(state=present), adds another ESXi host to an existing SDDC. The attributes of the specified
       `Sddc` determine the VMware software and other configuration settings used
       by the ESXi host.
-    - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/) operations to track the
+    - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/) operations to track the
       creation of the ESXi host.
 version_added: "2.9"
 author: Oracle (@oracle)

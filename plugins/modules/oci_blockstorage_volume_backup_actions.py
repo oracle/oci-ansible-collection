@@ -25,9 +25,9 @@ description:
     - Perform actions on a VolumeBackup resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a volume backup into a different compartment within the same tenancy.
       For information about moving resources between compartments,
-      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=copy), creates a volume backup copy in specified region. For general information about volume backups,
-      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm)
+      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumebackups.htm)
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,7 +39,7 @@ options:
         required: true
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the volume backup to.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the volume backup to.
             - Required for I(action=change_compartment).
         type: str
     destination_region:
@@ -62,8 +62,8 @@ options:
               If you do not specify this attribute the volume backup will be encrypted with the Oracle-provided encryption
               key when it is copied to the destination region.
             - For more information about the Key Management service and encryption keys, see
-              L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-              L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+              L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+              L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     action:
@@ -108,7 +108,7 @@ volume_backup:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -141,7 +141,7 @@ volume_backup:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -156,8 +156,8 @@ volume_backup:
             description:
                 - The OCID of the Key Management key which is the master encryption key for the volume backup.
                   For more information about the Key Management service and encryption keys, see
-                  L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-                  L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+                  L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+                  L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

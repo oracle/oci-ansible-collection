@@ -20,7 +20,7 @@ oracle.oci.oci_log_analytics_entity_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -212,6 +213,41 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-creation_source_details"></div>
+                    <b>creation_source_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-creation_source_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only log analytics entities whose auto-creation source details contains the specified string.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-creation_source_type"></div>
+                    <b>creation_source_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-creation_source_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>EM_BRIDGE</li>
+                                                                                                                                                                                                <li>SERVICE_CONNECTOR_HUB</li>
+                                                                                                                                                                                                <li>NONE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return only those log analytics entities with the specified auto-creation source.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -507,12 +543,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities"></div>
                     <b>log_analytics_entities</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities" title="Permalink to this return value"></a>
@@ -525,12 +561,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of LogAnalyticsEntity resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_logs_collected&#x27;: True, &#x27;cloud_resource_id&#x27;: &#x27;ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entity_type_internal_name&#x27;: &#x27;entity_type_internal_name_example&#x27;, &#x27;entity_type_name&#x27;: &#x27;entity_type_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;management_agent_compartment_id&#x27;: &#x27;ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;management_agent_display_name&#x27;: &#x27;management_agent_display_name_example&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timezone_region&#x27;: &#x27;timezone_region_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_logs_collected&#x27;: True, &#x27;cloud_resource_id&#x27;: &#x27;ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;creation_source&#x27;: {&#x27;details&#x27;: &#x27;details_example&#x27;, &#x27;type&#x27;: &#x27;EM_BRIDGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entity_type_internal_name&#x27;: &#x27;entity_type_internal_name_example&#x27;, &#x27;entity_type_name&#x27;: &#x27;entity_type_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;management_agent_compartment_id&#x27;: &#x27;ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;management_agent_display_name&#x27;: &#x27;management_agent_display_name_example&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timezone_region&#x27;: &#x27;timezone_region_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/are_logs_collected"></div>
                     <b>are_logs_collected</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/are_logs_collected" title="Permalink to this return value"></a>
@@ -548,7 +584,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/cloud_resource_id"></div>
                     <b>cloud_resource_id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/cloud_resource_id" title="Permalink to this return value"></a>
@@ -566,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/compartment_id" title="Permalink to this return value"></a>
@@ -584,7 +620,62 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_entities/creation_source"></div>
+                    <b>creation_source</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_entities/creation_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_entities/creation_source/details"></div>
+                    <b>details</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_entities/creation_source/details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This will provide additional details for source of auto-creation. For example, if entity is auto-created by enterprise manager bridge, this field provides additional detail on enterprise manager that contributed to the entity auto-creation.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_entities/creation_source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_entities/creation_source/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Source that auto-created the entity.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EM_BRIDGE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/defined_tags" title="Permalink to this return value"></a>
@@ -602,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/entity_type_internal_name"></div>
                     <b>entity_type_internal_name</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/entity_type_internal_name" title="Permalink to this return value"></a>
@@ -620,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/entity_type_name"></div>
                     <b>entity_type_name</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/entity_type_name" title="Permalink to this return value"></a>
@@ -638,7 +729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/freeform_tags" title="Permalink to this return value"></a>
@@ -656,7 +747,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/hostname" title="Permalink to this return value"></a>
@@ -674,7 +765,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/id" title="Permalink to this return value"></a>
@@ -692,7 +783,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/lifecycle_details" title="Permalink to this return value"></a>
@@ -710,7 +801,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/lifecycle_state" title="Permalink to this return value"></a>
@@ -728,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/management_agent_compartment_id"></div>
                     <b>management_agent_compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/management_agent_compartment_id" title="Permalink to this return value"></a>
@@ -746,7 +837,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/management_agent_display_name"></div>
                     <b>management_agent_display_name</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/management_agent_display_name" title="Permalink to this return value"></a>
@@ -764,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/management_agent_id"></div>
                     <b>management_agent_id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/management_agent_id" title="Permalink to this return value"></a>
@@ -782,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/name" title="Permalink to this return value"></a>
@@ -800,7 +891,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/properties"></div>
                     <b>properties</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/properties" title="Permalink to this return value"></a>
@@ -816,7 +907,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/source_id"></div>
                     <b>source_id</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/source_id" title="Permalink to this return value"></a>
@@ -834,7 +925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/time_created" title="Permalink to this return value"></a>
@@ -852,7 +943,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/time_updated" title="Permalink to this return value"></a>
@@ -870,7 +961,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_entities/timezone_region"></div>
                     <b>timezone_region</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_entities/timezone_region" title="Permalink to this return value"></a>

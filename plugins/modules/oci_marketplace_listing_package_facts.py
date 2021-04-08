@@ -166,6 +166,18 @@ listing_packages:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        operating_system:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - name of the operating system
+                    returned: on success
+                    type: string
+                    sample: name_example
         resource_link:
             description:
                 - Link to the orchestration resource.
@@ -289,6 +301,9 @@ listing_packages:
         },
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "operating_system": {
+            "name": "name_example"
+        },
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",

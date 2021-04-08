@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
     availability_domain:
@@ -62,7 +62,7 @@ shapes:
         shape:
             description:
                 - The name of the shape. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

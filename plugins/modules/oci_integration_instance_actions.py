@@ -93,7 +93,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on integration_instance
   oci_integration_instance_actions:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action change_integration_instance_network_endpoint on integration_instance

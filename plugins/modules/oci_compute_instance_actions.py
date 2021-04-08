@@ -45,15 +45,15 @@ description:
       OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a
       crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of
       the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see
-      L(Sending a Diagnostic Interrupt,https://docs.cloud.oracle.com/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm)."
+      L(Sending a Diagnostic Interrupt,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm)."
     - For more information about managing instance lifecycle states, see
-      L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/Content/Compute/Tasks/restartinginstance.htm).
+      L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
         type: str
         aliases: ["id"]
         required: true
@@ -106,6 +106,14 @@ instance:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        capacity_reservation_id:
+            description:
+                - The OCID of the compute capacity reservation this instance is launched under.
+                  When this field contains an empty string or is null, the instance is not currently in a capacity reservation.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: string
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
@@ -121,7 +129,7 @@ instance:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -160,7 +168,7 @@ instance:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -195,7 +203,7 @@ instance:
                   iqn.2015-02.oracle.boot."
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
-                  L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                  L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                 - For more information about iPXE, see http://ipxe.org.
             returned: on success
             type: string
@@ -265,7 +273,7 @@ instance:
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -329,7 +337,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -542,18 +550,19 @@ instance:
                 type:
                     description:
                         - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`
+                          `type` is `AMD_MILAN_BM`.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
                 numa_nodes_per_socket:
                     description:
-                        - The number of NUMA nodes per socket.
+                        - The number of NUMA nodes per socket (NPS).
                     returned: on success
                     type: string
                     sample: NPS0
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

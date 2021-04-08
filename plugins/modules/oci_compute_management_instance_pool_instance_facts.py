@@ -24,20 +24,27 @@ short_description: Fetches details about one or multiple InstancePoolInstance re
 description:
     - Fetches details about one or multiple InstancePoolInstance resources in Oracle Cloud Infrastructure
     - List the instances in the specified instance pool.
+    - If I(instance_id) is specified, the details of a single InstancePoolInstance will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-        type: str
-        required: true
     instance_pool_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
         type: str
         aliases: ["id"]
         required: true
+    instance_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
+            - Required to get a specific instance_pool_instance.
+        type: str
+        aliases: ["id"]
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+            - Required to list multiple instance_pool_instances.
+        type: str
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -70,8 +77,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_pool_instances
   oci_compute_management_instance_pool_instance_facts:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Get a specific instance_pool_instance
+  oci_compute_management_instance_pool_instance_facts:
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -84,19 +96,32 @@ instance_pool_instances:
     contains:
         id:
             description:
-                - The OCID of the instance.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_pool_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+            returned: on success
+            type: string
+            sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        lifecycle_state:
+            description:
+                - The attachment state of the instance in relation to the instance pool.
+            returned: on success
+            type: string
+            sample: ATTACHING
         compartment_id:
             description:
-                - The OCID of the compartment that contains the instance.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the
+                  instance.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -114,7 +139,8 @@ instance_pool_instances:
             sample: fault_domain_example
         instance_configuration_id:
             description:
-                - The OCID of the instance confgiuration used to create the instance.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
+                  used to create the instance.
             returned: on success
             type: string
             sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
@@ -126,16 +152,17 @@ instance_pool_instances:
             sample: region_example
         shape:
             description:
-                - The shape of an instance. The shape determines the number of CPUs, amount of memory,
+                - The shape of the instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
                 - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
         state:
             description:
-                - The current state of the instance pool instance.
+                - The lifecycle state of the instance. Refer to `lifecycleState` in the L(Instance,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/latest/Instance) resource.
             returned: on success
             type: string
             sample: state_example
@@ -148,7 +175,7 @@ instance_pool_instances:
             sample: 2016-08-25T21:10:29.600Z
         load_balancer_backends:
             description:
-                - The load balancer backends that are configured for the instance pool instance.
+                - The load balancer backends that are configured for the instance.
             returned: on success
             type: complex
             contains:
@@ -178,7 +205,9 @@ instance_pool_instances:
                     sample: OK
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "instance_pool_id": "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx",
         "availability_domain": "Uocm:PHX-AD-1",
+        "lifecycle_state": "ATTACHING",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "fault_domain": "fault_domain_example",
@@ -212,13 +241,26 @@ except ImportError:
 
 
 class InstancePoolInstanceFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: list"""
+    """Supported operations: get, list"""
+
+    def get_required_params_for_get(self):
+        return [
+            "instance_pool_id",
+            "instance_id",
+        ]
 
     def get_required_params_for_list(self):
         return [
             "compartment_id",
             "instance_pool_id",
         ]
+
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_instance_pool_instance,
+            instance_pool_id=self.module.params.get("instance_pool_id"),
+            instance_id=self.module.params.get("instance_id"),
+        )
 
     def list_resources(self):
         optional_list_method_params = [
@@ -254,8 +296,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
             instance_pool_id=dict(aliases=["id"], type="str", required=True),
+            instance_id=dict(aliases=["id"], type="str"),
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

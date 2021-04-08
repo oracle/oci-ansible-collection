@@ -20,7 +20,7 @@ oracle.oci.oci_events_rule_actions -- Perform actions on a Rule resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.18.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -285,8 +286,8 @@ Examples
     
     - name: Perform action change_compartment on rule
       oci_events_rule_actions:
-        rule_id: ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
 
@@ -324,7 +325,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Rule resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actions&#x27;: {&#x27;actions&#x27;: [{&#x27;action_type&#x27;: &#x27;ONS&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_message&#x27;: &#x27;lifecycle_message_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: &quot;{&#x27;eventType&#x27;:[&#x27;com.oraclecloud.objectstorage.deletebucket&#x27;]}&quot;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;This rule sends a notification upon completion of DbaaS backup.&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_message&#x27;: &#x27;lifecycle_message_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2018-09-12T22:47:12.613Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actions&#x27;: {&#x27;actions&#x27;: [{&#x27;action_type&#x27;: &#x27;ONS&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_message&#x27;: &#x27;lifecycle_message_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;This rule sends a notification upon completion of DbaaS backup.&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_message&#x27;: &#x27;lifecycle_message_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2018-09-12T22:47:12.613Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -582,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `\&quot;eventType\&quot;: \&quot;com.oraclecloud.databaseservice.autonomous.database.backup.end\&quot;`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;eventType&#x27;: [&#x27;com.oraclecloud.objectstorage.deletebucket&#x27;]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">condition_example</div>
                                     </td>
             </tr>
                                 <tr>

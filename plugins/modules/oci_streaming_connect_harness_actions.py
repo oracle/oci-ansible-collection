@@ -105,8 +105,8 @@ connect_harness:
             sample: 2018-04-20T00:00:07.405Z
         freeform_tags:
             description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  Exists for cross-compatibility only.
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-
+                  compatibility only.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
@@ -114,8 +114,8 @@ connect_harness:
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see
-                  L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}'"
             returned: on success
             type: dict

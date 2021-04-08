@@ -33,6 +33,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -40,20 +46,13 @@ EXAMPLES = """
 - name: Get a specific stack_tf_state
   oci_resource_manager_stack_tf_state_facts:
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+    dest: /tmp/terraformstate.json
 
 """
 
-RETURN = """
-stack_tf_state:
-    description:
-        - StackTfState resource
-    returned: on success
-    type: str
-    sample: "sample"
-"""
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils._text import to_text
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceFactsHelperBase,
@@ -82,8 +81,13 @@ class StackTfStateFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
     def get(self):
-        response_data = self.get_resource().data
-        return to_text(response_data)
+        response = self.get_resource().data
+        dest = self.module.params.get("dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
 
 StackTfStateFactsHelperCustom = get_custom_class("StackTfStateFactsHelperCustom")
@@ -95,7 +99,12 @@ class ResourceFactsHelper(StackTfStateFactsHelperCustom, StackTfStateFactsHelper
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(stack_id=dict(aliases=["id"], type="str", required=True),))
+    module_args.update(
+        dict(
+            stack_id=dict(aliases=["id"], type="str", required=True),
+            dest=dict(type="str", required=True),
+        )
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

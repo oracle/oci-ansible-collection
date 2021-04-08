@@ -54,9 +54,9 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on configuration_source_provider
   oci_resource_manager_configuration_source_provider_actions:
-    compartment_id: compartment_OCID
-    configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "compartment_OCID"
+    configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -72,14 +72,14 @@ configuration_source_provider:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the configuration source provider.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where the configuration source
                   provider is located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable display name for the configuration source provider.

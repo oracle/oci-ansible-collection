@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.19.0] - 2021-04-08
+
+## Added
+- Support for resource principal authentication
+- Support for Network Load Balancer
+- Support for OCI Vulnerability Scanning Service
+- Support for compute capacity reservation
+- Support for attaching and detaching compute instance to an instance pool
+- Support for vSphere 7.0 in the VMware Solution service
+- Support for Marketplace Publications
+- Support for highly-available MySQL DB Systems
+- Support for private_access_channel and vanity_url in Analytics service
+- HeatWave (in-memory analytics accelerator) support for the MySQL Database Service. (Renaming Analytics Service to HeatWave)
+- Support for Oracle Enterprise Manager bridges, source auto-association, source event type mappings, and plugins to upload data in the Logging Analytics service
+- Support for nosql table change compartment
+
+## Fixed
+- Updated the modules `oci_resource_manager_stack_tf_state_facts` and `oci_resource_manager_job_tf_state_facts` to write the output to the given file
+- Idempotence for resource manager stack creation `oci_resource_manager_stack` via private templates
+- Inventory plugin to return hostsvars for db hosts
+
+### Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+- pyyaml requirement version from 5.1.2 to 5.4 in oci-cloudnative solution
+
 ## [2.18.0] - 2021-03-25
 
 ## Added

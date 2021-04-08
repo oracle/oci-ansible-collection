@@ -54,8 +54,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action change_compartment on container_repository
   oci_artifacts_container_repository_actions:
-    repository_id: ocid1.containerrepo.oc1..exampleuniqueID
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    repository_id: "ocid1.containerrepo.oc1..exampleuniqueID"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 """
@@ -72,7 +72,7 @@ container_repository:
                 - The OCID of the compartment in which the container repository exists.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The id of the user or principal that created the resource.
@@ -91,7 +91,7 @@ container_repository:
                 - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
             returned: on success
             type: string
-            sample: ocid1.containerrepo.oc1..exampleuniqueID
+            sample: "ocid1.containerrepo.oc1..exampleuniqueID"
         image_count:
             description:
                 - Total number of images.

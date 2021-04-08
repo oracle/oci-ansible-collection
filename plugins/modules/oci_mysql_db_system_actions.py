@@ -115,9 +115,35 @@ db_system:
             returned: on success
             type: string
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        is_highly_available:
+            description:
+                - If the policy is to enable high availability of the instance, by
+                  maintaining secondary/failover capacity as necessary.
+            returned: on success
+            type: bool
+            sample: true
+        current_placement:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                availability_domain:
+                    description:
+                        - The availability domain in which the DB System is placed.
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
+                fault_domain:
+                    description:
+                        - The fault domain in which the DB System is placed.
+                    returned: on success
+                    type: string
+                    sample: fault_domain_example
         is_analytics_cluster_attached:
             description:
-                - If the DB System has an Analytics Cluster attached.
+                - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
+                  If the DB System has an Analytics Cluster attached."
             returned: on success
             type: bool
             sample: true
@@ -159,15 +185,69 @@ db_system:
                     returned: on success
                     type: string
                     sample: 2013-10-20T19:20:30+01:00
+        is_heat_wave_cluster_attached:
+            description:
+                - If the DB System has a HeatWave Cluster attached.
+            returned: on success
+            type: bool
+            sample: true
+        heat_wave_cluster:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - "The shape determines resources to allocate to the HeatWave
+                          nodes - CPU cores, memory."
+                    returned: on success
+                    type: string
+                    sample: shape_name_example
+                cluster_size:
+                    description:
+                        - The number of analytics-processing compute instances, of the
+                          specified shape, in the HeatWave cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the MySQL HeatWave cluster.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_state_example
+                time_created:
+                    description:
+                        - The date and time the HeatWave cluster was created,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                time_updated:
+                    description:
+                        - The time the HeatWave cluster was last updated,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         availability_domain:
             description:
-                - The Availability Domain where the primary DB System should be located.
+                - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the availability domain in which the DB System is placed.
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
-                - The name of the Fault Domain the DB System is located in.
+                - The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
             type: string
             sample: fault_domain_example
@@ -561,8 +641,21 @@ db_system:
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_highly_available": true,
+        "current_placement": {
+            "availability_domain": "Uocm:PHX-AD-1",
+            "fault_domain": "fault_domain_example"
+        },
         "is_analytics_cluster_attached": true,
         "analytics_cluster": {
+            "shape_name": "shape_name_example",
+            "cluster_size": 56,
+            "lifecycle_state": "lifecycle_state_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
+        },
+        "is_heat_wave_cluster_attached": true,
+        "heat_wave_cluster": {
             "shape_name": "shape_name_example",
             "cluster_size": 56,
             "lifecycle_state": "lifecycle_state_example",
