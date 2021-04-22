@@ -179,6 +179,13 @@ vcns:
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -214,6 +221,7 @@ vcns:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"

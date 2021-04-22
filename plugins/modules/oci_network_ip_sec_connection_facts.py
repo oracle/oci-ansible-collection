@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
             - Required to get a specific ip_sec_connection.
         type: str
         aliases: ["id"]
@@ -42,11 +42,11 @@ options:
         type: str
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
     cpe_id:
         description:
-            - The OCID of the CPE.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
@@ -98,7 +98,7 @@ ip_sec_connections:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: string
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
@@ -113,7 +113,7 @@ ip_sec_connections:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The IPSec connection's Oracle ID (OCID).
+                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -153,7 +153,10 @@ ip_sec_connections:
                   is using static routing. If you configure at least one tunnel to use static routing, then
                   you must provide at least one valid static route. If you configure both
                   tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
+                - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+                  See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `10.0.1.0/24`"
+                - "Example: `2001:db8::/32`"
             returned: on success
             type: list
             sample: []

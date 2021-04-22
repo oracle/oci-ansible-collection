@@ -20,7 +20,7 @@ oracle.oci.oci_compute_shape_facts -- Fetches details about one or multiple Shap
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -320,10 +320,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Shape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/baseline_ocpu_utilizations"></div>
+                    <b>baseline_ocpu_utilizations</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/baseline_ocpu_utilizations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a subcore burstable VM, the supported baseline OCPU utilization for instances that use this shape.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/gpu_description"></div>
@@ -638,6 +654,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/min_total_baseline_ocpus_required"></div>
+                    <b>min_total_baseline_ocpus_required</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/min_total_baseline_ocpus_required" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For a subcore burstable VM, the minimum total baseline OCPUs required. The total baseline OCPUs is equal to baselineOcpuUtilization chosen multiplied by the number of OCPUs chosen.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

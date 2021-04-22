@@ -107,8 +107,8 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on key
   oci_key_management_key_actions:
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

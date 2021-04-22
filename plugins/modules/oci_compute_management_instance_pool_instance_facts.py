@@ -154,8 +154,6 @@ instance_pool_instances:
             description:
                 - The shape of the instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
-                - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example

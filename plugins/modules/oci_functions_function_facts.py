@@ -168,6 +168,18 @@ functions:
             returned: on success
             type: int
             sample: 56
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -218,6 +230,9 @@ functions:
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
+        "trace_config": {
+            "is_enabled": true
+        },
         "freeform_tags": {'Department': 'Finance'},
         "invoke_endpoint": "invoke_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

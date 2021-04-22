@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     local_peering_gateway_id:
         description:
-            - The OCID of the local peering gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the local peering gateway.
             - Required to get a specific local_peering_gateway.
         type: str
         aliases: ["id"]
@@ -147,6 +147,12 @@ local_peering_gateways:
             returned: on success
             type: string
             sample: peering_status_details_example
+        peer_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the peered LPG.
+            returned: on success
+            type: string
+            sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         route_table_id:
             description:
                 - The OCID of the route table the LPG is using.
@@ -180,6 +186,7 @@ local_peering_gateways:
         "peer_advertised_cidr_details": [],
         "peering_status": "INVALID",
         "peering_status_details": "peering_status_details_example",
+        "peer_id": "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx",
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

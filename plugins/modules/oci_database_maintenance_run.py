@@ -104,7 +104,8 @@ maintenance_run:
             sample: description_example
         lifecycle_state:
             description:
-                - The current state of the maintenance run.
+                - The current state of the maintenance run. For Autonomous Database on shared Exadata infrastructure, valid states are IN_PROGRESS, SUCCEEDED
+                  and FAILED.
             returned: on success
             type: string
             sample: SCHEDULED

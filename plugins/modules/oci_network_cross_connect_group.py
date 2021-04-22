@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new cross-connect group to use with Oracle Cloud Infrastructure
       FastConnect. For more information, see
       L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
-    - For the purposes of access control, you must provide the OCID of the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
       compartment where you want the cross-connect group to reside. If you're
       not sure which compartment to use, put the cross-connect group in the
       same compartment with your VCN. For more information about
@@ -78,7 +78,7 @@ options:
         type: dict
     cross_connect_group_id:
         description:
-            - The OCID of the cross-connect group.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect group.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

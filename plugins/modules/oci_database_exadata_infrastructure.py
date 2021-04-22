@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
       To create an Exadata Cloud Service infrastructure resource, use the  L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
-    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate,
+    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, change_compartment,
       download_exadata_infrastructure_config_file."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -125,6 +125,11 @@ options:
                     - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                 type: bool
                 required: true
+            is_contact_mos_validated:
+                description:
+                    - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact
+                      is not a valid MOS contact.
+                type: bool
     maintenance_window:
         description:
             - ""
@@ -478,6 +483,20 @@ exadata_infrastructure:
                     returned: on success
                     type: bool
                     sample: true
+                is_contact_mos_validated:
+                    description:
+                        - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure
+                          contact is not a valid MOS contact.
+                    returned: on success
+                    type: bool
+                    sample: true
+        maintenance_slo_status:
+            description:
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
+            returned: on success
+            type: string
+            sample: OK
         maintenance_window:
             description:
                 - ""
@@ -587,8 +606,10 @@ exadata_infrastructure:
             "name": "name_example",
             "phone_number": "phone_number_example",
             "email": "email_example",
-            "is_primary": true
+            "is_primary": true,
+            "is_contact_mos_validated": true
         }],
+        "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
             "months": [{
@@ -775,6 +796,7 @@ def main():
                     phone_number=dict(type="str"),
                     email=dict(type="str", required=True),
                     is_primary=dict(type="bool", required=True),
+                    is_contact_mos_validated=dict(type="bool"),
                 ),
             ),
             maintenance_window=dict(

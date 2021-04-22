@@ -20,7 +20,7 @@ oracle.oci.oci_limits_resource_availability_facts -- Fetches details about a Res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -336,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceAvailability resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available&#x27;: 56, &#x27;used&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available&#x27;: 56, &#x27;effective_quota_value&#x27;: 10, &#x27;fractional_availability&#x27;: 10, &#x27;fractional_usage&#x27;: 10, &#x27;used&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -351,10 +351,64 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The count of available resources.</div>
+                                            <div>The count of available resources. Because we have introduced resources with fractional counts, the field will round down to the nearest integer.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/effective_quota_value"></div>
+                    <b>effective_quota_value</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/effective_quota_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The effective quota value for given compartment. This field is only present if there is a current quota policy affecting the current resource in the target region or availability domain.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/fractional_availability"></div>
+                    <b>fractional_availability</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/fractional_availability" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The most accurate count of available resources.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/fractional_usage"></div>
+                    <b>fractional_usage</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/fractional_usage" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current most accurate usage in the given compartment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
                                 <tr>
@@ -369,7 +423,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current usage in the given compartment.</div>
+                                            <div>The current usage in the given compartment. Because we have introduced resources with fractional counts, the field will round up to the nearest integer.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

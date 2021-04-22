@@ -20,7 +20,7 @@ oracle.oci.oci_limits_limit_definition_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -357,7 +357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of LimitDefinition resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_quotas_supported&#x27;: True, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_resource_availability_supported&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;scope_type&#x27;: &#x27;GLOBAL&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_quotas_supported&#x27;: True, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_deprecated&#x27;: True, &#x27;is_eligible_for_limit_increase&#x27;: True, &#x27;is_resource_availability_supported&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;scope_type&#x27;: &#x27;GLOBAL&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -394,6 +394,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-limit_definitions/is_deprecated"></div>
+                    <b>is_deprecated</b>
+                    <a class="ansibleOptionLink" href="#return-limit_definitions/is_deprecated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the limit has been deprecated.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-limit_definitions/is_eligible_for_limit_increase"></div>
+                    <b>is_eligible_for_limit_increase</b>
+                    <a class="ansibleOptionLink" href="#return-limit_definitions/is_eligible_for_limit_increase" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the customer can request a limit increase for this resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

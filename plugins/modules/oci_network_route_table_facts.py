@@ -33,7 +33,7 @@ author: Oracle (@oracle)
 options:
     rt_id:
         description:
-            - The OCID of the route table.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table.
             - Required to get a specific route_table.
         type: str
         aliases: ["id"]
@@ -157,6 +157,7 @@ route_tables:
                           `cidrBlock` and `destination` will be rejected.
                         - A destination IP address range in CIDR notation. Matching packets will
                           be routed to the indicated network entity (the target).
+                        - Cannot be an IPv6 CIDR.
                         - "Example: `0.0.0.0/0`"
                     returned: on success
                     type: string
@@ -166,7 +167,11 @@ route_tables:
                         - Conceptually, this is the range of IP addresses used for matching when routing
                           traffic. Required if you provide a `destinationType`.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24`
+                            or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule's target
+                            can only be a DRG or internet gateway.
+                            IPv6 addressing is supported for all commercial and government regions.
+                            See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a route rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -206,7 +211,7 @@ route_tables:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The OCID of the VCN the route table list belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the route table list belongs to.
             returned: on success
             type: string
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

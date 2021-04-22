@@ -20,7 +20,7 @@ oracle.oci.oci_network_virtual_circuit_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -322,7 +322,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the virtual circuit.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the virtual circuit.</div>
                                             <div>Required to get a specific virtual_circuit.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -392,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VirtualCircuit resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwidth_shape_name&#x27;: &#x27;10 Gbps&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;10.0.0.18/31&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;10.0.0.19/31&#x27;, &#x27;vlan&#x27;: 200}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwidth_shape_name&#x27;: &#x27;10 Gbps&#x27;, &#x27;bgp_ipv6_session_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;10.0.0.18/31&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;2001:db8::1/64&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;10.0.0.19/31&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;2001:db8::2/64&#x27;, &#x27;vlan&#x27;: 200}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;routing_policy&#x27;: [], &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -412,6 +412,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10 Gbps</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/bgp_ipv6_session_state"></div>
+                    <b>bgp_ipv6_session_state</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/bgp_ipv6_session_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The state of the Ipv6 BGP session associated with the virtual circuit.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
                                 <tr>
@@ -444,7 +462,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the BGP session associated with the virtual circuit.</div>
+                                            <div>The state of the Ipv4 BGP session associated with the virtual circuit.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
@@ -547,6 +565,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/cross_connect_mappings/customer_bgp_peering_ipv6"></div>
+                    <b>customer_bgp_peering_ipv6</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/cross_connect_mappings/customer_bgp_peering_ipv6" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer&#x27;s edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider&#x27;s edge router. Only subnet masks from /64 up to /127 are allowed.</div>
+                                            <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses.</div>
+                                            <div>IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `2001:db8::1/64`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::1/64</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-virtual_circuits/cross_connect_mappings/oracle_bgp_peering_ip"></div>
                     <b>oracle_bgp_peering_ip</b>
                     <a class="ansibleOptionLink" href="#return-virtual_circuits/cross_connect_mappings/oracle_bgp_peering_ip" title="Permalink to this return value"></a>
@@ -562,6 +602,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.19/31</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/cross_connect_mappings/oracle_bgp_peering_ipv6"></div>
+                    <b>oracle_bgp_peering_ipv6</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/cross_connect_mappings/oracle_bgp_peering_ipv6" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IPv6 address for Oracle&#x27;s end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer&#x27;s edge router, the customer specifies this information. If the session goes from Oracle to a provider&#x27;s edge router, the provider specifies this.</div>
+                                            <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses.</div>
+                                            <div>Note that IPv6 addressing is currently supported only in certain regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `2001:db8::2/64`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::2/64</div>
                                     </td>
             </tr>
                                 <tr>
@@ -889,6 +951,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/routing_policy"></div>
+                    <b>routing_policy</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/routing_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The routing policy sets how routing information about the Oracle cloud is shared over a public virtual circuit. Policies available are: `ORACLE_SERVICE_NETWORK`, `REGIONAL`, `MARKET_LEVEL`, and `GLOBAL`. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/routingonprem.htm#route_filtering'>Route Filtering</a> for details. By default, routing information is shared for all routes in the same market.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

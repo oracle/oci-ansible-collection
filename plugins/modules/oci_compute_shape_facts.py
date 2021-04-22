@@ -59,6 +59,19 @@ shapes:
     returned: on success
     type: complex
     contains:
+        baseline_ocpu_utilizations:
+            description:
+                - For a subcore burstable VM, the supported baseline OCPU utilization for instances that use this shape.
+            returned: on success
+            type: list
+            sample: []
+        min_total_baseline_ocpus_required:
+            description:
+                - For a subcore burstable VM, the minimum total baseline OCPUs required. The total baseline OCPUs is equal to
+                  baselineOcpuUtilization chosen multiplied by the number of OCPUs chosen.
+            returned: on success
+            type: float
+            sample: 10
         shape:
             description:
                 - The name of the shape. You can enumerate all available shapes by calling
@@ -232,6 +245,8 @@ shapes:
                     type: float
                     sample: 3.4
     sample: [{
+        "baseline_ocpu_utilizations": [],
+        "min_total_baseline_ocpus_required": 10,
         "shape": "shape_example",
         "processor_description": "processor_description_example",
         "ocpus": 3.4,

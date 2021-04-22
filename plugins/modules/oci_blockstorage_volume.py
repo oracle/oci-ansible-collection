@@ -117,12 +117,13 @@ options:
                     - ""
                 type: str
                 choices:
+                    - "blockVolumeReplica"
                     - "volume"
                     - "volumeBackup"
                 required: true
             id:
                 description:
-                    - The OCID of the volume.
+                    - The OCID of the block volume replica.
                 type: str
                 required: true
     volume_backup_id:
@@ -136,6 +137,25 @@ options:
             - Specifies whether the auto-tune performance is enabled for this volume.
             - This parameter is updatable.
         type: bool
+    block_volume_replicas:
+        description:
+            - The list of block volume replicas to be enabled for this volume
+              in the specified destination availability domains.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            display_name:
+                description:
+                    - "The display name of the block volume replica. You may optionally specify a *display name* for
+                      the block volume replica, otherwise a default is provided."
+                type: str
+                aliases: ["name"]
+            availability_domain:
+                description:
+                    - The availability domain of the block volume replica.
+                    - "Example: `Uocm:PHX-AD-1`"
+                type: str
+                required: true
     volume_id:
         description:
             - The OCID of the volume.
@@ -170,6 +190,8 @@ EXAMPLES = """
     vpus_per_gb: 56
     size_in_gbs: 56
     is_auto_tune_enabled: true
+    block_volume_replicas:
+    - availability_domain: Uocm:PHX-AD-1
 
 - name: Update volume
   oci_blockstorage_volume:
@@ -302,10 +324,10 @@ volume:
                         - ""
                     returned: on success
                     type: string
-                    sample: volume
+                    sample: blockVolumeReplica
                 id:
                     description:
-                        - The OCID of the volume.
+                        - The OCID of the block volume replica.
                     returned: on success
                     type: string
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -333,6 +355,31 @@ volume:
             returned: on success
             type: int
             sample: 56
+        block_volume_replicas:
+            description:
+                - The list of block volume replicas of this volume.
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - The display name of the block volume replica
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                block_volume_replica_id:
+                    description:
+                        - The block volume replica's Oracle ID (OCID).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the block volume replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -348,13 +395,18 @@ volume:
         "size_in_gbs": 56,
         "size_in_mbs": 56,
         "source_details": {
-            "type": "volume",
+            "type": "blockVolumeReplica",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_tune_enabled": true,
-        "auto_tuned_vpus_per_gb": 56
+        "auto_tuned_vpus_per_gb": 56,
+        "block_volume_replicas": [{
+            "display_name": "display_name_example",
+            "block_volume_replica_id": "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }
 """
 
@@ -508,13 +560,23 @@ def main():
                 type="dict",
                 options=dict(
                     type=dict(
-                        type="str", required=True, choices=["volume", "volumeBackup"]
+                        type="str",
+                        required=True,
+                        choices=["blockVolumeReplica", "volume", "volumeBackup"],
                     ),
                     id=dict(type="str", required=True),
                 ),
             ),
             volume_backup_id=dict(type="str"),
             is_auto_tune_enabled=dict(type="bool"),
+            block_volume_replicas=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    display_name=dict(aliases=["name"], type="str"),
+                    availability_domain=dict(type="str", required=True),
+                ),
+            ),
             volume_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

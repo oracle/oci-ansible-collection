@@ -38,13 +38,18 @@ options:
         type: int
     model_artifact:
         description:
-            - The model artifact to upload.
+            - The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.
+            - Required for create using I(state=present).
         type: str
-        required: true
     content_disposition:
         description:
             - The content disposition of the body.
         type: str
+    model_artifact_file:
+        description:
+            - The model artifact file path to upload
+        type: str
+        required: true
     state:
         description:
             - The state of the ModelArtifact.
@@ -61,6 +66,7 @@ EXAMPLES = """
   oci_data_science_model_artifact:
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     model_artifact: B
+    model_artifact_file: model.zip
 
 """
 
@@ -134,8 +140,9 @@ def main():
         dict(
             model_id=dict(type="str", required=True),
             content_length=dict(type="int"),
-            model_artifact=dict(type="str", required=True),
+            model_artifact=dict(type="str"),
             content_disposition=dict(type="str"),
+            model_artifact_file=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

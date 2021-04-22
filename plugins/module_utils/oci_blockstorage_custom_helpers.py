@@ -210,6 +210,21 @@ class BootVolumeKmsKeyHelperCustom:
             resource=to_dict(self.get_resource().data),
         )
 
+    def delete(self):
+        result = super(BootVolumeKmsKeyHelperCustom, self).delete()
+        # The super delete_resource method has a none waiter. But the volume does not come to ready state immediately.
+        # So wait until the volume comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_boot_volume(
+                boot_volume_id=self.module.params.get("boot_volume_id")
+            ),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        )
+        return result
+
 
 class VolumeKmsKeyHelperCustom:
     # When a volume is not mapped to a kms key, the get operation returns a 404. The base class update requires
@@ -255,6 +270,19 @@ class VolumeKmsKeyHelperCustom:
             resource_type=self.resource_type,
             resource=to_dict(self.get_resource().data),
         )
+
+    def delete(self):
+        result = super(VolumeKmsKeyHelperCustom, self).delete()
+        # The super delete_resource method has a none waiter. But the volume does not come to ready state immediately.
+        # So wait until the volume comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_volume(volume_id=self.module.params.get("volume_id")),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        )
+        return result
 
 
 def get_volume_backup_policy_asset_assignment(client, asset_id):

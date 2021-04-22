@@ -110,13 +110,27 @@ limit_definitions:
             returned: on success
             type: bool
             sample: true
+        is_deprecated:
+            description:
+                - Indicates if the limit has been deprecated.
+            returned: on success
+            type: bool
+            sample: true
+        is_eligible_for_limit_increase:
+            description:
+                - Indicates if the customer can request a limit increase for this resource.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "name": "name_example",
         "service_name": "service_name_example",
         "description": "description_example",
         "scope_type": "GLOBAL",
         "are_quotas_supported": true,
-        "is_resource_availability_supported": true
+        "is_resource_availability_supported": true,
+        "is_deprecated": true,
+        "is_eligible_for_limit_increase": true
     }]
 """
 

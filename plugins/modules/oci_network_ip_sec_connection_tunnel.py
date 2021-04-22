@@ -28,7 +28,7 @@ author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
         type: str
         required: true
     tunnel_id:
@@ -96,6 +96,30 @@ options:
                     - If you are switching the tunnel from using BGP dynamic routing to static routing and want
                       to remove the value for `customerInterfaceIp`, you can set the value to an empty string.
                     - "Example: `10.0.0.5/31`"
+                    - This parameter is updatable.
+                type: str
+            oracle_interface_ipv6:
+                description:
+                    - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
+                    - If the tunnel's `routing` attribute is set to `BGP`
+                      (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                      is used for the tunnel's BGP session.
+                    - If `routing` is instead set to `STATIC`, you can set this IP
+                      address to troubleshoot or monitor the tunnel.
+                    - Only subnet masks from /64 up to /127 are allowed.
+                    - "Example: `2001:db8::1/64`"
+                    - This parameter is updatable.
+                type: str
+            customer_interface_ipv6:
+                description:
+                    - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
+                    - If the tunnel's `routing` attribute is set to `BGP`
+                      (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                      is used for the tunnel's BGP session.
+                    - If `routing` is instead set to `STATIC`, you can set this IP
+                      address to troubleshoot or monitor the tunnel.
+                    - Only subnet masks from /64 up to /127 are allowed.
+                    - "Example: `2001:db8::1/64`"
                     - This parameter is updatable.
                 type: str
             customer_bgp_asn:
@@ -239,6 +263,32 @@ ip_sec_connection_tunnel:
                     returned: on success
                     type: string
                     sample: 10.0.0.5/31
+                oracle_interface_ipv6:
+                    description:
+                        - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
+                        - If the tunnel's `routing` attribute is set to `BGP`
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                          is used for the tunnel's BGP session.
+                        - If `routing` is instead set to `STATIC`, you can set this IP
+                          address to troubleshoot or monitor the tunnel.
+                        - Only subnet masks from /64 up to /127 are allowed.
+                        - "Example: `2001:db8::1/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::1/64
+                customer_interface_ipv6:
+                    description:
+                        - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
+                        - If the tunnel's `routing` attribute is set to `BGP`
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                          is used for the tunnel's BGP session.
+                        - If `routing` is instead set to `STATIC`, you can set this IP
+                          address to troubleshoot or monitor the tunnel.
+                        - Only subnet masks from /64 up to /127 are allowed.
+                        - "Example: `2001:db8::1/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::1/64
                 oracle_bgp_asn:
                     description:
                         - The Oracle BGP ASN.
@@ -259,6 +309,12 @@ ip_sec_connection_tunnel:
                 bgp_state:
                     description:
                         - The state of the BGP session.
+                    returned: on success
+                    type: string
+                    sample: UP
+                bgp_ipv6_state:
+                    description:
+                        - The state of the BGP IPv6 session.
                     returned: on success
                     type: string
                     sample: UP
@@ -312,9 +368,12 @@ ip_sec_connection_tunnel:
         "bgp_session_info": {
             "oracle_interface_ip": "10.0.0.4/31",
             "customer_interface_ip": "10.0.0.5/31",
+            "oracle_interface_ipv6": "2001:db8::1/64",
+            "customer_interface_ipv6": "2001:db8::1/64",
             "oracle_bgp_asn": "oracle_bgp_asn_example",
             "customer_bgp_asn": "12345",
-            "bgp_state": "UP"
+            "bgp_state": "UP",
+            "bgp_ipv6_state": "UP"
         },
         "encryption_domain_config": {
             "oracle_traffic_selector": [],
@@ -433,6 +492,8 @@ def main():
                 options=dict(
                     oracle_interface_ip=dict(type="str"),
                     customer_interface_ip=dict(type="str"),
+                    oracle_interface_ipv6=dict(type="str"),
+                    customer_interface_ipv6=dict(type="str"),
                     customer_bgp_asn=dict(type="str"),
                 ),
             ),

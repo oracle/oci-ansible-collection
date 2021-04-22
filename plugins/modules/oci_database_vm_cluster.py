@@ -24,6 +24,7 @@ short_description: Manage a VmCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata Cloud@Customer VM cluster.
+    - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

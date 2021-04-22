@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
         aliases: ["id"]
         required: true
@@ -53,7 +53,7 @@ drg_redundancy_status:
     contains:
         id:
             description:
-                - The OCID of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

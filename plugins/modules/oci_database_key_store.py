@@ -24,6 +24,7 @@ short_description: Manage a KeyStore resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a KeyStore resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Key Store.
+    - "This resource has the following action operations in the M(oci_key_store_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

@@ -20,7 +20,7 @@ oracle.oci.oci_database_cloud_vm_cluster_update_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -259,6 +259,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GI_UPGRADE</li>
                                                                                                                                                                                                 <li>GI_PATCH</li>
+                                                                                                                                                                                                <li>OS_UPDATE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

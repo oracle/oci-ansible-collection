@@ -231,6 +231,18 @@ dedicated_vm_host:
             returned: on success
             type: float
             sample: 3.4
+        total_memory_in_gbs:
+            description:
+                - The total memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
+        remaining_memory_in_gbs:
+            description:
+                - The remaining memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -243,7 +255,9 @@ dedicated_vm_host:
         "lifecycle_state": "CREATING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "total_ocpus": 3.4,
-        "remaining_ocpus": 3.4
+        "remaining_ocpus": 3.4,
+        "total_memory_in_gbs": 3.4,
+        "remaining_memory_in_gbs": 3.4
     }
 """
 

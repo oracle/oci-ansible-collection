@@ -24,14 +24,14 @@ short_description: Fetches details about one or multiple CrossConnect resources 
 description:
     - Fetches details about one or multiple CrossConnect resources in Oracle Cloud Infrastructure
     - Lists the cross-connects in the specified compartment. You can filter the list
-      by specifying the OCID of a cross-connect group.
+      by specifying the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a cross-connect group.
     - If I(cross_connect_id) is specified, the details of a single CrossConnect will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
-            - The OCID of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
             - Required to get a specific cross_connect.
         type: str
         aliases: ["id"]
@@ -42,7 +42,7 @@ options:
         type: str
     cross_connect_group_id:
         description:
-            - The OCID of the cross-connect group.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect group.
         type: str
     display_name:
         description:

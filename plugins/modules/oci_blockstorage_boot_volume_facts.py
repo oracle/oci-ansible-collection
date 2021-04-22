@@ -214,6 +214,31 @@ boot_volumes:
             returned: on success
             type: int
             sample: 56
+        boot_volume_replicas:
+            description:
+                - The list of boot volume replicas of this boot volume
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - The display name of the boot volume replica
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                boot_volume_replica_id:
+                    description:
+                        - The boot volume replica's Oracle ID (OCID).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the boot volume replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -236,7 +261,12 @@ boot_volumes:
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_tune_enabled": true,
-        "auto_tuned_vpus_per_gb": 56
+        "auto_tuned_vpus_per_gb": 56,
+        "boot_volume_replicas": [{
+            "display_name": "display_name_example",
+            "boot_volume_replica_id": "ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }]
 """
 

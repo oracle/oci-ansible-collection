@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     cross_connect_group_id:
         description:
-            - The OCID of the cross-connect group.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect group.
             - Required to get a specific cross_connect_group.
         type: str
         aliases: ["id"]

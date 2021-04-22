@@ -29,7 +29,7 @@ description:
     - After creating the `CrossConnect` object, you need to go the FastConnect location
       and request to have the physical cable installed. For more information, see
       L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
-    - For the purposes of access control, you must provide the OCID of the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
       compartment where you want the cross-connect to reside. If you're
       not sure which compartment to use, put the cross-connect in the
       same compartment with your VCN. For more information about
@@ -114,7 +114,7 @@ options:
         type: str
     cross_connect_id:
         description:
-            - The OCID of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

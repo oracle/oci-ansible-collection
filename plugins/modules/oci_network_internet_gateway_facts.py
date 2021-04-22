@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     ig_id:
         description:
-            - The OCID of the internet gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the internet gateway.
             - Required to get a specific internet_gateway.
         type: str
         aliases: ["id"]

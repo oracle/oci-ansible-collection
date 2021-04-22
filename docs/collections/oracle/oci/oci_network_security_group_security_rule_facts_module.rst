@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_group_security_rule_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -380,7 +380,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Conceptually, this is the range of IP addresses that a packet originating from the instance can go to.</div>
                                             <div>Allowed values:</div>
-                                            <div>* An IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
+                                            <div>* An IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56` IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                             <div>* The OCID of a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/'>NetworkSecurityGroup</a> in the same VCN. The value can be the NSG that the rule belongs to if the rule&#x27;s intent is to control traffic between VNICs in the same NSG.</div>
                                         <br/>
@@ -570,7 +570,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Conceptually, this is the range of IP addresses that a packet coming into the instance can come from.</div>
                                             <div>Allowed values:</div>
-                                            <div>* An IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
+                                            <div>* An IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56` IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a security rule for traffic coming from a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                             <div>* The OCID of a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/'>NetworkSecurityGroup</a> in the same VCN. The value can be the NSG that the rule belongs to if the rule&#x27;s intent is to control traffic between VNICs in the same NSG.</div>
                                         <br/>
@@ -646,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum port number. Must not be lower than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
+                                            <div>The maximum port number, which must not be less than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -666,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum port number. Must not be greater than the maximum port number.</div>
+                                            <div>The minimum port number, which must not be greater than the maximum port number.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -704,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum port number. Must not be lower than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
+                                            <div>The maximum port number, which must not be less than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -724,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum port number. Must not be greater than the maximum port number.</div>
+                                            <div>The minimum port number, which must not be greater than the maximum port number.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -797,7 +797,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum port number. Must not be lower than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
+                                            <div>The maximum port number, which must not be less than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -817,7 +817,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum port number. Must not be greater than the maximum port number.</div>
+                                            <div>The minimum port number, which must not be greater than the maximum port number.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -855,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum port number. Must not be lower than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
+                                            <div>The maximum port number, which must not be less than the minimum port number. To specify a single port number, set both the min and max to the same value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -875,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum port number. Must not be greater than the maximum port number.</div>
+                                            <div>The minimum port number, which must not be greater than the maximum port number.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -33,7 +33,7 @@ author: Oracle (@oracle)
 options:
     dhcp_id:
         description:
-            - The OCID for the set of DHCP options.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the set of DHCP options.
             - Required to get a specific dhcp_options.
         type: str
         aliases: ["id"]

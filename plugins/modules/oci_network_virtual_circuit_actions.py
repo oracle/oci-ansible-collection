@@ -39,7 +39,7 @@ author: Oracle (@oracle)
 options:
     virtual_circuit_id:
         description:
-            - The OCID of the virtual circuit.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual circuit.
         type: str
         aliases: ["id"]
         required: true

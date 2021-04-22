@@ -91,8 +91,8 @@ EXAMPLES = """
 
 - name: Perform action change_compartment on vault
   oci_key_management_vault_actions:
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action schedule_vault_deletion on vault

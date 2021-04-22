@@ -86,6 +86,7 @@ options:
         choices:
             - "VM_BM_SHAPE"
             - "EXADATA_SHAPE"
+            - "EXACC_SHAPE"
     is_upgrade_supported:
         description:
             - If provided, filters the results to the set of database versions which are supported for Upgrade.
@@ -331,7 +332,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             image_type=dict(type="str", choices=["GRID_IMAGE", "DATABASE_IMAGE"]),
             image_shape_family=dict(
-                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE"]
+                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE", "EXACC_SHAPE"]
             ),
             is_upgrade_supported=dict(type="bool"),
         )

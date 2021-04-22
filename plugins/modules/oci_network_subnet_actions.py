@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     subnet_id:
         description:
-            - The OCID of the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
         type: str
         aliases: ["id"]
         required: true
@@ -139,12 +139,42 @@ subnet:
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_block:
+            description:
+                - For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's IP address space.
+                  The subnet size is always /64. See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+                - "Example: `2001:0db8:0123:1111::/64`"
+            returned: on success
+            type: string
+            sample: 2001:0db8:0123:1111::/64
+        ipv6_virtual_router_ip:
+            description:
+                - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
+                - "Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`"
+            returned: on success
+            type: string
+            sample: 2001:0db8:0123:1111:89ab:cdef:1234:5678
         lifecycle_state:
             description:
                 - The subnet's current state.
             returned: on success
             type: string
             sample: PROVISIONING
+        prohibit_internet_ingress:
+            description:
+                - Whether to disallow ingress internet traffic to VNICs within this subnet. Defaults to false.
+                - For IPV4, `prohibitInternetIngress` behaves similarly to `prohibitPublicIpOnVnic`.
+                  If it is set to false, VNICs created in this subnet will automatically be assigned public IP
+                  addresses unless specified otherwise during instance launch or VNIC creation (with the `assignPublicIp`
+                  flag in L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)).
+                  If `prohibitInternetIngress` is set to true, VNICs created in this subnet cannot have public IP addresses
+                  (that is, it's a privatesubnet).
+                - For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any
+                  IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.
+                - "Example: `true`"
+            returned: on success
+            type: bool
+            sample: true
         prohibit_public_ip_on_vnic:
             description:
                 - Whether VNICs within this subnet can have public IP addresses.
@@ -221,7 +251,10 @@ subnet:
         "dns_label": "subnet123",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_block": "2001:0db8:0123:1111::/64",
+        "ipv6_virtual_router_ip": "2001:0db8:0123:1111:89ab:cdef:1234:5678",
         "lifecycle_state": "PROVISIONING",
+        "prohibit_internet_ingress": true,
         "prohibit_public_ip_on_vnic": true,
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
         "security_list_ids": [],

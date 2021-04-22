@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_preauthenticated_request -- Manage a Preauthentica
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -87,6 +87,8 @@ Parameters
                                                                                                                                                                                                 <li>ObjectWrite</li>
                                                                                                                                                                                                 <li>ObjectReadWrite</li>
                                                                                                                                                                                                 <li>AnyObjectWrite</li>
+                                                                                                                                                                                                <li>AnyObjectRead</li>
+                                                                                                                                                                                                <li>AnyObjectReadWrite</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -173,6 +175,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-bucket_listing_action"></div>
+                    <b>bucket_listing_action</b>
+                    <a class="ansibleOptionLink" href="#parameter-bucket_listing_action" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies whether a list operation is allowed on a PAR with accessType &quot;AnyObjectRead&quot; or &quot;AnyObjectReadWrite&quot;. Deny: Prevents the user from performing a list operation. ListObjects: Authorizes the user to perform a list operation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,7 +315,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the object that is being granted access to by the pre-authenticated request. Avoid entering confidential information. The object name can be null and if so, the pre-authenticated request grants access to the entire bucket.</div>
+                                            <div>The name of the object that is being granted access to by the pre-authenticated request. Avoid entering confidential information. The object name can be null and if so, the pre-authenticated request grants access to the entire bucket if the access type allows that. The object name can be a prefix as well, in that case pre-authenticated request grants access to all the objects within the bucket starting with that prefix provided that we have the correct access type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -464,7 +481,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the PreauthenticatedRequest resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_type&#x27;: &#x27;ObjectRead&#x27;, &#x27;access_uri&#x27;: &#x27;/p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_expires&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_type&#x27;: &#x27;ObjectRead&#x27;, &#x27;access_uri&#x27;: &#x27;/p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/&#x27;, &#x27;bucket_listing_action&#x27;: &#x27;bucket_listing_action_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_expires&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -501,6 +518,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-preauthenticated_request/bucket_listing_action"></div>
+                    <b>bucket_listing_action</b>
+                    <a class="ansibleOptionLink" href="#return-preauthenticated_request/bucket_listing_action" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether a list operation is allowed on a PAR with accessType &quot;AnyObjectRead&quot; or &quot;AnyObjectReadWrite&quot;. Deny: Prevents the user from performing a list operation. ListObjects: Authorizes the user to perform a list operation.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_listing_action_example</div>
                                     </td>
             </tr>
                                 <tr>

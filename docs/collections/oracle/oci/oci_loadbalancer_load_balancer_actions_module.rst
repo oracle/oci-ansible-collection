@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_load_balancer_actions -- Perform actions on a LoadBa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -320,9 +320,9 @@ Examples
     
     - name: Perform action change_compartment on load_balancer
       oci_loadbalancer_load_balancer_actions:
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-        action: change_compartment
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
 
 
 

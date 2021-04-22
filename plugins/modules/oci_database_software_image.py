@@ -24,6 +24,7 @@ short_description: Manage a DatabaseSoftwareImage resource in Oracle Cloud Infra
 description:
     - This module allows the user to create, update and delete a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
     - For I(state=present), create database software image in the specified compartment.
+    - "This resource has the following action operations in the M(oci_database_software_image_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -54,6 +55,7 @@ options:
         choices:
             - "VM_BM_SHAPE"
             - "EXADATA_SHAPE"
+            - "EXACC_SHAPE"
     image_type:
         description:
             - The type of software image. Can be grid or database.
@@ -110,7 +112,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     database_version: database_version_example
     display_name: image2
     patch_set: patch_set_example
@@ -130,7 +132,7 @@ EXAMPLES = """
 
 - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     display_name: image2
     state: absent
 
@@ -430,7 +432,7 @@ def main():
             database_version=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             image_shape_family=dict(
-                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE"]
+                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE", "EXACC_SHAPE"]
             ),
             image_type=dict(type="str", choices=["GRID_IMAGE", "DATABASE_IMAGE"]),
             patch_set=dict(type="str"),

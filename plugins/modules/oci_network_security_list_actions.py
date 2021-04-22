@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     security_list_id:
         description:
-            - The OCID of the security list.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
         type: str
         aliases: ["id"]
         required: true
@@ -99,7 +99,9 @@ security_list:
                         - Conceptually, this is the range of IP addresses that a packet originating from the instance
                           can go to.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
+                              Note that IPv6 addressing is currently supported only in certain regions. See
+                              L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -150,7 +152,7 @@ security_list:
                         - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                           defined in
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
                     type: string
                     sample: protocol_example
@@ -168,14 +170,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -187,14 +189,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -212,14 +214,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -231,14 +233,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -302,7 +304,7 @@ security_list:
                         - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                           defined in
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
                     type: string
                     sample: protocol_example
@@ -311,7 +313,9 @@ security_list:
                         - Conceptually, this is the range of IP addresses that a packet coming into the instance
                           can come from.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`.
+                              IPv6 addressing is supported for all commercial and government regions. See
+                              L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic coming from a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -342,14 +346,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -361,14 +365,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -386,14 +390,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -405,14 +409,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
