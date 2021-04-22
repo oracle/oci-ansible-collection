@@ -93,6 +93,14 @@ preauthenticated_requests:
             returned: on success
             type: string
             sample: object_name_example
+        bucket_listing_action:
+            description:
+                - "Specifies whether a list operation is allowed on a PAR with accessType \\"AnyObjectRead\\" or \\"AnyObjectReadWrite\\".
+                  Deny: Prevents the user from performing a list operation.
+                  ListObjects: Authorizes the user to perform a list operation."
+            returned: on success
+            type: string
+            sample: bucket_listing_action_example
         access_type:
             description:
                 - The operation that can be performed on this resource.
@@ -116,6 +124,7 @@ preauthenticated_requests:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "object_name": "object_name_example",
+        "bucket_listing_action": "bucket_listing_action_example",
         "access_type": "ObjectRead",
         "time_expires": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00"

@@ -87,6 +87,7 @@ options:
             - "RESTARTING"
             - "MAINTENANCE_IN_PROGRESS"
             - "ROLE_CHANGE_IN_PROGRESS"
+            - "UNAVAILABLE"
     availability_domain:
         description:
             - A filter to return only resources that match the given availability domain exactly.
@@ -542,6 +543,7 @@ def main():
                     "RESTARTING",
                     "MAINTENANCE_IN_PROGRESS",
                     "ROLE_CHANGE_IN_PROGRESS",
+                    "UNAVAILABLE",
                 ],
             ),
             availability_domain=dict(type="str"),

@@ -79,6 +79,16 @@ options:
             - Timeout for executions of the function. Value in seconds.
             - This parameter is updatable.
         type: int
+    trace_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_enabled:
+                description:
+                    - Define if tracing is enabled for the resource.
+                type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -116,7 +126,7 @@ EXAMPLES = """
 - name: Create function
   oci_functions_function:
     application_id: "application_OCID"
-    display_name: "Example Function"
+    display_name: "ExampleFunction"
     image: "phx.ocir.io/example-namespace/example-repo/example-image:0.0.1"
     memory_in_mbs: 128
 
@@ -141,7 +151,7 @@ EXAMPLES = """
 
 - name: Delete function using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_function:
-    display_name: Example Function
+    display_name: ExampleFunction
     application_id: application_OCID
     state: absent
 
@@ -223,6 +233,18 @@ function:
             returned: on success
             type: int
             sample: 56
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -273,6 +295,9 @@ function:
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
+        "trace_config": {
+            "is_enabled": true
+        },
         "freeform_tags": {'Department': 'Finance'},
         "invoke_endpoint": "invoke_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -424,6 +449,7 @@ def main():
             memory_in_mbs=dict(type="int"),
             config=dict(type="dict"),
             timeout_in_seconds=dict(type="int"),
+            trace_config=dict(type="dict", options=dict(is_enabled=dict(type="bool"))),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             function_id=dict(aliases=["id"], type="str"),

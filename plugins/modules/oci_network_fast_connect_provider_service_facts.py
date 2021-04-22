@@ -26,7 +26,7 @@ description:
     - Lists the service offerings from supported providers. You need this
       information so you can specify your desired provider and service
       offering when you create a virtual circuit.
-    - For the compartment ID, provide the OCID of your tenancy (the root compartment).
+    - For the compartment ID, provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of your tenancy (the root compartment).
     - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - If I(provider_service_id) is specified, the details of a single FastConnectProviderService will be returned.
 version_added: "2.9"
@@ -34,7 +34,7 @@ author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
-            - The OCID of the provider service.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the provider service.
             - Required to get a specific fast_connect_provider_service.
         type: str
         aliases: ["id"]

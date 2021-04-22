@@ -314,6 +314,31 @@ clusters:
             returned: on success
             type: list
             sample: []
+        image_policy_config:
+            description:
+                - The image verification policy for signature validation.
+            returned: on success
+            type: complex
+            contains:
+                is_policy_enabled:
+                    description:
+                        - Whether the image verification policy is enabled. Defaults to false. If set to true, the images will be verified against the policy at
+                          runtime.
+                    returned: on success
+                    type: bool
+                    sample: true
+                key_details:
+                    description:
+                        - A list of KMS key details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        kms_key_id:
+                            description:
+                                - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
         "name": "My Cluster",
@@ -358,7 +383,13 @@ clusters:
             "public_endpoint": "https://yourPublicEndpoint",
             "private_endpoint": "https://yourPrivateEndpoint"
         },
-        "available_kubernetes_upgrades": []
+        "available_kubernetes_upgrades": [],
+        "image_policy_config": {
+            "is_policy_enabled": true,
+            "key_details": [{
+                "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        }
     }]
 """
 

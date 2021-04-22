@@ -32,7 +32,7 @@ author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
         type: str
         aliases: ["id"]
         required: true

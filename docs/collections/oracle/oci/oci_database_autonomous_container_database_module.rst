@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
-- This resource has the following action operations in the :ref:`oci_autonomous_container_database_actions <ansible_collections.oci_autonomous_container_database_actions_module>` module: restart, rotate_autonomous_container_database_encryption_key.
+- This resource has the following action operations in the :ref:`oci_autonomous_container_database_actions <ansible_collections.oci_autonomous_container_database_actions_module>` module: change_compartment, restart, rotate_autonomous_container_database_encryption_key.
 
 
 .. Aliases
@@ -736,6 +736,161 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config"></div>
+                    <b>peer_autonomous_container_database_backup_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details"></div>
+                    <b>backup_destination_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Backup destination details.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details/id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup destination.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details/internet_proxy"></div>
+                    <b>internet_proxy</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details/internet_proxy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Proxy URL to connect to object store.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NFS</li>
+                                                                                                                                                                                                <li>RECOVERY_APPLIANCE</li>
+                                                                                                                                                                                                <li>OBJECT_STORE</li>
+                                                                                                                                                                                                <li>LOCAL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the database backup destination.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details/vpc_password"></div>
+                    <b>vpc_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details/vpc_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/backup_destination_details/vpc_user"></div>
+                    <b>vpc_user</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details/vpc_user" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_backup_config/recovery_window_in_days"></div>
+                    <b>recovery_window_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/recovery_window_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_compartment_id"></div>
+                    <b>peer_autonomous_container_database_compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where the standby Autonomous Container Database will be created.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_container_database_display_name"></div>
                     <b>peer_autonomous_container_database_display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_display_name" title="Permalink to this option"></a>
@@ -762,6 +917,36 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the peer Autonomous Exadata Infrastructure for Autonomous Data Guard.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_autonomous_vm_cluster_id"></div>
+                    <b>peer_autonomous_vm_cluster_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_autonomous_vm_cluster_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the peer Autonomous VM cluster for Autonomous Data Guard. Required to enable Data Guard.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_db_unique_name"></div>
+                    <b>peer_db_unique_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_db_unique_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -943,7 +1128,7 @@ Examples
     - name: Create autonomous_container_database
       oci_database_autonomous_container_database:
         display_name: containerdatabases2
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         patch_model: RELEASE_UPDATES
 
     - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -962,7 +1147,7 @@ Examples
     - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
         display_name: containerdatabases2
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         state: absent
 
 

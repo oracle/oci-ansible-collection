@@ -186,6 +186,24 @@ service_connectors:
                             returned: on success
                             type: string
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+                stream_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+                cursor:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - The type descriminator.
+                            returned: on success
+                            type: string
+                            sample: TRIM_HORIZON
         tasks:
             description:
                 - The list of tasks.
@@ -197,7 +215,25 @@ service_connectors:
                         - The type descriminator.
                     returned: on success
                     type: string
-                    sample: logRule
+                    sample: function
+                function_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                batch_size_in_kbs:
+                    description:
+                        - Size limit (kilobytes) for batch sent to invoke the function.
+                    returned: on success
+                    type: int
+                    sample: 56
+                batch_time_in_sec:
+                    description:
+                        - Time limit (seconds) for batch sent to invoke the function.
+                    returned: on success
+                    type: int
+                    sample: 56
                 condition:
                     description:
                         - A filter or mask to limit the source used in the flow defined by the service connector.
@@ -344,10 +380,17 @@ service_connectors:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
+            }],
+            "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
+            "cursor": {
+                "kind": "TRIM_HORIZON"
+            }
         },
         "tasks": [{
-            "kind": "logRule",
+            "kind": "function",
+            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+            "batch_size_in_kbs": 56,
+            "batch_time_in_sec": 56,
             "condition": "condition_example"
         }],
         "target": {

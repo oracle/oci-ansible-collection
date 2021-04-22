@@ -23,12 +23,20 @@ module: oci_database_autonomous_container_database_actions
 short_description: Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), move the Autonomous Container Database and its dependent resources to the specified compartment.
+      For more information about moving Autonomous Container Databases, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=restart), rolling restarts the specified Autonomous Container Database.
     - For I(action=rotate_autonomous_container_database_encryption_key), creates a new version of an existing L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     autonomous_container_database_id:
         description:
             - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -41,12 +49,19 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "restart"
             - "rotate_autonomous_container_database_encryption_key"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on autonomous_container_database
+  oci_database_autonomous_container_database_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action restart on autonomous_container_database
   oci_database_autonomous_container_database_actions:
     autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
@@ -400,6 +415,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ChangeCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -409,6 +425,7 @@ except ImportError:
 class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         restart
         rotate_autonomous_container_database_encryption_key
     """
@@ -437,6 +454,29 @@ class AutonomousContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             autonomous_container_database_id=self.module.params.get(
                 "autonomous_container_database_id"
             ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_autonomous_container_database_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                autonomous_container_database_id=self.module.params.get(
+                    "autonomous_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def restart(self):
@@ -496,6 +536,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             autonomous_container_database_id=dict(
                 aliases=["id"], type="str", required=True
             ),
@@ -503,6 +544,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "change_compartment",
                     "restart",
                     "rotate_autonomous_container_database_encryption_key",
                 ],

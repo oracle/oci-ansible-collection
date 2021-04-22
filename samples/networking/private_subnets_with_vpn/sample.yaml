@@ -146,14 +146,16 @@
         oci_compute_image_facts:
           compartment_id: "{{ tenancy_ocid }}"
           operating_system: "Oracle Linux"
-          operating_system_version: "7.8"
           sort_by: "TIMECREATED"
+          sort_order: "ASC"
         register: output
 
       - set_fact:
           instance_image: "{{ item.id }}"
         loop: "{{ output.images }}"
-        when: item.display_name.find("GPU") == -1
+        when: 
+          - item.display_name.find("GPU") == -1
+          - item.display_name.find("aarch64") == -1
 
   # To launch instances, uncomment following task.
 

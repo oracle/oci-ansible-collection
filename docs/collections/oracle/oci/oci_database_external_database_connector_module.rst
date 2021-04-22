@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_database_connector -- Manage an ExternalDatabas
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -233,7 +233,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the credential information that used to connect to the database.</div>
+                                            <div>The name of the credential information that used to connect to the database. The name should be in &quot;x.y&quot; format, where the length of &quot;x&quot; has a maximum of 64 characters, and length of &quot;y&quot; has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the &quot;.&quot; character that separates the &quot;x&quot; and &quot;y&quot; portions of the name. *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already using the name.</div>
+                                            <div>For example: inventorydb.abc112233445566778899</div>
                                             <div>Required when credential_type is &#x27;NAME_REFERENCE&#x27;</div>
                                                         </td>
             </tr>
@@ -788,7 +789,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the credential information that used to connect to the database.</div>
+                                            <div>The name of the credential information that used to connect to the database. The name should be in &quot;x.y&quot; format, where the length of &quot;x&quot; has a maximum of 64 characters, and length of &quot;y&quot; has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the &quot;.&quot; character that separates the &quot;x&quot; and &quot;y&quot; portions of the name. *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already using the name.</div>
+                                            <div>For example: inventorydb.abc112233445566778899</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">credential_name_example</div>

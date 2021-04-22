@@ -285,6 +285,20 @@ exadata_infrastructures:
                     returned: on success
                     type: bool
                     sample: true
+                is_contact_mos_validated:
+                    description:
+                        - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure
+                          contact is not a valid MOS contact.
+                    returned: on success
+                    type: bool
+                    sample: true
+        maintenance_slo_status:
+            description:
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
+            returned: on success
+            type: string
+            sample: OK
         maintenance_window:
             description:
                 - ""
@@ -394,8 +408,10 @@ exadata_infrastructures:
             "name": "name_example",
             "phone_number": "phone_number_example",
             "email": "email_example",
-            "is_primary": true
+            "is_primary": true,
+            "is_contact_mos_validated": true
         }],
+        "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
             "months": [{

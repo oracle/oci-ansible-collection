@@ -23,12 +23,20 @@ module: oci_database_db_system_actions
 short_description: Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves the DB system and its dependent resources to the specified compartment.
+      For more information about moving DB systems, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=migrate_exadata_db_system_resource_model), migrates the Exadata DB system to the new L(Exadata resource
-      model,https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model).
+      model,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model).
       All related resources will be migrated.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     db_system_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -41,11 +49,18 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "migrate_exadata_db_system_resource_model"
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on db_system
+  oci_database_db_system_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action migrate_exadata_db_system_resource_model on db_system
   oci_database_db_system_actions:
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -338,6 +353,18 @@ db_system:
             returned: on success
             type: string
             sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the DB system is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
@@ -509,6 +536,8 @@ db_system:
         "scan_ip_ids": [],
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
         "reco_storage_size_in_gb": 56,
         "node_count": 56,
@@ -547,6 +576,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ChangeCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -556,6 +586,7 @@ except ImportError:
 class DbSystemActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         migrate_exadata_db_system_resource_model
     """
 
@@ -579,6 +610,27 @@ class DbSystemActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_db_system,
             db_system_id=self.module.params.get("db_system_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_db_system_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                db_system_id=self.module.params.get("db_system_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def migrate_exadata_db_system_resource_model(self):
@@ -606,15 +658,19 @@ class ResourceHelper(DbSystemActionsHelperCustom, DbSystemActionsHelperGen):
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=False, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             db_system_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,
-                choices=["migrate_exadata_db_system_resource_model"],
+                choices=[
+                    "change_compartment",
+                    "migrate_exadata_db_system_resource_model",
+                ],
             ),
         )
     )

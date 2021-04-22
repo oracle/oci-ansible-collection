@@ -53,9 +53,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action change_compartment on load_balancer
   oci_loadbalancer_load_balancer_actions:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-    action: change_compartment
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 """
 
@@ -71,13 +71,13 @@ load_balancer:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -130,7 +130,7 @@ load_balancer:
                                 - ""
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
@@ -540,13 +540,13 @@ load_balancer:
                     description:
                         - The public certificate, in PEM format, that you received from your SSL certificate provider.
                         - "Example:"
-                        -     -----BEGIN CERTIFICATE-----
+                        - "   -----BEGIN CERTIFICATE-----
                               MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG
                               A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE
                               MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl
                               YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw
                               ...
-                              -----END CERTIFICATE-----
+                              -----END CERTIFICATE-----"
                     returned: on success
                     type: string
                     sample: public_certificate_example
@@ -554,13 +554,13 @@ load_balancer:
                     description:
                         - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
                         - "Example:"
-                        -     -----BEGIN CERTIFICATE-----
+                        - "   -----BEGIN CERTIFICATE-----
                               MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix
                               EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD
                               VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y
                               aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy
                               ...
-                              -----END CERTIFICATE-----
+                              -----END CERTIFICATE-----"
                     returned: on success
                     type: string
                     sample: ca_certificate_example

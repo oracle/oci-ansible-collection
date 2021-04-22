@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_container_database_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, move the Autonomous Container Database and its dependent resources to the specified compartment. For more information about moving Autonomous Container Databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
 - For *action=restart*, rolling restarts the specified Autonomous Container Database.
 - For *action=rotate_autonomous_container_database_encryption_key*, creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
 
@@ -84,7 +85,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>restart</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>restart</li>
                                                                                                                                                                                                 <li>rotate_autonomous_container_database_encryption_key</li>
                                                                                     </ul>
                                                                             </td>
@@ -188,6 +190,22 @@ Parameters
                                             <div>The Autonomous Container Database <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the resource to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -305,6 +323,12 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on autonomous_container_database
+      oci_database_autonomous_container_database_actions:
+        compartment_id: "ocid.compartment.oc1..unique_ID"
+        autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
+
     - name: Perform action restart on autonomous_container_database
       oci_database_autonomous_container_database_actions:
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"

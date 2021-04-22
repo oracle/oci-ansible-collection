@@ -68,6 +68,20 @@ options:
             - "Example: `tcp://logserver.myserver:1234`"
             - This parameter is updatable.
         type: str
+    trace_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_enabled:
+                description:
+                    - Define if tracing is enabled for the resource.
+                type: bool
+            domain_id:
+                description:
+                    - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
+                type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -105,7 +119,7 @@ EXAMPLES = """
 - name: Create application
   oci_functions_application:
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: "Example Application"
+    display_name: "ExampleApplication"
     subnet_ids:
     - "ocid1.subnet.oc1..unique_ID"
 
@@ -128,7 +142,7 @@ EXAMPLES = """
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    display_name: Example Application
+    display_name: ExampleApplication
     state: absent
 
 """
@@ -192,6 +206,24 @@ application:
             returned: on success
             type: string
             sample: tcp://logserver.myserver:1234
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
+                domain_id:
+                    description:
+                        - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -232,6 +264,10 @@ application:
         "config": {},
         "subnet_ids": [],
         "syslog_url": "tcp://logserver.myserver:1234",
+        "trace_config": {
+            "is_enabled": true,
+            "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",
@@ -385,6 +421,10 @@ def main():
             config=dict(type="dict"),
             subnet_ids=dict(type="list"),
             syslog_url=dict(type="str"),
+            trace_config=dict(
+                type="dict",
+                options=dict(is_enabled=dict(type="bool"), domain_id=dict(type="str")),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             application_id=dict(aliases=["id"], type="str"),

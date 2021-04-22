@@ -20,7 +20,7 @@ oracle.oci.oci_network_subnet_actions -- Perform actions on a Subnet resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -243,7 +243,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the subnet.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -359,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Subnet resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;2001:0db8:0123:1111::/64&#x27;, &#x27;ipv6_virtual_router_ip&#x27;: &#x27;2001:0db8:0123:1111:89ab:cdef:1234:5678&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -534,6 +534,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/ipv6_cidr_block" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet&#x27;s IP address space. The subnet size is always /64. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `2001:0db8:0123:1111::/64`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111::/64</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/ipv6_virtual_router_ip"></div>
+                    <b>ipv6_virtual_router_ip</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/ipv6_virtual_router_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.</div>
+                                            <div>Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111:89ab:cdef:1234:5678</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-subnet/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-subnet/lifecycle_state" title="Permalink to this return value"></a>
@@ -547,6 +585,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/prohibit_internet_ingress"></div>
+                    <b>prohibit_internet_ingress</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/prohibit_internet_ingress" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to disallow ingress internet traffic to VNICs within this subnet. Defaults to false.</div>
+                                            <div>For IPV4, `prohibitInternetIngress` behaves similarly to `prohibitPublicIpOnVnic`. If it is set to false, VNICs created in this subnet will automatically be assigned public IP addresses unless specified otherwise during instance launch or VNIC creation (with the `assignPublicIp` flag in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/'>CreateVnicDetails</a>). If `prohibitInternetIngress` is set to true, VNICs created in this subnet cannot have public IP addresses (that is, it&#x27;s a privatesubnet).</div>
+                                            <div>For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.</div>
+                                            <div>Example: `true`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

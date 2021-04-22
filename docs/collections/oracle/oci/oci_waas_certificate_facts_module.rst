@@ -20,7 +20,7 @@ oracle.oci.oci_waas_certificate_facts -- Fetches details about one or multiple W
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -422,10 +422,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of WaasCertificate resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extensions&#x27;: [{&#x27;is_critical&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;issued_by&#x27;: &#x27;issued_by_example&#x27;, &#x27;issuer_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;public_key_info&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;exponent&#x27;: 56, &#x27;key_size&#x27;: 56}, &#x27;serial_number&#x27;: &#x27;serial_number_example&#x27;, &#x27;signature_algorithm&#x27;: &#x27;signature_algorithm_example&#x27;, &#x27;subject_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;time_created&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_after&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_before&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;version&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;certificate_data&#x27;: &#x27;certificate_data_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extensions&#x27;: [{&#x27;is_critical&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_trust_verification_disabled&#x27;: True, &#x27;issued_by&#x27;: &#x27;issued_by_example&#x27;, &#x27;issuer_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;public_key_info&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;exponent&#x27;: 56, &#x27;key_size&#x27;: 56}, &#x27;serial_number&#x27;: &#x27;serial_number_example&#x27;, &#x27;signature_algorithm&#x27;: &#x27;signature_algorithm_example&#x27;, &#x27;subject_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;time_created&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_after&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_before&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;version&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-waas_certificates/certificate_data"></div>
+                    <b>certificate_data</b>
+                    <a class="ansibleOptionLink" href="#return-waas_certificates/certificate_data" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The data of the SSL certificate.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_data_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-waas_certificates/compartment_id"></div>
@@ -589,6 +607,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-waas_certificates/is_trust_verification_disabled"></div>
+                    <b>is_trust_verification_disabled</b>
+                    <a class="ansibleOptionLink" href="#return-waas_certificates/is_trust_verification_disabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This indicates whether trust verification was disabled during the creation of SSL certificate. If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

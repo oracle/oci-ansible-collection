@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_vm_cluster -- Manage an AutonomousVmCluster r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AutonomousVmCluster resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an Autonomous VM cluster for Exadata Cloud@Customer.
+- This resource has the following action operations in the :ref:`oci_autonomous_vm_cluster_actions <ansible_collections.oci_autonomous_vm_cluster_actions_module>` module: change_compartment.
 
 
 .. Aliases

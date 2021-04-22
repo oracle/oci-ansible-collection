@@ -664,14 +664,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         prospective_matches = []
         for resource in self.list_resources():
 
+            # filter out the non-active resources
             if not self._is_resource_active(resource):
                 continue
 
-            resource_dict = self.get_existing_resource_dict_for_idempotence_check(
-                resource
-            )
+            resource_dict = to_dict(resource)
 
-            # set `ignore_attr_if_not_in_target` to `True` to avoid false negatives.
+            # set `ignore_attr_if_not_in_target` to `True` to
+            # get prospective matches by matching all attributes
+            # present currently in the resource model
             if oci_common_utils.compare_dicts(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,

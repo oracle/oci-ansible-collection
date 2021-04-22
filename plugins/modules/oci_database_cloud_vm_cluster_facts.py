@@ -393,6 +393,18 @@ cloud_vm_clusters:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the cloud VM cluster.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the cloud VM cluster is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -438,7 +450,9 @@ cloud_vm_clusters:
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

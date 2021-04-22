@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool_instance_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -656,7 +656,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The shape of the instance. The shape determines the number of CPUs, amount of memory, and other resources allocated to the instance.</div>
-                                            <div>You can enumerate all available shapes by calling <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/Shape/ListShapes'>ListShapes</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>

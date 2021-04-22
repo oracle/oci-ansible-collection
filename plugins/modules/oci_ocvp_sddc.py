@@ -81,6 +81,17 @@ options:
               3 ESXi hosts."
             - Required for create using I(state=present).
         type: int
+    initial_sku:
+        description:
+            - Billing option selected during SDDC creation
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
     is_hcx_enabled:
         description:
             - Indicates whether to enable HCX for this SDDC.
@@ -213,6 +224,7 @@ EXAMPLES = """
     vmware_software_version: vmware_software_version_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     esxi_hosts_count: 56
+    initial_sku: HOUR
     ssh_authorized_keys: ssh_authorized_keys_example
     provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -329,6 +341,13 @@ sddc:
             returned: on success
             type: int
             sample: 56
+        initial_sku:
+            description:
+                - Billing option selected during SDDC creation
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            returned: on success
+            type: string
+            sample: HOUR
         vcenter_fqdn:
             description:
                 - The FQDN for vCenter.
@@ -656,6 +675,7 @@ sddc:
         "vmware_software_version": "vmware_software_version_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "esxi_hosts_count": 56,
+        "initial_sku": "HOUR",
         "vcenter_fqdn": "vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",
@@ -830,6 +850,9 @@ def main():
             compartment_id=dict(type="str"),
             instance_display_name_prefix=dict(type="str"),
             esxi_hosts_count=dict(type="int"),
+            initial_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
             is_hcx_enabled=dict(type="bool"),
             hcx_vlan_id=dict(type="str"),
             ssh_authorized_keys=dict(type="str"),

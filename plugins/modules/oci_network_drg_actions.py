@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
         aliases: ["id"]
         required: true
@@ -69,7 +69,7 @@ drg:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -99,7 +99,7 @@ drg:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The DRG's Oracle ID (OCID).
+                - The DRG's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

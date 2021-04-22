@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -254,12 +254,28 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-model_artifact" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-model_artifact_file"></div>
+                    <b>model_artifact_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-model_artifact_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The model artifact to upload.</div>
+                                            <div>The model artifact file path to upload</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -352,6 +368,7 @@ Examples
       oci_data_science_model_artifact:
         model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
         model_artifact: B
+        model_artifact_file: model.zip
 
 
 

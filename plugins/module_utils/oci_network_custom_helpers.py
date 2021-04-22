@@ -659,6 +659,7 @@ class VcnActionsHelperCustom:
     ADD_VCN_CIDR_ACTION = "add_vcn_cidr"
     MODIFY_VCN_CIDR_ACTION = "modify_vcn_cidr"
     REMOVE_VCN_CIDR_ACTION = "remove_vcn_cidr"
+    ADD_IPV6_VCN_CIDR_ACTION = "add_ipv6_vcn_cidr"
 
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
@@ -678,5 +679,30 @@ class VcnActionsHelperCustom:
             if self.module.params.get("cidr_block") not in resource.cidr_blocks:
                 return False
             return True
+        elif action == self.ADD_IPV6_VCN_CIDR_ACTION:
+            # we get an array of ipv6_cidr_blocks. If the vcn is not added in ipv6
+            # then the array is [ null ], so checking for None in the array
+            ipv6_cidr_blocks = getattr(resource, "ipv6_cidr_blocks", None)
+            if ipv6_cidr_blocks:
+                for ipv6_cidr_block in ipv6_cidr_blocks:
+                    if ipv6_cidr_block is None:
+                        return True
+                return False
+            return True
 
         return super(VcnActionsHelperCustom, self).is_action_necessary(action, resource)
+
+
+class VcnHelperCustom:
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        existing_dict = super(
+            VcnHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+        existing_dict["is_ipv6_enabled"] = any(
+            [
+                True
+                for ipv6_cidr_block in existing_dict.get("ipv6_cidr_blocks", [])
+                if ipv6_cidr_block is not None
+            ]
+        )
+        return existing_dict

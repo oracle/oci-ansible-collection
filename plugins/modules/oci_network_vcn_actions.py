@@ -23,6 +23,8 @@ module: oci_network_vcn_actions
 short_description: Perform actions on a Vcn resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
+    - For I(action=add_ipv6_vcn_cidr), add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle.
+      Once added the IPv6 CIDR block cannot be removed or modified.
     - "For I(action=add_vcn_cidr), adds a CIDR block to a VCN. The CIDR block you add:
       - Must be valid.
       - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
@@ -84,6 +86,7 @@ options:
         type: str
         required: true
         choices:
+            - "add_ipv6_vcn_cidr"
             - "add_vcn_cidr"
             - "change_compartment"
             - "modify_vcn_cidr"
@@ -92,6 +95,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action add_ipv6_vcn_cidr on vcn
+  oci_network_vcn_actions:
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_ipv6_vcn_cidr
+
 - name: Perform action add_vcn_cidr on vcn
   oci_network_vcn_actions:
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
@@ -208,6 +216,13 @@ vcn:
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -243,6 +258,7 @@ vcn:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"
@@ -275,6 +291,7 @@ except ImportError:
 class VcnActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_ipv6_vcn_cidr
         add_vcn_cidr
         change_compartment
         modify_vcn_cidr
@@ -300,6 +317,21 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_vcn, vcn_id=self.module.params.get("vcn_id"),
+        )
+
+    def add_ipv6_vcn_cidr(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_ipv6_vcn_cidr,
+            call_fn_args=(),
+            call_fn_kwargs=dict(vcn_id=self.module.params.get("vcn_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def add_vcn_cidr(self):
@@ -409,6 +441,7 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "add_ipv6_vcn_cidr",
                     "add_vcn_cidr",
                     "change_compartment",
                     "modify_vcn_cidr",

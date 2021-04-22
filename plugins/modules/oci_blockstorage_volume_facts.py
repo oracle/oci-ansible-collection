@@ -212,10 +212,10 @@ volumes:
                         - ""
                     returned: on success
                     type: string
-                    sample: volume
+                    sample: blockVolumeReplica
                 id:
                     description:
-                        - The OCID of the volume.
+                        - The OCID of the block volume replica.
                     returned: on success
                     type: string
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -243,6 +243,31 @@ volumes:
             returned: on success
             type: int
             sample: 56
+        block_volume_replicas:
+            description:
+                - The list of block volume replicas of this volume.
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - The display name of the block volume replica
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                block_volume_replica_id:
+                    description:
+                        - The block volume replica's Oracle ID (OCID).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the block volume replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -258,13 +283,18 @@ volumes:
         "size_in_gbs": 56,
         "size_in_mbs": 56,
         "source_details": {
-            "type": "volume",
+            "type": "blockVolumeReplica",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_tune_enabled": true,
-        "auto_tuned_vpus_per_gb": 56
+        "auto_tuned_vpus_per_gb": 56,
+        "block_volume_replicas": [{
+            "display_name": "display_name_example",
+            "block_volume_replica_id": "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }]
 """
 

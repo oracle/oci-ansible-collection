@@ -25,6 +25,9 @@ description:
     - Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(action=autonomous_database_manual_refresh), initiates a data refresh for an Autonomous Database refreshable clone. Data is refreshed from the source
       database to the point of a specified timestamp.
+    - For I(action=change_compartment), move the Autonomous Database and its dependent resources to the specified compartment.
+      For more information about moving Autonomous Databases, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
     - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
     - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
@@ -53,6 +56,11 @@ options:
             - The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made in the primary database after this timestamp are
               not part of the data refresh.
             - Applicable only for I(action=autonomous_database_manual_refresh).
+        type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
         type: str
     pdb_admin_password:
         description:
@@ -98,10 +106,12 @@ options:
         description:
             - The destination file path with file name when downloading wallet. The file must have 'zip' extension. I(wallet_file) is required if
               I(state='generate_wallet').
+            - Required for I(action=generate_autonomous_database_wallet).
         type: str
     force:
         description:
             - Force overwriting existing wallet file when downloading wallet.
+            - Applicable only for I(action=generate_autonomous_database_wallet).
         type: bool
         default: "true"
         aliases: ["overwrite"]
@@ -112,6 +122,7 @@ options:
         required: true
         choices:
             - "autonomous_database_manual_refresh"
+            - "change_compartment"
             - "deregister_autonomous_database_data_safe"
             - "disable_autonomous_database_operations_insights"
             - "enable_autonomous_database_operations_insights"
@@ -132,6 +143,12 @@ EXAMPLES = """
   oci_database_autonomous_database_actions:
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: autonomous_database_manual_refresh
+
+- name: Perform action change_compartment on autonomous_database
+  oci_database_autonomous_database_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
@@ -158,6 +175,7 @@ EXAMPLES = """
   oci_database_autonomous_database_actions:
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     password: password_example
+    wallet_file: /tmp/atp_wallet.zip
     action: generate_autonomous_database_wallet
 
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
@@ -532,6 +550,31 @@ autonomous_database:
             returned: on success
             type: list
             sample: []
+        are_primary_whitelisted_ips_used:
+            description:
+                - This field will be null if the Autonomous Database is not Data Guard enabled or Access Control is disabled.
+                  It's value would be `TRUE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  primary IP access control list (ACL) for standby.
+                  It's value would be `FALSE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  different IP access control list (ACL) for standby compared to primary.
+            returned: on success
+            type: bool
+            sample: true
+        standby_whitelisted_ips:
+            description:
+                - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+                - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+                  Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`
+                  For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
+                - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+            returned: on success
+            type: list
+            sample: []
         apex_details:
             description:
                 - Information about Oracle APEX Application Development.
@@ -760,6 +803,8 @@ autonomous_database:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "are_primary_whitelisted_ips_used": true,
+        "standby_whitelisted_ips": [],
         "apex_details": {
             "apex_version": "apex_version_example",
             "ords_version": "ords_version_example"
@@ -808,6 +853,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import AutonomousDatabaseManualRefreshDetails
+    from oci.database.models import ChangeCompartmentDetails
     from oci.database.models import DeregisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import GenerateAutonomousDatabaseWalletDetails
     from oci.database.models import RegisterAutonomousDatabaseDataSafeDetails
@@ -822,6 +868,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         autonomous_database_manual_refresh
+        change_compartment
         deregister_autonomous_database_data_safe
         disable_autonomous_database_operations_insights
         enable_autonomous_database_operations_insights
@@ -868,6 +915,27 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
                 autonomous_database_manual_refresh_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_autonomous_database_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1121,6 +1189,7 @@ def main():
         dict(
             autonomous_database_id=dict(aliases=["id"], type="str", required=True),
             time_refresh_cutoff=dict(type="str"),
+            compartment_id=dict(type="str"),
             pdb_admin_password=dict(type="str", no_log=True),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
@@ -1134,6 +1203,7 @@ def main():
                 required=True,
                 choices=[
                     "autonomous_database_manual_refresh",
+                    "change_compartment",
                     "deregister_autonomous_database_data_safe",
                     "disable_autonomous_database_operations_insights",
                     "enable_autonomous_database_operations_insights",

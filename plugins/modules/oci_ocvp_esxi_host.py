@@ -51,6 +51,29 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    current_sku:
+        description:
+            - Billing option selected during SDDC creation.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
+    next_sku:
+        description:
+            - Billing option to switch to once existing billing cycle ends.
+              If nextSku is null or empty, currentSku will be used to continue with next billing term.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -89,17 +112,19 @@ EXAMPLES = """
 - name: Create esxi_host
   oci_ocvp_esxi_host:
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    current_sku: HOUR
 
 - name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_esxi_host:
     display_name: display_name_example
+    next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update esxi_host
   oci_ocvp_esxi_host:
     display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
+    next_sku: HOUR
     esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete esxi_host
@@ -177,6 +202,28 @@ esxi_host:
             returned: on success
             type: string
             sample: CREATING
+        current_sku:
+            description:
+                - Billing option selected during SDDC creation.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            returned: on success
+            type: string
+            sample: HOUR
+        next_sku:
+            description:
+                - Billing option to switch to once existing billing cycle ends.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            returned: on success
+            type: string
+            sample: HOUR
+        billing_contract_end_date:
+            description:
+                - "Current billing cycle end date. If nextSku is different from existing SKU, then we switch to newSKu
+                  after this contractEndDate
+                  Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -203,6 +250,9 @@ esxi_host:
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "current_sku": "HOUR",
+        "next_sku": "HOUR",
+        "billing_contract_end_date": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -339,6 +389,12 @@ def main():
         dict(
             sddc_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            current_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
+            next_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

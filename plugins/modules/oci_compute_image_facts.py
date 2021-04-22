@@ -23,12 +23,13 @@ module: oci_compute_image_facts
 short_description: Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Image resources in Oracle Cloud Infrastructure
-    - Lists the available images in the specified compartment, including both
-      L(Oracle-provided images,https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm) and
+    - Lists the available images in the specified compartment, including
+      L(platform images,https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm) and
       L(custom images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm) that have
-      been created. The list of images returned is ordered to first show all
-      Oracle-provided images, then all custom images.
-    - The order of images returned may change when new images are released.
+      been created.
+    - The list of images that's returned is ordered to first show all
+      platform images, then all custom images. The order of images might
+      change when new images are released.
     - If I(image_id) is specified, the details of a single Image will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -149,7 +150,7 @@ images:
             description:
                 - A user-friendly name for the image. It does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - You cannot use an Oracle-provided image name as a custom image name.
+                - You cannot use a platform image name as a custom image name.
                 - "Example: `My custom Oracle Linux image`"
             returned: on success
             type: string
@@ -172,7 +173,7 @@ images:
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -192,9 +193,9 @@ images:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -204,7 +205,7 @@ images:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -225,9 +226,9 @@ images:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI

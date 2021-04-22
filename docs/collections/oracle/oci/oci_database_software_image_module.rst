@@ -20,7 +20,7 @@ oracle.oci.oci_database_software_image -- Manage a DatabaseSoftwareImage resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 - For *state=present*, create database software image in the specified compartment.
+- This resource has the following action operations in the :ref:`oci_database_software_image_actions <ansible_collections.oci_database_software_image_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -334,6 +335,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>VM_BM_SHAPE</li>
                                                                                                                                                                                                 <li>EXADATA_SHAPE</li>
+                                                                                                                                                                                                <li>EXACC_SHAPE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -514,7 +516,7 @@ Examples
     
     - name: Create database_software_image
       oci_database_software_image:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         database_version: database_version_example
         display_name: image2
         patch_set: patch_set_example
@@ -534,7 +536,7 @@ Examples
 
     - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_software_image:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         display_name: image2
         state: absent
 

@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_vault_actions -- Perform actions on a Vault resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -346,8 +346,8 @@ Examples
 
     - name: Perform action change_compartment on vault
       oci_key_management_vault_actions:
-        vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action schedule_vault_deletion on vault

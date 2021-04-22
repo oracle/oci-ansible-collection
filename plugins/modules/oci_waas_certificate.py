@@ -364,6 +364,19 @@ waas_certificate:
             returned: on success
             type: string
             sample: 2018-11-16T21:10:29Z
+        is_trust_verification_disabled:
+            description:
+                - This indicates whether trust verification was disabled during the creation of SSL certificate.
+                  If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.
+            returned: on success
+            type: bool
+            sample: true
+        certificate_data:
+            description:
+                - The data of the SSL certificate.
+            returned: on success
+            type: string
+            sample: certificate_data_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -405,7 +418,9 @@ waas_certificate:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z"
+        "time_created": "2018-11-16T21:10:29Z",
+        "is_trust_verification_disabled": true,
+        "certificate_data": "certificate_data_example"
     }
 """
 

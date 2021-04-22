@@ -24,6 +24,7 @@ short_description: Manage a CloudVmCluster resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a CloudVmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cloud VM cluster.
+    - "This resource has the following action operations in the M(oci_cloud_vm_cluster_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -191,6 +192,7 @@ options:
                     - "ROLLING_APPLY"
                     - "NON_ROLLING_APPLY"
                     - "PRECHECK"
+                    - "ROLLBACK"
     compute_nodes:
         description:
             - The list of compute servers to be added to the cloud VM cluster.
@@ -560,6 +562,18 @@ cloud_vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the cloud VM cluster.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the cloud VM cluster is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -605,7 +619,9 @@ cloud_vm_cluster:
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -783,7 +799,12 @@ def main():
                     update_id=dict(type="str"),
                     update_action=dict(
                         type="str",
-                        choices=["ROLLING_APPLY", "NON_ROLLING_APPLY", "PRECHECK"],
+                        choices=[
+                            "ROLLING_APPLY",
+                            "NON_ROLLING_APPLY",
+                            "PRECHECK",
+                            "ROLLBACK",
+                        ],
                     ),
                 ),
             ),

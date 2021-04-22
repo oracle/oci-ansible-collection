@@ -46,6 +46,7 @@ options:
         choices:
             - "GI_UPGRADE"
             - "GI_PATCH"
+            - "OS_UPDATE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -204,7 +205,9 @@ def main():
         dict(
             cloud_vm_cluster_id=dict(type="str", required=True),
             update_id=dict(aliases=["id"], type="str"),
-            update_type=dict(type="str", choices=["GI_UPGRADE", "GI_PATCH"]),
+            update_type=dict(
+                type="str", choices=["GI_UPGRADE", "GI_PATCH", "OS_UPDATE"]
+            ),
         )
     )
 

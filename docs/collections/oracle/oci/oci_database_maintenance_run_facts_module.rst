@@ -20,7 +20,7 @@ oracle.oci.oci_database_maintenance_run_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -249,6 +249,7 @@ Parameters
                                                                                                                                                                                                 <li>UPDATING</li>
                                                                                                                                                                                                 <li>DELETING</li>
                                                                                                                                                                                                 <li>DELETED</li>
+                                                                                                                                                                                                <li>CANCELED</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -377,6 +378,7 @@ Parameters
                                                                                                                                                                                                 <li>EXADATA_DB_SYSTEM</li>
                                                                                                                                                                                                 <li>CLOUD_EXADATA_INFRASTRUCTURE</li>
                                                                                                                                                                                                 <li>EXACC_INFRASTRUCTURE</li>
+                                                                                                                                                                                                <li>AUTONOMOUS_DATABASE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -568,7 +570,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the maintenance run.</div>
+                                            <div>The current state of the maintenance run. For Autonomous Database on shared Exadata infrastructure, valid states are IN_PROGRESS, SUCCEEDED and FAILED.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SCHEDULED</div>

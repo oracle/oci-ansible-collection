@@ -128,6 +128,13 @@ sddc:
             returned: on success
             type: int
             sample: 56
+        initial_sku:
+            description:
+                - Billing option selected during SDDC creation
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            returned: on success
+            type: string
+            sample: HOUR
         vcenter_fqdn:
             description:
                 - The FQDN for vCenter.
@@ -455,6 +462,7 @@ sddc:
         "vmware_software_version": "vmware_software_version_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "esxi_hosts_count": 56,
+        "initial_sku": "HOUR",
         "vcenter_fqdn": "vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "nsx_manager_fqdn": "nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com",
         "vcenter_private_ip_id": "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx",

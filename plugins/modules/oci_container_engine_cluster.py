@@ -122,6 +122,29 @@ options:
                         description:
                             - Whether or not to enable the Pod Security Policy admission controller.
                         type: bool
+    image_policy_config:
+        description:
+            - The image verification policy for signature validation. Once a policy is created and enabled with
+              one or more kms keys, the policy will ensure all images deployed has been signed with the key(s)
+              attached to the policy.
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_policy_enabled:
+                description:
+                    - Whether the image verification policy is enabled. Defaults to false. If set to true, the images will be verified against the policy at
+                      runtime.
+                    - This parameter is updatable.
+                type: bool
+            key_details:
+                description:
+                    - A list of KMS key details.
+                type: list
+                suboptions:
+                    kms_key_id:
+                        description:
+                            - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
+                        type: str
     cluster_id:
         description:
             - The OCID of the cluster.
@@ -405,6 +428,31 @@ cluster:
             returned: on success
             type: list
             sample: []
+        image_policy_config:
+            description:
+                - The image verification policy for signature validation.
+            returned: on success
+            type: complex
+            contains:
+                is_policy_enabled:
+                    description:
+                        - Whether the image verification policy is enabled. Defaults to false. If set to true, the images will be verified against the policy at
+                          runtime.
+                    returned: on success
+                    type: bool
+                    sample: true
+                key_details:
+                    description:
+                        - A list of KMS key details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        kms_key_id:
+                            description:
+                                - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
         "name": "My Cluster",
@@ -449,7 +497,13 @@ cluster:
             "public_endpoint": "https://yourPublicEndpoint",
             "private_endpoint": "https://yourPrivateEndpoint"
         },
-        "available_kubernetes_upgrades": []
+        "available_kubernetes_upgrades": [],
+        "image_policy_config": {
+            "is_policy_enabled": true,
+            "key_details": [{
+                "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        }
     }
 """
 
@@ -616,6 +670,17 @@ def main():
                     admission_controller_options=dict(
                         type="dict",
                         options=dict(is_pod_security_policy_enabled=dict(type="bool")),
+                    ),
+                ),
+            ),
+            image_policy_config=dict(
+                type="dict",
+                options=dict(
+                    is_policy_enabled=dict(type="bool"),
+                    key_details=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(kms_key_id=dict(type="str")),
                     ),
                 ),
             ),

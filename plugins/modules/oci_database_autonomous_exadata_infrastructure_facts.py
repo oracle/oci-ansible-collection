@@ -275,6 +275,18 @@ autonomous_exadata_infrastructures:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the Autonomous Exadata Infrastructure.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the Autonomous Exadata Infrastructure is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -304,7 +316,9 @@ autonomous_exadata_infrastructures:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

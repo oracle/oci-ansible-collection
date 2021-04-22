@@ -72,19 +72,43 @@ resource_availability:
     contains:
         used:
             description:
-                - The current usage in the given compartment.
+                - The current usage in the given compartment. Because we have introduced resources with fractional counts,
+                  the field will round up to the nearest integer.
             returned: on success
             type: int
             sample: 56
         available:
             description:
-                - The count of available resources.
+                - The count of available resources. Because we have introduced resources with fractional counts,
+                  the field will round down to the nearest integer.
             returned: on success
             type: int
             sample: 56
+        fractional_usage:
+            description:
+                - The current most accurate usage in the given compartment.
+            returned: on success
+            type: float
+            sample: 10
+        fractional_availability:
+            description:
+                - The most accurate count of available resources.
+            returned: on success
+            type: float
+            sample: 10
+        effective_quota_value:
+            description:
+                - The effective quota value for given compartment. This field is only present if there is a
+                  current quota policy affecting the current resource in the target region or availability domain.
+            returned: on success
+            type: float
+            sample: 10
     sample: {
         "used": 56,
-        "available": 56
+        "available": 56,
+        "fractional_usage": 10,
+        "fractional_availability": 10,
+        "effective_quota_value": 10
     }
 """
 

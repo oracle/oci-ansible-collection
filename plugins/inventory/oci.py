@@ -754,7 +754,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by compartments
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-
+            instance_vars.update({"compartment_name": compartment_name})
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
@@ -853,9 +853,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
 
     def build_inventory_for_db_host(self, db_host, region):
         """Build and return inventory for a database host"""
@@ -874,7 +874,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by compartments
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-
+            db_host_vars.update({"compartment_name": compartment_name})
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
@@ -951,9 +951,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
 
     def create_instance_inventory_for_host(
         self, instance_inventory, host_name, vars, groups
@@ -1107,9 +1107,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
             return []
 
     def get_filtered_instances(self, compartment_ocid, region):
@@ -1127,9 +1127,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return instances
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
             return []
 
     def get_compute_client_for_region(self, region):

@@ -28,7 +28,7 @@ author: Oracle (@oracle)
 options:
     vnic_id:
         description:
-            - The OCID of the VNIC.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC.
         type: str
         aliases: ["id"]
         required: true

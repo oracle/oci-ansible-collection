@@ -20,7 +20,7 @@ oracle.oci.oci_network_cross_connect_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple CrossConnect resources in Oracle Cloud Infrastructure
-- Lists the cross-connects in the specified compartment. You can filter the list by specifying the OCID of a cross-connect group.
+- Lists the cross-connects in the specified compartment. You can filter the list by specifying the `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ of a cross-connect group.
 - If *cross_connect_id* is specified, the details of a single CrossConnect will be returned.
 
 
@@ -212,7 +212,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the cross-connect group.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the cross-connect group.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -227,7 +227,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the cross-connect.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the cross-connect.</div>
                                             <div>Required to get a specific cross_connect.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>

@@ -95,6 +95,11 @@ options:
                     - "DB_SOFTWARE_IMAGE"
                     - "DB_VERSION"
                 required: true
+            options:
+                description:
+                    - "Additional upgrade options supported by DBUA(Database Upgrade Assistant).
+                      Example: \\"-upgradeTimezone false -keepEvents\\""
+                type: str
             db_home_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
@@ -580,6 +585,7 @@ def main():
                         required=True,
                         choices=["DB_HOME", "DB_SOFTWARE_IMAGE", "DB_VERSION"],
                     ),
+                    options=dict(type="str"),
                     db_home_id=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     db_version=dict(type="str"),

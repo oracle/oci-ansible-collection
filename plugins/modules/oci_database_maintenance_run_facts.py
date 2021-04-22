@@ -53,6 +53,7 @@ options:
             - "EXADATA_DB_SYSTEM"
             - "CLOUD_EXADATA_INFRASTRUCTURE"
             - "EXACC_INFRASTRUCTURE"
+            - "AUTONOMOUS_DATABASE"
     maintenance_type:
         description:
             - The maintenance type.
@@ -90,6 +91,7 @@ options:
             - "UPDATING"
             - "DELETING"
             - "DELETED"
+            - "CANCELED"
     availability_domain:
         description:
             - A filter to return only resources that match the given availability domain exactly.
@@ -141,7 +143,8 @@ maintenance_runs:
             sample: description_example
         lifecycle_state:
             description:
-                - The current state of the maintenance run.
+                - The current state of the maintenance run. For Autonomous Database on shared Exadata infrastructure, valid states are IN_PROGRESS, SUCCEEDED
+                  and FAILED.
             returned: on success
             type: string
             sample: SCHEDULED
@@ -308,6 +311,7 @@ def main():
                     "EXADATA_DB_SYSTEM",
                     "CLOUD_EXADATA_INFRASTRUCTURE",
                     "EXACC_INFRASTRUCTURE",
+                    "AUTONOMOUS_DATABASE",
                 ],
             ),
             maintenance_type=dict(type="str", choices=["PLANNED", "UNPLANNED"]),
@@ -326,6 +330,7 @@ def main():
                     "UPDATING",
                     "DELETING",
                     "DELETED",
+                    "CANCELED",
                 ],
             ),
             availability_domain=dict(type="str"),

@@ -211,7 +211,7 @@ instance:
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -231,9 +231,9 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -243,7 +243,7 @@ instance:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -264,9 +264,9 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -312,6 +312,31 @@ instance:
                     returned: on success
                     type: string
                     sample: RESTORE_INSTANCE
+        preemptible_instance_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preemption_action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of action to run when the instance is interrupted for eviction.
+                            returned: on success
+                            type: string
+                            sample: TERMINATE
+                        preserve_boot_volume:
+                            description:
+                                - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults
+                                  to false if not specified.
+                            returned: on success
+                            type: bool
+                            sample: true
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -359,6 +384,17 @@ instance:
                     returned: on success
                     type: float
                     sample: 3.4
+                baseline_ocpu_utilization:
+                    description:
+                        - The baseline OCPU utilization for a subcore burstable VM instance. Leave this attribute blank for a
+                          non-burstable instance, or explicitly specify non-burstable with `BASELINE_1_1`.
+                        - "The following values are supported:
+                          - `BASELINE_1_8` - baseline usage is 1/8 of an OCPU.
+                          - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
+                          - `BASELINE_1_1` - baseline usage is the entire OCPU. This represents a non-burstable instance."
+                    returned: on success
+                    type: string
+                    sample: BASELINE_1_8
                 processor_description:
                     description:
                         - A short description of the instance's processor (CPU).
@@ -588,6 +624,12 @@ instance:
         "availability_config": {
             "recovery_action": "RESTORE_INSTANCE"
         },
+        "preemptible_instance_config": {
+            "preemption_action": {
+                "type": "TERMINATE",
+                "preserve_boot_volume": true
+            }
+        },
         "lifecycle_state": "MOVING",
         "metadata": {},
         "region": "region_example",
@@ -595,6 +637,7 @@ instance:
         "shape_config": {
             "ocpus": 3.4,
             "memory_in_gbs": 3.4,
+            "baseline_ocpu_utilization": "BASELINE_1_8",
             "processor_description": "processor_description_example",
             "networking_bandwidth_in_gbps": 3.4,
             "max_vnic_attachments": 56,

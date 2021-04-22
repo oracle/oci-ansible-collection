@@ -29,15 +29,15 @@ description:
       options. For detailed information about default options, see L(Bare metal and virtual machine DB system default
       options.,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#Default)
     - "**Note:** Deprecated for Exadata Cloud Service systems. Use the L(new resource model
-      APIs,https://docs.cloud.oracle.com/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model) instead."
+      APIs,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model) instead."
     - For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See L(Switching an Exadata DB System to the New Resource Model and
-      APIs,https://docs.cloud.oracle.com/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing Exadata DB systems to
-      the new resource model.
+      APIs,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing
+      Exadata DB systems to the new resource model.
     - Use the L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/) and
       L(CreateCloudVmCluster,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/) APIs to provision a new
       Exadata Cloud Service instance.
-    - "This resource has the following action operations in the M(oci_db_system_actions) module: migrate_exadata_db_system_resource_model."
+    - "This resource has the following action operations in the M(oci_db_system_actions) module: change_compartment, migrate_exadata_db_system_resource_model."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -988,6 +988,18 @@ db_system:
             returned: on success
             type: string
             sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the DB system is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
@@ -1159,6 +1171,8 @@ db_system:
         "scan_ip_ids": [],
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
         "reco_storage_size_in_gb": 56,
         "node_count": 56,

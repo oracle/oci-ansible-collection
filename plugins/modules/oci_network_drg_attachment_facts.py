@@ -23,15 +23,14 @@ module: oci_network_drg_attachment_facts
 short_description: Fetches details about one or multiple DrgAttachment resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DrgAttachment resources in Oracle Cloud Infrastructure
-    - Lists the `DrgAttachment` objects for the specified compartment. You can filter the
-      results by VCN or DRG.
+    - Lists the `DrgAttachment` objects for the specified compartment. You can filter the results by VCN or DRG.
     - If I(drg_attachment_id) is specified, the details of a single DrgAttachment will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     drg_attachment_id:
         description:
-            - The OCID of the DRG attachment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
             - Required to get a specific drg_attachment.
         type: str
         aliases: ["id"]
@@ -46,7 +45,7 @@ options:
         type: str
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
@@ -71,7 +70,7 @@ drg_attachments:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the DRG attachment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -84,13 +83,13 @@ drg_attachments:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: string
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The DRG attachment's Oracle ID (OCID).
+                - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -119,7 +118,7 @@ drg_attachments:
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
-                - The OCID of the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
             returned: on success
             type: string
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

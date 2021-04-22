@@ -87,6 +87,14 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    remaining_memory_in_gbs_greater_than_or_equal_to:
+        description:
+            - The remaining memory of the dedicated VM host, in GBs.
+        type: float
+    remaining_ocpus_greater_than_or_equal_to:
+        description:
+            - The available OCPUs of the dedicated VM host.
+        type: float
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -196,6 +204,18 @@ dedicated_vm_hosts:
             returned: on success
             type: float
             sample: 3.4
+        total_memory_in_gbs:
+            description:
+                - The total memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
+        remaining_memory_in_gbs:
+            description:
+                - The remaining memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -208,7 +228,9 @@ dedicated_vm_hosts:
         "lifecycle_state": "CREATING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "total_ocpus": 3.4,
-        "remaining_ocpus": 3.4
+        "remaining_ocpus": 3.4,
+        "total_memory_in_gbs": 3.4,
+        "remaining_memory_in_gbs": 3.4
     }]
 """
 
@@ -254,6 +276,8 @@ class DedicatedVmHostFactsHelperGen(OCIResourceFactsHelperBase):
             "instance_shape_name",
             "sort_by",
             "sort_order",
+            "remaining_memory_in_gbs_greater_than_or_equal_to",
+            "remaining_ocpus_greater_than_or_equal_to",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -298,6 +322,8 @@ def main():
             instance_shape_name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            remaining_memory_in_gbs_greater_than_or_equal_to=dict(type="float"),
+            remaining_ocpus_greater_than_or_equal_to=dict(type="float"),
         )
     )
 

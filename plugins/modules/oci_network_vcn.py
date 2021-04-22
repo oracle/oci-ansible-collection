@@ -49,7 +49,8 @@ description:
     - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
-    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, change_compartment, modify_vcn_cidr, remove_vcn_cidr."
+    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_ipv6_vcn_cidr, add_vcn_cidr, change_compartment, modify_vcn_cidr,
+      remove_vcn_cidr."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -111,6 +112,13 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    is_ipv6_enabled:
+        description:
+            - Whether IPv6 is enabled for the VCN. Default is `false`.
+              If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.
+              For important details about IPv6 addressing in a VCN, see L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `true`"
+        type: bool
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
@@ -252,6 +260,13 @@ vcn:
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -287,6 +302,7 @@ vcn:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"
@@ -436,6 +452,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             dns_label=dict(type="str"),
             freeform_tags=dict(type="dict"),
+            is_ipv6_enabled=dict(type="bool"),
             vcn_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

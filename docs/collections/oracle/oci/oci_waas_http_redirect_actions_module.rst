@@ -20,7 +20,7 @@ oracle.oci.oci_waas_http_redirect_actions -- Perform actions on a HttpRedirect r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -286,8 +286,8 @@ Examples
     
     - name: Perform action change_compartment on http_redirect
       oci_waas_http_redirect_actions:
-        http_redirect_id: ocid1.httpredirect.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        http_redirect_id: "ocid1.httpredirect.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
 

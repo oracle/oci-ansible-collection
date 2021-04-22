@@ -78,27 +78,50 @@ options:
                 type: str
                 choices:
                     - "logging"
+                    - "streaming"
                 required: true
             log_sources:
                 description:
                     - The resources affected by this work request.
+                    - Required when kind is 'logging'
                 type: list
-                required: true
                 suboptions:
                     compartment_id:
                         description:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the log
                               source.
+                            - Required when kind is 'logging'
                         type: str
                         required: true
                     log_group_id:
                         description:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log group.
+                            - Applicable when kind is 'logging'
                         type: str
                     log_id:
                         description:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
+                            - Applicable when kind is 'logging'
                         type: str
+            stream_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
+                    - Required when kind is 'streaming'
+                type: str
+            cursor:
+                description:
+                    - ""
+                    - Applicable when kind is 'streaming'
+                type: dict
+                suboptions:
+                    kind:
+                        description:
+                            - The type descriminator.
+                        type: str
+                        choices:
+                            - "TRIM_HORIZON"
+                            - "LATEST"
+                        required: true
     tasks:
         description:
             - The list of tasks.
@@ -110,13 +133,29 @@ options:
                     - The type descriminator.
                 type: str
                 choices:
+                    - "function"
                     - "logRule"
                 required: true
+            function_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
+                    - Required when kind is 'function'
+                type: str
+            batch_size_in_kbs:
+                description:
+                    - Size limit (kilobytes) for batch sent to invoke the function.
+                    - Applicable when kind is 'function'
+                type: int
+            batch_time_in_sec:
+                description:
+                    - Time limit (seconds) for batch sent to invoke the function.
+                    - Applicable when kind is 'function'
+                type: int
             condition:
                 description:
                     - A filter or mask to limit the source used in the flow defined by the service connector.
+                    - Required when kind is 'logRule'
                 type: str
-                required: true
     target:
         description:
             - ""
@@ -243,8 +282,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source:
       kind: logging
-      log_sources:
-      - compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target:
       kind: notifications
 
@@ -255,11 +292,8 @@ EXAMPLES = """
     description: description_example
     source:
       kind: logging
-      log_sources:
-      - compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     tasks:
-    - kind: logRule
-      condition: condition_example
+    - kind: function
     target:
       kind: notifications
     freeform_tags: {'Department': 'Finance'}
@@ -383,6 +417,24 @@ service_connector:
                             returned: on success
                             type: string
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+                stream_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
+                cursor:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - The type descriminator.
+                            returned: on success
+                            type: string
+                            sample: TRIM_HORIZON
         tasks:
             description:
                 - The list of tasks.
@@ -394,7 +446,25 @@ service_connector:
                         - The type descriminator.
                     returned: on success
                     type: string
-                    sample: logRule
+                    sample: function
+                function_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                batch_size_in_kbs:
+                    description:
+                        - Size limit (kilobytes) for batch sent to invoke the function.
+                    returned: on success
+                    type: int
+                    sample: 56
+                batch_time_in_sec:
+                    description:
+                        - Time limit (seconds) for batch sent to invoke the function.
+                    returned: on success
+                    type: int
+                    sample: 56
                 condition:
                     description:
                         - A filter or mask to limit the source used in the flow defined by the service connector.
@@ -533,10 +603,17 @@ service_connector:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
-            }]
+            }],
+            "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
+            "cursor": {
+                "kind": "TRIM_HORIZON"
+            }
         },
         "tasks": [{
-            "kind": "logRule",
+            "kind": "function",
+            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+            "batch_size_in_kbs": 56,
+            "batch_time_in_sec": 56,
             "condition": "condition_example"
         }],
         "target": {
@@ -702,15 +779,27 @@ def main():
             source=dict(
                 type="dict",
                 options=dict(
-                    kind=dict(type="str", required=True, choices=["logging"]),
+                    kind=dict(
+                        type="str", required=True, choices=["logging", "streaming"]
+                    ),
                     log_sources=dict(
                         type="list",
                         elements="dict",
-                        required=True,
                         options=dict(
                             compartment_id=dict(type="str", required=True),
                             log_group_id=dict(type="str"),
                             log_id=dict(type="str"),
+                        ),
+                    ),
+                    stream_id=dict(type="str"),
+                    cursor=dict(
+                        type="dict",
+                        options=dict(
+                            kind=dict(
+                                type="str",
+                                required=True,
+                                choices=["TRIM_HORIZON", "LATEST"],
+                            )
                         ),
                     ),
                 ),
@@ -719,8 +808,13 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    kind=dict(type="str", required=True, choices=["logRule"]),
-                    condition=dict(type="str", required=True),
+                    kind=dict(
+                        type="str", required=True, choices=["function", "logRule"]
+                    ),
+                    function_id=dict(type="str"),
+                    batch_size_in_kbs=dict(type="int"),
+                    batch_time_in_sec=dict(type="int"),
+                    condition=dict(type="str"),
                 ),
             ),
             target=dict(

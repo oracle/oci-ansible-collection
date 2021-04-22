@@ -470,6 +470,31 @@ autonomous_databases:
             returned: on success
             type: list
             sample: []
+        are_primary_whitelisted_ips_used:
+            description:
+                - This field will be null if the Autonomous Database is not Data Guard enabled or Access Control is disabled.
+                  It's value would be `TRUE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  primary IP access control list (ACL) for standby.
+                  It's value would be `FALSE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  different IP access control list (ACL) for standby compared to primary.
+            returned: on success
+            type: bool
+            sample: true
+        standby_whitelisted_ips:
+            description:
+                - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+                - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+                  Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`
+                  For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
+                - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+            returned: on success
+            type: list
+            sample: []
         apex_details:
             description:
                 - Information about Oracle APEX Application Development.
@@ -698,6 +723,8 @@ autonomous_databases:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "are_primary_whitelisted_ips_used": true,
+        "standby_whitelisted_ips": [],
         "apex_details": {
             "apex_version": "apex_version_example",
             "ords_version": "ords_version_example"

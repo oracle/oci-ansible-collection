@@ -20,7 +20,7 @@ oracle.oci.oci_waas_custom_protection_rule_actions -- Perform actions on a Custo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.19.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -286,8 +286,8 @@ Examples
     
     - name: Perform action change_compartment on custom_protection_rule
       oci_waas_custom_protection_rule_actions:
-        custom_protection_rule_id: ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        custom_protection_rule_id: "ocid1.customprotectionrule.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
 

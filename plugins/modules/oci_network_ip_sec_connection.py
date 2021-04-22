@@ -30,13 +30,13 @@ description:
       If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for
       the static routes. For more information, see the important note in
       L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/)."
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+      where you want the
       IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment
       as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to
       use, put the IPSec connection in the same compartment as the DRG. For more information about
       compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
-      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "After creating the IPSec connection, you need to configure your on-premises router
@@ -79,7 +79,7 @@ options:
         aliases: ["name"]
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for create using I(state=present).
         type: str
     freeform_tags:
@@ -121,7 +121,10 @@ options:
               you must provide at least one valid static route. If you configure both
               tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
               For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/).
+            - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+              See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
             - "Example: `10.0.1.0/24`"
+            - "Example: `2001:db8::/32`"
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
@@ -190,6 +193,30 @@ options:
                             - The value must be a /30 or /31.
                             - "Example: `10.0.0.5/31`"
                         type: str
+                    oracle_interface_ipv6:
+                        description:
+                            - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
+                            - If the tunnel's `routing` attribute is set to `BGP`
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
+                              address
+                              is used for the tunnel's BGP session.
+                            - If `routing` is instead set to `STATIC`, you can set this IP
+                              address to troubleshoot or monitor the tunnel.
+                            - Only subnet masks from /64 up to /127 are allowed.
+                            - "Example: `2001:db8::1/64`"
+                        type: str
+                    customer_interface_ipv6:
+                        description:
+                            - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
+                            - If the tunnel's `routing` attribute is set to `BGP`
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
+                              address
+                              is used for the tunnel's BGP session.
+                            - If `routing` is instead set to `STATIC`, you can set this IP
+                              address to troubleshoot or monitor the tunnel.
+                            - Only subnet masks from /64 up to /127 are allowed.
+                            - "Example: `2001:db8::1/64`"
+                        type: str
                     customer_bgp_asn:
                         description:
                             - "If the tunnel's `routing` attribute is set to `BGP`
@@ -214,7 +241,7 @@ options:
                         type: list
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -238,6 +265,7 @@ EXAMPLES = """
     cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
     static_routes:
     - "192.0.2.0/24"
+    - "2001:db8::/32"
     drg_id: "ocid1.drg.oc1.phx.unique_ID"
     compartment_id: "ocid1.compartment.oc1..unique_ID"
 
@@ -306,7 +334,7 @@ ip_sec_connection:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: string
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
@@ -321,7 +349,7 @@ ip_sec_connection:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The IPSec connection's Oracle ID (OCID).
+                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -361,7 +389,10 @@ ip_sec_connection:
                   is using static routing. If you configure at least one tunnel to use static routing, then
                   you must provide at least one valid static route. If you configure both
                   tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
+                - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+                  See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `10.0.1.0/24`"
+                - "Example: `2001:db8::/32`"
             returned: on success
             type: list
             sample: []
@@ -551,6 +582,8 @@ def main():
                         options=dict(
                             oracle_interface_ip=dict(type="str"),
                             customer_interface_ip=dict(type="str"),
+                            oracle_interface_ipv6=dict(type="str"),
+                            customer_interface_ipv6=dict(type="str"),
                             customer_bgp_asn=dict(type="str"),
                         ),
                     ),

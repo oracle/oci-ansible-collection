@@ -4,6 +4,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.20.0] - 2021-04-22
+
+## Added
+- Support for Ipv6
+- Support for Network Topology service
+- Support for [preemptible instances](https://docs.oracle.com/en-us/iaas/Content/Compute/Concepts/preemptible.htm) in the Compute service
+- Support for burstable instances in the Compute service
+- Support for `routing_policy` in virtual circuit
+- Support for configuring APM tracing functionality for Application and Functions resources.
+- Support for Streaming Analytics feature in Service Connector Hub.
+- Support for Read/Write-Any object from buckets using Pre-authenticated Request (PAR) in Object Storage. Support for restricting PARs by prefix and for listing object.
+- Support for showing if a contact for Exadata Infrastructure is valid in MOS (My Oracle Support) and if Exadata Infrastructure is in Degraded SLO state.
+- Support for os updating cloud vm cluster
+- Support for Data Guard with Autonomous Container Databases on Exadata Cloud @ Customer Infrastructure
+- Support to specify Peer ACD unique name when creating Data Guard enabled Autonomous Container Database on Exadata Cloud@Customer
+- Access Control List support for Autonomous Database with Data Guard enabled on Exadata Cloud@Customer
+- Support for `scan_dns_name` and `zone_id` as part of Dbsystem/CloudVmCluster/AutonomousExadataInfrastructure API response.
+- Support for additional upgrade options supported by DBUA(Database Upgrade Assistant)
+- Support for fractional support for resource usage and availability service limit api
+- Support for data_science model_deployment module and model_deployment_shape_facts module
+- Support for container image signing
+- Support for cluster features as a part of the Container Engine for Kubernetes Service
+- Support for Oracle Cloud VMware Solution Flexible Billing
+- compartment name to the hostvars of OCI Inventory Plugin
+
+## Fixed
+- Issue with debug logging in inventory plugin when there is a service error
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## Deprecated:
+- Module `oci_load_balancer_routing_policy` is deprecated,  
+  use `oci_loadbalancer_routing_policy` instead
+- Module `oci_load_balancer_routing_policy_facts` is deprecated,  
+  use `oci_loadbalancer_routing_policy_facts` instead
+
 ## [2.19.0] - 2021-04-08
 
 ## Added

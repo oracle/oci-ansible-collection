@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
-            - The OCID of the provider service.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the provider service.
         type: str
         required: true
     provider_service_key_name:

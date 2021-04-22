@@ -65,7 +65,7 @@ options:
         description:
             - A user-friendly name for the image. It does not have to be unique, and it's changeable.
               Avoid entering confidential information.
-            - You cannot use an Oracle-provided image name as a custom image name.
+            - You cannot use a platform image name as a custom image name.
             - "Example: `My Oracle Linux image`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -136,7 +136,7 @@ options:
     launch_mode:
         description:
             - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-              * `NATIVE` - VM instances launch with paravirtualized boot and VFIO devices. The default value for Oracle-provided images.
+              * `NATIVE` - VM instances launch with paravirtualized boot and VFIO devices. The default value for platform images.
               * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
               * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
               * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -198,7 +198,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: "MyImportedImage"
     image_source_details:
-      source_uri: "https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import.oci"
+      source_uri: "https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import;.oci"
       source_type: "objectStorageUri"
 
 - name: Update image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -261,7 +261,7 @@ image:
             description:
                 - A user-friendly name for the image. It does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - You cannot use an Oracle-provided image name as a custom image name.
+                - You cannot use a platform image name as a custom image name.
                 - "Example: `My custom Oracle Linux image`"
             returned: on success
             type: string
@@ -284,7 +284,7 @@ image:
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -304,9 +304,9 @@ image:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -316,7 +316,7 @@ image:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -337,9 +337,9 @@ image:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI

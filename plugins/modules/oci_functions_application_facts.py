@@ -151,6 +151,24 @@ applications:
             returned: on success
             type: string
             sample: tcp://logserver.myserver:1234
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
+                domain_id:
+                    description:
+                        - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -191,6 +209,10 @@ applications:
         "config": {},
         "subnet_ids": [],
         "syslog_url": "tcp://logserver.myserver:1234",
+        "trace_config": {
+            "is_enabled": true,
+            "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",
