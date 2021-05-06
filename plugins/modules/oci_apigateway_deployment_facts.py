@@ -553,6 +553,121 @@ deployments:
                                             returned: on success
                                             type: int
                                             sample: 600
+                                query_parameter_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the parameter is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                header_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the header is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                body_validation:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        required:
+                                            description:
+                                                - Determines if the request body is required in the request.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        content:
+                                            description:
+                                                - The content of the request body. The key is a L(media type
+                                                  range,https://tools.ietf.org/html/rfc7231#appendix-D)
+                                                  subset restricted to the following schema
+                                                - "   key ::= (
+                                                            / (  \\"*\\" \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" subtype )
+                                                            )"
+                                                - "For requests that match multiple keys, only the most specific key is applicable.
+                                                  e.g. `text/plain` overrides `text/*`"
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                validation_type:
+                                                    description:
+                                                        - Validation type defines the content validation method.
+                                                        - Make the validation to first parse the body as the respective format.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: NONE
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
                                 header_transformations:
                                     description:
                                         - ""
@@ -738,6 +853,42 @@ deployments:
                                                             returned: on success
                                                             type: string
                                                             sample: bookIsbn
+                                response_cache_lookup:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: SIMPLE_LOOKUP_POLICY
+                                        is_enabled:
+                                            description:
+                                                - Whether this policy is currently enabled.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_private_caching_enabled:
+                                            description:
+                                                - Set true to allow caching responses where the request has an Authorization header. Ensure you have configured
+                                                  your
+                                                  cache key additions to get the level of isolation across authenticated requests that you require.
+                                                - When false, any request with an Authorization header will not be stored in the Response Cache.
+                                                - If using the CustomAuthenticationPolicy then the tokenHeader/tokenQueryParam are also subject to this check.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        cache_key_additions:
+                                            description:
+                                                - A list of context expressions whose values will be added to the base cache key. Values should contain an
+                                                  expression enclosed within
+                                                  ${} delimiters. Only the request context is available.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                         response_policies:
                             description:
                                 - ""
@@ -836,6 +987,24 @@ deployments:
                                                             returned: on success
                                                             type: string
                                                             sample: User-Agent
+                                response_cache_store:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: FIXED_TTL_STORE_POLICY
+                                        time_to_live_in_seconds:
+                                            description:
+                                                - Sets the number of seconds for a response from a backend being stored in the Response Cache before it expires.
+                                            returned: on success
+                                            type: int
+                                            sample: 300
                         logging_policies:
                             description:
                                 - ""
@@ -1088,6 +1257,27 @@ deployments:
                         "is_allow_credentials_enabled": false,
                         "max_age_in_seconds": 600
                     },
+                    "query_parameter_validations": {
+                        "parameters": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "header_validations": {
+                        "headers": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "body_validation": {
+                        "required": true,
+                        "content": {
+                            "validation_type": "NONE"
+                        },
+                        "validation_mode": "ENFORCING"
+                    },
                     "header_transformations": {
                         "set_headers": {
                             "items": [{
@@ -1129,6 +1319,12 @@ deployments:
                                 "name": "bookIsbn"
                             }]
                         }
+                    },
+                    "response_cache_lookup": {
+                        "type": "SIMPLE_LOOKUP_POLICY",
+                        "is_enabled": true,
+                        "is_private_caching_enabled": true,
+                        "cache_key_additions": []
                     }
                 },
                 "response_policies": {
@@ -1152,6 +1348,10 @@ deployments:
                                 "name": "User-Agent"
                             }]
                         }
+                    },
+                    "response_cache_store": {
+                        "type": "FIXED_TTL_STORE_POLICY",
+                        "time_to_live_in_seconds": 300
                     }
                 },
                 "logging_policies": {

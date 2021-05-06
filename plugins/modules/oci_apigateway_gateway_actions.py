@@ -151,6 +151,78 @@ gateway:
                     returned: on success
                     type: string
                     sample: ip_address_example
+        response_cache_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the Response Cache.
+                    returned: on success
+                    type: string
+                    sample: EXTERNAL_RESP_CACHE
+                servers:
+                    description:
+                        - The set of cache store members to connect to. At present only a single server is supported.
+                    returned: on success
+                    type: complex
+                    contains:
+                        host:
+                            description:
+                                - Hostname or IP address (IPv4 only) where the cache store is running.
+                            returned: on success
+                            type: string
+                            sample: host_example
+                        port:
+                            description:
+                                - The port the cache store is exposed on.
+                            returned: on success
+                            type: int
+                            sample: 56
+                authentication_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault Service secret resource.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                authentication_secret_version_number:
+                    description:
+                        - The version number of the authentication secret to use.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_ssl_enabled:
+                    description:
+                        - Defines if the connection should be over SSL.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_ssl_verify_disabled:
+                    description:
+                        - Defines whether or not to uphold SSL verification.
+                    returned: on success
+                    type: bool
+                    sample: true
+                connect_timeout_in_ms:
+                    description:
+                        - Defines the timeout for establishing a connection with the Response Cache.
+                    returned: on success
+                    type: int
+                    sample: 56
+                read_timeout_in_ms:
+                    description:
+                        - Defines the timeout for reading data from the Response Cache.
+                    returned: on success
+                    type: int
+                    sample: 56
+                send_timeout_in_ms:
+                    description:
+                        - Defines the timeout for transmitting data to the Response Cache.
+                    returned: on success
+                    type: int
+                    sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -184,6 +256,20 @@ gateway:
         "ip_addresses": [{
             "ip_address": "ip_address_example"
         }],
+        "response_cache_details": {
+            "type": "EXTERNAL_RESP_CACHE",
+            "servers": [{
+                "host": "host_example",
+                "port": 56
+            }],
+            "authentication_secret_id": "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "authentication_secret_version_number": 56,
+            "is_ssl_enabled": true,
+            "is_ssl_verify_disabled": true,
+            "connect_timeout_in_ms": 56,
+            "read_timeout_in_ms": 56,
+            "send_timeout_in_ms": 56
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

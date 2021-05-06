@@ -60,15 +60,15 @@ options:
                 required: true
             length:
                 description:
-                    - "The length of the key in bytes, expressed as an integer. Values supported:
-                        - AES: 16, 24 or 32
-                        - RSA: 256, 384 or 512
-                        - ECDSA: 32, 48, 66"
+                    - "The length of the key in bytes, expressed as an integer. Supported values include the following:
+                        - AES: 16, 24, or 32
+                        - RSA: 256, 384, or 512
+                        - ECDSA: 32, 48, or 66"
                 type: int
                 required: true
             curve_id:
                 description:
-                    - Supported curve Ids for ECDSA keys
+                    - Supported curve IDs for ECDSA keys.
                 type: str
                 choices:
                     - "NIST_P256"

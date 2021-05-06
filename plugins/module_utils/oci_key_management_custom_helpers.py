@@ -10,6 +10,20 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
+logger = oci_common_utils.get_logger("oci_key_management_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def _info(s):
+    get_logger().info(s)
+
+
+def get_logger():
+    return logger
+
 
 class KeyVersionHelperCustom:
     def get_module_resource_id_param(self):
@@ -66,9 +80,7 @@ class KeyVersionActionsHelperCustom:
 
 
 def kms_is_action_necessary(resource_helper, action, resource):
-    # Idempotency for modules with delete date like KMS (consider only in deleted lifecycle_state)
-    # If the deleted date is equal to the request delete date, we should not execute the action (changed=false)
-    # If the deleted date is different, we will execute the action and return server errors
+    # For schedule_key_deletion key (idempotence), we see that the updated key does not have time_of_deletion set, as the key is in PENDING_DELETION state.
     if (
         hasattr(resource, "lifecycle_state")
         and (
@@ -77,20 +89,36 @@ def kms_is_action_necessary(resource_helper, action, resource):
         )
         and hasattr(resource, "time_of_deletion")
         and resource.time_of_deletion is not None
-        and resource_helper.module.params.get("time_of_deletion") is not None
+        and action == "schedule_key_deletion"
+        and resource_helper.module.params.get("time_of_deletion") is None
     ):
-        if resource.time_of_deletion == oci_common_utils.deserialize_datetime(
-            resource_helper.module.params["time_of_deletion"]
-        ):
-            return False
-        else:
-            resource_helper.module.warn(
-                "This resource was deleted on: {0}. To change the deletion date, "
-                "cancel the current deletion and delete this resource again using the new requested date {1}".format(
-                    resource.time_of_deletion.isoformat(sep="T"),
-                    resource_helper.module.params["time_of_deletion"],
-                )
+        return False
+    else:
+        # Idempotency for modules with delete date like KMS (consider only in deleted lifecycle_state)
+        # If the deleted date is equal to the request delete date, we should not execute the action (changed=false)
+        # If the deleted date is different, we will execute the action and return server errors
+        if (
+            hasattr(resource, "lifecycle_state")
+            and (
+                resource.lifecycle_state == "PENDING_DELETION"
+                or resource.lifecycle_state == "DELETED"
             )
+            and hasattr(resource, "time_of_deletion")
+            and resource.time_of_deletion is not None
+            and resource_helper.module.params.get("time_of_deletion") is not None
+        ):
+            if resource.time_of_deletion == oci_common_utils.deserialize_datetime(
+                resource_helper.module.params["time_of_deletion"]
+            ):
+                return False
+            else:
+                resource_helper.module.warn(
+                    "This resource was deleted on: {0}. To change the deletion date, "
+                    "cancel the current deletion and delete this resource again using the new requested date {1}".format(
+                        resource.time_of_deletion.isoformat(sep="T"),
+                        resource_helper.module.params["time_of_deletion"],
+                    )
+                )
     return True
 
 

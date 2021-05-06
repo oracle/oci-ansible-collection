@@ -291,7 +291,7 @@ options:
                         type: str
                     pdb_name:
                         description:
-                            - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight
+                            - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty
                               alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.
                             - Applicable when source is 'NONE'
                         type: str

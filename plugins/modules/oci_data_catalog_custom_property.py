@@ -86,6 +86,11 @@ options:
             - If this field is a editable field
             - This parameter is updatable.
         type: bool
+    is_shown_in_list:
+        description:
+            - If this field is displayed in a list view of applicable objects.
+            - This parameter is updatable.
+        type: bool
     is_hidden_in_search:
         description:
             - If this field is allowed to pop in search results
@@ -144,6 +149,7 @@ EXAMPLES = """
     is_multi_valued: true
     is_hidden: true
     is_editable: true
+    is_shown_in_list: true
     is_hidden_in_search: true
 
 - name: Update custom_property
@@ -238,6 +244,12 @@ custom_property:
         is_editable:
             description:
                 - If this field is a editable field
+            returned: on success
+            type: bool
+            sample: true
+        is_shown_in_list:
+            description:
+                - If this field is displayed in a list view of applicable objects.
             returned: on success
             type: bool
             sample: true
@@ -342,6 +354,7 @@ custom_property:
         "is_multi_valued": true,
         "is_hidden": true,
         "is_editable": true,
+        "is_shown_in_list": true,
         "is_service_defined": true,
         "is_hidden_in_search": true,
         "lifecycle_state": "CREATING",
@@ -528,6 +541,7 @@ def main():
             is_multi_valued=dict(type="bool"),
             is_hidden=dict(type="bool"),
             is_editable=dict(type="bool"),
+            is_shown_in_list=dict(type="bool"),
             is_hidden_in_search=dict(type="bool"),
             allowed_values=dict(type="list"),
             properties=dict(type="dict"),

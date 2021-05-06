@@ -116,3 +116,28 @@ class LogAnalyticsEntityActionsHelperCustom:
         return super(LogAnalyticsEntityActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class LogAnalyticsEntityTypeHelperCustom:
+    def does_resource_exist(self):
+        try:
+            resource = self.get_resource().data
+            if not self._is_resource_active(resource):
+                return False
+        except ServiceError as se:
+            if se.status == 404:
+                return False
+            raise
+        return True
+
+    def create_resource(self):
+        super(LogAnalyticsEntityTypeHelperCustom, self).create_resource()
+        return self.get_resource().data
+
+    def update_resource(self):
+        super(LogAnalyticsEntityTypeHelperCustom, self).update_resource()
+        return self.get_resource().data
+
+    def delete_resource(self):
+        super(LogAnalyticsEntityTypeHelperCustom, self).delete_resource()
+        return self.get_resource().data

@@ -46,10 +46,30 @@ DOCUMENTATION = """
             env:
                 - name: OCI_USER_KEY_PASS_PHRASE
         instance_principal_authentication:
-             description: Use instance principal based authentication.
-                 If not set, the API key in your config will be used.
-             env:
+             description:
+                - This parameter is DEPRECATED. Please use auth_type instead.
+                - Use instance principal based authentication.
+                  If not set, the API key in your config will be used.
+        auth_type:
+            description:
+                - The type of authentication to use for making API requests. By default C(auth_type="api_key") based
+                  authentication is performed and the API key (see I(api_user_key_file)) in your config file will be
+                  used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
+                  if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
+                  when running ansible playbooks within an OCI compute instance.
+            choices: ['api_key', 'instance_principal', 'instance_obo_user']
+            default: 'api_key'
+            type: str
+            env:
                - name: OCI_ANSIBLE_AUTH_TYPE
+        delegation_token_file:
+            description:
+                - Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable,
+                  if any, is used. Otherwise, defaults to config_file.
+                - This parameter is only applicable when C(auth_type=instance_obo_user) is set.
+            type: str
+            env:
+                - name: OCI_DELEGATION_TOKEN_FILE
         enable_parallel_processing:
               description: Use multiple threads to speedup lookup. Default is set to True
         regions:
@@ -254,6 +274,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "strict_hostname_checking": "no",
             "filters": None,
             "primary_vnic_only": False,
+            "auth_type": "api_key",
+            "delegation_token_file": None,
         }
 
         self.group_prefix = "oci_"
@@ -305,6 +327,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if os.environ.get("OCI_HOSTNAME_FORMAT"):
             return os.environ.get("OCI_HOSTNAME_FORMAT")
         return "public_ip"
+
+    def _validate_hostname_format(self):
+        hostname_format = self.params.get("hostname_format")
+        if hostname_format == "display_name" and self._fetch_db_hosts():
+            raise AnsibleError(
+                "The hostname_format %s is not supported for db_hosts"
+                % (hostname_format)
+            )
 
     def _get_primary_vnic_only(self):
         # Preference order: .oci.yml > environment variable
@@ -391,6 +421,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         )
 
     def create_service_client(self, service_client_class, region=None):
+        """
+        Creates a service client using the common module options provided by the user.
+        :param module: An AnsibleModule that represents user provided options for a Task
+        :param service_client_class: A class that represents a client to an OCI Service
+        :param client_kwargs: kwargs that would be passed to the client class
+        :return: A fully configured client
+        """
         if not region:
             region = self.params["region"]
         params = dict(self.params, region=region)
@@ -398,14 +435,59 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self._is_instance_principal_auth():
             kwargs["signer"] = self.create_instance_principal_signer()
 
+        elif self._is_delegation_token_auth():
+            delegation_token_location = self._get_delegation_token_file()
+            kwargs["signer"] = self.create_instance_principal_signer(
+                delegation_token_location=delegation_token_location
+            )
+
         # Create service client class with the signer.
         client = service_client_class(params, **kwargs)
 
         return client
 
     def _is_instance_principal_auth(self):
-        # check if auth is set to `instance_principal`.
-        return self.get_option("instance_principal_authentication")
+        # check if auth is set to `instance_principal`. Support for backward compatibility.
+        if self.get_option("instance_principal_authentication") == "instance_principal":
+            self.debug(
+                "instance_principal_authentication parameter is DEPRECATED. Please use auth_type parameter instead."
+            )
+            return True
+        # check if auth type is overridden via module params
+        if self.get_option("auth_type") == "instance_principal":
+            self.params["auth_type"] = "instance_principal"
+            return True
+        elif (
+            self.get_option("auth_type") is None
+            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_principal"
+        ):
+            self.params["auth_type"] = "instance_principal"
+            return True
+        return False
+
+    def _is_delegation_token_auth(self):
+        # check if auth type is overridden via module params
+        if self.get_option("auth_type") == "instance_obo_user":
+            self.params["auth_type"] = "instance_obo_user"
+            return True
+        elif (
+            self.get_option("auth_type") is None
+            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_obo_user"
+        ):
+            self.params["auth_type"] = "instance_obo_user"
+            return True
+        return False
+
+    def _get_delegation_token_file(self):
+        if self.get_option("delegation_token_file") is not None:
+            self.params["delegation_token_file"] = os.path.expanduser(
+                self.get_option("delegation_token_file")
+            )
+        elif "OCI_DELEGATION_TOKEN_FILE" in os.environ:
+            self.params["delegation_token_file"] = os.environ.get(
+                "OCI_DELEGATION_TOKEN_FILE"
+            )
+        return self.params.get("delegation_token_file")
 
     def _fetch_db_hosts(self):
         # check if we should fetch db hosts
@@ -420,9 +502,45 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return self.get_option("fetch_compute_hosts")
 
     @staticmethod
-    def create_instance_principal_signer():
+    def create_instance_principal_signer(delegation_token_location=None):
+        """
+        Creates a signer for API authentication.
+        :param delegation_token_location: path for delegation_token file. If None, Instance_Principal signer will be created.
+        :return: A signer for authentication
+        """
+        signer = None
         try:
-            signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+            if delegation_token_location:  # instance_obo_user
+                signer_kwargs = {}
+                delegation_token = None
+                # expand file location
+                expanded_location = os.path.expanduser(delegation_token_location)
+                if not os.path.exists(expanded_location):
+                    raise IOError(
+                        "ERROR: delegation_token_file not found at {0}".format(
+                            expanded_location
+                        )
+                    )
+                # read from file
+                with open(expanded_location, "r") as delegation_token_file:
+                    delegation_token = delegation_token_file.read().strip()
+                # check if token is there
+                if not delegation_token:
+                    raise ValueError(
+                        "ERROR: delegation_token not found in file {0}".format(
+                            expanded_location
+                        )
+                    )
+                # fill up kwarg
+                signer_kwargs["delegation_token"] = delegation_token
+                # create instance_principal_delegation_auth signer
+                signer = oci.auth.signers.InstancePrincipalsDelegationTokenSigner(
+                    **signer_kwargs
+                )
+            else:
+                signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+        except (ValueError, IOError):
+            raise
         except Exception as ex:
             raise Exception(
                 "Failed retrieving certificates from localhost. Instance principal based authentication is only"
@@ -446,8 +564,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def _get_instances_by_region(self, regions):
         """
-           :param regions: a list of regions in which to describe instances
-           :return A list of instance dictionaries
+        :param regions: a list of regions in which to describe instances
+        :return A list of instance dictionaries
         """
         self.setup_clients(regions)
 
@@ -818,7 +936,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         instance_vars.update({"public_ip": vnic.public_ip})
                         instance_vars.update({"private_ip": vnic.private_ip})
 
-                    host_name = self.get_host_name(vnic, region=region)
+                    host_name = self.get_instance_host_name(
+                        instance, vnic, region=region
+                    )
 
                     # Skip vnic which is not addressable using given hostname_format
                     if not host_name:
@@ -921,7 +1041,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             db_host_vars.update({"public_ip": vnic.public_ip})
             db_host_vars.update({"private_ip": vnic.private_ip})
 
-            host_name = self.get_host_name(vnic, region=region)
+            host_name = self.get_db_host_name(vnic, region=region)
 
             # Skip host which is not addressable using hostname_format
             if not host_name:
@@ -1155,9 +1275,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         return self._database_clients[region]
 
-    def get_host_name(self, vnic, region):
-        virtual_nw_client = self.get_virtual_nw_client_for_region(region)
+    def get_instance_host_name(self, instance, vnic, region):
         if self.params["hostname_format"] == "fqdn":
+            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             subnet = oci_common_utils.call_with_backoff(
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
             ).data
@@ -1184,7 +1304,44 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
             )
             return vnic.private_ip
+        elif self.params.get("hostname_format") == "display_name":
+            self.debug(
+                "Display_name of instance : {0} is {1}.".format(
+                    instance.id, instance.display_name
+                )
+            )
+            return instance.display_name
+        return vnic.public_ip
 
+    def get_db_host_name(self, vnic, region):
+        if self.params["hostname_format"] == "fqdn":
+            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
+            subnet = oci_common_utils.call_with_backoff(
+                virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
+            ).data
+            vcn = oci_common_utils.call_with_backoff(
+                virtual_nw_client.get_vcn, vcn_id=subnet.vcn_id
+            ).data
+
+            oraclevcn_domain_name = ".oraclevcn.com"
+            if not (vnic.hostname_label and subnet.dns_label and vcn.dns_label):
+                return None
+            fqdn = (
+                vnic.hostname_label
+                + "."
+                + subnet.dns_label
+                + "."
+                + vcn.dns_label
+                + oraclevcn_domain_name
+            )
+            self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
+            return fqdn
+
+        elif self.params["hostname_format"] == "private_ip":
+            self.debug(
+                "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
+            )
+            return vnic.private_ip
         return vnic.public_ip
 
     def _query(self, regions):
@@ -1232,9 +1389,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def verify_file(self, path):
         """
-            :param loader: an ansible.parsing.dataloader.DataLoader object
-            :param path: the path to the inventory config file
-            :return the contents of the config file
+        :param loader: an ansible.parsing.dataloader.DataLoader object
+        :param path: the path to the inventory config file
+        :return the contents of the config file
         """
         if super(InventoryModule, self).verify_file(path):
             if path.endswith(".oci.yml") or path.endswith(".oci.yaml"):
@@ -1334,6 +1491,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         super(InventoryModule, self).parse(inventory, loader, path)
 
         config_data = self._read_config_data(path)
+
+        # debug flag
+        if self.get_option("debug") is not None:
+            self.params["debug"] = self.get_option("debug")
+        self.debug("The debug flag is set to {0}".format(self.params["debug"]))
+
         # read oci config
         self.read_config()
 
@@ -1345,16 +1508,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         # hostname format
         self.params["hostname_format"] = self._get_hostname_format()
+
+        self._validate_hostname_format()
+
         self.debug(
             "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
                 self.params["hostname_format"]
             )
         )
-
-        # debug flag
-        if self.get_option("debug") is not None:
-            self.params["debug"] = self.get_option("debug")
-        self.debug("The debug flag is set to {0}".format(self.params["debug"]))
 
         cache_key = self.get_cache_key(path)
 

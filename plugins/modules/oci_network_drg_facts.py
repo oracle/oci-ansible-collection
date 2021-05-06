@@ -109,6 +109,50 @@ drgs:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        default_drg_route_tables:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                vcn:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to
+                          DRG attachments
+                          of type VCN on creation.
+                    returned: on success
+                    type: string
+                    sample: vcn_example
+                ipsec_tunnel:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table assigned to DRG
+                          attachments
+                          of type IPSEC_TUNNEL on creation.
+                    returned: on success
+                    type: string
+                    sample: ipsec_tunnel_example
+                virtual_circuit:
+                    description:
+                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                          of type VIRTUAL_CIRCUIT on creation.
+                    returned: on success
+                    type: string
+                    sample: virtual_circuit_example
+                remote_peering_connection:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
+                          of type REMOTE_PEERING_CONNECTION on creation.
+                    returned: on success
+                    type: string
+                    sample: remote_peering_connection_example
+        default_export_drg_route_distribution_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this DRG's default export route distribution for the DRG
+                  attachments.
+            returned: on success
+            type: string
+            sample: "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -116,7 +160,14 @@ drgs:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "default_drg_route_tables": {
+            "vcn": "vcn_example",
+            "ipsec_tunnel": "ipsec_tunnel_example",
+            "virtual_circuit": "virtual_circuit_example",
+            "remote_peering_connection": "remote_peering_connection_example"
+        },
+        "default_export_drg_route_distribution_id": "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

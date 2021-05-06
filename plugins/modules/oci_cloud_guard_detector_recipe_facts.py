@@ -59,7 +59,7 @@ options:
         description:
             - Default is false.
               When set to true, the list of all Oracle Managed Resources
-              Metadata supported by Cloud Guard is returned.
+              Metadata supported by Cloud Guard are returned.
         type: bool
     lifecycle_state:
         description:
@@ -171,7 +171,7 @@ detector_recipes:
             sample: IAAS_ACTIVITY_DETECTOR
         detector_rules:
             description:
-                - List of detetor rules for the detector type for recipe
+                - "List of detector rules for the detector type for recipe - user input"
             returned: on success
             type: complex
             contains:
@@ -424,7 +424,7 @@ detector_recipes:
                     sample: lifecycle_details_example
         effective_detector_rules:
             description:
-                - List of detetor rules for the detector type for recipe
+                - List of effective detector rules for the detector type for recipe after applying defaults
             returned: on success
             type: complex
             contains:

@@ -422,6 +422,12 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: machine_learning_user_management_url_example
+                graph_studio_url:
+                    description:
+                        - The URL of the Graph Studio for the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: graph_studio_url_example
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -732,7 +738,7 @@ autonomous_database:
                     sample: lifecycle_details_example
         role:
             description:
-                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -754,6 +760,18 @@ autonomous_database:
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        customer_contacts:
+            description:
+                - Customer Contacts.
+            returned: on success
+            type: complex
+            contains:
+                email:
+                    description:
+                        - The email address of an Oracle Autonomous Database contact.
+                    returned: on success
+                    type: string
+                    sample: email_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -787,7 +805,8 @@ autonomous_database:
         "connection_urls": {
             "sql_dev_web_url": "sql_dev_web_url_example",
             "apex_url": "apex_url_example",
-            "machine_learning_user_management_url": "machine_learning_user_management_url_example"
+            "machine_learning_user_management_url": "machine_learning_user_management_url_example",
+            "graph_studio_url": "graph_studio_url_example"
         },
         "license_model": "LICENSE_INCLUDED",
         "used_data_storage_size_in_tbs": 56,
@@ -835,7 +854,10 @@ autonomous_database:
         "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_store_wallet_name": "key_store_wallet_name_example"
+        "key_store_wallet_name": "key_store_wallet_name_example",
+        "customer_contacts": [{
+            "email": "email_example"
+        }]
     }
 """
 

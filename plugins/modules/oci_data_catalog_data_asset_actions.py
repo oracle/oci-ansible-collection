@@ -118,6 +118,10 @@ options:
                         description:
                             - If this field is a editable field
                         type: bool
+                    is_shown_in_list:
+                        description:
+                            - If this field is displayed in a list view of applicable objects.
+                        type: bool
                     is_list_type:
                         description:
                             - Is this property allowed to have list of values
@@ -146,7 +150,7 @@ options:
                       To determine the set of optional and required properties for a connection type, a query can be done
                       on '/types?type=connection' that returns a collection of all connection types. The appropriate connection
                       type, which will include definitions of all of it's properties, can be identified from this collection.
-                      Example: `{\\"encProperties\\": { \\"default\\": { \\"password\\": \\"pwd\\"}}}`"
+                      Example: `{\\"encProperties\\": { \\"default\\": { \\"password\\": \\"example-password\\"}}}`"
                 type: dict
             is_default:
                 description:
@@ -409,6 +413,12 @@ data_asset:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -505,6 +515,7 @@ data_asset:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],
@@ -741,6 +752,7 @@ def main():
                             is_multi_valued=dict(type="bool"),
                             is_hidden=dict(type="bool"),
                             is_editable=dict(type="bool"),
+                            is_shown_in_list=dict(type="bool"),
                             is_list_type=dict(type="bool"),
                             allowed_values=dict(type="list"),
                         ),

@@ -621,6 +621,27 @@ class NosqlChangeCompartmentCustomWaiter(WorkRequestWaiter):
         return get_response.data
 
 
+# getting the resource requires identifier of sdk resource
+# but api returns identifier for parent resource i.e paigateway
+# using get_matching_resource to get the resource after creation
+class ApiGatewayCreateSdkWorkRequestWaiter(CreateOperationWorkRequestWaiter):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(ApiGatewayCreateSdkWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    # We get identifier for apigateway resource and not sdk resource
+    # return get_matching resource in that case
+    # we fail the task if we couldnt find the resource post creation (rare case)
+    def get_resource_from_wait_response(self, wait_response):
+        matching_resource = self.resource_helper.get_matching_resource()
+        if matching_resource is None:
+            self.resource_helper.module.fail_json(
+                msg="Resource created successfuly. Error while fetching the resource"
+            )
+        return matching_resource
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -935,6 +956,11 @@ _WAITER_OVERRIDE_MAP = {
         "private_access_channel",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): WorkRequestWaiter,
+    (
+        "apigateway",
+        "sdk",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): ApiGatewayCreateSdkWorkRequestWaiter,
 }
 
 

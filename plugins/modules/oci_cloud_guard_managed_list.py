@@ -68,6 +68,7 @@ options:
             - "STATE"
             - "CITY"
             - "TAGS"
+            - "GENERIC"
     list_items:
         description:
             - List of ManagedListItem
@@ -425,6 +426,7 @@ def main():
                     "STATE",
                     "CITY",
                     "TAGS",
+                    "GENERIC",
                 ],
             ),
             list_items=dict(type="list"),

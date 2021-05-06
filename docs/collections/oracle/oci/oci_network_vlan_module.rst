@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan -- Manage a Vlan resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -421,8 +421,6 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the VCN to contain the VLAN.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -529,7 +527,6 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update vlan
       oci_network_vlan:
@@ -546,7 +543,6 @@ Examples
       oci_network_vlan:
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -117,6 +117,26 @@ external_pluggable_databases:
             returned: on success
             type: string
             sample: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        operations_insights_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                operations_insights_status:
+                    description:
+                        - The status of Operations Insights
+                    returned: on success
+                    type: string
+                    sample: ENABLING
+                operations_insights_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -248,6 +268,10 @@ external_pluggable_databases:
     sample: [{
         "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
         "external_container_database_id": "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
+        "operations_insights_config": {
+            "operations_insights_status": "ENABLING",
+            "operations_insights_connector_id": "ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

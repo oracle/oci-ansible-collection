@@ -174,3 +174,39 @@ class ApigatewayCertificateFactsHelperCustom:
     # override the waiting client with the WorkRequestsClient
     def get_waiter_client(self):
         return self.work_request_client
+
+
+class ApigatewaySdkHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewaySdkHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client
+
+    # update_resource has NoneWaiter but the sdk returns None response in that case
+    # so explicitly calling get_resource method
+    def update_resource(self):
+        updated_resource = super(ApigatewaySdkHelperCustom, self).update_resource()
+        return updated_resource or self.get_resource().data
+
+
+class ApigatewaySdkFactsHelperCustom:
+    def __init__(self, module, resource_type, service_client_class, namespace):
+        self.work_request_client = oci_config_utils.create_service_client(
+            module, WorkRequestsClient
+        )
+
+        super(ApigatewaySdkFactsHelperCustom, self).__init__(
+            module, resource_type, service_client_class, namespace
+        )
+
+    # override the waiting client with the WorkRequestsClient
+    def get_waiter_client(self):
+        return self.work_request_client

@@ -110,7 +110,7 @@ EXAMPLES = """
     retries: 3
     timeout_in_millis: 3000
     interval_in_millis: 10000
-    response_body_regex: "^((?!false).|)*$"
+    response_body_regex: "^((?!false).|\\\\s)*$"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: example_backend_set
 

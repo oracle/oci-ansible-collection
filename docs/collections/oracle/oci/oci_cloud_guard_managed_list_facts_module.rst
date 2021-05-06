@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_managed_list_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -302,6 +302,7 @@ Parameters
                                                                                                                                                                                                 <li>STATE</li>
                                                                                                                                                                                                 <li>CITY</li>
                                                                                                                                                                                                 <li>TAGS</li>
+                                                                                                                                                                                                <li>GENERIC</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -356,7 +357,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Default is false. When set to true, the list of all Oracle Managed Resources Metadata supported by Cloud Guard is returned.</div>
+                                            <div>Default is false. When set to true, the list of all Oracle Managed Resources Metadata supported by Cloud Guard are returned.</div>
                                                         </td>
             </tr>
                                 <tr>

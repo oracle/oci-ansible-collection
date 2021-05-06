@@ -91,21 +91,28 @@ auto_scaling_configuration_policies:
             contains:
                 max:
                     description:
-                        - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                        - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                          to increase to (scale out).
+                        - For a schedule-based autoscaling policy, this value is not used.
                     returned: on success
                     type: int
                     sample: 56
                 min:
                     description:
-                        - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                        - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                          to decrease to (scale in).
+                        - For a schedule-based autoscaling policy, this value is not used.
                     returned: on success
                     type: int
                     sample: 56
                 initial:
                     description:
-                        - The initial number of instances to launch in the instance pool immediately after autoscaling is
-                          enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
-                          initial number to a number that is based on the limits that you set.
+                        - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                          immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                          instances is automatically adjusted from this initial number to a number that is based on the limits that
+                          you set.
+                        - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                          that's defined in the autoscaling policy.
                     returned: on success
                     type: int
                     sample: 56
@@ -136,34 +143,56 @@ auto_scaling_configuration_policies:
             sample: 2016-08-25T21:10:29.600Z
         is_enabled:
             description:
-                - Boolean field indicating whether this policy is enabled or not.
+                - Whether the autoscaling policy is enabled.
             returned: on success
             type: bool
             sample: true
         execution_schedule:
             description:
-                - ""
+                - The schedule for executing the autoscaling policy.
             returned: on success
             type: complex
             contains:
                 type:
                     description:
-                        - The type of ExecutionSchedule.
+                        - The type of execution schedule.
                     returned: on success
                     type: string
                     sample: cron
                 timezone:
                     description:
-                        - Specifies the time zone the schedule is in.
+                        - The time zone for the execution schedule.
                     returned: on success
                     type: string
                     sample: UTC
                 expression:
                     description:
-                        - The value representing the execution schedule, as defined by cron format.
+                        - A cron expression that represents the time at which to execute the autoscaling policy.
+                        - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                        - You can use special characters that are supported with the Quartz cron implementation.
+                        - You must specify `0` as the value for seconds.
+                        - "Example: `0 15 10 ? * *`"
                     returned: on success
                     type: string
-                    sample: expression_example
+                    sample: "0 15 10 ? * *"
+        resource_action:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                action_type:
+                    description:
+                        - The type of resource action.
+                    returned: on success
+                    type: string
+                    sample: action_type_example
+                action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: string
+                    sample: STOP
         rules:
             description:
                 - ""
@@ -246,7 +275,11 @@ auto_scaling_configuration_policies:
         "execution_schedule": {
             "type": "cron",
             "timezone": "UTC",
-            "expression": "expression_example"
+            "expression": "0 15 10 ? * *"
+        },
+        "resource_action": {
+            "action_type": "action_type_example",
+            "action": "STOP"
         },
         "rules": [{
             "action": {

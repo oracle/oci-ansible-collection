@@ -24,6 +24,7 @@ short_description: Manage a CatalogPrivateEndpoint resource in Oracle Cloud Infr
 description:
     - This module allows the user to create, update and delete a CatalogPrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new private reverse connection endpoint.
+    - "This resource has the following action operations in the M(oci_catalog_private_endpoint_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

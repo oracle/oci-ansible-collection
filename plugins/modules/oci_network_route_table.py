@@ -134,6 +134,24 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    purge_route_rules:
+        description:
+            - Purge route rules from route table which are not present in the provided route table.
+              If I(purge_route_rules=no), provided route rules would be appended to existing route
+              rules. I(purge_route_rules) and I(delete_route_rules) are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "true"
+    delete_route_rules:
+        description:
+            - Delete route rules from existing route table which are present in the
+              route rules provided by I(route_rules). If I(delete_route_rules=yes), route rules provided by
+              I(route_rules) would be deleted, if they are part of existing route table. If they are not
+              part of existing route table, they will be ignored. I(purge_route_rules) and I(delete_route_rules)
+              are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "false"
     state:
         description:
             - The state of the RouteTable.
@@ -164,6 +182,8 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     route_rules:
     - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+    purge_route_rules: false
+    delete_route_rules: true
 
 - name: Update route_table
   oci_network_route_table:
@@ -479,6 +499,8 @@ def main():
             ),
             vcn_id=dict(type="str"),
             rt_id=dict(aliases=["id"], type="str"),
+            purge_route_rules=dict(type="bool", default="true"),
+            delete_route_rules=dict(type="bool", default="false"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

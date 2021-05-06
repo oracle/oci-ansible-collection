@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_type_actions -- Perform actions on a Type resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -381,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Type resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_properties&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;usage_count&#x27;: 56}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;external_type_name&#x27;: &#x27;external_type_name_example&#x27;, &#x27;is_approved&#x27;: True, &#x27;is_internal&#x27;: True, &#x27;is_tag&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;type_category&#x27;: &#x27;type_category_example&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_properties&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;usage_count&#x27;: 56}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;external_type_name&#x27;: &#x27;external_type_name_example&#x27;, &#x27;is_approved&#x27;: True, &#x27;is_internal&#x27;: True, &#x27;is_tag&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;type_category&#x27;: &#x27;type_category_example&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -601,6 +601,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If this field is defined by service or by a user</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-type/custom_properties/is_shown_in_list"></div>
+                    <b>is_shown_in_list</b>
+                    <a class="ansibleOptionLink" href="#return-type/custom_properties/is_shown_in_list" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If this field is displayed in a list view of applicable objects.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

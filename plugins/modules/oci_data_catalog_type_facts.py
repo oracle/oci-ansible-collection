@@ -286,6 +286,12 @@ types:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_service_defined:
                     description:
                         - If this field is defined by service or by a user
@@ -371,6 +377,7 @@ types:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_service_defined": true,
             "is_hidden_in_search": true,
             "time_created": "2019-03-25T21:10:29.600Z",

@@ -89,7 +89,7 @@ key_version:
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         public_key:
             description:
-                - The public key in PEM format which will be populated only in case of RSA and ECDSA keys.
+                - The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
             returned: on success
             type: string
             sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
@@ -129,6 +129,24 @@ key_version:
             returned: on success
             type: string
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key version operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - ""
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -138,7 +156,11 @@ key_version:
         "origin": "INTERNAL",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true
     }
 """
 
