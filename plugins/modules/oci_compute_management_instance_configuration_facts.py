@@ -327,6 +327,14 @@ instance_configurations:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                assign_private_dns_record:
+                                    description:
+                                        - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                                          L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                          for more information.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -847,6 +855,14 @@ instance_configurations:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                assign_private_dns_record:
+                                    description:
+                                        - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                                          L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                          for more information.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -984,6 +1000,7 @@ instance_configurations:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "create_vnic_details": {
                     "assign_public_ip": true,
+                    "assign_private_dns_record": true,
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},
@@ -1053,6 +1070,7 @@ instance_configurations:
             "secondary_vnics": [{
                 "create_vnic_details": {
                     "assign_public_ip": true,
+                    "assign_private_dns_record": true,
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},

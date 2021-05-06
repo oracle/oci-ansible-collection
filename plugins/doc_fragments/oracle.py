@@ -12,7 +12,7 @@ __metaclass__ = type
 class ModuleDocFragment(object):
     DOCUMENTATION = """
     requirements:
-        - "python >= 2.7"
+        - "python >= 3.6"
         -  Python SDK for Oracle Cloud Infrastructure U(https://oracle-cloud-infrastructure-python-sdk.readthedocs.io)
     notes:
         - For OCI python sdk configuration, please refer to

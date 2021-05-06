@@ -57,6 +57,13 @@ options:
                     - If you specify a `vlanId`, then `assignPublicIp` must be set to false. See
                       L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: bool
+            assign_private_dns_record:
+                description:
+                    - Whether the VNIC should be assigned a DNS record. If set to false, there will be no DNS record
+                      registration for the VNIC. If set to true, the DNS record will be registered. The default
+                      value is true.
+                    - If you specify a `hostnameLabel`, then `assignPrivateDnsRecord` must be set to true.
+                type: bool
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
@@ -448,6 +455,7 @@ def main():
                 type="dict",
                 options=dict(
                     assign_public_ip=dict(type="bool"),
+                    assign_private_dns_record=dict(type="bool"),
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),

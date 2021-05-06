@@ -97,7 +97,6 @@ options:
         description:
             - The corporate network proxy for access to the control plane network. Oracle recommends using an HTTPS proxy when possible
               for enhanced security.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     contacts:

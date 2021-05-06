@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_health_checker -- Manage a HealthChecker resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -54,7 +54,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -457,7 +457,7 @@ Examples
         retries: 3
         timeout_in_millis: 3000
         interval_in_millis: 10000
-        response_body_regex: "^((?!false).|)*$"
+        response_body_regex: "^((?!false).|\\s)*$"
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: example_backend_set
 

@@ -72,7 +72,7 @@ options:
             - "SOFTWARE"
     algorithm:
         description:
-            - The algorithm used by a key's key versions to encrypt or decrypt. Currently, only AES, RSA and ECDSA are supported.
+            - The algorithm used by a key's key versions to encrypt or decrypt data. Currently, support includes AES, RSA, and ECDSA algorithms.
         type: str
         choices:
             - "AES"
@@ -80,11 +80,11 @@ options:
             - "ECDSA"
     length:
         description:
-            - The length of the key in bytes, expressed as an integer. Values of 16, 24, 32 are supported.
+            - The length of the key in bytes, expressed as an integer. Supported values include 16, 24, or 32.
         type: int
     curve_id:
         description:
-            - The curve Id of the keys in case of ECDSA keys
+            - The curve ID of the keys. (This pertains only to ECDSA keys.)
         type: str
         choices:
             - "NIST_P256"
@@ -175,16 +175,16 @@ keys:
                     sample: AES
                 length:
                     description:
-                        - "The length of the key in bytes, expressed as an integer. Values supported:
-                            - AES: 16, 24 or 32
-                            - RSA: 256, 384 or 512
-                            - ECDSA: 32, 48, 66"
+                        - "The length of the key in bytes, expressed as an integer. Supported values include the following:
+                            - AES: 16, 24, or 32
+                            - RSA: 256, 384, or 512
+                            - ECDSA: 32, 48, or 66"
                     returned: on success
                     type: int
                     sample: 56
                 curve_id:
                     description:
-                        - Supported curve Ids for ECDSA keys
+                        - Supported curve IDs for ECDSA keys.
                     returned: on success
                     type: string
                     sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
@@ -226,9 +226,27 @@ keys:
             returned: on success
             type: string
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - ""
+            returned: on success
+            type: bool
+            sample: true
         algorithm:
             description:
-                - The algorithm used by a key's key versions to encrypt or decrypt.
+                - The algorithm used by a key's key versions to encrypt or decrypt data.
             returned: on success
             type: string
             sample: AES
@@ -249,6 +267,10 @@ keys:
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true,
         "algorithm": "AES"
     }]
 """

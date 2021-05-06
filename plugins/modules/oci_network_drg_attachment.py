@@ -32,6 +32,7 @@ description:
     - For the purposes of access control, the DRG attachment is automatically placed into the currently selected compartment.
       For more information about compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
+    - "This resource has the following action operations in the M(oci_drg_attachment_actions) module: remove_export_drg_route_distribution."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -48,6 +49,57 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for create using I(state=present).
         type: str
+    drg_route_table_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this attachment.
+            - The DRG route table manages traffic inside the DRG.
+            - This parameter is updatable.
+        type: str
+    network_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            type:
+                description:
+                    - ""
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "VCN"
+                required: true
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
+                type: str
+            route_table_id:
+                description:
+                    - This is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table that is used to route the
+                      traffic as it enters a VCN through this attachment.
+                    - "For information about why you would associate a route table with a DRG attachment, see
+                      L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm).
+                      For information about why you would associate a route table with a DRG attachment, see:"
+                    - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
+                        * L(Transit Routing: Private Access to Oracle
+                        Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
+                    - This parameter is updatable.
+                type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     route_table_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table used by the DRG attachment.
@@ -57,13 +109,15 @@ options:
               For information about why you would associate a route table with a DRG attachment, see:"
             - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                 * L(Transit Routing: Private Access to Oracle
-                Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
+                Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)
+              This field is deprecated. Instead, use the networkDetails field to specify the VCN route table for this attachment."
             - This parameter is updatable.
         type: str
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required for create using I(state=present).
+              This field is deprecated. Instead, use the `networkDetails` field to specify the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
         type: str
     drg_attachment_id:
         description:
@@ -72,6 +126,14 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    export_drg_route_distribution_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how
+              routes in the assigned DRG route table
+              are advertised out through the attachment.
+              If this value is null, no routes are advertised through this attachment.
+            - This parameter is updatable.
+        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -95,19 +157,24 @@ EXAMPLES = """
 - name: Create drg_attachment
   oci_network_drg_attachment:
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_attachment:
     display_name: display_name_example
+    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+    network_details:
+      type: VCN
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    export_drg_route_distribution_id: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment
   oci_network_drg_attachment:
     display_name: display_name_example
-    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+    drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     drg_attachment_id: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg_attachment
@@ -168,6 +235,66 @@ drg_attachment:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        drg_route_table_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this
+                  attachment.
+                - The DRG route table manages traffic inside the DRG.
+            returned: on success
+            type: string
+            sample: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
+        network_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - ""
+                    returned: on success
+                    type: string
+                    sample: VCN
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                route_table_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
+                        - "For information about why you would associate a route table with a DRG attachment, see:"
+                        - " * L(Transit Routing: Access to Multiple VCNs in Same
+                          Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
+                            * L(Transit Routing: Private Access to Oracle
+                            Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
+                    returned: on success
+                    type: string
+                    sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
+                ipsec_connection_id:
+                    description:
+                        - The IPSec connection that contains the attached IPSec tunnel.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no
+                  predefined name, type, or namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
         route_table_id:
             description:
                 - The OCID of the route table the DRG attachment is using.
@@ -175,15 +302,35 @@ drg_attachment:
                 - " * L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
                     * L(Transit Routing: Private Access to Oracle
                     Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
+                - This field is deprecated. Instead, use the `networkDetails` field to view the
+                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: string
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+                  This field is deprecated. Instead, use the `networkDetails` field to view the
+                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: string
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        export_drg_route_distribution_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how routes
+                  in the assigned DRG route table
+                  are advertised to the attachment.
+                  If this value is null, no routes are advertised through this attachment.
+            returned: on success
+            type: string
+            sample: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cross_tenancy:
+            description:
+                - Indicates whether the DRG attachment and attached network live in a different tenancy than the DRG.
+                - "Example: `false`"
+            returned: on success
+            type: bool
+            sample: false
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -191,8 +338,19 @@ drg_attachment:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "drg_route_table_id": "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_details": {
+            "type": "VCN",
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
+            "ipsec_connection_id": "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "freeform_tags": {'Department': 'Finance'},
         "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "export_drg_route_distribution_id": "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cross_tenancy": false
     }
 """
 
@@ -244,7 +402,11 @@ class DrgAttachmentHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["vcn_id", "drg_id"]
+        optional_list_method_params = (
+            ["vcn_id", "drg_id", "display_name"]
+            if self._use_name_as_identifier()
+            else ["vcn_id", "drg_id", "drg_route_table_id", "display_name"]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -339,9 +501,21 @@ def main():
         dict(
             display_name=dict(aliases=["name"], type="str"),
             drg_id=dict(type="str"),
+            drg_route_table_id=dict(type="str"),
+            network_details=dict(
+                type="dict",
+                options=dict(
+                    type=dict(type="str", required=True, choices=["VCN"]),
+                    id=dict(type="str"),
+                    route_table_id=dict(type="str"),
+                ),
+            ),
+            defined_tags=dict(type="dict"),
+            freeform_tags=dict(type="dict"),
             route_table_id=dict(type="str"),
             vcn_id=dict(type="str"),
             drg_attachment_id=dict(aliases=["id"], type="str"),
+            export_drg_route_distribution_id=dict(type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

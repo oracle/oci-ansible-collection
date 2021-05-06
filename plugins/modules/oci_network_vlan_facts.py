@@ -42,7 +42,6 @@ options:
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required to list multiple vlans.
         type: str
     display_name:
         description:
@@ -88,7 +87,6 @@ EXAMPLES = """
 - name: List vlans
   oci_network_vlan_facts:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vlan
   oci_network_vlan_facts:
@@ -238,7 +236,6 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "vcn_id",
         ]
 
     def get_resource(self):
@@ -248,6 +245,7 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "vcn_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -261,7 +259,6 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_vlans,
             compartment_id=self.module.params.get("compartment_id"),
-            vcn_id=self.module.params.get("vcn_id"),
             **optional_kwargs
         )
 

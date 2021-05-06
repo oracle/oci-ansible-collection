@@ -91,8 +91,6 @@ options:
         description:
             - The OCID of the VCN to contain the VLAN.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     vlan_tag:
         description:
@@ -135,7 +133,6 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update vlan
   oci_network_vlan:
@@ -152,7 +149,6 @@ EXAMPLES = """
   oci_network_vlan:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -313,7 +309,6 @@ class VlanHelperGen(OCIResourceHelperBase):
     def get_required_kwargs_for_list(self):
         required_list_method_params = [
             "compartment_id",
-            "vcn_id",
         ]
 
         return dict(
@@ -321,7 +316,7 @@ class VlanHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

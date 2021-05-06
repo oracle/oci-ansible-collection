@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -103,6 +103,31 @@ Parameters
                                                                     </td>
                                                 <td>
                                             <div>Passphrase used by the key referenced in api_user_key_file, if it is encrypted. Preference order is .oci.yml &gt; OCI_USER_KEY_PASS_PHRASE environment variable &gt; settings from config file This option is required if the passphrase is not specified through a configuration file (See config_file)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
+                    <b>auth_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>instance_principal</li>
+                                                                                                                                                                                                <li>instance_obo_user</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_ANSIBLE_AUTH_TYPE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -436,6 +461,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-delegation_token_file"></div>
+                    <b>delegation_token_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-delegation_token_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_DELEGATION_TOKEN_FILE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable, if any, is used. Otherwise, defaults to config_file.</div>
+                                            <div>This parameter is only applicable when <code>auth_type=instance_obo_user</code> is set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-enable_parallel_processing"></div>
                     <b>enable_parallel_processing</b>
                     <a class="ansibleOptionLink" href="#parameter-enable_parallel_processing" title="Permalink to this option"></a>
@@ -575,11 +621,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                            <div>
-                                env:OCI_ANSIBLE_AUTH_TYPE
-                                                                                            </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
+                                            <div>This parameter is DEPRECATED. Please use auth_type instead.</div>
                                             <div>Use instance principal based authentication. If not set, the API key in your config will be used.</div>
                                                         </td>
             </tr>

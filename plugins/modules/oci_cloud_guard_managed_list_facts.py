@@ -59,7 +59,7 @@ options:
         description:
             - Default is false.
               When set to true, the list of all Oracle Managed Resources
-              Metadata supported by Cloud Guard is returned.
+              Metadata supported by Cloud Guard are returned.
         type: bool
     lifecycle_state:
         description:
@@ -89,6 +89,7 @@ options:
             - "STATE"
             - "CITY"
             - "TAGS"
+            - "GENERIC"
     compartment_id_in_subtree:
         description:
             - Default is false.
@@ -363,6 +364,7 @@ def main():
                     "STATE",
                     "CITY",
                     "TAGS",
+                    "GENERIC",
                 ],
             ),
             compartment_id_in_subtree=dict(type="bool"),

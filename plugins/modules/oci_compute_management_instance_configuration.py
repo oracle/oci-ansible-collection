@@ -262,6 +262,12 @@ options:
                                       L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                                       for more information.
                                 type: bool
+                            assign_private_dns_record:
+                                description:
+                                    - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                                      L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                      for more information.
+                                type: bool
                             defined_tags:
                                 description:
                                     - Defined tags for this resource. Each key is predefined and scoped to a
@@ -739,6 +745,12 @@ options:
                                       L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                                       for more information.
                                 type: bool
+                            assign_private_dns_record:
+                                description:
+                                    - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                                      L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                      for more information.
+                                type: bool
                             defined_tags:
                                 description:
                                     - Defined tags for this resource. Each key is predefined and scoped to a
@@ -1109,6 +1121,14 @@ instance_configuration:
                                 assign_public_ip:
                                     description:
                                         - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
+                                          L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                          for more information.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                assign_private_dns_record:
+                                    description:
+                                        - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
                                           L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                                           for more information.
                                     returned: on success
@@ -1634,6 +1654,14 @@ instance_configuration:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                assign_private_dns_record:
+                                    description:
+                                        - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                                          L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                                          for more information.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 defined_tags:
                                     description:
                                         - Defined tags for this resource. Each key is predefined and scoped to a
@@ -1771,6 +1799,7 @@ instance_configuration:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "create_vnic_details": {
                     "assign_public_ip": true,
+                    "assign_private_dns_record": true,
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},
@@ -1840,6 +1869,7 @@ instance_configuration:
             "secondary_vnics": [{
                 "create_vnic_details": {
                     "assign_public_ip": true,
+                    "assign_private_dns_record": true,
                     "defined_tags": {'Operations': {'CostCenter': 'US'}},
                     "display_name": "display_name_example",
                     "freeform_tags": {'Department': 'Finance'},
@@ -2063,6 +2093,7 @@ def main():
                                 type="dict",
                                 options=dict(
                                     assign_public_ip=dict(type="bool"),
+                                    assign_private_dns_record=dict(type="bool"),
                                     defined_tags=dict(type="dict"),
                                     display_name=dict(aliases=["name"], type="str"),
                                     freeform_tags=dict(type="dict"),
@@ -2237,6 +2268,7 @@ def main():
                                 type="dict",
                                 options=dict(
                                     assign_public_ip=dict(type="bool"),
+                                    assign_private_dns_record=dict(type="bool"),
                                     defined_tags=dict(type="dict"),
                                     display_name=dict(aliases=["name"], type="str"),
                                     freeform_tags=dict(type="dict"),

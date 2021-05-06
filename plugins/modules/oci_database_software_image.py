@@ -38,7 +38,6 @@ options:
     database_version:
         description:
             - The database version with which the database software image is to be built.
-            - Required for create using I(state=present).
         type: str
     display_name:
         description:
@@ -67,7 +66,6 @@ options:
         description:
             - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
-            - Required for create using I(state=present).
         type: str
     database_software_image_one_off_patches:
         description:
@@ -113,9 +111,7 @@ EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
     compartment_id: "ocid.compartment.oc1..unique_ID"
-    database_version: database_version_example
     display_name: image2
-    patch_set: patch_set_example
 
 - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:

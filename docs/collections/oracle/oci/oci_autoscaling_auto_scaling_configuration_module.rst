@@ -20,7 +20,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration -- Manage an AutoScalingCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -232,7 +232,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which is also the default.</div>
+                                            <div>For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which is also the default. The cooldown period starts when the instance pool reaches the running state.</div>
+                                            <div>For schedule-based autoscaling policies, this value is not used.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -366,7 +367,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-policies/capacity" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">dictionary</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -388,7 +389,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The initial number of instances to launch in the instance pool immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this initial number to a number that is based on the limits that you set.</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this initial number to a number that is based on the limits that you set.</div>
+                                            <div>For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule that&#x27;s defined in the autoscaling policy.</div>
                                             <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
@@ -406,7 +408,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The maximum number of instances the instance pool is allowed to increase to (scale out).</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed to increase to (scale out).</div>
+                                            <div>For a schedule-based autoscaling policy, this value is not used.</div>
                                             <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
@@ -424,7 +427,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The minimum number of instances the instance pool is allowed to decrease to (scale in).</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed to decrease to (scale in).</div>
+                                            <div>For a schedule-based autoscaling policy, this value is not used.</div>
                                             <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
                                                         </td>
             </tr>
@@ -477,7 +481,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The value representing the execution schedule, as defined by cron format.</div>
+                                            <div>A cron expression that represents the time at which to execute the autoscaling policy.</div>
+                                            <div>Cron expressions have this format: `&lt;second&gt; &lt;minute&gt; &lt;hour&gt; &lt;day of month&gt; &lt;month&gt; &lt;day of week&gt; &lt;year&gt;`</div>
+                                            <div>You can use special characters that are supported with the Quartz cron implementation.</div>
+                                            <div>You must specify `0` as the value for seconds.</div>
+                                            <div>Example: `0 15 10 ? * *`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -497,7 +505,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the time zone the schedule is in.</div>
+                                            <div>The time zone for the execution schedule.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -517,7 +525,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of ExecutionSchedule.</div>
+                                            <div>The type of execution schedule.</div>
                                                         </td>
             </tr>
                     
@@ -538,7 +546,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Boolean field indicating whether this policy is enabled or not.</div>
+                                            <div>Whether the autoscaling policy is enabled.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,6 +569,67 @@ Parameters
                                             <div>The type of autoscaling policy.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/resource_action"></div>
+                    <b>resource_action</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/resource_action" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;scheduled&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/resource_action/action"></div>
+                    <b>action</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/resource_action/action" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>STOP</li>
+                                                                                                                                                                                                <li>START</li>
+                                                                                                                                                                                                <li>SOFTRESET</li>
+                                                                                                                                                                                                <li>RESET</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policies/resource_action/action_type"></div>
+                    <b>action_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policies/resource_action/action_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>power</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of resource action.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
@@ -984,7 +1053,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutoScalingConfiguration resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;max_resource_count&#x27;: 56, &#x27;min_resource_count&#x27;: 56, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;execution_schedule&#x27;: {&#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;timezone&#x27;: &#x27;UTC&#x27;, &#x27;type&#x27;: &#x27;cron&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policy_type&#x27;: &#x27;policy_type_example&#x27;, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;max_resource_count&#x27;: 56, &#x27;min_resource_count&#x27;: 56, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;execution_schedule&#x27;: {&#x27;expression&#x27;: &#x27;0 15 10 ? * *&#x27;, &#x27;timezone&#x27;: &#x27;UTC&#x27;, &#x27;type&#x27;: &#x27;cron&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policy_type&#x27;: &#x27;policy_type_example&#x27;, &#x27;resource_action&#x27;: {&#x27;action&#x27;: &#x27;STOP&#x27;, &#x27;action_type&#x27;: &#x27;action_type_example&#x27;}, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1017,7 +1086,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which is also the default.</div>
+                                            <div>For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which is also the default. The cooldown period starts when the instance pool reaches the running state.</div>
+                                            <div>For schedule-based autoscaling policies, this value is not used.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1164,7 +1234,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Autoscaling policy definitions for the autoscaling configuration. An autoscaling policy defines the criteria that trigger autoscaling actions and the actions to take.</div>
-                                            <div>Each autoscaling configuration can have one autoscaling policy.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1199,7 +1268,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The initial number of instances to launch in the instance pool immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this initial number to a number that is based on the limits that you set.</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this initial number to a number that is based on the limits that you set.</div>
+                                            <div>For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule that&#x27;s defined in the autoscaling policy.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1219,7 +1289,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum number of instances the instance pool is allowed to increase to (scale out).</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed to increase to (scale out).</div>
+                                            <div>For a schedule-based autoscaling policy, this value is not used.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1239,7 +1310,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum number of instances the instance pool is allowed to decrease to (scale in).</div>
+                                            <div>For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed to decrease to (scale in).</div>
+                                            <div>For a schedule-based autoscaling policy, this value is not used.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1278,7 +1350,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div></div>
+                                            <div>The schedule for executing the autoscaling policy.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1296,10 +1368,14 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value representing the execution schedule, as defined by cron format.</div>
+                                            <div>A cron expression that represents the time at which to execute the autoscaling policy.</div>
+                                            <div>Cron expressions have this format: `&lt;second&gt; &lt;minute&gt; &lt;hour&gt; &lt;day of month&gt; &lt;month&gt; &lt;day of week&gt; &lt;year&gt;`</div>
+                                            <div>You can use special characters that are supported with the Quartz cron implementation.</div>
+                                            <div>You must specify `0` as the value for seconds.</div>
+                                            <div>Example: `0 15 10 ? * *`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">expression_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">0 15 10 ? * *</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1316,7 +1392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies the time zone the schedule is in.</div>
+                                            <div>The time zone for the execution schedule.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UTC</div>
@@ -1336,7 +1412,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of ExecutionSchedule.</div>
+                                            <div>The type of execution schedule.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cron</div>
@@ -1375,7 +1451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Boolean field indicating whether this policy is enabled or not.</div>
+                                            <div>Whether the autoscaling policy is enabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1400,6 +1476,64 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">policy_type_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/resource_action"></div>
+                    <b>resource_action</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/resource_action" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/resource_action/action"></div>
+                    <b>action</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/resource_action/action" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STOP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-auto_scaling_configuration/policies/resource_action/action_type"></div>
+                    <b>action_type</b>
+                    <a class="ansibleOptionLink" href="#return-auto_scaling_configuration/policies/resource_action/action_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of resource action.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_type_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1711,7 +1845,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339.</div>
+                                            <div>The date and time the autoscaling configuration was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.21.0] - 2021-05-06
+
+## Added
+- Support for `delegation_token` based authentication for Inventory Plugin
+- Support for forceful deletion of a non-empty Object Storage bucket
+- Support for business name annotation of harvested objects in Data Catalog
+- Support to customer contacts feature for autonomous database
+- Support for `display_name` to be used in the hostname_format of the inventory plugin for compute instances
+- Introducing Graph Studio Url option in the connection urls
+- Expanding DRG functionality in the Networking Service
+     - More than one VCN can be attached to a DRG
+     - Flexible routing inside DRG enables packet flow between any two attachments
+     - Routing policy to customize dynamic import/export of routes
+- Support for opt out of DNS record during instance launch, as well as attaching secondary VNICs
+- Support for option to opt-in and opt-out of live migration at an instance level
+- Support for mutable sizes on cluster networks 
+- Support for SDK generation feature in the API Gateway service
+- Support for KMS Cross Regional Replication of Keys
+- Support for request validation policies within the deployment specification in the API Gateway service
+- Support to configure an API Gateway with an external RESP-compliant response cache and to configure response caching on a per-route basis for Deployments
+- `purge_route_rules` and `delete_route_rules` options to `oci_network_route_table` module to allow adding and deleting specific rules
+- Support for setting the auto-tiering property for a bucket
+- Support for creation, updation and deletion of `entity_type` for Log Analytics.
+- Support for `resource_action` in `policies` declaration in `autoscaling` service
+
+## Fixed
+- Idempotence issue for `bulk_add_virtual_circuit_public_prefixes` and `bulk_delete_virtual_circuit_public_prefixes` actions in `oci_network_virtual_circuit_actions` module
+- Issue with logging exceptions in inventory plugin
+
+## Changed
+- Updated python supported versions to >=3.6 in the documentation
+- Parameter `specification` is marked optional for API deployment create in the API Gateway service
+- `vcn_id` is now optional for listing vlans in `oci_network_vlan_facts` module
+- corporate proxy field is now optional when a creating exadata infrastructure
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.20.0] - 2021-04-22
 
 ## Added

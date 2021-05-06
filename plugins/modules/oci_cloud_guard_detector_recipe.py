@@ -334,7 +334,7 @@ detector_recipe:
             sample: IAAS_ACTIVITY_DETECTOR
         detector_rules:
             description:
-                - List of detetor rules for the detector type for recipe
+                - "List of detector rules for the detector type for recipe - user input"
             returned: on success
             type: complex
             contains:
@@ -587,7 +587,7 @@ detector_recipe:
                     sample: lifecycle_details_example
         effective_detector_rules:
             description:
-                - List of detetor rules for the detector type for recipe
+                - List of effective detector rules for the detector type for recipe after applying defaults
             returned: on success
             type: complex
             contains:

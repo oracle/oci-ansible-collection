@@ -244,6 +244,12 @@ custom_properties:
             returned: on success
             type: bool
             sample: true
+        is_shown_in_list:
+            description:
+                - If this field is displayed in a list view of applicable objects.
+            returned: on success
+            type: bool
+            sample: true
         is_service_defined:
             description:
                 - If this field is defined by service or by a user
@@ -345,6 +351,7 @@ custom_properties:
         "is_multi_valued": true,
         "is_hidden": true,
         "is_editable": true,
+        "is_shown_in_list": true,
         "is_service_defined": true,
         "is_hidden_in_search": true,
         "lifecycle_state": "CREATING",

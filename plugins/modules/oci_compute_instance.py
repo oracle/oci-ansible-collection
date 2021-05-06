@@ -111,6 +111,13 @@ options:
                     - If you specify a `vlanId`, then `assignPublicIp` must be set to false. See
                       L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: bool
+            assign_private_dns_record:
+                description:
+                    - Whether the VNIC should be assigned a DNS record. If set to false, there will be no DNS record
+                      registration for the VNIC. If set to true, the DNS record will be registered. The default
+                      value is true.
+                    - If you specify a `hostnameLabel`, then `assignPrivateDnsRecord` must be set to true.
+                type: bool
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
@@ -384,6 +391,13 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            is_live_migration_preferred:
+                description:
+                    - Whether to live migrate supported VM instances to a healthy physical VM host without
+                      disrupting running instances during infrastructure maintenance events. If null, Oracle
+                      chooses the best option for migrating the VM during infrastructure maintenance events.
+                    - This parameter is updatable.
+                type: bool
             recovery_action:
                 description:
                     - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -945,6 +959,14 @@ instance:
             returned: on success
             type: complex
             contains:
+                is_live_migration_preferred:
+                    description:
+                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                    returned: on success
+                    type: bool
+                    sample: true
                 recovery_action:
                     description:
                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -1276,6 +1298,7 @@ instance:
             "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
+            "is_live_migration_preferred": true,
             "recovery_action": "RESTORE_INSTANCE"
         },
         "preemptible_instance_config": {
@@ -1482,6 +1505,7 @@ def main():
                 type="dict",
                 options=dict(
                     assign_public_ip=dict(type="bool"),
+                    assign_private_dns_record=dict(type="bool"),
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),
@@ -1528,9 +1552,10 @@ def main():
             availability_config=dict(
                 type="dict",
                 options=dict(
+                    is_live_migration_preferred=dict(type="bool"),
                     recovery_action=dict(
                         type="str", choices=["RESTORE_INSTANCE", "STOP_INSTANCE"]
-                    )
+                    ),
                 ),
             ),
             preemptible_instance_config=dict(

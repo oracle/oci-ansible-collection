@@ -65,6 +65,7 @@ options:
             - The data to create the instance pools in the cluster network.
             - Each cluster network can have one instance pool.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             defined_tags:
@@ -72,10 +73,12 @@ options:
                     - Defined tags for this resource. Each key is predefined and scoped to a
                       namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    - This parameter is updatable.
                 type: dict
             display_name:
                 description:
                     - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+                    - This parameter is updatable.
                 type: str
                 aliases: ["name"]
             freeform_tags:
@@ -84,18 +87,23 @@ options:
                       predefined name, type, or namespace. For more information, see L(Resource
                       Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - This parameter is updatable.
                 type: dict
             instance_configuration_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
                       associated with the instance pool.
                 type: str
-                required: true
             size:
                 description:
                     - The number of instances that should be in the instance pool.
+                    - This parameter is updatable.
                 type: int
-                required: true
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+                    - This parameter is updatable.
+                type: str
     placement_configuration:
         description:
             - ""
@@ -153,9 +161,6 @@ EXAMPLES = """
 - name: Create cluster_network
   oci_compute_management_cluster_network:
     compartment_id: "ocid1.compartment.oc1..unique_ID"
-    instance_pools:
-    - instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-      size: 56
     placement_configuration:
       availability_domain: Uocm:PHX-AD-1
       primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -661,8 +666,9 @@ def main():
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),
-                    instance_configuration_id=dict(type="str", required=True),
-                    size=dict(type="int", required=True),
+                    instance_configuration_id=dict(type="str"),
+                    size=dict(type="int"),
+                    id=dict(type="str"),
                 ),
             ),
             placement_configuration=dict(

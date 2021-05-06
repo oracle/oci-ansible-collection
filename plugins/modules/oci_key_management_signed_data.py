@@ -23,42 +23,44 @@ module: oci_key_management_signed_data
 short_description: Manage a SignedData resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a SignedData resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a digital signature for a message or message digest by using the private key in an asymmetric key.
-      To verify the generated signature, you can use the Verify operation or use the public key in the same asymmetric key outside of KMS
+    - For I(state=present), creates a digital signature for a message or message digest by using the private key of a public-private key pair,
+      also known as an asymmetric key. To verify the generated signature, you can use the
+      L(Verify,https://docs.cloud.oracle.com/api/#/en/key/latest/VerifiedData/Verify)
+      operation. Or, if you want to validate the signature outside of the service, you can do so by using the public key of the same asymmetric key.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     message:
         description:
-            - The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be upto 4096 size in bytes. To sign a
+            - The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a
               larger message, provide the message digest.
         type: str
         required: true
     key_id:
         description:
-            - The OCID of the key used to sign the message
+            - The OCID of the key used to sign the message.
         type: str
         required: true
     key_version_id:
         description:
-            - The OCID of the keyVersion used to sign the message.
+            - The OCID of the key version used to sign the message.
         type: str
     message_type:
         description:
             - Denotes whether the value of the message parameter is a raw message or a message digest.
-              The default value, RAW, indicates a message. To indicate a message digest, use DIGEST.
+              The default value, `RAW`, indicates a message. To indicate a message digest, use `DIGEST`.
         type: str
         choices:
             - "RAW"
             - "DIGEST"
     signing_algorithm:
         description:
-            - "The algorithm to be used for signing the message or message digest
-              For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with
-              different Hashing algorithms.
+            - "The algorithm to use to sign the message or message digest.
+              For RSA keys, supported signature schemes include PKCS #1 and RSASSA-PSS, along with
+              different hashing algorithms.
               For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms.
-              In case of passing digest for signing, make sure the same hashing algorithm is
-              specified as used for created for digest."
+              When you pass a message digest for signing, ensure that you specify the same hashing algorithm
+              as used when creating the message digest."
         type: str
         choices:
             - "SHA_224_RSA_PKCS_PSS"
@@ -108,30 +110,30 @@ signed_data:
     contains:
         key_id:
             description:
-                - The OCID of the key used to sign the message
+                - The OCID of the key used to sign the message.
             returned: on success
             type: string
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
-                - The OCID of the keyVersion used to sign the message
+                - The OCID of the key version used to sign the message.
             returned: on success
             type: string
             sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         signature:
             description:
-                - The Base64-encoded binary data object denoting the cryptographic signature that was generated for the message or message digest.
+                - The base64-encoded binary data object denoting the cryptographic signature generated for the message or message digest.
             returned: on success
             type: string
             sample: signature_example
         signing_algorithm:
             description:
-                - "The algorithm to be used for signing the message or message digest
-                  For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with
-                  different Hashing algorithms.
+                - "The algorithm to use to sign the message or message digest.
+                  For RSA keys, supported signature schemes include PKCS #1 and RSASSA-PSS, along with
+                  different hashing algorithms.
                   For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms.
-                  In case of passing digest for signing, make sure the same hashing algorithm is
-                  specified as used for created for digest."
+                  When you pass a message digest for signing, ensure that you specify the same hashing algorithm
+                  as used when creating the message digest."
             returned: on success
             type: string
             sample: SHA_224_RSA_PKCS_PSS

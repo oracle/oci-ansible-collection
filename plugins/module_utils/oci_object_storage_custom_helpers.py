@@ -11,10 +11,12 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_config_utils,
+    oci_wait_utils,
 )
 from ansible.module_utils._text import to_bytes
 import base64
 import os
+from multiprocessing.pool import ThreadPool
 
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
@@ -28,8 +30,39 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
+class BucketHelperCustom:
+    """
+    Customize the generated BucketHelperGen.
+    """
+
+    VALID_FIELDS_FOR_GET = ["approximateSize", "approximateCount", "autoTiering"]
+
+    def get_resource(self, *args, **kwargs):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_bucket,
+            namespace_name=self.module.params.get("namespace_name"),
+            bucket_name=self.module.params.get("name"),
+            fields=self.VALID_FIELDS_FOR_GET,
+        )
+
+    def delete_resource(self):
+        """
+        Ensure bucket is deleted by deleting all objects in it,
+        before call to delete bucket.
+        """
+
+        if self.module.params.get("force"):
+            BucketsHelper.delete_all_entities(
+                self,
+                self.module.params.get("namespace_name"),
+                self.module.params.get("name"),
+            )
+
+        return super(BucketHelperCustom, self).delete_resource()
+
+
 class BucketFactsHelperCustom:
-    VALID_FIELDS_FOR_GET = ["approximateSize", "approximateCount"]
+    VALID_FIELDS_FOR_GET = ["approximateSize", "approximateCount", "autoTiering"]
     VALID_FIELDS_FOR_LIST = ["tags"]
 
     def get_resource(self, *args, **kwargs):
@@ -57,6 +90,164 @@ class BucketFactsHelperCustom:
                 *args, **kwargs
             )
         ]
+
+
+class BucketsHelper:
+    """
+    Helper class with api's common to different Buckets modules.
+    """
+
+    @staticmethod
+    def delete_all_entities(resource_helper, namespace_name, bucket_name):
+        """
+        Deletes all entities within a bucket.
+        These include objects, preauthenticated requests,
+        replication policies, retention rules and lifecycle policies.
+
+        @param resource_helper: ResourceHelper object for the ansible module.
+        @param namespace_name:  str, bucket namespace
+        @param bucket_name:     str, bucket name
+        """
+
+        # Delete object retention rules upfront.
+        BucketsHelper.delete_all_retention_rules(
+            resource_helper, namespace_name, bucket_name
+        )
+
+        list_fns = [
+            resource_helper.client.list_objects,
+            resource_helper.client.list_preauthenticated_requests,
+            resource_helper.client.list_replication_policies,
+        ]
+
+        list_entities_kwargs = [
+            {
+                "entity_list_fn": list_fn,
+                "namespace_name": namespace_name,
+                "bucket_name": bucket_name,
+            }
+            for list_fn in list_fns
+        ]
+
+        # list all entities i.e. objects, preauthentication
+        # requests and replication policies
+        with ThreadPool(4) as pool:
+            (list_summary, preauthenticated_requests, replication_policies,) = pool.map(
+                BucketsHelper.list_entities, list_entities_kwargs
+            )
+
+        entity_kwargs = []
+        entity_kwargs += [
+            {
+                "call_fn_kwargs": {
+                    "namespace_name": namespace_name,
+                    "bucket_name": bucket_name,
+                    "object_name": object.name,
+                },
+                "call_fn": resource_helper.client.delete_object,
+                "resource_helper": resource_helper,
+            }
+            for object in list_summary.objects
+        ]
+
+        entity_kwargs += [
+            {
+                "call_fn_kwargs": {
+                    "namespace_name": namespace_name,
+                    "bucket_name": bucket_name,
+                    "par_id": par.id,
+                },
+                "call_fn": resource_helper.client.delete_preauthenticated_request,
+                "resource_helper": resource_helper,
+            }
+            for par in preauthenticated_requests
+        ]
+
+        entity_kwargs += [
+            {
+                "call_fn_kwargs": {
+                    "namespace_name": namespace_name,
+                    "bucket_name": bucket_name,
+                    "replication_id": replication_policy.id,
+                },
+                "call_fn": resource_helper.client.delete_replication_policy,
+                "resource_helper": resource_helper,
+            }
+            for replication_policy in replication_policies
+        ]
+
+        entity_kwargs.append(
+            {
+                "call_fn_kwargs": {
+                    "namespace_name": namespace_name,
+                    "bucket_name": bucket_name,
+                },
+                "call_fn": resource_helper.client.delete_object_lifecycle_policy,
+                "resource_helper": resource_helper,
+            }
+        )
+
+        if entity_kwargs:
+            # delete all entities
+            with ThreadPool(min(50, len(entity_kwargs))) as pool:
+                pool.map(BucketsHelper.delete_entity, entity_kwargs)
+
+    @staticmethod
+    def list_entities(kwargs):
+        return oci_common_utils.list_all_resources(
+            kwargs.get("entity_list_fn"),
+            namespace_name=kwargs.get("namespace_name"),
+            bucket_name=kwargs.get("bucket_name"),
+        )
+
+    @staticmethod
+    def delete_all_retention_rules(resource_helper, namespace_name, bucket_name):
+        """
+        Fetches and deletes all retention rules in the bucket, if any.
+
+        @param resource_helper: ResourceHelper object for the ansible module.
+        @param namespace_name:  str, bucket namespace
+        @param bucket_name:     str, bucket name
+        """
+
+        retention_rules = oci_common_utils.list_all_resources(
+            resource_helper.client.list_retention_rules,
+            namespace_name=namespace_name,
+            bucket_name=bucket_name,
+        )
+        if retention_rules:
+            delete_kwargs = [
+                {
+                    "call_fn_kwargs": {
+                        "namespace_name": namespace_name,
+                        "bucket_name": bucket_name,
+                        "retention_rule_id": retention_rule.id,
+                    },
+                    "call_fn": resource_helper.client.delete_retention_rule,
+                    "resource_helper": resource_helper,
+                }
+                for retention_rule in retention_rules
+            ]
+
+            # delete all objects
+            with ThreadPool(min(50, len(delete_kwargs))) as pool:
+                pool.map(BucketsHelper.delete_entity, delete_kwargs)
+
+    @staticmethod
+    def delete_entity(delete_kwargs):
+        """
+        Deletes an entity in the object storage bucket.
+        """
+        return oci_wait_utils.call_and_wait(
+            call_fn=delete_kwargs.get("call_fn"),
+            call_fn_args=(),
+            call_fn_kwargs=delete_kwargs.get("call_fn_kwargs"),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation=oci_common_utils.DELETE_OPERATION_KEY,
+            waiter_client=delete_kwargs.get("resource_helper").get_waiter_client(),
+            resource_helper=delete_kwargs.get("resource_helper"),
+            wait_for_states=oci_common_utils.DELETE_OPERATION_KEY,
+        )
 
 
 class BucketActionsHelperCustom:

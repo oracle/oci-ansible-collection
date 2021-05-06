@@ -5,7 +5,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.20.0
+Collection version 2.21.0
 
 .. toctree::
     :maxdepth: 1
@@ -49,6 +49,9 @@ Modules
 * :ref:`oci_apigateway_gateway <ansible_collections.oracle.oci.oci_apigateway_gateway_module>` -- Manage a Gateway resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_gateway_actions <ansible_collections.oracle.oci.oci_apigateway_gateway_actions_module>` -- Perform actions on a Gateway resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_gateway_facts <ansible_collections.oracle.oci.oci_apigateway_gateway_facts_module>` -- Fetches details about one or multiple Gateway resources in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_sdk <ansible_collections.oracle.oci.oci_apigateway_sdk_module>` -- Manage a Sdk resource in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_sdk_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_facts_module>` -- Fetches details about one or multiple Sdk resources in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_sdk_language_type_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_language_type_facts_module>` -- Fetches details about one or multiple SdkLanguageType resources in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_module>` -- Manage a WaasCertificate resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate_facts <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_facts_module>` -- Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
@@ -202,6 +205,7 @@ Modules
 * :ref:`oci_data_catalog_catalog_actions <ansible_collections.oracle.oci.oci_data_catalog_catalog_actions_module>` -- Perform actions on a Catalog resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_facts <ansible_collections.oracle.oci.oci_data_catalog_catalog_facts_module>` -- Fetches details about one or multiple Catalog resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_private_endpoint <ansible_collections.oracle.oci.oci_data_catalog_catalog_private_endpoint_module>` -- Manage a CatalogPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_catalog_catalog_private_endpoint_actions <ansible_collections.oracle.oci.oci_data_catalog_catalog_private_endpoint_actions_module>` -- Perform actions on a CatalogPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_private_endpoint_facts <ansible_collections.oracle.oci.oci_data_catalog_catalog_private_endpoint_facts_module>` -- Fetches details about one or multiple CatalogPrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_connection <ansible_collections.oracle.oci.oci_data_catalog_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_connection_actions <ansible_collections.oracle.oci.oci_data_catalog_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
@@ -533,6 +537,9 @@ Modules
 * :ref:`oci_log_analytics_entity <ansible_collections.oracle.oci.oci_log_analytics_entity_module>` -- Manage a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_entity_actions <ansible_collections.oracle.oci.oci_log_analytics_entity_actions_module>` -- Perform actions on a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_entity_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntity resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_entity_summary_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_summary_facts_module>` -- Fetches details about a LogAnalyticsEntitySummary resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_entity_type <ansible_collections.oracle.oci.oci_log_analytics_entity_type_module>` -- Manage a LogAnalyticsEntityType resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_entity_type_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_type_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntityType resources in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_log_group <ansible_collections.oracle.oci.oci_log_analytics_log_group_module>` -- Manage a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_log_group_actions <ansible_collections.oracle.oci.oci_log_analytics_log_group_actions_module>` -- Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_log_group_facts <ansible_collections.oracle.oci.oci_log_analytics_log_group_facts_module>` -- Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
@@ -631,9 +638,20 @@ Modules
 * :ref:`oci_network_drg <ansible_collections.oracle.oci.oci_network_drg_module>` -- Manage a Drg resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_drg_actions <ansible_collections.oracle.oci.oci_network_drg_actions_module>` -- Perform actions on a Drg resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_drg_attachment <ansible_collections.oracle.oci.oci_network_drg_attachment_module>` -- Manage a DrgAttachment resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_attachment_actions <ansible_collections.oracle.oci.oci_network_drg_attachment_actions_module>` -- Perform actions on a DrgAttachment resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_drg_attachment_facts <ansible_collections.oracle.oci.oci_network_drg_attachment_facts_module>` -- Fetches details about one or multiple DrgAttachment resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_drg_facts <ansible_collections.oracle.oci.oci_network_drg_facts_module>` -- Fetches details about one or multiple Drg resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_drg_redundancy_status_facts <ansible_collections.oracle.oci.oci_network_drg_redundancy_status_facts_module>` -- Fetches details about a DrgRedundancyStatus resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_distribution <ansible_collections.oracle.oci.oci_network_drg_route_distribution_module>` -- Manage a DrgRouteDistribution resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_distribution_facts <ansible_collections.oracle.oci.oci_network_drg_route_distribution_facts_module>` -- Fetches details about one or multiple DrgRouteDistribution resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_distribution_statements_actions <ansible_collections.oracle.oci.oci_network_drg_route_distribution_statements_actions_module>` -- Perform actions on a DrgRouteDistributionStatements resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_distribution_statements_facts <ansible_collections.oracle.oci.oci_network_drg_route_distribution_statements_facts_module>` -- Fetches details about one or multiple DrgRouteDistributionStatements resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_rules_actions <ansible_collections.oracle.oci.oci_network_drg_route_rules_actions_module>` -- Perform actions on a DrgRouteRules resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_rules_facts <ansible_collections.oracle.oci.oci_network_drg_route_rules_facts_module>` -- Fetches details about one or multiple DrgRouteRules resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_table <ansible_collections.oracle.oci.oci_network_drg_route_table_module>` -- Manage a DrgRouteTable resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_table_actions <ansible_collections.oracle.oci.oci_network_drg_route_table_actions_module>` -- Perform actions on a DrgRouteTable resource in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_route_table_facts <ansible_collections.oracle.oci.oci_network_drg_route_table_facts_module>` -- Fetches details about one or multiple DrgRouteTable resources in Oracle Cloud Infrastructure
+* :ref:`oci_network_drg_upgrade_status_facts <ansible_collections.oracle.oci.oci_network_drg_upgrade_status_facts_module>` -- Fetches details about a DrgUpgradeStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_fast_connect_provider_service_facts <ansible_collections.oracle.oci.oci_network_fast_connect_provider_service_facts_module>` -- Fetches details about one or multiple FastConnectProviderService resources in Oracle Cloud Infrastructure
 * :ref:`oci_network_fast_connect_provider_service_key_facts <ansible_collections.oracle.oci.oci_network_fast_connect_provider_service_key_facts_module>` -- Fetches details about a FastConnectProviderServiceKey resource in Oracle Cloud Infrastructure
 * :ref:`oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_facts <ansible_collections.oracle.oci.oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_facts_module>` -- Fetches details about one or multiple FastConnectProviderServiceVirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure

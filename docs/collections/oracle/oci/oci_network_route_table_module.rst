@@ -20,7 +20,7 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.20.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -223,6 +223,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-delete_route_rules"></div>
+                    <b>delete_route_rules</b>
+                    <a class="ansibleOptionLink" href="#parameter-delete_route_rules" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                                    <b>Default:</b><br/><div style="color: blue">"false"</div>
+                                    </td>
+                                                                <td>
+                                            <div>Delete route rules from existing route table which are present in the route rules provided by <em>route_rules</em>. If <em>delete_route_rules=yes</em>, route rules provided by <em>route_rules</em> would be deleted, if they are part of existing route table. If they are not part of existing route table, they will be ignored. <em>purge_route_rules</em> and <em>delete_route_rules</em> are mutually exclusive.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -288,6 +309,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of comma-separated attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-purge_route_rules"></div>
+                    <b>purge_route_rules</b>
+                    <a class="ansibleOptionLink" href="#parameter-purge_route_rules" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                                    <b>Default:</b><br/><div style="color: blue">"true"</div>
+                                    </td>
+                                                                <td>
+                                            <div>Purge route rules from route table which are not present in the provided route table. If <em>purge_route_rules=no</em>, provided route rules would be appended to existing route rules. <em>purge_route_rules</em> and <em>delete_route_rules</em> are mutually exclusive.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -558,6 +600,8 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         route_rules:
         - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+        purge_route_rules: false
+        delete_route_rules: true
 
     - name: Update route_table
       oci_network_route_table:

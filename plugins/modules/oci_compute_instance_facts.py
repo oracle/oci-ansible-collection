@@ -316,6 +316,14 @@ instances:
             returned: on success
             type: complex
             contains:
+                is_live_migration_preferred:
+                    description:
+                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                    returned: on success
+                    type: bool
+                    sample: true
                 recovery_action:
                     description:
                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -647,6 +655,7 @@ instances:
             "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
+            "is_live_migration_preferred": true,
             "recovery_action": "RESTORE_INSTANCE"
         },
         "preemptible_instance_config": {

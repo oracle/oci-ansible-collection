@@ -179,6 +179,12 @@ connection:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -262,6 +268,7 @@ connection:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],

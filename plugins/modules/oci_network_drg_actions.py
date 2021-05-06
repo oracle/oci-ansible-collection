@@ -26,6 +26,9 @@ description:
     - For I(action=change_compartment), moves a DRG into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=get_all_drg_attachments), returns a complete list of DRG attachments that belong to a particular DRG.
+    - For I(action=upgrade), upgrades the DRG. After upgrade, you can control routing inside your DRG
+      via DRG attachments, route distributions, and DRG route tables.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,8 +42,24 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
               DRG to.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    attachment_type:
+        description:
+            - The type for the network resource attached to the DRG.
+            - Applicable only for I(action=get_all_drg_attachments).
+        type: str
+        choices:
+            - "VCN"
+            - "VIRTUAL_CIRCUIT"
+            - "REMOTE_PEERING_CONNECTION"
+            - "IPSEC_TUNNEL"
+            - "ALL"
+    is_cross_tenancy:
+        description:
+            - Whether the DRG attachment lives in a different tenancy than the DRG.
+            - Applicable only for I(action=get_all_drg_attachments).
+        type: bool
     action:
         description:
             - The action to perform on the Drg.
@@ -48,6 +67,8 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "get_all_drg_attachments"
+            - "upgrade"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -57,6 +78,16 @@ EXAMPLES = """
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action get_all_drg_attachments on drg
+  oci_network_drg_actions:
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    action: get_all_drg_attachments
+
+- name: Perform action upgrade on drg
+  oci_network_drg_actions:
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
+    action: upgrade
 
 """
 
@@ -116,6 +147,50 @@ drg:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        default_drg_route_tables:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                vcn:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to
+                          DRG attachments
+                          of type VCN on creation.
+                    returned: on success
+                    type: string
+                    sample: vcn_example
+                ipsec_tunnel:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table assigned to DRG
+                          attachments
+                          of type IPSEC_TUNNEL on creation.
+                    returned: on success
+                    type: string
+                    sample: ipsec_tunnel_example
+                virtual_circuit:
+                    description:
+                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                          of type VIRTUAL_CIRCUIT on creation.
+                    returned: on success
+                    type: string
+                    sample: virtual_circuit_example
+                remote_peering_connection:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
+                          of type REMOTE_PEERING_CONNECTION on creation.
+                    returned: on success
+                    type: string
+                    sample: remote_peering_connection_example
+        default_export_drg_route_distribution_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this DRG's default export route distribution for the DRG
+                  attachments.
+            returned: on success
+            type: string
+            sample: "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -123,7 +198,14 @@ drg:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "default_drg_route_tables": {
+            "vcn": "vcn_example",
+            "ipsec_tunnel": "ipsec_tunnel_example",
+            "virtual_circuit": "virtual_circuit_example",
+            "remote_peering_connection": "remote_peering_connection_example"
+        },
+        "default_export_drg_route_distribution_id": "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -151,6 +233,8 @@ class DrgActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        get_all_drg_attachments
+        upgrade
     """
 
     def __init__(self, *args, **kwargs):
@@ -195,6 +279,42 @@ class DrgActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def get_all_drg_attachments(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.get_all_drg_attachments,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                drg_id=self.module.params.get("drg_id"),
+                attachment_type=self.module.params.get("attachment_type"),
+                is_cross_tenancy=self.module.params.get("is_cross_tenancy"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def upgrade(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.upgrade_drg,
+            call_fn_args=(),
+            call_fn_kwargs=dict(drg_id=self.module.params.get("drg_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 DrgActionsHelperCustom = get_custom_class("DrgActionsHelperCustom")
 
@@ -210,8 +330,23 @@ def main():
     module_args.update(
         dict(
             drg_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            compartment_id=dict(type="str"),
+            attachment_type=dict(
+                type="str",
+                choices=[
+                    "VCN",
+                    "VIRTUAL_CIRCUIT",
+                    "REMOTE_PEERING_CONNECTION",
+                    "IPSEC_TUNNEL",
+                    "ALL",
+                ],
+            ),
+            is_cross_tenancy=dict(type="bool"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "get_all_drg_attachments", "upgrade"],
+            ),
         )
     )
 

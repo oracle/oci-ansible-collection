@@ -229,6 +229,14 @@ bucket:
             returned: on success
             type: string
             sample: Enabled
+        auto_tiering:
+            description:
+                - The auto tiering status on the bucket. A bucket is created with auto tiering `Disabled` by default.
+                  For auto tiering `InfrequentAccess`, objects are transitioned automatically between the 'Standard'
+                  and 'InfrequentAccess' tiers based on the access pattern of the objects.
+            returned: on success
+            type: string
+            sample: Disabled
     sample: {
         "namespace": "namespace_example",
         "name": "name_example",
@@ -249,7 +257,8 @@ bucket:
         "replication_enabled": true,
         "is_read_only": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "versioning": "Enabled"
+        "versioning": "Enabled",
+        "auto_tiering": "Disabled"
     }
 """
 

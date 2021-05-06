@@ -1,4 +1,4 @@
-# Oracle Cloud Infrastructure Ansible Modules Collection - Modules Index
+# Oracle Cloud Infrastructure Ansible Collection - Modules Index
  
 ## 1. Introduction
 

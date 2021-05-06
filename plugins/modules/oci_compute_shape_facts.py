@@ -142,6 +142,12 @@ shapes:
             returned: on success
             type: string
             sample: local_disk_description_example
+        is_live_migration_supported:
+            description:
+                - Whether live migration is supported for this shape.
+            returned: on success
+            type: bool
+            sample: true
         ocpu_options:
             description:
                 - ""
@@ -258,6 +264,7 @@ shapes:
         "local_disks": 56,
         "local_disks_total_size_in_gbs": 3.4,
         "local_disk_description": "local_disk_description_example",
+        "is_live_migration_supported": true,
         "ocpu_options": {
             "min": 3.4,
             "max": 3.4
