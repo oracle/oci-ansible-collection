@@ -23,6 +23,17 @@ module: oci_compute_management_instance_configuration_actions
 short_description: Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
+    - "For I(action=change_compartment), moves an instance configuration into a different compartment within the same tenancy.
+      For information about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      When you move an instance configuration to a different compartment, associated resources such as
+      instance pools are not moved.
+      **Important:** Most of the properties for an existing instance configuration, including the compartment,
+      cannot be modified after you create the instance configuration. Although you can move an instance configuration
+      to a different compartment, you will not be able to use the instance configuration to manage instance pools
+      in the new compartment. If you want to update an instance configuration to point to a different compartment,
+      you should instead create a new instance configuration in the target compartment using
+      L(CreateInstanceConfiguration,https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/InstanceConfiguration/CreateInstanceConfiguration)."
     - For I(action=launch), launches an instance from an instance configuration.
       If the instance configuration does not include all of the parameters that are
       required to launch an instance, such as the availability domain and subnet ID, you must
@@ -38,16 +49,23 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to
+              move the instance configuration to.
+            - Required for I(action=change_compartment).
+        type: str
     instance_type:
         description:
             - The type of instance details. Supported instanceType is compute
+            - Required for I(action=launch).
         type: str
         choices:
             - "compute"
-        required: true
     block_volumes:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: list
         suboptions:
             attach_details:
@@ -176,6 +194,7 @@ options:
     launch_details:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: dict
         suboptions:
             availability_domain:
@@ -669,6 +688,7 @@ options:
     secondary_vnics:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: list
         suboptions:
             create_vnic_details:
@@ -757,11 +777,18 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "launch"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on instance_configuration
+  oci_compute_management_instance_configuration_actions:
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action launch on instance_configuration
   oci_compute_management_instance_configuration_actions:
     instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1373,6 +1400,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import ComputeManagementClient
+    from oci.core.models import ChangeInstanceConfigurationCompartmentDetails
     from oci.core.models import InstanceConfigurationInstanceDetails
 
     HAS_OCI_PY_SDK = True
@@ -1383,6 +1411,7 @@ except ImportError:
 class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         launch
     """
 
@@ -1407,6 +1436,31 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
             self.client.get_instance_configuration,
             instance_configuration_id=self.module.params.get(
                 "instance_configuration_id"
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeInstanceConfigurationCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_instance_configuration_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_configuration_id=self.module.params.get(
+                    "instance_configuration_id"
+                ),
+                change_instance_configuration_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
             ),
         )
 
@@ -1452,7 +1506,8 @@ def main():
     module_args.update(
         dict(
             instance_configuration_id=dict(aliases=["id"], type="str", required=True),
-            instance_type=dict(type="str", required=True, choices=["compute"]),
+            compartment_id=dict(type="str"),
+            instance_type=dict(type="str", choices=["compute"]),
             block_volumes=dict(
                 type="list",
                 elements="dict",
@@ -1684,7 +1739,9 @@ def main():
                     nic_index=dict(type="int"),
                 ),
             ),
-            action=dict(type="str", required=True, choices=["launch"]),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "launch"]
+            ),
         )
     )
 

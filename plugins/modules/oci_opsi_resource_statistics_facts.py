@@ -36,7 +36,7 @@ options:
     resource_metric:
         description:
             - Filter by resource metric.
-              Supported values are CPU and STORAGE.
+              Supported values are CPU , STORAGE, MEMORY and IO.
         type: str
         required: true
     analysis_time_interval:
@@ -65,16 +65,23 @@ options:
     database_type:
         description:
             - Filter by one or more database type.
-              Possible values are ADW-S, ATP-S, ADW-D, ATP-D
+              Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
         choices:
             - "ADW-S"
             - "ATP-S"
             - "ADW-D"
             - "ATP-D"
+            - "EXTERNAL-PDB"
+            - "EXTERNAL-NONCDB"
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
+              insight resource.
         type: list
     percentile:
         description:
@@ -107,6 +114,10 @@ options:
             - "usageChangePercent"
             - "databaseName"
             - "databaseType"
+    host_name:
+        description:
+            - Filter by one or more hostname.
+        type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -139,7 +150,7 @@ resource_statistics:
             sample: 2020-12-06T00:00:00.000Z
         resource_metric:
             description:
-                - Defines the type of resource metric (CPU, STORAGE)
+                - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
             type: string
             sample: STORAGE
@@ -161,6 +172,12 @@ resource_statistics:
                     returned: on success
                     type: complex
                     contains:
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         database_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -191,6 +208,24 @@ resource_statistics:
                             returned: on success
                             type: string
                             sample: database_version_example
+                        instances:
+                            description:
+                                - Array of hostname and instance name.
+                            returned: on success
+                            type: complex
+                            contains:
+                                host_name:
+                                    description:
+                                        - The hostname of the database insight resource.
+                                    returned: on success
+                                    type: string
+                                    sample: host_name_example
+                                instance_name:
+                                    description:
+                                        - The instance name of the database insight resource.
+                                    returned: on success
+                                    type: string
+                                    sample: instance_name_example
                 current_statistics:
                     description:
                         - ""
@@ -240,11 +275,16 @@ resource_statistics:
         "usage_unit": "CORES",
         "items": [{
             "database_details": {
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_name": "database_name_example",
                 "database_display_name": "database_display_name_example",
                 "database_type": "database_type_example",
-                "database_version": "database_version_example"
+                "database_version": "database_version_example",
+                "instances": [{
+                    "host_name": "host_name_example",
+                    "instance_name": "instance_name_example"
+                }]
             },
             "current_statistics": {
                 "usage": 34.5,
@@ -289,11 +329,13 @@ class ResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "time_interval_end",
             "database_type",
             "database_id",
+            "id",
             "percentile",
             "insight_by",
             "forecast_days",
             "sort_order",
             "sort_by",
+            "host_name",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -329,9 +371,18 @@ def main():
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
             database_type=dict(
-                type="list", choices=["ADW-S", "ATP-S", "ADW-D", "ATP-D"]
+                type="list",
+                choices=[
+                    "ADW-S",
+                    "ATP-S",
+                    "ADW-D",
+                    "ATP-D",
+                    "EXTERNAL-PDB",
+                    "EXTERNAL-NONCDB",
+                ],
             ),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             percentile=dict(type="int"),
             insight_by=dict(type="str"),
             forecast_days=dict(type="int"),
@@ -346,6 +397,7 @@ def main():
                     "databaseType",
                 ],
             ),
+            host_name=dict(type="list"),
         )
     )
 

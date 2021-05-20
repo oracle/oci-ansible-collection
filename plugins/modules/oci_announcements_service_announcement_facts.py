@@ -58,7 +58,7 @@ announcement:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
-                - The entity type.
+                - The entity type, which is either an announcement or the summary representation of an announcement.
             returned: on success
             type: string
             sample: type_example
@@ -82,10 +82,18 @@ announcement:
             returned: on success
             type: string
             sample: Time Started
+        time_one_type:
+            description:
+                - "The type of a time associated with an initial time value. If the `timeOneTitle` attribute is present, then the `timeOneTitle` attribute
+                  contains a label of `timeOneType` in English.
+                  Example: `START_TIME`"
+            returned: on success
+            type: string
+            sample: START_TIME
         time_one_value:
             description:
-                - The actual value of the first time value for the event. Typically, this is the time an event started, but the meaning
-                  can vary, depending on the announcement type.
+                - The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning
+                  can vary, depending on the announcement type. The `timeOneType` attribute describes the meaning.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -96,10 +104,18 @@ announcement:
             returned: on success
             type: string
             sample: Time Ended
+        time_two_type:
+            description:
+                - "The type of a time associated with second time value. If the `timeTwoTitle` attribute is present, then the `timeTwoTitle` attribute contains
+                  a label of `timeTwoType` in English.
+                  Example: `END_TIME`"
+            returned: on success
+            type: string
+            sample: END_TIME
         time_two_value:
             description:
-                - The actual value of the second time value. Typically, this is the time an event ended, but the meaning
-                  can vary, depending on the announcement type.
+                - The actual value of the second time value. Typically, this denotes the time an event ended, but the meaning
+                  can vary, depending on the announcement type. The `timeTwoType` attribute describes the meaning.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -186,14 +202,34 @@ announcement:
                     returned: on success
                     type: string
                     sample: region_example
+                additional_properties:
+                    description:
+                        - Additional properties associated with the resource.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name of the property.
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        value:
+                            description:
+                                - The value of the property.
+                            returned: on success
+                            type: string
+                            sample: value_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "type": "type_example",
         "reference_ticket_number": "reference_ticket_number_example",
         "summary": "summary_example",
         "time_one_title": "Time Started",
+        "time_one_type": "START_TIME",
         "time_one_value": "2013-10-20T19:20:30+01:00",
         "time_two_title": "Time Ended",
+        "time_two_type": "END_TIME",
         "time_two_value": "2013-10-20T19:20:30+01:00",
         "services": [],
         "affected_regions": [],
@@ -207,7 +243,11 @@ announcement:
         "affected_resources": [{
             "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "resource_name": "resource_name_example",
-            "region": "region_example"
+            "region": "region_example",
+            "additional_properties": [{
+                "name": "name_example",
+                "value": "value_example"
+            }]
         }]
     }
 """

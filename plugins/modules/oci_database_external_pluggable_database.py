@@ -27,7 +27,8 @@ description:
       us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails)
       resource.
     - "This resource has the following action operations in the M(oci_external_pluggable_database_actions) module: change_compartment,
-      disable_external_pluggable_database_database_management, enable_external_pluggable_database_database_management."
+      disable_external_pluggable_database_database_management, disable_external_pluggable_database_operations_insights,
+      enable_external_pluggable_database_database_management, enable_external_pluggable_database_operations_insights."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -266,6 +267,12 @@ external_pluggable_database:
             returned: on success
             type: string
             sample: db_packs_example
+        database_configuration:
+            description:
+                - The Oracle Database configuration
+            returned: on success
+            type: string
+            sample: RAC
         database_management_config:
             description:
                 - ""
@@ -315,6 +322,7 @@ external_pluggable_database:
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
         "db_packs": "db_packs_example",
+        "database_configuration": "RAC",
         "database_management_config": {
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",

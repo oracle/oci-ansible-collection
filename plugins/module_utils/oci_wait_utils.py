@@ -928,6 +928,12 @@ _WAITER_OVERRIDE_MAP = {
         "table",
         "{0}_{1}".format("CHANGE_COMPARTMENT", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NosqlChangeCompartmentCustomWaiter,
+    # overriding as change compartment for vault changes the state from active to updating
+    (
+        "key_management",
+        "vault",
+        "{0}_{1}".format("CHANGE_COMPARTMENT", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): LifecycleStateWaiter,
     # the backend_set,backend,listener work requests doesn't contain the OCID of the resource being created
     # so we want to fallback to the default WorkRequestWaiter which calls the generated
     # get_resource() method to retrieve the resource
@@ -1099,7 +1105,20 @@ def get_resource_identifier_from_wait_response(wait_response, entity_type):
             and getattr(resource, "entity_type").lower().strip().replace("-", "")
             == entity_type.lower()
         ):
-            identifier = resource.identifier
+            # Different resources sometimes have
+            # the resource identifier in attributes
+            # other than ".identifier".
+            # We are checking for all of them.
+            if hasattr(resource, "identifier"):
+                identifier = resource.identifier
+            elif hasattr(resource, "id"):
+                identifier = resource.id
+            elif hasattr(resource, "entity_id"):
+                identifier = resource.entity_id
+            else:
+                raise AttributeError(
+                    "resource object has no valid resource identifier attribute"
+                )
         # this handles Analytics Instance & Digital Assistant Instance style WorkRequests which contains a field
         # 'resource_type' instead of 'entity_type'
         elif (

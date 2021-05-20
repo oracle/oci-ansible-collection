@@ -79,6 +79,12 @@ sql_searches:
     returned: on success
     type: complex
     contains:
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+            returned: on success
+            type: string
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -116,6 +122,7 @@ sql_searches:
             type: string
             sample: database_version_example
     sample: [{
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",

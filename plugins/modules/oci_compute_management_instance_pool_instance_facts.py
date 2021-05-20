@@ -39,7 +39,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
             - Required to get a specific instance_pool_instance.
         type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -295,7 +294,7 @@ def main():
     module_args.update(
         dict(
             instance_pool_id=dict(aliases=["id"], type="str", required=True),
-            instance_id=dict(aliases=["id"], type="str"),
+            instance_id=dict(type="str"),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),

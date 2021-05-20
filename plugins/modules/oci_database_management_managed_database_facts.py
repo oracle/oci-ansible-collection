@@ -163,6 +163,80 @@ managed_databases:
             returned: on success
             type: string
             sample: UP
+        parent_container_name:
+            description:
+                - The name of the parent Container Database.
+            returned: on success
+            type: string
+            sample: parent_container_name_example
+        parent_container_compartment_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+                  in which the parent Container Database resides, if the Managed Database
+                  is a Pluggable Database (PDB).
+            returned: on success
+            type: string
+            sample: "ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_count:
+            description:
+                - The number of Oracle Real Application Clusters (Oracle RAC) database instances.
+            returned: on success
+            type: int
+            sample: 56
+        instance_details:
+            description:
+                - The details of the Oracle Real Application Clusters (Oracle RAC) database instances.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The ID of the Oracle RAC database instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                name:
+                    description:
+                        - The name of the Oracle RAC database instance.
+                    returned: on success
+                    type: string
+                    sample: name_example
+                host_name:
+                    description:
+                        - The name of the host of the Oracle RAC database instance.
+                    returned: on success
+                    type: string
+                    sample: host_name_example
+                status:
+                    description:
+                        - The status of the Oracle RAC database instance.
+                    returned: on success
+                    type: string
+                    sample: UP
+        pdb_count:
+            description:
+                - The number of PDBs in the Container Database.
+            returned: on success
+            type: int
+            sample: 56
+        pdb_status:
+            description:
+                - The status of the PDB in the Container Database.
+            returned: on success
+            type: complex
+            contains:
+                status:
+                    description:
+                        - The status of the PDBs with this count.
+                    returned: on success
+                    type: string
+                    sample: UP
+                count:
+                    description:
+                        - The number of PDBs with this status.
+                    returned: on success
+                    type: int
+                    sample: 56
         additional_details:
             description:
                 - "The additional details specific to a type of database defined in `{\\"key\\": \\"value\\"}` format.
@@ -185,6 +259,20 @@ managed_databases:
         }],
         "time_created": "2013-10-20T19:20:30+01:00",
         "database_status": "UP",
+        "parent_container_name": "parent_container_name_example",
+        "parent_container_compartment_id": "ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "instance_count": 56,
+        "instance_details": [{
+            "id": 56,
+            "name": "name_example",
+            "host_name": "host_name_example",
+            "status": "UP"
+        }],
+        "pdb_count": 56,
+        "pdb_status": [{
+            "status": "UP",
+            "count": 56
+        }],
         "additional_details": {}
     }]
 """

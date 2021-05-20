@@ -1006,3 +1006,46 @@ class RouteTableHelperCustom:
                     )
                 ]
         return update_model
+
+
+class PrivateIpHelperCustom:
+    # list_resources requires vnic_id as the query param(list_resources is used in checking the idempotence)
+    # so making it compulsory
+    # Sometime vnic can also be updated. If clients use OCI_USE_NAME_AS_IDENTIFER flag then vnic_id won't be updated
+    # as we will fetch resources for the vnic_id given in the input and if it is a updated value then we will not get
+    # a private_ip of the same name. In that case a new private ip will be created in the new vnic.
+    def get_optional_kwargs_for_list(self):
+        vnic_id = self.module.params.get("vnic_id", None)
+        vlan_id = self.module.params.get("vlan_id", None)
+        # any one of the parameter should be present to list the existing resources for idempotence
+        # both cannot be specified at a time
+        if not vnic_id and not vlan_id:
+            self.module.fail_json(
+                msg="vnic_id or vlan_id is missing. Please specify any one parameter. Set vnic_id in case of update call"
+            )
+        # if only vlanid is passed in case of update service may raise error as it is not a field in the sdk's update model.
+        optional_list_method_params = ["vnic_id", "vlan_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+        )
+
+
+class DrgAttachmentActionsHelperCustom:
+    REMOVE_EXPORT_DRG_ROUTE_DISTRIBUTION_ACTION_KEY = (
+        "remove_export_drg_route_distribution"
+    )
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.REMOVE_EXPORT_DRG_ROUTE_DISTRIBUTION_ACTION_KEY:
+            if hasattr(resource, "export_drg_route_distribution_id"):
+                if not resource.export_drg_route_distribution_id:
+                    return False
+                return True
+            return False
+        super(DrgAttachmentActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_detector_recipe_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -745,7 +745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipes/detector_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -829,7 +829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipes/detector_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -1598,7 +1598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipes/effective_detector_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -1682,7 +1682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipes/effective_detector_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>

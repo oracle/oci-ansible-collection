@@ -23,3 +23,15 @@ This issue is fixed in v2.16.0
 The OCI Inventory Plugin outputs some informational log messages along with the inventory. But ansible tower expects the output from the inventory plugin to only contain the inventory in JSON format which caused the failure.
 
 This issue is fixed in v2.16.0
+
+### Issues while creating/updating private_ip using oci_network_private_ip module
+Whenever we want to create private ip, we need to specify the `vnic_id` (`vlan_id` in case of VMWare solution). While updating the private_ip resource,
+we can use `OCI_USE_NAME_AS_IDENTIFIER` variable to update by passing the name. `vnic_id` is an updatable field but it doesn't get updated when `OCI_USE_NAME_AS_IDENTIFIER` is set.
+Instead it creates a new resource (if possible) in the new `vnic_id`. To update the `vnic_id` of a private_ip resource, we use `private_ip_id` (`id` of the resource) without
+setting the `OCI_USE_NAME_AS_IDENTIFIER`.
+
+### ChangeCompartment action on InstanceConfiguration resource
+There are two actions which can be performed on instance_configuration resource i.e launch and change_compartment.
+These actions return different repsonse models when performed.
+`launch` returns `Instance` type while `change_compartment` returns `instance_configuration`
+Use `result['instance']` to access response of `launch` action and `result['instance_configuration']` for change_compartment action.

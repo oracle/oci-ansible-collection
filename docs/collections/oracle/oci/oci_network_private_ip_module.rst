@@ -20,7 +20,7 @@ oracle.oci.oci_network_private_ip -- Manage a PrivateIp resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -400,7 +400,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the VNIC to assign the private IP to. The VNIC and private IP must be in the same subnet.</div>
+                                            <div>The OCID of the VNIC to assign the private IP to. The VNIC and private IP must be in the same subnet. This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>

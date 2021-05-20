@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_vault_actions -- Perform actions on a Vault resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,8 @@ Synopsis
 - Perform actions on a Vault resource in Oracle Cloud Infrastructure
 - For *action=cancel_vault_deletion*, cancels the scheduled deletion of the specified vault. Canceling a scheduled deletion restores the vault and all keys in it to their respective states from before their scheduled deletion. All keys that were scheduled for deletion prior to vault deletion retain their lifecycle state and time of deletion. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 - For *action=change_compartment*, moves a vault into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When provided, if-match is checked against the ETag values of the resource. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
+- For *action=create_vault_replica*, creates a replica for the vault in another region in the same realm The API is a no-op if called for same region that a vault is already replicated to. 409 if called on a vault that is already replicated to a different region. Users need to delete existing replica first before calling it with a different region. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
+- For *action=delete_vault_replica*, deletes a vault replica As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 - For *action=schedule_vault_deletion*, schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it that are not already scheduled for deletion to `PENDING_DELETION` and then deletes them after the retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't change. If any keys in the vault are scheduled to be deleted after the specified time of deletion for the vault, the call is rejected with the error code 409. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 
 
@@ -87,6 +89,8 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>cancel_vault_deletion</li>
                                                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>create_vault_replica</li>
+                                                                                                                                                                                                <li>delete_vault_replica</li>
                                                                                                                                                                                                 <li>schedule_vault_deletion</li>
                                                                                     </ul>
                                                                             </td>
@@ -238,6 +242,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-replica_region"></div>
+                    <b>replica_region</b>
+                    <a class="ansibleOptionLink" href="#parameter-replica_region" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The region in the realm to which the vault need to be replicated to</div>
+                                            <div>Required for <em>action=create_vault_replica</em>, <em>action=delete_vault_replica</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -350,6 +370,18 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
+    - name: Perform action create_vault_replica on vault
+      oci_key_management_vault_actions:
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_region: replica_region_example
+        action: create_vault_replica
+
+    - name: Perform action delete_vault_replica on vault
+      oci_key_management_vault_actions:
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_region: replica_region_example
+        action: delete_vault_replica
+
     - name: Perform action schedule_vault_deletion on vault
       oci_key_management_vault_actions:
         time_of_deletion: "2018-04-03T21:10:29.600Z"
@@ -373,12 +405,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-vault"></div>
                     <b>vault</b>
                     <a class="ansibleOptionLink" href="#return-vault" title="Permalink to this return value"></a>
@@ -391,12 +423,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Vault resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crypto_endpoint&#x27;: &#x27;crypto_endpoint_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;management_endpoint&#x27;: &#x27;management_endpoint_example&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;vault_type&#x27;: &#x27;VIRTUAL_PRIVATE&#x27;, &#x27;wrappingkey_id&#x27;: &#x27;ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crypto_endpoint&#x27;: &#x27;crypto_endpoint_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_primary&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;management_endpoint&#x27;: &#x27;management_endpoint_example&#x27;, &#x27;replica_details&#x27;: {&#x27;replication_id&#x27;: &#x27;ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;vault_type&#x27;: &#x27;VIRTUAL_PRIVATE&#x27;, &#x27;wrappingkey_id&#x27;: &#x27;ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-vault/compartment_id" title="Permalink to this return value"></a>
@@ -414,7 +446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/crypto_endpoint"></div>
                     <b>crypto_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-vault/crypto_endpoint" title="Permalink to this return value"></a>
@@ -432,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-vault/defined_tags" title="Permalink to this return value"></a>
@@ -450,7 +482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-vault/display_name" title="Permalink to this return value"></a>
@@ -468,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-vault/freeform_tags" title="Permalink to this return value"></a>
@@ -486,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-vault/id" title="Permalink to this return value"></a>
@@ -504,7 +536,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vault/is_primary"></div>
+                    <b>is_primary</b>
+                    <a class="ansibleOptionLink" href="#return-vault/is_primary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the is_primary property of this Vault.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-vault/lifecycle_state" title="Permalink to this return value"></a>
@@ -523,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/management_endpoint"></div>
                     <b>management_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-vault/management_endpoint" title="Permalink to this return value"></a>
@@ -541,7 +591,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vault/replica_details"></div>
+                    <b>replica_details</b>
+                    <a class="ansibleOptionLink" href="#return-vault/replica_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the replica_details property of this Vault.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vault/replica_details/replication_id"></div>
+                    <b>replication_id</b>
+                    <a class="ansibleOptionLink" href="#return-vault/replica_details/replication_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ReplicationId associated with a vault operation</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-vault/time_created" title="Permalink to this return value"></a>
@@ -560,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/time_of_deletion"></div>
                     <b>time_of_deletion</b>
                     <a class="ansibleOptionLink" href="#return-vault/time_of_deletion" title="Permalink to this return value"></a>
@@ -578,7 +664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/vault_type"></div>
                     <b>vault_type</b>
                     <a class="ansibleOptionLink" href="#return-vault/vault_type" title="Permalink to this return value"></a>
@@ -596,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vault/wrappingkey_id"></div>
                     <b>wrappingkey_id</b>
                     <a class="ansibleOptionLink" href="#return-vault/wrappingkey_id" title="Permalink to this return value"></a>

@@ -174,6 +174,18 @@ db_nodes:
             returned: on success
             type: string
             sample: additional_details_example
+        primary_private_ip:
+            description:
+                - The private IP of the primary VNIC attached to this db node
+            returned: on success
+            type: string
+            sample: 10.0.0.10
+        primary_public_ip:
+            description:
+                - The public IP of the primary VNIC attached to this db node
+            returned: on success
+            type: string
+            sample: 140.34.93.209
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -187,7 +199,9 @@ db_nodes:
         "maintenance_type": "VMDB_REBOOT_MIGRATION",
         "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
         "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
-        "additional_details": "additional_details_example"
+        "additional_details": "additional_details_example",
+        "primary_private_ip": 10.0.0.10,
+        "primary_public_ip": 140.34.93.209
     }]
 """
 

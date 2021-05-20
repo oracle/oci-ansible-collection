@@ -8,6 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 logger = oci_common_utils.get_logger("oci_key_management_custom_helpers")
@@ -55,12 +56,57 @@ class KeyVersionHelperCustom:
 
 
 class VaultActionsHelperCustom:
-    def is_action_necessary(self, action, resource):
-        if kms_is_action_necessary(self, action, resource) is False:
+    REPLICA_CREATION_SUMMARY_STATUS = ["CREATED", "CREATING"]
+    REPLICA_DELETION_SUMMARY_STATUS = ["DELETED", "DELETING"]
+
+    def is_action_necessary(self, action, resource=None):
+        # For replica actions: create/delete we check if the replica exists by checking if there are any replication details
+        # and if for the given region whether the status is same as what we are expecting to change it to.
+        if action == "create_vault_replica":
+            replication_details = getattr(resource, "replica_details", None)
+            if replication_details is None:
+                return True
+
+            region_param = self.module.params.get("replica_region")
+            existing_replicas = self.client.list_vault_replicas(
+                self.module.params.get("vault_id")
+            )
+            for replica in existing_replicas:
+                existing_region = getattr(replica, "region", None)
+                existing_status = getattr(replica, "status", None)
+                if (
+                    existing_region == region_param
+                    and existing_status in self.REPLICA_CREATION_SUMMARY_STATUS
+                ):
+                    return False
+            return True
+        elif action == "delete_vault_replica":
+            replication_details = getattr(resource, "replica_details", None)
+            if replication_details is None:
+                return False
+
+            region_param = self.module.params.get("replica_region")
+            existing_replicas = self.client.list_vault_replicas(
+                self.module.params.get("vault_id")
+            )
+            for replica in existing_replicas:
+                existing_region = getattr(replica, "region", None)
+                existing_status = getattr(replica, "status", None)
+                if (
+                    getattr(replica, "region", None) == region_param
+                    and existing_status in self.REPLICA_CREATION_SUMMARY_STATUS
+                ):
+                    return True
+            return False
+        elif kms_is_action_necessary(self, action, resource) is False:
             return False
         return super(VaultActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+    # waiting as the change compartment for vault takes time to come back to Active state
+    def get_default_module_wait_timeout(self):
+        return int(1 * 2400)
 
 
 class KeyActionsHelperCustom:

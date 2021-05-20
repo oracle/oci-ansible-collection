@@ -13,11 +13,13 @@ from ansible.module_utils._text import to_bytes
 from ansible.module_utils import six
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
+    oci_config_utils,
     oci_wait_utils,
 )
 
 
 try:
+    from oci.core import VirtualNetworkClient
     from oci.exceptions import ServiceError
     from oci.util import to_dict
 
@@ -45,6 +47,16 @@ def get_db_management_status(resource):
     if not hasattr(resource.database_management_config, "database_management_status"):
         return None
     return resource.database_management_config.database_management_status
+
+
+def get_opsi_status(resource):
+    if not resource:
+        return None
+    if not hasattr(resource, "operations_insights_config"):
+        return None
+    if not hasattr(resource.operations_insights_config, "operations_insights_status"):
+        return None
+    return resource.operations_insights_config.operations_insights_status
 
 
 class AutonomousDatabaseHelperCustom:
@@ -172,7 +184,11 @@ class ExternalPluggableDatabaseActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         db_mgt_status = get_db_management_status(resource)
-        _debug("EPC Resource details {0} {1}".format(db_mgt_status, action))
+        _debug(
+            "EPC Resource details for db_mgt flag {0} {1}".format(db_mgt_status, action)
+        )
+        opsi_status = get_opsi_status(resource)
+        _debug("EPC Resource details for opsi flag {0} {1}".format(opsi_status, action))
         if action == "enable_external_pluggable_database_database_management":
             if db_mgt_status == "ENABLED":
                 return False
@@ -187,6 +203,20 @@ class ExternalPluggableDatabaseActionsHelperCustom:
                 return True
             else:
                 return False
+        elif action == "enable_external_pluggable_database_operations_insights":
+            if opsi_status == "ENABLED":
+                return False
+            elif opsi_status == "NOT_ENABLED":
+                return True
+            else:
+                return True
+        elif action == "disable_external_pluggable_database_operations_insights":
+            if opsi_status == "NOT_ENABLED":
+                return False
+            elif opsi_status == "ENABLED":
+                return True
+            else:
+                return False
         else:
             return super(
                 ExternalPluggableDatabaseActionsHelperCustom, self
@@ -198,7 +228,9 @@ class ExternalNonContainerDatabaseActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         db_mgt_status = get_db_management_status(resource)
-        _debug("ENC Resource details {0} {1}".format(db_mgt_status, action))
+        _debug("ENC Resource details for db_mgt {0} {1}".format(db_mgt_status, action))
+        opsi_status = get_opsi_status(resource)
+        _debug("ENC Resource details for opsi {0} {1}".format(opsi_status, action))
         if action == "enable_external_non_container_database_database_management":
             if db_mgt_status == "ENABLED":
                 return False
@@ -210,6 +242,20 @@ class ExternalNonContainerDatabaseActionsHelperCustom:
             if db_mgt_status == "NOT_ENABLED":
                 return False
             elif db_mgt_status == "ENABLED":
+                return True
+            else:
+                return False
+        elif action == "enable_external_non_container_database_operations_insights":
+            if opsi_status == "ENABLED":
+                return False
+            elif opsi_status == "NOT_ENABLED":
+                return True
+            else:
+                return True
+        elif action == "disable_external_non_container_database_operations_insights":
+            if opsi_status == "NOT_ENABLED":
+                return False
+            elif opsi_status == "ENABLED":
                 return True
             else:
                 return False
@@ -346,16 +392,51 @@ class DbHomeHelperCustom:
         return update_model_dict
 
     def is_update_necessary(self, resource=None):
-        # dbVersion is the only updatable field so it is the only thing we need to check to determine
-        # if an update is necessary
+        super_result = super(DbHomeHelperCustom, self).is_update_necessary(resource)
+        if super_result:
+            return True
         update_model = self.get_update_model()
-        needs_update = is_patch_necessary(
-            patch_getter_method=self.client.get_db_home_patch,
-            current_version=resource["db_version"],
-            requested_patch_details=update_model.db_version,
-            db_home_id=resource["id"],
-        )
-        return needs_update
+        current_version = resource.get("db_version")
+        if not getattr(update_model, "db_version", None):
+            return False
+        patch_details = update_model.db_version
+        if getattr(patch_details, "database_software_image_id", None):
+            database_software_image = oci_common_utils.call_with_backoff(
+                self.client.get_database_software_image,
+                database_software_image_id=patch_details.database_software_image_id,
+            ).data
+            if (
+                getattr(database_software_image, "database_version", None)
+                != current_version
+            ):
+                _debug(
+                    "DB system version {current_version} does not match database software image version: {patch_version}. "
+                    "Applying patch.".format(
+                        current_version=current_version,
+                        patch_version=getattr(
+                            database_software_image, "database_version", None
+                        ),
+                    )
+                )
+                return True
+            return False
+        elif getattr(patch_details, "patch_id", None):
+            patch = oci_common_utils.call_with_backoff(
+                self.client.get_db_home_patch,
+                db_home_id=resource.get("id"),
+                patch_id=getattr(patch_details, "patch_id"),
+            ).data
+            if patch.version != current_version:
+                _debug(
+                    "DB system version {current_version} does not match patch version: {patch_version}. "
+                    "Applying patch.".format(
+                        current_version=current_version, patch_version=patch.version,
+                    )
+                )
+                return True
+            return False
+
+        return True
 
 
 class DataGuardAssociationHelperCustom:
@@ -931,3 +1012,35 @@ class DatabaseActionsHelperCustom:
         return super(DatabaseActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class DbNodeFactsHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(DbNodeFactsHelperCustom, self).__init__(*args, **kwargs)
+        self.network_client = oci_config_utils.create_service_client(
+            self.module, VirtualNetworkClient
+        )
+
+    def get(self, *args, **kwargs):
+        db_node = super(DbNodeFactsHelperCustom, self).get(*args, **kwargs)
+        add_primary_ip_info_to_db_node(db_node, self.network_client)
+        return db_node
+
+    def list(self, *args, **kwargs):
+        db_nodes = super(DbNodeFactsHelperCustom, self).list(*args, **kwargs)
+        for db_node in db_nodes:
+            add_primary_ip_info_to_db_node(db_node, self.network_client)
+        return db_nodes
+
+
+def add_primary_ip_info_to_db_node(db_node, network_client):
+    # vnic_id can be None if the db node is still in PROVISIONING state.
+    if db_node and db_node.get("vnic_id"):
+        vnic = oci_common_utils.call_with_backoff(
+            network_client.get_vnic, vnic_id=db_node.get("vnic_id")
+        ).data
+        db_node["primary_private_ip"] = vnic.private_ip if vnic.is_primary else None
+        db_node["primary_public_ip"] = vnic.public_ip if vnic.is_primary else None
+    else:
+        db_node["primary_private_ip"] = None
+        db_node["primary_public_ip"] = None

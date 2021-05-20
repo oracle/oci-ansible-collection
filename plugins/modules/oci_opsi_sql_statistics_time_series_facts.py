@@ -40,7 +40,11 @@ options:
         required: true
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
         type: list
     analysis_time_interval:
         description:
@@ -125,6 +129,12 @@ sql_statistics_time_series:
                     returned: on success
                     type: complex
                     contains:
+                        id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         database_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -155,6 +165,24 @@ sql_statistics_time_series:
                             returned: on success
                             type: string
                             sample: database_version_example
+                        instances:
+                            description:
+                                - Array of hostname and instance name.
+                            returned: on success
+                            type: complex
+                            contains:
+                                host_name:
+                                    description:
+                                        - The hostname of the database insight resource.
+                                    returned: on success
+                                    type: string
+                                    sample: host_name_example
+                                instance_name:
+                                    description:
+                                        - The instance name of the database insight resource.
+                                    returned: on success
+                                    type: string
+                                    sample: instance_name_example
                 statistics:
                     description:
                         - SQL performance statistics for a given database
@@ -181,11 +209,16 @@ sql_statistics_time_series:
         "end_timestamps": [],
         "items": [{
             "database_details": {
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
                 "database_name": "database_name_example",
                 "database_display_name": "database_display_name_example",
                 "database_type": "database_type_example",
-                "database_version": "database_version_example"
+                "database_version": "database_version_example",
+                "instances": [{
+                    "host_name": "host_name_example",
+                    "instance_name": "instance_name_example"
+                }]
             },
             "statistics": [{
                 "name": "name_example",
@@ -222,6 +255,7 @@ class SqlStatisticsTimeSeriesFactsHelperGen(OCIResourceFactsHelperBase):
     def get_resource(self):
         optional_get_method_params = [
             "database_id",
+            "id",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -257,6 +291,7 @@ def main():
             compartment_id=dict(type="str", required=True),
             sql_identifier=dict(type="str", required=True),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),

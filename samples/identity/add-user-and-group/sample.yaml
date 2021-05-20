@@ -16,7 +16,7 @@
     bob_user_api_key_pub_key_path: "{{ temp_certificates_path }}/bob_public_key.pem"
 
     object_readers_group_name: "object_readers_group"
-    sample_compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    sample_compartment_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
   tasks:
     - block:
       - name: Check pre-requisites
@@ -24,7 +24,7 @@
           msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
         when: item not in ansible_env
         with_items:
-          - "SAMPLE_COMPARTMENT_OCID"
+          - "SAMPLE_TENANCY_OCID"
 
       # Create group
       - name: Create a group for Object readers

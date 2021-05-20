@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_database_insights_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,8 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DatabaseInsights resources in Oracle Cloud Infrastructure
-- Lists database insight resources
+- Gets a list of database insights based on the query parameters specified. Either compartmentId or id query parameter must be specified.
+- If *database_insight_id* is specified, the details of a single DatabaseInsights will be returned.
 
 
 .. Aliases
@@ -160,7 +161,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -210,8 +211,25 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the associated DBaaS entity.</div>
                                                         </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_insight_id"></div>
+                    <b>database_insight_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_insight_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Unique database insight identifier</div>
+                                            <div>Required to get a specific database_insights.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -228,10 +246,27 @@ Parameters
                                                                                                                                                                                                 <li>ATP-S</li>
                                                                                                                                                                                                 <li>ADW-D</li>
                                                                                                                                                                                                 <li>ATP-D</li>
+                                                                                                                                                                                                <li>EXTERNAL-PDB</li>
+                                                                                                                                                                                                <li>EXTERNAL-NONCDB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D</div>
+                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enterprise_manager_bridge_id"></div>
+                    <b>enterprise_manager_bridge_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-enterprise_manager_bridge_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Unique Enterprise Manager bridge identifier</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -257,6 +292,29 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Specifies the fields to return in a database summary response. By default all fields are returned if omitted.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-lifecycle_state" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Lifecycle states</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -315,6 +373,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-status"></div>
+                    <b>status</b>
+                    <a class="ansibleOptionLink" href="#parameter-status" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DISABLED</li>
+                                                                                                                                                                                                <li>ENABLED</li>
+                                                                                                                                                                                                <li>TERMINATED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Resource Status</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -354,6 +432,10 @@ Examples
       oci_opsi_database_insights_facts:
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
+    - name: Get a specific database_insights
+      oci_opsi_database_insights_facts:
+        database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+
 
 
 
@@ -371,12 +453,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_insights"></div>
                     <b>database_insights</b>
                     <a class="ansibleOptionLink" href="#return-database_insights" title="Permalink to this return value"></a>
@@ -389,12 +471,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DatabaseInsights resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_host_names&#x27;: [], &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;system_tags&#x27;: {}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_credential_details&#x27;: {&#x27;credential_source_name&#x27;: &#x27;credential_source_name_example&#x27;, &#x27;credential_type&#x27;: &#x27;CREDENTIALS_BY_SOURCE&#x27;}, &#x27;connection_details&#x27;: {&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_host_names&#x27;: [], &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_resource_type&#x27;: &#x27;externalpluggabledatabase&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_additional_details&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;enterprise_manager_bridge_id&#x27;: &#x27;ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enterprise_manager_entity_display_name&#x27;: &#x27;enterprise_manager_entity_display_name_example&#x27;, &#x27;enterprise_manager_entity_identifier&#x27;: &#x27;enterprise_manager_entity_identifier_example&#x27;, &#x27;enterprise_manager_entity_name&#x27;: &#x27;enterprise_manager_entity_name_example&#x27;, &#x27;enterprise_manager_entity_type&#x27;: &#x27;enterprise_manager_entity_type_example&#x27;, &#x27;enterprise_manager_identifier&#x27;: &#x27;enterprise_manager_identifier_example&#x27;, &#x27;entity_source&#x27;: &#x27;AUTONOMOUS_DATABASE&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;processor_count&#x27;: 56, &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/compartment_id" title="Permalink to this return value"></a>
@@ -404,7 +486,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>Compartment identifier of the database</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -412,7 +494,173 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_credential_details"></div>
+                    <b>connection_credential_details</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_credential_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_credential_details/credential_source_name"></div>
+                    <b>credential_source_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_credential_details/credential_source_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">credential_source_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_credential_details/credential_type"></div>
+                    <b>credential_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_credential_details/credential_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Credential type.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREDENTIALS_BY_SOURCE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_details"></div>
+                    <b>connection_details</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_details/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_details/host_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the listener host that will be used to create the connect string to the database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_details/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_details/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Listener port number used for connection requests.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_details/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_details/protocol" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Protocol used for connection requests.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TCP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connection_details/service_name"></div>
+                    <b>service_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connection_details/service_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Service name used for connection requests.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/connector_id"></div>
+                    <b>connector_id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/connector_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of External Database Connector</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_display_name"></div>
                     <b>database_display_name</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_display_name" title="Permalink to this return value"></a>
@@ -422,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user-friendly name for the database. The name does not have to be unique.</div>
+                                            <div>Display name of database</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_display_name_example</div>
@@ -430,7 +678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_host_names"></div>
                     <b>database_host_names</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_host_names" title="Permalink to this return value"></a>
@@ -446,7 +694,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_id" title="Permalink to this return value"></a>
@@ -464,7 +712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_name"></div>
                     <b>database_name</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_name" title="Permalink to this return value"></a>
@@ -474,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The database name. The database name is unique within the tenancy.</div>
+                                            <div>Name of database</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_name_example</div>
@@ -482,7 +730,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/database_resource_type"></div>
+                    <b>database_resource_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/database_resource_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCI database resource type</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">externalpluggabledatabase</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_type"></div>
                     <b>database_type</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_type" title="Permalink to this return value"></a>
@@ -500,7 +766,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/database_version"></div>
                     <b>database_version</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/database_version" title="Permalink to this return value"></a>
@@ -518,7 +784,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/db_additional_details"></div>
+                    <b>db_additional_details</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/db_additional_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty string. Note that this string needs to be escaped when specified in the curl command.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/defined_tags" title="Permalink to this return value"></a>
@@ -536,7 +818,133 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_bridge_id"></div>
+                    <b>enterprise_manager_bridge_id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_bridge_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OPSI Enterprise Manager Bridge OCID</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_entity_display_name"></div>
+                    <b>enterprise_manager_entity_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_entity_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enterprise Manager Entity Display Name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_entity_identifier"></div>
+                    <b>enterprise_manager_entity_identifier</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_entity_identifier" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enterprise Manager Entity Unique Identifier</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_identifier_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_entity_name"></div>
+                    <b>enterprise_manager_entity_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_entity_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enterprise Manager Entity Name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_entity_type"></div>
+                    <b>enterprise_manager_entity_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_entity_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enterprise Manager Entity Type</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_entity_type_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/enterprise_manager_identifier"></div>
+                    <b>enterprise_manager_identifier</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/enterprise_manager_identifier" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enterprise Manager Unique Identifier</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">enterprise_manager_identifier_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/entity_source"></div>
+                    <b>entity_source</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/entity_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Source of the database entity.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTONOMOUS_DATABASE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/freeform_tags" title="Permalink to this return value"></a>
@@ -554,7 +962,115 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Database insight identifier</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/lifecycle_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/management_agent_id"></div>
+                    <b>management_agent_id</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/management_agent_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the Management Agent</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/processor_count"></div>
+                    <b>processor_count</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/processor_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Processor count. This is the OCPU count for Autonomous Database and CPU core count for other database types.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/status"></div>
+                    <b>status</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates the status of a database insight in Operations Insights</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-database_insights/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-database_insights/system_tags" title="Permalink to this return value"></a>
@@ -566,6 +1082,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>System tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the the database insight was first enabled. An RFC3339 formatted datetime string</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_insights/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-database_insights/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the database insight was updated. An RFC3339 formatted datetime string</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                     

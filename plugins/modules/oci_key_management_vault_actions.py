@@ -39,6 +39,19 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
+    - For I(action=create_vault_replica), creates a replica for the vault in another region in the same realm
+      The API is a no-op if called for same region that a vault is already replicated to.
+      409 if called on a vault that is already replicated to a different region. Users need to delete
+      existing replica first before calling it with a different region.
+      As a provisioning operation, this call is subject to a Key Management limit that applies to
+      the total number of requests across all provisioning write operations. Key Management might
+      throttle this call to reject an otherwise valid request when the total rate of provisioning
+      write operations exceeds 10 requests per second for a given tenancy.
+    - For I(action=delete_vault_replica), deletes a vault replica
+      As a provisioning operation, this call is subject to a Key Management limit that applies to
+      the total number of requests across all provisioning write operations. Key Management might
+      throttle this call to reject an otherwise valid request when the total rate of provisioning
+      write operations exceeds 10 requests per second for a given tenancy.
     - For I(action=schedule_vault_deletion), schedules the deletion of the specified vault. This sets the lifecycle state of the vault and all keys in it
       that are not already scheduled for deletion to `PENDING_DELETION` and then deletes them after the
       retention period ends. The lifecycle state and time of deletion for keys already scheduled for deletion won't
@@ -62,6 +75,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the vault to.
             - Required for I(action=change_compartment).
         type: str
+    replica_region:
+        description:
+            - The region in the realm to which the vault need to be replicated to
+            - Required for I(action=create_vault_replica), I(action=delete_vault_replica).
+        type: str
     time_of_deletion:
         description:
             - An optional property indicating when to delete the vault, expressed in
@@ -79,6 +97,8 @@ options:
         choices:
             - "cancel_vault_deletion"
             - "change_compartment"
+            - "create_vault_replica"
+            - "delete_vault_replica"
             - "schedule_vault_deletion"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -94,6 +114,18 @@ EXAMPLES = """
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action create_vault_replica on vault
+  oci_key_management_vault_actions:
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    replica_region: replica_region_example
+    action: create_vault_replica
+
+- name: Perform action delete_vault_replica on vault
+  oci_key_management_vault_actions:
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    replica_region: replica_region_example
+    action: delete_vault_replica
 
 - name: Perform action schedule_vault_deletion on vault
   oci_key_management_vault_actions:
@@ -195,6 +227,24 @@ vault:
             returned: on success
             type: string
             sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Vault.
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a vault operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Vault.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",
@@ -207,7 +257,11 @@ vault:
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2018-04-03T21:10:29.600Z",
         "vault_type": "VIRTUAL_PRIVATE",
-        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true
     }
 """
 
@@ -224,6 +278,8 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.key_management import KmsVaultClient
     from oci.key_management.models import ChangeVaultCompartmentDetails
+    from oci.key_management.models import CreateVaultReplicaDetails
+    from oci.key_management.models import DeleteVaultReplicaDetails
     from oci.key_management.models import ScheduleVaultDeletionDetails
 
     HAS_OCI_PY_SDK = True
@@ -236,6 +292,8 @@ class VaultActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         cancel_vault_deletion
         change_compartment
+        create_vault_replica
+        delete_vault_replica
         schedule_vault_deletion
     """
 
@@ -294,6 +352,52 @@ class VaultActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def create_vault_replica(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CreateVaultReplicaDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.create_vault_replica,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                vault_id=self.module.params.get("vault_id"),
+                create_vault_replica_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def delete_vault_replica(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DeleteVaultReplicaDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.delete_vault_replica,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                vault_id=self.module.params.get("vault_id"),
+                delete_vault_replica_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def schedule_vault_deletion(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ScheduleVaultDeletionDetails
@@ -333,6 +437,7 @@ def main():
         dict(
             vault_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            replica_region=dict(type="str"),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",
@@ -340,6 +445,8 @@ def main():
                 choices=[
                     "cancel_vault_deletion",
                     "change_compartment",
+                    "create_vault_replica",
+                    "delete_vault_replica",
                     "schedule_vault_deletion",
                 ],
             ),

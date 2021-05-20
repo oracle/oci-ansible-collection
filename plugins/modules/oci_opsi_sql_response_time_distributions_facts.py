@@ -24,6 +24,7 @@ short_description: Fetches details about a SqlResponseTimeDistributions resource
 description:
     - Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
     - Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period.
+      Either databaseId or id must be specified.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -32,17 +33,20 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
-    database_id:
-        description:
-            - Required L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
-        type: str
-        required: true
     sql_identifier:
         description:
             - "Unique SQL_ID for a SQL Statement.
               Example: `6rgjh9bjmy2s7`"
         type: str
         required: true
+    database_id:
+        description:
+            - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: str
+    id:
+        description:
+            - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+        type: str
     analysis_time_interval:
         description:
             - Specify time period in ISO 8601 format with respect to current time.
@@ -73,7 +77,6 @@ EXAMPLES = """
 - name: Get a specific sql_response_time_distributions
   oci_opsi_sql_response_time_distributions_facts:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
 
 """
@@ -124,12 +127,13 @@ class SqlResponseTimeDistributionsFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_get(self):
         return [
             "compartment_id",
-            "database_id",
             "sql_identifier",
         ]
 
     def get_resource(self):
         optional_get_method_params = [
+            "database_id",
+            "id",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -143,7 +147,6 @@ class SqlResponseTimeDistributionsFactsHelperGen(OCIResourceFactsHelperBase):
             oci_common_utils.list_all_resources(
                 self.client.summarize_sql_response_time_distributions,
                 compartment_id=self.module.params.get("compartment_id"),
-                database_id=self.module.params.get("database_id"),
                 sql_identifier=self.module.params.get("sql_identifier"),
                 **optional_kwargs
             )
@@ -167,8 +170,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            database_id=dict(type="str", required=True),
             sql_identifier=dict(type="str", required=True),
+            database_id=dict(type="str"),
+            id=dict(type="str"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),

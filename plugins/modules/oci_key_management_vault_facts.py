@@ -165,6 +165,24 @@ vaults:
             returned: on success
             type: string
             sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Vault.
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a vault operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Vault.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",
@@ -177,7 +195,11 @@ vaults:
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2018-04-03T21:10:29.600Z",
         "vault_type": "VIRTUAL_PRIVATE",
-        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true
     }]
 """
 

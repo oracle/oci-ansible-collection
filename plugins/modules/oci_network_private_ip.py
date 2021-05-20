@@ -74,8 +74,8 @@ options:
         type: str
     vnic_id:
         description:
-            - The OCID of the VNIC to assign the private IP to. The VNIC and private IP
-              must be in the same subnet.
+            - The OCID of the VNIC to assign the private IP to. The VNIC and private IP must be in the same subnet. This parameter is updatable when
+              C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - This parameter is updatable.
         type: str
     vlan_id:

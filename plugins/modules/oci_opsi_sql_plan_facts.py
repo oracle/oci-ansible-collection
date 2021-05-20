@@ -25,17 +25,13 @@ description:
     - Fetches details about one or multiple SqlPlan resources in Oracle Cloud Infrastructure
     - Query SQL Warehouse to list the plan xml for a given SQL execution plan. This returns a SqlPlanCollection object, but is currently limited to a single
       plan.
+      Either databaseId or id must be specified.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
-        type: str
-        required: true
-    database_id:
-        description:
-            - Required L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
         type: str
         required: true
     sql_identifier:
@@ -50,6 +46,14 @@ options:
               Example: `9820154385`"
         type: list
         required: true
+    database_id:
+        description:
+            - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: str
+    id:
+        description:
+            - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -57,7 +61,6 @@ EXAMPLES = """
 - name: List sql_plans
   oci_opsi_sql_plan_facts:
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: 6rgjh9bjmy2s7
     plan_hash: [ "9820154385" ]
 
@@ -109,13 +112,15 @@ class SqlPlanFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "database_id",
             "sql_identifier",
             "plan_hash",
         ]
 
     def list_resources(self):
-        optional_list_method_params = []
+        optional_list_method_params = [
+            "database_id",
+            "id",
+        ]
         optional_kwargs = dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
@@ -124,7 +129,6 @@ class SqlPlanFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_sql_plans,
             compartment_id=self.module.params.get("compartment_id"),
-            database_id=self.module.params.get("database_id"),
             sql_identifier=self.module.params.get("sql_identifier"),
             plan_hash=self.module.params.get("plan_hash"),
             **optional_kwargs
@@ -143,9 +147,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            database_id=dict(type="str", required=True),
             sql_identifier=dict(type="str", required=True),
             plan_hash=dict(type="list", required=True),
+            database_id=dict(type="str"),
+            id=dict(type="str"),
         )
     )
 

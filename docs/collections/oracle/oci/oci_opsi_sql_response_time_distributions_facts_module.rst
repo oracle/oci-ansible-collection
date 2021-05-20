@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_response_time_distributions_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
-- Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period.
+- Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period. Either databaseId or id must be specified.
 
 
 .. Aliases
@@ -220,12 +220,27 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-database_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Required <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database.</div>
+                                            <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated DBaaS entity.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div><a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -328,7 +343,6 @@ Examples
     - name: Get a specific sql_response_time_distributions
       oci_opsi_sql_response_time_distributions_facts:
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         sql_identifier: 6rgjh9bjmy2s7
 
 

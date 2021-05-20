@@ -9,3 +9,8 @@ These are the collections with docs hosted on `docs.ansible.com <https://docs.an
 
 * :ref:`oracle.oci <plugins_in_oracle.oci>`
 
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    oracle/index

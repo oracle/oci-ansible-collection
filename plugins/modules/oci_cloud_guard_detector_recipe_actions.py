@@ -272,7 +272,7 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -290,7 +290,7 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         labels:
                             description:
@@ -525,7 +525,7 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -543,7 +543,7 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         labels:
                             description:

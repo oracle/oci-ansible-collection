@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool_instance_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -230,8 +230,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance.</div>
                                             <div>Required to get a specific instance_pool_instance.</div>
-                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">

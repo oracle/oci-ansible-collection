@@ -10,30 +10,31 @@
   collections:
     - oracle.oci
   vars:
-    vcn_name: "sample_load_balancer_vcn"
-    cidr_block: "10.1.0.0/16"
+    vcn_name: "ansible-sample-create-private-lb-vcn"
+    cidr_block: "10.0.0.0/16"
     dns_label: "samplelbvcn"
-    ig_name: "sample_ig"
-    rt_name: "sample_rt"
-    sec_list_name: "sample_sec_list"
+    ig_name: "ansible-sample-create-private-lb-ig"
+    rt_name: "ansible-sample-create-private-lb-rt"
+    sec_list_name: "ansible-sample-create-private-lb-sec-list"
 
-    sample_subnet_ad1: 'subnetad1'
-    subnet_cidr_block_ad1: "10.1.20.0/24"
+    sample_subnet_ad1: 'ansible-sample-create-private-lb-subnetad1'
+    sample_subnet_ad1_dnslabel: 'subnetad1'
+    subnet_cidr_block_ad1: "10.0.20.0/24"
     all_cidr_block: '0.0.0.0/0'
     all_protocol: 'all'
     tcp_protocol: '6'
 
-    sample_app_server_instance_one_name: 'AS-1'
-    sample_app_server_instance_two_name: 'AS-2'
+    sample_app_server_instance_one_name: 'ansible-sample-create-private-lb-AS-1'
+    sample_app_server_instance_two_name: 'ansible-sample-create-private-lb-AS-2'
     sample_app_server_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
 
-    lb_name: "sample_load_balancer"
+    lb_name: "ansible-sample-create-private-lb-lb"
     sample_shape: "100Mbps"
-    sample_backend_set_name: 'sample_backend_set'
+    sample_backend_set_name: 'ansible-sample-private-lb-bs'
     sample_backend_set_policy: 'ROUND_ROBIN'
 
     # Initialize values for listeners
-    http_listener_name: 'http_listener'
+    http_listener_name: 'ansible-sample-create-private-lb-http-listener'
     http_port: 80
 
     #########################################
