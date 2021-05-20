@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an InstanceConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an instance configuration. An instance configuration is a template that defines the
       settings to use when creating Compute instances.
-    - "This resource has the following action operations in the M(oci_instance_configuration_actions) module: launch."
+    - "This resource has the following action operations in the M(oci_instance_configuration_actions) module: change_compartment, launch."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

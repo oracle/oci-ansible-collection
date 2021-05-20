@@ -228,7 +228,7 @@ keys:
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         replica_details:
             description:
-                - ""
+                - The value to assign to the replica_details property of this Key.
             returned: on success
             type: complex
             contains:
@@ -240,7 +240,7 @@ keys:
                     sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         is_primary:
             description:
-                - ""
+                - The value to assign to the is_primary property of this Key.
             returned: on success
             type: bool
             sample: true

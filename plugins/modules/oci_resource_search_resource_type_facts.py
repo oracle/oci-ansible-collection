@@ -88,15 +88,45 @@ resource_types:
                         - If the field type is `OBJECT`, then this property will provide all the individual properties of the object that can
                           be queried.
                     returned: on success
-                    type: list
-                    sample: []
+                    type: complex
+                    contains:
+                        field_type:
+                            description:
+                                - The type of the field, which dictates what semantics and query constraints you can use when searching or querying.
+                            returned: on success
+                            type: string
+                            sample: IDENTIFIER
+                        field_name:
+                            description:
+                                - The name of the field to use when constructing the query. Field names are present for all types except `OBJECT`.
+                            returned: on success
+                            type: string
+                            sample: field_name_example
+                        is_array:
+                            description:
+                                - Indicates that this field is actually an array of the specified field type.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        object_properties:
+                            description:
+                                - If the field type is `OBJECT`, then this property will provide all the individual properties of the object that can
+                                  be queried.
+                            returned: on success
+                            type: list
+                            sample: []
     sample: [{
         "name": "name_example",
         "fields": [{
             "field_type": "IDENTIFIER",
             "field_name": "field_name_example",
             "is_array": true,
-            "object_properties": []
+            "object_properties": [{
+                "field_type": "IDENTIFIER",
+                "field_name": "field_name_example",
+                "is_array": true,
+                "object_properties": []
+            }]
         }]
     }]
 """

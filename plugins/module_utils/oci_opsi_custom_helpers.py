@@ -288,3 +288,41 @@ class SqlStatisticsTimeSeriesFactsHelperCustom:
         return oci_common_utils.get_default_response_from_resource(
             sqlStatisticsTimeSeriesAggregationCollection
         )
+
+
+class EnterpriseManagerBridgeHelperCustom:
+    def get_entity_type(self):
+        return "opsienterprisemanagerbridge"
+
+
+class HostInsightHelperCustom:
+    def get_entity_type(self):
+        return "opsidatabaseinsight"
+
+
+class HostInsightActionsHelperCustom:
+    ENABLE_ACTION_KEY = "enable"
+    DISABLE_ACTION_KEY = "disable"
+    RESOURCE_OPERATION_INSIGHTS_STATUS_ATTR = "status"
+    STATUS_ENABLED = "ENABLED"
+    STATUS_DISABLED = "DISABLED"
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.ENABLE_ACTION_KEY:
+            if (
+                getattr(resource, self.RESOURCE_OPERATION_INSIGHTS_STATUS_ATTR, None)
+                == self.STATUS_ENABLED
+            ):
+                return False
+            return True
+        if action == self.DISABLE_ACTION_KEY:
+            if (
+                getattr(resource, self.RESOURCE_OPERATION_INSIGHTS_STATUS_ATTR, None)
+                == self.STATUS_DISABLED
+            ):
+                return False
+            return True
+        return super(HostInsightActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

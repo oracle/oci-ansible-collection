@@ -20,7 +20,7 @@ oracle.oci.oci_vault_secret -- Manage a Secret resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -688,12 +688,12 @@ Examples
     
     - name: Create secret
       oci_vault_secret:
-        vault_id: "vault_OCID"
-        secret_rules: "[]"
-        compartment_id: ""
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_rules: []
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret_name: "testSecret"
         description: "my test secret"
-        key_id: "key_OCID"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_content:
           content: "base64_encoded_secret_contents"
           content_type: "BASE64"

@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.22.0] - 2021-05-20
+
+## Added
+- Support for Golden Gate service
+- Support for Marketplace Service Catalog
+- Operations Insights support for Enterprise Manager external databases and Management Agent Service managed external databases and hosts
+- Support for enabling and disabling Operations Insights for External Non-Container and External Pluggable Databases.
+- Support for Data Masking in cloud guard
+- Support for autonomous database on Exadata Cloud at Customer infrastructure patching in the Database service
+- Support for getting a list of tablespaces for a specified Managed Database
+- Support for getting the list of database parameters for the specified Managed Database. The parameters are listed in alphabetical order, along with their current values.
+- Support for changing the database parameters' values for the specified Managed Database
+- Support for resetting the database parameters' values to their default or startup values for the specified Managed Database.
+- Support for getting RAC related details for a fleet of databases, managed database, and summary metrics as part of Database Management Service
+- Improved announcement email preferences by introducing preference types Opt-In Tenant Announcement, Opt-In Tenant And Informational Announcements, and Opt-Out All Announcements options
+- Support for SDK resource in Apigatway service
+- Support `change_compartment` action in `compute_management_instance_configuration`
+- Added db_system_display_name, region hostvars for db hosts in inventory plugin
+- Support for Vault actions - `create_vault_replica`, `delete_vault_replica` and `change_compartment`
+- `oci_database_db_node_facts` module now returns `primary_public_ip` and `primary_private_ip` as well
+
+## Fixed
+- DB Home patching with database software image issue
+- Duplicate aliases for parameters `instance_pool_id` and `instance_id` in the module `oci_compute_management_instance_pool_instance_facts` module. Now only `instance_pool_id` has the alias `id`
+- Idempotence issue for `remove_export_drg_route_distribution` action in `oci_network_drg_attachment_actions` module
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.21.0] - 2021-05-06
 
 ## Added

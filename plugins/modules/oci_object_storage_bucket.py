@@ -113,11 +113,6 @@ options:
             - "Enabled"
             - "Disabled"
             - "Suspended"
-    force:
-        description:
-            - Force delete a bucket along with all the objects contained in it. Use with (state=absent).
-        type: bool
-        default: "false"
     auto_tiering:
         description:
             - Set the auto tiering status on the bucket. By default, a bucket is created with auto tiering `Disabled`.
@@ -126,6 +121,11 @@ options:
               tiers based on the access pattern of the objects.
             - This parameter is updatable.
         type: str
+    force:
+        description:
+            - Force delete a bucket along with all the objects contained in it. Use with (state=absent).
+        type: bool
+        default: "false"
     state:
         description:
             - The state of the Bucket.
@@ -498,8 +498,8 @@ def main():
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
             versioning=dict(type="str", choices=["Enabled", "Disabled", "Suspended"]),
-            force=dict(type="bool", default="false"),
             auto_tiering=dict(type="str"),
+            force=dict(type="bool", default="false"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

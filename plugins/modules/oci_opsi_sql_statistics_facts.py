@@ -36,16 +36,23 @@ options:
     database_type:
         description:
             - Filter by one or more database type.
-              Possible values are ADW-S, ATP-S, ADW-D, ATP-D
+              Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
         choices:
             - "ADW-S"
             - "ATP-S"
             - "ADW-D"
             - "ATP-D"
+            - "EXTERNAL-PDB"
+            - "EXTERNAL-NONCDB"
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
+              insight resource.
         type: list
     database_time_pct_greater_than:
         description:
@@ -170,6 +177,12 @@ sql_statistics:
             returned: on success
             type: complex
             contains:
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 database_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -200,6 +213,24 @@ sql_statistics:
                     returned: on success
                     type: string
                     sample: database_version_example
+                instances:
+                    description:
+                        - Array of hostname and instance name.
+                    returned: on success
+                    type: complex
+                    contains:
+                        host_name:
+                            description:
+                                - The hostname of the database insight resource.
+                            returned: on success
+                            type: string
+                            sample: host_name_example
+                        instance_name:
+                            description:
+                                - The instance name of the database insight resource.
+                            returned: on success
+                            type: string
+                            sample: instance_name_example
         category:
             description:
                 - SQL belongs to one or more categories based on the insights.
@@ -330,11 +361,16 @@ sql_statistics:
     sample: {
         "sql_identifier": "sql_identifier_example",
         "database_details": {
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
             "database_name": "database_name_example",
             "database_display_name": "database_display_name_example",
             "database_type": "database_type_example",
-            "database_version": "database_version_example"
+            "database_version": "database_version_example",
+            "instances": [{
+                "host_name": "host_name_example",
+                "instance_name": "instance_name_example"
+            }]
         },
         "category": [],
         "statistics": {
@@ -388,6 +424,7 @@ class SqlStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "database_type",
             "database_id",
+            "id",
             "database_time_pct_greater_than",
             "sql_identifier",
             "analysis_time_interval",
@@ -424,9 +461,18 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             database_type=dict(
-                type="list", choices=["ADW-S", "ATP-S", "ADW-D", "ATP-D"]
+                type="list",
+                choices=[
+                    "ADW-S",
+                    "ATP-S",
+                    "ADW-D",
+                    "ATP-D",
+                    "EXTERNAL-PDB",
+                    "EXTERNAL-NONCDB",
+                ],
             ),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             database_time_pct_greater_than=dict(type="float"),
             sql_identifier=dict(type="list"),
             analysis_time_interval=dict(type="str"),

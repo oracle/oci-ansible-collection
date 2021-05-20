@@ -29,9 +29,11 @@ description:
     - For I(action=disable_external_non_container_database_database_management), disable Database Management Service for the external non-container database.
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
+    - For I(action=disable_external_non_container_database_operations_insights), disable Operations Insights for the external non-container database.
     - For I(action=enable_external_non_container_database_database_management), enable Database Management Service for the external non-container database.
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
+    - For I(action=enable_external_non_container_database_operations_insights), enable Operations Insights for the external non-container database.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -58,7 +60,8 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
               L(external database connector,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
-            - Required for I(action=enable_external_non_container_database_database_management).
+            - Required for I(action=enable_external_non_container_database_database_management),
+              I(action=enable_external_non_container_database_operations_insights).
         type: str
     action:
         description:
@@ -68,7 +71,9 @@ options:
         choices:
             - "change_compartment"
             - "disable_external_non_container_database_database_management"
+            - "disable_external_non_container_database_operations_insights"
             - "enable_external_non_container_database_database_management"
+            - "enable_external_non_container_database_operations_insights"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -84,12 +89,23 @@ EXAMPLES = """
     external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_non_container_database_database_management
 
+- name: Perform action disable_external_non_container_database_operations_insights on external_non_container_database
+  oci_database_external_non_container_database_actions:
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_external_non_container_database_operations_insights
+
 - name: Perform action enable_external_non_container_database_database_management on external_non_container_database
   oci_database_external_non_container_database_actions:
     external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
     license_model: "BRING_YOUR_OWN_LICENSE"
     external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: "enable_external_non_container_database_database_management"
+
+- name: Perform action enable_external_non_container_database_operations_insights on external_non_container_database
+  oci_database_external_non_container_database_actions:
+    external_database_connector_id: "ocid1.externaldatabaseconnector..unique_ID"
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "enable_external_non_container_database_operations_insights"
 
 """
 
@@ -222,6 +238,12 @@ external_non_container_database:
             returned: on success
             type: string
             sample: db_packs_example
+        database_configuration:
+            description:
+                - The Oracle Database configuration
+            returned: on success
+            type: string
+            sample: RAC
         database_management_config:
             description:
                 - ""
@@ -269,6 +291,7 @@ external_non_container_database:
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
         "db_packs": "db_packs_example",
+        "database_configuration": "RAC",
         "database_management_config": {
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",
@@ -294,6 +317,9 @@ try:
     from oci.database.models import (
         EnableExternalNonContainerDatabaseDatabaseManagementDetails,
     )
+    from oci.database.models import (
+        EnableExternalNonContainerDatabaseOperationsInsightsDetails,
+    )
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -305,7 +331,9 @@ class ExternalNonContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         disable_external_non_container_database_database_management
+        disable_external_non_container_database_operations_insights
         enable_external_non_container_database_database_management
+        enable_external_non_container_database_operations_insights
     """
 
     def __init__(self, *args, **kwargs):
@@ -376,6 +404,25 @@ class ExternalNonContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def disable_external_non_container_database_operations_insights(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_external_non_container_database_operations_insights,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_non_container_database_id=self.module.params.get(
+                    "external_non_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def enable_external_non_container_database_database_management(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params,
@@ -389,6 +436,30 @@ class ExternalNonContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
                     "external_non_container_database_id"
                 ),
                 enable_external_non_container_database_database_management_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_external_non_container_database_operations_insights(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params,
+            EnableExternalNonContainerDatabaseOperationsInsightsDetails,
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_external_non_container_database_operations_insights,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_non_container_database_id=self.module.params.get(
+                    "external_non_container_database_id"
+                ),
+                enable_external_non_container_database_operations_insights_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -433,7 +504,9 @@ def main():
                 choices=[
                     "change_compartment",
                     "disable_external_non_container_database_database_management",
+                    "disable_external_non_container_database_operations_insights",
                     "enable_external_non_container_database_database_management",
+                    "enable_external_non_container_database_operations_insights",
                 ],
             ),
         )

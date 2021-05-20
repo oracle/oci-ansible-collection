@@ -182,7 +182,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -200,7 +200,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         configurations:
                             description:
@@ -363,7 +363,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -381,7 +381,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         configurations:
                             description:

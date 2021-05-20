@@ -15,6 +15,9 @@
     id: "{{ default_route_table_id }}"
     route_rules: []
 
+- pause:
+    minutes: 1
+
 - name: Delete CPE
   oci_network_cpe:
     id: "{{ cpe_id }}"

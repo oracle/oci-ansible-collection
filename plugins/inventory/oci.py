@@ -1209,6 +1209,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         db_node,
                         availability_domain=db_system.availability_domain,
                         compartment_id=db_system.compartment_id,
+                        db_system_display_name=db_system.display_name,
+                        region=region,
                     )
                     for db_system in oci_common_utils.list_all_resources(
                         target_fn=database_client.list_db_systems,

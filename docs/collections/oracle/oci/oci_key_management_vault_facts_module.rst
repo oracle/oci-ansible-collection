@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_vault_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -348,12 +348,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-vaults"></div>
                     <b>vaults</b>
                     <a class="ansibleOptionLink" href="#return-vaults" title="Permalink to this return value"></a>
@@ -366,12 +366,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Vault resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crypto_endpoint&#x27;: &#x27;crypto_endpoint_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;management_endpoint&#x27;: &#x27;management_endpoint_example&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;vault_type&#x27;: &#x27;VIRTUAL_PRIVATE&#x27;, &#x27;wrappingkey_id&#x27;: &#x27;ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crypto_endpoint&#x27;: &#x27;crypto_endpoint_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_primary&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;management_endpoint&#x27;: &#x27;management_endpoint_example&#x27;, &#x27;replica_details&#x27;: {&#x27;replication_id&#x27;: &#x27;ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;vault_type&#x27;: &#x27;VIRTUAL_PRIVATE&#x27;, &#x27;wrappingkey_id&#x27;: &#x27;ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-vaults/compartment_id" title="Permalink to this return value"></a>
@@ -389,7 +389,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/crypto_endpoint"></div>
                     <b>crypto_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-vaults/crypto_endpoint" title="Permalink to this return value"></a>
@@ -407,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-vaults/defined_tags" title="Permalink to this return value"></a>
@@ -425,7 +425,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-vaults/display_name" title="Permalink to this return value"></a>
@@ -443,7 +443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-vaults/freeform_tags" title="Permalink to this return value"></a>
@@ -461,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-vaults/id" title="Permalink to this return value"></a>
@@ -479,7 +479,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vaults/is_primary"></div>
+                    <b>is_primary</b>
+                    <a class="ansibleOptionLink" href="#return-vaults/is_primary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the is_primary property of this Vault.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-vaults/lifecycle_state" title="Permalink to this return value"></a>
@@ -498,7 +516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/management_endpoint"></div>
                     <b>management_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-vaults/management_endpoint" title="Permalink to this return value"></a>
@@ -516,7 +534,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-vaults/replica_details"></div>
+                    <b>replica_details</b>
+                    <a class="ansibleOptionLink" href="#return-vaults/replica_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the replica_details property of this Vault.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vaults/replica_details/replication_id"></div>
+                    <b>replication_id</b>
+                    <a class="ansibleOptionLink" href="#return-vaults/replica_details/replication_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ReplicationId associated with a vault operation</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-vaults/time_created" title="Permalink to this return value"></a>
@@ -535,7 +589,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/time_of_deletion"></div>
                     <b>time_of_deletion</b>
                     <a class="ansibleOptionLink" href="#return-vaults/time_of_deletion" title="Permalink to this return value"></a>
@@ -553,7 +607,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/vault_type"></div>
                     <b>vault_type</b>
                     <a class="ansibleOptionLink" href="#return-vaults/vault_type" title="Permalink to this return value"></a>
@@ -571,7 +625,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-vaults/wrappingkey_id"></div>
                     <b>wrappingkey_id</b>
                     <a class="ansibleOptionLink" href="#return-vaults/wrappingkey_id" title="Permalink to this return value"></a>

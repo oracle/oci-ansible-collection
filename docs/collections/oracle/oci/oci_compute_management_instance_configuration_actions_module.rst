@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_configuration_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
+- For *action=change_compartment*, moves an instance configuration into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When you move an instance configuration to a different compartment, associated resources such as instance pools are not moved. **Important:** Most of the properties for an existing instance configuration, including the compartment, cannot be modified after you create the instance configuration. Although you can move an instance configuration to a different compartment, you will not be able to use the instance configuration to manage instance pools in the new compartment. If you want to update an instance configuration to point to a different compartment, you should instead create a new instance configuration in the target compartment using `CreateInstanceConfiguration <https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/InstanceConfiguration/CreateInstanceConfiguration>`_.
 - For *action=launch*, launches an instance from an instance configuration. If the instance configuration does not include all of the parameters that are required to launch an instance, such as the availability domain and subnet ID, you must provide these parameters when you launch an instance from the instance configuration. For more information, see the `InstanceConfiguration <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/>`_ resource.
 
 
@@ -83,7 +84,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>launch</li>
+                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>launch</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -184,6 +186,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Applicable only for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -600,6 +603,22 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the instance configuration to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -651,7 +670,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-instance_type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -660,6 +679,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of instance details. Supported instanceType is compute</div>
+                                            <div>Required for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -675,6 +695,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Applicable only for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1868,6 +1889,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Applicable only for <em>action=launch</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -2143,6 +2165,12 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action change_compartment on instance_configuration
+      oci_compute_management_instance_configuration_actions:
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "change_compartment"
+
     - name: Perform action launch on instance_configuration
       oci_compute_management_instance_configuration_actions:
         instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"

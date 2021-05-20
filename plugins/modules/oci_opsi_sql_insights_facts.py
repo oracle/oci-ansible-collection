@@ -36,16 +36,23 @@ options:
     database_type:
         description:
             - Filter by one or more database type.
-              Possible values are ADW-S, ATP-S, ADW-D, ATP-D
+              Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
         choices:
             - "ADW-S"
             - "ATP-S"
             - "ADW-D"
             - "ATP-D"
+            - "EXTERNAL-PDB"
+            - "EXTERNAL-NONCDB"
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
+              insight resource.
         type: list
     database_time_pct_greater_than:
         description:
@@ -287,6 +294,7 @@ class SqlInsightsFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "database_type",
             "database_id",
+            "id",
             "database_time_pct_greater_than",
             "analysis_time_interval",
             "time_interval_start",
@@ -317,9 +325,18 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             database_type=dict(
-                type="list", choices=["ADW-S", "ATP-S", "ADW-D", "ATP-D"]
+                type="list",
+                choices=[
+                    "ADW-S",
+                    "ATP-S",
+                    "ADW-D",
+                    "ATP-D",
+                    "EXTERNAL-PDB",
+                    "EXTERNAL-NONCDB",
+                ],
             ),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             database_time_pct_greater_than=dict(type="float"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),

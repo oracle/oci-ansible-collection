@@ -667,7 +667,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                                 composite_operator:
                                                     description:
@@ -685,7 +685,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                 labels:
                                     description:
@@ -908,7 +908,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                                 composite_operator:
                                                     description:
@@ -926,7 +926,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                 labels:
                                     description:
@@ -1137,7 +1137,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                         composite_operator:
                                             description:
@@ -1155,7 +1155,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                 configurations:
                                     description:
@@ -1318,7 +1318,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                         composite_operator:
                                             description:
@@ -1336,7 +1336,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                 configurations:
                                     description:

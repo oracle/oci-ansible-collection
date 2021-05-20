@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.21.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -647,6 +647,35 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-leading_separator"></div>
+                    <b>leading_separator</b>
+                    <a class="ansibleOptionLink" href="#parameter-leading_separator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.11 of ansible.builtin
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>Use in conjunction with keyed_groups.</div>
+                                            <div>By default, a keyed group that does not have a prefix or a separator provided will have a name that starts with an underscore.</div>
+                                            <div>This is because the default prefix is &quot;&quot; and the default separator is &quot;_&quot;.</div>
+                                            <div>Set this option to False to omit the leading underscore (or other separator) if no prefix is given.</div>
+                                            <div>If the group name is derived from a mapping the separator is still used to concatenate the items.</div>
+                                            <div>To not use a separator in the group name at all, set the separator for the keyed group to an empty string instead.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-plugin"></div>
                     <b>plugin</b>
                     <a class="ansibleOptionLink" href="#parameter-plugin" title="Permalink to this option"></a>
@@ -726,6 +755,38 @@ Parameters
                                                 <td>
                                             <div>If <code>yes</code> make invalid entries a fatal error, otherwise skip and continue.</div>
                                             <div>Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-use_extra_vars"></div>
+                    <b>use_extra_vars</b>
+                    <a class="ansibleOptionLink" href="#parameter-use_extra_vars" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.11 of ansible.builtin
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                    <div> ini entries:
+                                                                    <p>
+                                        [inventory_plugins]<br>use_extra_vars = no
+                                                                                                                    </p>
+                                                            </div>
+                                                                            <div>
+                                env:ANSIBLE_INVENTORY_USE_EXTRA_VARS
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Merge extra vars into the available variables for composition (highest precedence).</div>
                                                         </td>
             </tr>
                         </table>

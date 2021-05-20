@@ -153,13 +153,15 @@ class InstanceConfigurationActionsHelperCustom:
 
     # instance_configuration launch action returns an instance and not instance_configuration. Currently the base
     # classes do not support custom return field names and use the resource types. Until the feature is added
-    # manually update the return field to instance.
+    # manually update the return field to instance. Added check for action name, change_compartment action returns instance_configuration
     # TODO: Update base class to handle custom return field names from generated code.
     def prepare_result(self, *args, **kwargs):
         super_result = super(
             InstanceConfigurationActionsHelperCustom, self
         ).prepare_result(*args, **kwargs)
-        super_result["instance"] = super_result.pop("instance_configuration", None)
+        action = self.module.params.get("action")
+        if action == "launch":
+            super_result["instance"] = super_result.pop("instance_configuration", None)
         return super_result
 
 
