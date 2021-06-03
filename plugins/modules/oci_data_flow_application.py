@@ -94,6 +94,19 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    execute:
+        description:
+            - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+              applications-with-spark-submit.
+              Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+              Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+              oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+              10``
+              Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during application
+              create/update, or run create/submit,
+              Data Flow service will use derived information from execute input only."
+            - This parameter is updatable.
+        type: str
     executor_shape:
         description:
             - The VM shape for the executors. Sets the executor cores and memory.
@@ -219,6 +232,7 @@ EXAMPLES = """
     description: description_example
     display_name: test_wordcount_app
     driver_shape: VM.Standard2.1
+    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
     executor_shape: VM.Standard2.1
     file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
@@ -325,6 +339,20 @@ application:
             returned: on success
             type: string
             sample: driver_shape_example
+        execute:
+            description:
+                - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+                  applications-with-spark-submit.
+                  Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+                  Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+                  oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+                  10``
+                  Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
+                  application create/update, or run create/submit,
+                  Data Flow service will use derived information from execute input only."
+            returned: on success
+            type: string
+            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -459,6 +487,7 @@ application:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -631,6 +660,7 @@ def main():
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             driver_shape=dict(type="str"),
+            execute=dict(type="str"),
             executor_shape=dict(type="str"),
             file_uri=dict(type="str"),
             freeform_tags=dict(type="dict"),

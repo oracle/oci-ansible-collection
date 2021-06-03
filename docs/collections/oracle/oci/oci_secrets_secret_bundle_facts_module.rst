@@ -20,7 +20,7 @@ oracle.oci.oci_secrets_secret_bundle_facts -- Fetches details about a SecretBund
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
-- Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter. If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
+- Gets a secret bundle that matches either the specified `stage`, `secretVersionName`, or `versionNumber` parameter. If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 
 
 .. Aliases

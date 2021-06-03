@@ -23,7 +23,7 @@ module: oci_data_flow_private_endpoint
 short_description: Manage a PrivateEndpoint resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a PrivateEndpoint resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a private endpoint to be used by an application.
+    - For I(state=present), creates a private endpoint to be used by applications.
     - "This resource has the following action operations in the M(oci_private_endpoint_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)

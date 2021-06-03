@@ -20,7 +20,7 @@ oracle.oci.oci_ocvp_sddc_actions -- Perform actions on a Sddc resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,11 @@ Synopsis
 .. Description
 
 - Perform actions on a Sddc resource in Oracle Cloud Infrastructure
+- For *action=cancel_downgrade_hcx*, cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced
 - For *action=change_compartment*, moves an SDDC into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
+- For *action=downgrade_hcx*, downgrade the specified SDDC from HCX Enterprise to HCX Advanced
+- For *action=refresh_hcx_license_status*, refresh HCX on-premise licenses status of the specified SDDC.
+- For *action=upgrade_hcx*, upgrade the specified SDDC from HCX Advanced to HCX Enterprise.
 
 
 .. Aliases
@@ -83,7 +87,11 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                <li>cancel_downgrade_hcx</li>
+                                                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>downgrade_hcx</li>
+                                                                                                                                                                                                <li>refresh_hcx_license_status</li>
+                                                                                                                                                                                                <li>upgrade_hcx</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -178,12 +186,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the SDDC to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -233,6 +242,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-reserving_hcx_on_premise_license_keys"></div>
+                    <b>reserving_hcx_on_premise_license_keys</b>
+                    <a class="ansibleOptionLink" href="#parameter-reserving_hcx_on_premise_license_keys" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The HCX on-premise licenses keys to be reserved when downgrade from HCX Enterprise to HCX Advanced.</div>
+                                            <div>Required for <em>action=downgrade_hcx</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-sddc_id"></div>
                     <b>sddc_id</b>
                     <a class="ansibleOptionLink" href="#parameter-sddc_id" title="Permalink to this option"></a>
@@ -262,6 +287,40 @@ Parameters
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait"></div>
+                    <b>wait</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to wait for create or delete operation to complete.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
+                    <b>wait_timeout</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -284,11 +343,31 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action cancel_downgrade_hcx on sddc
+      oci_ocvp_sddc_actions:
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+        action: cancel_downgrade_hcx
+
     - name: Perform action change_compartment on sddc
       oci_ocvp_sddc_actions:
         sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action downgrade_hcx on sddc
+      oci_ocvp_sddc_actions:
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+        action: downgrade_hcx
+
+    - name: Perform action refresh_hcx_license_status on sddc
+      oci_ocvp_sddc_actions:
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+        action: refresh_hcx_license_status
+
+    - name: Perform action upgrade_hcx on sddc
+      oci_ocvp_sddc_actions:
+        sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+        action: upgrade_hcx
 
 
 
@@ -307,12 +386,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-sddc"></div>
                     <b>sddc</b>
                     <a class="ansibleOptionLink" href="#return-sddc" title="Permalink to this return value"></a>
@@ -325,12 +404,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Sddc resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_sku&#x27;: &#x27;HOUR&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_vlan_id&#x27;: &#x27;ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replication_vlan_id&#x27;: &#x27;ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;hcx_initial_password_example&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_on_prem_licenses&#x27;: [{&#x27;activation_key&#x27;: &#x27;activation_key_example&#x27;, &#x27;status&#x27;: &#x27;AVAILABLE&#x27;, &#x27;system_name&#x27;: &#x27;system_name_example&#x27;}], &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_sku&#x27;: &#x27;HOUR&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;is_hcx_enterprise_enabled&#x27;: True, &#x27;is_hcx_pending_downgrade&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;nsx_manager_initial_password_example&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_vlan_id&#x27;: &#x27;ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replication_vlan_id&#x27;: &#x27;ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_hcx_billing_cycle_end&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_hcx_license_status_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;vcenter_initial_password_example&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/compartment_id" title="Permalink to this return value"></a>
@@ -348,7 +427,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/compute_availability_domain"></div>
                     <b>compute_availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-sddc/compute_availability_domain" title="Permalink to this return value"></a>
@@ -367,7 +446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-sddc/defined_tags" title="Permalink to this return value"></a>
@@ -386,7 +465,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-sddc/display_name" title="Permalink to this return value"></a>
@@ -404,7 +483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/esxi_hosts_count"></div>
                     <b>esxi_hosts_count</b>
                     <a class="ansibleOptionLink" href="#return-sddc/esxi_hosts_count" title="Permalink to this return value"></a>
@@ -422,7 +501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-sddc/freeform_tags" title="Permalink to this return value"></a>
@@ -441,7 +520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/hcx_fqdn"></div>
                     <b>hcx_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddc/hcx_fqdn" title="Permalink to this return value"></a>
@@ -460,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/hcx_initial_password"></div>
                     <b>hcx_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddc/hcx_initial_password" title="Permalink to this return value"></a>
@@ -478,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/hcx_on_prem_key"></div>
                     <b>hcx_on_prem_key</b>
                     <a class="ansibleOptionLink" href="#return-sddc/hcx_on_prem_key" title="Permalink to this return value"></a>
@@ -496,7 +575,81 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/hcx_on_prem_licenses"></div>
+                    <b>hcx_on_prem_licenses</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/hcx_on_prem_licenses" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The activation licenses to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sddc/hcx_on_prem_licenses/activation_key"></div>
+                    <b>activation_key</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/hcx_on_prem_licenses/activation_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>HCX on-premise license key value</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">activation_key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sddc/hcx_on_prem_licenses/status"></div>
+                    <b>status</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/hcx_on_prem_licenses/status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>status of HCX on-premise license</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AVAILABLE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sddc/hcx_on_prem_licenses/system_name"></div>
+                    <b>system_name</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/hcx_on_prem_licenses/system_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the system that consumed the HCX on-premise license</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">system_name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/hcx_private_ip_id"></div>
                     <b>hcx_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/hcx_private_ip_id" title="Permalink to this return value"></a>
@@ -514,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/hcx_vlan_id"></div>
                     <b>hcx_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/hcx_vlan_id" title="Permalink to this return value"></a>
@@ -534,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/id" title="Permalink to this return value"></a>
@@ -552,7 +705,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/initial_sku"></div>
                     <b>initial_sku</b>
                     <a class="ansibleOptionLink" href="#return-sddc/initial_sku" title="Permalink to this return value"></a>
@@ -562,7 +715,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Billing option selected during SDDC creation <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus'>ListSupportedSkus</a>.</div>
+                                            <div>Billing option selected during SDDC creation. Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs: HOUR, MONTH, ONE_YEAR, and THREE_YEARS. <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus'>ListSupportedSkus</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HOUR</div>
@@ -570,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/instance_display_name_prefix"></div>
                     <b>instance_display_name_prefix</b>
                     <a class="ansibleOptionLink" href="#return-sddc/instance_display_name_prefix" title="Permalink to this return value"></a>
@@ -589,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/is_hcx_enabled"></div>
                     <b>is_hcx_enabled</b>
                     <a class="ansibleOptionLink" href="#return-sddc/is_hcx_enabled" title="Permalink to this return value"></a>
@@ -607,7 +760,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/is_hcx_enterprise_enabled"></div>
+                    <b>is_hcx_enterprise_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/is_hcx_enterprise_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether HCX Enterprise is enabled for this SDDC.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/is_hcx_pending_downgrade"></div>
+                    <b>is_hcx_pending_downgrade</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/is_hcx_pending_downgrade" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-sddc/lifecycle_state" title="Permalink to this return value"></a>
@@ -625,7 +814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_edge_uplink1_vlan_id"></div>
                     <b>nsx_edge_uplink1_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_edge_uplink1_vlan_id" title="Permalink to this return value"></a>
@@ -645,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_edge_uplink2_vlan_id"></div>
                     <b>nsx_edge_uplink2_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_edge_uplink2_vlan_id" title="Permalink to this return value"></a>
@@ -665,7 +854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_edge_uplink_ip_id"></div>
                     <b>nsx_edge_uplink_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_edge_uplink_ip_id" title="Permalink to this return value"></a>
@@ -683,7 +872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_edge_v_tep_vlan_id"></div>
                     <b>nsx_edge_v_tep_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_edge_v_tep_vlan_id" title="Permalink to this return value"></a>
@@ -703,7 +892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_manager_fqdn"></div>
                     <b>nsx_manager_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_manager_fqdn" title="Permalink to this return value"></a>
@@ -722,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_manager_initial_password"></div>
                     <b>nsx_manager_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_manager_initial_password" title="Permalink to this return value"></a>
@@ -740,7 +929,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_manager_private_ip_id"></div>
                     <b>nsx_manager_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_manager_private_ip_id" title="Permalink to this return value"></a>
@@ -758,7 +947,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_manager_username"></div>
                     <b>nsx_manager_username</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_manager_username" title="Permalink to this return value"></a>
@@ -776,7 +965,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_overlay_segment_name"></div>
                     <b>nsx_overlay_segment_name</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_overlay_segment_name" title="Permalink to this return value"></a>
@@ -794,7 +983,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/nsx_v_tep_vlan_id"></div>
                     <b>nsx_v_tep_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/nsx_v_tep_vlan_id" title="Permalink to this return value"></a>
@@ -814,7 +1003,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/provisioning_subnet_id"></div>
                     <b>provisioning_subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/provisioning_subnet_id" title="Permalink to this return value"></a>
@@ -832,7 +1021,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/provisioning_vlan_id"></div>
                     <b>provisioning_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/provisioning_vlan_id" title="Permalink to this return value"></a>
@@ -850,7 +1039,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/replication_vlan_id"></div>
                     <b>replication_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/replication_vlan_id" title="Permalink to this return value"></a>
@@ -868,7 +1057,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/ssh_authorized_keys"></div>
                     <b>ssh_authorized_keys</b>
                     <a class="ansibleOptionLink" href="#return-sddc/ssh_authorized_keys" title="Permalink to this return value"></a>
@@ -888,7 +1077,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-sddc/time_created" title="Permalink to this return value"></a>
@@ -907,7 +1096,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/time_hcx_billing_cycle_end"></div>
+                    <b>time_hcx_billing_cycle_end</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/time_hcx_billing_cycle_end" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time current HCX Enterprise billing cycle ends, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/time_hcx_license_status_updated"></div>
+                    <b>time_hcx_license_status_updated</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/time_hcx_license_status_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the SDDC&#x27;s HCX on-premise license status was updated, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
+                                            <div>Example: `2016-08-25T21:10:29.600Z`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-sddc/time_updated" title="Permalink to this return value"></a>
@@ -925,7 +1152,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vcenter_fqdn"></div>
                     <b>vcenter_fqdn</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vcenter_fqdn" title="Permalink to this return value"></a>
@@ -944,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vcenter_initial_password"></div>
                     <b>vcenter_initial_password</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vcenter_initial_password" title="Permalink to this return value"></a>
@@ -962,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vcenter_private_ip_id"></div>
                     <b>vcenter_private_ip_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vcenter_private_ip_id" title="Permalink to this return value"></a>
@@ -980,7 +1207,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vcenter_username"></div>
                     <b>vcenter_username</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vcenter_username" title="Permalink to this return value"></a>
@@ -998,7 +1225,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vmotion_vlan_id"></div>
                     <b>vmotion_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vmotion_vlan_id" title="Permalink to this return value"></a>
@@ -1018,7 +1245,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vmware_software_version"></div>
                     <b>vmware_software_version</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vmware_software_version" title="Permalink to this return value"></a>
@@ -1038,7 +1265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vsan_vlan_id"></div>
                     <b>vsan_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vsan_vlan_id" title="Permalink to this return value"></a>
@@ -1058,7 +1285,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/vsphere_vlan_id"></div>
                     <b>vsphere_vlan_id</b>
                     <a class="ansibleOptionLink" href="#return-sddc/vsphere_vlan_id" title="Permalink to this return value"></a>
@@ -1078,7 +1305,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sddc/workload_network_cidr"></div>
                     <b>workload_network_cidr</b>
                     <a class="ansibleOptionLink" href="#return-sddc/workload_network_cidr" title="Permalink to this return value"></a>

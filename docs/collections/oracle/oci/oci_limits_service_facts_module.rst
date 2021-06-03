@@ -20,7 +20,7 @@ oracle.oci.oci_limits_service_facts -- Fetches details about one or multiple Ser
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
-- Returns the list of supported services. This will include the programmatic service name, along with the friendly service name.
+- Returns the list of supported services. This includes the programmatic service name, along with the friendly service name.
 
 
 .. Aliases
@@ -263,7 +263,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default it will be ascending.</div>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default, it is ascending.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -375,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The service name. Use this when calling the other APIs.</div>
+                                            <div>The service name. Use this when calling other APIs.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>

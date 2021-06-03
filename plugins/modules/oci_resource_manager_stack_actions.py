@@ -161,6 +161,25 @@ stack:
                     returned: on success
                     type: string
                     sample: branch_name_example
+                region:
+                    description:
+                        - "The name of the bucket's region.
+                          Example: `PHX`"
+                    returned: on success
+                    type: string
+                    sample: PHX
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: string
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the Terraform configuration files.
+                    returned: on success
+                    type: string
+                    sample: bucket_name_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -169,13 +188,6 @@ stack:
                     returned: on success
                     type: string
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                region:
-                    description:
-                        - The region to use for creating the stack. The new stack will include definitions for
-                          supported resource types in this region.
-                    returned: on success
-                    type: string
-                    sample: region_example
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -246,8 +258,10 @@ stack:
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
+            "region": "PHX",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
             "services_to_discover": []
         },
         "variables": {},

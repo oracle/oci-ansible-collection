@@ -6,53 +6,65 @@
 # See LICENSE.TXT for details.
 
 # ===========================================================================================
-- name: Delete instances
+- name: Delete instance 1
   oci_compute_instance:
-    id: '{{ item }}'
+    id: "{{ first_instance_id }}"
     state: 'absent'
-  with_items:
-    - "{{ first_instance_id }}"
-    - "{{ second_instance_id }}"
+  when: first_instance_id is defined
+# ===========================================================================================
+- name: Delete instance 2
+  oci_compute_instance:
+    id: "{{ second_instance_id }}"
+    state: 'absent'
+  when: second_instance_id is defined
 # ===========================================================================================
 - name: Delete Export
   oci_file_storage_export:
     id: "{{ export_id }}"
     state: 'absent'
+  when: export_id is defined
 # ===========================================================================================
 - name: Delete Mount Target
   oci_file_storage_mount_target:
     id: "{{ mount_target_id }}"
     state: 'absent'
+  when: mount_target_id is defined
 # ===========================================================================================
 - name: Delete File System
   oci_file_storage_file_system:
     id: "{{ file_system_id }}"
     state: 'absent'
+  when: file_system_id is defined
 # ===========================================================================================
 - name: Delete subnets
   oci_network_subnet:
     subnet_id: '{{ sample_subnet_id_ad2 }}'
     state: 'absent'
+  when: sample_subnet_id_ad2 is defined
 # ===========================================================================================
 - name: Delete Route Table
   oci_network_route_table:
     id: "{{ sample_rt_id }}"
     state: 'absent'
+  when: sample_rt_id is defined
 # ===========================================================================================
 - name: Delete Security List
   oci_network_security_list:
     id: "{{ sample_sec_list_id }}"
     state: 'absent'
+  when: sample_sec_list_id is defined
 # ===========================================================================================
 - name: Delete internet gateway
   oci_network_internet_gateway:
     id: "{{ sample_ig_id }}"
     state: 'absent'
+  when: sample_ig_id is defined
 # ===========================================================================================
 - name: Delete  VCN
   oci_network_vcn:
     vcn_id: "{{ sample_vcn_id }}"
     state: 'absent'
+  when: sample_vcn_id is defined
 # ===========================================================================================
 - name: Clean artifact path
   file:

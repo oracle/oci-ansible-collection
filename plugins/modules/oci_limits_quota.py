@@ -164,7 +164,7 @@ quota:
             sample: description_example
         time_created:
             description:
-                - "Date and time the quota was created, in the format defined by RFC3339.
+                - "Date and time the quota was created, in the format defined by RFC 3339.
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

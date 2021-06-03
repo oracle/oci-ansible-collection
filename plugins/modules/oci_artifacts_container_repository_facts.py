@@ -194,6 +194,12 @@ container_repositories:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        billable_size_in_gbs:
+            description:
+                - Total storage size in GBs that will be charged.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",
@@ -210,7 +216,8 @@ container_repositories:
             "format": "TEXT_MARKDOWN"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_last_pushed": "2013-10-20T19:20:30+01:00"
+        "time_last_pushed": "2013-10-20T19:20:30+01:00",
+        "billable_size_in_gbs": 56
     }]
 """
 

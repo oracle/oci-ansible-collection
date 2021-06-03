@@ -164,8 +164,10 @@ esxi_hosts:
             sample: CREATING
         current_sku:
             description:
-                - Billing option selected during SDDC creation.
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
             type: string
             sample: HOUR

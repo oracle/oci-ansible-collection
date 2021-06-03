@@ -23,9 +23,13 @@ module: oci_ocvp_sddc_actions
 short_description: Perform actions on a Sddc resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Sddc resource in Oracle Cloud Infrastructure
+    - For I(action=cancel_downgrade_hcx), cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced
     - For I(action=change_compartment), moves an SDDC into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=downgrade_hcx), downgrade the specified SDDC from HCX Enterprise to HCX Advanced
+    - For I(action=refresh_hcx_license_status), refresh HCX on-premise licenses status of the specified SDDC.
+    - For I(action=upgrade_hcx), upgrade the specified SDDC from HCX Advanced to HCX Enterprise.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,24 +43,53 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move
               the SDDC to.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    reserving_hcx_on_premise_license_keys:
+        description:
+            - The HCX on-premise licenses keys to be reserved when downgrade from HCX Enterprise to HCX Advanced.
+            - Required for I(action=downgrade_hcx).
+        type: list
     action:
         description:
             - The action to perform on the Sddc.
         type: str
         required: true
         choices:
+            - "cancel_downgrade_hcx"
             - "change_compartment"
-extends_documentation_fragment: [ oracle.oci.oracle ]
+            - "downgrade_hcx"
+            - "refresh_hcx_license_status"
+            - "upgrade_hcx"
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action cancel_downgrade_hcx on sddc
+  oci_ocvp_sddc_actions:
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    action: cancel_downgrade_hcx
+
 - name: Perform action change_compartment on sddc
   oci_ocvp_sddc_actions:
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action downgrade_hcx on sddc
+  oci_ocvp_sddc_actions:
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    action: downgrade_hcx
+
+- name: Perform action refresh_hcx_license_status on sddc
+  oci_ocvp_sddc_actions:
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    action: refresh_hcx_license_status
+
+- name: Perform action upgrade_hcx on sddc
+  oci_ocvp_sddc_actions:
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
+    action: upgrade_hcx
 
 """
 
@@ -130,8 +163,10 @@ sddc:
             sample: 56
         initial_sku:
             description:
-                - Billing option selected during SDDC creation
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
             type: string
             sample: HOUR
@@ -416,6 +451,57 @@ sddc:
             returned: on success
             type: string
             sample: hcx_on_prem_key_example
+        is_hcx_enterprise_enabled:
+            description:
+                - Indicates whether HCX Enterprise is enabled for this SDDC.
+            returned: on success
+            type: bool
+            sample: true
+        is_hcx_pending_downgrade:
+            description:
+                - Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.
+            returned: on success
+            type: bool
+            sample: true
+        hcx_on_prem_licenses:
+            description:
+                - The activation licenses to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
+            returned: on success
+            type: complex
+            contains:
+                activation_key:
+                    description:
+                        - HCX on-premise license key value
+                    returned: on success
+                    type: string
+                    sample: activation_key_example
+                status:
+                    description:
+                        - status of HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: AVAILABLE
+                system_name:
+                    description:
+                        - Name of the system that consumed the HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: system_name_example
+        time_hcx_billing_cycle_end:
+            description:
+                - The date and time current HCX Enterprise billing cycle ends, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
+        time_hcx_license_status_updated:
+            description:
+                - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -491,6 +577,15 @@ sddc:
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",
+        "is_hcx_enterprise_enabled": true,
+        "is_hcx_pending_downgrade": true,
+        "hcx_on_prem_licenses": [{
+            "activation_key": "activation_key_example",
+            "status": "AVAILABLE",
+            "system_name": "system_name_example"
+        }],
+        "time_hcx_billing_cycle_end": "2016-08-25T21:10:29.600Z",
+        "time_hcx_license_status_updated": "2016-08-25T21:10:29.600Z",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -512,6 +607,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.ocvp import SddcClient
     from oci.ocvp.models import ChangeSddcCompartmentDetails
+    from oci.ocvp.models import DowngradeHcxDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -521,7 +617,11 @@ except ImportError:
 class SddcActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        cancel_downgrade_hcx
         change_compartment
+        downgrade_hcx
+        refresh_hcx_license_status
+        upgrade_hcx
     """
 
     @staticmethod
@@ -537,6 +637,21 @@ class SddcActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_sddc, sddc_id=self.module.params.get("sddc_id"),
+        )
+
+    def cancel_downgrade_hcx(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.cancel_downgrade_hcx,
+            call_fn_args=(),
+            call_fn_kwargs=dict(sddc_id=self.module.params.get("sddc_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_compartment(self):
@@ -562,6 +677,57 @@ class SddcActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def downgrade_hcx(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, DowngradeHcxDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.downgrade_hcx,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                downgrade_hcx_details=action_details,
+                sddc_id=self.module.params.get("sddc_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def refresh_hcx_license_status(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.refresh_hcx_license_status,
+            call_fn_args=(),
+            call_fn_kwargs=dict(sddc_id=self.module.params.get("sddc_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def upgrade_hcx(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.upgrade_hcx,
+            call_fn_args=(),
+            call_fn_kwargs=dict(sddc_id=self.module.params.get("sddc_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 SddcActionsHelperCustom = get_custom_class("SddcActionsHelperCustom")
 
@@ -572,13 +738,24 @@ class ResourceHelper(SddcActionsHelperCustom, SddcActionsHelperGen):
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=False, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
             sddc_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            compartment_id=dict(type="str"),
+            reserving_hcx_on_premise_license_keys=dict(type="list"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "cancel_downgrade_hcx",
+                    "change_compartment",
+                    "downgrade_hcx",
+                    "refresh_hcx_license_status",
+                    "upgrade_hcx",
+                ],
+            ),
         )
     )
 

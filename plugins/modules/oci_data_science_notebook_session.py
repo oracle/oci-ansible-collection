@@ -73,6 +73,20 @@ options:
                       be in a VCN with a NAT gateway for egress to the internet.
                 type: str
                 required: true
+            notebook_session_shape_config_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                        type: float
+                    memory_in_gbs:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in
+                              GBs.
+                        type: float
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -112,7 +126,7 @@ EXAMPLES = """
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
+      shape: VM.Standard.E3.Flex
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -120,7 +134,7 @@ EXAMPLES = """
     display_name: My NotebookSession
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
+      shape: VM.Standard.E3.Flex
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -129,7 +143,7 @@ EXAMPLES = """
   oci_data_science_notebook_session:
     display_name: My NotebookSession
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
+      shape: VM.Standard.E3.Flex
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -203,7 +217,7 @@ notebook_session:
                           using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
                     type: string
-                    sample: VM.Standard2.1
+                    sample: VM.Standard.E3.Flex
                 block_storage_size_in_gbs:
                     description:
                         - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
@@ -218,6 +232,25 @@ notebook_session:
                     returned: on success
                     type: string
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                notebook_session_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 64.0
+                        memory_in_gbs:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
+                                  in GBs.
+                            returned: on success
+                            type: float
+                            sample: 1024.0
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -260,9 +293,13 @@ notebook_session:
         "created_by": "created_by_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "notebook_session_configuration_details": {
-            "shape": "VM.Standard2.1",
+            "shape": "VM.Standard.E3.Flex",
             "block_storage_size_in_gbs": 1024,
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "notebook_session_shape_config_details": {
+                "ocpus": 64.0,
+                "memory_in_gbs": 1024.0
+            }
         },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",
@@ -422,6 +459,12 @@ def main():
                     shape=dict(type="str", required=True),
                     block_storage_size_in_gbs=dict(type="int"),
                     subnet_id=dict(type="str", required=True),
+                    notebook_session_shape_config_details=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                        ),
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),

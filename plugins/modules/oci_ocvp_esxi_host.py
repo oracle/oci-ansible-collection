@@ -53,9 +53,10 @@ options:
         aliases: ["name"]
     current_sku:
         description:
-            - Billing option selected during SDDC creation.
-              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
-            - Required for create using I(state=present).
+            - "Billing option selected during SDDC creation.
+              Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+              HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
         type: str
         choices:
             - "HOUR"
@@ -112,7 +113,6 @@ EXAMPLES = """
 - name: Create esxi_host
   oci_ocvp_esxi_host:
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
-    current_sku: HOUR
 
 - name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_esxi_host:
@@ -204,8 +204,10 @@ esxi_host:
             sample: CREATING
         current_sku:
             description:
-                - Billing option selected during SDDC creation.
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
             type: string
             sample: HOUR

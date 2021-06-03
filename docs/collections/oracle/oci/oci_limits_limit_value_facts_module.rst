@@ -20,7 +20,7 @@ oracle.oci.oci_limits_limit_value_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter entries by availability domain. This implies that only AD-specific values will be returned.</div>
+                                            <div>Filter entries by availability domain. This implies that only AD-specific values are returned.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -275,7 +275,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The target service name</div>
+                                            <div>The target service name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -293,7 +293,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. We will be implicitly sorting by availabilityDomain, as a second level field, if available.</div>
+                                            <div>The field to sort by. The sorting is by availabilityDomain, as a second level field, if available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -312,7 +312,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default it will be ascending.</div>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default, it is ascending.</div>
                                                         </td>
             </tr>
                                 <tr>

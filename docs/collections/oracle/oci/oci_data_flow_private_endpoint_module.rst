@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_private_endpoint -- Manage a PrivateEndpoint resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a PrivateEndpoint resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a private endpoint to be used by an application.
+- For *state=present*, creates a private endpoint to be used by applications.
 - This resource has the following action operations in the :ref:`oci_private_endpoint_actions <ansible_collections.oci_private_endpoint_actions_module>` module: change_compartment.
 
 

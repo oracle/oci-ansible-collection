@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.23.0] - 2021-06-03
+
+## Added
+- Option hostname_format_preferences in inventory plugin which allows a list of preferred hostname formats which can be specified using jinja 2 template expressions
+- Support for OCI Bastion service
+- Support for Generic Artifacts Service
+- Support in Database Management Service for getting the AWR database report for the specific database
+- Support in Database Management Service for getting the AWR SQL report for a specific SQL
+- Support in Database Management Service to list the AWR snapshots of the specified database
+- Support in Database Management Service to list AWR database information on snapshot
+- Support for getting Automatic Workload Repository (AWR) data on external databases in the Database Management service
+- Support for new field `isDynamic` in the response objects of (`oci limits definition list`) command
+- Support for creation of Notebook Sessions with larger block volumes through the Data Science service
+- Support for the VM.Standard.E3.Flex Flexible Compute Shape with customizable OCPUs and memory for Data Science Notebooks
+- Support for getting billable image sizes in the Compute service
+- Support for Object Storage Configuration Source for Resource Manager Service
+- Support for database maintenance run patch modes in the Database service
+- Support for spark-submit compatible options in DataFlow service
+- Support for the HCX Enterprise add-on in the VMware Solution service
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.22.0] - 2021-05-20
 
 ## Added

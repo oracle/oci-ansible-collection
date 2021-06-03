@@ -299,6 +299,25 @@ jobs:
                     returned: on success
                     type: string
                     sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+                region:
+                    description:
+                        - "The name of the bucket's region.
+                          Example: `PHX`"
+                    returned: on success
+                    type: string
+                    sample: PHX
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: string
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the Terraform configuration files.
+                    returned: on success
+                    type: string
+                    sample: bucket_name_example
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -346,7 +365,10 @@ jobs:
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
-            "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+            "commit_id": "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx",
+            "region": "PHX",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

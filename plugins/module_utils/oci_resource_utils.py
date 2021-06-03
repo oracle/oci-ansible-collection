@@ -468,7 +468,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def does_resource_exist(self):
         try:
-            self.get_resource()
+            resource = self.get_resource().data
+            if self.is_resource_dead(resource):
+                return False
         except ServiceError as se:
             if se.status == 404:
                 return False
@@ -527,8 +529,25 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         return []
 
     def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
-        if self.module.params.get("key_by") is not None:
-            return self.module.params["key_by"]
+        key_by_params_list = self.module.params.get("key_by")
+        not_supported_params_list = []
+        if key_by_params_list:
+            for attribute in key_by_params_list:
+                if attribute not in self.module.params:
+                    not_supported_params_list.append(attribute)
+            if not_supported_params_list:
+                _debug(
+                    "{0} attributes are not supported by module for key_by keyword".format(
+                        not_supported_params_list
+                    )
+                )
+                # Display warning message in terminal while running playbook
+                self.module.warn(
+                    "{0} attributes are not supported by module for key_by keyword".format(
+                        not_supported_params_list
+                    )
+                )
+            return key_by_params_list
         return [
             attr
             for attr in create_model.attribute_map
