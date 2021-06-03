@@ -27,6 +27,7 @@ description:
       You can create a stack from a Terraform configuration.
       The Terraform configuration can be directly uploaded or referenced from a source code control system.
       You can also create a stack from an existing compartment.
+      You can also upload the Terraform configuration from an Object Storage bucket.
       For more information, see
       L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).
     - "This resource has the following action operations in the M(oci_stack_actions) module: change_compartment, detect_stack_drift."
@@ -66,6 +67,7 @@ options:
                 choices:
                     - "ZIP_UPLOAD"
                     - "GIT_CONFIG_SOURCE"
+                    - "OBJECT_STORAGE_CONFIG_SOURCE"
                     - "COMPARTMENT_CONFIG_SOURCE"
                     - "TEMPLATE_CONFIG_SOURCE"
                 required: true
@@ -102,17 +104,33 @@ options:
                     - This parameter is updatable.
                     - Applicable when config_source_type is 'GIT_CONFIG_SOURCE'
                 type: str
+            region:
+                description:
+                    - "The name of the bucket's region.
+                      Example: `PHX`"
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
+                    - Required when config_source_type is one of ['COMPARTMENT_CONFIG_SOURCE', 'OBJECT_STORAGE_CONFIG_SOURCE']
+                type: str
+            namespace:
+                description:
+                    - The Object Storage namespace that contains the bucket.
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
+                    - Required when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
+                type: str
+            bucket_name:
+                description:
+                    - The name of the bucket that contains the Terraform configuration files.
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
+                    - Required when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
+                type: str
             compartment_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for creating the stack.
                       The new stack will include definitions for supported resource types in scope of the specified compartment OCID (tenancy level for root
                       compartment, compartment level otherwise).
-                    - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
-                type: str
-            region:
-                description:
-                    - The region to use for creating the stack. The new stack will include definitions for
-                      supported resource types in this region.
                     - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
                 type: str
             services_to_discover:
@@ -296,6 +314,25 @@ stack:
                     returned: on success
                     type: string
                     sample: branch_name_example
+                region:
+                    description:
+                        - "The name of the bucket's region.
+                          Example: `PHX`"
+                    returned: on success
+                    type: string
+                    sample: PHX
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: string
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the Terraform configuration files.
+                    returned: on success
+                    type: string
+                    sample: bucket_name_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -304,13 +341,6 @@ stack:
                     returned: on success
                     type: string
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                region:
-                    description:
-                        - The region to use for creating the stack. The new stack will include definitions for
-                          supported resource types in this region.
-                    returned: on success
-                    type: string
-                    sample: region_example
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -381,8 +411,10 @@ stack:
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
+            "region": "PHX",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
             "services_to_discover": []
         },
         "variables": {},
@@ -534,6 +566,7 @@ def main():
                         choices=[
                             "ZIP_UPLOAD",
                             "GIT_CONFIG_SOURCE",
+                            "OBJECT_STORAGE_CONFIG_SOURCE",
                             "COMPARTMENT_CONFIG_SOURCE",
                             "TEMPLATE_CONFIG_SOURCE",
                         ],
@@ -543,8 +576,10 @@ def main():
                     configuration_source_provider_id=dict(type="str"),
                     repository_url=dict(type="str"),
                     branch_name=dict(type="str"),
-                    compartment_id=dict(type="str"),
                     region=dict(type="str"),
+                    namespace=dict(type="str"),
+                    bucket_name=dict(type="str"),
+                    compartment_id=dict(type="str"),
                     services_to_discover=dict(type="list"),
                     template_id=dict(type="str"),
                 ),

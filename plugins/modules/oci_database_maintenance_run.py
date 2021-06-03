@@ -52,6 +52,14 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch to be applied in the maintenance run.
             - This parameter is updatable.
         type: str
+    patching_mode:
+        description:
+            - "Maintenance method, it will be either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ROLLING"
+            - "NONROLLING"
     state:
         description:
             - The state of the MaintenanceRun.
@@ -172,6 +180,18 @@ maintenance_run:
             returned: on success
             type: string
             sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        patching_mode:
+            description:
+                - "Maintenance method, it will be either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+            returned: on success
+            type: string
+            sample: ROLLING
+        patch_failure_count:
+            description:
+                - Contain the patch failure count.
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -187,7 +207,9 @@ maintenance_run:
         "maintenance_type": "PLANNED",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_subtype": "QUARTERLY",
-        "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "patching_mode": "ROLLING",
+        "patch_failure_count": 56
     }
 """
 
@@ -289,6 +311,7 @@ def main():
             time_scheduled=dict(type="str"),
             is_patch_now_enabled=dict(type="bool"),
             patch_id=dict(type="str"),
+            patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

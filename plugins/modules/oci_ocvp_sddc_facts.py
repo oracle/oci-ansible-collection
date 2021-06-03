@@ -166,8 +166,10 @@ sddcs:
             sample: 56
         initial_sku:
             description:
-                - Billing option selected during SDDC creation
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
             type: string
             sample: HOUR
@@ -452,6 +454,57 @@ sddcs:
             returned: on success
             type: string
             sample: hcx_on_prem_key_example
+        is_hcx_enterprise_enabled:
+            description:
+                - Indicates whether HCX Enterprise is enabled for this SDDC.
+            returned: on success
+            type: bool
+            sample: true
+        is_hcx_pending_downgrade:
+            description:
+                - Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.
+            returned: on success
+            type: bool
+            sample: true
+        hcx_on_prem_licenses:
+            description:
+                - The activation licenses to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
+            returned: on success
+            type: complex
+            contains:
+                activation_key:
+                    description:
+                        - HCX on-premise license key value
+                    returned: on success
+                    type: string
+                    sample: activation_key_example
+                status:
+                    description:
+                        - status of HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: AVAILABLE
+                system_name:
+                    description:
+                        - Name of the system that consumed the HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: system_name_example
+        time_hcx_billing_cycle_end:
+            description:
+                - The date and time current HCX Enterprise billing cycle ends, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
+        time_hcx_license_status_updated:
+            description:
+                - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -527,6 +580,15 @@ sddcs:
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",
+        "is_hcx_enterprise_enabled": true,
+        "is_hcx_pending_downgrade": true,
+        "hcx_on_prem_licenses": [{
+            "activation_key": "activation_key_example",
+            "status": "AVAILABLE",
+            "system_name": "system_name_example"
+        }],
+        "time_hcx_billing_cycle_end": "2016-08-25T21:10:29.600Z",
+        "time_hcx_license_status_updated": "2016-08-25T21:10:29.600Z",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

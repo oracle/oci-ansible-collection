@@ -31,6 +31,53 @@ class SddcHelperCustom:
         return int(6 * 3600)
 
 
+class SddcActionsHelperCustom:
+    CANCEL_DOWNGRADE_HCX_ACTION_KEY = "cancel_downgrade_hcx"
+    DOWNGRADE_HCX_ACTION_KEY = "downgrade_hcx"
+    UPGRADE_HCX_ACTION_KEY = "upgrade_hcx"
+
+    def is_action_necessary(self, action, resource=None):
+        if action == self.DOWNGRADE_HCX_ACTION_KEY:
+            if hasattr(resource, "is_hcx_enterprise_enabled") and hasattr(
+                resource, "is_hcx_pending_downgrade"
+            ):
+                if (
+                    resource.is_hcx_enterprise_enabled
+                    and not resource.is_hcx_pending_downgrade
+                ):
+                    return True
+                return False
+            return True
+        elif action == self.CANCEL_DOWNGRADE_HCX_ACTION_KEY:
+            if hasattr(resource, "is_hcx_pending_downgrade") and hasattr(
+                resource, "is_hcx_enterprise_enabled"
+            ):
+                if (
+                    resource.is_hcx_enterprise_enabled
+                    and resource.is_hcx_pending_downgrade
+                ):
+                    return True
+                return False
+            return True
+        elif action == self.UPGRADE_HCX_ACTION_KEY:
+            if hasattr(resource, "is_hcx_enterprise_enabled") and hasattr(
+                resource, "is_hcx_pending_downgrade"
+            ):
+                if (
+                    resource.is_hcx_enterprise_enabled
+                    and not resource.is_hcx_pending_downgrade
+                ):
+                    return False
+                return True
+            return True
+        return super(SddcActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+    def get_waiter_client(self):
+        return oci_config_utils.create_service_client(self.module, WorkRequestClient)
+
+
 class EsxiHostHelperCustom:
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)

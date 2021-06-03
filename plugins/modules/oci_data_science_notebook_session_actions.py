@@ -128,7 +128,7 @@ notebook_session:
                           using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
                     type: string
-                    sample: VM.Standard2.1
+                    sample: VM.Standard.E3.Flex
                 block_storage_size_in_gbs:
                     description:
                         - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
@@ -143,6 +143,25 @@ notebook_session:
                     returned: on success
                     type: string
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                notebook_session_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 64.0
+                        memory_in_gbs:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
+                                  in GBs.
+                            returned: on success
+                            type: float
+                            sample: 1024.0
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -185,9 +204,13 @@ notebook_session:
         "created_by": "created_by_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "notebook_session_configuration_details": {
-            "shape": "VM.Standard2.1",
+            "shape": "VM.Standard.E3.Flex",
             "block_storage_size_in_gbs": 1024,
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "notebook_session_shape_config_details": {
+                "ocpus": 64.0,
+                "memory_in_gbs": 1024.0
+            }
         },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",

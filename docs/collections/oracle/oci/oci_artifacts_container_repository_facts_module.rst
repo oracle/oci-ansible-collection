@@ -20,7 +20,7 @@ oracle.oci.oci_artifacts_container_repository_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -421,10 +421,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ContainerRepository resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerrepo.oc1..exampleuniqueID&#x27;, &#x27;image_count&#x27;: 56, &#x27;is_immutable&#x27;: True, &#x27;is_public&#x27;: True, &#x27;layer_count&#x27;: 56, &#x27;layers_size_in_bytes&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;AVAILABLE&#x27;, &#x27;readme&#x27;: {&#x27;content&#x27;: &#x27;content_example&#x27;, &#x27;format&#x27;: &#x27;TEXT_MARKDOWN&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_pushed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;billable_size_in_gbs&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.containerrepo.oc1..exampleuniqueID&#x27;, &#x27;image_count&#x27;: 56, &#x27;is_immutable&#x27;: True, &#x27;is_public&#x27;: True, &#x27;layer_count&#x27;: 56, &#x27;layers_size_in_bytes&#x27;: 56, &#x27;lifecycle_state&#x27;: &#x27;AVAILABLE&#x27;, &#x27;readme&#x27;: {&#x27;content&#x27;: &#x27;content_example&#x27;, &#x27;format&#x27;: &#x27;TEXT_MARKDOWN&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_pushed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-container_repositories/billable_size_in_gbs"></div>
+                    <b>billable_size_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-container_repositories/billable_size_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Total storage size in GBs that will be charged.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-container_repositories/compartment_id"></div>

@@ -133,7 +133,7 @@ certificates:
                 - The data of the leaf certificate in pem format.
             returned: on success
             type: string
-            sample: certificate_example
+            sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         intermediate_certificates:
             description:
                 - The intermediate certificate data associated with the certificate in pem format.
@@ -190,7 +190,7 @@ certificates:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subject_names": [],
         "time_not_valid_after": "2013-10-20T19:20:30+01:00",
-        "certificate": "certificate_example",
+        "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----",
         "intermediate_certificates": "intermediate_certificates_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

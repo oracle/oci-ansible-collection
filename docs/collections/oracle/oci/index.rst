@@ -4,10 +4,11 @@
 Oracle.Oci
 ==========
 
-Collection version 2.22.0
+Collection version 2.23.0
 
 .. toctree::
     :maxdepth: 1
+
 
 Plugin Index
 ------------
@@ -65,6 +66,11 @@ Modules
 * :ref:`oci_artifacts_container_repository <ansible_collections.oracle.oci.oci_artifacts_container_repository_module>` -- Manage a ContainerRepository resource in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_repository_actions <ansible_collections.oracle.oci.oci_artifacts_container_repository_actions_module>` -- Perform actions on a ContainerRepository resource in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_repository_facts <ansible_collections.oracle.oci.oci_artifacts_container_repository_facts_module>` -- Fetches details about one or multiple ContainerRepository resources in Oracle Cloud Infrastructure
+* :ref:`oci_artifacts_generic_artifact <ansible_collections.oracle.oci.oci_artifacts_generic_artifact_module>` -- Manage a GenericArtifact resource in Oracle Cloud Infrastructure
+* :ref:`oci_artifacts_generic_artifact_facts <ansible_collections.oracle.oci.oci_artifacts_generic_artifact_facts_module>` -- Fetches details about one or multiple GenericArtifact resources in Oracle Cloud Infrastructure
+* :ref:`oci_artifacts_repository <ansible_collections.oracle.oci.oci_artifacts_repository_module>` -- Manage a Repository resource in Oracle Cloud Infrastructure
+* :ref:`oci_artifacts_repository_actions <ansible_collections.oracle.oci.oci_artifacts_repository_actions_module>` -- Perform actions on a Repository resource in Oracle Cloud Infrastructure
+* :ref:`oci_artifacts_repository_facts <ansible_collections.oracle.oci.oci_artifacts_repository_facts_module>` -- Fetches details about one or multiple Repository resources in Oracle Cloud Infrastructure
 * :ref:`oci_audit_configuration <ansible_collections.oracle.oci.oci_audit_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oci_audit_configuration_facts <ansible_collections.oracle.oci.oci_audit_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oci_audit_event_facts <ansible_collections.oracle.oci.oci_audit_event_facts_module>` -- Fetches details about one or multiple AuditEvent resources in Oracle Cloud Infrastructure
@@ -73,6 +79,11 @@ Modules
 * :ref:`oci_autoscaling_auto_scaling_configuration_facts <ansible_collections.oracle.oci.oci_autoscaling_auto_scaling_configuration_facts_module>` -- Fetches details about one or multiple AutoScalingConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oci_autoscaling_auto_scaling_configuration_policy <ansible_collections.oracle.oci.oci_autoscaling_auto_scaling_configuration_policy_module>` -- Manage an AutoScalingConfigurationPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_autoscaling_auto_scaling_configuration_policy_facts <ansible_collections.oracle.oci.oci_autoscaling_auto_scaling_configuration_policy_facts_module>` -- Fetches details about one or multiple AutoScalingConfigurationPolicy resources in Oracle Cloud Infrastructure
+* :ref:`oci_bastion <ansible_collections.oracle.oci.oci_bastion_module>` -- Manage a Bastion resource in Oracle Cloud Infrastructure
+* :ref:`oci_bastion_actions <ansible_collections.oracle.oci.oci_bastion_actions_module>` -- Perform actions on a Bastion resource in Oracle Cloud Infrastructure
+* :ref:`oci_bastion_facts <ansible_collections.oracle.oci.oci_bastion_facts_module>` -- Fetches details about one or multiple Bastion resources in Oracle Cloud Infrastructure
+* :ref:`oci_bastion_session <ansible_collections.oracle.oci.oci_bastion_session_module>` -- Manage a Session resource in Oracle Cloud Infrastructure
+* :ref:`oci_bastion_session_facts <ansible_collections.oracle.oci.oci_bastion_session_facts_module>` -- Fetches details about one or multiple Session resources in Oracle Cloud Infrastructure
 * :ref:`oci_bds_auto_scale_config <ansible_collections.oracle.oci.oci_bds_auto_scale_config_module>` -- Manage a BdsAutoScaleConfig resource in Oracle Cloud Infrastructure
 * :ref:`oci_bds_auto_scale_config_facts <ansible_collections.oracle.oci.oci_bds_auto_scale_config_facts_module>` -- Fetches details about one or multiple BdsAutoScaleConfig resources in Oracle Cloud Infrastructure
 * :ref:`oci_bds_instance <ansible_collections.oracle.oci.oci_bds_instance_module>` -- Manage a BdsInstance resource in Oracle Cloud Infrastructure
@@ -346,6 +357,19 @@ Modules
 * :ref:`oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run <ansible_collections.oracle.oci.oci_database_maintenance_run_module>` -- Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_facts_module>` -- Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_cpu_usage_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_cpu_usage_facts_module>` -- Fetches details about a AwrDbCpuUsage resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_facts_module>` -- Fetches details about one or multiple AwrDb resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_metric_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_metric_facts_module>` -- Fetches details about a AwrDbMetric resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_param_change_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_param_change_facts_module>` -- Fetches details about a AwrDbParamChange resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_param_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_param_facts_module>` -- Fetches details about a AwrDbParam resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_report_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_report_facts_module>` -- Fetches details about a AwrDbReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_snapshot_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_snapshot_facts_module>` -- Fetches details about one or multiple AwrDbSnapshot resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_snapshot_range_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_snapshot_range_facts_module>` -- Fetches details about a AwrDbSnapshotRange resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_sql_report_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_sql_report_facts_module>` -- Fetches details about a AwrDbSqlReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_sys_stat_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_sys_stat_facts_module>` -- Fetches details about a AwrDbSysStat resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_top_wait_event_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_top_wait_event_facts_module>` -- Fetches details about a AwrDbTopWaitEvent resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_wait_event_bucket_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_wait_event_bucket_facts_module>` -- Fetches details about a AwrDbWaitEventBucket resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_awr_db_wait_event_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_wait_event_facts_module>` -- Fetches details about a AwrDbWaitEvent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_cluster_cache_metric_facts <ansible_collections.oracle.oci.oci_database_management_cluster_cache_metric_facts_module>` -- Fetches details about a ClusterCacheMetric resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_fleet_health_metrics_facts <ansible_collections.oracle.oci.oci_database_management_database_fleet_health_metrics_facts_module>` -- Fetches details about a DatabaseFleetHealthMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_home_metrics_facts <ansible_collections.oracle.oci.oci_database_management_database_home_metrics_facts_module>` -- Fetches details about a DatabaseHomeMetrics resource in Oracle Cloud Infrastructure
@@ -425,6 +449,9 @@ Modules
 * :ref:`oci_functions_function <ansible_collections.oracle.oci.oci_functions_function_module>` -- Manage a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_actions <ansible_collections.oracle.oci.oci_functions_function_actions_module>` -- Perform actions on a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_facts <ansible_collections.oracle.oci.oci_functions_function_facts_module>` -- Fetches details about one or multiple Function resources in Oracle Cloud Infrastructure
+* :ref:`oci_generic_artifacts_content_generic_artifact_content <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_module>` -- Manage a GenericArtifactContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_generic_artifacts_content_generic_artifact_content_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_facts_module>` -- Fetches details about a GenericArtifactContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_generic_artifacts_content_generic_artifact_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_facts_module>` -- Fetches details about a GenericArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration <ansible_collections.oracle.oci.oci_golden_gate_database_registration_module>` -- Manage a DatabaseRegistration resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration_actions <ansible_collections.oracle.oci.oci_golden_gate_database_registration_actions_module>` -- Perform actions on a DatabaseRegistration resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration_facts <ansible_collections.oracle.oci.oci_golden_gate_database_registration_facts_module>` -- Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
@@ -814,6 +841,7 @@ Modules
 * :ref:`oci_ons_subscription_actions <ansible_collections.oracle.oci.oci_ons_subscription_actions_module>` -- Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_confirmation_facts <ansible_collections.oracle.oci.oci_ons_subscription_confirmation_facts_module>` -- Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_facts <ansible_collections.oracle.oci.oci_ons_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_database_insights <ansible_collections.oracle.oci.oci_opsi_database_insights_module>` -- Manage a DatabaseInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` -- Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights_facts <ansible_collections.oracle.oci.oci_opsi_database_insights_facts_module>` -- Fetches details about one or multiple DatabaseInsights resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_enterprise_manager_bridge <ansible_collections.oracle.oci.oci_opsi_enterprise_manager_bridge_module>` -- Manage an EnterpriseManagerBridge resource in Oracle Cloud Infrastructure
@@ -845,6 +873,7 @@ Modules
 * :ref:`oci_opsi_sql_statistics_time_series_by_plan_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_by_plan_facts_module>` -- Fetches details about a SqlStatisticsTimeSeriesByPlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_statistics_time_series_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_facts_module>` -- Fetches details about a SqlStatisticsTimeSeries resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_texts_facts <ansible_collections.oracle.oci.oci_opsi_sql_texts_facts_module>` -- Fetches details about one or multiple SqlTexts resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_tablespace_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_tablespace_usage_trend_facts_module>` -- Fetches details about a TablespaceUsageTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_category_facts <ansible_collections.oracle.oci.oci_optimizer_category_facts_module>` -- Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_enrollment_status <ansible_collections.oracle.oci.oci_optimizer_enrollment_status_module>` -- Manage an EnrollmentStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_enrollment_status_facts <ansible_collections.oracle.oci.oci_optimizer_enrollment_status_facts_module>` -- Fetches details about one or multiple EnrollmentStatus resources in Oracle Cloud Infrastructure
@@ -1049,6 +1078,11 @@ Modules
     oci_artifacts_container_repository_module
     oci_artifacts_container_repository_actions_module
     oci_artifacts_container_repository_facts_module
+    oci_artifacts_generic_artifact_module
+    oci_artifacts_generic_artifact_facts_module
+    oci_artifacts_repository_module
+    oci_artifacts_repository_actions_module
+    oci_artifacts_repository_facts_module
     oci_audit_configuration_module
     oci_audit_configuration_facts_module
     oci_audit_event_facts_module
@@ -1057,6 +1091,11 @@ Modules
     oci_autoscaling_auto_scaling_configuration_facts_module
     oci_autoscaling_auto_scaling_configuration_policy_module
     oci_autoscaling_auto_scaling_configuration_policy_facts_module
+    oci_bastion_module
+    oci_bastion_actions_module
+    oci_bastion_facts_module
+    oci_bastion_session_module
+    oci_bastion_session_facts_module
     oci_bds_auto_scale_config_module
     oci_bds_auto_scale_config_facts_module
     oci_bds_instance_module
@@ -1330,6 +1369,19 @@ Modules
     oci_database_key_store_facts_module
     oci_database_maintenance_run_module
     oci_database_maintenance_run_facts_module
+    oci_database_management_awr_db_cpu_usage_facts_module
+    oci_database_management_awr_db_facts_module
+    oci_database_management_awr_db_metric_facts_module
+    oci_database_management_awr_db_param_change_facts_module
+    oci_database_management_awr_db_param_facts_module
+    oci_database_management_awr_db_report_facts_module
+    oci_database_management_awr_db_snapshot_facts_module
+    oci_database_management_awr_db_snapshot_range_facts_module
+    oci_database_management_awr_db_sql_report_facts_module
+    oci_database_management_awr_db_sys_stat_facts_module
+    oci_database_management_awr_db_top_wait_event_facts_module
+    oci_database_management_awr_db_wait_event_bucket_facts_module
+    oci_database_management_awr_db_wait_event_facts_module
     oci_database_management_cluster_cache_metric_facts_module
     oci_database_management_database_fleet_health_metrics_facts_module
     oci_database_management_database_home_metrics_facts_module
@@ -1409,6 +1461,9 @@ Modules
     oci_functions_function_module
     oci_functions_function_actions_module
     oci_functions_function_facts_module
+    oci_generic_artifacts_content_generic_artifact_content_module
+    oci_generic_artifacts_content_generic_artifact_content_facts_module
+    oci_generic_artifacts_content_generic_artifact_facts_module
     oci_golden_gate_database_registration_module
     oci_golden_gate_database_registration_actions_module
     oci_golden_gate_database_registration_facts_module
@@ -1798,6 +1853,7 @@ Modules
     oci_ons_subscription_actions_module
     oci_ons_subscription_confirmation_facts_module
     oci_ons_subscription_facts_module
+    oci_opsi_database_insights_module
     oci_opsi_database_insights_actions_module
     oci_opsi_database_insights_facts_module
     oci_opsi_enterprise_manager_bridge_module
@@ -1829,6 +1885,7 @@ Modules
     oci_opsi_sql_statistics_time_series_by_plan_facts_module
     oci_opsi_sql_statistics_time_series_facts_module
     oci_opsi_sql_texts_facts_module
+    oci_opsi_tablespace_usage_trend_facts_module
     oci_optimizer_category_facts_module
     oci_optimizer_enrollment_status_module
     oci_optimizer_enrollment_status_facts_module

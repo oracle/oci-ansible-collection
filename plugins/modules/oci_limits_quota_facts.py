@@ -23,7 +23,7 @@ module: oci_limits_quota_facts
 short_description: Fetches details about one or multiple Quota resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Quota resources in Oracle Cloud Infrastructure
-    - Lists all quotas on resources from the given compartment
+    - Lists all quotas on resources from the given compartment.
     - If I(quota_id) is specified, the details of a single Quota will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -45,20 +45,20 @@ options:
         type: str
     lifecycle_state:
         description:
-            - Filters returned quotas based on whether the given state.
+            - Filters returned quotas based on the given state.
         type: str
         choices:
             - "ACTIVE"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'. By default it will be ascending.
+            - The sort order to use, either 'asc' or 'desc'. By default, it is ascending.
         type: str
         choices:
             - "ASC"
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided. Time created is default ordered as descending. Display name is default ordered as
+            - The field to sort by. Only one sort order can be provided. Time created is default ordered as descending. Display name is default ordered as
               ascending.
         type: str
         choices:
@@ -118,7 +118,7 @@ quotas:
             sample: description_example
         time_created:
             description:
-                - "Date and time the quota was created, in the format defined by RFC3339.
+                - "Date and time the quota was created, in the format defined by RFC 3339.
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string

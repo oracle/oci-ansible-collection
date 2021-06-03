@@ -297,6 +297,13 @@ images:
             returned: on success
             type: int
             sample: 47694
+        billable_size_in_gbs:
+            description:
+                - The size of the internal storage for this image that is subject to billing (1 GB = 1,073,741,824 bytes).
+                - "Example: `100`"
+            returned: on success
+            type: int
+            sample: 100
         time_created:
             description:
                 - The date and time the image was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -330,6 +337,7 @@ images:
         },
         "listing_type": "COMMUNITY",
         "size_in_mbs": 47694,
+        "billable_size_in_gbs": 100,
         "time_created": "2016-08-25T21:10:29.600Z"
     }]
 """

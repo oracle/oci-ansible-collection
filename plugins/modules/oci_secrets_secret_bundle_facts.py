@@ -23,7 +23,7 @@ module: oci_secrets_secret_bundle_facts
 short_description: Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
-    - Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter.
+    - Gets a secret bundle that matches either the specified `stage`, `secretVersionName`, or `versionNumber` parameter.
       If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

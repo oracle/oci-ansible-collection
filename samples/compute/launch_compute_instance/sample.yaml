@@ -15,9 +15,9 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    vcn_name: "mytestvcn"
+    vcn_name: "ansible-sample-launch-compute-instance-vcn"
     vcn_cidr_block: "10.0.0.0/16"
-    vcn_dns_label: "mytestvcn"
+    vcn_dns_label: "samplelcs"
 
     ig_name: "myinternetgatewayformytestvcn"
 
@@ -49,67 +49,85 @@
     instance_image: "{{ lookup('env', 'SAMPLE_IMAGE_OCID') }}"
 
   tasks:
-    - import_tasks: setup.yaml
+    - block:
+      - import_tasks: setup.yaml
 
-    - name: Launch an instance
-      oci_compute_instance:
-        availability_domain: "{{ instance_ad }}"
-        compartment_id: "{{ instance_compartment }}"
-        name: "my_test_instance"
-        image_id: "{{ instance_image }}"
-        shape: "{{ instance_shape }}"
-        create_vnic_details:
-            assign_public_ip: True
-            hostname_label: "{{ instance_hostname }}"
-            subnet_id: "{{ instance_subnet_id }}"
-        metadata:
-            ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
-      register: result
+      - set_fact:
+          SSH_AUTHORIZED_KEYS: "{{ lookup('env', 'SAMPLE_PUBLIC_SSH_KEY') if 'SAMPLE_PUBLIC_SSH_KEY' in ansible_env else lookup('file',  my_test_public_key ) }}"
 
-    - name: Print instance details
-      debug:
-        msg: "Launched a new instance {{ result }}"
-    - set_fact:
-        instance_id: "{{result.instance.id }}"
+      - name: Launch an instance
+        oci_compute_instance:
+          availability_domain: "{{ instance_ad }}"
+          compartment_id: "{{ instance_compartment }}"
+          name: "my_test_instance"
+          image_id: "{{ instance_image }}"
+          shape: "{{ instance_shape }}"
+          create_vnic_details:
+              assign_public_ip: True
+              hostname_label: "{{ instance_hostname }}"
+              subnet_id: "{{ instance_subnet_id }}"
+          metadata:
+              ssh_authorized_keys: "{{ SSH_AUTHORIZED_KEYS }}"
+        register: result
 
-    - name: Get the VNIC attachment details of instance
-      oci_compute_vnic_attachment_facts:
-        compartment_id: "{{ instance_compartment }}"
-        instance_id: "{{ instance_id }}"
-      register: result
+      - name: Print instance details
+        debug:
+          msg: "Launched a new instance {{ result }}"
+      - set_fact:
+          instance_id: "{{result.instance.id }}"
 
-    - name: Get details of the VNIC
-      oci_network_vnic_facts:
-        id: "{{ result.vnic_attachments[0].vnic_id }}"
-      register: result
-    - set_fact:
-        instance_public_ip: "{{result.vnic.public_ip}}"
+      - name: Get the VNIC attachment details of instance
+        oci_compute_vnic_attachment_facts:
+          compartment_id: "{{ instance_compartment }}"
+          instance_id: "{{ instance_id }}"
+        register: result
 
-    - name: Print the public ip of the newly launched instance
-      debug:
-        msg: "Public IP of launched instance {{ instance_public_ip }}"
+      - name: Get details of the VNIC
+        oci_network_vnic_facts:
+          id: "{{ result.vnic_attachments[0].vnic_id }}"
+        register: result
+      - set_fact:
+          instance_public_ip: "{{result.vnic.public_ip}}"
 
-    - name: Wait (upto 10 minutes) for port 22 to become open
-      wait_for:
-        port: 22
-        host: '{{ instance_public_ip }}'
-        state: started
-        delay: 10
-        timeout: 600
-      vars:
-        ansible_connection: local
+      - name: Print the public ip of the newly launched instance
+        debug:
+          msg: "Public IP of launched instance {{ instance_public_ip }}"
 
-    - name: Attempt a ssh connection to the newly launced instance
-      # Use "opc" user as this is an OL image
-      # Disable SSH's strict host key checking just for this one command invocation
-      command: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }} uname -a
-      retries: 3
-      delay: 5
-      register: result
-      until: result.rc == 0
+      - name: Wait (upto 10 minutes) for port 22 to become open
+        wait_for:
+          port: 22
+          host: '{{ instance_public_ip }}'
+          state: started
+          delay: 10
+          timeout: 600
+        vars:
+          ansible_connection: local
 
-    - name: Print SSH response from launched instance
-      debug:
-        msg: "SSH response from instance -> {{ result.stdout_lines }}"
+      - set_fact:
+          # Use "opc" user as this is an OL image
+          # Disable SSH's strict host key checking just for this one command invocation
+          ssh_command_with_generated_key: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" -i {{ temp_certificates_path }}/private_key.pem opc@{{ instance_public_ip }} uname -a
+        when: "'SAMPLE_PUBLIC_SSH_KEY' not in ansible_env"
+      
+      - set_fact:
+          # Use "opc" user as this is an OL image
+          # Disable SSH's strict host key checking just for this one command invocation
+          ssh_command_with_custom_key: ssh -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" opc@{{ instance_public_ip }} uname -a
+        when: "'SAMPLE_PUBLIC_SSH_KEY' in ansible_env"
 
-    - import_tasks: teardown.yaml
+      - name: Attempt a ssh connection to the newly launched instance
+        command: "{{ ssh_command_with_custom_key if 'SAMPLE_PUBLIC_SSH_KEY' in ansible_env else ssh_command_with_generated_key }}"
+        retries: 3
+        delay: 5
+        register: result
+        until: result.rc == 0
+
+      - name: Print SSH response from launched instance
+        debug:
+          msg: "SSH response from instance -> {{ result.stdout_lines }}"
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+
+        - import_tasks: teardown.yaml

@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
+- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. You can also upload the Terraform configuration from an Object Storage bucket. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
 - This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: change_compartment, detect_stack_drift.
 
 
@@ -238,6 +238,25 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_source/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_source/bucket_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_source_type is &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;</div>
+                                            <div>Required when config_source_type is &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_source/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-config_source/compartment_id" title="Permalink to this option"></a>
@@ -266,6 +285,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>ZIP_UPLOAD</li>
                                                                                                                                                                                                 <li>GIT_CONFIG_SOURCE</li>
+                                                                                                                                                                                                <li>OBJECT_STORAGE_CONFIG_SOURCE</li>
                                                                                                                                                                                                 <li>COMPARTMENT_CONFIG_SOURCE</li>
                                                                                                                                                                                                 <li>TEMPLATE_CONFIG_SOURCE</li>
                                                                                     </ul>
@@ -296,6 +316,25 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-config_source/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#parameter-config_source/namespace" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Object Storage namespace that contains the bucket.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_source_type is &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;</div>
+                                            <div>Required when config_source_type is &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_source/region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-config_source/region" title="Permalink to this option"></a>
@@ -306,8 +345,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The region to use for creating the stack. The new stack will include definitions for supported resource types in this region.</div>
-                                            <div>Required when config_source_type is &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;</div>
+                                            <div>The name of the bucket&#x27;s region. Example: `PHX`</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_source_type is &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;</div>
+                                            <div>Required when config_source_type is one of [&#x27;COMPARTMENT_CONFIG_SOURCE&#x27;, &#x27;OBJECT_STORAGE_CONFIG_SOURCE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -723,7 +764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Stack resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;0.12.x&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;PHX&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;0.12.x&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -777,6 +818,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">branch_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stack/config_source/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#return-stack/config_source/bucket_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -840,6 +900,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-stack/config_source/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-stack/config_source/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Object Storage namespace that contains the bucket.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-stack/config_source/region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#return-stack/config_source/region" title="Permalink to this return value"></a>
@@ -849,10 +928,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The region to use for creating the stack. The new stack will include definitions for supported resource types in this region.</div>
+                                            <div>The name of the bucket&#x27;s region. Example: `PHX`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PHX</div>
                                     </td>
             </tr>
                                 <tr>

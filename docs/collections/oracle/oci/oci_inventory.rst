@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.22.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -589,7 +589,24 @@ Parameters
                                                                                             </div>
                                                                     </td>
                                                 <td>
-                                            <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. By default, hosts are listed using public IP address.</div>
+                                            <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. By default, hosts are listed using public IP address. hostname_format_preferences and hostname_format cannot be used together</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-hostname_format_preferences"></div>
+                    <b>hostname_format_preferences</b>
+                    <a class="ansibleOptionLink" href="#parameter-hostname_format_preferences" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>A list of Jinja2 expressions in order of precedence to compose inventory_hostname. Ignores expression if result is an empty string or None value. hostname_format_preferences and hostname_format cannot be used together. The instance is ignored if none of the hostname_format_preferences resulted in a non empty value</div>
                                                         </td>
             </tr>
                                 <tr>

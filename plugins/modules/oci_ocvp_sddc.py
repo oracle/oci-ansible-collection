@@ -29,7 +29,8 @@ description:
     - "**Important:** You must configure the SDDC's networking resources with the security rules detailed in L(Security Rules for Oracle Cloud VMware Solution
       SDDCs,https://docs.cloud.oracle.com/iaas/Content/VMware/Reference/ocvssecurityrules.htm). Otherwise, provisioning the SDDC will fail. The rules are based
       on the requirements set by VMware."
-    - "This resource has the following action operations in the M(oci_sddc_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oci_sddc_actions) module: cancel_downgrade_hcx, change_compartment, downgrade_hcx,
+      refresh_hcx_license_status, upgrade_hcx."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -83,9 +84,10 @@ options:
         type: int
     initial_sku:
         description:
-            - Billing option selected during SDDC creation
-              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
-            - Required for create using I(state=present).
+            - "Billing option selected during SDDC creation.
+              Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+              HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
         type: str
         choices:
             - "HOUR"
@@ -102,6 +104,10 @@ options:
               component of the VMware environment. This value is required only when `isHcxEnabled` is true.
             - This parameter is updatable.
         type: str
+    is_hcx_enterprise_enabled:
+        description:
+            - Indicates whether to enable HCX Enterprise for this SDDC.
+        type: bool
     ssh_authorized_keys:
         description:
             - One or more public SSH keys to be included in the `~/.ssh/authorized_keys` file for
@@ -224,7 +230,6 @@ EXAMPLES = """
     vmware_software_version: vmware_software_version_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     esxi_hosts_count: 56
-    initial_sku: HOUR
     ssh_authorized_keys: ssh_authorized_keys_example
     provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
     vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -343,8 +348,10 @@ sddc:
             sample: 56
         initial_sku:
             description:
-                - Billing option selected during SDDC creation
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
             type: string
             sample: HOUR
@@ -629,6 +636,57 @@ sddc:
             returned: on success
             type: string
             sample: hcx_on_prem_key_example
+        is_hcx_enterprise_enabled:
+            description:
+                - Indicates whether HCX Enterprise is enabled for this SDDC.
+            returned: on success
+            type: bool
+            sample: true
+        is_hcx_pending_downgrade:
+            description:
+                - Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.
+            returned: on success
+            type: bool
+            sample: true
+        hcx_on_prem_licenses:
+            description:
+                - The activation licenses to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
+            returned: on success
+            type: complex
+            contains:
+                activation_key:
+                    description:
+                        - HCX on-premise license key value
+                    returned: on success
+                    type: string
+                    sample: activation_key_example
+                status:
+                    description:
+                        - status of HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: AVAILABLE
+                system_name:
+                    description:
+                        - Name of the system that consumed the HCX on-premise license
+                    returned: on success
+                    type: string
+                    sample: system_name_example
+        time_hcx_billing_cycle_end:
+            description:
+                - The date and time current HCX Enterprise billing cycle ends, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
+        time_hcx_license_status_updated:
+            description:
+                - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -704,6 +762,15 @@ sddc:
         "hcx_vlan_id": "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx",
         "is_hcx_enabled": true,
         "hcx_on_prem_key": "hcx_on_prem_key_example",
+        "is_hcx_enterprise_enabled": true,
+        "is_hcx_pending_downgrade": true,
+        "hcx_on_prem_licenses": [{
+            "activation_key": "activation_key_example",
+            "status": "AVAILABLE",
+            "system_name": "system_name_example"
+        }],
+        "time_hcx_billing_cycle_end": "2016-08-25T21:10:29.600Z",
+        "time_hcx_license_status_updated": "2016-08-25T21:10:29.600Z",
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -855,6 +922,7 @@ def main():
             ),
             is_hcx_enabled=dict(type="bool"),
             hcx_vlan_id=dict(type="str"),
+            is_hcx_enterprise_enabled=dict(type="bool"),
             ssh_authorized_keys=dict(type="str"),
             workload_network_cidr=dict(type="str"),
             provisioning_subnet_id=dict(type="str"),

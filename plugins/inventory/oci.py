@@ -77,6 +77,11 @@ DOCUMENTATION = """
                           to generate inventory from all subscribed regions.
         hostnames:
              description: A list of hostnames to search for.
+        hostname_format_preferences:
+            description: A list of Jinja2 expressions in order of precedence to compose inventory_hostname.
+                         Ignores expression if result is an empty string or None value.
+                         hostname_format_preferences and hostname_format cannot be used together.
+                         The instance is ignored if none of the hostname_format_preferences resulted in a non empty value
         hostname_format:
              description: Host naming format to use. Use 'fqdn' to list hosts using the instance's
                           Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN
@@ -84,6 +89,7 @@ DOCUMENTATION = """
                           https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details.
                           Use 'public_ip' to list hosts using public IP address. Use 'private_ip' to list hosts using
                           private IP address. By default, hosts are listed using public IP address.
+                          hostname_format_preferences and hostname_format cannot be used together
              env:
                - name: OCI_HOSTNAME_FORMAT
         filters:
@@ -271,7 +277,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "freeform_tags": None,
             "defined_tags": None,
             "regions": None,
-            "strict_hostname_checking": "no",
             "filters": None,
             "primary_vnic_only": False,
             "auth_type": "api_key",
@@ -328,8 +333,38 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return os.environ.get("OCI_HOSTNAME_FORMAT")
         return "public_ip"
 
+    def _get_hostname_from_preference(self, host_vars):
+        hostname_format_preferences = (
+            self.get_option("hostname_format_preferences") or []
+        )
+        host_vars = host_vars or {}
+        hostname = None
+        for preference in hostname_format_preferences:
+            try:
+                hostname = self._compose(preference, host_vars)
+            except Exception as e:
+                self.debug(
+                    "Error occurred while composing hostname_format_preferences - {0} to hostname -  {1}".format(
+                        preference, str(e)
+                    )
+                )
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "Error occurred while composing hostname_format_preferences - {0} to hostname -  {1}".format(
+                            preference, str(e)
+                        )
+                    )
+            if hostname:
+                return hostname
+        return None
+
     def _validate_hostname_format(self):
         hostname_format = self.params.get("hostname_format")
+        hostname_format_preferences = self.get_option("hostname_format_preferences")
+        if hostname_format_preferences and self.get_option("hostname_format"):
+            raise AnsibleError(
+                "hostname_format and hostname_format_preferences cannot be used together"
+            )
         if hostname_format == "display_name" and self._fetch_db_hosts():
             raise AnsibleError(
                 "The hostname_format %s is not supported for db_hosts"
@@ -936,26 +971,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         instance_vars.update({"public_ip": vnic.public_ip})
                         instance_vars.update({"private_ip": vnic.private_ip})
 
-                    host_name = self.get_instance_host_name(
-                        instance, vnic, region=region
-                    )
-
-                    # Skip vnic which is not addressable using given hostname_format
+                    host_name = self.get_hostname(instance_vars, vnic, region)
                     if not host_name:
-                        if self.params["strict_hostname_checking"] == "yes":
-                            raise Exception(
+                        if self.get_option("strict"):
+                            raise AnsibleError(
                                 "Instance with OCID: {0} does not have a valid hostname.".format(
-                                    vnic_attachment.instance_id
+                                    instance.id
                                 )
                             )
                         self.debug(
-                            "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
-                                vnic_attachment.instance_id,
-                                self.params["hostname_format"],
+                            "hostname is {0}. Skipped instance with OCID: {1} ".format(
+                                host_name, instance.id
                             )
                         )
                         continue
-
                     host_name = self.sanitize(host_name)
 
                     groups = set(common_groups)
@@ -1040,20 +1069,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             db_host_vars.update({"subnet_id": vnic.subnet_id})
             db_host_vars.update({"public_ip": vnic.public_ip})
             db_host_vars.update({"private_ip": vnic.private_ip})
-
-            host_name = self.get_db_host_name(vnic, region=region)
-
-            # Skip host which is not addressable using hostname_format
+            host_name = self.get_hostname(db_host_vars, vnic, region)
             if not host_name:
-                if self.params["strict_hostname_checking"] == "yes":
-                    raise Exception(
-                        "Instance with OCID: {0} does not have a valid hostname.".format(
-                            db_host.id
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "DB Instance with OCID: {0} does not have a valid hostname.".format(
+                            db_host_vars.get("id")
                         )
                     )
                 self.debug(
-                    "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
-                        db_host.id, self.params["hostname_format"]
+                    "hostname is {0}. Skipped DB instance with OCID: {1}".format(
+                        host_name, db_host_vars.get(id)
                     )
                 )
                 return None
@@ -1277,8 +1303,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         return self._database_clients[region]
 
-    def get_instance_host_name(self, instance, vnic, region):
-        if self.params["hostname_format"] == "fqdn":
+    def get_hostname(self, host_vars, vnic, region):
+        if self.get_option("hostname_format_preferences"):
+            return self._get_hostname_from_preference(host_vars)
+        return self.get_host_from_hostname_format(host_vars, vnic, region)
+
+    def get_host_from_hostname_format(self, host_vars, vnic, region):
+        # This method should return public_ip by default
+        hostname_format = self.params.get("hostname_format", "public_ip")
+        if hostname_format == "fqdn":
             virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             subnet = oci_common_utils.call_with_backoff(
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
@@ -1301,49 +1334,25 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
             return fqdn
 
-        elif self.params["hostname_format"] == "private_ip":
+        elif hostname_format == "private_ip":
             self.debug(
                 "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
             )
             return vnic.private_ip
-        elif self.params.get("hostname_format") == "display_name":
+        elif hostname_format == "display_name":
+            if self._fetch_db_hosts():
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "The hostname_format %s is not supported for db_hosts"
+                        % (self.params["hostname_format"])
+                    )
+                return None
             self.debug(
                 "Display_name of instance : {0} is {1}.".format(
-                    instance.id, instance.display_name
+                    host_vars.get("id"), host_vars.get("display_name")
                 )
             )
-            return instance.display_name
-        return vnic.public_ip
-
-    def get_db_host_name(self, vnic, region):
-        if self.params["hostname_format"] == "fqdn":
-            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
-            subnet = oci_common_utils.call_with_backoff(
-                virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
-            ).data
-            vcn = oci_common_utils.call_with_backoff(
-                virtual_nw_client.get_vcn, vcn_id=subnet.vcn_id
-            ).data
-
-            oraclevcn_domain_name = ".oraclevcn.com"
-            if not (vnic.hostname_label and subnet.dns_label and vcn.dns_label):
-                return None
-            fqdn = (
-                vnic.hostname_label
-                + "."
-                + subnet.dns_label
-                + "."
-                + vcn.dns_label
-                + oraclevcn_domain_name
-            )
-            self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
-            return fqdn
-
-        elif self.params["hostname_format"] == "private_ip":
-            self.debug(
-                "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
-            )
-            return vnic.private_ip
+            return host_vars.get("display_name")
         return vnic.public_ip
 
     def _query(self, regions):
@@ -1508,16 +1517,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         regions, filters, hostnames = self._get_query_options(config_data)
 
-        # hostname format
-        self.params["hostname_format"] = self._get_hostname_format()
-
         self._validate_hostname_format()
-
-        self.debug(
-            "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
-                self.params["hostname_format"]
+        if self.get_option("hostname_format_preferences"):
+            self.debug(
+                "Using hostname_format_preferences: {0} and can be changed via the option 'hostname_format_preferences'".format(
+                    self.get_option("hostname_format_preferences")
+                )
             )
-        )
+        else:
+            self.params["hostname_format"] = self._get_hostname_format()
+            self.debug(
+                "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
+                    self.params["hostname_format"]
+                )
+            )
 
         cache_key = self.get_cache_key(path)
 

@@ -67,10 +67,17 @@ notebook_session_shapes:
             returned: on success
             type: int
             sample: 15
+        shape_series:
+            description:
+                - The family that the compute shape belongs to.
+            returned: on success
+            type: string
+            sample: AMD_ROME
     sample: [{
         "name": "VM.STANDARD2.1",
         "core_count": 1,
-        "memory_in_gbs": 15
+        "memory_in_gbs": 15,
+        "shape_series": "AMD_ROME"
     }]
 """
 
