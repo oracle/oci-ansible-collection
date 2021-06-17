@@ -246,16 +246,6 @@ class AccessRulesHelperCustom:
             self.list_resources()
         )
 
-    def get_update_model(self):
-        if self.module.params.get("access_rules"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["access_rules"]
-            ]
-        return []
-
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
         access_rules = self.get_update_model_dict_for_idempotence_check(update_model)
@@ -281,16 +271,6 @@ class CaptchasHelperCustom:
         return oci_common_utils.get_default_response_from_resource(
             self.list_resources()
         )
-
-    def get_update_model(self):
-        if self.module.params.get("captchas"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["captchas"]
-            ]
-        return []
 
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
@@ -318,16 +298,6 @@ class CachingRulesHelperCustom:
             self.list_resources()
         )
 
-    def get_update_model(self):
-        if self.module.params.get("caching_rules_details"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["caching_rules_details"]
-            ]
-        return []
-
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
         caching_rules = self.get_update_model_dict_for_idempotence_check(update_model)
@@ -353,16 +323,6 @@ class GoodBotsHelperCustom:
         return oci_common_utils.get_default_response_from_resource(
             self.list_resources()
         )
-
-    def get_update_model(self):
-        if self.module.params.get("good_bots"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["good_bots"]
-            ]
-        return []
 
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
@@ -398,16 +358,6 @@ class ThreatFeedsHelperCustom:
         return oci_common_utils.get_default_response_from_resource(
             self.list_resources()
         )
-
-    def get_update_model(self):
-        if self.module.params.get("threat_feeds"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["threat_feeds"]
-            ]
-        return []
 
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
@@ -456,16 +406,6 @@ class ProtectionRulesHelperCustom:
             self.list_resources()
         )
 
-    def get_update_model(self):
-        if self.module.params.get("protection_rules"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["protection_rules"]
-            ]
-        return []
-
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
         protection_rules = self.get_update_model_dict_for_idempotence_check(
@@ -505,18 +445,6 @@ class WaasPolicyCustomProtectionRulesHelperCustom:
             self.list_resources()
         )
 
-    def get_update_model(self):
-        if self.module.params.get("update_custom_protection_rules_details"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params[
-                    "update_custom_protection_rules_details"
-                ]
-            ]
-        return []
-
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()
         custom_protection_rules = self.get_update_model_dict_for_idempotence_check(
@@ -544,16 +472,6 @@ class WhitelistsHelperCustom:
         return oci_common_utils.get_default_response_from_resource(
             self.list_resources()
         )
-
-    def get_update_model(self):
-        if self.module.params.get("whitelists"):
-            return [
-                oci_common_utils.convert_input_data_to_model_class(
-                    resource, self.get_update_model_class()
-                )
-                for resource in self.module.params["whitelists"]
-            ]
-        return []
 
     def is_update_necessary(self, existing_resources):
         update_model = self.get_update_model()

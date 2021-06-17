@@ -28,6 +28,8 @@ description:
     - For I(action=change_compartment), move the Autonomous Database and its dependent resources to the specified compartment.
       For more information about moving Autonomous Databases, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
+    - For I(action=configure_autonomous_database_vault_key), configures the Autonomous Database Vault service
+      L(key,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
     - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
     - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
@@ -62,6 +64,22 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
             - Required for I(action=change_compartment).
         type: str
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: str
+    is_using_oracle_managed_keys:
+        description:
+            - True if disable Customer Managed Keys and use Oracle Managed Keys.
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: bool
     pdb_admin_password:
         description:
             - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
@@ -123,6 +141,7 @@ options:
         choices:
             - "autonomous_database_manual_refresh"
             - "change_compartment"
+            - "configure_autonomous_database_vault_key"
             - "deregister_autonomous_database_data_safe"
             - "disable_autonomous_database_operations_insights"
             - "enable_autonomous_database_operations_insights"
@@ -149,6 +168,11 @@ EXAMPLES = """
     compartment_id: "ocid.compartment.oc1..unique_ID"
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: "change_compartment"
+
+- name: Perform action configure_autonomous_database_vault_key on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: configure_autonomous_database_vault_key
 
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
@@ -248,6 +272,25 @@ autonomous_database:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_lifecycle_details:
+            description:
+                - KMS key lifecycle details.
+            returned: on success
+            type: string
+            sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
@@ -301,6 +344,32 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: NONE
+        key_history_entry:
+            description:
+                - Key History Entry.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
+                          service key management history entry.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vault_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+                time_activated:
+                    description:
+                        - The date and time the kms key activated.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -777,6 +846,9 @@ autonomous_database:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -786,6 +858,11 @@ autonomous_database:
             "manual_backup_bucket_name": "manual_backup_bucket_name_example",
             "manual_backup_type": "NONE"
         },
+        "key_history_entry": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_activated": "2013-10-20T19:20:30+01:00"
+        }],
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -876,6 +953,7 @@ try:
     from oci.database import DatabaseClient
     from oci.database.models import AutonomousDatabaseManualRefreshDetails
     from oci.database.models import ChangeCompartmentDetails
+    from oci.database.models import ConfigureAutonomousDatabaseVaultKeyDetails
     from oci.database.models import DeregisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import GenerateAutonomousDatabaseWalletDetails
     from oci.database.models import RegisterAutonomousDatabaseDataSafeDetails
@@ -891,6 +969,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         autonomous_database_manual_refresh
         change_compartment
+        configure_autonomous_database_vault_key
         deregister_autonomous_database_data_safe
         disable_autonomous_database_operations_insights
         enable_autonomous_database_operations_insights
@@ -958,6 +1037,27 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 change_compartment_details=action_details,
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def configure_autonomous_database_vault_key(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ConfigureAutonomousDatabaseVaultKeyDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.configure_autonomous_database_vault_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                configure_autonomous_database_vault_key_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1212,6 +1312,9 @@ def main():
             autonomous_database_id=dict(aliases=["id"], type="str", required=True),
             time_refresh_cutoff=dict(type="str"),
             compartment_id=dict(type="str"),
+            kms_key_id=dict(type="str"),
+            vault_id=dict(type="str"),
+            is_using_oracle_managed_keys=dict(type="bool"),
             pdb_admin_password=dict(type="str", no_log=True),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
@@ -1226,6 +1329,7 @@ def main():
                 choices=[
                     "autonomous_database_manual_refresh",
                     "change_compartment",
+                    "configure_autonomous_database_vault_key",
                     "deregister_autonomous_database_data_safe",
                     "disable_autonomous_database_operations_insights",
                     "enable_autonomous_database_operations_insights",

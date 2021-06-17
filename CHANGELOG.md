@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.24.0] - 2021-06-17
+
+## Added
+- Support for filtering options `exclude_host_filters` and `include_host_filters` in the Inventory plugin. Both 
+  options take a list of Jinja2 conditional expressions.
+- Support for Java Management Service
+- Support for Database Migration Service
+- Support for Application Performance Monitoring Control Plane
+- Support for Application Performance Monitoring Synthetic Monitoring
+- Support for configure autonomous database KMS key
+- Support for creating database software images from an existing db-home
+- Support for listing Secret Bundles by secret name and valultId
+
+## Fixed
+- Inventory plugin issue for VMWare instances.
+- Idempotency for Generic Artifact Content upload.
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.23.0] - 2021-06-03
 
 ## Added

@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_version_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -226,6 +226,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>If provided, filters the results to the set of database versions which are supported for the given shape.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_database_software_image_supported"></div>
+                    <b>is_database_software_image_supported</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_database_software_image_supported" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, filters the results to the set of Oracle Database versions that are supported for OCI database software images.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -10,14 +10,15 @@
   collections:
     - oracle.oci
   vars:
-    vcn_name: "sample_file_system_vcn"
+    vcn_name: "ansible-sample-create-mount-file-system-vcn"
     cidr_block: "10.0.0.0/16"
     dns_label: "samplefsvcn"
-    ig_name: "sample_ig"
-    rt_name: "sample_rt"
-    sec_list_name: "sample_sec_list"
+    ig_name: "ansible-sample-create-mount-file-system-ig"
+    rt_name: "ansible-sample-create-mount-file-system-rt"
+    sec_list_name: "ansible-sample-create-mount-file-system-sec-list"
 
-    sample_subnet_ad2: 'subnetad2'
+    sample_subnet_ad2: 'ansible-sample-create-mount-file-system-subnetad2'
+    subnet_dns_label: 'samplefsdns'
     subnet_cidr_block_ad2: "10.0.1.0/24"
     all_cidr_block: '0.0.0.0/0'
     all_protocol: 'all'
@@ -29,8 +30,8 @@
     https_port: 443
 
     mt_hostname_label: 'samplemt'
-    mt_display_name: 'samplemt'
-    fs_display_name: 'samplefs'
+    mt_display_name: 'ansible-sample-create-mount-file-system-mt'
+    fs_display_name: 'ansible-sample-create-mount-file-system-fs'
     export_path: '/sample_path'
 
     first_instance_hostname_label: 'ansible-sample-create-and-mount-file-system-instancehl1'
@@ -49,7 +50,7 @@
     tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
   tasks:
     - block:
-      - include_tasks: setup.yaml
+      - import_tasks: setup.yaml
   # Create the Mount Target
       - name: "Create Mount Target"
         oci_file_storage_mount_target:
@@ -266,10 +267,10 @@
       - debug:
           msg: "Details of the Snapshot: {{ result.snapshots | string }}"
   #==========================================================================================
-      - include_tasks: teardown.yaml
+      - import_tasks: teardown.yaml
 
       rescue:
-        - include_tasks: teardown.yaml
+        - import_tasks: teardown.yaml
           ignore_errors: yes
 
         - fail:

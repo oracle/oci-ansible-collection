@@ -93,7 +93,7 @@
   oci_network_subnet:
     availability_domain: "{{ sample_availability_domain_ad2 }}"
     name: '{{ sample_subnet_ad2}}'
-    dns_label: '{{ sample_subnet_ad2}}'
+    dns_label: '{{ subnet_dns_label}}'
     route_table_id: '{{ sample_rt_id }}'
     security_list_ids: ['{{ sample_sec_list_id }}']
     cidr_block: "{{ subnet_cidr_block_ad2 }}"

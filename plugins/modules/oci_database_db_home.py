@@ -58,6 +58,10 @@ options:
             - "NONE"
             - "VM_CLUSTER_NEW"
         default: "NONE"
+    is_desupported_version:
+        description:
+            - If true, the customer acknowledges that the specified Oracle Database software is an older release that is not currently supported by OCI.
+        type: bool
     db_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
@@ -628,6 +632,7 @@ def main():
                     "VM_CLUSTER_NEW",
                 ],
             ),
+            is_desupported_version=dict(type="bool"),
             db_system_id=dict(type="str"),
             database=dict(
                 type="dict",

@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_group_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple NetworkSecurityGroup resources in Oracle Cloud Infrastructure
-- Lists the network security groups in the specified compartment.
+- Lists either the network security groups in the specified compartment, or those associated with the specified VLAN. You must specify either a `vlanId` or a `compartmentId`, but not both. If you specify a `vlanId`, all other parameters are ignored.
 - If *network_security_group_id* is specified, the details of a single NetworkSecurityGroup will be returned.
 
 
@@ -167,7 +167,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
-                                            <div>Required to list multiple network_security_groups.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -336,6 +335,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vlan_id"></div>
+                    <b>vlan_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-vlan_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VLAN.</div>
                                                         </td>
             </tr>
                         </table>

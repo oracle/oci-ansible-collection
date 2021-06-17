@@ -20,7 +20,7 @@ oracle.oci.oci_network_security_group -- Manage a NetworkSecurityGroup resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -168,8 +168,6 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to contain the network security group.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -436,7 +434,6 @@ Examples
 
     - name: Update network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_group:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -454,7 +451,6 @@ Examples
 
     - name: Delete network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_security_group:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

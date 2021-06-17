@@ -15,11 +15,11 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    vcn_name: "mytestvcn"
+    vcn_name: "ansible-sample-kubeconfig-vcn"
     vcn_cidr_block: "10.0.0.0/16"
-    vcn_dns_label: "mytestvcn"
+    vcn_dns_label: "smplkubeconfig"
 
-    ig_name: "myinternetgatewayformytestvcn"
+    ig_name: "ansible-sample-kubeconfig-ig"
 
     # route all internet access to our Internet Gateway
     route_table_rules:
@@ -30,18 +30,18 @@
     subnet2_cidr: "10.0.1.0/24"
     subnet3_cidr: "10.0.2.0/24"
 
-    subnet1_name: "mytestsubnet1"
-    subnet2_name: "mytestsubnet2"
-    subnet3_name: "mytestsubnet3"
+    subnet1_name: "ansible-sample-kubeconfig-subnet1"
+    subnet2_name: "ansible-sample-kubeconfig-subnet2"
+    subnet3_name: "ansible-sample-kubeconfig-subnet3"
 
     lb_subnet1_cidr: "10.0.20.0/24"
     lb_subnet2_cidr: "10.0.21.0/24"
 
-    lb_subnet1_name: "LB Subnet1"
-    lb_subnet2_name: "LB Subnet2"
+    lb_subnet1_name: "ansible-sample-kubeconfig-lb-subnet1"
+    lb_subnet2_name: "ansible-sample-kubeconfig-lb-subnet2"
 
-    cluster_name: "my_test_cluster"
-    node_pool_name: "my_node_pool"
+    cluster_name: "ansible-smpl-kubeconfig-cluster"
+    node_pool_name: "ansibl-smpl-kubeconfig-nodepool"
 
     OKE_ip_address1: "130.35.0.0/16"
     OKE_ip_address2: "134.70.0.0/17"
@@ -74,83 +74,113 @@
     kubeconfig_path: "{{ lookup('env', 'KUBECONFIG_PATH') }}"
 
   tasks:
-    - import_tasks: setup.yaml
+    - block:
+      - import_tasks: setup.yaml
 
-    - name: Get Kubernetes version available for creating cluster
-      oci_container_engine_cluster_options_facts:
-        cluster_option_id: all
-      register: result
-    - debug:
-        msg: "{{ result }}"
-    - set_fact:
-        k8s_version: "{{ result.cluster_options.kubernetes_versions[1] }}"
+      #==========================================================================================
 
-    - name: Create an OKE cluster
-      oci_container_engine_cluster:
-        compartment_id: "{{ cluster_compartment }}"
-        name: "{{ cluster_name }}"
-        vcn_id: "{{ vcn_id }}"
-        kubernetes_version: "{{ k8s_version }}"
-        options:
-          service_lb_subnet_ids:
-            - "{{ lb_subnet1_id }}"
-            - "{{ lb_subnet2_id }}"
-      register: result
-    - debug:
-        msg: "{{ result }}"
-    - set_fact:
-        cluster_id: "{{result.cluster.id }}"
+      - name: Get Kubernetes version available for creating cluster
+        oci_container_engine_cluster_options_facts:
+          cluster_option_id: all
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          k8s_version: "{{ result.cluster_options.kubernetes_versions[1] }}"
 
-    - name: Get node shapes and images available for creating nodes in the cluster
-      oci_container_engine_node_pool_options_facts:
-        id: "{{ cluster_id }}"
-      register: result
-    - debug:
-        msg: "{{ result }}"
-    - set_fact:
-        node_shape: "{{ result.node_pool_options.shapes[2] }}"
-        node_pool_source_details:
-          source_type: "IMAGE"
-          image_id: "{{ result.node_pool_options.sources[0].image_id }}"
+      #==========================================================================================
 
-    - name: Create a node pool
-      oci_container_engine_node_pool:
-        cluster_id: "{{ cluster_id }}"
-        compartment_id: "{{ cluster_compartment }}"
-        name: "{{ node_pool_name }}"
-        kubernetes_version: "{{ k8s_version }}"
-        node_source_details: "{{ node_pool_source_details }}"
-        node_shape: "{{ node_shape }}"
-        node_config_details: "{{ node_pool_config_details }}"
-      register: result
-    - debug:
-        msg: "{{ result }}"
-    - set_fact:
-        node_pool_id: "{{ result.node_pool.id }}"
+      - name: Create an OKE cluster
+        oci_container_engine_cluster:
+          compartment_id: "{{ cluster_compartment }}"
+          name: "{{ cluster_name }}"
+          vcn_id: "{{ vcn_id }}"
+          kubernetes_version: "{{ k8s_version }}"
+          options:
+            service_lb_subnet_ids:
+              - "{{ lb_subnet1_id }}"
+              - "{{ lb_subnet2_id }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          cluster_id: "{{result.cluster.id }}"
 
-    - name: Create kubeconfig
-      oci_container_engine_kubeconfig:
-        cluster_id: "{{ cluster_id }}"
-      register: result
+      #==========================================================================================
 
-    - name: Save to kubeconfig file path
-      copy:
-        content: "{{ result.kubeconfig }}"
-        dest: "{{ kubeconfig_path }}"
+      - name: Get node shapes and images available for creating nodes in the cluster
+        oci_container_engine_node_pool_options_facts:
+          id: "{{ cluster_id }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          node_shape: "{{ item }}"
+        loop: "{{ result.node_pool_options.shapes }}"
+        when: 
+          - '"VM.Standard" in item'
+      - set_fact:
+          node_pool_source_details:
+            source_type: "IMAGE"
+            image_id: "{{ item.image_id }}"
+        loop: "{{ result.node_pool_options.sources }}"
+        when: 
+          - item.source_name.find("7.6") == -1
+          - item.source_name.find("aarch64") == -1
 
-# Uncomment to run the kubectl commands
-#    - command: kubectl cluster-info
-#      environment:
-#        KUBECONFIG: "{{ kubeconfig_path }}"
-#      register: result
-#    - debug:
-#        msg: "{{ result }}"
-#
-#    - command: kubectl get nodes
-#      environment:
-#        KUBECONFIG: "{{ kubeconfig_path }}"
-#      register: result
-#    - debug:
-#        msg: "{{ result }}"
+      #==========================================================================================
 
-    - import_tasks: teardown.yaml
+      - name: Create a node pool
+        oci_container_engine_node_pool:
+          cluster_id: "{{ cluster_id }}"
+          compartment_id: "{{ cluster_compartment }}"
+          name: "{{ node_pool_name }}"
+          kubernetes_version: "{{ k8s_version }}"
+          node_source_details: "{{ node_pool_source_details }}"
+          node_shape: "{{ node_shape }}"
+          node_config_details: "{{ node_pool_config_details }}"
+        register: result
+      - debug:
+          msg: "{{ result }}"
+      - set_fact:
+          node_pool_id: "{{ result.node_pool.id }}"
+
+      #==========================================================================================
+
+      - name: Create kubeconfig
+        oci_container_engine_kubeconfig:
+          cluster_id: "{{ cluster_id }}"
+        register: result
+
+      - name: Save to kubeconfig file path
+        copy:
+          content: "{{ result.kubeconfig }}"
+          dest: "{{ kubeconfig_path }}"
+
+      #==========================================================================================
+
+  # Uncomment to run the kubectl commands
+  #    - command: kubectl cluster-info
+  #      environment:
+  #        KUBECONFIG: "{{ kubeconfig_path }}"
+  #      register: result
+  #    - debug:
+  #        msg: "{{ result }}"
+  #
+  #    - command: kubectl get nodes
+  #      environment:
+  #        KUBECONFIG: "{{ kubeconfig_path }}"
+  #      register: result
+  #    - debug:
+  #        msg: "{{ result }}"
+
+      #==========================================================================================
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

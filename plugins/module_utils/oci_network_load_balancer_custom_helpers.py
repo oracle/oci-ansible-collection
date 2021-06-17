@@ -13,13 +13,6 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
-class NetworkLoadBalancerBackendSetHelperCustom:
-
-    # adding this customization as there is an issue with list API of BackendSet. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        return list_resource_from_network_load_balancer(self, "backend_sets")
-
-
 class NetworkLoadBalancerHelperCustom:
 
     # adding this customization to support idempotency for create operation.
@@ -52,52 +45,14 @@ class NetworkLoadBalancerBackendHelperCustom:
             module, resource_type, service_client_class, namespace
         )
 
-    # adding this customization as there is an issue with list API of Backend. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        backend_set_dict = resource_from_network_load_balancer_as_dict(
-            self, "backend_sets"
-        )
-        if backend_set_dict:
-            backend_set = backend_set_dict.get(
-                self.module.params.get("backend_set_name")
-            )
-            if backend_set:
-                return backend_set.backends
-        return []
-
-
-class NetworkLoadBalancerBackendSetFactsHelperCustom:
-
-    # adding this customization as there is an issue with list API of BackendSet Facts. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        return list_resource_from_network_load_balancer(self, "backend_sets")
-
-
-class NetworkLoadBalancerBackendFactsHelperCustom:
-
-    # adding this customization as there is an issue with list API of Backend Facts. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        backend_set_dict = resource_from_network_load_balancer_as_dict(
-            self, "backend_sets"
-        )
-        if backend_set_dict:
-            backend_set = backend_set_dict.get(
-                self.module.params.get("backend_set_name")
-            )
-            if backend_set:
-                return backend_set.backends
-        return []
-
 
 class NetworkLoadBalancerListenerHelperCustom:
-
     # adding this customization as there is an issue with list API of Listener. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
     def list_resources(self):
         return list_resource_from_network_load_balancer(self, "listeners")
 
 
 class NetworkLoadBalancerListenerFactsHelperCustom:
-
     # adding this customization as there is an issue with list API of Listener Facts. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
     def list_resources(self):
         return list_resource_from_network_load_balancer(self, "listeners")

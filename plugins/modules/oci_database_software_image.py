@@ -88,6 +88,10 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    source_db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+        type: str
     database_software_image_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -436,6 +440,7 @@ def main():
             ls_inventory=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            source_db_home_id=dict(type="str"),
             database_software_image_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

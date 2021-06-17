@@ -215,6 +215,18 @@ class WaasPolicyCustomProtectionRulesHelperGen(OCIResourceHelperBase):
     def get_update_model_class(self):
         return CustomProtectionRuleSetting
 
+    def get_update_model(self):
+        if self.module.params.get("update_custom_protection_rules_details"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params[
+                    "update_custom_protection_rules_details"
+                ]
+            ]
+        return []
+
     def update_resource(self):
         update_details = self.get_update_model()
         return oci_wait_utils.call_and_wait(
