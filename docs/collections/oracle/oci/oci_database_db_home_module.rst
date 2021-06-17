@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -787,6 +787,25 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-is_desupported_version"></div>
+                    <b>is_desupported_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_desupported_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, the customer acknowledges that the specified Oracle Database software is an older release that is not currently supported by OCI.</div>
                                                         </td>
             </tr>
                                 <tr>

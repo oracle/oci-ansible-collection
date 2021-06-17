@@ -47,7 +47,7 @@
 # Create a private load balancer with the variables initialized in the beginning
   tasks:
     - block:
-      - include_tasks: setup.yaml
+      - import_tasks: setup.yaml
       - name: Create private Load Balancer
         oci_loadbalancer_load_balancer:
           is_private: yes
@@ -118,10 +118,10 @@
       - debug:
           msg: "Load balancer Ip addresses details : {{ private_load_balancer_ip_addresses }}"
   #==========================================================================================
-      - include_tasks: teardown.yaml
+      - import_tasks: teardown.yaml
 
       rescue:
-        - include_tasks: teardown.yaml
+        - import_tasks: teardown.yaml
           ignore_errors: yes
 
         - fail:

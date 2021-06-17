@@ -178,6 +178,16 @@ class GoodBotsHelperGen(OCIResourceHelperBase):
     def get_update_model_class(self):
         return GoodBot
 
+    def get_update_model(self):
+        if self.module.params.get("good_bots"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["good_bots"]
+            ]
+        return []
+
     def update_resource(self):
         update_details = self.get_update_model()
         return oci_wait_utils.call_and_wait(

@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_texts_facts -- Fetches details about one or multiple Sql
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.23.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

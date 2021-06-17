@@ -89,6 +89,7 @@ class AutonomousDatabaseActionsHelperCustom:
     DISABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS = (
         "disable_autonomous_database_operations_insights"
     )
+    CONFIGURE_AUTONOMOUS_DATABASE_VAULT_KEY = "configure_autonomous_database_vault_key"
 
     def generate_autonomous_database_wallet(self):
         wallet_file = self.module.params.get("wallet_file")
@@ -142,6 +143,20 @@ class AutonomousDatabaseActionsHelperCustom:
             return resource.operations_insights_status != "ENABLED"
         elif action == self.DISABLE_AUTONOMOUS_DATABASE_OPERATIONS_INSIGHTS:
             return resource.operations_insights_status != "NOT_ENABLED"
+        elif action == self.CONFIGURE_AUTONOMOUS_DATABASE_VAULT_KEY:
+            if hasattr(resource, "kms_key_id") and hasattr(resource, "vault_id"):
+                if (
+                    self.module.params.get("kms_key_id")
+                    and self.module.params["kms_key_id"] != resource.kms_key_id
+                ):
+                    return True
+                if (
+                    self.module.params.get("vault_id")
+                    and self.module.params["vault_id"] != resource.vault_id
+                ):
+                    return True
+                return False
+            return True
         else:
             return super(
                 AutonomousDatabaseActionsHelperCustom, self
@@ -377,6 +392,9 @@ class DbHomeHelperCustom:
             # will continue to match and will not be updated
             "database",
             "kms_key_version_id",
+            # This is just a flag for customer to acknowledge that a desupported version is being used. It does not exist
+            # in the get model as well.
+            "is_desupported_version",
         ]
 
     def get_update_model_dict_for_idempotence_check(self, update_model):
@@ -933,6 +951,13 @@ class DbSystemActionsHelperCustom:
 class DatabaseSoftwareImageHelperCustom:
     def get_default_module_wait_timeout(self):
         return int(1 * 2400)
+
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            DatabaseSoftwareImageHelperCustom, self
+        ).get_exclude_attributes()
+
+        return exclude_attributes + ["source_db_home_id"]
 
 
 class DatabaseActionsHelperCustom:

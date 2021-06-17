@@ -15,35 +15,35 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    vcn_name: "mytest_nat_gateway_vcn"
+    vcn_name: "ansible-sample-nat-gateway-config-vcn"
     vcn_cidr_block: "10.0.0.0/16"
 
-    ng_name: "mynatgateway_for_{{vcn_name}}"
-    ig_name: "myinternetgateway_for_{{vcn_name}}"
+    ng_name: "ansible-sample-nat-gateway-config-ng"
+    ig_name: "ansible-sample-nat-gateway-config-ig"
 
     private_subnet_cidr: "10.0.1.0/24"
     public_subnet_cidr: "10.0.0.0/24"
 
-    private_subnet_name: "myprivatesubnet_in_{{vcn_name}}"
-    public_subnet_name: "mypublicsubnet_in_{{vcn_name}}"
+    private_subnet_name: "ansible-sample-nat-gateway-config-privatesubnet"
+    public_subnet_name: "ansible-sample-nat-gateway-config-publicsubnet"
 
-    public_subnet_securitylist_name: "mysecuritylist_for_{{public_subnet_name}}"
-    private_subnet_securitylist_name: "mysecuritylist_for_{{private_subnet_name}}"
+    public_subnet_securitylist_name: "ansible-sample-nat-gateway-config-publicssl"
+    private_subnet_securitylist_name: "ansible-sample-nat-gateway-config-privatessl"
 
-    public_subnet_route_table_name: "myroutetable_for_{{public_subnet_name}}"
+    public_subnet_route_table_name: "ansible-sample-nat-gateway-config-publicsubnet"
     # route all internet access from the public subnet to the Internet Gateway
     public_subnet_route_table_rules:
         - cidr_block: "{{ quad_zero_route }}"
           network_entity_id: "{{ ig_id }}"
 
-    private_subnet_route_table_name: "myroutetable_for_{{private_subnet_name}}"
+    private_subnet_route_table_name: "ansible-sample-nat-gateway-config-privatesubnet"
     # route all internet access from the private subnet to the NAT Gateway
     private_subnet_route_table_rules:
         - cidr_block: "{{ quad_zero_route }}"
           network_entity_id: "{{ ng_id }}"
 
-    public_subnet_instance_name: "my_bastion_instance_for_{{vcn_name}}"
-    private_subnet_instance_name: "my_private_instance_in_{{private_subnet_name}}"
+    public_subnet_instance_name: "ansible-sample-nat-gateway-config-publicinstance"
+    private_subnet_instance_name: "ansible-sample-nat-gateway-config-privateinstance"
 
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
     public_subnet_instance_hostname: "mypublicinstance"
@@ -68,6 +68,8 @@
     - block:
       - import_tasks: setup.yaml
 
+      #==========================================================================================
+
       - name: Wait (upto 10 minutes) for ssh to start in public instance
         wait_for:
           port: 22
@@ -77,6 +79,8 @@
           timeout: 600
         vars:
           ansible_connection: local
+
+      #==========================================================================================
 
       - name: Wait (upto 5 minutes) for ssh to start in private instance
         command: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }} uname -a'
@@ -89,6 +93,8 @@
         debug:
           msg: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }} ping -c2 oracle.com'
 
+      #==========================================================================================
+
       - name: Check internet access from private instance
         command: 'ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -o ProxyCommand="ssh {{ ssh_disable_strict_host_key_checking_args }} {{ ssh_credentials_arg }} -W %h:%p -q {{ ssh_user }}@{{ public_instance_public_ip }}" {{ ssh_user }}@{{ private_instance_private_ip }} ping -c2 oracle.com'
         register: result
@@ -97,6 +103,13 @@
         debug:
           msg: "{{ result.stdout_lines }}"
 
-      always:
+      #==========================================================================================
+
+      - import_tasks: teardown.yaml
+
+      rescue:
         - import_tasks: teardown.yaml
           ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

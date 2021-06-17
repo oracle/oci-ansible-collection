@@ -148,6 +148,19 @@ autonomous_database_backup:
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -162,7 +175,9 @@ autonomous_database_backup:
         "lifecycle_state": "CREATING",
         "is_restorable": true,
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_store_wallet_name": "key_store_wallet_name_example"
+        "key_store_wallet_name": "key_store_wallet_name_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

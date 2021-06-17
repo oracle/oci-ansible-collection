@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Autonomous Database.
     - "This resource has the following action operations in the M(oci_autonomous_database_actions) module: autonomous_database_manual_refresh,
-      change_compartment, deregister_autonomous_database_data_safe, disable_autonomous_database_operations_insights,
+      change_compartment, configure_autonomous_database_vault_key, deregister_autonomous_database_data_safe, disable_autonomous_database_operations_insights,
       enable_autonomous_database_operations_insights, fail_over, generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore,
       rotate_autonomous_database_encryption_key, start, stop, switchover."
 version_added: "2.9"
@@ -76,6 +76,15 @@ options:
               memory. For Always Free databases, memory and CPU cannot be scaled.
             - This parameter is updatable.
         type: bool
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+        type: str
     admin_password:
         description:
             - "The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot
@@ -395,6 +404,25 @@ autonomous_database:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_lifecycle_details:
+            description:
+                - KMS key lifecycle details.
+            returned: on success
+            type: string
+            sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
@@ -448,6 +476,32 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: NONE
+        key_history_entry:
+            description:
+                - Key History Entry.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
+                          service key management history entry.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vault_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+                time_activated:
+                    description:
+                        - The date and time the kms key activated.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -924,6 +978,9 @@ autonomous_database:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -933,6 +990,11 @@ autonomous_database:
             "manual_backup_bucket_name": "manual_backup_bucket_name_example",
             "manual_backup_type": "NONE"
         },
+        "key_history_entry": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_activated": "2013-10-20T19:20:30+01:00"
+        }],
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -1168,6 +1230,8 @@ def main():
             db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
             data_storage_size_in_tbs=dict(type="int"),
             is_free_tier=dict(type="bool"),
+            kms_key_id=dict(type="str"),
+            vault_id=dict(type="str"),
             admin_password=dict(type="str", no_log=True),
             display_name=dict(aliases=["name"], type="str"),
             license_model=dict(

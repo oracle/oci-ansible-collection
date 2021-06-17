@@ -83,6 +83,10 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_service_catalog_custom_helpers,
     oci_golden_gate_custom_helpers,
     oci_generic_artifacts_content_custom_helpers,
+    oci_database_migration_custom_helpers,
+    oci_secrets_custom_helpers,
+    oci_apm_control_plane_custom_helpers,
+    oci_apm_synthetics_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -140,5 +144,9 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_network_load_balancer_custom_helpers,
         oci_service_catalog_custom_helpers,
         oci_golden_gate_custom_helpers,
+        oci_database_migration_custom_helpers,
+        oci_secrets_custom_helpers,
+        oci_apm_control_plane_custom_helpers,
+        oci_apm_synthetics_custom_helpers,
     ]
 )

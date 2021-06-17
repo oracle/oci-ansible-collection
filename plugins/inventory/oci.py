@@ -75,20 +75,24 @@ DOCUMENTATION = """
         regions:
              description: A list of regions to search. If not specified, the region is read from config file. Use 'all'
                           to generate inventory from all subscribed regions.
+             type: list
         hostnames:
              description: A list of hostnames to search for.
+             type: list
         hostname_format_preferences:
             description: A list of Jinja2 expressions in order of precedence to compose inventory_hostname.
                          Ignores expression if result is an empty string or None value.
                          hostname_format_preferences and hostname_format cannot be used together.
-                         The instance is ignored if none of the hostname_format_preferences resulted in a non empty value
+                         The instance is ignored if none of the hostname_format_preferences resulted in a non-empty value
+            type: list
         hostname_format:
              description: Host naming format to use. Use 'fqdn' to list hosts using the instance's
                           Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN
                           resolver specified through the subnet's DHCP options. Please see
                           https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details.
                           Use 'public_ip' to list hosts using public IP address. Use 'private_ip' to list hosts using
-                          private IP address. By default, hosts are listed using public IP address.
+                          private IP address. Use 'display_name' to list hosts using display_name of the Instances.
+                          'display_name' cannot be used when fetch_db_hosts is True. By default, hosts are listed using public IP address.
                           hostname_format_preferences and hostname_format cannot be used together
              env:
                - name: OCI_HOSTNAME_FORMAT
@@ -98,8 +102,20 @@ DOCUMENTATION = """
                - Available filters are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
                - "Note: defined_tags and freeform_tags filters are not supported for db hosts. The db hosts will not
                  be returned when you use either of these filters."
+             type: list
+        exclude_host_filters:
+             description: A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host;
+                          when any of the expressions is evaluated to Truthy value, the host is excluded from the inventory.
+                          exclude_host_filters take priority over the include_host_filters and filters.
+             type: list
+        include_host_filters:
+             description: A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host;
+                          when any of the expressions is evaluated to Truthy value, the host is included in the inventory.
+                          include_host_filters and filters options cannot be used together.
+             type: list
         fetch_db_hosts:
              description: When set, the db nodes are also fetched. Default value set to False.
+             type: bool
         fetch_compute_hosts:
              description: When set, the compute nodes are fetched. Default value set to True.
              type: bool
@@ -167,9 +183,24 @@ hostnames:
 # Example filtering using hostname_format
 hostname_format: "private_ip"
 
+# Sets the inventory_hostname. Each item is a Jinja2 expression and it gets evaluated on host_vars.
+#hostname_format_preferences and hostname_format cannot be used together
+hostname_format_preferences:
+  - "display_name+'.oci.com'"
+  - "id"
+
 # Example group results by key
 keyed_groups:
   - key: availability_domain
+
+# Excludes a host from the inventory when any of the Jinja2 expression evaluates to true.
+exclude_host_filters:
+  - "region not in ['iad']"
+
+# Includes a host in the inventory when any of the Jinja2 expression evaluates to true.
+#include_host_filters and filters options cannot be used together.
+include_host_filters:
+  - "display_name is match('.*.oci.com')"
 
 # Example using filters
 filters:
@@ -306,7 +337,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.params["profile"] = os.environ.get("OCI_CONFIG_PROFILE")
 
     def _get_key_file(self):
-        # preference order: .oci.yml > environment variable > settings from config file
+        # preference order: .oci.yml > environment variable > settings from config file.
         if self.get_option("api_user_key_file") is not None:
             self.params["key_file"] = os.path.expanduser(
                 self.get_option("api_user_key_file")
@@ -369,6 +400,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             raise AnsibleError(
                 "The hostname_format %s is not supported for db_hosts"
                 % (hostname_format)
+            )
+
+    def _validate_filters(self):
+        static_filter = self.get_option("filters")
+        include_filter = self.get_option("include_host_filters")
+        if static_filter and include_filter:
+            raise AnsibleError(
+                "The options filters and include_host_filters cannot be used together"
             )
 
     def _get_primary_vnic_only(self):
@@ -897,7 +936,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             compartment = self.compartments[instance.compartment_id]
 
-            instance_vars = to_dict(instance)
+            instance_common_vars = to_dict(instance)
 
             common_groups = set(["all_hosts"])
             # Group by availability domain
@@ -907,13 +946,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by compartments
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-            instance_vars.update({"compartment_name": compartment_name})
+            instance_common_vars.update({"compartment_name": compartment_name})
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
 
             # Group by freeform tags tag_key=value
-            if hasattr(instance, "freeform_tags"):
+            if hasattr(instance, "freeform_tags") and instance.freeform_tags:
                 for key in instance.freeform_tags:
                     tag_group_name = self.sanitize(
                         "tag_" + key + "=" + instance.freeform_tags[key]
@@ -921,7 +960,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     common_groups.add(tag_group_name)
 
             # Group by defined tags
-            if hasattr(instance, "defined_tags"):
+            if hasattr(instance, "defined_tags") and instance.defined_tags:
                 for namespace in instance.defined_tags:
                     for key in instance.defined_tags[namespace]:
                         defined_tag_group_name = self.sanitize(
@@ -946,7 +985,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             ]
 
             for vnic_attachment in vnic_attachments:
-
+                instance_vars = instance_common_vars.copy()
                 vnic = oci_common_utils.call_with_backoff(
                     virtual_nw_client.get_vnic, vnic_id=vnic_attachment.vnic_id
                 ).data
@@ -960,18 +999,40 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 # else create inventory only if the vnic is primary vnic for the instance
                 if not self._get_primary_vnic_only() or vnic.is_primary:
 
-                    subnet = oci_common_utils.call_with_backoff(
-                        virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
-                    ).data
+                    subnet = vlan = None
+                    if getattr(vnic, "subnet_id", None):
+                        subnet = oci_common_utils.call_with_backoff(
+                            virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
+                        ).data
+                    elif getattr(vnic, "vlan_id", None):
+                        vlan = oci_common_utils.call_with_backoff(
+                            virtual_nw_client.get_vlan, vlan_id=vnic.vlan_id
+                        ).data
+                    else:
+                        self.debug(
+                            "VNIC {} attached to instance {} doesn't have subnet_id or vlan_id associated. Skipping it".format(
+                                vnic_attachment.vnic_id, vnic_attachment.instance_id
+                            )
+                        )
+                        continue
 
                     if instance_vars.get("id") == vnic_attachment.instance_id:
-                        instance_vars.update({"vcn_id": subnet.vcn_id})
                         instance_vars.update({"vnic_id": vnic.id})
-                        instance_vars.update({"subnet_id": vnic.subnet_id})
+                        if getattr(vnic, "subnet_id", None):
+                            instance_vars.update({"subnet_id": vnic.subnet_id})
+                            instance_vars.update({"vcn_id": subnet.vcn_id})
+                        elif getattr(vnic, "vlan_id", None):
+                            instance_vars.update({"vlan_id": vnic.vlan_id})
+                            instance_vars.update({"vcn_id": vlan.vcn_id})
                         instance_vars.update({"public_ip": vnic.public_ip})
                         instance_vars.update({"private_ip": vnic.private_ip})
 
                     host_name = self.get_hostname(instance_vars, vnic, region)
+                    self.debug(
+                        "hostname : {0} built for instance {1}".format(
+                            host_name, instance_vars.get("id")
+                        )
+                    )
                     if not host_name:
                         if self.get_option("strict"):
                             raise AnsibleError(
@@ -1123,6 +1184,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return re.sub(regex + "]", "_", word)
         return word
 
+    def _filter_hosts(self, filter_template_list, hostvars):
+        self.templar.available_variables = hostvars
+        for condition_template in filter_template_list:
+            try:
+                jinja_condition = "%s%s%s" % ("{{", condition_template, "}}")
+                if self.templar.template(jinja_condition):
+                    return True
+            except Exception as ex:
+                self.debug(
+                    "parsing template {0} failed with exception {1}".format(
+                        condition_template, str(ex)
+                    )
+                )
+                if self.get_option("strict"):
+                    raise AnsibleParserError(
+                        "failed parsing filter_template {0} for instance {1} with exception {2}".format(
+                            condition_template, hostvars.get("id"), str(ex)
+                        )
+                    )
+                continue
+        return False
+
     def get_filtered_resources(self, resources, compartment_ocid):
 
         self.debug(
@@ -1131,18 +1214,30 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         )
         filters = ["display_name", "availability_domain", "lifecycle_state"]
-        resources = [
-            resource
-            for resource in resources
+
+        resources_filtered = []
+        for resource in resources:
+            resource_dict = to_dict(resource)
+            if self.get_option("exclude_host_filters") and self._filter_hosts(
+                self.get_option("exclude_host_filters"), resource_dict
+            ):
+                continue
+            if self.get_option("include_host_filters"):
+                if self._filter_hosts(
+                    self.get_option("include_host_filters"), resource_dict
+                ):
+                    resources_filtered.append(resource)
+                continue
             if all(
                 True
                 if not self.filters.get(filter)
                 or getattr(resource, filter, None) == self.filters[filter]
                 else False
                 for filter in filters
-            )
-        ]
+            ):
+                resources_filtered.append(resource)
 
+        resources = resources_filtered
         if self.filters.get("freeform_tags"):
             resources = [
                 resource
@@ -1288,7 +1383,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return self._compute_clients[region]
 
     def get_virtual_nw_client_for_region(self, region):
-        if region not in self._compute_clients:
+        if region not in self._virtual_nw_clients:
             raise ValueError(
                 "Could not fetch the virtual network client for region {0}.".format(
                     region
@@ -1353,6 +1448,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 )
             )
             return host_vars.get("display_name")
+        self.debug(
+            "public_ip of the instance : {0} is {1}".format(
+                host_vars.get("id"), vnic.public_ip
+            )
+        )
         return vnic.public_ip
 
     def _query(self, regions):
@@ -1531,7 +1631,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     self.params["hostname_format"]
                 )
             )
-
+        self._validate_filters()
         cache_key = self.get_cache_key(path)
 
         if not regions:

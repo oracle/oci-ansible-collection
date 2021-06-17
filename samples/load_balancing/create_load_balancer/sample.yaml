@@ -134,7 +134,7 @@
 # Create a public load balancer with the variables initialized in the beginning
   tasks:
     - block:
-      - include_tasks: setup.yaml
+      - import_tasks: setup.yaml
       - name: Create Public Load Balancer
         oci_loadbalancer_load_balancer:
           compartment_id: "{{ compartment_id }}"
@@ -245,10 +245,10 @@
           msg: "Load balancer Ip addresses details : {{ public_load_balancer_ip_addresses }}"
 
   #==========================================================================================
-      - include_tasks: teardown.yaml
+      - import_tasks: teardown.yaml
 
       rescue:
-        - include_tasks: teardown.yaml
+        - import_tasks: teardown.yaml
           ignore_errors: yes
 
         - fail:

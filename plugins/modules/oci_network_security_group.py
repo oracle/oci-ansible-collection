@@ -33,8 +33,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the
               network security group.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     defined_tags:
         description:
@@ -92,7 +90,6 @@ EXAMPLES = """
 
 - name: Update network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -110,7 +107,6 @@ EXAMPLES = """
 
 - name: Delete network_security_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_group:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -231,16 +227,10 @@ class NetworkSecurityGroupHelperGen(OCIResourceHelperBase):
         )
 
     def get_required_kwargs_for_list(self):
-        required_list_method_params = [
-            "compartment_id",
-        ]
-
-        return dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
+        return dict()
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["vcn_id", "display_name"]
+        optional_list_method_params = ["compartment_id", "vcn_id", "display_name"]
 
         return dict(
             (param, self.module.params[param])

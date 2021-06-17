@@ -6,62 +6,83 @@
 # See LICENSE.TXT for details.
 
 # ===========================================================================================
-- name: Delete instances
+- name: Delete instance
   oci_compute_instance:
-    id: '{{ item }}'
+    id: "{{ instance_id }}"
     state: 'absent'
-  with_items:
-    - "{{ instance_id }}"
+  when: instance_id is defined
 # ===========================================================================================
-- name: Delete Exports
+- name: Delete Export1
   oci_file_storage_export:
-    id: "{{ item }}"
+    id: "{{ mt1_fs1_export_id }}"
     state: 'absent'
-  with_items:
-    - "{{ mt1_fs1_export_id }}"
-    - "{{ mt2_fs1_export_id }}"
-    - "{{ mt1_fs2_export_id }}"
+  when: mt1_fs1_export_id is defined
 # ===========================================================================================
-- name: Delete Mount Targets
+- name: Delete Export2
+  oci_file_storage_export:
+    id: "{{ mt2_fs1_export_id }}"
+    state: 'absent'
+  when: mt2_fs1_export_id is defined
+# ===========================================================================================
+- name: Delete Export3
+  oci_file_storage_export:
+    id: "{{ mt1_fs2_export_id }}"
+    state: 'absent'
+  when: mt1_fs2_export_id is defined
+# ===========================================================================================
+- name: Delete Mount Target1
   oci_file_storage_mount_target:
-    id: "{{ item }}"
+    id: "{{ mt1_id }}"
     state: 'absent'
-  with_items:
-    - "{{ mt1_id }}"
-    - "{{ mt2_id }}"
+  when: mt1_id is defined
 # ===========================================================================================
-- name: Delete File Systems
-  oci_file_storage_file_system:
-    id: "{{ item }}"
+- name: Delete Mount Target2
+  oci_file_storage_mount_target:
+    id: "{{ mt2_id }}"
     state: 'absent'
-  with_items:
-    - "{{ fs1_id }}"
-    - "{{ fs2_id }}"
+  when: mt2_id is defined
+# ===========================================================================================
+- name: Delete File System1
+  oci_file_storage_file_system:
+    id: "{{ fs1_id }}"
+    state: 'absent'
+  when: fs1_id is defined
+# ===========================================================================================
+- name: Delete File System2
+  oci_file_storage_file_system:
+    id: "{{ fs2_id }}"
+    state: 'absent'
+  when: fs2_id is defined
 # ===========================================================================================
 - name: Delete subnets
   oci_network_subnet:
-    subnet_id: '{{ sample_subnet_id_ad2 }}'
+    subnet_id: '{{ sample_subnet_id_ad3 }}'
     state: 'absent'
+  when: sample_subnet_id_ad3 is defined
 # ===========================================================================================
 - name: Delete Route Table
   oci_network_route_table:
     id: "{{ sample_rt_id }}"
     state: 'absent'
+  when: sample_rt_id is defined
 # ===========================================================================================
 - name: Delete Security List
   oci_network_security_list:
     id: "{{ sample_sec_list_id }}"
     state: 'absent'
+  when: sample_sec_list_id is defined
 # ===========================================================================================
 - name: Delete internet gateway
   oci_network_internet_gateway:
     id: "{{ sample_ig_id }}"
     state: 'absent'
+  when: sample_ig_id is defined
 # ===========================================================================================
 - name: Delete  VCN
   oci_network_vcn:
     vcn_id: "{{ sample_vcn_id }}"
     state: 'absent'
+  when: sample_vcn_id is defined
 # ===========================================================================================
 - name: Clean artifact path
   file:

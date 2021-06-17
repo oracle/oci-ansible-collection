@@ -43,14 +43,14 @@
 - set_fact:
     sample_vcn_id: "{{ result.vcn.id }}"
 #===========================================================================================
-- name: Get Availability Domain 2
+- name: Get Availability Domain 3
   oci_identity_availability_domain_facts:
     compartment_id: "{{compartment_id}}"
   register: oci_ads
 - set_fact:
-    sample_availability_domain_ad2: "{{oci_ads.availability_domains[1].name}}"
+    sample_availability_domain_ad3: "{{oci_ads.availability_domains[2].name}}"
 
-- debug: msg="ADs within the ashburn region {{sample_availability_domain_ad2}}"
+- debug: msg="ADs within the ashburn region {{sample_availability_domain_ad3}}"
 # ===========================================================================================
 - name: Create Internet Gateway
   oci_network_internet_gateway:
@@ -89,20 +89,20 @@
 - set_fact:
     sample_sec_list_id: "{{ result.security_list.id }}"
 # ===========================================================================================
-- name: Create a subnet in AD2
+- name: Create a subnet in AD3
   oci_network_subnet:
-    availability_domain: "{{ sample_availability_domain_ad2 }}"
-    name: '{{ sample_subnet_ad2}}'
-    dns_label: '{{ sample_subnet_ad2}}'
+    availability_domain: "{{ sample_availability_domain_ad3 }}"
+    name: '{{ sample_subnet_ad3}}'
+    dns_label: '{{ subnet_dns_label}}'
     route_table_id: '{{ sample_rt_id }}'
     security_list_ids: ['{{ sample_sec_list_id }}']
-    cidr_block: "{{ subnet_cidr_block_ad2 }}"
+    cidr_block: "{{ subnet_cidr_block_ad3 }}"
     compartment_id: "{{ compartment_id }}"
     vcn_id: '{{ sample_vcn_id }}'
   register: result
 
 - set_fact:
-    sample_subnet_id_ad2: "{{ result.subnet.id }}"
+    sample_subnet_id_ad3: "{{ result.subnet.id }}"
 # ===========================================================================================
 - name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
   tempfile:

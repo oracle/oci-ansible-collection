@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.23.0
+Collection version 2.24.0
 
 .. toctree::
     :maxdepth: 1
@@ -56,6 +56,16 @@ Modules
 * :ref:`oci_apigateway_sdk_language_type_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_language_type_facts_module>` -- Fetches details about one or multiple SdkLanguageType resources in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_module>` -- Manage a WaasCertificate resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate_facts <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_facts_module>` -- Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_control_plane_apm_domain <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_module>` -- Manage an ApmDomain resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_control_plane_apm_domain_actions <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_actions_module>` -- Perform actions on an ApmDomain resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_control_plane_apm_domain_facts <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_facts_module>` -- Fetches details about one or multiple ApmDomain resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_control_plane_data_keys_actions <ansible_collections.oracle.oci.oci_apm_control_plane_data_keys_actions_module>` -- Perform actions on a DataKeys resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_control_plane_data_keys_facts <ansible_collections.oracle.oci.oci_apm_control_plane_data_keys_facts_module>` -- Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_monitor <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_module>` -- Manage a Monitor resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_monitor_facts <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_facts_module>` -- Fetches details about one or multiple Monitor resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_public_vantage_point_facts <ansible_collections.oracle.oci.oci_apm_synthetics_public_vantage_point_facts_module>` -- Fetches details about one or multiple PublicVantagePoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_script <ansible_collections.oracle.oci.oci_apm_synthetics_script_module>` -- Manage a Script resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_script_facts <ansible_collections.oracle.oci.oci_apm_synthetics_script_facts_module>` -- Fetches details about one or multiple Script resources in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration_facts <ansible_collections.oracle.oci.oci_artifacts_container_configuration_facts_module>` -- Fetches details about a ContainerConfiguration resource in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_image <ansible_collections.oracle.oci.oci_artifacts_container_image_module>` -- Manage a ContainerImage resource in Oracle Cloud Infrastructure
@@ -385,6 +395,16 @@ Modules
 * :ref:`oci_database_management_managed_database_group_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_group_actions_module>` -- Perform actions on a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_agent <ansible_collections.oracle.oci.oci_database_migration_agent_module>` -- Manage an Agent resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_agent_actions <ansible_collections.oracle.oci.oci_database_migration_agent_actions_module>` -- Perform actions on an Agent resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_agent_facts <ansible_collections.oracle.oci.oci_database_migration_agent_facts_module>` -- Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_agent_image_facts <ansible_collections.oracle.oci.oci_database_migration_agent_image_facts_module>` -- Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_connection <ansible_collections.oracle.oci.oci_database_migration_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_connection_actions <ansible_collections.oracle.oci.oci_database_migration_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_connection_facts <ansible_collections.oracle.oci.oci_database_migration_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image <ansible_collections.oracle.oci.oci_database_software_image_module>` -- Manage a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_actions <ansible_collections.oracle.oci.oci_database_software_image_actions_module>` -- Perform actions on a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_facts <ansible_collections.oracle.oci.oci_database_software_image_facts_module>` -- Fetches details about one or multiple DatabaseSoftwareImage resources in Oracle Cloud Infrastructure
@@ -529,6 +549,9 @@ Modules
 * :ref:`oci_integration_instance <ansible_collections.oracle.oci.oci_integration_instance_module>` -- Manage an IntegrationInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_integration_instance_actions <ansible_collections.oracle.oci.oci_integration_instance_actions_module>` -- Perform actions on an IntegrationInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_integration_instance_facts <ansible_collections.oracle.oci.oci_integration_instance_facts_module>` -- Fetches details about one or multiple IntegrationInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_jms_fleet <ansible_collections.oracle.oci.oci_jms_fleet_module>` -- Manage a Fleet resource in Oracle Cloud Infrastructure
+* :ref:`oci_jms_fleet_actions <ansible_collections.oracle.oci.oci_jms_fleet_actions_module>` -- Perform actions on a Fleet resource in Oracle Cloud Infrastructure
+* :ref:`oci_jms_fleet_facts <ansible_collections.oracle.oci.oci_jms_fleet_facts_module>` -- Fetches details about one or multiple Fleet resources in Oracle Cloud Infrastructure
 * :ref:`oci_key_management_decrypted_data <ansible_collections.oracle.oci.oci_key_management_decrypted_data_module>` -- Manage a DecryptedData resource in Oracle Cloud Infrastructure
 * :ref:`oci_key_management_encrypted_data <ansible_collections.oracle.oci.oci_key_management_encrypted_data_module>` -- Manage an EncryptedData resource in Oracle Cloud Infrastructure
 * :ref:`oci_key_management_exported_key_data <ansible_collections.oracle.oci.oci_key_management_exported_key_data_module>` -- Manage an ExportedKeyData resource in Oracle Cloud Infrastructure
@@ -1068,6 +1091,16 @@ Modules
     oci_apigateway_sdk_language_type_facts_module
     oci_apigateway_waas_certificate_module
     oci_apigateway_waas_certificate_facts_module
+    oci_apm_control_plane_apm_domain_module
+    oci_apm_control_plane_apm_domain_actions_module
+    oci_apm_control_plane_apm_domain_facts_module
+    oci_apm_control_plane_data_keys_actions_module
+    oci_apm_control_plane_data_keys_facts_module
+    oci_apm_synthetics_monitor_module
+    oci_apm_synthetics_monitor_facts_module
+    oci_apm_synthetics_public_vantage_point_facts_module
+    oci_apm_synthetics_script_module
+    oci_apm_synthetics_script_facts_module
     oci_artifacts_container_configuration_module
     oci_artifacts_container_configuration_facts_module
     oci_artifacts_container_image_module
@@ -1397,6 +1430,16 @@ Modules
     oci_database_management_managed_database_group_actions_module
     oci_database_management_managed_database_group_facts_module
     oci_database_management_tablespace_facts_module
+    oci_database_migration_agent_module
+    oci_database_migration_agent_actions_module
+    oci_database_migration_agent_facts_module
+    oci_database_migration_agent_image_facts_module
+    oci_database_migration_connection_module
+    oci_database_migration_connection_actions_module
+    oci_database_migration_connection_facts_module
+    oci_database_migration_migration_module
+    oci_database_migration_migration_actions_module
+    oci_database_migration_migration_facts_module
     oci_database_software_image_module
     oci_database_software_image_actions_module
     oci_database_software_image_facts_module
@@ -1541,6 +1584,9 @@ Modules
     oci_integration_instance_module
     oci_integration_instance_actions_module
     oci_integration_instance_facts_module
+    oci_jms_fleet_module
+    oci_jms_fleet_actions_module
+    oci_jms_fleet_facts_module
     oci_key_management_decrypted_data_module
     oci_key_management_encrypted_data_module
     oci_key_management_exported_key_data_module

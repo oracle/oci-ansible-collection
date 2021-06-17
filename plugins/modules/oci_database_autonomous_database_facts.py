@@ -90,6 +90,7 @@ options:
             - "RECREATING"
             - "ROLE_CHANGE_IN_PROGRESS"
             - "UPGRADING"
+            - "INACCESSIBLE"
     db_workload:
         description:
             - A filter to return only autonomous database resources that match the specified workload type.
@@ -168,6 +169,25 @@ autonomous_databases:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_lifecycle_details:
+            description:
+                - KMS key lifecycle details.
+            returned: on success
+            type: string
+            sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
@@ -221,6 +241,32 @@ autonomous_databases:
                     returned: on success
                     type: string
                     sample: NONE
+        key_history_entry:
+            description:
+                - Key History Entry.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
+                          service key management history entry.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vault_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+                time_activated:
+                    description:
+                        - The date and time the kms key activated.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -697,6 +743,9 @@ autonomous_databases:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -706,6 +755,11 @@ autonomous_databases:
             "manual_backup_bucket_name": "manual_backup_bucket_name_example",
             "manual_backup_type": "NONE"
         },
+        "key_history_entry": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_activated": "2013-10-20T19:20:30+01:00"
+        }],
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -886,6 +940,7 @@ def main():
                     "RECREATING",
                     "ROLE_CHANGE_IN_PROGRESS",
                     "UPGRADING",
+                    "INACCESSIBLE",
                 ],
             ),
             db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
