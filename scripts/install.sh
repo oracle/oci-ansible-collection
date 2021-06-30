@@ -37,6 +37,10 @@ Following arguments can be passed to the script:
         Users can use this flag to specify the location of collections where oci-ansible-collection 
         will be installed. If not specified the latest value will be used.
         Ex: --oci-ansible-collection-path /home/collections
+    
+    --upgrade-pip
+        Users can use this flag to specify whether to upgrade pip to the latest version.
+        If not specified pip version will not be upgraded
 
     --version
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
@@ -55,9 +59,6 @@ Following arguments can be passed to the script:
     --dry-run
         Runs the script in dry run mode i.e no network calls and installation of dependecies.
         Ex: --dry-run    will enable the dry run mode
-
-    --offline
-        Executes the local copy of the python intaller script. Helpful for debugging locally 
 
     --help
         Show help section
@@ -99,13 +100,14 @@ case $key in
     install_args="$install_args --verbose"
     shift
     ;;
+    ;;
+    --upgrade-pip)
+    install_args="$install_args --upgrade-pip"
+    shift
+    ;;
     --dry-run)
     DRY_RUN=true
     install_args="$install_args --dry-run"
-    shift
-    ;;
-    --offline)
-    OFFLINE=true
     shift
     ;;
     --python)
@@ -169,20 +171,17 @@ if [ "$python_installed" == false ]; then
 fi
 
 
-if [ "$OFFLINE" == false ]; then
+
+downloaded_script=true
+echo "Downloading installer script..."
+install_script=$(mktemp -t oci_ansible_install_tmp_XXXX) || exit
+echo "Downloading oci-ansible-collection install script from $INSTALL_SCRIPT_URL to $install_script."
+curl -# -f $INSTALL_SCRIPT_URL > $install_script
+if [ $? -ne 0 ]; then
     downloaded_script=false
-    echo "Downloading installer script..."
-    install_script=$(mktemp -t oci_ansible_install_tmp_XXXX) || exit
-    echo "Downloading oci-ansible-collection install script from $INSTALL_SCRIPT_URL to $install_script."
-    curl -# -f $INSTALL_SCRIPT_URL > $install_script
-    if [ $? -ne 0 ]; then
-        exit 1
-    fi
-    downloaded_script=true
-    SCRIPT_NAME=$install_script
-else
-    echo "Using offline mode, installing using local script $SCRIPT_NAME"
 fi
+
+SCRIPT_NAME=$install_script
 
 if [ "$downloaded_script" == false ]; then
     echo "Error while downloading the installer script"
