@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete an AnalyticsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new AnalyticsInstance in the specified compartment. The operation is long-running
       and creates a new WorkRequest.
-    - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_analytics_instance_network_endpoint, scale,
-      start, stop."
+    - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_compartment,
+      change_analytics_instance_network_endpoint, scale, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -72,8 +72,8 @@ options:
                 required: true
             capacity_value:
                 description:
-                    - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                      number of CPUs, amount of memory or other resources allocated to the instance.
+                    - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                      number of CPUs, amount of memory or other resources allocated to the instance."
                 type: int
                 required: true
     license_type:
@@ -177,7 +177,7 @@ EXAMPLES = """
 - name: Create analytics_instance
   oci_analytics_instance:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     feature_set: SELF_SERVICE_ANALYTICS
     capacity:
       capacity_type: OLPU_COUNT
@@ -188,7 +188,7 @@ EXAMPLES = """
   oci_analytics_instance:
     name: name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     license_type: LICENSE_INCLUDED
     email_notification: email_notification_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -198,17 +198,17 @@ EXAMPLES = """
   oci_analytics_instance:
     description: description_example
     license_type: LICENSE_INCLUDED
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete analytics_instance
   oci_analytics_instance:
-    analytics_instance_id: ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete analytics_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_analytics_instance:
     name: name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -225,7 +225,7 @@ analytics_instance:
                 - The resource OCID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
@@ -243,7 +243,7 @@ analytics_instance:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of an instance.
@@ -270,8 +270,8 @@ analytics_instance:
                     sample: OLPU_COUNT
                 capacity_value:
                     description:
-                        - The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
-                          number of CPUs, amount of memory or other resources allocated to the instance.
+                        - "The capacity value selected (OLPU count, number of users, ...etc...). This parameter affects the
+                          number of CPUs, amount of memory or other resources allocated to the instance."
                     returned: on success
                     type: int
                     sample: 56
@@ -304,13 +304,13 @@ analytics_instance:
                         - The VCN OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The subnet OCID for the private endpoint.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 whitelisted_ips:
                     description:
                         - Source IP addresses or IP address ranges igress rules.
@@ -328,13 +328,112 @@ analytics_instance:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
                                 - Source IP addresses or IP address ranges igress rules.
                             returned: on success
                             type: list
                             sample: []
+        private_access_channels:
+            description:
+                - Map of PrivateAccessChannel unique identifier key as KEY and PrivateAccessChannel Object as VALUE.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - Private Access Channel unique identifier key.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                display_name:
+                    description:
+                        - Display Name of the Private Access Channel.
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                vcn_id:
+                    description:
+                        - OCID of the customer VCN peered with private access channel.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+                subnet_id:
+                    description:
+                        - OCID of the customer subnet connected to private access channel.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                ip_address:
+                    description:
+                        - IP Address of the Private Access channel.
+                    returned: on success
+                    type: string
+                    sample: ip_address_example
+                egress_source_ip_addresses:
+                    description:
+                        - The list of IP addresses from the customer subnet connected to private access channel, used as a source Ip by Private Access Channel
+                          for network traffic from the AnalyticsInstance to Private Sources.
+                    returned: on success
+                    type: list
+                    sample: []
+                private_source_dns_zones:
+                    description:
+                        - List of Private Source DNS zones registered with Private Access Channel,
+                          where datasource hostnames from these dns zones / domains will be resolved in the peered VCN for access from Analytics Instance.
+                          Min of 1 is required and Max of 30 Private Source DNS zones can be registered.
+                    returned: on success
+                    type: complex
+                    contains:
+                        dns_zone:
+                            description:
+                                - "Private Source DNS Zone. Ex: example-vcn.oraclevcn.com, corp.example.com."
+                            returned: on success
+                            type: string
+                            sample: dns_zone_example
+                        description:
+                            description:
+                                - Description of private source dns zone.
+                            returned: on success
+                            type: string
+                            sample: description_example
+        vanity_url_details:
+            description:
+                - Map of VanityUrl unique identifier key as KEY and VanityUrl Object as VALUE.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - The vanity url unique identifier key.
+                    returned: on success
+                    type: string
+                    sample: key_example
+                description:
+                    description:
+                        - Description of the vanity url.
+                    returned: on success
+                    type: string
+                    sample: description_example
+                urls:
+                    description:
+                        - List of urls supported by this vanity URL definition (max of 3).
+                    returned: on success
+                    type: list
+                    sample: []
+                hosts:
+                    description:
+                        - List of fully qualified hostnames supported by this vanity URL definition (max of 3).
+                    returned: on success
+                    type: list
+                    sample: []
+                public_certificate:
+                    description:
+                        - PEM certificate for HTTPS connections.
+                    returned: on success
+                    type: string
+                    sample: public_certificate_example
         service_url:
             description:
                 - URL of the Analytics service.
@@ -395,6 +494,25 @@ analytics_instance:
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "whitelisted_ips": []
             }]
+        },
+        "private_access_channels": {
+            "key": "key_example",
+            "display_name": "display_name_example",
+            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "ip_address": "ip_address_example",
+            "egress_source_ip_addresses": [],
+            "private_source_dns_zones": [{
+                "dns_zone": "dns_zone_example",
+                "description": "description_example"
+            }]
+        },
+        "vanity_url_details": {
+            "key": "key_example",
+            "description": "description_example",
+            "urls": [],
+            "hosts": [],
+            "public_certificate": "public_certificate_example"
         },
         "service_url": "service_url_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

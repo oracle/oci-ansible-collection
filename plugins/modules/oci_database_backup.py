@@ -67,18 +67,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backup
   oci_database_backup:
-    database_id: ocid1.database.oc1.phx.unique_ID
-    display_name: Monthly Backup
+    database_id: "ocid1.database.oc1.phx.unique_ID"
+    display_name: "Monthly Backup"
 
 - name: Delete backup
   oci_database_backup:
-    backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup:
     display_name: Monthly Backup
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -95,19 +95,19 @@ backup:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the backup. The name does not have to be unique.
@@ -179,7 +179,7 @@ backup:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

@@ -24,6 +24,7 @@ short_description: Manage a VmCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata Cloud@Customer VM cluster.
+    - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -164,20 +165,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vm_cluster
   oci_database_vm_cluster:
-    display_name: vmCluster
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    exadata_infrastructure_id: ocid1.tenancy.oc1.oc1.unique_ID
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1.unique_ID
-    cpu_core_count: 4
-    memory_size_in_gbs: 30
-    db_node_storage_size_in_gbs: 60
-    data_storage_size_in_tbs: 84
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-    license_model: LICENSE_INCLUDED
-    is_sparse_diskgroup_enabled: false
-    is_local_backup_enabled: true
-    time_zone: PST
-    gi_version: 19.1.0.0
+    display_name: "vmCluster"
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
+    cpu_core_count: "4"
+    memory_size_in_gbs: "30"
+    db_node_storage_size_in_gbs: "60"
+    data_storage_size_in_tbs: "84"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    license_model: "LICENSE_INCLUDED"
+    is_sparse_diskgroup_enabled: "false"
+    is_local_backup_enabled: "true"
+    time_zone: "PST"
+    gi_version: "19.1.0.0"
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -185,11 +186,11 @@ EXAMPLES = """
 
 - name: Update vm_cluster
   oci_database_vm_cluster:
-    vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vm_cluster
   oci_database_vm_cluster:
-    vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -212,20 +213,20 @@ vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         last_patch_history_entry_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
                   a patch operation starts.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VM cluster.
@@ -269,7 +270,7 @@ vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
                 - If true, sparse disk group is configured for the VM cluster. If false, sparse disk group is not created.
@@ -281,7 +282,7 @@ vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
             type: string
-            sample: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         cpus_enabled:
             description:
                 - The number of enabled CPU cores.

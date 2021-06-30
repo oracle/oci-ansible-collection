@@ -20,7 +20,7 @@ oracle.oci.oci_network_ip_sec_connection -- Manage an IpSecConnection resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,11 +45,12 @@ Synopsis
 - This module allows the user to create, update and delete an IpSecConnection resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new IPSec connection between the specified DRG and CPE. For more information, see `IPSec VPNs <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm>`_.
 - If you configure at least one tunnel to use static routing, then in the request you must provide at least one valid static route (you're allowed a maximum of 10). For example: 10.0.0.0/16. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in `IPSecConnection <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/>`_.
-- For the purposes of access control, you must provide the OCID of the compartment where you want the IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to use, put the IPSec connection in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
+- For the purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to use, put the IPSec connection in the same compartment as the DRG. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
 - You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - After creating the IPSec connection, you need to configure your on-premises router with tunnel-specific information. For tunnel status and the required configuration information, see:
 -  * `IPSecConnectionTunnel <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/>`_ * `IPSecConnectionTunnelSharedSecret <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnelSharedSecret/>`_
 - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret (that is, the pre-shared key). For more information, see `Configuring Your On-Premises Router for an IPSec VPN <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm>`_.
+- This resource has the following action operations in the :ref:`oci_ip_sec_connection_actions <ansible_collections.oci_ip_sec_connection_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -61,7 +62,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -152,6 +153,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -274,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -309,7 +311,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the DRG.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -344,7 +346,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -361,7 +363,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the IPSec connection.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the IPSec connection.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -432,7 +434,9 @@ Parameters
                                                                 <td>
                                             <div>Static routes to the CPE. A static route&#x27;s CIDR must not be a multicast address or class E address.</div>
                                             <div>Used for routing a given IPSec tunnel&#x27;s traffic only if the tunnel is using static routing. If you configure at least one tunnel to use static routing, then you must provide at least one valid static route. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes. For more information, see the important note in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/'>IPSecConnection</a>.</div>
+                                            <div>The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `10.0.1.0/24`</div>
+                                            <div>Example: `2001:db8::/32`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -527,6 +531,27 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/bgp_session_config/customer_interface_ipv6"></div>
+                    <b>customer_interface_ipv6</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/bgp_session_config/customer_interface_ipv6" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If `routing` is instead set to `STATIC`, you can set this IP address to troubleshoot or monitor the tunnel.</div>
+                                            <div>Only subnet masks from /64 up to /127 are allowed.</div>
+                                            <div>Example: `2001:db8::1/64`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/bgp_session_config/oracle_interface_ip"></div>
                     <b>oracle_interface_ip</b>
                     <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/bgp_session_config/oracle_interface_ip" title="Permalink to this option"></a>
@@ -542,6 +567,27 @@ Parameters
                                             <div>If `routing` is instead set to `STATIC`, this IP address is optional. You can set this IP address to troubleshoot or monitor the tunnel.</div>
                                             <div>The value must be a /30 or /31.</div>
                                             <div>Example: `10.0.0.4/31`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tunnel_configuration/bgp_session_config/oracle_interface_ipv6"></div>
+                    <b>oracle_interface_ipv6</b>
+                    <a class="ansibleOptionLink" href="#parameter-tunnel_configuration/bgp_session_config/oracle_interface_ipv6" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.</div>
+                                            <div>If the tunnel&#x27;s `routing` attribute is set to `BGP` (see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/'>IPSecConnectionTunnel</a>), this IP address is used for the tunnel&#x27;s BGP session.</div>
+                                            <div>If `routing` is instead set to `STATIC`, you can set this IP address to troubleshoot or monitor the tunnel.</div>
+                                            <div>Only subnet masks from /64 up to /127 are allowed.</div>
+                                            <div>Example: `2001:db8::1/64`</div>
                                                         </td>
             </tr>
                     
@@ -729,16 +775,17 @@ Examples
     
     - name: Create ip_sec_connection
       oci_network_ip_sec_connection:
-        display_name: MyIPSecConnection
-        cpe_id: ocid1.cpe.oc1.phx.unique_ID
+        display_name: "MyIPSecConnection"
+        cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
         static_routes:
-        - 192.0.2.0/24
-        drg_id: ocid1.drg.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - "192.0.2.0/24"
+        - "2001:db8::/32"
+        drg_id: "ocid1.drg.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
         freeform_tags: {'Department': 'Finance'}
@@ -750,16 +797,16 @@ Examples
       oci_network_ip_sec_connection:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyIPSecConnection
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete ip_sec_connection
       oci_network_ip_sec_connection:
-        ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+        ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_ip_sec_connection:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyIPSecConnection
         state: absent
 
@@ -889,7 +936,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -926,7 +973,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the DRG.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -944,7 +991,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -963,7 +1010,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IPSec connection&#x27;s Oracle ID (OCID).</div>
+                                            <div>The IPSec connection&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1001,7 +1048,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Static routes to the CPE. The CIDR must not be a multicast address or class E address.</div>
                                             <div>Used for routing a given IPSec tunnel&#x27;s traffic only if the tunnel is using static routing. If you configure at least one tunnel to use static routing, then you must provide at least one valid static route. If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.</div>
+                                            <div>The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>Example: `10.0.1.0/24`</div>
+                                            <div>Example: `2001:db8::/32`</div>
                                         <br/>
                                     </td>
             </tr>

@@ -37,7 +37,7 @@ options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the
-              resources monitored by the metric that you are searching for. Use tenancyId to search in
+              resource. Use tenancyId to search in
               the root compartment.
             - Required to list multiple auto_scaling_configurations.
         type: str
@@ -69,11 +69,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List auto_scaling_configurations
   oci_autoscaling_auto_scaling_configuration_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration_facts:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -90,7 +90,7 @@ auto_scaling_configurations:
                   configuration.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -119,11 +119,13 @@ auto_scaling_configurations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         cool_down_in_seconds:
             description:
-                - The minimum period of time to wait between scaling actions. The cooldown period gives the system time to stabilize
-                  before rescaling. The minimum value is 300 seconds, which is also the default.
+                - For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions.
+                  The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which
+                  is also the default. The cooldown period starts when the instance pool reaches the running state.
+                - For schedule-based autoscaling policies, this value is not used.
             returned: on success
             type: int
             sample: 56
@@ -151,12 +153,11 @@ auto_scaling_configurations:
                           configuration.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policies:
             description:
                 - Autoscaling policy definitions for the autoscaling configuration. An autoscaling policy defines the criteria that
                   trigger autoscaling actions and the actions to take.
-                - Each autoscaling configuration can have one autoscaling policy.
             returned: on success
             type: complex
             contains:
@@ -168,21 +169,28 @@ auto_scaling_configurations:
                     contains:
                         max:
                             description:
-                                - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                                - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                                  to increase to (scale out).
+                                - For a schedule-based autoscaling policy, this value is not used.
                             returned: on success
                             type: int
                             sample: 56
                         min:
                             description:
-                                - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                                - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                                  to decrease to (scale in).
+                                - For a schedule-based autoscaling policy, this value is not used.
                             returned: on success
                             type: int
                             sample: 56
                         initial:
                             description:
-                                - The initial number of instances to launch in the instance pool immediately after autoscaling is
-                                  enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
-                                  initial number to a number that is based on the limits that you set.
+                                - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                                  immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                                  instances is automatically adjusted from this initial number to a number that is based on the limits that
+                                  you set.
+                                - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                                  that's defined in the autoscaling policy.
                             returned: on success
                             type: int
                             sample: 56
@@ -191,7 +199,7 @@ auto_scaling_configurations:
                         - The ID of the autoscaling policy that is assigned after creation.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -213,34 +221,56 @@ auto_scaling_configurations:
                     sample: 2016-08-25T21:10:29.600Z
                 is_enabled:
                     description:
-                        - Boolean field indicating whether this policy is enabled or not.
+                        - Whether the autoscaling policy is enabled.
                     returned: on success
                     type: bool
                     sample: true
                 execution_schedule:
                     description:
-                        - ""
+                        - The schedule for executing the autoscaling policy.
                     returned: on success
                     type: complex
                     contains:
                         type:
                             description:
-                                - The type of ExecutionSchedule.
+                                - The type of execution schedule.
                             returned: on success
                             type: string
                             sample: cron
                         timezone:
                             description:
-                                - Specifies the time zone the schedule is in.
+                                - The time zone for the execution schedule.
                             returned: on success
                             type: string
                             sample: UTC
                         expression:
                             description:
-                                - The value representing the execution schedule, as defined by cron format.
+                                - A cron expression that represents the time at which to execute the autoscaling policy.
+                                - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                                - You can use special characters that are supported with the Quartz cron implementation.
+                                - You must specify `0` as the value for seconds.
+                                - "Example: `0 15 10 ? * *`"
                             returned: on success
                             type: string
-                            sample: expression_example
+                            sample: "0 15 10 ? * *"
+                resource_action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        action_type:
+                            description:
+                                - The type of resource action.
+                            returned: on success
+                            type: string
+                            sample: action_type_example
+                        action:
+                            description:
+                                - ""
+                            returned: on success
+                            type: string
+                            sample: STOP
                 rules:
                     description:
                         - ""
@@ -277,7 +307,7 @@ auto_scaling_configurations:
                                 - ID of the condition that is assigned after creation.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         metric:
                             description:
                                 - ""
@@ -311,7 +341,7 @@ auto_scaling_configurations:
                                             sample: 56
         time_created:
             description:
-                - The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339.
+                - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: string
@@ -354,7 +384,11 @@ auto_scaling_configurations:
             "execution_schedule": {
                 "type": "cron",
                 "timezone": "UTC",
-                "expression": "expression_example"
+                "expression": "0 15 10 ? * *"
+            },
+            "resource_action": {
+                "action_type": "action_type_example",
+                "action": "STOP"
             },
             "rules": [{
                 "action": {

@@ -52,21 +52,28 @@ options:
         suboptions:
             max:
                 description:
-                    - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                    - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                      to increase to (scale out).
+                    - For a schedule-based autoscaling policy, this value is not used.
                     - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
             min:
                 description:
-                    - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                    - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                      to decrease to (scale in).
+                    - For a schedule-based autoscaling policy, this value is not used.
                     - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
             initial:
                 description:
-                    - The initial number of instances to launch in the instance pool immediately after autoscaling is
-                      enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
-                      initial number to a number that is based on the limits that you set.
+                    - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                      immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                      instances is automatically adjusted from this initial number to a number that is based on the limits that
+                      you set.
+                    - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                      that's defined in the autoscaling policy.
                     - This parameter is updatable.
                     - Applicable when policy_type is 'threshold'
                 type: int
@@ -80,7 +87,7 @@ options:
         required: true
     is_enabled:
         description:
-            - Boolean field indicating whether this policy is enabled or not.
+            - Whether the autoscaling policy is enabled.
             - This parameter is updatable.
         type: bool
     rules:
@@ -167,14 +174,14 @@ options:
                                 required: true
     execution_schedule:
         description:
-            - ""
+            - The schedule for executing the autoscaling policy.
             - This parameter is updatable.
             - Applicable when policy_type is 'scheduled'
         type: dict
         suboptions:
             type:
                 description:
-                    - The type of ExecutionSchedule.
+                    - The type of execution schedule.
                     - This parameter is updatable.
                 type: str
                 choices:
@@ -182,7 +189,7 @@ options:
                 required: true
             timezone:
                 description:
-                    - Specifies the time zone the schedule is in.
+                    - The time zone for the execution schedule.
                     - This parameter is updatable.
                 type: str
                 choices:
@@ -190,9 +197,39 @@ options:
                 required: true
             expression:
                 description:
-                    - The value representing the execution schedule, as defined by cron format.
+                    - A cron expression that represents the time at which to execute the autoscaling policy.
+                    - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                    - You can use special characters that are supported with the Quartz cron implementation.
+                    - You must specify `0` as the value for seconds.
+                    - "Example: `0 15 10 ? * *`"
                     - This parameter is updatable.
                 type: str
+                required: true
+    resource_action:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when policy_type is 'scheduled'
+        type: dict
+        suboptions:
+            action_type:
+                description:
+                    - The type of resource action.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "power"
+                required: true
+            action:
+                description:
+                    - ""
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "STOP"
+                    - "START"
+                    - "SOFTRESET"
+                    - "RESET"
                 required: true
     state:
         description:
@@ -208,36 +245,36 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration_policy:
-    display_name: example_autoscaling_policy
+    display_name: "example_threshold_autoscaling_policy"
     capacity:
       max: 50
       min: 10
       initial: 15
-    policy_type: threshold
+    policy_type: "threshold"
     rules:
     - action:
-        type: CHANGE_COUNT_BY
+        type: "CHANGE_COUNT_BY"
         value: 5
-      display_name: example_scale_out_condition
+      display_name: "example_scale_out_condition"
       metric:
-        metric_type: CPU_UTILIZATION
+        metric_type: "CPU_UTILIZATION"
         threshold:
-          operator: GTE
+          operator: "GTE"
           value: 90
     - action:
-        type: CHANGE_COUNT_BY
+        type: "CHANGE_COUNT_BY"
         value: -5
-      display_name: example_scale_in_condition
+      display_name: "example_scale_in_condition"
       metric:
-        metric_type: CPU_UTILIZATION
+        metric_type: "CPU_UTILIZATION"
         threshold:
-          operator: LTE
+          operator: "LTE"
           value: 25
 
 - name: Update auto_scaling_configuration_policy
   oci_autoscaling_auto_scaling_configuration_policy:
-    auto_scaling_configuration_id: ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-    auto_scaling_policy_id: ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx
+    auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     policy_type: scheduled
 
 """
@@ -257,21 +294,28 @@ auto_scaling_configuration_policy:
             contains:
                 max:
                     description:
-                        - The maximum number of instances the instance pool is allowed to increase to (scale out).
+                        - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                          to increase to (scale out).
+                        - For a schedule-based autoscaling policy, this value is not used.
                     returned: on success
                     type: int
                     sample: 56
                 min:
                     description:
-                        - The minimum number of instances the instance pool is allowed to decrease to (scale in).
+                        - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                          to decrease to (scale in).
+                        - For a schedule-based autoscaling policy, this value is not used.
                     returned: on success
                     type: int
                     sample: 56
                 initial:
                     description:
-                        - The initial number of instances to launch in the instance pool immediately after autoscaling is
-                          enabled. After autoscaling retrieves performance metrics, the number of instances is automatically adjusted from this
-                          initial number to a number that is based on the limits that you set.
+                        - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                          immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                          instances is automatically adjusted from this initial number to a number that is based on the limits that
+                          you set.
+                        - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                          that's defined in the autoscaling policy.
                     returned: on success
                     type: int
                     sample: 56
@@ -280,7 +324,7 @@ auto_scaling_configuration_policy:
                 - The ID of the autoscaling policy that is assigned after creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -302,34 +346,56 @@ auto_scaling_configuration_policy:
             sample: 2016-08-25T21:10:29.600Z
         is_enabled:
             description:
-                - Boolean field indicating whether this policy is enabled or not.
+                - Whether the autoscaling policy is enabled.
             returned: on success
             type: bool
             sample: true
         execution_schedule:
             description:
-                - ""
+                - The schedule for executing the autoscaling policy.
             returned: on success
             type: complex
             contains:
                 type:
                     description:
-                        - The type of ExecutionSchedule.
+                        - The type of execution schedule.
                     returned: on success
                     type: string
                     sample: cron
                 timezone:
                     description:
-                        - Specifies the time zone the schedule is in.
+                        - The time zone for the execution schedule.
                     returned: on success
                     type: string
                     sample: UTC
                 expression:
                     description:
-                        - The value representing the execution schedule, as defined by cron format.
+                        - A cron expression that represents the time at which to execute the autoscaling policy.
+                        - "Cron expressions have this format: `<second> <minute> <hour> <day of month> <month> <day of week> <year>`"
+                        - You can use special characters that are supported with the Quartz cron implementation.
+                        - You must specify `0` as the value for seconds.
+                        - "Example: `0 15 10 ? * *`"
                     returned: on success
                     type: string
-                    sample: expression_example
+                    sample: "0 15 10 ? * *"
+        resource_action:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                action_type:
+                    description:
+                        - The type of resource action.
+                    returned: on success
+                    type: string
+                    sample: action_type_example
+                action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: string
+                    sample: STOP
         rules:
             description:
                 - ""
@@ -366,7 +432,7 @@ auto_scaling_configuration_policy:
                         - ID of the condition that is assigned after creation.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 metric:
                     description:
                         - ""
@@ -412,7 +478,11 @@ auto_scaling_configuration_policy:
         "execution_schedule": {
             "type": "cron",
             "timezone": "UTC",
-            "expression": "expression_example"
+            "expression": "0 15 10 ? * *"
+        },
+        "resource_action": {
+            "action_type": "action_type_example",
+            "action": "STOP"
         },
         "rules": [{
             "action": {
@@ -607,6 +677,17 @@ def main():
                     type=dict(type="str", required=True, choices=["cron"]),
                     timezone=dict(type="str", required=True, choices=["UTC"]),
                     expression=dict(type="str", required=True),
+                ),
+            ),
+            resource_action=dict(
+                type="dict",
+                options=dict(
+                    action_type=dict(type="str", required=True, choices=["power"]),
+                    action=dict(
+                        type="str",
+                        required=True,
+                        choices=["STOP", "START", "SOFTRESET", "RESET"],
+                    ),
                 ),
             ),
             state=dict(type="str", default="present", choices=["present"]),

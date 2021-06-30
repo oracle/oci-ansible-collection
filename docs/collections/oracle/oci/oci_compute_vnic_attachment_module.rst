@@ -20,7 +20,7 @@ oracle.oci.oci_compute_vnic_attachment -- Manage a VnicAttachment resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create and delete a VnicAttachment resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a secondary VNIC and attaches it to the specified instance. For more information about secondary VNICs, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+- For *state=present*, creates a secondary VNIC and attaches it to the specified instance. For more information about secondary VNICs, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
 
 
 .. Aliases
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -164,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
@@ -218,6 +219,27 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-create_vnic_details/assign_private_dns_record"></div>
+                    <b>assign_private_dns_record</b>
+                    <a class="ansibleOptionLink" href="#parameter-create_vnic_details/assign_private_dns_record" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the VNIC should be assigned a DNS record. If set to false, there will be no DNS record registration for the VNIC. If set to true, the DNS record will be registered. The default value is true.</div>
+                                            <div>If you specify a `hostnameLabel`, then `assignPrivateDnsRecord` must be set to true.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-create_vnic_details/assign_public_ip"></div>
                     <b>assign_public_ip</b>
                     <a class="ansibleOptionLink" href="#parameter-create_vnic_details/assign_public_ip" title="Permalink to this option"></a>
@@ -236,7 +258,7 @@ Parameters
                                             <div>**Note:** This public IP address is associated with the primary private IP on the VNIC. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPaddresses.htm'>IP Addresses</a>.</div>
                                             <div>**Note:** There&#x27;s a limit to the number of <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/PublicIp/'>public IPs</a> a VNIC or instance can have. If you try to create a secondary VNIC with an assigned public IP for an instance that has already reached its public IP limit, an error is returned. For information about the public IP limits, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm'>Public IP Addresses</a>.</div>
                                             <div>Example: `false`</div>
-                                            <div>If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
+                                            <div>If you specify a `vlanId`, then `assignPublicIp` must be set to false. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -252,7 +274,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                                         </td>
             </tr>
@@ -286,7 +308,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                                         </td>
             </tr>
@@ -307,7 +329,7 @@ Parameters
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>When launching an instance, use this `hostnameLabel` instead of the deprecated `hostnameLabel` in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails'>LaunchInstanceDetails</a>. If you provide both, the values must match.</div>
                                             <div>Example: `bminstance-1`</div>
-                                            <div>If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan can not be assigned a hostname  See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
+                                            <div>If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN can not be assigned a hostname. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -481,7 +503,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Which physical network interface card (NIC) the VNIC will use. Defaults to 0. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).</div>
+                                            <div>Which physical network interface card (NIC) the VNIC will use. Defaults to 0. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -610,18 +632,18 @@ Examples
     
     - name: Create vnic_attachment
       oci_compute_vnic_attachment:
-        instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete vnic_attachment
       oci_compute_vnic_attachment:
-        vnic_attachment_id: ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx
+        vnic_attachment_id: "ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete vnic_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_vnic_attachment:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -783,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Which physical network interface card (NIC) the VNIC uses. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).</div>
+                                            <div>Which physical network interface card (NIC) the VNIC uses. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -838,7 +860,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                             <div>An error is returned if the instance already has a VNIC attached to it from this VLAN.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -858,7 +880,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The Oracle-assigned VLAN tag of the attached VNIC. Available after the attachment process is complete.</div>
-                                            <div>However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution, the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan'>Vlan</a>.</div>
+                                            <div>However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution, the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan'>Vlan</a>.</div>
                                             <div>Example: `0`</div>
                                         <br/>
                                     </td>

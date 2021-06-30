@@ -20,7 +20,7 @@ oracle.oci.oci_identity_network_sources -- Manage a NetworkSources resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -60,7 +60,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -151,6 +151,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -513,13 +514,13 @@ Examples
     
     - name: Create network_sources
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
 
     - name: Update network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -528,16 +529,16 @@ Examples
     - name: Update network_sources
       oci_identity_network_sources:
         description: description_example
-        network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+        network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete network_sources
       oci_identity_network_sources:
-        network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+        network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_network_sources:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

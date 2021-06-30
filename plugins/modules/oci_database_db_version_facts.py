@@ -54,13 +54,17 @@ options:
         description:
             - If provided, filters the results to the set of database versions which are supported for Upgrade.
         type: bool
+    is_database_software_image_supported:
+        description:
+            - If true, filters the results to the set of Oracle Database versions that are supported for OCI database software images.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List db_versions
   oci_database_db_version_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -139,6 +143,7 @@ class DbVersionFactsHelperGen(OCIResourceFactsHelperBase):
             "db_system_id",
             "storage_management",
             "is_upgrade_supported",
+            "is_database_software_image_supported",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -168,6 +173,7 @@ def main():
             db_system_id=dict(type="str"),
             storage_management=dict(type="str", choices=["ASM", "LVM"]),
             is_upgrade_supported=dict(type="bool"),
+            is_database_software_image_supported=dict(type="bool"),
         )
     )
 

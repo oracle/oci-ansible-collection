@@ -130,16 +130,16 @@ EXAMPLES = """
 - name: Perform action bulk_delete on tag
   oci_identity_tag_actions:
     tag_definition_ids:
-    - ocid1.tagdefinition.oc1..unique_ID_1
-    - ocid1.tagdefinition.oc1..unique_ID_2
-    - ocid1.tagdefinition.oc1..unique_ID_3
-    action: bulk_delete
+    - "ocid1.tagdefinition.oc1..unique_ID_1"
+    - "ocid1.tagdefinition.oc1..unique_ID_2"
+    - "ocid1.tagdefinition.oc1..unique_ID_3"
+    action: "bulk_delete"
 
 - name: Perform action bulk_edit on tag
   oci_identity_tag_actions:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
-    - id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+    - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       resource_type: resource_type_example
     bulk_edit_operations:
     - operation_type: ADD_WHERE_ABSENT

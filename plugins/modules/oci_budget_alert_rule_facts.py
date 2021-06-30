@@ -74,12 +74,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List budget_alert_rules
   oci_budget_alert_rule_facts:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific budget_alert_rule
   oci_budget_alert_rule_facts:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
-    alert_rule_id: ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+    alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -95,13 +95,13 @@ budget_alert_rules:
                 - The OCID of the alert rule
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         budget_id:
             description:
                 - The OCID of the budget
             returned: on success
             type: string
-            sample: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the alert rule.

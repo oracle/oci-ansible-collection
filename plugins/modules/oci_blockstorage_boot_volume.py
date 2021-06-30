@@ -24,9 +24,10 @@ short_description: Manage a BootVolume resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BootVolume resource in Oracle Cloud Infrastructure
     - "For I(state=present), creates a new boot volume in the specified compartment from an existing boot volume or a boot volume backup.
-      For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumes.htm).
+      For general information about boot volumes, see L(Boot Volumes,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/bootvolumes.htm).
       You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_boot_volume_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -53,7 +54,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -69,7 +70,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -87,7 +88,7 @@ options:
         description:
             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
               representing the Block Volume service's elastic performance options.
-              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
               information.
             - "Allowed values:"
             - " * `10`: Represents Balanced option."
@@ -107,6 +108,7 @@ options:
                 choices:
                     - "bootVolumeBackup"
                     - "bootVolume"
+                    - "bootVolumeReplica"
                 required: true
             id:
                 description:
@@ -118,6 +120,25 @@ options:
             - Specifies whether the auto-tune performance is enabled for this boot volume.
             - This parameter is updatable.
         type: bool
+    boot_volume_replicas:
+        description:
+            - The list of boot volume replicas to be enabled for this boot volume
+              in the specified destination availability domains.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            display_name:
+                description:
+                    - "The display name of the boot volume replica. You may optionally specify a *display name* for
+                      the boot volume replica, otherwise a default is provided."
+                type: str
+                aliases: ["name"]
+            availability_domain:
+                description:
+                    - The availability domain of the boot volume replica.
+                    - "Example: `Uocm:PHX-AD-1`"
+                type: str
+                required: true
     boot_volume_id:
         description:
             - The OCID of the boot volume.
@@ -141,37 +162,39 @@ EXAMPLES = """
 - name: Create boot_volume
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
       type: bootVolumeBackup
-      id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     size_in_gbs: 56
     vpus_per_gb: 56
     is_auto_tune_enabled: true
+    boot_volume_replicas:
+    - availability_domain: Uocm:PHX-AD-1
 
 - name: Update boot_volume
   oci_blockstorage_boot_volume:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete boot_volume
   oci_blockstorage_boot_volume:
-    boot_volume_id: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_id: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_boot_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -196,11 +219,11 @@ boot_volume:
                 - The OCID of the compartment that contains the boot volume.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -223,7 +246,7 @@ boot_volume:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -233,13 +256,13 @@ boot_volume:
                 - The boot volume's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
                 - Specifies whether the boot volume's data has finished copying
@@ -251,7 +274,7 @@ boot_volume:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this boot volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
                   information.
                 - "Allowed values:"
                 - " * `10`: Represents Balanced option."
@@ -295,7 +318,7 @@ boot_volume:
                         - The OCID of the boot volume backup.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the boot volume was created. Format defined
@@ -308,13 +331,13 @@ boot_volume:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management master encryption key assigned to the boot volume.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
                 - Specifies whether the auto-tune performance is enabled for this boot volume.
@@ -327,6 +350,31 @@ boot_volume:
             returned: on success
             type: int
             sample: 56
+        boot_volume_replicas:
+            description:
+                - The list of boot volume replicas of this boot volume
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - The display name of the boot volume replica
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                boot_volume_replica_id:
+                    description:
+                        - The boot volume replica's Oracle ID (OCID).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the boot volume replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -349,7 +397,12 @@ boot_volume:
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_tune_enabled": true,
-        "auto_tuned_vpus_per_gb": 56
+        "auto_tuned_vpus_per_gb": 56,
+        "boot_volume_replicas": [{
+            "display_name": "display_name_example",
+            "boot_volume_replica_id": "ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }
 """
 
@@ -497,12 +550,20 @@ def main():
                     type=dict(
                         type="str",
                         required=True,
-                        choices=["bootVolumeBackup", "bootVolume"],
+                        choices=["bootVolumeBackup", "bootVolume", "bootVolumeReplica"],
                     ),
                     id=dict(type="str", required=True),
                 ),
             ),
             is_auto_tune_enabled=dict(type="bool"),
+            boot_volume_replicas=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    display_name=dict(aliases=["name"], type="str"),
+                    availability_domain=dict(type="str", required=True),
+                ),
+            ),
             boot_volume_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

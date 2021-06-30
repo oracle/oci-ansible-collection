@@ -20,7 +20,7 @@ oracle.oci.oci_database_database -- Manage a Database resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -630,7 +631,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
+                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
                                             <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
@@ -899,7 +900,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1197,27 +1198,27 @@ Examples
     
     - name: Create database
       oci_database_database:
-        db_home_id: ocid1.dbhome.oc1.phx.unique_ID
-        source: NONE
+        db_home_id: "ocid1.dbhome.oc1.phx.unique_ID"
+        source: "NONE"
         database:
-          admin_password: password
-          db_name: myTestDb
+          admin_password: "password"
+          db_name: "myTestDb"
           db_backup_config:
             recovery_window_in_days: 30
             auto_backup_enabled: true
-        kms_key_id: ocid1.key.oc1..unique_ID
-        kms_key_version_id: ocid1.keyversion.oc1..unique_ID
+        kms_key_id: "ocid1.key.oc1..unique_ID"
+        kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
 
     - name: Update database
       oci_database_database:
         db_backup_config:
           recovery_window_in_days: 30
           auto_backup_enabled: true
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete database
       oci_database_database:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -1824,7 +1825,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
+                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_name_example</div>

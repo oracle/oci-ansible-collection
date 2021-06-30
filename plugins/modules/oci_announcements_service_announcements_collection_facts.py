@@ -80,7 +80,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List announcements_collection
   oci_announcements_service_announcements_collection_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,10 +102,10 @@ announcements_collection:
                         - The OCID of the announcement.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 type:
                     description:
-                        - The entity type.
+                        - The entity type, which is either an announcement or the summary representation of an announcement.
                     returned: on success
                     type: string
                     sample: type_example
@@ -129,10 +129,18 @@ announcements_collection:
                     returned: on success
                     type: string
                     sample: Time Started
+                time_one_type:
+                    description:
+                        - "The type of a time associated with an initial time value. If the `timeOneTitle` attribute is present, then the `timeOneTitle`
+                          attribute contains a label of `timeOneType` in English.
+                          Example: `START_TIME`"
+                    returned: on success
+                    type: string
+                    sample: START_TIME
                 time_one_value:
                     description:
-                        - The actual value of the first time value for the event. Typically, this is the time an event started, but the meaning
-                          can vary, depending on the announcement type.
+                        - The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning
+                          can vary, depending on the announcement type. The `timeOneType` attribute describes the meaning.
                     returned: on success
                     type: string
                     sample: 2013-10-20T19:20:30+01:00
@@ -143,10 +151,18 @@ announcements_collection:
                     returned: on success
                     type: string
                     sample: Time Ended
+                time_two_type:
+                    description:
+                        - "The type of a time associated with second time value. If the `timeTwoTitle` attribute is present, then the `timeTwoTitle` attribute
+                          contains a label of `timeTwoType` in English.
+                          Example: `END_TIME`"
+                    returned: on success
+                    type: string
+                    sample: END_TIME
                 time_two_value:
                     description:
-                        - The actual value of the second time value. Typically, this is the time an event ended, but the meaning
-                          can vary, depending on the announcement type.
+                        - The actual value of the second time value. Typically, this denotes the time an event ended, but the meaning
+                          can vary, depending on the announcement type. The `timeTwoType` attribute describes the meaning.
                     returned: on success
                     type: string
                     sample: 2013-10-20T19:20:30+01:00
@@ -205,13 +221,13 @@ announcements_collection:
                         - The OCID of the announcement that this status is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx"
                 user_id:
                     description:
                         - The OCID of the user that this status is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
                 time_acknowledged:
                     description:
                         - "The date and time the announcement was acknowledged, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -226,8 +242,10 @@ announcements_collection:
             "reference_ticket_number": "reference_ticket_number_example",
             "summary": "summary_example",
             "time_one_title": "Time Started",
+            "time_one_type": "START_TIME",
             "time_one_value": "2013-10-20T19:20:30+01:00",
             "time_two_title": "Time Ended",
+            "time_two_type": "END_TIME",
             "time_two_value": "2013-10-20T19:20:30+01:00",
             "services": [],
             "affected_regions": [],

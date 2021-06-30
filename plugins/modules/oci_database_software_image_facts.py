@@ -86,6 +86,7 @@ options:
         choices:
             - "VM_BM_SHAPE"
             - "EXADATA_SHAPE"
+            - "EXACC_SHAPE"
     is_upgrade_supported:
         description:
             - If provided, filters the results to the set of database versions which are supported for Upgrade.
@@ -96,11 +97,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List database_software_images
   oci_database_software_image_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific database_software_image
   oci_database_software_image_facts:
-    database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -116,13 +117,13 @@ database_software_images:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The database version with which the database software image is to be built.
@@ -168,7 +169,7 @@ database_software_images:
         patch_set:
             description:
                 - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                  us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             returned: on success
             type: string
             sample: patch_set_example
@@ -331,7 +332,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             image_type=dict(type="str", choices=["GRID_IMAGE", "DATABASE_IMAGE"]),
             image_shape_family=dict(
-                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE"]
+                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE", "EXACC_SHAPE"]
             ),
             is_upgrade_supported=dict(type="bool"),
         )

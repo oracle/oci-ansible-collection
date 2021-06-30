@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_target -- Manage a Target resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1333,14 +1334,14 @@ Examples
     - name: Create target
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_resource_type: COMPARTMENT
-        target_resource_id: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+        target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state: CREATING
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -1348,17 +1349,17 @@ Examples
     - name: Update target
       oci_cloud_guard_target:
         display_name: display_name_example
-        target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete target
       oci_cloud_guard_target:
-        target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+        target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_target:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -1882,7 +1883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_detector_recipes/detector_rules/details/condition_groups/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -1974,7 +1975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_detector_recipes/detector_rules/details/condition_groups/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -2749,7 +2750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_detector_recipes/effective_detector_rules/details/condition_groups/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -2841,7 +2842,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_detector_recipes/effective_detector_rules/details/condition_groups/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -3776,7 +3777,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_responder_recipes/effective_responder_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -3864,7 +3865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_responder_recipes/effective_responder_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -4454,7 +4455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_responder_recipes/responder_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -4542,7 +4543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-target/target_responder_recipes/responder_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>

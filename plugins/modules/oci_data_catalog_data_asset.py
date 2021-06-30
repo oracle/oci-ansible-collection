@@ -110,31 +110,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create data_asset
   oci_data_catalog_data_asset:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     type_key: type_key_example
 
 - name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_data_asset:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
 
 - name: Update data_asset
   oci_data_catalog_data_asset:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     data_asset_key: data_asset_key_example
 
 - name: Delete data_asset
   oci_data_catalog_data_asset:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     state: absent
 
 - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_data_asset:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -171,7 +171,7 @@ data_asset:
                 - The data catalog's OCID.
             returned: on success
             type: string
-            sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         external_key:
             description:
                 - External URI that can be used to reference the object. Format will differ based on the type of object.
@@ -208,13 +208,13 @@ data_asset:
                 - OCID of the user who created the data asset.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         uri:
             description:
                 - URI to the data asset instance in the API.
@@ -287,6 +287,12 @@ data_asset:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -329,7 +335,7 @@ data_asset:
                         - The data catalog's OCID.
                     returned: on success
                     type: string
-                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -383,6 +389,7 @@ data_asset:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],

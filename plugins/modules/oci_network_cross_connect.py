@@ -29,7 +29,7 @@ description:
     - After creating the `CrossConnect` object, you need to go the FastConnect location
       and request to have the physical cable installed. For more information, see
       L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
-    - For the purposes of access control, you must provide the OCID of the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
       compartment where you want the cross-connect to reside. If you're
       not sure which compartment to use, put the cross-connect in the
       same compartment with your VCN. For more information about
@@ -39,6 +39,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the cross-connect.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_cross_connect_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -56,7 +57,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -79,7 +80,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -113,7 +114,7 @@ options:
         type: str
     cross_connect_id:
         description:
-            - The OCID of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -141,13 +142,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cross_connect
   oci_network_cross_connect:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     location_name: CyrusOne, Chandler, AZ
     port_speed_shape_name: 10 Gbps
 
 - name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -158,16 +159,16 @@ EXAMPLES = """
   oci_network_cross_connect:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cross_connect
   oci_network_cross_connect:
-    cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -185,17 +186,17 @@ cross_connect:
                 - The OCID of the compartment containing the cross-connect group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_group_id:
             description:
                 - The OCID of the cross-connect group this cross-connect belongs to (if any).
             returned: on success
             type: string
-            sample: ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -211,7 +212,7 @@ cross_connect:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -221,7 +222,7 @@ cross_connect:
                 - The cross-connect's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The cross-connect's current state.

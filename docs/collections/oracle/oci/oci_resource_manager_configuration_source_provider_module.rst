@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider -- Manage a Config
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a configuration source provider in the specified compartment. For more information, see `To create a configuration source provider <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider>`_.
+- This resource has the following action operations in the :ref:`oci_configuration_source_provider_actions <ansible_collections.oci_configuration_source_provider_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -182,6 +183,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -487,18 +489,18 @@ Examples
 
     - name: Update configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_resource_manager_configuration_source_provider:
-        display_name: My Renamed Configuration Source Provider
+        display_name: "My Renamed Configuration Source Provider"
 
     - name: Update configuration_source_provider
       oci_resource_manager_configuration_source_provider:
         config_source_provider_type: GITHUB_ACCESS_TOKEN
         api_endpoint: https://gitlab.com
         access_token: access_token_example
-        configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+        configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete configuration_source_provider
       oci_resource_manager_configuration_source_provider:
-        configuration_source_provider_id: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+        configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete configuration_source_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

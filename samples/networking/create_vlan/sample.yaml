@@ -15,13 +15,12 @@
     quad_zero_route: "0.0.0.0/0"
     vlan_cidr_block: "10.0.1.0/24"
     vcn_cidr_block: "10.0.0.0/16"
-    vcn_name: "sample-test-vcn-for-vlan"
-    vcn_dns_label: "sampletestdns"
+    vcn_name: "ansible-sample-create-vlan-vcn"
+    vcn_dns_label: "samplevcn"
     compartment_id: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
-    ig_name: "sampleinternetgatewayformytestvcn"
-    route_table_name: "sampleroutetable"
-    network_security_group_name: "network_security_group_name"
-    rt_id: "rt_id"
+    ig_name: "ansible-sample-create-vlan-ig"
+    route_table_name: "ansible-sample-create-vlan-rt"
+    network_security_group_name: "ansible-sample-create-vlan-nsg"
 
     # route all internet access to our Internet Gateway
     route_table_rules:

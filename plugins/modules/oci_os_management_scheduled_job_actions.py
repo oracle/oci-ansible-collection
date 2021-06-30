@@ -23,6 +23,8 @@ module: oci_os_management_scheduled_job_actions
 short_description: Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a resource into a different compartment. When provided, If-Match
+      is checked against ETag values of the resource.
     - For I(action=run_scheduled_job_now), this will trigger an already created Scheduled Job to being executing
       immediately instead of waiting for its next regularly scheduled time.
     - For I(action=skip_next_scheduled_job_execution), this will force an already created Scheduled Job to skip its
@@ -36,26 +38,38 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+              compartment into which the resource should be moved.
+            - Applicable only for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the ScheduledJob.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "run_scheduled_job_now"
             - "skip_next_scheduled_job_execution"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on scheduled_job
+  oci_os_management_scheduled_job_actions:
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action run_scheduled_job_now on scheduled_job
   oci_os_management_scheduled_job_actions:
-    scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
     action: run_scheduled_job_now
 
 - name: Perform action skip_next_scheduled_job_execution on scheduled_job
   oci_os_management_scheduled_job_actions:
-    scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+    scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
     action: skip_next_scheduled_job_execution
 
 """
@@ -72,13 +86,13 @@ scheduled_job:
                 - OCID for the Scheduled Job
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Scheduled Job name
@@ -132,7 +146,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -150,7 +164,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -192,7 +206,7 @@ scheduled_job:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
@@ -279,6 +293,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.os_management import OsManagementClient
+    from oci.os_management.models import ChangeScheduledJobCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -288,6 +303,7 @@ except ImportError:
 class ScheduledJobActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         run_scheduled_job_now
         skip_next_scheduled_job_execution
     """
@@ -306,6 +322,29 @@ class ScheduledJobActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_scheduled_job,
             scheduled_job_id=self.module.params.get("scheduled_job_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeScheduledJobCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_scheduled_job_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                scheduled_job_id=self.module.params.get("scheduled_job_id"),
+                change_scheduled_job_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def run_scheduled_job_now(self):
@@ -361,10 +400,15 @@ def main():
     module_args.update(
         dict(
             scheduled_job_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["run_scheduled_job_now", "skip_next_scheduled_job_execution"],
+                choices=[
+                    "change_compartment",
+                    "run_scheduled_job_now",
+                    "skip_next_scheduled_job_execution",
+                ],
             ),
         )
     )

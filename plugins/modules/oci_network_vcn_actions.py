@@ -23,6 +23,8 @@ module: oci_network_vcn_actions
 short_description: Perform actions on a Vcn resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
+    - For I(action=add_ipv6_vcn_cidr), add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle.
+      Once added the IPv6 CIDR block cannot be removed or modified.
     - "For I(action=add_vcn_cidr), adds a CIDR block to a VCN. The CIDR block you add:
       - Must be valid.
       - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
@@ -30,6 +32,9 @@ description:
       **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs,
       LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status
       of the update."
+    - For I(action=change_compartment), moves a VCN into a different compartment within the same tenancy. For information
+      about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - "For I(action=modify_vcn_cidr), updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria:
       - Must be valid.
       - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block.
@@ -59,6 +64,12 @@ options:
             - The CIDR block to add.
             - Required for I(action=add_vcn_cidr), I(action=remove_vcn_cidr).
         type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              VCN to.
+            - Required for I(action=change_compartment).
+        type: str
     original_cidr_block:
         description:
             - The CIDR IP address to update.
@@ -75,29 +86,42 @@ options:
         type: str
         required: true
         choices:
+            - "add_ipv6_vcn_cidr"
             - "add_vcn_cidr"
+            - "change_compartment"
             - "modify_vcn_cidr"
             - "remove_vcn_cidr"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action add_ipv6_vcn_cidr on vcn
+  oci_network_vcn_actions:
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_ipv6_vcn_cidr
+
 - name: Perform action add_vcn_cidr on vcn
   oci_network_vcn_actions:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     cidr_block: cidr_block_example
     action: add_vcn_cidr
 
+- name: Perform action change_compartment on vcn
+  oci_network_vcn_actions:
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action modify_vcn_cidr on vcn
   oci_network_vcn_actions:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     original_cidr_block: original_cidr_block_example
     new_cidr_block: new_cidr_block_example
     action: modify_vcn_cidr
 
 - name: Perform action remove_vcn_cidr on vcn
   oci_network_vcn_actions:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     cidr_block: cidr_block_example
     action: remove_vcn_cidr
 
@@ -128,29 +152,29 @@ vcn:
                 - The OCID of the compartment containing the VCN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
             type: string
-            sample: ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
             type: string
-            sample: ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -181,7 +205,7 @@ vcn:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -191,7 +215,14 @@ vcn:
                 - The VCN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -227,6 +258,7 @@ vcn:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"
@@ -247,6 +279,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.core import VirtualNetworkClient
     from oci.core.models import AddVcnCidrDetails
+    from oci.core.models import ChangeVcnCompartmentDetails
     from oci.core.models import ModifyVcnCidrDetails
     from oci.core.models import RemoveVcnCidrDetails
 
@@ -258,7 +291,9 @@ except ImportError:
 class VcnActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_ipv6_vcn_cidr
         add_vcn_cidr
+        change_compartment
         modify_vcn_cidr
         remove_vcn_cidr
     """
@@ -284,6 +319,21 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
             self.client.get_vcn, vcn_id=self.module.params.get("vcn_id"),
         )
 
+    def add_ipv6_vcn_cidr(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_ipv6_vcn_cidr,
+            call_fn_args=(),
+            call_fn_kwargs=dict(vcn_id=self.module.params.get("vcn_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def add_vcn_cidr(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, AddVcnCidrDetails
@@ -294,6 +344,27 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 vcn_id=self.module.params.get("vcn_id"),
                 add_vcn_cidr_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeVcnCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_vcn_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                vcn_id=self.module.params.get("vcn_id"),
+                change_vcn_compartment_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -363,12 +434,19 @@ def main():
         dict(
             vcn_id=dict(aliases=["id"], type="str", required=True),
             cidr_block=dict(type="str"),
+            compartment_id=dict(type="str"),
             original_cidr_block=dict(type="str"),
             new_cidr_block=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["add_vcn_cidr", "modify_vcn_cidr", "remove_vcn_cidr"],
+                choices=[
+                    "add_ipv6_vcn_cidr",
+                    "add_vcn_cidr",
+                    "change_compartment",
+                    "modify_vcn_cidr",
+                    "remove_vcn_cidr",
+                ],
             ),
         )
     )

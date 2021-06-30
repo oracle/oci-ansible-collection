@@ -23,8 +23,11 @@ module: oci_blockstorage_boot_volume_backup_actions
 short_description: Perform actions on a BootVolumeBackup resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BootVolumeBackup resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a boot volume backup into a different compartment within the same tenancy.
+      For information about moving resources between compartments,
+      see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=copy), creates a boot volume backup copy in specified region. For general information about volume backups,
-      see L(Overview of Boot Volume Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/bootvolumebackups.htm)
+      see L(Overview of Boot Volume Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/bootvolumebackups.htm)
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -34,16 +37,22 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the boot volume backup to.
+            - Required for I(action=change_compartment).
+        type: str
     destination_region:
         description:
             - The name of the destination region.
             - "Example: `us-ashburn-1`"
+            - Required for I(action=copy).
         type: str
-        required: true
     display_name:
         description:
             - A user-friendly name for the boot volume backup. Does not have to be unique and it's changeable.
               Avoid entering confidential information.
+            - Applicable only for I(action=copy).
         type: str
         aliases: ["name"]
     kms_key_id:
@@ -52,8 +61,9 @@ options:
               for the copied boot volume backup. If you do not specify this attribute the boot volume backup
               will be encrypted with the Oracle-provided encryption key when it is copied to the destination region.
             - For more information about the Key Management service and encryption keys, see
-              L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-              L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+              L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+              L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
+            - Applicable only for I(action=copy).
         type: str
     action:
         description:
@@ -61,14 +71,21 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "copy"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on boot_volume_backup
+  oci_blockstorage_boot_volume_backup_actions:
+    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action copy on boot_volume_backup
   oci_blockstorage_boot_volume_backup_actions:
-    boot_volume_backup_id: ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     destination_region: us-ashburn-1
     action: copy
 
@@ -86,17 +103,17 @@ boot_volume_backup:
                 - The OCID of the boot volume.
             returned: on success
             type: string
-            sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -129,7 +146,7 @@ boot_volume_backup:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -139,22 +156,22 @@ boot_volume_backup:
                 - The OCID of the boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume the backup is taken from.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management master encryption assigned to the boot volume backup.
                   For more information about the Key Management service and encryption keys, see
-                  L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-                  L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+                  L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+                  L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a boot volume backup.
@@ -172,7 +189,7 @@ boot_volume_backup:
                 - The OCID of the source boot volume backup.
             returned: on success
             type: string
-            sample: ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         source_type:
             description:
                 - Specifies whether the backup was created manually, or via scheduled backup policy.
@@ -239,6 +256,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.core import BlockstorageClient
+    from oci.core.models import ChangeBootVolumeBackupCompartmentDetails
     from oci.core.models import CopyBootVolumeBackupDetails
 
     HAS_OCI_PY_SDK = True
@@ -249,6 +267,7 @@ except ImportError:
 class BootVolumeBackupActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         copy
     """
 
@@ -266,6 +285,29 @@ class BootVolumeBackupActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_boot_volume_backup,
             boot_volume_backup_id=self.module.params.get("boot_volume_backup_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeBootVolumeBackupCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_boot_volume_backup_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                boot_volume_backup_id=self.module.params.get("boot_volume_backup_id"),
+                change_boot_volume_backup_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def copy(self):
@@ -310,10 +352,13 @@ def main():
     module_args.update(
         dict(
             boot_volume_backup_id=dict(aliases=["id"], type="str", required=True),
-            destination_region=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
+            destination_region=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             kms_key_id=dict(type="str"),
-            action=dict(type="str", required=True, choices=["copy"]),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "copy"]
+            ),
         )
     )
 

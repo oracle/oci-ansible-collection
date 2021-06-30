@@ -7,6 +7,17 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
+from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
+
+logger = oci_common_utils.get_logger("oci_data_science_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
 
 
 try:
@@ -32,6 +43,26 @@ class DataScienceModelArtifactHelperCustom:
 
     def get_module_resource_id(self):
         return self.module.params.get("model_id")
+
+    def create_resource(self):
+        file_path = self.module.params.get("model_artifact_file")
+        with open(file_path, "rb") as input_file:
+            data = input_file.read()
+        self.module.params["model_artifact"] = data
+        resource = super(DataScienceModelArtifactHelperCustom, self).create_resource()
+        self.module.params.pop("model_artifact", None)
+        return resource
+
+
+class DataScienceModelDeploymentHelperCustom:
+    # exclude the description attribute as the idempotence test does not return the description param
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            DataScienceModelDeploymentHelperCustom, self
+        ).get_exclude_attributes()
+        return exclude_attributes + [
+            "description",
+        ]
 
 
 class DataScienceModelProvenanceHelperCustom:

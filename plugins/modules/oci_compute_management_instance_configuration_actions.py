@@ -23,11 +23,22 @@ module: oci_compute_management_instance_configuration_actions
 short_description: Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an InstanceConfiguration resource in Oracle Cloud Infrastructure
+    - "For I(action=change_compartment), moves an instance configuration into a different compartment within the same tenancy.
+      For information about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+      When you move an instance configuration to a different compartment, associated resources such as
+      instance pools are not moved.
+      **Important:** Most of the properties for an existing instance configuration, including the compartment,
+      cannot be modified after you create the instance configuration. Although you can move an instance configuration
+      to a different compartment, you will not be able to use the instance configuration to manage instance pools
+      in the new compartment. If you want to update an instance configuration to point to a different compartment,
+      you should instead create a new instance configuration in the target compartment using
+      L(CreateInstanceConfiguration,https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/InstanceConfiguration/CreateInstanceConfiguration)."
     - For I(action=launch), launches an instance from an instance configuration.
       If the instance configuration does not include all of the parameters that are
       required to launch an instance, such as the availability domain and subnet ID, you must
       provide these parameters when you launch an instance from the instance configuration.
-      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/InstanceConfiguration/)
+      For more information, see the L(InstanceConfiguration,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InstanceConfiguration/)
       resource.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -38,16 +49,23 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to
+              move the instance configuration to.
+            - Required for I(action=change_compartment).
+        type: str
     instance_type:
         description:
             - The type of instance details. Supported instanceType is compute
+            - Required for I(action=launch).
         type: str
         choices:
             - "compute"
-        required: true
     block_volumes:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: list
         suboptions:
             attach_details:
@@ -115,7 +133,8 @@ options:
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -128,7 +147,7 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     kms_key_id:
@@ -140,8 +159,8 @@ options:
                         description:
                             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
                               representing the Block Volume service's elastic performance options.
-                              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for
-                              more information.
+                              See L(Block Volume Elastic
+                              Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more information.
                             - "Allowed values:"
                             - " * `0`: Represents Lower Cost option."
                             - " * `10`: Represents Balanced option."
@@ -175,12 +194,17 @@ options:
     launch_details:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: dict
         suboptions:
             availability_domain:
                 description:
                     - The availability domain of the instance.
                     - "Example: `Uocm:PHX-AD-1`"
+                type: str
+            capacity_reservation_id:
+                description:
+                    - The OCID of the compute capacity reservation this instance is launched under.
                 type: str
             compartment_id:
                 description:
@@ -194,13 +218,20 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                              for more information.
+                        type: bool
+                    assign_private_dns_record:
+                        description:
+                            - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                               for more information.
                         type: bool
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -213,43 +244,43 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
                               See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
                               See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
                               See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
                               See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
             display_name:
@@ -272,7 +303,7 @@ options:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
                 type: dict
             ipxe_script:
@@ -294,7 +325,7 @@ options:
                       iqn.2015-02.oracle.boot."
                     - For more information about the Bring Your Own Image feature of
                       Oracle Cloud Infrastructure, see
-                      L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                      L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                     - For more information about iPXE, see http://ipxe.org.
                 type: str
             metadata:
@@ -340,7 +371,7 @@ options:
                     - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                       and other resources allocated to the instance.
                     - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                      us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
                 type: str
             shape_config:
                 description:
@@ -355,6 +386,19 @@ options:
                         description:
                             - The total amount of memory available to the instance, in gigabytes.
                         type: float
+                    baseline_ocpu_utilization:
+                        description:
+                            - The baseline OCPU utilization for a subcore burstable VM instance. Leave this attribute blank for a
+                              non-burstable instance, or explicitly specify non-burstable with `BASELINE_1_1`.
+                            - "The following values are supported:
+                              - `BASELINE_1_8` - baseline usage is 1/8 of an OCPU.
+                              - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
+                              - `BASELINE_1_1` - baseline usage is an entire OCPU. This represents a non-burstable instance."
+                        type: str
+                        choices:
+                            - "BASELINE_1_8"
+                            - "BASELINE_1_2"
+                            - "BASELINE_1_1"
             platform_config:
                 description:
                     - ""
@@ -363,7 +407,7 @@ options:
                     type:
                         description:
                             - The type of platform being configured. The only supported
-                              `type` is `AMD_MILAN_BM`
+                              `type` is `AMD_MILAN_BM`.
                         type: str
                         choices:
                             - "AMD_MILAN_BM"
@@ -430,7 +474,7 @@ options:
             launch_mode:
                 description:
                     - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                      * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                      * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                       * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                       * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                       * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -452,9 +496,9 @@ options:
                               * `SCSI` - Emulated SCSI disk.
                               * `IDE` - Emulated IDE disk.
                               * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                              volumes on Oracle provided images.
+                              volumes on platform images.
                               * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                              storage volumes on Oracle-provided images."
+                              storage volumes on platform images."
                         type: str
                         choices:
                             - "ISCSI"
@@ -468,7 +512,7 @@ options:
                               * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                               systems that boot using MBR style bootloaders.
                               * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                              default for Oracle-provided images."
+                              default for platform images."
                         type: str
                         choices:
                             - "BIOS"
@@ -492,9 +536,9 @@ options:
                               * `SCSI` - Emulated SCSI disk.
                               * `IDE` - Emulated IDE disk.
                               * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                              volumes on Oracle provided images.
+                              volumes on platform images.
                               * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                              storage volumes on Oracle-provided images."
+                              storage volumes on platform images."
                         type: str
                         choices:
                             - "ISCSI"
@@ -506,7 +550,7 @@ options:
                         description:
                             - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
                               L(InstanceConfigurationLaunchInstanceDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/datatypes/InstanceConfigurationLaunchInstanceDetails).
+                              us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationLaunchInstanceDetails).
                         type: bool
                     is_consistent_volume_naming_enabled:
                         description:
@@ -618,9 +662,33 @@ options:
                         choices:
                             - "RESTORE_INSTANCE"
                             - "STOP_INSTANCE"
+            preemptible_instance_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    preemption_action:
+                        description:
+                            - ""
+                        type: dict
+                        required: true
+                        suboptions:
+                            type:
+                                description:
+                                    - The type of action to run when the instance is interrupted for eviction.
+                                type: str
+                                choices:
+                                    - "TERMINATE"
+                                required: true
+                            preserve_boot_volume:
+                                description:
+                                    - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated.
+                                      Defaults to false if not specified.
+                                type: bool
     secondary_vnics:
         description:
             - ""
+            - Applicable only for I(action=launch).
         type: list
         suboptions:
             create_vnic_details:
@@ -631,13 +699,20 @@ options:
                     assign_public_ip:
                         description:
                             - Whether the VNIC should be assigned a public IP address. See the `assignPublicIp` attribute of
-                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/)
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
+                              for more information.
+                        type: bool
+                    assign_private_dns_record:
+                        description:
+                            - Whether the VNIC should be assigned a private DNS record. See the `assignPrivateDnsRecord` attribute of
+                              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/)
                               for more information.
                         type: bool
                     defined_tags:
                         description:
                             - Defined tags for this resource. Each key is predefined and scoped to a
-                              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              namespace. For more information, see L(Resource
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                         type: dict
                     display_name:
@@ -650,38 +725,38 @@ options:
                         description:
                             - Free-form tags for this resource. Each tag is a simple key-value pair with no
                               predefined name, type, or namespace. For more information, see L(Resource
-                              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                             - "Example: `{\\"Department\\": \\"Finance\\"}`"
                         type: dict
                     hostname_label:
                         description:
                             - The hostname for the VNIC's primary private IP.
                               See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     nsg_ids:
                         description:
                             - A list of the OCIDs of the network security groups (NSGs) to add the VNIC to. For more
                               information about NSGs, see
-                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                         type: list
                     private_ip:
                         description:
                             - A private IP address of your choice to assign to the VNIC.
                               See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
                     skip_source_dest_check:
                         description:
                             - Whether the source/destination check is disabled on the VNIC.
                               See the `skipSourceDestCheck` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: bool
                     subnet_id:
                         description:
                             - The OCID of the subnet to create the VNIC in.
                               See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
-                              us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/) for more information.
+                              us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                         type: str
             display_name:
                 description:
@@ -694,7 +769,7 @@ options:
                       Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                       you add a secondary VNIC to one of these instances, you can specify which NIC
                       the VNIC will use. For more information, see
-                      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
                 type: int
     action:
         description:
@@ -702,14 +777,21 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "launch"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on instance_configuration
+  oci_compute_management_instance_configuration_actions:
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action launch on instance_configuration
   oci_compute_management_instance_configuration_actions:
-    instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+    instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
     instance_type: compute
     action: launch
 
@@ -729,22 +811,30 @@ instance:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        capacity_reservation_id:
+            description:
+                - The OCID of the compute capacity reservation this instance is launched under.
+                  When this field contains an empty string or is null, the instance is not currently in a capacity reservation.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: string
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
                 - The OCID of dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -783,7 +873,7 @@ instance:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -793,13 +883,13 @@ instance:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - Deprecated. Use `sourceDetails` instead.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         ipxe_script:
             description:
                 - When a bare metal or virtual machine
@@ -818,7 +908,7 @@ instance:
                   iqn.2015-02.oracle.boot."
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
-                  L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                  L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                 - For more information about iPXE, see http://ipxe.org.
             returned: on success
             type: string
@@ -826,7 +916,7 @@ instance:
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -846,9 +936,9 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -858,7 +948,7 @@ instance:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -879,16 +969,16 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -918,6 +1008,14 @@ instance:
             returned: on success
             type: complex
             contains:
+                is_live_migration_preferred:
+                    description:
+                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                    returned: on success
+                    type: bool
+                    sample: true
                 recovery_action:
                     description:
                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -927,6 +1025,31 @@ instance:
                     returned: on success
                     type: string
                     sample: RESTORE_INSTANCE
+        preemptible_instance_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preemption_action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of action to run when the instance is interrupted for eviction.
+                            returned: on success
+                            type: string
+                            sample: TERMINATE
+                        preserve_boot_volume:
+                            description:
+                                - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults
+                                  to false if not specified.
+                            returned: on success
+                            type: bool
+                            sample: true
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -952,7 +1075,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -974,6 +1097,17 @@ instance:
                     returned: on success
                     type: float
                     sample: 3.4
+                baseline_ocpu_utilization:
+                    description:
+                        - The baseline OCPU utilization for a subcore burstable VM instance. Leave this attribute blank for a
+                          non-burstable instance, or explicitly specify non-burstable with `BASELINE_1_1`.
+                        - "The following values are supported:
+                          - `BASELINE_1_8` - baseline usage is 1/8 of an OCPU.
+                          - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
+                          - `BASELINE_1_1` - baseline usage is the entire OCPU. This represents a non-burstable instance."
+                    returned: on success
+                    type: string
+                    sample: BASELINE_1_8
                 processor_description:
                     description:
                         - A short description of the instance's processor (CPU).
@@ -1050,19 +1184,19 @@ instance:
                         - The OCID of the image used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
                         - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -1165,18 +1299,19 @@ instance:
                 type:
                     description:
                         - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`
+                          `type` is `AMD_MILAN_BM`.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
                 numa_nodes_per_socket:
                     description:
-                        - The number of NUMA nodes per socket.
+                        - The number of NUMA nodes per socket (NPS).
                     returned: on success
                     type: string
                     sample: NPS0
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -1200,7 +1335,14 @@ instance:
             "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
+            "is_live_migration_preferred": true,
             "recovery_action": "RESTORE_INSTANCE"
+        },
+        "preemptible_instance_config": {
+            "preemption_action": {
+                "type": "TERMINATE",
+                "preserve_boot_volume": true
+            }
         },
         "lifecycle_state": "MOVING",
         "metadata": {},
@@ -1209,6 +1351,7 @@ instance:
         "shape_config": {
             "ocpus": 3.4,
             "memory_in_gbs": 3.4,
+            "baseline_ocpu_utilization": "BASELINE_1_8",
             "processor_description": "processor_description_example",
             "networking_bandwidth_in_gbps": 3.4,
             "max_vnic_attachments": 56,
@@ -1257,6 +1400,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import ComputeManagementClient
+    from oci.core.models import ChangeInstanceConfigurationCompartmentDetails
     from oci.core.models import InstanceConfigurationInstanceDetails
 
     HAS_OCI_PY_SDK = True
@@ -1267,6 +1411,7 @@ except ImportError:
 class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         launch
     """
 
@@ -1291,6 +1436,31 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
             self.client.get_instance_configuration,
             instance_configuration_id=self.module.params.get(
                 "instance_configuration_id"
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeInstanceConfigurationCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_instance_configuration_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_configuration_id=self.module.params.get(
+                    "instance_configuration_id"
+                ),
+                change_instance_configuration_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
             ),
         )
 
@@ -1336,7 +1506,8 @@ def main():
     module_args.update(
         dict(
             instance_configuration_id=dict(aliases=["id"], type="str", required=True),
-            instance_type=dict(type="str", required=True, choices=["compute"]),
+            compartment_id=dict(type="str"),
+            instance_type=dict(type="str", choices=["compute"]),
             block_volumes=dict(
                 type="list",
                 elements="dict",
@@ -1389,11 +1560,13 @@ def main():
                 type="dict",
                 options=dict(
                     availability_domain=dict(type="str"),
+                    capacity_reservation_id=dict(type="str"),
                     compartment_id=dict(type="str"),
                     create_vnic_details=dict(
                         type="dict",
                         options=dict(
                             assign_public_ip=dict(type="bool"),
+                            assign_private_dns_record=dict(type="bool"),
                             defined_tags=dict(type="dict"),
                             display_name=dict(aliases=["name"], type="str"),
                             freeform_tags=dict(type="dict"),
@@ -1414,7 +1587,16 @@ def main():
                     shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                            ocpus=dict(type="float"),
+                            memory_in_gbs=dict(type="float"),
+                            baseline_ocpu_utilization=dict(
+                                type="str",
+                                choices=[
+                                    "BASELINE_1_8",
+                                    "BASELINE_1_2",
+                                    "BASELINE_1_1",
+                                ],
+                            ),
                         ),
                     ),
                     platform_config=dict(
@@ -1517,6 +1699,21 @@ def main():
                             )
                         ),
                     ),
+                    preemptible_instance_config=dict(
+                        type="dict",
+                        options=dict(
+                            preemption_action=dict(
+                                type="dict",
+                                required=True,
+                                options=dict(
+                                    type=dict(
+                                        type="str", required=True, choices=["TERMINATE"]
+                                    ),
+                                    preserve_boot_volume=dict(type="bool"),
+                                ),
+                            )
+                        ),
+                    ),
                 ),
             ),
             secondary_vnics=dict(
@@ -1527,6 +1724,7 @@ def main():
                         type="dict",
                         options=dict(
                             assign_public_ip=dict(type="bool"),
+                            assign_private_dns_record=dict(type="bool"),
                             defined_tags=dict(type="dict"),
                             display_name=dict(aliases=["name"], type="str"),
                             freeform_tags=dict(type="dict"),
@@ -1541,7 +1739,9 @@ def main():
                     nic_index=dict(type="int"),
                 ),
             ),
-            action=dict(type="str", required=True, choices=["launch"]),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "launch"]
+            ),
         )
     )
 

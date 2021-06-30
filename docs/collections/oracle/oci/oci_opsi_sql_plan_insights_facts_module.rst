@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_plan_insights_facts -- Fetches details about a SqlPlanIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a SqlPlanInsights resource in Oracle Cloud Infrastructure
-- Query SQL Warehouse to get the performance insights on the execution plans for a given SQL for a given time period.
+- Query SQL Warehouse to get the performance insights on the execution plans for a given SQL for a given time period. Either databaseId or id must be specified.
 
 
 .. Aliases
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -161,6 +161,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -219,12 +220,27 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-database_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Required <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database.</div>
+                                            <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the associated DBaaS entity.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div><a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -326,8 +342,7 @@ Examples
     
     - name: Get a specific sql_plan_insights
       oci_opsi_sql_plan_insights_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         sql_identifier: 6rgjh9bjmy2s7
 
 
@@ -365,7 +380,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>SqlPlanInsights resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;insights&#x27;: [{&#x27;category&#x27;: &#x27;category_example&#x27;, &#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;value&#x27;: 56}], &#x27;items&#x27;: [{&#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_hash&#x27;: 56}], &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;insights&#x27;: [{&#x27;category&#x27;: &#x27;category_example&#x27;, &#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;value&#x27;: 56}], &#x27;items&#x27;: [{&#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_hash&#x27;: 56}], &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -384,6 +399,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.database.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sql_plan_insights/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-sql_plan_insights/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

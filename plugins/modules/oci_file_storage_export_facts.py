@@ -32,21 +32,21 @@ author: Oracle (@oracle)
 options:
     export_id:
         description:
-            - The OCID of the export.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export.
             - Required to get a specific export.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The OCID of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
     export_set_id:
         description:
-            - The OCID of the export set.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export set.
         type: str
     file_system_id:
         description:
-            - The OCID of the file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
         type: str
     lifecycle_state:
         description:
@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List exports
   oci_file_storage_export_facts:
-    export_set_id: ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
+    export_set_id: "ocid1.exportset.oc1..unique_ID"
 
 - name: Get a specific export
   oci_file_storage_export_facts:
-    export_id: ocid1.export.oc1..xxxxxxEXAMPLExxxxxx
+    export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -179,22 +179,22 @@ exports:
                     sample: 56
         export_set_id:
             description:
-                - The OCID of this export's export set.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
             returned: on success
             type: string
-            sample: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         file_system_id:
             description:
-                - The OCID of this export's file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
             returned: on success
             type: string
-            sample: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of this export.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of this export.

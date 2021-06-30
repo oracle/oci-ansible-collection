@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_notebook_session_shape_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -164,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>&lt;b&gt;Filter&lt;/b&gt; results by the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -266,7 +267,7 @@ Examples
     
     - name: List notebook_session_shapes
       oci_data_science_notebook_session_shape_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -303,7 +304,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of NotebookSessionShape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;core_count&#x27;: 1, &#x27;memory_in_gbs&#x27;: 15, &#x27;name&#x27;: &#x27;VM.STANDARD2.1&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;core_count&#x27;: 1, &#x27;memory_in_gbs&#x27;: 15, &#x27;name&#x27;: &#x27;VM.STANDARD2.1&#x27;, &#x27;shape_series&#x27;: &#x27;AMD_ROME&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -358,6 +359,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VM.STANDARD2.1</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session_shapes/shape_series"></div>
+                    <b>shape_series</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session_shapes/shape_series" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The family that the compute shape belongs to.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMD_ROME</div>
                                     </td>
             </tr>
                     

@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn -- Manage a Vcn resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -52,7 +52,7 @@ Synopsis
 - You can also add a DNS label for the VCN, which is required if you want the instances to use the Interent and VCN Resolver option for DNS in the VCN. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm>`_.
 - The VCN automatically comes with a default route table, default security list, and default set of DHCP options. The OCID for each is returned in the response. You can't delete these default objects, but you can change their contents (that is, change the route rules, security list rules, and so on).
 - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN or FastConnect. For more information, see `Overview of the Networking Service <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm>`_.
-- This resource has the following action operations in the :ref:`oci_vcn_actions <ansible_collections.oci_vcn_actions_module>` module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr.
+- This resource has the following action operations in the :ref:`oci_vcn_actions <ansible_collections.oci_vcn_actions_module>` module: add_ipv6_vcn_cidr, add_vcn_cidr, change_compartment, modify_vcn_cidr, remove_vcn_cidr.
 
 
 .. Aliases
@@ -64,7 +64,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -155,6 +155,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -252,7 +253,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -324,9 +325,29 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_ipv6_enabled"></div>
+                    <b>is_ipv6_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_ipv6_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether IPv6 is enabled for the VCN. Default is `false`. If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block. For important details about IPv6 addressing in a VCN, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `true`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -471,13 +492,13 @@ Examples
     
     - name: Create vcn
       oci_network_vcn:
-        cidr_block: 10.0.0.0/16
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        display_name: MyVcn
+        cidr_block: "10.0.0.0/16"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        display_name: "MyVcn"
 
     - name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_vcn:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyVcn
         freeform_tags: {'Department': 'Finance'}
@@ -486,16 +507,16 @@ Examples
       oci_network_vcn:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyVcn
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete vcn
       oci_network_vcn:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_vcn:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyVcn
         state: absent
 
@@ -534,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Vcn resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;vcn1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn1.oraclevcn.com&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;vcn1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn1.oraclevcn.com&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -656,7 +677,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -714,7 +735,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -737,6 +758,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn/ipv6_cidr_blocks"></div>
+                    <b>ipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcn/ipv6_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

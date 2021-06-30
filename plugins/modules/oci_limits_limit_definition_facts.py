@@ -51,7 +51,7 @@ options:
             - "description"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'. By default it will be ascending.
+            - The sort order to use, either 'asc' or 'desc'. By default, it is ascending.
         type: str
         choices:
             - "ASC"
@@ -62,7 +62,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List limit_definitions
   oci_limits_limit_definition_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -93,7 +93,7 @@ limit_definitions:
             sample: description_example
         scope_type:
             description:
-                - "Reflects the scope of the resource limit: which can be Global (across all regions), regional or ad specific."
+                - Reflects the scope of the resource limit, whether Global (across all regions), regional, or availability domain-specific.
             returned: on success
             type: string
             sample: GLOBAL
@@ -105,8 +105,26 @@ limit_definitions:
             sample: true
         is_resource_availability_supported:
             description:
-                - Reflects if the GetResourceAvailability API is supported for this limit or not.
-                  If not, the API will return an empty JSON response.
+                - Reflects whether or not the GetResourceAvailability API is supported for this limit.
+                  If not, the API returns an empty JSON response.
+            returned: on success
+            type: bool
+            sample: true
+        is_deprecated:
+            description:
+                - Indicates if the limit has been deprecated.
+            returned: on success
+            type: bool
+            sample: true
+        is_eligible_for_limit_increase:
+            description:
+                - Indicates if the customer can request a limit increase for this resource.
+            returned: on success
+            type: bool
+            sample: true
+        is_dynamic:
+            description:
+                - The limit for this resource has a dynamic value that is based on consumption across all OCI services.
             returned: on success
             type: bool
             sample: true
@@ -116,7 +134,10 @@ limit_definitions:
         "description": "description_example",
         "scope_type": "GLOBAL",
         "are_quotas_supported": true,
-        "is_resource_availability_supported": true
+        "is_resource_availability_supported": true,
+        "is_deprecated": true,
+        "is_eligible_for_limit_increase": true,
+        "is_dynamic": true
     }]
 """
 

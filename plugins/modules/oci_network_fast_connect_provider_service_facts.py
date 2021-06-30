@@ -26,7 +26,7 @@ description:
     - Lists the service offerings from supported providers. You need this
       information so you can specify your desired provider and service
       offering when you create a virtual circuit.
-    - For the compartment ID, provide the OCID of your tenancy (the root compartment).
+    - For the compartment ID, provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of your tenancy (the root compartment).
     - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - If I(provider_service_id) is specified, the details of a single FastConnectProviderService will be returned.
 version_added: "2.9"
@@ -34,13 +34,13 @@ author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
-            - The OCID of the provider service.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the provider service.
             - Required to get a specific fast_connect_provider_service.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple fast_connect_provider_services.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
@@ -49,11 +49,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List fast_connect_provider_services
   oci_network_fast_connect_provider_service_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific fast_connect_provider_service
   oci_network_fast_connect_provider_service_facts:
-    provider_service_id: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+    provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -78,7 +78,7 @@ fast_connect_provider_services:
                 - The OCID of the service offered by the provider.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         private_peering_bgp_management:
             description:
                 - Who is responsible for managing the private peering BGP information.

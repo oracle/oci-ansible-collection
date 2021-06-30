@@ -44,7 +44,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List certificates
   oci_loadbalancer_certificate_facts:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -68,13 +68,13 @@ certificates:
             description:
                 - The public certificate, in PEM format, that you received from your SSL certificate provider.
                 - "Example:"
-                -     -----BEGIN CERTIFICATE-----
+                - "   -----BEGIN CERTIFICATE-----
                       MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG
                       A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE
                       MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl
                       YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw
                       ...
-                      -----END CERTIFICATE-----
+                      -----END CERTIFICATE-----"
             returned: on success
             type: string
             sample: public_certificate_example
@@ -82,13 +82,13 @@ certificates:
             description:
                 - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
                 - "Example:"
-                -     -----BEGIN CERTIFICATE-----
+                - "   -----BEGIN CERTIFICATE-----
                       MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix
                       EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD
                       VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y
                       aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy
                       ...
-                      -----END CERTIFICATE-----
+                      -----END CERTIFICATE-----"
             returned: on success
             type: string
             sample: ca_certificate_example

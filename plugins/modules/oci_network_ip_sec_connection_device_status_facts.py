@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
         type: str
         aliases: ["id"]
         required: true
@@ -40,7 +40,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific ip_sec_connection_device_status
   oci_network_ip_sec_connection_device_status_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -56,13 +56,13 @@ ip_sec_connection_device_status:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The IPSec connection's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

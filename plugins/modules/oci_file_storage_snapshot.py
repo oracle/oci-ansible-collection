@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     file_system_id:
         description:
-            - The OCID of the file system to take a snapshot of.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system to take a snapshot of.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -62,7 +62,7 @@ options:
         type: dict
     snapshot_id:
         description:
-            - The OCID of the snapshot.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -82,17 +82,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create snapshot
   oci_file_storage_snapshot:
-    name: snapshot-1
-    file_system_id: ocid1.filesystem.oc1.phx.exampleaaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
+    name: "snapshot-1"
+    file_system_id: "ocid1.filesystem.oc1..unique_ID"
 
 - name: Update snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
-    name: snapshot-1-new
+    name: "snapshot-1-new"
 
 - name: Update snapshot
   oci_file_storage_snapshot:
-    name: snapshot-1-new
-    snapshot_id: string
+    name: "snapshot-1-new"
+    snapshot_id: "string"
 
 - name: Delete snapshot
   oci_file_storage_snapshot:
@@ -101,7 +101,7 @@ EXAMPLES = """
 
 - name: Delete snapshot using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_snapshot:
-    file_system_id: ocid1.filesystem.oc1.phx.exampleaaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
+    file_system_id: "ocid1.filesystem.oc1..unique_ID"
     name: snapshot-1
     state: absent
 
@@ -116,17 +116,17 @@ snapshot:
     contains:
         file_system_id:
             description:
-                - The OCID of the file system from which the snapshot
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system from which the snapshot
                   was created.
             returned: on success
             type: string
-            sample: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of the snapshot.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the snapshot.
@@ -149,6 +149,28 @@ snapshot:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        provenance_id:
+            description:
+                - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
+                  If this snapshot was not cloned, then the `provenanceId` is the same as the snapshot `id` value.
+                  If this snapshot was cloned, then the `provenanceId` value is the parent's `provenanceId`.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: string
+            sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
+        is_clone_source:
+            description:
+                - Specifies whether the snapshot has been cloned.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_details:
+            description:
+                - Additional information about the current 'lifecycleState'.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair
@@ -172,6 +194,9 @@ snapshot:
         "lifecycle_state": "CREATING",
         "name": "Sunday",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_clone_source": true,
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

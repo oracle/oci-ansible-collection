@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_insights_facts -- Fetches details about a SqlInsights re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -161,6 +161,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -224,7 +225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the associated DBaaS entity.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -257,10 +258,27 @@ Parameters
                                                                                                                                                                                                 <li>ATP-S</li>
                                                                                                                                                                                                 <li>ADW-D</li>
                                                                                                                                                                                                 <li>ATP-D</li>
+                                                                                                                                                                                                <li>EXTERNAL-PDB</li>
+                                                                                                                                                                                                <li>EXTERNAL-NONCDB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D</div>
+                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of database insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the database insight resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -347,7 +365,7 @@ Examples
     
     - name: Get a specific sql_insights
       oci_opsi_sql_insights_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -384,7 +402,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>SqlInsights resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;inventory&#x27;: {&#x27;sqls_analyzed&#x27;: 56, &#x27;total_databases&#x27;: 56, &#x27;total_sqls&#x27;: 56}, &#x27;items&#x27;: [{&#x27;category&#x27;: &#x27;category_example&#x27;, &#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;values&#x27;: []}], &#x27;thresholds&#x27;: {&#x27;degradation_in_pct&#x27;: 56, &#x27;increase_in_cpu_in_pct&#x27;: 56, &#x27;increase_in_inefficient_wait_in_pct&#x27;: 56, &#x27;increase_in_io_in_pct&#x27;: 56, &#x27;inefficiency_in_pct&#x27;: 56, &#x27;variability&#x27;: 3.4}, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;inventory&#x27;: {&#x27;sqls_analyzed&#x27;: 56, &#x27;total_databases&#x27;: 56, &#x27;total_sqls&#x27;: 56}, &#x27;items&#x27;: [{&#x27;category&#x27;: &#x27;category_example&#x27;, &#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;values&#x27;: []}], &#x27;thresholds&#x27;: {&#x27;degradation_in_pct&#x27;: 56, &#x27;improved_in_pct&#x27;: 56, &#x27;increase_in_cpu_in_pct&#x27;: 56, &#x27;increase_in_inefficient_wait_in_pct&#x27;: 56, &#x27;increase_in_io_in_pct&#x27;: 56, &#x27;inefficiency_in_pct&#x27;: 56, &#x27;variability&#x27;: 3.4}, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -490,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Insight category. It would be one of the following DEGRADING, VARIANT, INEFFICIENT, CHANGING_PLANS, DEGRADING_VARIANT, DEGRADING_INEFFICIENT, DEGRADING_CHANGING_PLANS, DEGRADING_INCREASING_IO, DEGRADING_INCREASING_CPU, DEGRADING_INCREASING_INEFFICIENT_WAIT, DEGRADING_CHANGING_PLANS_AND_INCREASING_IO, DEGRADING_CHANGING_PLANS_AND_INCREASING_CPU, DEGRADING_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT,VARIANT_INEFFICIENT, VARIANT_CHANGING_PLANS, VARIANT_INCREASING_IO, VARIANT_INCREASING_CPU, VARIANT_INCREASING_INEFFICIENT_WAIT, VARIANT_CHANGING_PLANS_AND_INCREASING_IO, VARIANT_CHANGING_PLANS_AND_INCREASING_CPU, VARIANT_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT, INEFFICIENT_CHANGING_PLANS, INEFFICIENT_INCREASING_INEFFICIENT_WAIT, INEFFICIENT_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT</div>
+                                            <div>Insight category. It would be one of the following DEGRADING, VARIANT, INEFFICIENT, CHANGING_PLANS, IMPROVING, DEGRADING_VARIANT, DEGRADING_INEFFICIENT, DEGRADING_CHANGING_PLANS, DEGRADING_INCREASING_IO, DEGRADING_INCREASING_CPU, DEGRADING_INCREASING_INEFFICIENT_WAIT, DEGRADING_CHANGING_PLANS_AND_INCREASING_IO, DEGRADING_CHANGING_PLANS_AND_INCREASING_CPU, DEGRADING_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT,VARIANT_INEFFICIENT, VARIANT_CHANGING_PLANS, VARIANT_INCREASING_IO, VARIANT_INCREASING_CPU, VARIANT_INCREASING_INEFFICIENT_WAIT, VARIANT_CHANGING_PLANS_AND_INCREASING_IO, VARIANT_CHANGING_PLANS_AND_INCREASING_CPU, VARIANT_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT, INEFFICIENT_CHANGING_PLANS, INEFFICIENT_INCREASING_INEFFICIENT_WAIT, INEFFICIENT_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">category_example</div>
@@ -509,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Insight text. For example `Degrading SQLs`, `Variant SQLs`, `Inefficient SQLs`, `SQLs with Plan Changes`, `Degrading SQLs have increasing IO Time above 50%`, `Degrading SQLs are variant`, `2 of the 2 variant SQLs have plan changes`, `Inefficient SQLs have increasing CPU Time above 50%</div>
+                                            <div>Insight text. For example `Degrading SQLs`, `Variant SQLs`, `Inefficient SQLs`, `Improving SQLs`, `SQLs with Plan Changes`, `Degrading SQLs have increasing IO Time above 50%`, `Degrading SQLs are variant`, `2 of the 2 variant SQLs have plan changes`, `Inefficient SQLs have increasing CPU Time above 50%</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
@@ -563,6 +581,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Degradation Percent Threshold is used to derive degrading SQLs.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sql_insights/thresholds/improved_in_pct"></div>
+                    <b>improved_in_pct</b>
+                    <a class="ansibleOptionLink" href="#return-sql_insights/thresholds/improved_in_pct" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Improved Percent Threshold is used to derive improving SQLs.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

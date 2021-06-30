@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     instance_pool_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
             - Required to get a specific instance_pool.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple instance_pools.
         type: str
     display_name:
@@ -85,11 +85,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List instance_pools
   oci_compute_management_instance_pool_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific instance_pool
   oci_compute_management_instance_pool_facts:
-    instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,21 +102,21 @@ instance_pools:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
                   pool.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -131,18 +131,18 @@ instance_pools:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         instance_configuration_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration associated
                   with the instance pool.
             returned: on success
             type: string
-            sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the instance pool.
@@ -164,10 +164,10 @@ instance_pools:
                     sample: Uocm:PHX-AD-1
                 primary_subnet_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
                     returned: on success
                     type: string
-                    sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                 fault_domains:
                     description:
                         - The fault domains to place instances.
@@ -198,10 +198,10 @@ instance_pools:
                             sample: display_name_example
                         subnet_id:
                             description:
-                                - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
+                                - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         size:
             description:
                 - The number of instances that should be in the instance pool.
@@ -223,23 +223,24 @@ instance_pools:
             contains:
                 id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 instance_pool_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
                           attachment.
                     returned: on success
                     type: string
-                    sample: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
                 load_balancer_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance pool.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance
+                          pool.
                     returned: on success
                     type: string
-                    sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.

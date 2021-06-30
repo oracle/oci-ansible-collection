@@ -38,6 +38,10 @@ description:
       To delete a tag namespace, you must first retire it. Use L(UpdateTagNamespace,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/20160918/TagNamespace/UpdateTagNamespace)
       to retire a tag namespace."
+    - For I(action=change_compartment), moves the specified tag namespace to the specified compartment within the same tenancy.
+      To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
+      For more information about IAM policies, see L(Details for IAM,https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm).
+      Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -47,6 +51,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The Oracle Cloud ID (OCID) of the destination compartment.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the TagNamespace.
@@ -54,17 +63,105 @@ options:
         required: true
         choices:
             - "cascade_delete"
+            - "change_compartment"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
 - name: Perform action cascade_delete on tag_namespace
   oci_identity_tag_namespace_actions:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     action: cascade_delete
+
+- name: Perform action change_compartment on tag_namespace
+  oci_identity_tag_namespace_actions:
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 """
 
+RETURN = """
+tag_namespace:
+    description:
+        - Details of the TagNamespace resource acted upon by the current operation
+    returned: on success for actions [ "change_compartment" ]
+    type: complex
+    contains:
+        id:
+            description:
+                - The OCID of the tag namespace.
+            returned: on success
+            type: string
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains the tag namespace.
+            returned: on success
+            type: string
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name:
+            description:
+                - The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
+            returned: on success
+            type: string
+            sample: name_example
+        description:
+            description:
+                - The description you assign to the tag namespace.
+            returned: on success
+            type: string
+            sample: description_example
+        freeform_tags:
+            description:
+                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        is_retired:
+            description:
+                - Whether the tag namespace is retired.
+                  See L(Retiring Key Definitions and Namespace
+                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_state:
+            description:
+                - The tagnamespace's current state. After creating a tagnamespace, make sure its `lifecycleState` is ACTIVE before using it. After retiring a
+                  tagnamespace, make sure its `lifecycleState` is INACTIVE before using it.
+            returned: on success
+            type: string
+            sample: ACTIVE
+        time_created:
+            description:
+                - "Date and time the tagNamespace was created, in the format defined by RFC3339.
+                  Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
+    sample: {
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "name": "name_example",
+        "description": "description_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "is_retired": true,
+        "lifecycle_state": "ACTIVE",
+        "time_created": "2016-08-25T21:10:29.600Z"
+    }
+"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
@@ -78,6 +175,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.identity import IdentityClient
+    from oci.identity.models import ChangeTagNamespaceCompartmentDetail
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -88,6 +186,7 @@ class TagNamespaceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         cascade_delete
+        change_compartment
     """
 
     @staticmethod
@@ -123,6 +222,29 @@ class TagNamespaceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeTagNamespaceCompartmentDetail
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_tag_namespace_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                change_tag_namespace_compartment_detail=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 TagNamespaceActionsHelperCustom = get_custom_class("TagNamespaceActionsHelperCustom")
 
@@ -138,7 +260,12 @@ def main():
     module_args.update(
         dict(
             tag_namespace_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["cascade_delete"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["cascade_delete", "change_compartment"],
+            ),
         )
     )
 

@@ -72,11 +72,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List detectors
   oci_cloud_guard_detector_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific detector
   oci_cloud_guard_detector_facts:
-    detector_id: ocid1.detector.oc1..xxxxxxEXAMPLExxxxxx
+    detector_id: "ocid1.detector.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -92,7 +92,7 @@ detectors:
                 - detector key
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - detector description
@@ -105,39 +105,10 @@ detectors:
             returned: on success
             type: string
             sample: CREATING
-        items:
-            description:
-                - List of DetectorSummary
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - detector Identifier
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                description:
-                    description:
-                        - detector description
-                    returned: on success
-                    type: string
-                    sample: description_example
-                lifecycle_state:
-                    description:
-                        - The current state of the resource.
-                    returned: on success
-                    type: string
-                    sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
-        "lifecycle_state": "CREATING",
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "description": "description_example",
-            "lifecycle_state": "CREATING"
-        }]
+        "lifecycle_state": "CREATING"
     }]
 """
 

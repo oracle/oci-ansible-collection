@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
         type: str
         required: true
     tunnel_id:
@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List ip_sec_connection_tunnels
   oci_network_ip_sec_connection_tunnel_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific ip_sec_connection_tunnel
   oci_network_ip_sec_connection_tunnel_facts:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
-    tunnel_id: ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
+    tunnel_id: "ocid1.tunnel.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,13 +66,13 @@ ip_sec_connection_tunnels:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vpn_ip:
             description:
                 - The IP address of Oracle's VPN headend.
@@ -144,6 +144,32 @@ ip_sec_connection_tunnels:
                     returned: on success
                     type: string
                     sample: 10.0.0.5/31
+                oracle_interface_ipv6:
+                    description:
+                        - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
+                        - If the tunnel's `routing` attribute is set to `BGP`
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                          is used for the tunnel's BGP session.
+                        - If `routing` is instead set to `STATIC`, you can set this IP
+                          address to troubleshoot or monitor the tunnel.
+                        - Only subnet masks from /64 up to /127 are allowed.
+                        - "Example: `2001:db8::1/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::1/64
+                customer_interface_ipv6:
+                    description:
+                        - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
+                        - If the tunnel's `routing` attribute is set to `BGP`
+                          (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP address
+                          is used for the tunnel's BGP session.
+                        - If `routing` is instead set to `STATIC`, you can set this IP
+                          address to troubleshoot or monitor the tunnel.
+                        - Only subnet masks from /64 up to /127 are allowed.
+                        - "Example: `2001:db8::1/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::1/64
                 oracle_bgp_asn:
                     description:
                         - The Oracle BGP ASN.
@@ -164,6 +190,12 @@ ip_sec_connection_tunnels:
                 bgp_state:
                     description:
                         - The state of the BGP session.
+                    returned: on success
+                    type: string
+                    sample: UP
+                bgp_ipv6_state:
+                    description:
+                        - The state of the BGP IPv6 session.
                     returned: on success
                     type: string
                     sample: UP
@@ -217,9 +249,12 @@ ip_sec_connection_tunnels:
         "bgp_session_info": {
             "oracle_interface_ip": "10.0.0.4/31",
             "customer_interface_ip": "10.0.0.5/31",
+            "oracle_interface_ipv6": "2001:db8::1/64",
+            "customer_interface_ipv6": "2001:db8::1/64",
             "oracle_bgp_asn": "oracle_bgp_asn_example",
             "customer_bgp_asn": "12345",
-            "bgp_state": "UP"
+            "bgp_state": "UP",
+            "bgp_ipv6_state": "UP"
         },
         "encryption_domain_config": {
             "oracle_traffic_selector": [],

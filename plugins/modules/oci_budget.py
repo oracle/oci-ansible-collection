@@ -120,16 +120,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create budget
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-    target_type: COMPARTMENT
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+    target_type: "COMPARTMENT"
     targets:
-    - ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
-    amount: 100.00
-    reset_period: Monthly
+    - "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
+    amount: "100.00"
+    reset_period: "Monthly"
 
 - name: Update budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
     display_name: display_name_example
     description: description_example
     amount: 100.00
@@ -142,16 +142,16 @@ EXAMPLES = """
   oci_budget:
     display_name: display_name_example
     description: description_example
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete budget
   oci_budget:
-    budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete budget using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_budget:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaayzfqeibduyox6iib3olcmdar3ugly4fmameq4h7lcdlihrvur7xq"
     display_name: display_name_example
     state: absent
 
@@ -169,13 +169,13 @@ budget:
                 - The OCID of the budget
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
                 - "This is DEPRECATED. For backwards compatability, the property will be populated when
@@ -183,7 +183,7 @@ budget:
                   For all other scenarios, this property will be left empty."
             returned: on success
             type: string
-            sample: ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the budget.

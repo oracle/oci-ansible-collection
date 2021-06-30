@@ -20,7 +20,7 @@ oracle.oci.oci_waas_address_list -- Manage an AddressList resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an AddressList resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an address list in a set compartment and allows it to be used in a WAAS policy and referenced by access rules. Addresses can be IP addresses and CIDR notations.
+- This resource has the following action operations in the :ref:`oci_address_list_actions <ansible_collections.oci_address_list_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -181,6 +182,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -431,27 +433,27 @@ Examples
     
     - name: Create address_list
       oci_waas_address_list:
-        compartment_id: ocid1.compartment.oc1..
-        display_name: addresslist
+        compartment_id: "ocid1.compartment.oc1.."
+        display_name: "addresslist"
         addresses:
-        - 192.0.2.0
+        - "192.0.2.0"
 
     - name: Update address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_address_list:
-        display_name: Updated details
+        display_name: "Updated details"
 
     - name: Update address_list
       oci_waas_address_list:
-        address_list_id: ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx
+        address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete address_list
       oci_waas_address_list:
-        address_list_id: ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx
+        address_list_id: "ocid1.addresslist.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete address_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_address_list:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: addresslist
         state: absent
 

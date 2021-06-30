@@ -27,7 +27,7 @@ description:
       Storage service.
     - When creating a new image, you must provide the OCID of the instance you want to use as the basis for the image, and
       the OCID of the compartment containing that instance. For more information about images,
-      see L(Managing Custom Images,https://docs.cloud.oracle.com/Content/Compute/Tasks/managingcustomimages.htm).
+      see L(Managing Custom Images,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm).
     - When importing an exported image from Object Storage, you specify the source information
       in L(ImageSourceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceDetails).
     - When importing an image based on the namespace, bucket name, and object name,
@@ -35,16 +35,15 @@ description:
       us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageTupleDetails).
     - When importing an image based on the Object Storage URL, use
       L(ImageSourceViaObjectStorageUriDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/ImageSourceViaObjectStorageUriDetails).
-      See L(Object Storage URLs,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
-      Requests,https://docs.cloud.oracle.com/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+      See L(Object Storage URLs,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm#URLs) and L(Using Pre-Authenticated
+      Requests,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
       for constructing URLs for image import/export.
     - For more information about importing exported images, see
-      L(Image Import/Export,https://docs.cloud.oracle.com/Content/Compute/Tasks/imageimportexport.htm).
+      L(Image Import/Export,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/imageimportexport.htm).
     - "You may optionally specify a *display name* for the image, which is simply a friendly name or description.
-      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/Image/UpdateImage).
+      It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Image/UpdateImage).
       Avoid entering confidential information."
-    - "This resource has the following action operations in the M(oci_image_actions) module: export."
+    - "This resource has the following action operations in the M(oci_image_actions) module: change_compartment, export."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -58,7 +57,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -66,7 +65,7 @@ options:
         description:
             - A user-friendly name for the image. It does not have to be unique, and it's changeable.
               Avoid entering confidential information.
-            - You cannot use an Oracle-provided image name as a custom image name.
+            - You cannot use a platform image name as a custom image name.
             - "Example: `My Oracle Linux image`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -76,7 +75,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -137,7 +136,7 @@ options:
     launch_mode:
         description:
             - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-              * `NATIVE` - VM instances launch with paravirtualized boot and VFIO devices. The default value for Oracle-provided images.
+              * `NATIVE` - VM instances launch with paravirtualized boot and VFIO devices. The default value for platform images.
               * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
               * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
               * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -181,43 +180,43 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create image
   oci_compute_image:
-    instance_id: ocid1.instance.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyCustomImage
+    instance_id: "ocid1.instance.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyCustomImage"
 
 - name: Create image
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     image_source_details:
-      object_name: image-to-import.oci
-      bucket_name: MyBucket
-      namespace_name: MyNamespace
-      source_type: objectStorageTuple
+      object_name: "image-to-import.oci"
+      bucket_name: "MyBucket"
+      namespace_name: "MyNamespace"
+      source_type: "objectStorageTuple"
 
 - name: Create image
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyImportedImage
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyImportedImage"
     image_source_details:
-      source_uri: https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import.oci
-      source_type: objectStorageUri
+      source_uri: "https://objectstorage.us-phoenix-1.oraclecloud.com/n/MyNamespace/b/MyBucket/o/image-to-import;.oci"
+      source_type: "objectStorageUri"
 
 - name: Update image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image:
-    display_name: MyFavoriteImage
+    display_name: "MyFavoriteImage"
 
 - name: Update image
   oci_compute_image:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete image
   oci_compute_image:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_image:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyCustomImage
     state: absent
 
@@ -235,13 +234,13 @@ image:
                 - The OCID of the image originally used to launch the instance.
             returned: on success
             type: string
-            sample: ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the instance you want to use as the basis for the image.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         create_image_allowed:
             description:
                 - Whether instances launched with this image can be used to create new images.
@@ -253,7 +252,7 @@ image:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -262,7 +261,7 @@ image:
             description:
                 - A user-friendly name for the image. It does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
-                - You cannot use an Oracle-provided image name as a custom image name.
+                - You cannot use a platform image name as a custom image name.
                 - "Example: `My custom Oracle Linux image`"
             returned: on success
             type: string
@@ -271,7 +270,7 @@ image:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -281,11 +280,11 @@ image:
                 - The OCID of the image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -305,9 +304,9 @@ image:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -317,7 +316,7 @@ image:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -338,16 +337,16 @@ image:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -395,14 +394,27 @@ image:
                     returned: on success
                     type: bool
                     sample: true
+        listing_type:
+            description:
+                - "The listing type of the image. The default value is \\"NONE\\"."
+            returned: on success
+            type: string
+            sample: COMMUNITY
         size_in_mbs:
             description:
-                - The boot volume size for an instance launched from this image, (1 MB = 1048576 bytes).
+                - The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes).
                   Note this is not the same as the size of the image when it was exported or the actual size of the image.
                 - "Example: `47694`"
             returned: on success
             type: int
             sample: 47694
+        billable_size_in_gbs:
+            description:
+                - The size of the internal storage for this image that is subject to billing (1 GB = 1,073,741,824 bytes).
+                - "Example: `100`"
+            returned: on success
+            type: int
+            sample: 100
         time_created:
             description:
                 - The date and time the image was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -434,7 +446,9 @@ image:
             "is_monitoring_supported": true,
             "is_management_supported": true
         },
+        "listing_type": "COMMUNITY",
         "size_in_mbs": 47694,
+        "billable_size_in_gbs": 100,
         "time_created": "2016-08-25T21:10:29.600Z"
     }
 """

@@ -15,29 +15,29 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    vcn_name: "mytestvcn"
+    vcn_name: "ansible-sample-attach-block-vol-vcn"
     vcn_cidr_block: "10.0.0.0/16"
-    vcn_dns_label: "mytestvcn"
+    vcn_dns_label: "samplevcn"
 
-    ig_name: "myinternetgatewayformytestvcn"
+    ig_name: "ansible-sample-attach-block-vol-ig"
 
-    route_table_name: "myroutetable"
+    route_table_name: "ansible-sample-attach-block-vol-rt"
     # route all internet access to our Internet Gateway
     route_table_rules:
-        - cidr_block: "{{ quad_zero_route }}"
-          network_entity_id: "{{ ig_id }}"
+      - cidr_block: "{{ quad_zero_route }}"
+        network_entity_id: "{{ ig_id }}"
 
 
     subnet_cidr: "10.0.0.48/28"
-    subnet_name: "mytestsubnet"
-    subnet_dns_label: "mytestsubnet"
+    subnet_name: "ansible-sample-attach-block-vol-subnet"
+    subnet_dns_label: "samplesubnet"
 
-    securitylist_name: "mysecuritylist"
+    securitylist_name: "ansible-sample-attach-block-vol-sec-list"
 
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
-    instance_hostname: "mytestinstance"
+    instance_hostname: "ansible-sample-attach-block-vol-instances"
 
-    volume_name: "my_test_volume"
+    volume_name: "ansible-sample-attach-block-volume"
 
     #########################################
     # Tenancy specific configuration

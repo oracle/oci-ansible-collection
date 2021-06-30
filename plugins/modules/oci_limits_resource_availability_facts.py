@@ -24,9 +24,9 @@ short_description: Fetches details about a ResourceAvailability resource in Orac
 description:
     - Fetches details about a ResourceAvailability resource in Oracle Cloud Infrastructure
     - "For a given compartmentId, resource limit name, and scope, returns the following:
-        - the number of available resources associated with the given limit
-        - the usage in the selected compartment for the given limit
-        Note: not all resource limits support this API. If the value is not available, the API will return 404."
+        * The number of available resources associated with the given limit.
+        * The usage in the selected compartment for the given limit.
+        Note that not all resource limits support this API. If the value is not available, the API returns a 404 response."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -49,7 +49,7 @@ options:
         description:
             - "This field is mandatory if the scopeType of the target resource limit is AD.
               Otherwise, this field should be omitted.
-              If the above requirements are not met, the API will return a 400 - InvalidParameter response."
+              If the above requirements are not met, the API returns a 400 - InvalidParameter response."
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -59,7 +59,7 @@ EXAMPLES = """
   oci_limits_resource_availability_facts:
     service_name: service_name_example
     limit_name: limit_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -72,19 +72,43 @@ resource_availability:
     contains:
         used:
             description:
-                - The current usage in the given compartment.
+                - The current usage in the given compartment. To support resources with fractional counts,
+                  the field rounds up to the nearest integer.
             returned: on success
             type: int
             sample: 56
         available:
             description:
-                - The count of available resources.
+                - The count of available resources. To support resources with fractional counts,
+                  the field rounds down to the nearest integer.
             returned: on success
             type: int
             sample: 56
+        fractional_usage:
+            description:
+                - The current most accurate usage in the given compartment.
+            returned: on success
+            type: float
+            sample: 10
+        fractional_availability:
+            description:
+                - The most accurate count of available resources.
+            returned: on success
+            type: float
+            sample: 10
+        effective_quota_value:
+            description:
+                - The effective quota value for the given compartment. This field is only present if there is a
+                  current quota policy affecting the current resource in the target region or availability domain.
+            returned: on success
+            type: float
+            sample: 10
     sample: {
         "used": 56,
-        "available": 56
+        "available": 56,
+        "fractional_usage": 10,
+        "fractional_availability": 10,
+        "effective_quota_value": 10
     }
 """
 

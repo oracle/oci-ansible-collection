@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_actions -- Perform actions on a Key resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a Key resource in Oracle Cloud Infrastructure
 - For *action=cancel_key_deletion*, cancels the scheduled deletion of the specified key. Canceling a scheduled deletion restores the key's lifecycle state to what it was before its scheduled deletion. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
+- For *action=change_compartment*, moves a key into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_. When provided, if-match is checked against the ETag values of the key. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
 - For *action=disable*, disables a master encryption key so it can no longer be used for encryption, decryption, or generating new data encryption keys. As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - For *action=enable*, enables a master encryption key so it can be used for encryption, decryption, or generating new data encryption keys. As a management operation, this call is subject to a Key Management limit that applies to the total number of requests across all management write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of management write operations exceeds 10 requests per second for a given tenancy.
 - For *action=schedule_key_deletion*, schedules the deletion of the specified key. This sets the lifecycle state of the key to `PENDING_DELETION` and then deletes it after the specified retention period ends. As a provisioning operation, this call is subject to a Key Management limit that applies to the total number of requests across all provisioning write operations. Key Management might throttle this call to reject an otherwise valid request when the total rate of provisioning write operations exceeds 10 requests per second for a given tenancy.
@@ -58,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -87,6 +88,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>cancel_key_deletion</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>disable</li>
                                                                                                                                                                                                 <li>enable</li>
                                                                                                                                                                                                 <li>schedule_key_deletion</li>
@@ -170,10 +172,27 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that you want to move the key to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -341,27 +360,34 @@ Examples
     
     - name: Perform action cancel_key_deletion on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: cancel_key_deletion
+        service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
+
+    - name: Perform action change_compartment on key
+      oci_key_management_key_actions:
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action disable on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action enable on key
       oci_key_management_key_actions:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Perform action schedule_key_deletion on key
       oci_key_management_key_actions:
-        time_of_deletion: 2018-04-03T21:10:29.600Z
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
-        action: schedule_key_deletion
+        time_of_deletion: "2018-04-03T21:10:29.600Z"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "schedule_key_deletion"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 
@@ -399,7 +425,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Key resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;curve_id&#x27;: &#x27;ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_primary&#x27;: True, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;curve_id&#x27;: &#x27;ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;replica_details&#x27;: {&#x27;replication_id&#x27;: &#x27;ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -513,6 +539,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-key/is_primary"></div>
+                    <b>is_primary</b>
+                    <a class="ansibleOptionLink" href="#return-key/is_primary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the is_primary property of this Key.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-key/key_shape"></div>
                     <b>key_shape</b>
                     <a class="ansibleOptionLink" href="#return-key/key_shape" title="Permalink to this return value"></a>
@@ -558,7 +602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Supported curve Ids for ECDSA keys</div>
+                                            <div>Supported curve IDs for ECDSA keys.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -577,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Supported values include the following: - AES: 16, 24, or 32 - RSA: 256, 384, or 512 - ECDSA: 32, 48, or 66</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -621,6 +665,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HSM</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-key/replica_details"></div>
+                    <b>replica_details</b>
+                    <a class="ansibleOptionLink" href="#return-key/replica_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the replica_details property of this Key.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-key/replica_details/replication_id"></div>
+                    <b>replication_id</b>
+                    <a class="ansibleOptionLink" href="#return-key/replica_details/replication_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ReplicationId associated with a key operation</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

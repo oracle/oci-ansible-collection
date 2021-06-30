@@ -20,7 +20,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DetectorRecipe resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a DetectorRecipe
+- This resource has the following action operations in the :ref:`oci_detector_recipe_actions <ansible_collections.oci_detector_recipe_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -962,16 +964,16 @@ Examples
     - name: Create detector_recipe
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
-        source_detector_recipe_id: ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         detector_rules:
-        - detector_rule_id: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+        - detector_rule_id: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
           details:
             is_enabled: true
             risk_level: CRITICAL
@@ -982,17 +984,17 @@ Examples
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
         description: description_example
-        detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete detector_recipe
       oci_cloud_guard_detector_recipe:
-        detector_recipe_id: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+        detector_recipe_id: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -1117,7 +1119,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of detetor rules for the detector type for recipe</div>
+                                            <div>List of detector rules for the detector type for recipe - user input</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1325,7 +1327,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -1409,7 +1411,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -1970,7 +1972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of detetor rules for the detector type for recipe</div>
+                                            <div>List of effective detector rules for the detector type for recipe after applying defaults</div>
                                         <br/>
                                     </td>
             </tr>
@@ -2178,7 +2180,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/condition/left_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>
@@ -2262,7 +2264,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/details/condition/right_operand/kind" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">string</span>
                                           </div>
                                     </td>
                 <td>on success</td>

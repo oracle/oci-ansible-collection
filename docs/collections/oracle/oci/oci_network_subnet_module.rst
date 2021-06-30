@@ -20,7 +20,7 @@ oracle.oci.oci_network_subnet -- Manage a Subnet resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -50,6 +50,7 @@ Synopsis
 - You may optionally associate a set of DHCP options with the subnet. If you don't, the subnet will use the VCN's default set. For more information about DHCP options, see `DHCP Options <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDHCP.htm>`_.
 - You may optionally specify a *display name* for the subnet, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - You can also add a DNS label for the subnet, which is required if you want the Internet and VCN Resolver to resolve hostnames for instances in the subnet. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm>`_.
+- This resource has the following action operations in the :ref:`oci_subnet_actions <ansible_collections.oci_subnet_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -61,7 +62,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -152,6 +153,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -255,7 +257,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -343,8 +345,26 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_cidr_block" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Use this to enable IPv6 addressing for this subnet. The VCN must be enabled for IPv6. You can&#x27;t change this subnet characteristic later. All subnets are /64 in size. The subnet portion of the IPv6 address is the fourth hextet from the left (1111 in the following example).</div>
+                                            <div>For important details about IPv6 addressing in a VCN, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `2001:0db8:0123:1111::/64`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -365,6 +385,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-prohibit_internet_ingress"></div>
+                    <b>prohibit_internet_ingress</b>
+                    <a class="ansibleOptionLink" href="#parameter-prohibit_internet_ingress" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to disallow ingress internet traffic to VNICs within this subnet. Defaults to false.</div>
+                                            <div>For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.</div>
+                                            <div>`prohibitPublicIpOnVnic` will be set to the value of `prohibitInternetIngress` to dictate IPv4 behavior in this subnet. Only one or the other flag should be specified.</div>
+                                            <div>Example: `true`</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-prohibit_public_ip_on_vnic"></div>
                     <b>prohibit_public_ip_on_vnic</b>
                     <a class="ansibleOptionLink" href="#parameter-prohibit_public_ip_on_vnic" title="Permalink to this option"></a>
@@ -380,6 +422,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether VNICs within this subnet can have public IP addresses. Defaults to false, which means VNICs created in this subnet will automatically be assigned public IP addresses unless specified otherwise during instance launch or VNIC creation (with the `assignPublicIp` flag in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/'>CreateVnicDetails</a>). If `prohibitPublicIpOnVnic` is set to true, VNICs created in this subnet cannot have public IP addresses (that is, it&#x27;s a private subnet).</div>
+                                            <div>If you intend to use an IPv6 CIDR block, you should use the flag `prohibitInternetIngress` to specify ingress internet traffic behavior of the subnet.</div>
                                             <div>Example: `true`</div>
                                                         </td>
             </tr>
@@ -463,7 +506,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the subnet.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the subnet.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -558,24 +601,25 @@ Examples
     
     - name: Create subnet
       oci_network_subnet:
-        display_name: MySubnet
-        cidr_block: 10.0.2.0/24
-        availability_domain: Uocm:PHX-AD-1
-        route_table_id: ocid1.routetable.oc1.phx.unique_ID
+        display_name: "MySubnet"
+        cidr_block: "10.0.2.0/24"
+        availability_domain: "Uocm:PHX-AD-1"
+        route_table_id: "ocid1.routetable.oc1.phx.unique_ID"
         security_list_ids:
-        - ocid1.securitylist.oc1.phx.unique_ID
-        dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
-        vcn_id: ocid1.vcn.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - "ocid1.securitylist.oc1.phx.unique_ID"
+        dhcp_options_id: "ocid1.dhcpoptions.oc1.phx.unique_ID"
+        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
         cidr_block: 10.0.2.0/24
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         dhcp_options_id: ocid1.dhcpoptions.oc1.phx.unique_ID
         display_name: MySubnet
         freeform_tags: {'Department': 'Finance'}
+        ipv6_cidr_block: 2001:0db8:0123:1111::/64
         route_table_id: ocid1.routetable.oc1.phx.unique_ID
         security_list_ids: [ "ocid1.securitylist.oc1.phx.unique_ID" ]
 
@@ -583,16 +627,16 @@ Examples
       oci_network_subnet:
         cidr_block: 10.0.2.0/24
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete subnet
       oci_network_subnet:
-        subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MySubnet
         state: absent
 
@@ -631,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Subnet resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;10.0.1.0/24&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;subnet123&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;2001:0db8:0123:1111::/64&#x27;, &#x27;ipv6_virtual_router_ip&#x27;: &#x27;2001:0db8:0123:1111:89ab:cdef:1234:5678&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet123.vcn1.oraclevcn.com&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;10.0.14.1&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;00:00:00:00:00:01&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -702,7 +746,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -778,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -806,6 +850,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/ipv6_cidr_block" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet&#x27;s IP address space. The subnet size is always /64. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
+                                            <div>Example: `2001:0db8:0123:1111::/64`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111::/64</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/ipv6_virtual_router_ip"></div>
+                    <b>ipv6_virtual_router_ip</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/ipv6_virtual_router_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.</div>
+                                            <div>Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:0db8:0123:1111:89ab:cdef:1234:5678</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-subnet/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-subnet/lifecycle_state" title="Permalink to this return value"></a>
@@ -819,6 +901,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/prohibit_internet_ingress"></div>
+                    <b>prohibit_internet_ingress</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/prohibit_internet_ingress" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to disallow ingress internet traffic to VNICs within this subnet. Defaults to false.</div>
+                                            <div>For IPV4, `prohibitInternetIngress` behaves similarly to `prohibitPublicIpOnVnic`. If it is set to false, VNICs created in this subnet will automatically be assigned public IP addresses unless specified otherwise during instance launch or VNIC creation (with the `assignPublicIp` flag in <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/'>CreateVnicDetails</a>). If `prohibitInternetIngress` is set to true, VNICs created in this subnet cannot have public IP addresses (that is, it&#x27;s a privatesubnet).</div>
+                                            <div>For IPv6, if `prohibitInternetIngress` is set to `true`, internet access is not allowed for any IPv6s assigned to VNICs in the subnet. Otherwise, ingress internet traffic is allowed by default.</div>
+                                            <div>Example: `true`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

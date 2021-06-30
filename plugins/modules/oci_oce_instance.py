@@ -24,6 +24,7 @@ short_description: Manage an OceInstance resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an OceInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new OceInstance.
+    - "This resource has the following action operations in the M(oci_oce_instance_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -80,6 +81,7 @@ options:
     instance_usage_type:
         description:
             - Instance type based on its usage
+            - This parameter is updatable.
         type: str
         choices:
             - "PRIMARY"
@@ -153,9 +155,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create oce_instance
   oci_oce_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    tenancy_id: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+    tenancy_id: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
     idcs_access_token: idcs_access_token_example
     tenancy_name: tenancy_name_example
     object_storage_namespace: object_storage_namespace_example
@@ -164,8 +166,9 @@ EXAMPLES = """
 - name: Update oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oce_instance:
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
+    instance_usage_type: PRIMARY
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
     freeform_tags: {'Department': 'Finance'}
@@ -174,17 +177,17 @@ EXAMPLES = """
 - name: Update oce_instance
   oci_oce_instance:
     description: description_example
-    waf_primary_domain: waf_primary_domain_example
-    oce_instance_id: ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_usage_type: PRIMARY
+    oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete oce_instance
   oci_oce_instance:
-    oce_instance_id: ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx
+    oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete oce_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_oce_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -202,7 +205,7 @@ oce_instance:
                 - Unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         guid:
             description:
                 - Unique GUID identifier that is immutable on creation
@@ -220,7 +223,7 @@ oce_instance:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - OceInstance Name
@@ -232,7 +235,7 @@ oce_instance:
                 - Tenancy Identifier
             returned: on success
             type: string
-            sample: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         idcs_tenancy:
             description:
                 - IDCS Tenancy Identifier

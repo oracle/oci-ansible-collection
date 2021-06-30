@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_analytics_cluster_actions -- Perform actions on an Analytic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,10 +43,10 @@ Synopsis
 .. Description
 
 - Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
-- For *action=add*, adds an Analytics Cluster to the DB System.
-- For *action=restart*, restarts the Analytics Cluster.
-- For *action=start*, starts the Analytics Cluster.
-- For *action=stop*, stops the Analytics Cluster.
+- For *action=add*, dEPRECATED -- please use HeatWave API instead. Adds an Analytics Cluster to the DB System.
+- For *action=restart*, dEPRECATED -- please use HeatWave API instead. Restarts the Analytics Cluster.
+- For *action=start*, dEPRECATED -- please use HeatWave API instead. Starts the Analytics Cluster.
+- For *action=stop*, dEPRECATED -- please use HeatWave API instead. Stops the Analytics Cluster.
 
 
 .. Aliases
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -170,6 +170,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -342,24 +343,24 @@ Examples
     
     - name: Perform action add on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name: shape_name_example
         cluster_size: 56
         action: add
 
     - name: Perform action restart on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart
 
     - name: Perform action start on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: start
 
     - name: Perform action stop on analytics_cluster
       oci_mysql_analytics_cluster_actions:
-        db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: stop
 
 

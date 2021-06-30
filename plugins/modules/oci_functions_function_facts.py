@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List functions
   oci_functions_function_facts:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific function
   oci_functions_function_facts:
-    function_id: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -104,7 +104,7 @@ functions:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the function. The display name is unique within the application containing the function.
@@ -122,13 +122,13 @@ functions:
                 - The OCID of the application the function belongs to.
             returned: on success
             type: string
-            sample: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the function.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         image:
             description:
                 - "The qualified name of the Docker image to use in the function, including the image tag.
@@ -168,6 +168,18 @@ functions:
             returned: on success
             type: int
             sample: 56
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -218,6 +230,9 @@ functions:
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
+        "trace_config": {
+            "is_enabled": true
+        },
         "freeform_tags": {'Department': 'Finance'},
         "invoke_endpoint": "invoke_endpoint_example",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

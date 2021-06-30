@@ -71,29 +71,29 @@ EXAMPLES = """
 - name: Create customer_secret_key
   oci_identity_customer_secret_key:
     display_name: display_name_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_customer_secret_key:
     display_name: display_name_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update customer_secret_key
   oci_identity_customer_secret_key:
     display_name: display_name_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    customer_secret_key_id: ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete customer_secret_key
   oci_identity_customer_secret_key:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    customer_secret_key_id: ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    customer_secret_key_id: "ocid1.customersecretkey.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete customer_secret_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_customer_secret_key:
     display_name: display_name_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -110,13 +110,13 @@ customer_secret_key:
                 - The OCID of the secret key.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the password belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The displayName you assign to the secret key. Does not have to be unique, and it's changeable.

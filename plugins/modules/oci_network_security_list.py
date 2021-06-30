@@ -35,6 +35,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the security list, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_security_list_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -48,7 +49,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -72,7 +73,9 @@ options:
                     - Conceptually, this is the range of IP addresses that a packet originating from the instance
                       can go to.
                     - "Allowed values:"
-                    - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                    - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
+                          Note that IPv6 addressing is currently supported only in certain regions. See
+                          L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                     - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a security list rule for traffic destined for a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
@@ -117,7 +120,7 @@ options:
                     - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                       defined in
                       L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                      Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                      Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                 type: str
                 required: true
             tcp_options:
@@ -132,13 +135,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
                     source_port_range:
@@ -148,13 +151,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
             udp_options:
@@ -169,13 +172,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
                     source_port_range:
@@ -185,13 +188,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
             description:
@@ -202,7 +205,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -240,7 +243,7 @@ options:
                     - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                       defined in
                       L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                      Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                      Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                 type: str
                 required: true
             source:
@@ -248,7 +251,9 @@ options:
                     - Conceptually, this is the range of IP addresses that a packet coming into the instance
                       can come from.
                     - "Allowed values:"
-                    - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                    - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`.
+                          IPv6 addressing is supported for all commercial and government regions. See
+                          L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                     - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a security list rule for traffic coming from a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
@@ -277,13 +282,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
                     source_port_range:
@@ -293,13 +298,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
             udp_options:
@@ -314,13 +319,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
                     source_port_range:
@@ -330,13 +335,13 @@ options:
                         suboptions:
                             max:
                                 description:
-                                    - The maximum port number. Must not be lower than the minimum port number. To specify
+                                    - The maximum port number, which must not be less than the minimum port number. To specify
                                       a single port number, set both the min and max to the same value.
                                 type: int
                                 required: true
                             min:
                                 description:
-                                    - The minimum port number. Must not be greater than the maximum port number.
+                                    - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
             description:
@@ -350,7 +355,7 @@ options:
         type: str
     security_list_id:
         description:
-            - The OCID of the security list.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -390,33 +395,33 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create security_list
   oci_network_security_list:
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
-    display_name: MyPrivateSubnetSecurityList
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+    display_name: "MyPrivateSubnetSecurityList"
     ingress_security_rules:
-    - protocol: 6
-      source: 10.0.1.0/24
+    - protocol: "6"
+      source: "10.0.1.0/24"
       tcp_options:
         destination_port_range:
-          min: 1521
-          max: 1521
-    - protocol: 6
-      source: 10.0.2.0/24
+          min: "1521"
+          max: "1521"
+    - protocol: "6"
+      source: "10.0.2.0/24"
       tcp_options:
         destination_port_range:
-          min: 1521
-          max: 1521
+          min: "1521"
+          max: "1521"
     egress_security_rules:
-    - protocol: 6
-      destination: 10.0.2.0/24
+    - protocol: "6"
+      destination: "10.0.2.0/24"
       tcp_options:
         destination_port_range:
-          min: 1521
-          max: 1521
-    compartment_id: ocid1.compartment.oc1..unique_ID
+          min: "1521"
+          max: "1521"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyPrivateSubnetSecurityList
     egress_security_rules:
@@ -433,16 +438,16 @@ EXAMPLES = """
   oci_network_security_list:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyPrivateSubnetSecurityList
-    security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+    security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete security_list
   oci_network_security_list:
-    security_list_id: ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx
+    security_list_id: "ocid1.securitylist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete security_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_security_list:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyPrivateSubnetSecurityList
     state: absent
 
@@ -460,11 +465,11 @@ security_list:
                 - The OCID of the compartment containing the security list.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -487,7 +492,9 @@ security_list:
                         - Conceptually, this is the range of IP addresses that a packet originating from the instance
                           can go to.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`
+                              Note that IPv6 addressing is currently supported only in certain regions. See
+                              L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -538,7 +545,7 @@ security_list:
                         - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                           defined in
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
                     type: string
                     sample: protocol_example
@@ -556,14 +563,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -575,14 +582,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -600,14 +607,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -619,14 +626,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -640,7 +647,7 @@ security_list:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -650,7 +657,7 @@ security_list:
                 - The security list's Oracle Cloud ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_security_rules:
             description:
                 - Rules for allowing ingress IP packets.
@@ -690,7 +697,7 @@ security_list:
                         - "The transport protocol. Specify either `all` or an IPv4 protocol number as
                           defined in
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
-                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), and UDP (\\"17\\")."
+                          Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
                     type: string
                     sample: protocol_example
@@ -699,7 +706,9 @@ security_list:
                         - Conceptually, this is the range of IP addresses that a packet coming into the instance
                           can come from.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`.
+                              IPv6 addressing is supported for all commercial and government regions. See
+                              L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a security list rule for traffic coming from a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -730,14 +739,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -749,14 +758,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -774,14 +783,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -793,14 +802,14 @@ security_list:
                             contains:
                                 max:
                                     description:
-                                        - The maximum port number. Must not be lower than the minimum port number. To specify
+                                        - The maximum port number, which must not be less than the minimum port number. To specify
                                           a single port number, set both the min and max to the same value.
                                     returned: on success
                                     type: int
                                     sample: 56
                                 min:
                                     description:
-                                        - The minimum port number. Must not be greater than the maximum port number.
+                                        - The minimum port number, which must not be greater than the maximum port number.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -828,7 +837,7 @@ security_list:
                 - The OCID of the VCN the security list belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

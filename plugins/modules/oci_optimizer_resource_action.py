@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update resource_action
   oci_optimizer_resource_action:
-    resource_action_id: ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx
+    resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
 
 """
@@ -80,25 +80,25 @@ resource_action:
                 - The unique OCID associated with the resource action.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - The unique OCID associated with the category.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         recommendation_id:
             description:
                 - The unique OCID associated with the recommendation.
             returned: on success
             type: string
-            sample: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
         resource_id:
             description:
                 - The unique OCID associated with the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the resource.
@@ -116,7 +116,7 @@ resource_action:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_name:
             description:
                 - The name associated with the compartment.

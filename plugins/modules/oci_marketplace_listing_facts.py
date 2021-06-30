@@ -99,17 +99,29 @@ options:
         description:
             - Indicates whether to show only featured listings. If this is set to `false` or is omitted, then all listings will be returned.
         type: bool
+    listing_types:
+        description:
+            - The type of the listing
+        type: list
+        choices:
+            - "COMMUNITY"
+            - "PARTNER"
+            - "PRIVATE"
+    operating_systems:
+        description:
+            - OS of the listing.
+        type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List listings
   oci_marketplace_listing_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific listing
   oci_marketplace_listing_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -125,7 +137,7 @@ listings:
                 - The unique identifier for the listing in Marketplace.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the listing.
@@ -209,7 +221,7 @@ listings:
                         - Unique identifier for the publisher.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
                         - The name of the publisher.
@@ -576,6 +588,24 @@ listings:
             returned: on success
             type: bool
             sample: true
+        listing_type:
+            description:
+                - In which catalog the listing should exist.
+            returned: on success
+            type: string
+            sample: COMMUNITY
+        supported_operating_systems:
+            description:
+                - List of operating systems supported.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - name of the operating system
+                    returned: on success
+                    type: string
+                    sample: name_example
         pricing_types:
             description:
                 - Summary of the pricing types available across all packages in the listing.
@@ -673,6 +703,10 @@ listings:
             "href": "href_example"
         }],
         "is_featured": true,
+        "listing_type": "COMMUNITY",
+        "supported_operating_systems": [{
+            "name": "name_example"
+        }],
         "pricing_types": []
     }]
 """
@@ -729,6 +763,8 @@ class ListingFactsHelperGen(OCIResourceFactsHelperBase):
             "category",
             "pricing",
             "is_featured",
+            "listing_types",
+            "operating_systems",
             "compartment_id",
         ]
         optional_kwargs = dict(
@@ -762,6 +798,10 @@ def main():
             category=dict(type="list"),
             pricing=dict(type="list", choices=["FREE", "BYOL", "PAYGO"]),
             is_featured=dict(type="bool"),
+            listing_types=dict(
+                type="list", choices=["COMMUNITY", "PARTNER", "PRIVATE"]
+            ),
+            operating_systems=dict(type="list"),
         )
     )
 

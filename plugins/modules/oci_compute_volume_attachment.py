@@ -86,7 +86,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -105,20 +105,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_attachment
   oci_compute_volume_attachment:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     type: paravirtualized
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_attachment
   oci_compute_volume_attachment:
-    volume_attachment_id: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+    volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_volume_attachment:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -148,7 +148,7 @@ volume_attachment:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         device:
             description:
                 - The device name.
@@ -168,13 +168,13 @@ volume_attachment:
                 - The OCID of the volume attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the volume is attached to.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         is_read_only:
             description:
                 - Whether the attachment was created in read-only mode.
@@ -208,7 +208,7 @@ volume_attachment:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         is_pv_encryption_in_transit_enabled:
             description:
                 - Whether in-transit encryption for the data volume's paravirtualized attachment is enabled or not.

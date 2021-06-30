@@ -20,7 +20,7 @@ oracle.oci.oci_secrets_secret_bundle_facts -- Fetches details about a SecretBund
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
-- Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter. If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
+- Gets a secret bundle that matches either the specified `stage`, `secretVersionName`, or `versionNumber` parameter. If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 
 
 .. Aliases
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -204,14 +205,31 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-secret_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the secret.</div>
+                                            <div>Required to get a specific secret_bundle.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-secret_name"></div>
+                    <b>secret_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-secret_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A user-friendly name for the secret. Secret names are unique within a vault. Secret names are case-sensitive.</div>
+                                            <div>Required to get a specific secret_bundle.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -267,6 +285,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vault_id"></div>
+                    <b>vault_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-vault_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the vault that contains the secret</div>
+                                            <div>Required to get a specific secret_bundle.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-version_number"></div>
                     <b>version_number</b>
                     <a class="ansibleOptionLink" href="#parameter-version_number" title="Permalink to this option"></a>
@@ -304,7 +338,9 @@ Examples
     
     - name: Get a specific secret_bundle
       oci_secrets_secret_bundle_facts:
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_name: SecretForIntegrationTests
+        vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
 
 
 

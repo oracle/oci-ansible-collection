@@ -72,7 +72,7 @@ options:
             - "SOFTWARE"
     algorithm:
         description:
-            - The algorithm used by a key's key versions to encrypt or decrypt. Currently, only AES, RSA and ECDSA are supported.
+            - The algorithm used by a key's key versions to encrypt or decrypt data. Currently, support includes AES, RSA, and ECDSA algorithms.
         type: str
         choices:
             - "AES"
@@ -80,11 +80,11 @@ options:
             - "ECDSA"
     length:
         description:
-            - The length of the key in bytes, expressed as an integer. Values of 16, 24, 32 are supported.
+            - The length of the key in bytes, expressed as an integer. Supported values include 16, 24, or 32.
         type: int
     curve_id:
         description:
-            - The curve Id of the keys in case of ECDSA keys
+            - The curve ID of the keys. (This pertains only to ECDSA keys.)
         type: str
         choices:
             - "NIST_P256"
@@ -101,12 +101,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List keys
   oci_key_management_key_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: Get a specific key
   oci_key_management_key_facts:
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -123,7 +123,7 @@ keys:
                 - The OCID of the compartment that contains this master encryption key.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_key_version:
             description:
                 - The OCID of the key version used in cryptographic operations. During key rotation, the service might be
@@ -160,7 +160,7 @@ keys:
                 - The OCID of the key.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_shape:
             description:
                 - ""
@@ -175,19 +175,19 @@ keys:
                     sample: AES
                 length:
                     description:
-                        - "The length of the key in bytes, expressed as an integer. Values supported:
-                            - AES: 16, 24 or 32
-                            - RSA: 256, 384 or 512
-                            - ECDSA: 32, 48, 66"
+                        - "The length of the key in bytes, expressed as an integer. Supported values include the following:
+                            - AES: 16, 24, or 32
+                            - RSA: 256, 384, or 512
+                            - ECDSA: 32, 48, or 66"
                     returned: on success
                     type: int
                     sample: 56
                 curve_id:
                     description:
-                        - Supported curve Ids for ECDSA keys
+                        - Supported curve IDs for ECDSA keys.
                     returned: on success
                     type: string
-                    sample: ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         protection_mode:
             description:
                 - The key's protection mode indicates how the key persists and where cryptographic operations that use the key are performed.
@@ -225,10 +225,28 @@ keys:
                 - The OCID of the vault that contains this key.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Key.
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Key.
+            returned: on success
+            type: bool
+            sample: true
         algorithm:
             description:
-                - The algorithm used by a key's key versions to encrypt or decrypt.
+                - The algorithm used by a key's key versions to encrypt or decrypt data.
             returned: on success
             type: string
             sample: AES
@@ -249,6 +267,10 @@ keys:
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
         "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true,
         "algorithm": "AES"
     }]
 """

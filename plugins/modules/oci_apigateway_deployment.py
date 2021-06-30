@@ -24,6 +24,7 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new deployment.
+    - "This resource has the following action operations in the M(oci_deployment_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -60,7 +61,6 @@ options:
     specification:
         description:
             - ""
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -431,6 +431,114 @@ options:
                                             - The time in seconds for the client to cache preflight responses. This is sent as the Access-Control-Max-Age
                                               if greater than 0.
                                         type: int
+                            query_parameter_validations:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    parameters:
+                                        description:
+                                            - ""
+                                        type: list
+                                        suboptions:
+                                            required:
+                                                description:
+                                                    - Determines if the parameter is required in the request.
+                                                type: bool
+                                            name:
+                                                description:
+                                                    - Parameter name.
+                                                type: str
+                                                required: true
+                                    validation_mode:
+                                        description:
+                                            - Validation behavior mode.
+                                            - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                              and not sent to the backend.
+                                            - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                              will follow the normal path.
+                                            - "`DISABLED` type turns the validation off."
+                                        type: str
+                                        choices:
+                                            - "ENFORCING"
+                                            - "PERMISSIVE"
+                                            - "DISABLED"
+                            header_validations:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    headers:
+                                        description:
+                                            - ""
+                                        type: list
+                                        suboptions:
+                                            required:
+                                                description:
+                                                    - Determines if the header is required in the request.
+                                                type: bool
+                                            name:
+                                                description:
+                                                    - Parameter name.
+                                                type: str
+                                                required: true
+                                    validation_mode:
+                                        description:
+                                            - Validation behavior mode.
+                                            - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                              and not sent to the backend.
+                                            - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                              will follow the normal path.
+                                            - "`DISABLED` type turns the validation off."
+                                        type: str
+                                        choices:
+                                            - "ENFORCING"
+                                            - "PERMISSIVE"
+                                            - "DISABLED"
+                            body_validation:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    required:
+                                        description:
+                                            - Determines if the request body is required in the request.
+                                        type: bool
+                                    content:
+                                        description:
+                                            - The content of the request body. The key is a L(media type range,https://tools.ietf.org/html/rfc7231#appendix-D)
+                                              subset restricted to the following schema
+                                            - "   key ::= (
+                                                        / (  \\"*\\" \\"/\\" \\"*\\" )
+                                                        / ( type \\"/\\" \\"*\\" )
+                                                        / ( type \\"/\\" subtype )
+                                                        )"
+                                            - "For requests that match multiple keys, only the most specific key is applicable.
+                                              e.g. `text/plain` overrides `text/*`"
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            validation_type:
+                                                description:
+                                                    - Validation type defines the content validation method.
+                                                    - Make the validation to first parse the body as the respective format.
+                                                type: str
+                                                choices:
+                                                    - "NONE"
+                                                default: "NONE"
+                                    validation_mode:
+                                        description:
+                                            - Validation behavior mode.
+                                            - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                              and not sent to the backend.
+                                            - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                              will follow the normal path.
+                                            - "`DISABLED` type turns the validation off."
+                                        type: str
+                                        choices:
+                                            - "ENFORCING"
+                                            - "PERMISSIVE"
+                                            - "DISABLED"
                             header_transformations:
                                 description:
                                     - ""
@@ -602,6 +710,35 @@ options:
                                                             - The case-sensitive name of the query parameter.
                                                         type: str
                                                         required: true
+                            response_cache_lookup:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the Response Cache Store Policy.
+                                        type: str
+                                        choices:
+                                            - "SIMPLE_LOOKUP_POLICY"
+                                        required: true
+                                    is_enabled:
+                                        description:
+                                            - Whether this policy is currently enabled.
+                                        type: bool
+                                    is_private_caching_enabled:
+                                        description:
+                                            - Set true to allow caching responses where the request has an Authorization header. Ensure you have configured your
+                                              cache key additions to get the level of isolation across authenticated requests that you require.
+                                            - When false, any request with an Authorization header will not be stored in the Response Cache.
+                                            - If using the CustomAuthenticationPolicy then the tokenHeader/tokenQueryParam are also subject to this check.
+                                        type: bool
+                                    cache_key_additions:
+                                        description:
+                                            - A list of context expressions whose values will be added to the base cache key. Values should contain an
+                                              expression enclosed within
+                                              ${} delimiters. Only the request context is available.
+                                        type: list
                     response_policies:
                         description:
                             - ""
@@ -691,6 +828,23 @@ options:
                                                             - The case-insensitive name of the header.  This name must be unique across transformation policies.
                                                         type: str
                                                         required: true
+                            response_cache_store:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the Response Cache Store Policy.
+                                        type: str
+                                        choices:
+                                            - "FIXED_TTL_STORE_POLICY"
+                                        required: true
+                                    time_to_live_in_seconds:
+                                        description:
+                                            - Sets the number of seconds for a response from a backend being stored in the Response Cache before it expires.
+                                        type: int
+                                        required: true
                     logging_policies:
                         description:
                             - ""
@@ -845,31 +999,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create deployment
   oci_apigateway_deployment:
-    gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     path_prefix: path_prefix_example
 
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deployment
   oci_apigateway_deployment:
     display_name: My new resource
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete deployment
   oci_apigateway_deployment:
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_deployment:
     display_name: My new resource
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -886,13 +1040,13 @@ deployment:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         gateway_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -907,7 +1061,7 @@ deployment:
                   resource is created.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix:
             description:
                 - A path on which to deploy all routes contained in the API
@@ -1121,7 +1275,7 @@ deployment:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         rate_limiting:
                             description:
                                 - ""
@@ -1335,6 +1489,121 @@ deployment:
                                             returned: on success
                                             type: int
                                             sample: 600
+                                query_parameter_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the parameter is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                header_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the header is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                body_validation:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        required:
+                                            description:
+                                                - Determines if the request body is required in the request.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        content:
+                                            description:
+                                                - The content of the request body. The key is a L(media type
+                                                  range,https://tools.ietf.org/html/rfc7231#appendix-D)
+                                                  subset restricted to the following schema
+                                                - "   key ::= (
+                                                            / (  \\"*\\" \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" subtype )
+                                                            )"
+                                                - "For requests that match multiple keys, only the most specific key is applicable.
+                                                  e.g. `text/plain` overrides `text/*`"
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                validation_type:
+                                                    description:
+                                                        - Validation type defines the content validation method.
+                                                        - Make the validation to first parse the body as the respective format.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: NONE
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
                                 header_transformations:
                                     description:
                                         - ""
@@ -1520,6 +1789,42 @@ deployment:
                                                             returned: on success
                                                             type: string
                                                             sample: bookIsbn
+                                response_cache_lookup:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: SIMPLE_LOOKUP_POLICY
+                                        is_enabled:
+                                            description:
+                                                - Whether this policy is currently enabled.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_private_caching_enabled:
+                                            description:
+                                                - Set true to allow caching responses where the request has an Authorization header. Ensure you have configured
+                                                  your
+                                                  cache key additions to get the level of isolation across authenticated requests that you require.
+                                                - When false, any request with an Authorization header will not be stored in the Response Cache.
+                                                - If using the CustomAuthenticationPolicy then the tokenHeader/tokenQueryParam are also subject to this check.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        cache_key_additions:
+                                            description:
+                                                - A list of context expressions whose values will be added to the base cache key. Values should contain an
+                                                  expression enclosed within
+                                                  ${} delimiters. Only the request context is available.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                         response_policies:
                             description:
                                 - ""
@@ -1618,6 +1923,24 @@ deployment:
                                                             returned: on success
                                                             type: string
                                                             sample: User-Agent
+                                response_cache_store:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: FIXED_TTL_STORE_POLICY
+                                        time_to_live_in_seconds:
+                                            description:
+                                                - Sets the number of seconds for a response from a backend being stored in the Response Cache before it expires.
+                                            returned: on success
+                                            type: int
+                                            sample: 300
                         logging_policies:
                             description:
                                 - ""
@@ -1715,7 +2038,7 @@ deployment:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.
@@ -1870,6 +2193,27 @@ deployment:
                         "is_allow_credentials_enabled": false,
                         "max_age_in_seconds": 600
                     },
+                    "query_parameter_validations": {
+                        "parameters": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "header_validations": {
+                        "headers": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "body_validation": {
+                        "required": true,
+                        "content": {
+                            "validation_type": "NONE"
+                        },
+                        "validation_mode": "ENFORCING"
+                    },
                     "header_transformations": {
                         "set_headers": {
                             "items": [{
@@ -1911,6 +2255,12 @@ deployment:
                                 "name": "bookIsbn"
                             }]
                         }
+                    },
+                    "response_cache_lookup": {
+                        "type": "SIMPLE_LOOKUP_POLICY",
+                        "is_enabled": true,
+                        "is_private_caching_enabled": true,
+                        "cache_key_additions": []
                     }
                 },
                 "response_policies": {
@@ -1934,6 +2284,10 @@ deployment:
                                 "name": "User-Agent"
                             }]
                         }
+                    },
+                    "response_cache_store": {
+                        "type": "FIXED_TTL_STORE_POLICY",
+                        "time_to_live_in_seconds": 300
                     }
                 },
                 "logging_policies": {
@@ -2278,6 +2632,67 @@ def main():
                                             max_age_in_seconds=dict(type="int"),
                                         ),
                                     ),
+                                    query_parameter_validations=dict(
+                                        type="dict",
+                                        options=dict(
+                                            parameters=dict(
+                                                type="list",
+                                                elements="dict",
+                                                options=dict(
+                                                    required=dict(type="bool"),
+                                                    name=dict(
+                                                        type="str", required=True
+                                                    ),
+                                                ),
+                                            ),
+                                            validation_mode=dict(
+                                                type="str",
+                                                choices=[
+                                                    "ENFORCING",
+                                                    "PERMISSIVE",
+                                                    "DISABLED",
+                                                ],
+                                            ),
+                                        ),
+                                    ),
+                                    header_validations=dict(
+                                        type="dict",
+                                        options=dict(
+                                            headers=dict(
+                                                type="list",
+                                                elements="dict",
+                                                options=dict(
+                                                    required=dict(type="bool"),
+                                                    name=dict(
+                                                        type="str", required=True
+                                                    ),
+                                                ),
+                                            ),
+                                            validation_mode=dict(
+                                                type="str",
+                                                choices=[
+                                                    "ENFORCING",
+                                                    "PERMISSIVE",
+                                                    "DISABLED",
+                                                ],
+                                            ),
+                                        ),
+                                    ),
+                                    body_validation=dict(
+                                        type="dict",
+                                        options=dict(
+                                            required=dict(type="bool"),
+                                            content=dict(type="dict", required=True),
+                                            validation_mode=dict(
+                                                type="str",
+                                                choices=[
+                                                    "ENFORCING",
+                                                    "PERMISSIVE",
+                                                    "DISABLED",
+                                                ],
+                                            ),
+                                        ),
+                                    ),
                                     header_transformations=dict(
                                         type="dict",
                                         options=dict(
@@ -2426,6 +2841,21 @@ def main():
                                             ),
                                         ),
                                     ),
+                                    response_cache_lookup=dict(
+                                        type="dict",
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["SIMPLE_LOOKUP_POLICY"],
+                                            ),
+                                            is_enabled=dict(type="bool"),
+                                            is_private_caching_enabled=dict(
+                                                type="bool"
+                                            ),
+                                            cache_key_additions=dict(type="list"),
+                                        ),
+                                    ),
                                 ),
                             ),
                             response_policies=dict(
@@ -2504,7 +2934,20 @@ def main():
                                                 ),
                                             ),
                                         ),
-                                    )
+                                    ),
+                                    response_cache_store=dict(
+                                        type="dict",
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["FIXED_TTL_STORE_POLICY"],
+                                            ),
+                                            time_to_live_in_seconds=dict(
+                                                type="int", required=True
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             logging_policies=dict(

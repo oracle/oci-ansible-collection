@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_generated_key -- Manage a GeneratedKey resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -161,6 +161,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -319,7 +320,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Supported curve Ids for ECDSA keys</div>
+                                            <div>Supported curve IDs for ECDSA keys.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +336,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Supported values include the following: - AES: 16, 24, or 32 - RSA: 256, 384, or 512 - ECDSA: 32, 48, or 66</div>
                                                         </td>
             </tr>
                     
@@ -443,9 +444,9 @@ Examples
     - name: Create generated_key
       oci_key_management_generated_key:
         include_plaintext_key: true
-        key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+        key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
         key_shape:
-          algorithm: AES
+          algorithm: "AES"
           length: 16
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

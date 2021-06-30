@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_resource_statistics_facts -- Fetches details about a Resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -161,6 +161,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -224,7 +225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the associated DBaaS entity.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -242,10 +243,12 @@ Parameters
                                                                                                                                                                                                 <li>ATP-S</li>
                                                                                                                                                                                                 <li>ADW-D</li>
                                                                                                                                                                                                 <li>ATP-D</li>
+                                                                                                                                                                                                <li>EXTERNAL-PDB</li>
+                                                                                                                                                                                                <li>EXTERNAL-NONCDB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D</div>
+                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -261,6 +264,36 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Number of days used for utilization forecast analysis.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more hostname.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of database insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the database insight resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -320,7 +353,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filter by resource metric. Supported values are CPU and STORAGE.</div>
+                                            <div>Filter by resource metric. Supported values are CPU , STORAGE, MEMORY and IO.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -433,7 +466,7 @@ Examples
     
     - name: Get a specific resource_statistics
       oci_opsi_resource_statistics_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_metric: resource_metric_example
 
 
@@ -453,12 +486,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics"></div>
                     <b>resource_statistics</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics" title="Permalink to this return value"></a>
@@ -471,12 +504,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceStatistics resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;base_capacity&#x27;: 222.3, &#x27;capacity&#x27;: 222.3, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;database_details&#x27;: {&#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;}}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;base_capacity&#x27;: 222.3, &#x27;capacity&#x27;: 222.3, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 5.2, &#x27;utilization_percent&#x27;: 35.1}, &#x27;database_details&#x27;: {&#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items" title="Permalink to this return value"></a>
@@ -493,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics"></div>
                     <b>current_statistics</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics" title="Permalink to this return value"></a>
@@ -511,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/base_capacity"></div>
                     <b>base_capacity</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/base_capacity" title="Permalink to this return value"></a>
@@ -531,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/capacity"></div>
                     <b>capacity</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/capacity" title="Permalink to this return value"></a>
@@ -551,7 +584,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/is_auto_scaling_enabled"></div>
                     <b>is_auto_scaling_enabled</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/is_auto_scaling_enabled" title="Permalink to this return value"></a>
@@ -571,7 +604,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/usage"></div>
                     <b>usage</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/usage" title="Permalink to this return value"></a>
@@ -591,7 +624,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/usage_change_percent"></div>
                     <b>usage_change_percent</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/usage_change_percent" title="Permalink to this return value"></a>
@@ -611,7 +644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/current_statistics/utilization_percent"></div>
                     <b>utilization_percent</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/current_statistics/utilization_percent" title="Permalink to this return value"></a>
@@ -631,7 +664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details"></div>
                     <b>database_details</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details" title="Permalink to this return value"></a>
@@ -649,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/database_display_name"></div>
                     <b>database_display_name</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/database_display_name" title="Permalink to this return value"></a>
@@ -669,7 +702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/database_id" title="Permalink to this return value"></a>
@@ -689,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/database_name"></div>
                     <b>database_name</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/database_name" title="Permalink to this return value"></a>
@@ -709,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/database_type"></div>
                     <b>database_type</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/database_type" title="Permalink to this return value"></a>
@@ -729,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/database_version"></div>
                     <b>database_version</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/database_version" title="Permalink to this return value"></a>
@@ -745,11 +778,92 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/instances"></div>
+                    <b>instances</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/instances" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of hostname and instance name.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/instances/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/instances/host_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The hostname of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_statistics/items/database_details/instances/instance_name"></div>
+                    <b>instance_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_statistics/items/database_details/instances/instance_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The instance name of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_name_example</div>
+                                    </td>
+            </tr>
+                    
                     
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/resource_metric"></div>
                     <b>resource_metric</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/resource_metric" title="Permalink to this return value"></a>
@@ -759,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defines the type of resource metric (CPU, STORAGE)</div>
+                                            <div>Defines the type of resource metric (example: CPU, STORAGE)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STORAGE</div>
@@ -767,7 +881,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/time_interval_end"></div>
                     <b>time_interval_end</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/time_interval_end" title="Permalink to this return value"></a>
@@ -785,7 +899,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/time_interval_start"></div>
                     <b>time_interval_start</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/time_interval_start" title="Permalink to this return value"></a>
@@ -803,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_statistics/usage_unit"></div>
                     <b>usage_unit</b>
                     <a class="ansibleOptionLink" href="#return-resource_statistics/usage_unit" title="Permalink to this return value"></a>

@@ -20,7 +20,7 @@ oracle.oci.oci_loadbalancer_backend -- Manage a Backend resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -470,14 +471,14 @@ Examples
     
     - name: Create backend
       oci_loadbalancer_backend:
-        ip_address: 10.0.0.3
+        ip_address: "10.0.0.3"
         port: 8080
         weight: 3
         backup: false
         drain: false
         offline: false
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-        backend_set_name: example_backend_set
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        backend_set_name: "example_backend_set"
 
     - name: Update backend
       oci_loadbalancer_backend:
@@ -485,14 +486,14 @@ Examples
         backup: false
         drain: false
         offline: false
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
-        backend_set_name: example_backend_set
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        backend_set_name: "example_backend_set"
 
     - name: Delete backend
       oci_loadbalancer_backend:
         ip_address: 10.0.0.3
         port: 8080
-        load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: example_backend_set
         state: absent
 

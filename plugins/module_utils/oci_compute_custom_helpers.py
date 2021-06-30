@@ -70,7 +70,7 @@ class AppCatalogSubscriptionHelperCustom:
                 return oci_common_utils.get_default_response_from_resource(
                     resource=app_catalog_subscription
                 )
-        raise oci_common_utils.raise_does_not_exist_service_error(
+        oci_common_utils.raise_does_not_exist_service_error(
             message="The app catalog subscription does not exist."
         )
 
@@ -319,7 +319,7 @@ def get_windows_iscsi_attach_commands(iqn, ipv4, chap_username, chap_secret):
     iscsi_attach_commands = [
         "Set-Service -Name msiscsi -StartupType Automatic",
         "Start-Service msiscsi",
-        "New-IscsiTargetPortal –TargetPortalAddress {0}".format(ipv4),
+        "New-IscsiTargetPortal -TargetPortalAddress {0}".format(ipv4),
         connection_command,
     ]
 
@@ -554,3 +554,15 @@ class ComputeGlobalImageCapabilitySchemaVersionFactsHelperCustom:
             ComputeGlobalImageCapabilitySchemaVersionFactsHelperCustom, self
         ).get()
         return get_resource_with_updated_schema_data_param_names(resource)
+
+
+def get_compute_instane_action_fn_attr(action):
+    if action == "change_compartment":
+        return "change_compartment"
+    return "instance_action"
+
+
+class InstanceActionsHelperCustom:
+    def get_action_fn(self, action):
+        action_fn_name = get_compute_instane_action_fn_attr(action)
+        return super(InstanceActionsHelperCustom, self).get_action_fn(action_fn_name)

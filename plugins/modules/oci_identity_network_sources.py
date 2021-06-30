@@ -127,13 +127,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create network_sources
   oci_identity_network_sources:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
 
 - name: Update network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_network_sources:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -142,16 +142,16 @@ EXAMPLES = """
 - name: Update network_sources
   oci_identity_network_sources:
     description: description_example
-    network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+    network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete network_sources
   oci_identity_network_sources:
-    network_source_id: ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx
+    network_source_id: "ocid1.networksource.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete network_sources using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_network_sources:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -169,13 +169,13 @@ network_sources:
                 - The OCID of the network source.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the network source. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the network source during creation. The name must be unique across
@@ -207,7 +207,7 @@ network_sources:
                         - ""
                     returned: on success
                     type: string
-                    sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_ranges:
                     description:
                         - ""

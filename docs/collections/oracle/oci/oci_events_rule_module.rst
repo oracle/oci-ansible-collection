@@ -20,7 +20,7 @@ oracle.oci.oci_events_rule -- Manage a Rule resource in Oracle Cloud Infrastruct
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Rule resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new rule.
+- This resource has the following action operations in the :ref:`oci_rule_actions <ansible_collections.oci_rule_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -297,6 +298,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -628,7 +630,7 @@ Examples
         display_name: example_rule
         is_enabled: true
         condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
-        compartment_id: ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         actions:
           actions:
           - action_type: ONS
@@ -640,7 +642,7 @@ Examples
         description: description_example
         is_enabled: true
         condition: {"eventType": "com.oraclecloud.databaseservice.autonomous.database.backup.end"}
-        compartment_id: ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         actions:
           actions:
           - action_type: ONS
@@ -652,17 +654,17 @@ Examples
       oci_events_rule:
         display_name: example_rule
         description: description_example
-        rule_id: ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx
+        rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete rule
       oci_events_rule:
-        rule_id: ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx
+        rule_id: "ocid1.rule.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_events_rule:
         display_name: example_rule
-        compartment_id: ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

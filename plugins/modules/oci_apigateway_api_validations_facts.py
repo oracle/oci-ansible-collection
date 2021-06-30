@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific api_validations
   oci_apigateway_api_validations_facts:
-    api_id: ocid1.api.oc1..xxxxxxEXAMPLExxxxxx
+    api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

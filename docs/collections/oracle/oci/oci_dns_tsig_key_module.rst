@@ -20,7 +20,7 @@ oracle.oci.oci_dns_tsig_key -- Manage a TsigKey resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a TsigKey resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new TSIG key in the specified compartment. There is no `opc-retry-token` header since TSIG key names must be globally unique.
+- This resource has the following action operations in the :ref:`oci_tsig_key_actions <ansible_collections.oci_tsig_key_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -162,6 +163,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -482,13 +484,13 @@ Examples
       oci_dns_tsig_key:
         algorithm: algorithm_example
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret: secret_example
 
     - name: Update tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_tsig_key:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         scope: GLOBAL
@@ -498,17 +500,17 @@ Examples
       oci_dns_tsig_key:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        tsig_key_id: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+        tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete tsig_key
       oci_dns_tsig_key:
-        tsig_key_id: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+        tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_tsig_key:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

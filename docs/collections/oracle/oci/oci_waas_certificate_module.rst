@@ -20,7 +20,7 @@ oracle.oci.oci_waas_certificate -- Manage a WaasCertificate resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,6 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete a WaasCertificate resource in Oracle Cloud Infrastructure
 - For *state=present*, allows an SSL certificate to be added to a WAAS policy. The Web Application Firewall terminates SSL connections to inspect requests in runtime, and then re-encrypts requests before sending them to the origin for fulfillment.
 - For more information, see `WAF Settings <https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafsettings.htm>`_.
+- This resource has the following action operations in the :ref:`oci_waas_certificate_actions <ansible_collections.oci_waas_certificate_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -56,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +148,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -467,31 +469,29 @@ Examples
     
     - name: Create waas_certificate
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
-        certificate_data: '-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END
-          CERTIFICATE-----'
-        private_key_data: '-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END
-          PRIVATE KEY-----'
+        compartment_id: "ocid1.compartment.oc1.."
+        certificate_data: "-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END CERTIFICATE-----"
+        private_key_data: "-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END PRIVATE KEY-----"
 
     - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: example.com Certificate
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update waas_certificate
       oci_waas_certificate:
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete waas_certificate
       oci_waas_certificate:
-        certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+        certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waas_certificate:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: example.com Certificate
         state: absent
 
@@ -530,10 +530,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the WaasCertificate resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extensions&#x27;: [{&#x27;is_critical&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;issued_by&#x27;: &#x27;issued_by_example&#x27;, &#x27;issuer_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;public_key_info&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;exponent&#x27;: 56, &#x27;key_size&#x27;: 56}, &#x27;serial_number&#x27;: &#x27;serial_number_example&#x27;, &#x27;signature_algorithm&#x27;: &#x27;signature_algorithm_example&#x27;, &#x27;subject_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;time_created&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_after&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_before&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;version&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;certificate_data&#x27;: &#x27;certificate_data_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extensions&#x27;: [{&#x27;is_critical&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_trust_verification_disabled&#x27;: True, &#x27;issued_by&#x27;: &#x27;issued_by_example&#x27;, &#x27;issuer_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;public_key_info&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;exponent&#x27;: 56, &#x27;key_size&#x27;: 56}, &#x27;serial_number&#x27;: &#x27;serial_number_example&#x27;, &#x27;signature_algorithm&#x27;: &#x27;signature_algorithm_example&#x27;, &#x27;subject_name&#x27;: {&#x27;common_name&#x27;: &#x27;common_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;locality&#x27;: &#x27;locality_example&#x27;, &#x27;organization&#x27;: &#x27;organization_example&#x27;, &#x27;organizational_unit&#x27;: &#x27;organizational_unit_example&#x27;, &#x27;state_province&#x27;: &#x27;state_province_example&#x27;}, &#x27;time_created&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_after&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;time_not_valid_before&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;, &#x27;version&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-waas_certificate/certificate_data"></div>
+                    <b>certificate_data</b>
+                    <a class="ansibleOptionLink" href="#return-waas_certificate/certificate_data" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The data of the SSL certificate.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_data_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-waas_certificate/compartment_id"></div>
@@ -697,6 +715,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-waas_certificate/is_trust_verification_disabled"></div>
+                    <b>is_trust_verification_disabled</b>
+                    <a class="ansibleOptionLink" href="#return-waas_certificate/is_trust_verification_disabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This indicates whether trust verification was disabled during the creation of SSL certificate. If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

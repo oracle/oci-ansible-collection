@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a DhcpOptions resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new set of DHCP options for the specified VCN. For more information, see
       L(DhcpOptions,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpOptions/).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the set of
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+      where you want the set of
       DHCP options to reside. Notice that the set of options doesn't have to be in the same compartment as the VCN,
       subnets, or other Networking Service components. If you're not sure which compartment to use, put the set
       of DHCP options in the same compartment as the VCN. For more information about compartments and access control, see
@@ -33,6 +34,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the set of DHCP options, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_dhcp_options_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -46,7 +48,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -62,7 +64,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -132,7 +134,7 @@ options:
         type: str
     dhcp_id:
         description:
-            - The OCID for the set of DHCP options.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the set of DHCP options.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -153,17 +155,17 @@ EXAMPLES = """
 - name: Create dhcp_options
   oci_network_dhcp_options:
     options:
-    - type: DomainNameServer
+    - type: "DomainNameServer"
       custom_dns_servers:
-      - 203.0.113.6
-      server_type: CustomDnsServer
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
-    display_name: MyDhcpOptions
-    compartment_id: ocid1.compartment.oc1..unique_ID
+      - "203.0.113.6"
+      server_type: "CustomDnsServer"
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
+    display_name: "MyDhcpOptions"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDhcpOptions
     freeform_tags: {'Department': 'Finance'}
@@ -174,16 +176,16 @@ EXAMPLES = """
   oci_network_dhcp_options:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDhcpOptions
-    dhcp_id: ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx
+    dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete dhcp_options
   oci_network_dhcp_options:
-    dhcp_id: ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx
+    dhcp_id: "ocid1.dhcp.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete dhcp_options using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_dhcp_options:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyDhcpOptions
     state: absent
 
@@ -201,11 +203,11 @@ dhcp_options:
                 - The OCID of the compartment containing the set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -221,7 +223,7 @@ dhcp_options:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -231,7 +233,7 @@ dhcp_options:
                 - Oracle ID (OCID) for the set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the set of DHCP options.
@@ -305,7 +307,7 @@ dhcp_options:
                 - The OCID of the VCN the set of DHCP options belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

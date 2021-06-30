@@ -20,7 +20,7 @@ oracle.oci.oci_usage_facts -- Fetches details about one or multiple Usage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -68,12 +68,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="3">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -88,7 +88,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -153,7 +154,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_depth"></div>
                     <b>compartment_depth</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_depth" title="Permalink to this option"></a>
@@ -168,7 +169,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -183,7 +184,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -198,7 +199,320 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-filter"></div>
+                    <b>filter</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/dimensions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The dimensions to filter on.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/dimensions/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/dimensions/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The dimension key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/dimensions/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/dimensions/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The dimension value.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/filters"></div>
+                    <b>filters</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/filters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The nested filter object.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/filters/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/filters/dimensions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The dimensions to filter on.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/filters/filters"></div>
+                    <b>filters</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/filters/filters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The nested filter object.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/filters/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/filters/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AND</li>
+                                                                                                                                                                                                <li>NOT</li>
+                                                                                                                                                                                                <li>OR</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The filter operator. Example: &#x27;AND&#x27;, &#x27;OR&#x27;, &#x27;NOT&#x27;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/filters/tags"></div>
+                    <b>tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/filters/tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tags to filter on.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AND</li>
+                                                                                                                                                                                                <li>NOT</li>
+                                                                                                                                                                                                <li>OR</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The filter operator. Example: &#x27;AND&#x27;, &#x27;OR&#x27;, &#x27;NOT&#x27;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/tags"></div>
+                    <b>tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tags to filter on.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/tags/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/tags/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/tags/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/tags/namespace" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag namespace.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter/tags/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter/tags/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag value.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-forecast"></div>
+                    <b>forecast</b>
+                    <a class="ansibleOptionLink" href="#parameter-forecast" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-forecast/forecast_type"></div>
+                    <b>forecast_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-forecast/forecast_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>BASIC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent historical days for which projection is being made.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-forecast/time_forecast_ended"></div>
+                    <b>time_forecast_ended</b>
+                    <a class="ansibleOptionLink" href="#parameter-forecast/time_forecast_ended" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>forecast end time.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-forecast/time_forecast_started"></div>
+                    <b>time_forecast_started</b>
+                    <a class="ansibleOptionLink" href="#parameter-forecast/time_forecast_started" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>forecast start time. Will default to UTC-1 if not specified</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-granularity"></div>
                     <b>granularity</b>
                     <a class="ansibleOptionLink" href="#parameter-granularity" title="Permalink to this option"></a>
@@ -219,7 +533,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-group_by"></div>
                     <b>group_by</b>
                     <a class="ansibleOptionLink" href="#parameter-group_by" title="Permalink to this option"></a>
@@ -230,11 +544,94 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Aggregate the result by. example: `[&quot;service&quot;]`</div>
+                                            <div>Aggregate the result by. example: `[&quot;tagNamespace&quot;, &quot;tagKey&quot;, &quot;tagValue&quot;, &quot;service&quot;, &quot;skuName&quot;, &quot;skuPartNumber&quot;, &quot;unit&quot;, &quot;compartmentName&quot;, &quot;compartmentPath&quot;, &quot;compartmentId&quot;, &quot;platform&quot;, &quot;region&quot;, &quot;logicalAd&quot;, &quot;resourceId&quot;, &quot;tenantId&quot;, &quot;tenantName&quot;]`</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-group_by_tag"></div>
+                    <b>group_by_tag</b>
+                    <a class="ansibleOptionLink" href="#parameter-group_by_tag" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>GroupBy a specific tagKey. Provide tagNamespace and tagKey in tag object. Only support one tag in the list example: `[{&quot;namespace&quot;:&quot;oracle&quot;, &quot;key&quot;:&quot;createdBy&quot;]`</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-group_by_tag/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-group_by_tag/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-group_by_tag/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#parameter-group_by_tag/namespace" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag namespace.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-group_by_tag/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-group_by_tag/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The tag value.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_aggregate_by_time"></div>
+                    <b>is_aggregate_by_time</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_aggregate_by_time" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-query_type"></div>
                     <b>query_type</b>
                     <a class="ansibleOptionLink" href="#parameter-query_type" title="Permalink to this option"></a>
@@ -249,11 +646,11 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The query usage type. Usage - Query the usage data. Cost - Query the cost/billing data.</div>
+                                            <div>The query usage type. COST by default if it is missing Usage - Query the usage data. Cost - Query the cost/billing data.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -268,7 +665,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -283,7 +680,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenant_id"></div>
                     <b>tenant_id</b>
                     <a class="ansibleOptionLink" href="#parameter-tenant_id" title="Permalink to this option"></a>
@@ -294,11 +691,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Tenant ID</div>
+                                            <div>Tenant ID.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-time_usage_ended"></div>
                     <b>time_usage_ended</b>
                     <a class="ansibleOptionLink" href="#parameter-time_usage_ended" title="Permalink to this option"></a>
@@ -313,7 +710,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-time_usage_started"></div>
                     <b>time_usage_started</b>
                     <a class="ansibleOptionLink" href="#parameter-time_usage_started" title="Permalink to this option"></a>
@@ -351,7 +748,7 @@ Examples
     
     - name: List usages
       oci_usage_facts:
-        tenant_id: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+        tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         time_usage_started: 2013-10-20T19:20:30+01:00
         time_usage_ended: 2013-10-20T19:20:30+01:00
         granularity: HOURLY
@@ -391,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Usage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;compartment_path&#x27;: &#x27;compartment_path_example&#x27;, &#x27;computed_amount&#x27;: 10, &#x27;computed_quantity&#x27;: 10, &#x27;currency&#x27;: &#x27;currency_example&#x27;, &#x27;discount&#x27;: 10, &#x27;list_rate&#x27;: 10, &#x27;overage&#x27;: &#x27;overage_example&#x27;, &#x27;overages_flag&#x27;: &#x27;overages_flag_example&#x27;, &#x27;platform&#x27;: &#x27;platform_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;sku_name&#x27;: &#x27;sku_name_example&#x27;, &#x27;sku_part_number&#x27;: &#x27;sku_part_number_example&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenant_name&#x27;: &#x27;tenant_name_example&#x27;, &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;unit_price&#x27;: 10, &#x27;weight&#x27;: 10}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ad&#x27;: &#x27;ad_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;compartment_path&#x27;: &#x27;compartment_path_example&#x27;, &#x27;computed_amount&#x27;: 10, &#x27;computed_quantity&#x27;: 10, &#x27;currency&#x27;: &#x27;currency_example&#x27;, &#x27;discount&#x27;: 10, &#x27;is_forecast&#x27;: True, &#x27;list_rate&#x27;: 10, &#x27;overage&#x27;: &#x27;overage_example&#x27;, &#x27;overages_flag&#x27;: &#x27;overages_flag_example&#x27;, &#x27;platform&#x27;: &#x27;platform_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;sku_name&#x27;: &#x27;sku_name_example&#x27;, &#x27;sku_part_number&#x27;: &#x27;sku_part_number_example&#x27;, &#x27;subscription_id&#x27;: &#x27;ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tenant_name&#x27;: &#x27;tenant_name_example&#x27;, &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;unit_price&#x27;: 10, &#x27;weight&#x27;: 10}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -536,6 +933,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-usages/is_forecast"></div>
+                    <b>is_forecast</b>
+                    <a class="ansibleOptionLink" href="#return-usages/is_forecast" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>is forecasted data</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

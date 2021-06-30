@@ -24,6 +24,7 @@ short_description: Manage a ManagedList resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ManagedList resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new ManagedList.
+    - "This resource has the following action operations in the M(oci_managed_list_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -67,6 +68,7 @@ options:
             - "STATE"
             - "CITY"
             - "TAGS"
+            - "GENERIC"
     list_items:
         description:
             - List of ManagedListItem
@@ -107,12 +109,12 @@ EXAMPLES = """
 - name: Create managed_list
   oci_cloud_guard_managed_list:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_managed_list:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -121,17 +123,17 @@ EXAMPLES = """
   oci_cloud_guard_managed_list:
     display_name: display_name_example
     description: description_example
-    managed_list_id: ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx
+    managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete managed_list
   oci_cloud_guard_managed_list:
-    managed_list_id: ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx
+    managed_list_id: "ocid1.managedlist.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_managed_list:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -148,7 +150,7 @@ managed_list:
                 - Unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ManagedList display name
@@ -166,13 +168,13 @@ managed_list:
                 - Compartment Identifier where the resource is created
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_managed_list_id:
             description:
                 - OCID of the Source ManagedList
             returned: on success
             type: string
-            sample: ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
         list_type:
             description:
                 - type of the list
@@ -424,6 +426,7 @@ def main():
                     "STATE",
                     "CITY",
                     "TAGS",
+                    "GENERIC",
                 ],
             ),
             list_items=dict(type="list"),

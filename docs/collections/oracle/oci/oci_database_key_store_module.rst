@@ -20,7 +20,7 @@ oracle.oci.oci_database_key_store -- Manage a KeyStore resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a KeyStore resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a Key Store.
+- This resource has the following action operations in the :ref:`oci_key_store_actions <ansible_collections.oci_key_store_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -513,16 +515,16 @@ Examples
     
     - name: Create key_store
       oci_database_key_store:
-        display_name: Key Store1
-        compartment_id: ocid1.tenancy.oc1.unique_ID
+        display_name: "Key Store1"
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
         type_details:
-          type: ORACLE_KEY_VAULT
+          type: "ORACLE_KEY_VAULT"
           connection_ips:
-          - 198.12.34.56
-          - 198.12.34.57
-          admin_username: username1
-          vault_id: ocid1.vault.oc1.unique_ID
-          secret_id: ocid1.key.oc1.unique_ID
+          - "198.12.34.56"
+          - "198.12.34.57"
+          admin_username: "username1"
+          vault_id: "ocid1.vault.oc1.unique_ID"
+          secret_id: "ocid1.key.oc1.unique_ID"
 
     - name: Update key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_key_store:
@@ -546,11 +548,11 @@ Examples
           vault_id: ocid1.vault.oc1.unique_ID
           secret_id: ocid1.key.oc1.unique_ID
         freeform_tags: {'Department': 'Finance'}
-        key_store_id: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+        key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete key_store
       oci_database_key_store:
-        key_store_id: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+        key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete key_store using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

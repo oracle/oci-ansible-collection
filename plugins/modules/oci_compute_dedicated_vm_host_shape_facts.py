@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
     availability_domain:
@@ -47,7 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List dedicated_vm_host_shapes
   oci_compute_dedicated_vm_host_shape_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,8 +66,8 @@ dedicated_vm_host_shapes:
             sample: Uocm:PHX-AD-1
         dedicated_vm_host_shape:
             description:
-                - The name of the dedicated vm host shape. You can enumerate all available shapes by calling
-                  L(ListDedicatedVmHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/dedicatedVmHostShapes).
+                - The name of the dedicated VM host shape. You can enumerate all available shapes by calling
+                  L(ListDedicatedVmHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/dedicatedVmHostShapes).
             returned: on success
             type: string
             sample: dedicated_vm_host_shape_example

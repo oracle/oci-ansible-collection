@@ -80,11 +80,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List blockchain_platforms
   oci_blockchain_platform_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific blockchain_platform
   oci_blockchain_platform_facts:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -100,7 +100,7 @@ blockchain_platforms:
                 - unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Platform Instance Display name, can be renamed
@@ -112,7 +112,7 @@ blockchain_platforms:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Platform Instance Description
@@ -368,93 +368,6 @@ blockchain_platforms:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        items:
-            description:
-                - Collection of BlockchainPlatformSummary
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - unique identifier that is immutable on creation
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - Platform Instance Display name, can be renamed
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                compartment_id:
-                    description:
-                        - Compartment Identifier
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                description:
-                    description:
-                        - Platform Instance Description
-                    returned: on success
-                    type: string
-                    sample: description_example
-                time_created:
-                    description:
-                        - The time the the Platform Instance was created. An RFC3339 formatted datetime string
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_updated:
-                    description:
-                        - The time the Platform Instance was updated. An RFC3339 formatted datetime string
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                platform_role:
-                    description:
-                        - "Role of platform - founder or participant"
-                    returned: on success
-                    type: string
-                    sample: platform_role_example
-                compute_shape:
-                    description:
-                        - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
-                    returned: on success
-                    type: string
-                    sample: compute_shape_example
-                service_endpoint:
-                    description:
-                        - Service endpoint URL, valid post-provisioning
-                    returned: on success
-                    type: string
-                    sample: service_endpoint_example
-                lifecycle_state:
-                    description:
-                        - The current state of the Platform Instance.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                lifecycle_details:
-                    description:
-                        - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
-                          Failed state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
-                freeform_tags:
-                    description:
-                        - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                          Example: `{\\"bar-key\\": \\"value\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                          Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -507,22 +420,7 @@ blockchain_platforms:
             "ocpu_capacity_number": 3.4
         }],
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "description": "description_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "platform_role": "platform_role_example",
-            "compute_shape": "compute_shape_example",
-            "service_endpoint": "service_endpoint_example",
-            "lifecycle_state": "lifecycle_state_example",
-            "lifecycle_details": "lifecycle_details_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

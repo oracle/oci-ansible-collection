@@ -80,10 +80,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create exported_key_data
   oci_key_management_exported_key_data:
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-    key_version_id: ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija
-    algorithm: RSA_OAEP_AES_SHA256
-    public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+    key_version_id: "ocid1.keyversion.oc1.iad.examplevriiaa.examples4h2bocax3damnsxw4cvbbndged2gftlho4ufxwa4faux2eiqwija"
+    algorithm: "RSA_OAEP_AES_SHA256"
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -100,13 +100,13 @@ exported_key_data:
                 - The OCID of the key version.
             returned: on success
             type: string
-            sample: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the master encryption key associated with this key version.
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time this key version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -118,7 +118,7 @@ exported_key_data:
                 - The OCID of the vault that contains this key version.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         encrypted_key:
             description:
                 - The base64-encoded exported key material, which is encrypted by using the public RSA wrapping key specified in the export request.

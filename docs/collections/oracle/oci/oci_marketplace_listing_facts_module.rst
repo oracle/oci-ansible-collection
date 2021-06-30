@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_listing_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -59,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -150,6 +150,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -254,6 +255,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-listing_types"></div>
+                    <b>listing_types</b>
+                    <a class="ansibleOptionLink" href="#parameter-listing_types" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>COMMUNITY</li>
+                                                                                                                                                                                                <li>PARTNER</li>
+                                                                                                                                                                                                <li>PRIVATE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of the listing</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
@@ -265,6 +286,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the listing.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-operating_systems"></div>
+                    <b>operating_systems</b>
+                    <a class="ansibleOptionLink" href="#parameter-operating_systems" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OS of the listing.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -408,11 +444,11 @@ Examples
     
     - name: List listings
       oci_marketplace_listing_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific listing
       oci_marketplace_listing_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -449,7 +485,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Listing resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;banner&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;categories&#x27;: [], &#x27;default_package_version&#x27;: &#x27;default_package_version_example&#x27;, &#x27;documentation_links&#x27;: [{&#x27;document_category&#x27;: &#x27;document_category_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;keywords&#x27;: &#x27;keywords_example&#x27;, &#x27;languages&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;license_model_description&#x27;: &#x27;license_model_description_example&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;contact_email&#x27;: &#x27;contact_email_example&#x27;, &#x27;contact_phone&#x27;: &#x27;contact_phone_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hq_address&#x27;: &#x27;hq_address_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;logo&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;website_url&#x27;: &#x27;website_url_example&#x27;, &#x27;year_founded&#x27;: 56}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;release_notes&#x27;: &#x27;release_notes_example&#x27;, &#x27;screenshots&#x27;: [{&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;support_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone&#x27;: &#x27;phone_example&#x27;, &#x27;subject&#x27;: &#x27;subject_example&#x27;}], &#x27;support_links&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;system_requirements&#x27;: &#x27;system_requirements_example&#x27;, &#x27;tagline&#x27;: &#x27;tagline_example&#x27;, &#x27;time_released&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_information&#x27;: &#x27;usage_information_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;videos&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;banner&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;categories&#x27;: [], &#x27;default_package_version&#x27;: &#x27;default_package_version_example&#x27;, &#x27;documentation_links&#x27;: [{&#x27;document_category&#x27;: &#x27;document_category_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;keywords&#x27;: &#x27;keywords_example&#x27;, &#x27;languages&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;license_model_description&#x27;: &#x27;license_model_description_example&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;contact_email&#x27;: &#x27;contact_email_example&#x27;, &#x27;contact_phone&#x27;: &#x27;contact_phone_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hq_address&#x27;: &#x27;hq_address_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;links&#x27;: [{&#x27;href&#x27;: &#x27;href_example&#x27;, &#x27;rel&#x27;: &#x27;SELF&#x27;}], &#x27;logo&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;website_url&#x27;: &#x27;website_url_example&#x27;, &#x27;year_founded&#x27;: 56}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;release_notes&#x27;: &#x27;release_notes_example&#x27;, &#x27;screenshots&#x27;: [{&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;support_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone&#x27;: &#x27;phone_example&#x27;, &#x27;subject&#x27;: &#x27;subject_example&#x27;}], &#x27;support_links&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}], &#x27;supported_operating_systems&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;system_requirements&#x27;: &#x27;system_requirements_example&#x27;, &#x27;tagline&#x27;: &#x27;tagline_example&#x27;, &#x27;time_released&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_information&#x27;: &#x27;usage_information_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;videos&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -928,6 +964,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-listings/listing_type"></div>
+                    <b>listing_type</b>
+                    <a class="ansibleOptionLink" href="#return-listings/listing_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>In which catalog the listing should exist.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMMUNITY</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -1729,6 +1783,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-listings/supported_operating_systems"></div>
+                    <b>supported_operating_systems</b>
+                    <a class="ansibleOptionLink" href="#return-listings/supported_operating_systems" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of operating systems supported.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-listings/supported_operating_systems/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-listings/supported_operating_systems/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>name of the operating system</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
                     

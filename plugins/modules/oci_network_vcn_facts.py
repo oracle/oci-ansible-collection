@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple vcns.
         type: str
     display_name:
@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vcns
   oci_network_vcn_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vcn
   oci_network_vcn_facts:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -115,29 +115,29 @@ vcns:
                 - The OCID of the compartment containing the VCN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
             type: string
-            sample: ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
             type: string
-            sample: ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -168,7 +168,7 @@ vcns:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -178,7 +178,14 @@ vcns:
                 - The VCN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -214,6 +221,7 @@ vcns:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"

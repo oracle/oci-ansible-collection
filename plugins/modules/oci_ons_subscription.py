@@ -49,9 +49,10 @@ options:
                 * `CUSTOM_HTTPS`
                 * `EMAIL`
                 * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                * `ORACLE_FUNCTIONS`
                 * `PAGERDUTY`
                 * `SLACK`
-                * `ORACLE_FUNCTIONS`"
+                * `SMS`"
             - For information about subscription protocols, see
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             - Required for create using I(state=present).
@@ -132,19 +133,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create subscription
   oci_ons_subscription:
-    topic_id: topic_OCID
-    compartment_id: compartment_OCID
-    protocol: EMAIL
-    endpoint: john.smith@example.com
+    topic_id: "topic_OCID"
+    compartment_id: "compartment_OCID"
+    protocol: "EMAIL"
+    endpoint: "john.smith@example.com"
 
 - name: Update subscription
   oci_ons_subscription:
-    freeform_tags: '{''Department'': ''Finance''}'
-    subscription_id: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+    freeform_tags: "{'Department': 'Finance'}"
+    subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete subscription
   oci_ons_subscription:
-    subscription_id: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+    subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -161,17 +162,25 @@ subscription:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         protocol:
             description:
                 - The protocol used for the subscription.
-                  For information about subscription protocols, see
+                - "Allowed values:
+                    * `CUSTOM_HTTPS`
+                    * `EMAIL`
+                    * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                    * `ORACLE_FUNCTIONS`
+                    * `PAGERDUTY`
+                    * `SLACK`
+                    * `SMS`"
+                - For information about subscription protocols, see
                   L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             returned: on success
             type: string
@@ -195,7 +204,7 @@ subscription:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_time:
             description:
                 - The time when this suscription was created.

@@ -20,7 +20,7 @@ oracle.oci.oci_logging_unified_agent_configuration_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -396,11 +397,11 @@ Examples
     
     - name: List unified_agent_configurations
       oci_logging_unified_agent_configuration_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific unified_agent_configuration
       oci_logging_unified_agent_configuration_facts:
-        unified_agent_configuration_id: ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+        unified_agent_configuration_id: "ocid1.unifiedagentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -437,7 +438,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of UnifiedAgentConfiguration resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;items&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_state&#x27;: &#x27;VALID&#x27;, &#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group_association&#x27;: {&#x27;group_list&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;service_configuration&#x27;: {&#x27;configuration_type&#x27;: &#x27;LOGGING&#x27;, &#x27;destination&#x27;: {&#x27;log_object_id&#x27;: &#x27;ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;sources&#x27;: [{&#x27;channels&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parser&#x27;: {&#x27;delimiter&#x27;: &#x27;delimiter_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;format&#x27;: [], &#x27;format_firstline&#x27;: &#x27;format_firstline_example&#x27;, &#x27;grok_failure_key&#x27;: &#x27;grok_failure_key_example&#x27;, &#x27;grok_name_key&#x27;: &#x27;grok_name_key_example&#x27;, &#x27;is_estimate_current_event&#x27;: True, &#x27;is_keep_time_key&#x27;: True, &#x27;is_null_empty_string&#x27;: True, &#x27;is_support_colonless_ident&#x27;: True, &#x27;is_with_priority&#x27;: True, &#x27;keys&#x27;: [], &#x27;message_format&#x27;: &#x27;RFC3164&#x27;, &#x27;message_key&#x27;: &#x27;message_key_example&#x27;, &#x27;multi_line_start_regexp&#x27;: &#x27;multi_line_start_regexp_example&#x27;, &#x27;null_value_pattern&#x27;: &#x27;null_value_pattern_example&#x27;, &#x27;parser_type&#x27;: &#x27;AUDITD&#x27;, &#x27;patterns&#x27;: [{&#x27;field_time_format&#x27;: &#x27;field_time_format_example&#x27;, &#x27;field_time_key&#x27;: &#x27;field_time_key_example&#x27;, &#x27;field_time_zone&#x27;: &#x27;field_time_zone_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pattern&#x27;: &#x27;pattern_example&#x27;}], &#x27;rfc5424_time_format&#x27;: &#x27;rfc5424_time_format_example&#x27;, &#x27;syslog_parser_type&#x27;: &#x27;STRING&#x27;, &#x27;time_format&#x27;: &#x27;time_format_example&#x27;, &#x27;time_type&#x27;: &#x27;FLOAT&#x27;, &#x27;timeout_in_milliseconds&#x27;: 56, &#x27;types&#x27;: {}}, &#x27;paths&#x27;: [], &#x27;source_type&#x27;: &#x27;LOG_TAIL&#x27;}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -474,6 +475,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VALID</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/configuration_type"></div>
+                    <b>configuration_type</b>
+                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/configuration_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of Unified Agent service configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOGGING</div>
                                     </td>
             </tr>
                                 <tr>
@@ -619,252 +638,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items"></div>
-                    <b>items</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>List of UnifiedAgentConfigurationSummary.</div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/compartment_id"></div>
-                    <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/compartment_id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The OCID of the compartment that the resource belongs to.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/configuration_state"></div>
-                    <b>configuration_state</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/configuration_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>State of unified agent service configuration.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VALID</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/configuration_type"></div>
-                    <b>configuration_type</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/configuration_type" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Type of Unified Agent service configuration.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOGGING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
-                                            <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/description"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/description" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Description for this resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/display_name"></div>
-                    <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/display_name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The user-friendly display name. This must be unique within the enclosing resource, and it&#x27;s changeable. Avoid entering confidential information.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/id"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/id" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The OCID of the resource.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/is_enabled"></div>
-                    <b>is_enabled</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/is_enabled" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">boolean</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Whether or not this resource is currently enabled.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/lifecycle_state"></div>
-                    <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/lifecycle_state" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>The pipeline state.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/time_created"></div>
-                    <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/time_created" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Time the resource was created.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-unified_agent_configurations/items/time_last_modified"></div>
-                    <b>time_last_modified</b>
-                    <a class="ansibleOptionLink" href="#return-unified_agent_configurations/items/time_last_modified" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Time the resource was last modified.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
-                                    </td>
-            </tr>
-                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="5">

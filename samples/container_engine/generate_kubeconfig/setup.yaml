@@ -16,6 +16,8 @@
     - "SAMPLE_AD2_NAME"
     - "SAMPLE_AD3_NAME"
 
+#==========================================================================================
+
 - name: Create a VCN
   oci_network_vcn:
     compartment_id: "{{ cluster_compartment }}"
@@ -27,6 +29,8 @@
     msg: "{{ vcnresult }}"
 - set_fact:
     vcn_id: "{{ vcnresult.vcn.id }}"
+
+#==========================================================================================
 
 - name: Create an internet gateway
   oci_network_internet_gateway:
@@ -40,6 +44,8 @@
 - set_fact:
     ig_id: "{{ result.internet_gateway.id }}"
 
+#==========================================================================================
+
 - name: Update default route table of VCN to connect internet gateway to the VCN
   oci_network_route_table:
     id: "{{ vcnresult.vcn.default_route_table_id }}"
@@ -49,6 +55,8 @@
     msg: "{{ result }}"
 - set_fact:
     rt_id: "{{ result.route_table.id }}"
+
+#==========================================================================================
 
 - name: Create subnets for worker nodes in AD1, AD2 & AD3
   oci_network_subnet:
@@ -68,6 +76,8 @@
     ad1_subnet_id: "{{ result.results[0].subnet.id }}"
     ad2_subnet_id: "{{ result.results[1].subnet.id }}"
     ad3_subnet_id: "{{ result.results[2].subnet.id }}"
+
+#==========================================================================================
 
 # Use a jinja2 template of the ingress and egress security rules to generate a templated version of the final rules.
 - name: create ingress rules yaml body
@@ -103,6 +113,8 @@
 - debug:
     msg: "{{ result }}"
 
+#==========================================================================================
+
 - name: Create a security list for load balancers
   oci_network_security_list:
     name: "Load Balancers"
@@ -115,6 +127,8 @@
     msg: "{{ result }}"
 - set_fact:
     lb_sec_list_id: "{{ result.security_list.id }}"
+
+#==========================================================================================
 
 - name: Create load balancer subnets in AD1 & AD2
   oci_network_subnet:

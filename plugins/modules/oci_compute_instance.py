@@ -25,11 +25,11 @@ description:
     - This module allows the user to create, update and delete an Instance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new instance in the specified compartment and the specified availability domain.
       For general information about instances, see
-      L(Overview of the Compute Service,https://docs.cloud.oracle.com/Content/Compute/Concepts/computeoverview.htm).
+      L(Overview of the Compute Service,https://docs.cloud.oracle.com/iaas/Content/Compute/Concepts/computeoverview.htm).
     - For information about access control and compartments, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
     - For information about availability domains, see
-      L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
+      L(Regions and Availability Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
       To get a list of availability domains, use the `ListAvailabilityDomains` operation
       in the Identity and Access Management Service API.
     - All Oracle Cloud Infrastructure resources, including instances, get an Oracle-assigned,
@@ -38,17 +38,17 @@ description:
       also retrieve a resource's OCID by using a List API operation
       on that resource type, or by viewing the resource in the Console.
     - To launch an instance using an image or a boot volume use the `sourceDetails` parameter in L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/iaas/20160918/LaunchInstanceDetails).
+      us/iaas/api/#/en/iaas/latest/LaunchInstanceDetails).
     - "When you launch an instance, it is automatically attached to a virtual
       network interface card (VNIC), called the *primary VNIC*. The VNIC
       has a private IP address from the subnet's CIDR. You can either assign a
       private IP address of your choice or let Oracle automatically assign one.
       You can choose whether the instance has a public IP address. To retrieve the
-      addresses, use the L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/VnicAttachment/ListVnicAttachments)
+      addresses, use the L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments)
       operation to get the VNIC ID for the instance, and then call
-      L(GetVnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vnic/GetVnic) with the VNIC ID."
+      L(GetVnic,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/GetVnic) with the VNIC ID."
     - You can later add secondary VNICs to an instance. For more information, see
-      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
     - To launch an instance from a Marketplace image listing, you must provide the image ID of the
       listing resource version that you want, but you also must subscribe to the listing before you try
       to launch the instance. To subscribe to the listing, use the L(GetAppCatalogListingAgreements,https://docs.cloud.oracle.com/en-
@@ -69,6 +69,13 @@ options:
             - The availability domain of the instance.
             - "Example: `Uocm:PHX-AD-1`"
             - Required for create using I(state=present).
+        type: str
+    capacity_reservation_id:
+        description:
+            - The OCID of the compute capacity reservation this instance is launched under.
+              You can opt out of all default reservations by specifying an empty string as input for this field.
+              For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            - This parameter is updatable.
         type: str
     compartment_id:
         description:
@@ -101,13 +108,20 @@ options:
                       about the public IP limits, see
                       L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
-                    - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
+                    - If you specify a `vlanId`, then `assignPublicIp` must be set to false. See
                       L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
+                type: bool
+            assign_private_dns_record:
+                description:
+                    - Whether the VNIC should be assigned a DNS record. If set to false, there will be no DNS record
+                      registration for the VNIC. If set to true, the DNS record will be registered. The default
+                      value is true.
+                    - If you specify a `hostnameLabel`, then `assignPrivateDnsRecord` must be set to true.
                 type: bool
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
             display_name:
@@ -120,7 +134,7 @@ options:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
                 type: dict
             hostname_label:
@@ -142,8 +156,8 @@ options:
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
-                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
-                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
+                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN
+                      can not be assigned a hostname. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
             nsg_ids:
                 description:
@@ -205,7 +219,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -246,14 +260,14 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
     hostname_label:
         description:
             - Deprecated. Instead use `hostnameLabel` in
-              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/).
+              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/).
               If you provide both, the values must match.
         type: str
     image_id:
@@ -281,7 +295,7 @@ options:
               iqn.2015-02.oracle.boot."
             - For more information about the Bring Your Own Image feature of
               Oracle Cloud Infrastructure, see
-              L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+              L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
             - For more information about iPXE, see http://ipxe.org.
         type: str
     launch_options:
@@ -297,9 +311,9 @@ options:
                       * `SCSI` - Emulated SCSI disk.
                       * `IDE` - Emulated IDE disk.
                       * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                      volumes on Oracle-provided images.
+                      volumes on platform images.
                       * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                      storage volumes on Oracle-provided images."
+                      storage volumes on platform images."
                     - This parameter is updatable.
                 type: str
                 choices:
@@ -314,7 +328,7 @@ options:
                       * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                       systems that boot using MBR style bootloaders.
                       * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                      default for Oracle-provided images."
+                      default for platform images."
                 type: str
                 choices:
                     - "BIOS"
@@ -339,9 +353,9 @@ options:
                       * `SCSI` - Emulated SCSI disk.
                       * `IDE` - Emulated IDE disk.
                       * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                      volumes on Oracle-provided images.
+                      volumes on platform images.
                       * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                      storage volumes on Oracle-provided images."
+                      storage volumes on platform images."
                 type: str
                 choices:
                     - "ISCSI"
@@ -352,7 +366,7 @@ options:
             is_pv_encryption_in_transit_enabled:
                 description:
                     - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     - This parameter is updatable.
                 type: bool
             is_consistent_volume_naming_enabled:
@@ -377,6 +391,13 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            is_live_migration_preferred:
+                description:
+                    - Whether to live migrate supported VM instances to a healthy physical VM host without
+                      disrupting running instances during infrastructure maintenance events. If null, Oracle
+                      chooses the best option for migrating the VM during infrastructure maintenance events.
+                    - This parameter is updatable.
+                type: bool
             recovery_action:
                 description:
                     - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -388,6 +409,29 @@ options:
                 choices:
                     - "RESTORE_INSTANCE"
                     - "STOP_INSTANCE"
+    preemptible_instance_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            preemption_action:
+                description:
+                    - ""
+                type: dict
+                required: true
+                suboptions:
+                    type:
+                        description:
+                            - The type of action to run when the instance is interrupted for eviction.
+                        type: str
+                        choices:
+                            - "TERMINATE"
+                        required: true
+                    preserve_boot_volume:
+                        description:
+                            - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults to
+                              false if not specified.
+                        type: bool
     metadata:
         description:
             - Custom metadata key/value pairs that you provide, such as the SSH public key
@@ -502,7 +546,7 @@ options:
         description:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
               and other resources allocated to the instance.
-            - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+            - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -522,6 +566,20 @@ options:
                     - The total amount of memory available to the instance, in gigabytes.
                     - This parameter is updatable.
                 type: float
+            baseline_ocpu_utilization:
+                description:
+                    - The baseline OCPU utilization for a subcore burstable VM instance. Leave this attribute blank for a
+                      non-burstable instance, or explicitly specify non-burstable with `BASELINE_1_1`.
+                    - "The following values are supported:
+                      - `BASELINE_1_8` - baseline usage is 1/8 of an OCPU.
+                      - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
+                      - `BASELINE_1_1` - baseline usage is an entire OCPU. This represents a non-burstable instance."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "BASELINE_1_8"
+                    - "BASELINE_1_2"
+                    - "BASELINE_1_1"
     source_details:
         description:
             - ""
@@ -560,7 +618,7 @@ options:
     subnet_id:
         description:
             - Deprecated. Instead use `subnetId` in
-              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/CreateVnicDetails/).
+              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/).
               At least one of them is required; if you provide both, the values must match.
         type: str
     is_pv_encryption_in_transit_enabled:
@@ -583,7 +641,7 @@ options:
                 required: true
             numa_nodes_per_socket:
                 description:
-                    - The number of NUMA nodes per socket.
+                    - The number of NUMA nodes per socket (NPS).
                 type: str
                 choices:
                     - "NPS0"
@@ -592,7 +650,7 @@ options:
                     - "NPS4"
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -617,53 +675,54 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance
   oci_compute_instance:
-    display_name: myinstance1
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-    shape: VM.Standard2.1
+    display_name: "myinstance1"
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    shape: "VM.Standard2.1"
     metadata:
-      foo: bar
-      baz: quux
+      foo: "bar"
+      baz: "quux"
     source_details:
-      source_type: image
-      image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+      source_type: "image"
+      image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
     create_vnic_details:
-      hostname_label: myinstance1
-      private_ip: 10.0.0.5
-      subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+      hostname_label: "myinstance1"
+      private_ip: "10.0.0.5"
+      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
 - name: Create instance
   oci_compute_instance:
-    display_name: myinstance1
-    availability_domain: Uocm:PHX-AD-1
-    fault_domain: FAULT-DOMAIN-2
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-    shape: VM.Standard2.1
+    display_name: "myinstance1"
+    availability_domain: "Uocm:PHX-AD-1"
+    fault_domain: "FAULT-DOMAIN-2"
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    shape: "VM.Standard2.1"
     source_details:
-      source_type: bootVolume
-      boot_volume_id: ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx
+      source_type: "bootVolume"
+      boot_volume_id: "ocid1.bootvolume.oc1.iad.xxxxxEXAMPLExxxxx"
     create_vnic_details:
-      hostname_label: myinstance1
-      private_ip: 10.0.0.5
-      subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+      hostname_label: "myinstance1"
+      private_ip: "10.0.0.5"
+      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
 - name: Create instance
   oci_compute_instance:
-    display_name: myinstance1
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-    shape: VM.Standard2.1
+    display_name: "myinstance1"
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+    shape: "VM.Standard2.1"
     source_details:
-      source_type: image
-      image_id: ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx
+      source_type: "image"
+      image_id: "ocid1.image.oc1.phx.xxxxxEXAMPLExxxxx"
       boot_volume_size_in_gbs: 100
     create_vnic_details:
-      hostname_label: myinstance1
-      subnet_id: ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa
+      hostname_label: "myinstance1"
+      subnet_id: "ocid1.subnet.oc1.phx.xxxxxEXAMPLExxxxx...5iddusmpqpaoa"
 
 - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: myinstance1
     fault_domain: FAULT-DOMAIN-2
@@ -672,18 +731,18 @@ EXAMPLES = """
 
 - name: Update instance
   oci_compute_instance:
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: myinstance1
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete instance
   oci_compute_instance:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     display_name: myinstance1
     state: absent
 
@@ -703,22 +762,30 @@ instance:
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
+        capacity_reservation_id:
+            description:
+                - The OCID of the compute capacity reservation this instance is launched under.
+                  When this field contains an empty string or is null, the instance is not currently in a capacity reservation.
+                  For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            returned: on success
+            type: string
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_id:
             description:
                 - The OCID of dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -757,7 +824,7 @@ instance:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -767,13 +834,13 @@ instance:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - Deprecated. Use `sourceDetails` instead.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         ipxe_script:
             description:
                 - When a bare metal or virtual machine
@@ -792,7 +859,7 @@ instance:
                   iqn.2015-02.oracle.boot."
                 - For more information about the Bring Your Own Image feature of
                   Oracle Cloud Infrastructure, see
-                  L(Bring Your Own Image,https://docs.cloud.oracle.com/Content/Compute/References/bringyourownimage.htm).
+                  L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                 - For more information about iPXE, see http://ipxe.org.
             returned: on success
             type: string
@@ -800,7 +867,7 @@ instance:
         launch_mode:
             description:
                 - "Specifies the configuration mode for launching virtual machine (VM) instances. The configuration modes are:
-                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.
+                  * `NATIVE` - VM instances launch with iSCSI boot and VFIO devices. The default value for platform images.
                   * `EMULATED` - VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
@@ -820,9 +887,9 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
@@ -832,7 +899,7 @@ instance:
                           * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
                           systems that boot using MBR style bootloaders.
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                          default for Oracle-provided images."
+                          default for platform images."
                     returned: on success
                     type: string
                     sample: BIOS
@@ -853,16 +920,16 @@ instance:
                           * `SCSI` - Emulated SCSI disk.
                           * `IDE` - Emulated IDE disk.
                           * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                          volumes on Oracle-provided images.
+                          volumes on platform images.
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                          storage volumes on Oracle-provided images."
+                          storage volumes on platform images."
                     returned: on success
                     type: string
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
                         - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/datatypes/LaunchInstanceDetails).
+                          L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
                     returned: on success
                     type: bool
                     sample: true
@@ -892,6 +959,14 @@ instance:
             returned: on success
             type: complex
             contains:
+                is_live_migration_preferred:
+                    description:
+                        - Whether to live migrate supported VM instances to a healthy physical VM host without
+                          disrupting running instances during infrastructure maintenance events. If null, Oracle
+                          chooses the best option for migrating the VM during infrastructure maintenance events.
+                    returned: on success
+                    type: bool
+                    sample: true
                 recovery_action:
                     description:
                         - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
@@ -901,6 +976,31 @@ instance:
                     returned: on success
                     type: string
                     sample: RESTORE_INSTANCE
+        preemptible_instance_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preemption_action:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of action to run when the instance is interrupted for eviction.
+                            returned: on success
+                            type: string
+                            sample: TERMINATE
+                        preserve_boot_volume:
+                            description:
+                                - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults
+                                  to false if not specified.
+                            returned: on success
+                            type: bool
+                            sample: true
         lifecycle_state:
             description:
                 - The current state of the instance.
@@ -926,7 +1026,7 @@ instance:
             description:
                 - The shape of the instance. The shape determines the number of CPUs and the amount of memory
                   allocated to the instance. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -948,6 +1048,17 @@ instance:
                     returned: on success
                     type: float
                     sample: 3.4
+                baseline_ocpu_utilization:
+                    description:
+                        - The baseline OCPU utilization for a subcore burstable VM instance. Leave this attribute blank for a
+                          non-burstable instance, or explicitly specify non-burstable with `BASELINE_1_1`.
+                        - "The following values are supported:
+                          - `BASELINE_1_8` - baseline usage is 1/8 of an OCPU.
+                          - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
+                          - `BASELINE_1_1` - baseline usage is the entire OCPU. This represents a non-burstable instance."
+                    returned: on success
+                    type: string
+                    sample: BASELINE_1_8
                 processor_description:
                     description:
                         - A short description of the instance's processor (CPU).
@@ -1024,19 +1135,19 @@ instance:
                         - The OCID of the image used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 kms_key_id:
                     description:
                         - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
                     returned: on success
                     type: string
-                    sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_id:
                     description:
                         - The OCID of the boot volume used to boot the instance.
                     returned: on success
                     type: string
-                    sample: ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -1139,13 +1250,13 @@ instance:
                 type:
                     description:
                         - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`
+                          `type` is `AMD_MILAN_BM`.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
                 numa_nodes_per_socket:
                     description:
-                        - The number of NUMA nodes per socket.
+                        - The number of NUMA nodes per socket (NPS).
                     returned: on success
                     type: string
                     sample: NPS0
@@ -1163,6 +1274,7 @@ instance:
             sample: 140.34.93.209
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -1186,7 +1298,14 @@ instance:
             "are_legacy_imds_endpoints_disabled": true
         },
         "availability_config": {
+            "is_live_migration_preferred": true,
             "recovery_action": "RESTORE_INSTANCE"
+        },
+        "preemptible_instance_config": {
+            "preemption_action": {
+                "type": "TERMINATE",
+                "preserve_boot_volume": true
+            }
         },
         "lifecycle_state": "MOVING",
         "metadata": {},
@@ -1195,6 +1314,7 @@ instance:
         "shape_config": {
             "ocpus": 3.4,
             "memory_in_gbs": 3.4,
+            "baseline_ocpu_utilization": "BASELINE_1_8",
             "processor_description": "processor_description_example",
             "networking_bandwidth_in_gbps": 3.4,
             "max_vnic_attachments": 56,
@@ -1286,7 +1406,11 @@ class InstanceHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["availability_domain", "display_name"]
+        optional_list_method_params = (
+            ["availability_domain", "display_name"]
+            if self._use_name_as_identifier()
+            else ["availability_domain", "capacity_reservation_id", "display_name"]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -1375,11 +1499,13 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
+            capacity_reservation_id=dict(type="str"),
             compartment_id=dict(type="str"),
             create_vnic_details=dict(
                 type="dict",
                 options=dict(
                     assign_public_ip=dict(type="bool"),
+                    assign_private_dns_record=dict(type="bool"),
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),
@@ -1426,8 +1552,22 @@ def main():
             availability_config=dict(
                 type="dict",
                 options=dict(
+                    is_live_migration_preferred=dict(type="bool"),
                     recovery_action=dict(
                         type="str", choices=["RESTORE_INSTANCE", "STOP_INSTANCE"]
+                    ),
+                ),
+            ),
+            preemptible_instance_config=dict(
+                type="dict",
+                options=dict(
+                    preemption_action=dict(
+                        type="dict",
+                        required=True,
+                        options=dict(
+                            type=dict(type="str", required=True, choices=["TERMINATE"]),
+                            preserve_boot_volume=dict(type="bool"),
+                        ),
                     )
                 ),
             ),
@@ -1456,7 +1596,12 @@ def main():
             shape_config=dict(
                 type="dict",
                 options=dict(
-                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                    ocpus=dict(type="float"),
+                    memory_in_gbs=dict(type="float"),
+                    baseline_ocpu_utilization=dict(
+                        type="str",
+                        choices=["BASELINE_1_8", "BASELINE_1_2", "BASELINE_1_1"],
+                    ),
                 ),
             ),
             source_details=dict(

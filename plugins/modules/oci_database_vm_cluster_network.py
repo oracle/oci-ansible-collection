@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a VmClusterNetwork resource in Oracle Cloud Infrastructure
     - For I(state=present), creates the VM cluster network. Applies to Exadata Cloud@Customer instances only.
       To create a cloud VM cluster in an Exadata Cloud Service instance, use the L(CreateCloudVmCluster ,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/20160918/CloudVmCluster/CreateCloudVmCluster) operation.
+      us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster) operation.
     - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_vm_cluster_network_config_file, validate."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -175,7 +175,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vm_cluster_network
   oci_database_vm_cluster_network:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     scans:
@@ -194,7 +194,7 @@ EXAMPLES = """
 
 - name: Update vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     scans:
@@ -215,18 +215,18 @@ EXAMPLES = """
 
 - name: Update vm_cluster_network
   oci_database_vm_cluster_network:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vm_cluster_network
   oci_database_vm_cluster_network:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
-    vm_cluster_network_id: ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vm_cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster_network:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: ocid1.tenancy.oc1.example_unique_ID
     display_name: testVmClusterNw
     state: absent
@@ -245,25 +245,25 @@ vm_cluster_network:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         exadata_infrastructure_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated VM Cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the VM cluster network. The name does not need to be unique.
@@ -317,7 +317,7 @@ vm_cluster_network:
                         - The network VLAN ID.
                     returned: on success
                     type: string
-                    sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
                 network_type:
                     description:
                         - The network type.

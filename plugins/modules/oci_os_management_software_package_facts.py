@@ -68,11 +68,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List software_packages
   oci_os_management_software_package_facts:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific software_package
   oci_os_management_software_package_facts:
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     software_package_name: software_package_name_example
 
 """
@@ -228,7 +228,7 @@ software_packages:
                         - software source identifier
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",
         "name": "name_example",

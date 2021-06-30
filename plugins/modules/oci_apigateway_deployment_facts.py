@@ -84,11 +84,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List deployments
   oci_apigateway_deployment_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific deployment
   oci_apigateway_deployment_facts:
-    deployment_id: ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -104,13 +104,13 @@ deployments:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         gateway_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -125,7 +125,7 @@ deployments:
                   resource is created.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix:
             description:
                 - A path on which to deploy all routes contained in the API
@@ -339,7 +339,7 @@ deployments:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         rate_limiting:
                             description:
                                 - ""
@@ -553,6 +553,121 @@ deployments:
                                             returned: on success
                                             type: int
                                             sample: 600
+                                query_parameter_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        parameters:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the parameter is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                header_validations:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        headers:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                required:
+                                                    description:
+                                                        - Determines if the header is required in the request.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Parameter name.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: name_example
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
+                                body_validation:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        required:
+                                            description:
+                                                - Determines if the request body is required in the request.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        content:
+                                            description:
+                                                - The content of the request body. The key is a L(media type
+                                                  range,https://tools.ietf.org/html/rfc7231#appendix-D)
+                                                  subset restricted to the following schema
+                                                - "   key ::= (
+                                                            / (  \\"*\\" \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" \\"*\\" )
+                                                            / ( type \\"/\\" subtype )
+                                                            )"
+                                                - "For requests that match multiple keys, only the most specific key is applicable.
+                                                  e.g. `text/plain` overrides `text/*`"
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                validation_type:
+                                                    description:
+                                                        - Validation type defines the content validation method.
+                                                        - Make the validation to first parse the body as the respective format.
+                                                    returned: on success
+                                                    type: string
+                                                    sample: NONE
+                                        validation_mode:
+                                            description:
+                                                - Validation behavior mode.
+                                                - In `ENFORCING` mode, upon a validation failure, the request will be rejected with a 4xx response
+                                                  and not sent to the backend.
+                                                - In `PERMISSIVE` mode, the result of the validation will be exposed as metrics while the request
+                                                  will follow the normal path.
+                                                - "`DISABLED` type turns the validation off."
+                                            returned: on success
+                                            type: string
+                                            sample: ENFORCING
                                 header_transformations:
                                     description:
                                         - ""
@@ -738,6 +853,42 @@ deployments:
                                                             returned: on success
                                                             type: string
                                                             sample: bookIsbn
+                                response_cache_lookup:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: SIMPLE_LOOKUP_POLICY
+                                        is_enabled:
+                                            description:
+                                                - Whether this policy is currently enabled.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        is_private_caching_enabled:
+                                            description:
+                                                - Set true to allow caching responses where the request has an Authorization header. Ensure you have configured
+                                                  your
+                                                  cache key additions to get the level of isolation across authenticated requests that you require.
+                                                - When false, any request with an Authorization header will not be stored in the Response Cache.
+                                                - If using the CustomAuthenticationPolicy then the tokenHeader/tokenQueryParam are also subject to this check.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        cache_key_additions:
+                                            description:
+                                                - A list of context expressions whose values will be added to the base cache key. Values should contain an
+                                                  expression enclosed within
+                                                  ${} delimiters. Only the request context is available.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                         response_policies:
                             description:
                                 - ""
@@ -836,6 +987,24 @@ deployments:
                                                             returned: on success
                                                             type: string
                                                             sample: User-Agent
+                                response_cache_store:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Response Cache Store Policy.
+                                            returned: on success
+                                            type: string
+                                            sample: FIXED_TTL_STORE_POLICY
+                                        time_to_live_in_seconds:
+                                            description:
+                                                - Sets the number of seconds for a response from a backend being stored in the Response Cache before it expires.
+                                            returned: on success
+                                            type: int
+                                            sample: 300
                         logging_policies:
                             description:
                                 - ""
@@ -933,7 +1102,7 @@ deployments:
                                           resource.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.function.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.
@@ -1008,98 +1177,6 @@ deployments:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
-        items:
-            description:
-                - Deployment summaries.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                gateway_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - A user-friendly name. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                        - "Example: `My new resource`"
-                    returned: on success
-                    type: string
-                    sample: My new resource
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
-                          resource is created.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                path_prefix:
-                    description:
-                        - The path on which all routes contained in the API
-                          deployment specification are deployed. For more information, see
-                          L(Deploying an API on an API Gateway by Creating an API
-                          Deployment,https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm).
-                    returned: on success
-                    type: string
-                    sample: path_prefix_example
-                endpoint:
-                    description:
-                        - The endpoint to access this deployment on the gateway.
-                    returned: on success
-                    type: string
-                    sample: endpoint_example
-                time_created:
-                    description:
-                        - The time this resource was created. An RFC3339 formatted datetime string.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_updated:
-                    description:
-                        - The time this resource was last updated. An RFC3339 formatted datetime string.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                lifecycle_state:
-                    description:
-                        - The current state of the deployment.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                lifecycle_details:
-                    description:
-                        - A message describing the current state in more detail.
-                          For example, can be used to provide actionable information for a
-                          resource in a Failed state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_details_example
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair
-                          with no predefined name, type, or namespace. For more information, see
-                          L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see
-                          L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "gateway_id": "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1180,6 +1257,27 @@ deployments:
                         "is_allow_credentials_enabled": false,
                         "max_age_in_seconds": 600
                     },
+                    "query_parameter_validations": {
+                        "parameters": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "header_validations": {
+                        "headers": [{
+                            "required": true,
+                            "name": "name_example"
+                        }],
+                        "validation_mode": "ENFORCING"
+                    },
+                    "body_validation": {
+                        "required": true,
+                        "content": {
+                            "validation_type": "NONE"
+                        },
+                        "validation_mode": "ENFORCING"
+                    },
                     "header_transformations": {
                         "set_headers": {
                             "items": [{
@@ -1221,6 +1319,12 @@ deployments:
                                 "name": "bookIsbn"
                             }]
                         }
+                    },
+                    "response_cache_lookup": {
+                        "type": "SIMPLE_LOOKUP_POLICY",
+                        "is_enabled": true,
+                        "is_private_caching_enabled": true,
+                        "cache_key_additions": []
                     }
                 },
                 "response_policies": {
@@ -1244,6 +1348,10 @@ deployments:
                                 "name": "User-Agent"
                             }]
                         }
+                    },
+                    "response_cache_store": {
+                        "type": "FIXED_TTL_STORE_POLICY",
+                        "time_to_live_in_seconds": 300
                     }
                 },
                 "logging_policies": {
@@ -1277,21 +1385,7 @@ deployments:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "gateway_id": "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "My new resource",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "path_prefix": "path_prefix_example",
-            "endpoint": "endpoint_example",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00",
-            "lifecycle_state": "lifecycle_state_example",
-            "lifecycle_details": "lifecycle_details_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }]
+        "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
 """
 

@@ -20,7 +20,7 @@ oracle.oci.oci_database_external_database_connector -- Manage an ExternalDatabas
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an ExternalDatabaseConnector resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new external database connector.
+- This resource has the following action operations in the :ref:`oci_external_database_connector_actions <ansible_collections.oci_external_database_connector_actions_module>` module: check_external_database_connector_connection_status.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -231,7 +233,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the credential information that used to connect to the database.</div>
+                                            <div>The name of the credential information that used to connect to the database. The name should be in &quot;x.y&quot; format, where the length of &quot;x&quot; has a maximum of 64 characters, and length of &quot;y&quot; has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the &quot;.&quot; character that separates the &quot;x&quot; and &quot;y&quot; portions of the name. *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already using the name.</div>
+                                            <div>For example: inventorydb.abc112233445566778899</div>
                                             <div>Required when credential_type is &#x27;NAME_REFERENCE&#x27;</div>
                                                         </td>
             </tr>
@@ -664,41 +667,41 @@ Examples
     
     - name: Create external_database_connector
       oci_database_external_database_connector:
-        display_name: myTestConn
+        display_name: "myTestConn"
         connection_string:
-          hostname: myHost.test
+          hostname: "myHost.test"
           port: 1521
-          service: testService
-          protocol: TCP
+          service: "testService"
+          protocol: "TCP"
         connection_credentials:
-          username: testUser
-          password: greatPassword
-          role: SYSDBA
-        connector_type: MACS
-        connector_agent_id: ocid
-        external_database_id: ocid
+          username: "testUser"
+          password: "greatPassword"
+          role: "SYSDBA"
+        connector_type: "MACS"
+        connector_agent_id: "ocid"
+        external_database_id: "ocid"
 
     - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_database_connector:
         connection_credentials:
-          username: testUser
-          password: greatPassword2
-          role: SYSDBA
+          username: "testUser"
+          password: "greatPassword2"
+          role: "SYSDBA"
 
     - name: Update external_database_connector
       oci_database_external_database_connector:
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete external_database_connector
       oci_database_external_database_connector:
-        external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_external_database_connector:
         display_name: myTestConn
         external_database_id: ocid
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -786,7 +789,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the credential information that used to connect to the database.</div>
+                                            <div>The name of the credential information that used to connect to the database. The name should be in &quot;x.y&quot; format, where the length of &quot;x&quot; has a maximum of 64 characters, and length of &quot;y&quot; has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the &quot;.&quot; character that separates the &quot;x&quot; and &quot;y&quot; portions of the name. *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already using the name.</div>
+                                            <div>For example: inventorydb.abc112233445566778899</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">credential_name_example</div>

@@ -27,6 +27,7 @@ description:
       To track the progress of the provisioning, you can periodically call L(GetConnectHarness].
       In the response, the `lifecycleState` parameter of the [ConnectHarness,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/streaming/20180418/ConnectHarness/) object tells you its current state.
+    - "This resource has the following action operations in the M(oci_connect_harness_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -81,29 +82,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create connect_harness
   oci_streaming_connect_harness:
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
-    name: mynewconnectharness
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+    name: "mynewconnectharness"
 
 - name: Update connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_connect_harness:
     name: mynewconnectharness
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update connect_harness
   oci_streaming_connect_harness:
-    connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+    connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete connect_harness
   oci_streaming_connect_harness:
-    connect_harness_id: ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx
+    connect_harness_id: "ocid1.connectharness.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete connect_harness using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_streaming_connect_harness:
     name: mynewconnectharness
-    compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+    compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
     state: absent
 
 """

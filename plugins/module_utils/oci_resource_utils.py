@@ -220,11 +220,20 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             return None
         return action_fn
 
+    def is_change_compartment_necessary(self, resource):
+        if not hasattr(resource, "compartment_id"):
+            return False
+        if self.module.params.get("compartment_id") == resource.compartment_id:
+            return False
+        return True
+
     def is_action_necessary(self, action, resource=None):
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
 
         resource = resource or self.get_resource().data
+        if action.upper() == "CHANGE_COMPARTMENT":
+            return self.is_change_compartment_necessary(resource)
         if hasattr(
             resource, "lifecycle_state"
         ) and resource.lifecycle_state in self.get_action_idempotent_states(action):
@@ -459,7 +468,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def does_resource_exist(self):
         try:
-            self.get_resource()
+            resource = self.get_resource().data
+            if self.is_resource_dead(resource):
+                return False
         except ServiceError as se:
             if se.status == 404:
                 return False
@@ -518,8 +529,25 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         return []
 
     def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
-        if self.module.params.get("key_by") is not None:
-            return self.module.params["key_by"]
+        key_by_params_list = self.module.params.get("key_by")
+        not_supported_params_list = []
+        if key_by_params_list:
+            for attribute in key_by_params_list:
+                if attribute not in self.module.params:
+                    not_supported_params_list.append(attribute)
+            if not_supported_params_list:
+                _debug(
+                    "{0} attributes are not supported by module for key_by keyword".format(
+                        not_supported_params_list
+                    )
+                )
+                # Display warning message in terminal while running playbook
+                self.module.warn(
+                    "{0} attributes are not supported by module for key_by keyword".format(
+                        not_supported_params_list
+                    )
+                )
+            return key_by_params_list
         return [
             attr
             for attr in create_model.attribute_map
@@ -655,14 +683,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         prospective_matches = []
         for resource in self.list_resources():
 
+            # filter out the non-active resources
             if not self._is_resource_active(resource):
                 continue
 
-            resource_dict = self.get_existing_resource_dict_for_idempotence_check(
-                resource
-            )
+            resource_dict = to_dict(resource)
 
-            # set `ignore_attr_if_not_in_target` to `True` to avoid false negatives.
+            # set `ignore_attr_if_not_in_target` to `True` to
+            # get prospective matches by matching all attributes
+            # present currently in the resource model
             if oci_common_utils.compare_dicts(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,

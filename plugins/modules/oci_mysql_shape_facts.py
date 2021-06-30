@@ -42,6 +42,7 @@ options:
         choices:
             - "DBSYSTEM"
             - "ANALYTICSCLUSTER"
+            - "HEATWAVECLUSTER"
     availability_domain:
         description:
             - The name of the Availability Domain.
@@ -56,7 +57,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List shapes
   oci_mysql_shape_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -153,7 +154,7 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             is_supported_for=dict(
-                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER"]
+                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER", "HEATWAVECLUSTER"]
             ),
             availability_domain=dict(type="str"),
             name=dict(type="str"),

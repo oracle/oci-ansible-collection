@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_pool -- Manage an InstancePool resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an InstancePool resource in Oracle Cloud Infrastructure
 - For *state=present*, create an instance pool.
-- This resource has the following action operations in the :ref:`oci_instance_pool_actions <ansible_collections.oci_instance_pool_actions_module>` module: attach_load_balancer, detach_load_balancer, reset, softreset, start, stop.
+- This resource has the following action operations in the :ref:`oci_instance_pool_actions <ansible_collections.oci_instance_pool_actions_module>` module: attach_load_balancer, change_compartment, detach_load_balancer, reset, softreset, start, stop.
 
 
 .. Aliases
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -165,7 +166,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the instance pool.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -213,7 +214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -267,7 +268,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -284,7 +285,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance configuration associated with the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance configuration associated with the instance pool.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -301,7 +302,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -366,7 +367,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer to attach to the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer to attach to the instance pool.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -472,7 +473,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -524,7 +525,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The subnet <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> for the secondary VNIC.</div>
+                                            <div>The subnet <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> for the secondary VNIC.</div>
                                                         </td>
             </tr>
                     
@@ -655,61 +656,61 @@ Examples
     
     - name: Create instance_pool
       oci_compute_management_instance_pool:
-        display_name: autoscaling-instance-pool
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        display_name: "autoscaling-instance-pool"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         size: 15
         placement_configurations:
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
         load_balancers:
-        - load_balancer_id: ocid1.loadbalancer.oc1.phx..unique_ID
-          backend_set_name: lb-20190410-1147-backend-set
+        - load_balancer_id: "ocid1.loadbalancer.oc1.phx..unique_ID"
+          backend_set_name: "lb-20190410-1147-backend-set"
           port: 80
-          vnic_selection: PrimaryVnic
+          vnic_selection: "PrimaryVnic"
 
     - name: Create instance_pool
       oci_compute_management_instance_pool:
-        display_name: backend-servers-pool
-        compartment_id: ocid1.compartment.oc1..unique_ID
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        display_name: "backend-servers-pool"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         size: 10
         placement_configurations:
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..unique_ID_1
-        - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..unique_ID_2
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..unique_ID_1"
+        - availability_domain: "Uocm:PHX-AD-1"
+          primary_subnet_id: "ocid1.subnet.oc1..unique_ID_2"
 
     - name: Update instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: autoscaling-instance-pool
         freeform_tags: {'Department': 'Finance'}
-        instance_configuration_id: ocid1.instanceconfiguration.oc1..unique_ID
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..unique_ID"
         placement_configurations:
         - availability_domain: Uocm:PHX-AD-1
-          primary_subnet_id: ocid1.subnet.oc1..regional_subnet_unique_ID
+          primary_subnet_id: "ocid1.subnet.oc1..regional_subnet_unique_ID"
         size: 15
 
     - name: Update instance_pool
       oci_compute_management_instance_pool:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: autoscaling-instance-pool
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete instance_pool
       oci_compute_management_instance_pool:
-        instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete instance_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_instance_pool:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: autoscaling-instance-pool
         state: absent
 
@@ -763,7 +764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the instance pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -781,7 +782,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -818,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -837,7 +838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -855,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance configuration associated with the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance configuration associated with the instance pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -927,7 +928,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer attachment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -946,7 +947,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool of the load balancer attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the instance pool of the load balancer attachment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -984,7 +985,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer attached to the instance pool.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the load balancer attached to the instance pool.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1099,7 +1100,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the primary subnet to place instances.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1156,7 +1157,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The subnet <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> for the secondary VNIC.</div>
+                                            <div>The subnet <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> for the secondary VNIC.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>

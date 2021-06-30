@@ -24,25 +24,25 @@ short_description: Manage a Model resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Model resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new model.
-    - "This resource has the following action operations in the M(oci_model_actions) module: activate, deactivate."
+    - "This resource has the following action operations in the M(oci_model_actions) module: activate, change_compartment, deactivate."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment to create the model in.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the model in.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     project_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model.
             - Required for create using I(state=present).
         type: str
     display_name:
         description:
-            - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+            - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
               Example: `My Model`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -50,7 +50,7 @@ options:
         aliases: ["name"]
     description:
         description:
-            - A short blurb describing the model.
+            - A short description of the model.
             - This parameter is updatable.
         type: str
     freeform_tags:
@@ -69,7 +69,7 @@ options:
         type: dict
     model_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -89,12 +89,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model
   oci_data_science_model:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: My Model
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -104,16 +104,16 @@ EXAMPLES = """
   oci_data_science_model:
     display_name: My Model
     description: description_example
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete model
   oci_data_science_model:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: My Model
     state: absent
 
@@ -128,31 +128,31 @@ model:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
             returned: on success
             type: string
-            sample: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - A short blurb describing the model.
+                - A short description of the model.
             returned: on success
             type: string
             sample: description_example
@@ -164,14 +164,14 @@ model:
             sample: ACTIVE
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
             returned: on success
             type: string
             sample: created_by_example

@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_statistics_facts -- Fetches details about a SqlStatistic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -161,6 +161,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -182,6 +183,7 @@ Parameters
                                                                                                                                                                                                 <li>VARIANT</li>
                                                                                                                                                                                                 <li>INEFFICIENT</li>
                                                                                                                                                                                                 <li>CHANGING_PLANS</li>
+                                                                                                                                                                                                <li>IMPROVING</li>
                                                                                                                                                                                                 <li>DEGRADING_VARIANT</li>
                                                                                                                                                                                                 <li>DEGRADING_INEFFICIENT</li>
                                                                                                                                                                                                 <li>DEGRADING_CHANGING_PLANS</li>
@@ -265,7 +267,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a>.</div>
+                                            <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the associated DBaaS entity.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,10 +300,27 @@ Parameters
                                                                                                                                                                                                 <li>ATP-S</li>
                                                                                                                                                                                                 <li>ADW-D</li>
                                                                                                                                                                                                 <li>ATP-D</li>
+                                                                                                                                                                                                <li>EXTERNAL-PDB</li>
+                                                                                                                                                                                                <li>EXTERNAL-NONCDB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D</div>
+                                            <div>Filter by one or more database type. Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional list of database insight resource <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the database insight resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -458,7 +477,7 @@ Examples
     
     - name: Get a specific sql_statistics
       oci_opsi_sql_statistics_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -477,12 +496,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics"></div>
                     <b>sql_statistics</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics" title="Permalink to this return value"></a>
@@ -495,12 +514,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>SqlStatistics resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category&#x27;: [], &#x27;database_details&#x27;: {&#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;}, &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;statistics&#x27;: {&#x27;average_active_sessions&#x27;: 1.2, &#x27;change_in_average_active_sessions_in_pct&#x27;: 1.2, &#x27;change_in_cpu_time_in_pct&#x27;: 1.2, &#x27;change_in_executions_per_hour_in_pct&#x27;: 1.2, &#x27;change_in_inefficiency_in_pct&#x27;: 1.2, &#x27;change_in_inefficient_wait_time_in_pct&#x27;: 1.2, &#x27;change_in_io_time_in_pct&#x27;: 1.2, &#x27;change_in_response_time_in_pct&#x27;: 1.2, &#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;database_time_in_sec&#x27;: 1.2, &#x27;database_time_pct&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;executions_per_hour&#x27;: 1.2, &#x27;inefficiency_in_pct&#x27;: 1.2, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_count&#x27;: 56, &#x27;response_time_in_sec&#x27;: 1.2, &#x27;variability&#x27;: 1.2}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category&#x27;: [], &#x27;database_details&#x27;: {&#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}, &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;statistics&#x27;: {&#x27;average_active_sessions&#x27;: 1.2, &#x27;change_in_average_active_sessions_in_pct&#x27;: 1.2, &#x27;change_in_cpu_time_in_pct&#x27;: 1.2, &#x27;change_in_executions_per_hour_in_pct&#x27;: 1.2, &#x27;change_in_inefficiency_in_pct&#x27;: 1.2, &#x27;change_in_inefficient_wait_time_in_pct&#x27;: 1.2, &#x27;change_in_io_time_in_pct&#x27;: 1.2, &#x27;change_in_response_time_in_pct&#x27;: 1.2, &#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;database_time_in_sec&#x27;: 1.2, &#x27;database_time_pct&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;executions_per_hour&#x27;: 1.2, &#x27;inefficiency_in_pct&#x27;: 1.2, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_count&#x27;: 56, &#x27;response_time_in_sec&#x27;: 1.2, &#x27;variability&#x27;: 1.2}}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/category"></div>
                     <b>category</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/category" title="Permalink to this return value"></a>
@@ -516,7 +535,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details"></div>
                     <b>database_details</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details" title="Permalink to this return value"></a>
@@ -533,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/database_display_name"></div>
                     <b>database_display_name</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/database_display_name" title="Permalink to this return value"></a>
@@ -552,7 +571,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/database_id" title="Permalink to this return value"></a>
@@ -571,7 +590,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/database_name"></div>
                     <b>database_name</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/database_name" title="Permalink to this return value"></a>
@@ -590,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/database_type"></div>
                     <b>database_type</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/database_type" title="Permalink to this return value"></a>
@@ -609,7 +628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/database_version"></div>
                     <b>database_version</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/database_version" title="Permalink to this return value"></a>
@@ -625,10 +644,87 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/instances"></div>
+                    <b>instances</b>
+                    <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/instances" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Array of hostname and instance name.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/instances/host_name"></div>
+                    <b>host_name</b>
+                    <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/instances/host_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The hostname of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sql_statistics/database_details/instances/instance_name"></div>
+                    <b>instance_name</b>
+                    <a class="ansibleOptionLink" href="#return-sql_statistics/database_details/instances/instance_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The instance name of the database insight resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_name_example</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/sql_identifier"></div>
                     <b>sql_identifier</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/sql_identifier" title="Permalink to this return value"></a>
@@ -646,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics"></div>
                     <b>statistics</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics" title="Permalink to this return value"></a>
@@ -663,7 +759,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/average_active_sessions"></div>
                     <b>average_active_sessions</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/average_active_sessions" title="Permalink to this return value"></a>
@@ -682,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_average_active_sessions_in_pct"></div>
                     <b>change_in_average_active_sessions_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_average_active_sessions_in_pct" title="Permalink to this return value"></a>
@@ -701,7 +797,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_cpu_time_in_pct"></div>
                     <b>change_in_cpu_time_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_cpu_time_in_pct" title="Permalink to this return value"></a>
@@ -720,7 +816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_executions_per_hour_in_pct"></div>
                     <b>change_in_executions_per_hour_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_executions_per_hour_in_pct" title="Permalink to this return value"></a>
@@ -739,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_inefficiency_in_pct"></div>
                     <b>change_in_inefficiency_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_inefficiency_in_pct" title="Permalink to this return value"></a>
@@ -758,7 +854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_inefficient_wait_time_in_pct"></div>
                     <b>change_in_inefficient_wait_time_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_inefficient_wait_time_in_pct" title="Permalink to this return value"></a>
@@ -777,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_io_time_in_pct"></div>
                     <b>change_in_io_time_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_io_time_in_pct" title="Permalink to this return value"></a>
@@ -796,7 +892,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/change_in_response_time_in_pct"></div>
                     <b>change_in_response_time_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/change_in_response_time_in_pct" title="Permalink to this return value"></a>
@@ -815,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/cpu_time_in_sec"></div>
                     <b>cpu_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/cpu_time_in_sec" title="Permalink to this return value"></a>
@@ -834,7 +930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/database_time_in_sec"></div>
                     <b>database_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/database_time_in_sec" title="Permalink to this return value"></a>
@@ -853,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/database_time_pct"></div>
                     <b>database_time_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/database_time_pct" title="Permalink to this return value"></a>
@@ -872,7 +968,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/executions_count"></div>
                     <b>executions_count</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/executions_count" title="Permalink to this return value"></a>
@@ -891,7 +987,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/executions_per_hour"></div>
                     <b>executions_per_hour</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/executions_per_hour" title="Permalink to this return value"></a>
@@ -910,7 +1006,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/inefficiency_in_pct"></div>
                     <b>inefficiency_in_pct</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/inefficiency_in_pct" title="Permalink to this return value"></a>
@@ -929,7 +1025,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/inefficient_wait_time_in_sec"></div>
                     <b>inefficient_wait_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/inefficient_wait_time_in_sec" title="Permalink to this return value"></a>
@@ -948,7 +1044,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/io_time_in_sec"></div>
                     <b>io_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/io_time_in_sec" title="Permalink to this return value"></a>
@@ -967,7 +1063,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/plan_count"></div>
                     <b>plan_count</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/plan_count" title="Permalink to this return value"></a>
@@ -986,7 +1082,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/response_time_in_sec"></div>
                     <b>response_time_in_sec</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/response_time_in_sec" title="Permalink to this return value"></a>
@@ -1005,7 +1101,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-sql_statistics/statistics/variability"></div>
                     <b>variability</b>
                     <a class="ansibleOptionLink" href="#return-sql_statistics/statistics/variability" title="Permalink to this return value"></a>

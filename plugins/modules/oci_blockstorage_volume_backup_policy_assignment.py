@@ -60,12 +60,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_backup_policy_assignment
   oci_blockstorage_volume_backup_policy_assignment:
-    asset_id: ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx
-    policy_id: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+    asset_id: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
+    policy_id: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_backup_policy_assignment
   oci_blockstorage_volume_backup_policy_assignment:
-    policy_assignment_id: ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx
+    policy_assignment_id: "ocid1.policyassignment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -82,19 +82,19 @@ volume_backup_policy_assignment:
                 - The OCID of the volume the policy has been assigned to.
             returned: on success
             type: string
-            sample: ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the volume backup policy assignment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policy_id:
             description:
                 - The OCID of the volume backup policy that has been assigned to the volume.
             returned: on success
             type: string
-            sample: ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume backup policy was assigned to the volume. The format is

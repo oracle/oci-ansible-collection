@@ -107,20 +107,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create resolver_endpoint
   oci_dns_resolver_endpoint:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     is_forwarding: true
     is_listening: true
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update resolver_endpoint
   oci_dns_resolver_endpoint:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
 
 - name: Delete resolver_endpoint
   oci_dns_resolver_endpoint:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -177,7 +177,7 @@ resolver_endpoint:
                   and will be updated if the resolver's compartment is changed.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
@@ -211,7 +211,7 @@ resolver_endpoint:
                 - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - An array of NSG OCIDs for the resolver endpoint.

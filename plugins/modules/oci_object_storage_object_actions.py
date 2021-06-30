@@ -284,38 +284,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action copy on object
   oci_object_storage_object_actions:
-    source_object_name: backup.tar.gz
-    source_object_if_match_e_tag: '*'
-    destination_region: uk-london-1
-    destination_namespace: ansh8lvru1zp
-    destination_bucket: backup
-    destination_object_name: backup2.tar.gz
-    destination_object_if_match_e_tag: '*'
-    destination_object_if_none_match_e_tag: '*'
+    source_object_name: "backup.tar.gz"
+    source_object_if_match_e_tag: "*"
+    destination_region: "uk-london-1"
+    destination_namespace: "ansh8lvru1zp"
+    destination_bucket: "backup"
+    destination_object_name: "backup2.tar.gz"
+    destination_object_if_match_e_tag: "*"
+    destination_object_if_none_match_e_tag: "*"
     destination_object_metadata:
-      opc-meta-a: b
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    action: copy
+      opc-meta-a: "b"
+    namespace_name: "namespace_name_example"
+    bucket_name: "my-new-bucket1"
+    action: "copy"
 
 - name: Perform action reencrypt on object
   oci_object_storage_object_actions:
-    kms_key_id: ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    object_name: test/object1.log
-    action: reencrypt
+    kms_key_id: "ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva"
+    namespace_name: "namespace_name_example"
+    bucket_name: "my-new-bucket1"
+    object_name: "test/object1.log"
+    action: "reencrypt"
 
 - name: Perform action rename on object
   oci_object_storage_object_actions:
-    source_name: SourceObjectName
-    new_name: TargetObjectName
-    src_obj_if_match_e_tag: '*'
-    new_obj_if_match_e_tag: '*'
-    new_obj_if_none_match_e_tag: '*'
-    namespace_name: namespace_name_example
-    bucket_name: my-new-bucket1
-    action: rename
+    source_name: "SourceObjectName"
+    new_name: "TargetObjectName"
+    src_obj_if_match_e_tag: "*"
+    new_obj_if_match_e_tag: "*"
+    new_obj_if_none_match_e_tag: "*"
+    namespace_name: "namespace_name_example"
+    bucket_name: "my-new-bucket1"
+    action: "rename"
 
 - name: Perform action restore on object
   oci_object_storage_object_actions:
@@ -390,6 +390,12 @@ object:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        headers:
+            description:
+                - response headers for the object
+            returned: on success
+            type: dict
+            sample: {'Content-Length':'37','opc-meta-key1':'value1'}
     sample: {
         "name": "name_example",
         "size": 56,
@@ -398,7 +404,8 @@ object:
         "etag": "etag_example",
         "storage_tier": "Standard",
         "archival_state": "Archived",
-        "time_modified": "2013-10-20T19:20:30+01:00"
+        "time_modified": "2013-10-20T19:20:30+01:00",
+        "headers": {'Content-Length':'37','opc-meta-key1':'value1'}
     }
 """
 

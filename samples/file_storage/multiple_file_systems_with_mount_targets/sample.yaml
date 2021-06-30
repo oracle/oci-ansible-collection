@@ -10,15 +10,16 @@
   collections:
     - oracle.oci
   vars:
-    vcn_name: "multiple_file_system_vcn"
+    vcn_name: "ansible-sample-multiple-file-system-vcn"
     cidr_block: "10.0.0.0/16"
     dns_label: "samplefsvcn"
-    ig_name: "sample_ig"
-    rt_name: "sample_rt"
-    sec_list_name: "sample_sec_list"
+    ig_name: "ansible-sample-multiple-file-system-ig"
+    rt_name: "ansible-sample-multiple-file-system-rt"
+    sec_list_name: "ansible-sample-multiple-file-system-sec-list"
 
-    sample_subnet_ad2: 'subnetad2'
-    subnet_cidr_block_ad2: "10.0.1.0/24"
+    sample_subnet_ad3: 'ansible-sample-multiple-file-system-subnetad3'
+    subnet_dns_label: 'samplefsdns'
+    subnet_cidr_block_ad3: "10.0.1.0/24"
     all_cidr_block: '0.0.0.0/0'
     all_protocol: 'all'
     tcp_protocol: '6'
@@ -29,18 +30,19 @@
     https_port: 443
 
     mt1_hostname_label: 'samplemt1'
-    mt1_display_name: 'samplemt1'
+    mt1_display_name: 'ansible-sample-multiple-file-system-mt1'
     mt2_hostname_label: 'samplemt2'
-    mt2_display_name: 'samplemt2'
-    fs1_display_name: 'samplefs1'
-    fs2_display_name: 'samplefs2'
+    mt2_display_name: 'ansible-sample-multiple-file-system-mt2'
+    fs1_display_name: 'ansible-sample-multiple-file-system-fs1'
+    fs2_display_name: 'ansible-sample-multiple-file-system-fs2'
     mt1_fs1_export_path: '/mt1_fs1_path'
     mt2_fs1_export_path: '/mt2_fs1_path'
     mt1_fs2_export_path: '/mt1_fs2_path'
 
     instance_hostname_label: 'instancehl'
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
-    instance_name: 'sample_instance'
+    instance_name: 'ansible-sample-multiple-file-system-instance'
+  
     #########################################
     # Tenancy specific configuration
     # *Note* - Override the following variables based on your tenancy
@@ -51,14 +53,14 @@
 
   tasks:
     - block:
-      - include_tasks: setup.yaml
+      - import_tasks: setup.yaml
 
       # Create the First Mount Target
       - name: "Create the First Mount Target"
         oci_file_storage_mount_target:
           compartment_id: '{{ compartment_id }}'
-          availability_domain: '{{ sample_availability_domain_ad2 }}'
-          subnet_id: '{{ sample_subnet_id_ad2 }}'
+          availability_domain: '{{ sample_availability_domain_ad3 }}'
+          subnet_id: '{{ sample_subnet_id_ad3 }}'
           hostname_label: '{{ mt1_hostname_label }}'
           display_name: '{{ mt1_display_name }}'
           state: 'present'
@@ -76,14 +78,14 @@
       - set_fact:
           mt1_ip_address: "{{ result.private_ips[0].ip_address }}"
       - debug:
-           msg: "First Mount Target Ip Address: {{ mt1_ip_address }}"
+          msg: "First Mount Target Ip Address: {{ mt1_ip_address }}"
   #==========================================================================================
   # Create the Second Mount Target
       - name: "Create the Second Mount Target"
         oci_file_storage_mount_target:
             compartment_id: '{{ compartment_id }}'
-            availability_domain: '{{ sample_availability_domain_ad2 }}'
-            subnet_id: '{{ sample_subnet_id_ad2 }}'
+            availability_domain: '{{ sample_availability_domain_ad3 }}'
+            subnet_id: '{{ sample_subnet_id_ad3 }}'
             hostname_label: '{{ mt2_hostname_label }}'
             display_name: '{{ mt2_display_name }}'
             state: 'present'
@@ -101,13 +103,13 @@
       - set_fact:
           mt2_ip_address: "{{ result.private_ips[0].ip_address }}"
       - debug:
-           msg: "Second Mount Target Ip Address: {{ mt2_ip_address }}"
+          msg: "Second Mount Target Ip Address: {{ mt2_ip_address }}"
   #==========================================================================================
   # Create the First File System. The Mount Targets created above will interface with this File System
       - name: "Create the First File System"
         oci_file_storage_file_system:
             compartment_id: '{{ compartment_id }}'
-            availability_domain: '{{ sample_availability_domain_ad2 }}'
+            availability_domain: '{{ sample_availability_domain_ad3 }}'
             display_name: '{{ fs1_display_name }}'
             state: 'present'
         register: result
@@ -118,7 +120,7 @@
       - name: "Create the Second File System"
         oci_file_storage_file_system:
             compartment_id: '{{ compartment_id }}'
-            availability_domain: '{{ sample_availability_domain_ad2 }}'
+            availability_domain: '{{ sample_availability_domain_ad3 }}'
             display_name: '{{ fs2_display_name }}'
             state: 'present'
         register: result
@@ -178,18 +180,20 @@
         oci_compute_image_facts:
           compartment_id: "{{ tenancy_ocid }}"
           operating_system: "Oracle Linux"
-          operating_system_version: "7.8"
           sort_by: "TIMECREATED"
+          sort_order: "ASC"
         register: output
 
       - set_fact:
           instance_image: "{{ item.id }}"
         loop: "{{ output.images }}"
-        when: item.display_name.find("GPU") == -1
+        when:
+          - item.display_name.find("GPU") == -1
+          - item.display_name.find("aarch64") == -1
   #==========================================================================================
       - name: Launch the instance to mount filesystem
         oci_compute_instance:
-          availability_domain: "{{ sample_availability_domain_ad2 }}"
+          availability_domain: "{{ sample_availability_domain_ad3 }}"
           compartment_id: "{{ compartment_id }}"
           name: "{{ instance_name }}"
           image_id: "{{ instance_image }}"
@@ -197,7 +201,7 @@
           create_vnic_details:
               assign_public_ip: True
               hostname_label: "{{ instance_hostname_label }}"
-              subnet_id: "{{ sample_subnet_id_ad2 }}"
+              subnet_id: "{{ sample_subnet_id_ad3 }}"
           metadata:
               ssh_authorized_keys: "{{ lookup('file',  my_test_public_key ) }}"
         register: result
@@ -258,10 +262,10 @@
       - debug:
           msg: "Details of the Snapshot: {{ result.snapshots | string }}"
   #==========================================================================================
-      - include_tasks: teardown.yaml
+      - import_tasks: teardown.yaml
 
       rescue:
-        - include_tasks: teardown.yaml
+        - import_tasks: teardown.yaml
           ignore_errors: yes
 
         - fail:

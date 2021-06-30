@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_application -- Manage an Application resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an application.
+- This resource has the following action operations in the :ref:`oci_application_actions <ansible_collections.oci_application_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -196,6 +197,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -347,6 +349,22 @@ Parameters
                                                                 <td>
                                             <div>The VM shape for the driver. Sets the driver cores and memory.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-execute"></div>
+                    <b>execute</b>
+                    <a class="ansibleOptionLink" href="#parameter-execute" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching- applications-with-spark-submit. Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments. Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar 10`` Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during application create/update, or run create/submit, Data Flow service will use derived information from execute input only.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -716,6 +734,7 @@ Examples
         description: description_example
         display_name: test_wordcount_app
         driver_shape: VM.Standard2.1
+        execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape: VM.Standard2.1
         file_uri: file_uri_example
         freeform_tags: {'Department': 'Finance'}
@@ -725,17 +744,17 @@ Examples
         parameters:
         - name: name_example
           value: value_example
-        private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version: 2.4
         warehouse_bucket_uri: warehouse_bucket_uri_example
 
     - name: Update application
       oci_data_flow_application:
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+        application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete application
       oci_data_flow_application:
-        application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+        application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -779,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Application resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;num_executors&#x27;: 56, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;execute&#x27;: &#x27;`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;num_executors&#x27;: 56, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -938,6 +957,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">driver_shape_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-application/execute"></div>
+                    <b>execute</b>
+                    <a class="ansibleOptionLink" href="#return-application/execute" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching- applications-with-spark-submit. Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments. Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar 10`` Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during application create/update, or run create/submit, Data Flow service will use derived information from execute input only.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...</div>
                                     </td>
             </tr>
                                 <tr>

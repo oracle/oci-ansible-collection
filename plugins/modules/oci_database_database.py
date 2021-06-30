@@ -38,7 +38,7 @@ options:
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
         type: str
     source:
         description:
@@ -84,7 +84,7 @@ options:
                 type: str
             pdb_name:
                 description:
-                    - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric
+                    - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                       characters. Special characters are not permitted. Pluggable database should not be same as database name.
                     - Applicable when source is 'NONE'
                 type: str
@@ -376,27 +376,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database
   oci_database_database:
-    db_home_id: ocid1.dbhome.oc1.phx.unique_ID
-    source: NONE
+    db_home_id: "ocid1.dbhome.oc1.phx.unique_ID"
+    source: "NONE"
     database:
-      admin_password: password
-      db_name: myTestDb
+      admin_password: "password"
+      db_name: "myTestDb"
       db_backup_config:
         recovery_window_in_days: 30
         auto_backup_enabled: true
-    kms_key_id: ocid1.key.oc1..unique_ID
-    kms_key_version_id: ocid1.keyversion.oc1..unique_ID
+    kms_key_id: "ocid1.key.oc1..unique_ID"
+    kms_key_version_id: "ocid1.keyversion.oc1..unique_ID"
 
 - name: Update database
   oci_database_database:
     db_backup_config:
       recovery_window_in_days: 30
       auto_backup_enabled: true
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete database
   oci_database_database:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -413,13 +413,13 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         character_set:
             description:
                 - The character set for the database.
@@ -437,19 +437,19 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
             type: string
-            sample: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_name:
             description:
                 - The database name.
@@ -458,7 +458,7 @@ database:
             sample: db_name_example
         pdb_name:
             description:
-                - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric
+                - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                   characters. Special characters are not permitted. Pluggable database should not be same as database name.
             returned: on success
             type: string
@@ -550,7 +550,7 @@ database:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
@@ -614,7 +614,7 @@ database:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -627,7 +627,7 @@ database:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
             type: string
-            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

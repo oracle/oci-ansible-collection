@@ -90,11 +90,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List configurations
   oci_mysql_configuration_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific configuration
   oci_mysql_configuration_facts:
-    configuration_id: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+    configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -110,13 +110,13 @@ configurations:
                 - The OCID of the Configuration.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the Compartment the Configuration exists in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - User-provided data about the Configuration.
@@ -207,6 +207,43 @@ configurations:
                     returned: on success
                     type: bool
                     sample: true
+                group_replication_consistency:
+                    description:
+                        - "- EVENTUAL:
+                              Both RO and RW transactions do not wait for preceding transactions to be applied before executing.
+                              A RW transaction does not wait for other members to apply a transaction. This means that a transaction
+                              could be externalized on one member before the others. This also means that in the event of a primary failover,
+                              the new primary can accept new RO and RW transactions before the previous primary transactions are all applied.
+                              RO transactions could result in outdated values, RW transactions could result in a rollback due to conflicts.
+                          - BEFORE_ON_PRIMARY_FAILOVER:
+                              New RO or RW transactions with a newly elected primary that is applying backlog from the old
+                              primary are held (not applied) until any backlog has been applied. This ensures that when a primary failover happens,
+                              intentionally or not, clients always see the latest value on the primary. This guarantees consistency, but means that
+                              clients must be able to handle the delay in the event that a backlog is being applied. Usually this delay should be minimal,
+                              but does depend on the size of the backlog.
+                          - BEFORE:
+                              A RW transaction waits for all preceding transactions to complete before being applied. A RO transaction waits for all preceding
+                              transactions to complete before being executed. This ensures that this transaction reads the latest value by only affecting the
+                              latency of the transaction. This reduces the overhead of synchronization on every RW transaction, by ensuring synchronization is
+                              used only on RO transactions. This consistency level also includes the consistency guarantees provided by
+                              BEFORE_ON_PRIMARY_FAILOVER.
+                          - AFTER:
+                              A RW transaction waits until its changes have been applied to all of the other members. This value has no effect on RO
+                              transactions.
+                              This mode ensures that when a transaction is committed on the local member, any subsequent transaction reads the written value or
+                              a more recent value on any group member. Use this mode with a group that is used for predominantly RO operations to ensure that
+                              applied RW transactions are applied everywhere once they commit. This could be used by your application to ensure that subsequent
+                              reads fetch the latest data which includes the latest writes. This reduces the overhead of synchronization on every RO
+                              transaction,
+                              by ensuring synchronization is used only on RW transactions. This consistency level also includes the consistency guarantees
+                              provided by BEFORE_ON_PRIMARY_FAILOVER.
+                          - BEFORE_AND_AFTER:
+                              A RW transaction waits for 1) all preceding transactions to complete before being applied and 2) until its changes have been
+                              applied on other members. A RO transaction waits for all preceding transactions to complete before execution takes place.
+                              This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER."
+                    returned: on success
+                    type: string
+                    sample: EVENTUAL
                 innodb_ft_enable_stopword:
                     description:
                         - "(\\"innodb_ft_enable_stopword\\")"
@@ -472,7 +509,7 @@ configurations:
                   relation between the values in this Configuration and its parent."
             returned: on success
             type: string
-            sample: ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -505,6 +542,7 @@ configurations:
             "mandatory_roles": "mandatory_roles_example",
             "autocommit": true,
             "foreign_key_checks": true,
+            "group_replication_consistency": "EVENTUAL",
             "innodb_ft_enable_stopword": true,
             "local_infile": true,
             "mysql_firewall_mode": true,

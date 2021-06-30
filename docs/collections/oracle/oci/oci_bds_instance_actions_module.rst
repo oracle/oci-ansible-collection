@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *action=add_block_storage*, adds storage to existing worker nodes. The same amount of storage will be added to all workers. No change will be made to already attached storage. Block Storage once added cannot be removed.
 - For *action=add_cloud_sql*, adds Cloud SQL to your cluster. This will add a query server node to the cluster and create cell servers on all your worker nodes.
 - For *action=add_worker_nodes*, add worker nodes to an existing cluster. The worker nodes added will be based on an identical shape and have the same amount of attached block storage as other worker nodes in the cluster.
+- For *action=change_compartment*, moves a BDS instance into a different compartment.
 - For *action=change_shape*, scale-up/down individial nodes (per role type) in the cluster. Customer can choose arbitrarty VM_STANDARD shape to scale-up/down the instance. Only VM_STANDARD nodes can be re-shaped.
 - For *action=remove_cloud_sql*, remove Cloud SQL capability.
 - For *action=restart_node*, restarts a single node of a BDS instance.
@@ -60,7 +61,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -91,6 +92,7 @@ Parameters
                                                                                                                                                                 <li>add_block_storage</li>
                                                                                                                                                                                                 <li>add_cloud_sql</li>
                                                                                                                                                                                                 <li>add_worker_nodes</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>change_shape</li>
                                                                                                                                                                                                 <li>remove_cloud_sql</li>
                                                                                                                                                                                                 <li>restart_node</li>
@@ -174,6 +176,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -226,6 +229,22 @@ Parameters
                                                                 <td>
                                             <div>Base-64 encoded password for Cloudera Manager admin user</div>
                                             <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=remove_cloud_sql</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the compartment</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -286,7 +305,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Inidividial worker nodes groups details</div>
+                                            <div></div>
                                             <div>Required for <em>action=change_shape</em>.</div>
                                                         </td>
             </tr>
@@ -303,7 +322,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>cloudsql node shape</div>
+                                            <div>Change shape of cloudsql node to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -319,7 +338,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>master nodes shape</div>
+                                            <div>Change shape of master nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +354,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>utility nodes shape</div>
+                                            <div>Change shape of utility nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -351,7 +370,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>worker nodes shape</div>
+                                            <div>Change shape of worker nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                     
@@ -475,41 +494,47 @@ Examples
     
     - name: Perform action add_block_storage on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: cluster_admin_password_example
         block_volume_size_in_gbs: 56
         action: add_block_storage
 
     - name: Perform action add_cloud_sql on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: cluster_admin_password_example
         shape: shape_example
         action: add_cloud_sql
 
     - name: Perform action add_worker_nodes on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: cluster_admin_password_example
         number_of_worker_nodes: 56
         action: add_worker_nodes
 
+    - name: Perform action change_compartment on bds_instance
+      oci_bds_instance_actions:
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action change_shape on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: cluster_admin_password_example
         action: change_shape
 
     - name: Perform action remove_cloud_sql on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_admin_password: cluster_admin_password_example
         action: remove_cloud_sql
 
     - name: Perform action restart_node on bds_instance
       oci_bds_instance_actions:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
-        node_id: ocid1.node.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart_node
 
 
@@ -562,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The information about added Cloud SQL capability</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -713,7 +738,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specific info about a Hadoop cluster</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1156,7 +1181,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional configuration of customer&#x27;s network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

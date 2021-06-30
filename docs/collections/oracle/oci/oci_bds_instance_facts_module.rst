@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance_facts -- Fetches details about one or multiple BdsIn
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -246,7 +247,6 @@ Parameters
                                                                                                                                                                 <li>CREATING</li>
                                                                                                                                                                                                 <li>ACTIVE</li>
                                                                                                                                                                                                 <li>UPDATING</li>
-                                                                                                                                                                                                <li>UPDATING_INFRA</li>
                                                                                                                                                                                                 <li>SUSPENDING</li>
                                                                                                                                                                                                 <li>SUSPENDED</li>
                                                                                                                                                                                                 <li>RESUMING</li>
@@ -351,11 +351,11 @@ Examples
     
     - name: List bds_instances
       oci_bds_instance_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific bds_instance
       oci_bds_instance_facts:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -407,7 +407,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The information about added Cloud SQL capability</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -558,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specific info about a Hadoop cluster</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1001,7 +1001,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional configuration of customer&#x27;s network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

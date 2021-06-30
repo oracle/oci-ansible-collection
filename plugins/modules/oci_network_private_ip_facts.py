@@ -42,18 +42,18 @@ author: Oracle (@oracle)
 options:
     private_ip_id:
         description:
-            - The OCID of the private IP.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private IP.
             - Required to get a specific private_ip.
         type: str
         aliases: ["id"]
     ip_address:
         description:
-            - "An IP address.
+            - "An IP address. This could be either IPv4 or IPv6, depending on the resource.
               Example: `10.0.3.3`"
         type: str
     subnet_id:
         description:
-            - The OCID of the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
         type: str
     vnic_id:
         description:
@@ -72,7 +72,7 @@ EXAMPLES = """
 
 - name: Get a specific private_ip
   oci_network_private_ip_facts:
-    private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -96,11 +96,11 @@ private_ips:
                 - The OCID of the compartment containing the private IP.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -116,7 +116,7 @@ private_ips:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -140,7 +140,7 @@ private_ips:
                 - The private IP's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The private IP address of the `privateIp` object. The address is within the CIDR
@@ -167,7 +167,7 @@ private_ips:
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             returned: on success
             type: string
-            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the VNIC is in.
@@ -175,7 +175,7 @@ private_ips:
                   the Oracle Cloud VMware Solution, the `subnetId` is null.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the private IP was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -191,7 +191,7 @@ private_ips:
                   the Oracle Cloud VMware Solution, the `vnicId` is null.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

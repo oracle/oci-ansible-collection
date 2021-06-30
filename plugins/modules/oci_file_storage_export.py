@@ -102,12 +102,12 @@ options:
                 type: int
     export_set_id:
         description:
-            - The OCID of this export's export set.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
             - Required for create using I(state=present).
         type: str
     file_system_id:
         description:
-            - The OCID of this export's file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
             - Required for create using I(state=present).
         type: str
     path:
@@ -119,7 +119,7 @@ options:
         type: str
     export_id:
         description:
-            - The OCID of the export.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export.
             - Required for update using I(state=present).
             - Required for delete using I(state=absent).
         type: str
@@ -139,19 +139,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create export
   oci_file_storage_export:
-    export_set_id: ocid1.exportset.oc1.phx.exampleaaaaacvbobuhqllhmfwwcotqnb4c2ylefuzaaaaa
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+    export_set_id: "ocid1.exportset.oc1..unique_ID"
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     path: /mediafiles
 
 - name: Update export
   oci_file_storage_export:
     export_options:
     - source: source_example
-    export_id: ocid1.export.oc1..xxxxxxEXAMPLExxxxxx
+    export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete export
   oci_file_storage_export:
-    export_id: ocid1.export.oc1..xxxxxxEXAMPLExxxxxx
+    export_id: "ocid1.export.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -243,22 +243,22 @@ export:
                     sample: 56
         export_set_id:
             description:
-                - The OCID of this export's export set.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
             returned: on success
             type: string
-            sample: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         file_system_id:
             description:
-                - The OCID of this export's file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
             returned: on success
             type: string
-            sample: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of this export.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of this export.

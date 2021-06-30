@@ -77,8 +77,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create app_catalog_subscription
   oci_compute_app_catalog_subscription:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
     oracle_terms_of_use_link: oracle_terms_of_use_link_example
     time_retrieved: 2018-03-20T12:32:53.532Z
@@ -86,8 +86,8 @@ EXAMPLES = """
 
 - name: Delete app_catalog_subscription
   oci_compute_app_catalog_subscription:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     listing_resource_version: listing_resource_version_example
     state: absent
 
@@ -111,7 +111,7 @@ app_catalog_subscription:
                 - The ocid of the listing resource.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Listing resource version.
@@ -123,7 +123,7 @@ app_catalog_subscription:
                 - Listing resource id.
             returned: on success
             type: string
-            sample: ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the listing.
@@ -141,7 +141,7 @@ app_catalog_subscription:
                 - The compartmentID of the subscription.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "Date and time at which the subscription was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.

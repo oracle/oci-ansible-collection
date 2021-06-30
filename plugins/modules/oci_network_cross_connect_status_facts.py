@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
-            - The OCID of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
         type: str
         aliases: ["id"]
         required: true
@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cross_connect_status
   oci_network_cross_connect_status_facts:
-    cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -55,7 +55,7 @@ cross_connect_status:
                 - The OCID of the cross-connect.
             returned: on success
             type: string
-            sample: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         interface_state:
             description:
                 - Whether Oracle's side of the interface is up or down.

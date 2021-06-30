@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_template -- Manage a Template resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a custom template in the specified compartment.
+- This resource has the following action operations in the :ref:`oci_template_actions <ansible_collections.oci_template_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -530,7 +532,7 @@ Examples
     
     - name: Create template
       oci_resource_manager_template:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: compartment_OCID
         display_name: Template Display Name
         description: Brief description of the template
         template_config_source:
@@ -540,7 +542,7 @@ Examples
       oci_resource_manager_template:
         display_name: Template Display Name
         description: Brief description of the template
-        long_description: Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded..
+        long_description: Detailed description of the template.
         logo_file_base64_encoded: binary string
         template_config_source:
           template_config_source_type: ZIP_UPLOAD
@@ -549,11 +551,11 @@ Examples
 
     - name: Update template
       oci_resource_manager_template:
-        template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete template
       oci_resource_manager_template:
-        template_id: ocid1.template.oc1..xxxxxxEXAMPLExxxxxx
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete template using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

@@ -66,7 +66,7 @@ EXAMPLES = """
   oci_cloud_guard_configuration:
     reporting_region: reporting_region_example
     status: ENABLED
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

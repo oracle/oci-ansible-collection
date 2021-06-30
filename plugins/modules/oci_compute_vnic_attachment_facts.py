@@ -38,7 +38,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple vnic_attachments.
         type: str
     availability_domain:
@@ -60,11 +60,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List vnic_attachments
   oci_compute_vnic_attachment_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vnic_attachment
   oci_compute_vnic_attachment_facts:
-    vnic_attachment_id: ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx
+    vnic_attachment_id: "ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -88,7 +88,7 @@ vnic_attachments:
                   compartment the instance is in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique.
@@ -101,13 +101,13 @@ vnic_attachments:
                 - The OCID of the VNIC attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VNIC attachment.
@@ -120,7 +120,7 @@ vnic_attachments:
                   Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                   you add a secondary VNIC to one of these instances, you can specify which NIC
                   the VNIC will use. For more information, see
-                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
             returned: on success
             type: int
             sample: 56
@@ -129,16 +129,16 @@ vnic_attachments:
                 - The OCID of the subnet to create the VNIC in.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         vlan_id:
             description:
                 - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
                   of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - An error is returned if the instance already has a VNIC attached to it from this VLAN.
             returned: on success
             type: string
-            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -152,7 +152,7 @@ vnic_attachments:
                   attachment process is complete.
                 - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
                   the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int
@@ -162,7 +162,7 @@ vnic_attachments:
                 - The OCID of the VNIC. Available after the attachment process is complete.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

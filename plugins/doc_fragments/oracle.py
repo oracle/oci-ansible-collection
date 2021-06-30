@@ -12,7 +12,7 @@ __metaclass__ = type
 class ModuleDocFragment(object):
     DOCUMENTATION = """
     requirements:
-        - "python >= 2.7"
+        - "python >= 3.6"
         -  Python SDK for Oracle Cloud Infrastructure U(https://oracle-cloud-infrastructure-python-sdk.readthedocs.io)
     notes:
         - For OCI python sdk configuration, please refer to
@@ -64,7 +64,7 @@ class ModuleDocFragment(object):
                   used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
                   if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
                   when running ansible playbooks within an OCI compute instance.
-            choices: ['api_key', 'instance_principal', 'instance_obo_user']
+            choices: ['api_key', 'instance_principal', 'instance_obo_user', 'resource_principal']
             default: 'api_key'
             type: str
         tenancy:

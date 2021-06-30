@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ExadataInfrastructure resources in Oracle Cloud Infrastructure
     - Lists the Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud@Customer instances only.
       To list the Exadata Cloud Service infrastructure resources in a compartment, use the  L(ListCloudExadataInfrastructures,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/ListCloudExadataInfrastructures) operation.
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ListCloudExadataInfrastructures) operation.
     - If I(exadata_infrastructure_id) is specified, the details of a single ExadataInfrastructure will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -83,11 +83,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List exadata_infrastructures
   oci_database_exadata_infrastructure_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific exadata_infrastructure
   oci_database_exadata_infrastructure_facts:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -103,13 +103,13 @@ exadata_infrastructures:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Exadata infrastructure.
@@ -281,10 +281,24 @@ exadata_infrastructures:
                     sample: email_example
                 is_primary:
                     description:
-                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                        - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                     returned: on success
                     type: bool
                     sample: true
+                is_contact_mos_validated:
+                    description:
+                        - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure
+                          contact is not a valid MOS contact.
+                    returned: on success
+                    type: bool
+                    sample: true
+        maintenance_slo_status:
+            description:
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
+            returned: on success
+            type: string
+            sample: OK
         maintenance_window:
             description:
                 - ""
@@ -348,6 +362,18 @@ exadata_infrastructures:
                     returned: on success
                     type: int
                     sample: 56
+        last_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        next_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -394,8 +420,10 @@ exadata_infrastructures:
             "name": "name_example",
             "phone_number": "phone_number_example",
             "email": "email_example",
-            "is_primary": true
+            "is_primary": true,
+            "is_contact_mos_validated": true
         }],
+        "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
             "months": [{
@@ -408,6 +436,8 @@ exadata_infrastructures:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

@@ -25,12 +25,12 @@ description:
     - This module allows the user to create, update and delete an InternetGateway resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new internet gateway for the specified VCN. For more information, see
       L(Access to the Internet,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIGs.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the Internet
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+      where you want the Internet
       Gateway to reside. Notice that the internet gateway doesn't have to be in the same compartment as the VCN or
       other Networking Service components. If you're not sure which compartment to use, put the Internet
       Gateway in the same compartment with the VCN. For more information about compartments and access control, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about OCIDs, see
-      L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
     - "You may optionally specify a *display name* for the internet gateway, otherwise a default is provided. It
       does not have to be unique, and you can change it. Avoid entering confidential information."
     - For traffic to flow between a subnet and an internet gateway, you must create a route rule accordingly in
@@ -40,6 +40,7 @@ description:
       traffic will flow to/from the internet even if there's a route rule that enables that traffic. You can later
       use L(UpdateInternetGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/InternetGateway/UpdateInternetGateway) to easily disable/enable
       the gateway without changing the route rule.
+    - "This resource has the following action operations in the M(oci_internet_gateway_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -53,7 +54,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -69,7 +70,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -86,7 +87,7 @@ options:
         type: str
     ig_id:
         description:
-            - The OCID of the internet gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the internet gateway.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -106,14 +107,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create internet_gateway
   oci_network_internet_gateway:
-    display_name: MyInternetGateway
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    display_name: "MyInternetGateway"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
     is_enabled: true
 
 - name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyInternetGateway
     freeform_tags: {'Department': 'Finance'}
@@ -123,16 +124,16 @@ EXAMPLES = """
   oci_network_internet_gateway:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyInternetGateway
-    ig_id: ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx
+    ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete internet_gateway
   oci_network_internet_gateway:
-    ig_id: ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx
+    ig_id: "ocid1.ig.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyInternetGateway
     state: absent
 
@@ -150,11 +151,11 @@ internet_gateway:
                 - The OCID of the compartment containing the internet gateway.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -170,7 +171,7 @@ internet_gateway:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -180,7 +181,7 @@ internet_gateway:
                 - The internet gateway's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled:
             description:
                 - Whether the gateway is enabled. When the gateway is disabled, traffic is not
@@ -206,7 +207,7 @@ internet_gateway:
                 - The OCID of the VCN the internet gateway belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

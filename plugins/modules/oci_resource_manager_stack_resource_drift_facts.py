@@ -55,7 +55,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List stack_resource_drifts
   oci_resource_manager_stack_resource_drift_facts:
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -71,13 +71,13 @@ stack_resource_drifts:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
             returned: on success
             type: string
-            sample: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where the stack is located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_name:
             description:
                 - The name of the resource as defined in the stack.
@@ -89,7 +89,7 @@ stack_resource_drifts:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the resource provisioned by Terraform.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         resource_type:
             description:
                 - "The provider resource type.

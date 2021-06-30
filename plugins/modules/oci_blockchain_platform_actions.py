@@ -23,6 +23,7 @@ module: oci_blockchain_platform_actions
 short_description: Perform actions on a BlockchainPlatform resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BlockchainPlatform resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), change Blockchain Platform Compartment
     - For I(action=start), start a Blockchain Platform
     - For I(action=stop), stop a Blockchain Platform
 version_added: "2.9"
@@ -34,26 +35,38 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The OCID of the new compartment.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the BlockchainPlatform.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on blockchain_platform
+  oci_blockchain_platform_actions:
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action start on blockchain_platform
   oci_blockchain_platform_actions:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on blockchain_platform
   oci_blockchain_platform_actions:
-    blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -70,7 +83,7 @@ blockchain_platform:
                 - unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Platform Instance Display name, can be renamed
@@ -82,7 +95,7 @@ blockchain_platform:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Platform Instance Description
@@ -406,6 +419,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.blockchain import BlockchainPlatformClient
+    from oci.blockchain.models import ChangeBlockchainPlatformCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -415,6 +429,7 @@ except ImportError:
 class BlockchainPlatformActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         start
         stop
     """
@@ -433,6 +448,27 @@ class BlockchainPlatformActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_blockchain_platform,
             blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeBlockchainPlatformCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_blockchain_platform_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                blockchain_platform_id=self.module.params.get("blockchain_platform_id"),
+                change_blockchain_platform_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def start(self):
@@ -488,7 +524,12 @@ def main():
     module_args.update(
         dict(
             blockchain_platform_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["start", "stop"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "start", "stop"],
+            ),
         )
     )
 

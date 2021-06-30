@@ -14,6 +14,8 @@
     - "SAMPLE_IMAGE_OCID"
     - "SAMPLE_AD_NAME"
 
+#==========================================================================================
+
 - name: Create a temporary directory to house a temporary SSH keypair we will later use to connect to instance
   tempfile:
     state: directory
@@ -34,6 +36,8 @@
     privatekey_path: "{{ temp_certificates_path }}/private_key.pem"
     format: OpenSSH
 
+#==========================================================================================
+
 - name: Create a VCN
   oci_network_vcn:
     compartment_id: "{{ instance_compartment }}"
@@ -43,46 +47,39 @@
 - set_fact:
     vcn_id: "{{ result.vcn.id }}"
 
+#==========================================================================================
 
 #########################################
 # Public subnet
 #########################################
 
+#==========================================================================================
 
 # Create a security list for the public subnet
-# Use a jinja2 template of the ingress and egress security rules to generate
-# a templated version of the final rules.
-- name: create ingress rules yaml body
-  template: src=./templates/public_subnet_ingress_security_rules.yaml.j2 dest=/tmp/public_subnet_ingress_security_rules.yaml
-- name: create egress yaml body
-  template: src=./templates/public_subnet_egress_security_rules.yaml.j2 dest=/tmp/public_subnet_egress_security_rules.yaml
-
-# Load the variables defined in the generated files
-- name: load the variables defined in the ingress rules yaml body
-  include_vars:
-    file: /tmp/public_subnet_ingress_security_rules.yaml
-    name: loaded_ingress
-- name: print loaded_ingress
-  debug:
-    msg: "loaded ingress is {{loaded_ingress}}"
-- name: load the variables defined in the egress rules yaml body
-  include_vars:
-    file: /tmp/public_subnet_egress_security_rules.yaml
-    name: loaded_egress
-- name: print loaded_egress
-  debug:
-    msg: "loaded egress is {{loaded_egress}}"
 - name: Create a security list for the public subnet
   oci_network_security_list:
     name: "{{ public_subnet_securitylist_name }}"
     compartment_id: "{{ instance_compartment }}"
     vcn_id: '{{ vcn_id }}'
-    ingress_security_rules: "{{ loaded_ingress.instance_ingress_security_rules }}"
-    egress_security_rules:  "{{ loaded_egress.instance_egress_security_rules }}"
+    ingress_security_rules:
+      # Allow incoming SSH connections
+      - source: "{{ private_subnet_cidr }}"
+        protocol: "all"
+      - source: "{{ quad_zero_route }}"
+        protocol: "{{ TCP_protocol }}"
+        tcp_options:
+          destination_port_range:
+            min: "{{ SSH_port }}"
+            max: "{{ SSH_port }}"
+    egress_security_rules:
+      # Allow ssh connections outside
+      - destination: "{{ quad_zero_route }}"
+        protocol: "all"
   register: result
 - set_fact:
     public_subnet_security_list_ocid: "{{ result.security_list.id }}"
 
+#==========================================================================================
 
 - name: Create a new Internet Gateway
   oci_network_internet_gateway:
@@ -95,6 +92,8 @@
 - set_fact:
     ig_id: "{{ result.internet_gateway.id }}"
 
+#==========================================================================================
+
 - name: Create a route table to connect internet gateway to the VCN
   oci_network_route_table:
     compartment_id: "{{ instance_compartment }}"
@@ -106,6 +105,7 @@
 - set_fact:
     public_subnet_rt_id: "{{ result.route_table.id }}"
 
+#==========================================================================================
 
 - name: Create the public subnet to host the public instance. Link security_list and route_table.
   oci_network_subnet:
@@ -121,6 +121,7 @@
 - set_fact:
     public_subnet_id: "{{ result.subnet.id }}"
 
+#==========================================================================================
 
 - name: Launch an instance in the public subnet to act as the NAT instance
   oci_compute_instance:
@@ -147,6 +148,8 @@
 - set_fact:
     public_subnet_instance_id: "{{result.instance.id }}"
 
+#==========================================================================================
+
 - name: Get the VNIC attachment details of instance
   oci_compute_vnic_attachment_facts:
     compartment_id: "{{ instance_compartment }}"
@@ -163,11 +166,15 @@
   debug:
     msg: "Public IP of the instance launched in the public subnet {{ public_instance_public_ip }}"
 
+#==========================================================================================
+
 - name: Get VNIC attachment of the launched NAT instance
   oci_compute_vnic_attachment_facts:
     compartment_id: "{{instance_compartment}}"
     instance_id: '{{ public_subnet_instance_id }}'
   register: vnic_info
+
+#==========================================================================================
 
 - name: List private IPs in the subnet
   oci_network_private_ip_facts:
@@ -180,43 +187,37 @@
   with_items: "{{ result.private_ips }}"
   when: item.vnic_id == vnic_info.vnic_attachments[0].vnic_id
 
+#==========================================================================================
 
 #########################################
 # Private subnet
 #########################################
 
-# Create a security list for the private subnet
-- name: create ingress rules yaml body
-  template: src=./templates/private_subnet_ingress_security_rules.yaml.j2 dest=/tmp/private_subnet_ingress_security_rules.yaml
-- name: create egress yaml body
-  template: src=./templates/private_subnet_egress_security_rules.yaml.j2 dest=/tmp/private_subnet_egress_security_rules.yaml
+#==========================================================================================
 
-# Load the variables defined in the generated files
-- name: load the variables defined in the ingress rules yaml body
-  include_vars:
-    file: /tmp/private_subnet_ingress_security_rules.yaml
-    name: loaded_ingress
-- name: print loaded_ingress
-  debug:
-    msg: "loaded ingress is {{loaded_ingress}}"
-- name: load the variables defined in the egress rules yaml body
-  include_vars:
-    file: /tmp/private_subnet_egress_security_rules.yaml
-    name: loaded_egress
-- name: print loaded_egress
-  debug:
-    msg: "loaded egress is {{loaded_egress}}"
+# Create a security list for the private subnet
 - name: Create a security list for the private subnet
   oci_network_security_list:
     name: "{{ private_subnet_securitylist_name }}"
     compartment_id: "{{ instance_compartment }}"
     vcn_id: '{{ vcn_id }}'
-    ingress_security_rules: "{{ loaded_ingress.instance_ingress_security_rules }}"
-    egress_security_rules:  "{{ loaded_egress.instance_egress_security_rules }}"
+    ingress_security_rules:
+      # Allow incoming SSH connections
+      - source: "{{ public_subnet_cidr }}"
+        protocol: "{{ TCP_protocol }}"
+        tcp_options:
+          destination_port_range:
+            min: "{{ SSH_port }}"
+            max: "{{ SSH_port }}"
+    egress_security_rules:
+      # Allow ssh connections outside
+      - destination: "{{ quad_zero_route }}"
+        protocol: "all"
   register: result
 - set_fact:
     private_subnet_security_list_ocid: "{{ result.security_list.id }}"
 
+#==========================================================================================
 
 - name: Create a route table to connect all access from the private subnet to the NAT instance's private IP
   oci_network_route_table:
@@ -228,6 +229,8 @@
   register: result
 - set_fact:
     private_subnet_rt_id: "{{ result.route_table.id }}"
+
+#==========================================================================================
 
 - name: Create the private subnet to host the private instance. Link security_list and route_table.
   oci_network_subnet:
@@ -242,6 +245,8 @@
   register: result
 - set_fact:
     private_subnet_id: "{{ result.subnet.id }}"
+
+#==========================================================================================
 
 - name: Launch an instance in the private subnet from which internet access would go through the NAT instance
   oci_compute_instance:
@@ -259,11 +264,15 @@
 - set_fact:
     private_subnet_instance_id: "{{ result.instance.id }}"
 
+#==========================================================================================
+
 - name: Get the VNIC attachment details of instance
   oci_compute_vnic_attachment_facts:
     compartment_id: "{{ instance_compartment }}"
     instance_id: "{{ private_subnet_instance_id }}"
   register: result
+
+#==========================================================================================
 
 - name: Get details of the VNIC
   oci_network_vnic_facts:
@@ -271,6 +280,8 @@
   register: result
 - set_fact:
     private_instance_private_ip: "{{result.vnic.private_ip}}"
+
+#==========================================================================================
 
 - name: Print the private ip of the newly launched instance
   debug:

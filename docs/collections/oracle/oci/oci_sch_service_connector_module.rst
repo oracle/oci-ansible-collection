@@ -20,7 +20,7 @@ oracle.oci.oci_sch_service_connector -- Manage a ServiceConnector resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,7 +46,7 @@ Synopsis
 - For *state=present*, creates a new service connector in the specified compartment. A service connector is a logically defined flow for moving data from a source service to a destination service in Oracle Cloud Infrastructure. For general information about service connectors, see `Service Connector Hub Overview <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
 - For purposes of access control, you must provide the `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ of the compartment where you want the service connector to reside. Notice that the service connector doesn't have to be in the same compartment as the source or target services. For information about access control and compartments, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
 - After you send your request, the new service connector's state is temporarily CREATING. When the state changes to ACTIVE, data begins transferring from the source service to the target service. For instructions on deactivating and activating service connectors, see `To activate or deactivate a service connector <https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm>`_.
-- This resource has the following action operations in the :ref:`oci_service_connector_actions <ansible_collections.oci_service_connector_actions_module>` module: activate, deactivate.
+- This resource has the following action operations in the :ref:`oci_service_connector_actions <ansible_collections.oci_service_connector_actions_module>` module: activate, change_compartment, deactivate.
 
 
 .. Aliases
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -149,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -357,6 +358,45 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-source/cursor"></div>
+                    <b>cursor</b>
+                    <a class="ansibleOptionLink" href="#parameter-source/cursor" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when kind is &#x27;streaming&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source/cursor/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#parameter-source/cursor/kind" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TRIM_HORIZON</li>
+                                                                                                                                                                                                <li>LATEST</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type descriminator.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#parameter-source/kind" title="Permalink to this option"></a>
@@ -367,6 +407,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>logging</li>
+                                                                                                                                                                                                <li>streaming</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -381,12 +422,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-source/log_sources" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The resources affected by this work request.</div>
+                                            <div>Required when kind is &#x27;logging&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -404,6 +446,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the log source.</div>
+                                            <div>Required when kind is &#x27;logging&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -421,6 +464,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the log group.</div>
+                                            <div>Applicable when kind is &#x27;logging&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -438,9 +482,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the log.</div>
+                                            <div>Applicable when kind is &#x27;logging&#x27;</div>
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-source/stream_id"></div>
+                    <b>stream_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-source/stream_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the stream.</div>
+                                            <div>Required when kind is &#x27;streaming&#x27;</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                                                 <td colspan="3">
@@ -546,6 +608,28 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the metric.</div>
                                             <div>Required when kind is &#x27;monitoring&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-target/enable_formatted_messaging"></div>
+                    <b>enable_formatted_messaging</b>
+                    <a class="ansibleOptionLink" href="#parameter-target/enable_formatted_messaging" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service connector source and the subscription protocol.</div>
+                                            <div>Example: `true`</div>
+                                            <div>Applicable when kind is &#x27;notifications&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -730,17 +814,69 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tasks/batch_size_in_kbs"></div>
+                    <b>batch_size_in_kbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-tasks/batch_size_in_kbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Size limit (kilobytes) for batch sent to invoke the function.</div>
+                                            <div>Applicable when kind is &#x27;function&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tasks/batch_time_in_sec"></div>
+                    <b>batch_time_in_sec</b>
+                    <a class="ansibleOptionLink" href="#parameter-tasks/batch_time_in_sec" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Time limit (seconds) for batch sent to invoke the function.</div>
+                                            <div>Applicable when kind is &#x27;function&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tasks/condition"></div>
                     <b>condition</b>
                     <a class="ansibleOptionLink" href="#parameter-tasks/condition" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A filter or mask to limit the source used in the flow defined by the service connector.</div>
+                                            <div>Required when kind is &#x27;logRule&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tasks/function_id"></div>
+                    <b>function_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-tasks/function_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the function to be used as a task.</div>
+                                            <div>Required when kind is &#x27;function&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -755,7 +891,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>logRule</li>
+                                                                                                                                                                <li>function</li>
+                                                                                                                                                                                                <li>logRule</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -837,26 +974,21 @@ Examples
     - name: Create service_connector
       oci_sch_service_connector:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source:
           kind: logging
-          log_sources:
-          - compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         target:
           kind: notifications
 
     - name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_sch_service_connector:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         source:
           kind: logging
-          log_sources:
-          - compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
         tasks:
-        - kind: logRule
-          condition: condition_example
+        - kind: function
         target:
           kind: notifications
         freeform_tags: {'Department': 'Finance'}
@@ -866,17 +998,17 @@ Examples
       oci_sch_service_connector:
         display_name: display_name_example
         description: description_example
-        service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
+        service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete service_connector
       oci_sch_service_connector:
-        service_connector_id: ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx
+        service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_sch_service_connector:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -914,7 +1046,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ServiceConnector resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;batch_rollover_size_in_mbs&#x27;: 56, &#x27;batch_rollover_time_in_ms&#x27;: 56, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;notifications&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: &#x27;CpuUtilization&#x27;, &#x27;metric_namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;kind&#x27;: &#x27;logRule&#x27;}], &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;source&#x27;: {&#x27;cursor&#x27;: {&#x27;kind&#x27;: &#x27;TRIM_HORIZON&#x27;}, &#x27;kind&#x27;: &#x27;logging&#x27;, &#x27;log_sources&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;target&#x27;: {&#x27;batch_rollover_size_in_mbs&#x27;: 56, &#x27;batch_rollover_time_in_ms&#x27;: 56, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;enable_formatted_messaging&#x27;: True, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;notifications&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: &#x27;CpuUtilization&#x27;, &#x27;metric_namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name_prefix&#x27;: &#x27;object_name_prefix_example&#x27;, &#x27;stream_id&#x27;: &#x27;ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;topic_id&#x27;: &#x27;ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;tasks&#x27;: [{&#x27;batch_size_in_kbs&#x27;: 56, &#x27;batch_time_in_sec&#x27;: 56, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kind&#x27;: &#x27;function&#x27;}], &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1081,6 +1213,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/source/cursor"></div>
+                    <b>cursor</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/source/cursor" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/source/cursor/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/source/cursor/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type descriminator.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TRIM_HORIZON</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/source/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/source/kind" title="Permalink to this return value"></a>
@@ -1174,6 +1344,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/source/stream_id"></div>
+                    <b>stream_id</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/source/stream_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the stream.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1281,6 +1470,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/target/enable_formatted_messaging"></div>
+                    <b>enable_formatted_messaging</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/target/enable_formatted_messaging" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to apply a simplified, user-friendly format to the message. Applies only when friendly formatting is supported by the service connector source and the subscription protocol.</div>
+                                            <div>Example: `true`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1477,6 +1686,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/tasks/batch_size_in_kbs"></div>
+                    <b>batch_size_in_kbs</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/tasks/batch_size_in_kbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Size limit (kilobytes) for batch sent to invoke the function.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/tasks/batch_time_in_sec"></div>
+                    <b>batch_time_in_sec</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/tasks/batch_time_in_sec" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time limit (seconds) for batch sent to invoke the function.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/condition"></div>
                     <b>condition</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/condition" title="Permalink to this return value"></a>
@@ -1496,6 +1743,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-service_connector/tasks/function_id"></div>
+                    <b>function_id</b>
+                    <a class="ansibleOptionLink" href="#return-service_connector/tasks/function_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the function to be used as a task.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.function.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-service_connector/tasks/kind"></div>
                     <b>kind</b>
                     <a class="ansibleOptionLink" href="#return-service_connector/tasks/kind" title="Permalink to this return value"></a>
@@ -1508,7 +1774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type descriminator.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">logRule</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">function</div>
                                     </td>
             </tr>
                     

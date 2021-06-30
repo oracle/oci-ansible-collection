@@ -45,10 +45,18 @@ options:
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    bucket_listing_action:
+        description:
+            - "Specifies whether a list operation is allowed on a PAR with accessType \\"AnyObjectRead\\" or \\"AnyObjectReadWrite\\".
+              Deny: Prevents the user from performing a list operation.
+              ListObjects: Authorizes the user to perform a list operation."
+        type: str
     object_name:
         description:
             - The name of the object that is being granted access to by the pre-authenticated request. Avoid entering confidential
-              information. The object name can be null and if so, the pre-authenticated request grants access to the entire bucket.
+              information. The object name can be null and if so, the pre-authenticated request grants access to the entire bucket
+              if the access type allows that. The object name can be a prefix as well, in that case pre-authenticated request
+              grants access to all the objects within the bucket starting with that prefix provided that we have the correct access type.
         type: str
     access_type:
         description:
@@ -60,6 +68,8 @@ options:
             - "ObjectWrite"
             - "ObjectReadWrite"
             - "AnyObjectWrite"
+            - "AnyObjectRead"
+            - "AnyObjectReadWrite"
     time_expires:
         description:
             - The expiration date for the pre-authenticated request as per L(RFC 3339,https://tools.ietf.org/html/rfc3339).
@@ -98,7 +108,7 @@ EXAMPLES = """
   oci_object_storage_preauthenticated_request:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    par_id: ocid1.par.oc1..xxxxxxEXAMPLExxxxxx
+    par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete preauthenticated_request using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -122,7 +132,7 @@ preauthenticated_request:
                 - The unique identifier to use when directly addressing the pre-authenticated request.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-provided name of the pre-authenticated request.
@@ -136,6 +146,14 @@ preauthenticated_request:
             returned: on success
             type: string
             sample: object_name_example
+        bucket_listing_action:
+            description:
+                - "Specifies whether a list operation is allowed on a PAR with accessType \\"AnyObjectRead\\" or \\"AnyObjectReadWrite\\".
+                  Deny: Prevents the user from performing a list operation.
+                  ListObjects: Authorizes the user to perform a list operation."
+            returned: on success
+            type: string
+            sample: bucket_listing_action_example
         access_type:
             description:
                 - The operation that can be performed on this resource.
@@ -166,6 +184,7 @@ preauthenticated_request:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "object_name": "object_name_example",
+        "bucket_listing_action": "bucket_listing_action_example",
         "access_type": "ObjectRead",
         "time_expires": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -295,6 +314,7 @@ def main():
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str", required=True),
             name=dict(type="str"),
+            bucket_listing_action=dict(type="str"),
             object_name=dict(type="str"),
             access_type=dict(
                 type="str",
@@ -303,6 +323,8 @@ def main():
                     "ObjectWrite",
                     "ObjectReadWrite",
                     "AnyObjectWrite",
+                    "AnyObjectRead",
+                    "AnyObjectReadWrite",
                 ],
             ),
             time_expires=dict(type="str"),

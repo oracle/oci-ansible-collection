@@ -23,6 +23,10 @@ module: oci_data_flow_run_actions
 short_description: Perform actions on a Run resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Run resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a run into a different compartment. When provided, If-Match is checked against ETag
+      values of the resource. Associated resources, like historical metrics, will not be
+      automatically moved. The run must be in a terminal state (CANCELED, FAILED, SUCCEEDED) in
+      order for it to be moved to a different compartment
     - For I(action=cancel), cancels the specified run if it has not already completed or was previously cancelled.
       If a run is in progress, the executing job will be killed.
 version_added: "2.9"
@@ -34,20 +38,32 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The OCID of a compartment.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the Run.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "cancel"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on run
+  oci_data_flow_run_actions:
+    compartment_id: "compartmentId"
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action cancel on run
   oci_data_flow_run_actions:
-    run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     action: cancel
 
 """
@@ -85,7 +101,7 @@ run:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
@@ -97,7 +113,7 @@ run:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
@@ -140,6 +156,20 @@ run:
             returned: on success
             type: string
             sample: driver_shape_example
+        execute:
+            description:
+                - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+                  applications-with-spark-submit.
+                  Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+                  Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+                  oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+                  10``
+                  Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
+                  application create/update, or run create/submit,
+                  Data Flow service will use derived information from execute input only."
+            returned: on success
+            type: string
+            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -166,7 +196,7 @@ run:
                 - The ID of a run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -204,13 +234,13 @@ run:
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
             type: string
-            sample: ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
         owner_principal_id:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -270,13 +300,13 @@ run:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.
@@ -329,6 +359,7 @@ run:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -371,6 +402,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_flow import DataFlowClient
+    from oci.data_flow.models import ChangeRunCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -380,6 +412,7 @@ except ImportError:
 class DataFlowRunActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         cancel
     """
 
@@ -396,6 +429,29 @@ class DataFlowRunActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_run, run_id=self.module.params.get("run_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeRunCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_run_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                run_id=self.module.params.get("run_id"),
+                change_run_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def cancel(self):
@@ -427,7 +483,10 @@ def main():
     module_args.update(
         dict(
             run_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["cancel"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "cancel"]
+            ),
         )
     )
 

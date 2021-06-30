@@ -78,28 +78,28 @@ EXAMPLES = """
 - name: Create management_agent_install_key
   oci_management_agent_install_key:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent_install_key:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     is_key_active: true
 
 - name: Update management_agent_install_key
   oci_management_agent_install_key:
     display_name: display_name_example
-    management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete management_agent_install_key
   oci_management_agent_install_key:
-    management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete management_agent_install_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent_install_key:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -116,7 +116,7 @@ management_agent_install_key:
                 - Agent install Key identifier
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Install Key Name
@@ -134,13 +134,13 @@ management_agent_install_key:
                 - Principal id of user who created the Agent Install key
             returned: on success
             type: string
-            sample: ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         allowed_key_install_count:
             description:
                 - Total number of install for this keys

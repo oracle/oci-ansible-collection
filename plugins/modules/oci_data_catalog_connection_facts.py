@@ -136,12 +136,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List connections
   oci_data_catalog_connection_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
 
 - name: Get a specific connection
   oci_data_catalog_connection_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     connection_key: connection_key_example
 
@@ -191,13 +191,13 @@ connections:
                 - OCID of the user who created the connection.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who modified the connection.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_members:
             description:
                 - The list of customized properties along with the values for this object
@@ -261,6 +261,12 @@ connections:
                 is_editable:
                     description:
                         - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
                     returned: on success
                     type: bool
                     sample: true
@@ -328,80 +334,6 @@ connections:
             returned: on success
             type: string
             sample: uri_example
-        count:
-            description:
-                - Total number of items returned.
-            returned: on success
-            type: int
-            sample: 56
-        items:
-            description:
-                - Collection of connection summaries.
-            returned: on success
-            type: complex
-            contains:
-                key:
-                    description:
-                        - Unique connection key that is immutable.
-                    returned: on success
-                    type: string
-                    sample: key_example
-                description:
-                    description:
-                        - A description of the connection.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                display_name:
-                    description:
-                        - A user-friendly display name. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                data_asset_key:
-                    description:
-                        - The unique key of the parent data asset.
-                    returned: on success
-                    type: string
-                    sample: data_asset_key_example
-                type_key:
-                    description:
-                        - The key of the object type. Type key's can be found via the '/types' endpoint.
-                    returned: on success
-                    type: string
-                    sample: type_key_example
-                uri:
-                    description:
-                        - URI to the connection instance in the API.
-                    returned: on success
-                    type: string
-                    sample: uri_example
-                external_key:
-                    description:
-                        - Unique external key for this object as defined in the source systems.
-                    returned: on success
-                    type: string
-                    sample: external_key_example
-                lifecycle_state:
-                    description:
-                        - The current state of the connection.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                is_default:
-                    description:
-                        - Indicates whether this connection is the default connection.
-                    returned: on success
-                    type: bool
-                    sample: true
-                time_created:
-                    description:
-                        - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                          Example: `2019-03-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2019-03-25T21:10:29.600Z
     sample: [{
         "key": "key_example",
         "description": "description_example",
@@ -421,6 +353,7 @@ connections:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],
@@ -431,20 +364,7 @@ connections:
         "is_default": true,
         "data_asset_key": "data_asset_key_example",
         "type_key": "type_key_example",
-        "uri": "uri_example",
-        "count": 56,
-        "items": [{
-            "key": "key_example",
-            "description": "description_example",
-            "display_name": "display_name_example",
-            "data_asset_key": "data_asset_key_example",
-            "type_key": "type_key_example",
-            "uri": "uri_example",
-            "external_key": "external_key_example",
-            "lifecycle_state": "CREATING",
-            "is_default": true,
-            "time_created": "2019-03-25T21:10:29.600Z"
-        }]
+        "uri": "uri_example"
     }]
 """
 

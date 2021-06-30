@@ -68,7 +68,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update threat_feeds
   oci_waas_threat_feeds:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     threat_feeds:
     - key: key_example
       action: OFF
@@ -173,6 +173,16 @@ class ThreatFeedsHelperGen(OCIResourceHelperBase):
 
     def get_update_model_class(self):
         return ThreatFeedAction
+
+    def get_update_model(self):
+        if self.module.params.get("threat_feeds"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["threat_feeds"]
+            ]
+        return []
 
     def update_resource(self):
         update_details = self.get_update_model()

@@ -28,7 +28,7 @@ description:
       the actual CPE device represented by a L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object."
     - If you want to generate CPE configuration content for one of the returned CPE device types,
       ensure that the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object's `cpeDeviceShapeId` attribute is set
-      to the CPE device type's OCID (returned by this operation).
+      to the CPE device type's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) (returned by this operation).
     - "For information about generating CPE configuration content, see these operations:"
     - " * L(GetCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent)
         * L(GetIpsecCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent)
@@ -53,7 +53,7 @@ EXAMPLES = """
 
 - name: Get a specific cpe_device_shape
   oci_network_cpe_device_shape_facts:
-    cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -70,7 +70,7 @@ cpe_device_shapes:
                   This value uniquely identifies the type of CPE device.
             returned: on success
             type: string
-            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_device_info:
             description:
                 - ""
@@ -138,7 +138,7 @@ cpe_device_shapes:
                   This value uniquely identifies the type of CPE device.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_device_info": {

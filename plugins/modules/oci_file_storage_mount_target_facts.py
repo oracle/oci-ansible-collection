@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     mount_target_id:
         description:
-            - The OCID of the mount target.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             - Required to get a specific mount_target.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The OCID of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple mount_targets.
         type: str
     availability_domain:
@@ -53,7 +53,7 @@ options:
         aliases: ["name"]
     export_set_id:
         description:
-            - The OCID of the export set.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export set.
         type: str
     lifecycle_state:
         description:
@@ -91,12 +91,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List mount_targets
   oci_file_storage_mount_target_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
 
 - name: Get a specific mount_target
   oci_file_storage_mount_target_facts:
-    mount_target_id: ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx
+    mount_target_id: "ocid1.mounttarget.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -117,10 +117,10 @@ mount_targets:
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
-                - The OCID of the compartment that contains the mount target.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the mount target.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -131,18 +131,18 @@ mount_targets:
             sample: My mount target
         export_set_id:
             description:
-                - The OCID of the associated export set. Controls what file
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated export set. Controls what file
                   systems will be exported through Network File System (NFS) protocol on this
                   mount target.
             returned: on success
             type: string
-            sample: ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of the mount target.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current 'lifecycleState'.
@@ -163,10 +163,10 @@ mount_targets:
             sample: []
         subnet_id:
             description:
-                - The OCID of the subnet the mount target is in.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the mount target is in.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount

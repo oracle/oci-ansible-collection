@@ -22,6 +22,9 @@ try:
         MissingPrivateKeyPassphrase,
         ConfigFileNotFound,
     )
+    from oci.auth.signers.resource_principals_signer import (
+        get_resource_principals_signer,
+    )
     from oci.identity.identity_client import IdentityClient
     from oci.database import DatabaseClient
 
@@ -78,8 +81,10 @@ def get_oci_config(module, service_client_class=None):
         InvalidPrivateKey,
         MissingPrivateKeyPassphrase,
     ) as ex:
-        if not _is_instance_principal_auth(module) and not _is_delegation_token_auth(
-            module
+        if (
+            not _is_instance_principal_auth(module)
+            and not _is_delegation_token_auth(module)
+            and not _is_resource_principal_auth(module)
         ):
             # When auth_type is not instance_principal, config file is required
             module.fail_json(msg=str(ex))
@@ -169,6 +174,9 @@ def create_service_client(
         kwargs["signer"] = _create_instance_principal_signer(
             module, delegation_token_location
         )
+
+    if _is_resource_principal_auth(module):
+        kwargs["signer"] = _create_resource_principal_signer()
 
     # XXX: Validate configuration -- this may be redundant, as all Client constructors perform a validation
     try:
@@ -260,6 +268,10 @@ def _create_instance_principal_signer(module, delegation_token_location=None):
     return signer
 
 
+def _create_resource_principal_signer():
+    return get_resource_principals_signer()
+
+
 def _is_instance_principal_auth(module):
     # check if auth type is overridden via module params
     instance_principal_auth = (
@@ -304,3 +316,17 @@ def _is_delegation_token_auth(module):  # instance_obo_user / delegation token
             and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "instance_obo_user"
         )
     return delegation_token_auth
+
+
+def _is_resource_principal_auth(module):
+    if (
+        "auth_type" in module.params
+        and module.params["auth_type"] == "resource_principal"
+    ):
+        return True
+    if (
+        "OCI_ANSIBLE_AUTH_TYPE" in os.environ
+        and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "resource_principal"
+    ):
+        return True
+    return False

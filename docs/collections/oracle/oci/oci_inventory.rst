@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -103,6 +103,31 @@ Parameters
                                                                     </td>
                                                 <td>
                                             <div>Passphrase used by the key referenced in api_user_key_file, if it is encrypted. Preference order is .oci.yml &gt; OCI_USER_KEY_PASS_PHRASE environment variable &gt; settings from config file This option is required if the passphrase is not specified through a configuration file (See config_file)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
+                    <b>auth_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>instance_principal</li>
+                                                                                                                                                                                                <li>instance_obo_user</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_ANSIBLE_AUTH_TYPE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -275,7 +300,7 @@ Parameters
                                                     <td>
                                                                                             </td>
                                                 <td>
-                                            <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy</div>
+                                            <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -436,6 +461,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-delegation_token_file"></div>
+                    <b>delegation_token_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-delegation_token_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_DELEGATION_TOKEN_FILE
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable, if any, is used. Otherwise, defaults to config_file.</div>
+                                            <div>This parameter is only applicable when <code>auth_type=instance_obo_user</code> is set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-enable_parallel_processing"></div>
                     <b>enable_parallel_processing</b>
                     <a class="ansibleOptionLink" href="#parameter-enable_parallel_processing" title="Permalink to this option"></a>
@@ -449,6 +495,23 @@ Parameters
                                                                                             </td>
                                                 <td>
                                             <div>Use multiple threads to speedup lookup. Default is set to True</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_host_filters"></div>
+                    <b>exclude_host_filters</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_host_filters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host; when any of the expressions is evaluated to Truthy value, the host is excluded from the inventory. exclude_host_filters take priority over the include_host_filters and filters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -478,11 +541,15 @@ Parameters
                     <b>fetch_db_hosts</b>
                     <a class="ansibleOptionLink" href="#parameter-fetch_db_hosts" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
+                        <span style="color: purple">boolean</span>
                                                                     </div>
                                                         </td>
                                 <td>
-                                                                                                                                                            </td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
                                                     <td>
                                                                                             </td>
                                                 <td>
@@ -495,8 +562,8 @@ Parameters
                     <b>filters</b>
                     <a class="ansibleOptionLink" href="#parameter-filters" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -543,7 +610,24 @@ Parameters
                                                                                             </div>
                                                                     </td>
                                                 <td>
-                                            <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. By default, hosts are listed using public IP address.</div>
+                                            <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. Use &#x27;display_name&#x27; to list hosts using display_name of the Instances. &#x27;display_name&#x27; cannot be used when fetch_db_hosts is True. By default, hosts are listed using public IP address. hostname_format_preferences and hostname_format cannot be used together</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-hostname_format_preferences"></div>
+                    <b>hostname_format_preferences</b>
+                    <a class="ansibleOptionLink" href="#parameter-hostname_format_preferences" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>A list of Jinja2 expressions in order of precedence to compose inventory_hostname. Ignores expression if result is an empty string or None value. hostname_format_preferences and hostname_format cannot be used together. The instance is ignored if none of the hostname_format_preferences resulted in a non-empty value</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -552,8 +636,8 @@ Parameters
                     <b>hostnames</b>
                     <a class="ansibleOptionLink" href="#parameter-hostnames" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -561,6 +645,23 @@ Parameters
                                                                                             </td>
                                                 <td>
                                             <div>A list of hostnames to search for.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-include_host_filters"></div>
+                    <b>include_host_filters</b>
+                    <a class="ansibleOptionLink" href="#parameter-include_host_filters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host; when any of the expressions is evaluated to Truthy value, the host is included in the inventory. include_host_filters and filters options cannot be used together.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -575,11 +676,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                            <div>
-                                env:OCI_ANSIBLE_AUTH_TYPE
-                                                                                            </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
+                                            <div>This parameter is DEPRECATED. Please use auth_type instead.</div>
                                             <div>Use instance principal based authentication. If not set, the API key in your config will be used.</div>
                                                         </td>
             </tr>
@@ -599,6 +698,35 @@ Parameters
                                                                                             </td>
                                                 <td>
                                             <div>Add hosts to group based on the values of a variable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-leading_separator"></div>
+                    <b>leading_separator</b>
+                    <a class="ansibleOptionLink" href="#parameter-leading_separator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.11 of ansible.builtin
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                            </td>
+                                                <td>
+                                            <div>Use in conjunction with keyed_groups.</div>
+                                            <div>By default, a keyed group that does not have a prefix or a separator provided will have a name that starts with an underscore.</div>
+                                            <div>This is because the default prefix is &quot;&quot; and the default separator is &quot;_&quot;.</div>
+                                            <div>Set this option to False to omit the leading underscore (or other separator) if no prefix is given.</div>
+                                            <div>If the group name is derived from a mapping the separator is still used to concatenate the items.</div>
+                                            <div>To not use a separator in the group name at all, set the separator for the keyed group to an empty string instead.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -623,12 +751,36 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-primary_vnic_only"></div>
+                    <b>primary_vnic_only</b>
+                    <a class="ansibleOptionLink" href="#parameter-primary_vnic_only" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                            <div>
+                                env:OCI_PRIMARY_VNIC_ONLY
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>The default behavior of the plugin is to process all VNIC&#x27;s attached to a compute instance. This might result in instance having multiple entries. When this parameter is set to True, the plugin will only process the primary VNIC and thus having only a single entry for each compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-regions"></div>
                     <b>regions</b>
                     <a class="ansibleOptionLink" href="#parameter-regions" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -658,6 +810,38 @@ Parameters
                                                 <td>
                                             <div>If <code>yes</code> make invalid entries a fatal error, otherwise skip and continue.</div>
                                             <div>Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-use_extra_vars"></div>
+                    <b>use_extra_vars</b>
+                    <a class="ansibleOptionLink" href="#parameter-use_extra_vars" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                          <div style="font-style: italic; font-size: small; color: darkgreen">
+                        added in 2.11 of ansible.builtin
+                      </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                    <div> ini entries:
+                                                                    <p>
+                                        [inventory_plugins]<br>use_extra_vars = no
+                                                                                                                    </p>
+                                                            </div>
+                                                                            <div>
+                                env:ANSIBLE_INVENTORY_USE_EXTRA_VARS
+                                                                                            </div>
+                                                                    </td>
+                                                <td>
+                                            <div>Merge extra vars into the available variables for composition (highest precedence).</div>
                                                         </td>
             </tr>
                         </table>
@@ -707,9 +891,24 @@ Examples
     # Example filtering using hostname_format
     hostname_format: "private_ip"
 
+    # Sets the inventory_hostname. Each item is a Jinja2 expression and it gets evaluated on host_vars.
+    #hostname_format_preferences and hostname_format cannot be used together
+    hostname_format_preferences:
+      - "display_name+'.oci.com'"
+      - "id"
+
     # Example group results by key
     keyed_groups:
       - key: availability_domain
+
+    # Excludes a host from the inventory when any of the Jinja2 expression evaluates to true.
+    exclude_host_filters:
+      - "region not in ['iad']"
+
+    # Includes a host in the inventory when any of the Jinja2 expression evaluates to true.
+    #include_host_filters and filters options cannot be used together.
+    include_host_filters:
+      - "display_name is match('.*.oci.com')"
 
     # Example using filters
     filters:
@@ -722,8 +921,7 @@ Examples
           }
         }
       - freeform_tags: {
-         "oci:compute:instanceconfiguration": "ocid1.instanceconfiguration.oc1.phx.xxxx",
-         "oci:compute:instancepool": "ocid1.instancepool.oc1.phx.xxxx"
+         "Environment": "Production"
         }
 
     # Example flag to turn on debug mode
@@ -741,6 +939,9 @@ Examples
 
     # Compute Hosts (bool type)
     fetch_compute_hosts: True
+
+    # Process only the primary vnic of a compute instance
+    primary_vnic_only: True
 
 
 

@@ -89,59 +89,59 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_child_software_source on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_child_software_source
 
 - name: Perform action attach_parent_software_source on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_parent_software_source
 
 - name: Perform action detach_child_software_source on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_child_software_source
 
 - name: Perform action detach_parent_software_source on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-    software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_parent_software_source
 
 - name: Perform action install_all_package_updates on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: install_all_package_updates
 
 - name: Perform action install_all_windows_updates on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: install_all_windows_updates
 
 - name: Perform action install_package on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_package_name: software_package_name_example
     action: install_package
 
 - name: Perform action install_package_update on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_package_name: software_package_name_example
     action: install_package_update
 
 - name: Perform action install_windows_update on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     windows_update_name: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
     action: install_windows_update
 
 - name: Perform action remove_package on managed_instance
   oci_os_management_managed_instance_actions:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     software_package_name: software_package_name_example
     action: remove_package
 
@@ -165,7 +165,7 @@ managed_instance:
                 - OCID for the managed instance
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Information specified by the user about the managed instance
@@ -213,7 +213,7 @@ managed_instance:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - status of the managed instance.
@@ -237,7 +237,7 @@ managed_instance:
                         - software source identifier
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         child_software_sources:
             description:
                 - list of child Software Sources attached to the Managed Instance
@@ -255,7 +255,7 @@ managed_instance:
                         - software source identifier
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instance_groups:
             description:
                 - The ids of the managed instance groups of which this instance is a
@@ -268,7 +268,7 @@ managed_instance:
                         - unique identifier that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name

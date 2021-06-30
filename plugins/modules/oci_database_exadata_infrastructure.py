@@ -25,8 +25,8 @@ description:
     - This module allows the user to create, update and delete an ExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
       To create an Exadata Cloud Service infrastructure resource, use the  L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
-      us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
-    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate,
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
+    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, change_compartment,
       download_exadata_infrastructure_config_file."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -97,7 +97,6 @@ options:
         description:
             - The corporate network proxy for access to the control plane network. Oracle recommends using an HTTPS proxy when possible
               for enhanced security.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     contacts:
@@ -122,9 +121,14 @@ options:
                 required: true
             is_primary:
                 description:
-                    - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                    - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                 type: bool
                 required: true
+            is_contact_mos_validated:
+                description:
+                    - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact
+                      is not a valid MOS contact.
+                type: bool
     maintenance_window:
         description:
             - ""
@@ -246,34 +250,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create exadata_infrastructure
   oci_database_exadata_infrastructure:
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
-    shape: Exadata.Full2.336
-    time_zone: PST
-    cloud_control_plane_server1: 192.168.19.1
-    cloud_control_plane_server2: 192.168.19.2
-    netmask: 255.255.0.0
-    gateway: 192.168.20.1
-    admin_network_cidr: 192.168.19.2/16
-    infini_band_network_cidr: 10.172.19.1/24
-    corporate_proxy: 192.168.20.1
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    display_name: "tstExaInfra"
+    shape: "Exadata.Full2.336"
+    time_zone: "PST"
+    cloud_control_plane_server1: "192.168.19.1"
+    cloud_control_plane_server2: "192.168.19.2"
+    netmask: "255.255.0.0"
+    gateway: "192.168.20.1"
+    admin_network_cidr: "192.168.19.2/16"
+    infini_band_network_cidr: "10.172.19.1/24"
+    corporate_proxy: "192.168.20.1"
     dns_server:
-    - 192.168.10.10
+    - "192.168.10.10"
     ntp_server:
-    - 192.168.10.20
+    - "192.168.10.20"
 
 - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_exadata_infrastructure:
-    admin_network_cidr: 192.168.19.1/16
-    infini_band_network_cidr: 10.172.19.2/24
+    admin_network_cidr: "192.168.19.1/16"
+    infini_band_network_cidr: "10.172.19.2/24"
 
 - name: Update exadata_infrastructure
   oci_database_exadata_infrastructure:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete exadata_infrastructure
   oci_database_exadata_infrastructure:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -296,13 +300,13 @@ exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Exadata infrastructure.
@@ -474,10 +478,24 @@ exadata_infrastructure:
                     sample: email_example
                 is_primary:
                     description:
-                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                        - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                     returned: on success
                     type: bool
                     sample: true
+                is_contact_mos_validated:
+                    description:
+                        - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure
+                          contact is not a valid MOS contact.
+                    returned: on success
+                    type: bool
+                    sample: true
+        maintenance_slo_status:
+            description:
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
+            returned: on success
+            type: string
+            sample: OK
         maintenance_window:
             description:
                 - ""
@@ -541,6 +559,18 @@ exadata_infrastructure:
                     returned: on success
                     type: int
                     sample: 56
+        last_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        next_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -587,8 +617,10 @@ exadata_infrastructure:
             "name": "name_example",
             "phone_number": "phone_number_example",
             "email": "email_example",
-            "is_primary": true
+            "is_primary": true,
+            "is_contact_mos_validated": true
         }],
+        "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
             "months": [{
@@ -601,6 +633,8 @@ exadata_infrastructure:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -775,6 +809,7 @@ def main():
                     phone_number=dict(type="str"),
                     email=dict(type="str", required=True),
                     is_primary=dict(type="bool", required=True),
+                    is_contact_mos_validated=dict(type="bool"),
                 ),
             ),
             maintenance_window=dict(

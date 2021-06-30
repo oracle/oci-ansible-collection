@@ -25,7 +25,8 @@ description:
     - This module allows the user to create, update and delete a Cpe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new virtual customer-premises equipment (CPE) object in the specified compartment. For
       more information, see L(IPSec VPNs,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingIPsec.htm).
-    - For the purposes of access control, you must provide the OCID of the compartment where you want
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+      where you want
       the CPE to reside. Notice that the CPE doesn't have to be in the same compartment as the IPSec
       connection or other Networking Service components. If you're not sure which compartment to
       use, put the CPE in the same compartment as the DRG. For more information about
@@ -35,6 +36,7 @@ description:
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
     - "You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_cpe_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -48,7 +50,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -64,7 +66,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -91,7 +93,7 @@ options:
         type: str
     cpe_id:
         description:
-            - The OCID of the CPE.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -111,32 +113,32 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cpe
   oci_network_cpe:
-    ip_address: 203.0.113.6
-    display_name: MyCpe
-    compartment_id: ocid1.compartment.oc1..compartment_OCID
+    ip_address: "203.0.113.6"
+    display_name: "MyCpe"
+    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
 
 - name: Update cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
-    compartment_id: ocid1.compartment.oc1..compartment_OCID
+    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
     freeform_tags: {'Department': 'Finance'}
-    cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cpe
   oci_network_cpe:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyCpe
-    cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cpe
   oci_network_cpe:
-    cpe_id: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+    cpe_id: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cpe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cpe:
-    compartment_id: ocid1.compartment.oc1..compartment_OCID
+    compartment_id: "ocid1.compartment.oc1..compartment_OCID"
     display_name: MyCpe
     state: absent
 
@@ -154,11 +156,11 @@ cpe:
                 - The OCID of the compartment containing the CPE.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -174,7 +176,7 @@ cpe:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -184,7 +186,7 @@ cpe:
                 - The CPE's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the on-premises router.
@@ -209,7 +211,7 @@ cpe:
                     * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
             type: string
-            sample: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the CPE was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

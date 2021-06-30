@@ -26,7 +26,7 @@ description:
     - For I(state=present), adds another ESXi host to an existing SDDC. The attributes of the specified
       `Sddc` determine the VMware software and other configuration settings used
       by the ESXi host.
-    - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/ocvs/20200501/WorkRequest/) operations to track the
+    - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/) operations to track the
       creation of the ESXi host.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -51,6 +51,30 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    current_sku:
+        description:
+            - "Billing option selected during SDDC creation.
+              Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+              HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
+    next_sku:
+        description:
+            - Billing option to switch to once existing billing cycle ends.
+              If nextSku is null or empty, currentSku will be used to continue with next billing term.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -88,23 +112,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create esxi_host
   oci_ocvp_esxi_host:
-    sddc_id: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+    sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ocvp_esxi_host:
     display_name: display_name_example
+    next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update esxi_host
   oci_ocvp_esxi_host:
     display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+    next_sku: HOUR
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete esxi_host
   oci_ocvp_esxi_host:
-    esxi_host_id: ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx
+    esxi_host_id: "ocid1.esxihost.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete esxi_host using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -126,7 +151,7 @@ esxi_host:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A descriptive name for the ESXi host. Does not have to be unique, and it's changeable.
@@ -140,14 +165,14 @@ esxi_host:
                   ESXi host belongs to.
             returned: on success
             type: string
-            sample: ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
                   contains the SDDC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_id:
             description:
                 - In terms of implementation, an ESXi host is a Compute instance that
@@ -155,7 +180,7 @@ esxi_host:
                   is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of that Compute instance.
             returned: on success
             type: string
-            sample: ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the ESXi host was created, in the format defined by
@@ -177,6 +202,30 @@ esxi_host:
             returned: on success
             type: string
             sample: CREATING
+        current_sku:
+            description:
+                - "Billing option selected during SDDC creation.
+                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
+                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+            returned: on success
+            type: string
+            sample: HOUR
+        next_sku:
+            description:
+                - Billing option to switch to once existing billing cycle ends.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            returned: on success
+            type: string
+            sample: HOUR
+        billing_contract_end_date:
+            description:
+                - "Current billing cycle end date. If nextSku is different from existing SKU, then we switch to newSKu
+                  after this contractEndDate
+                  Example: `2016-08-25T21:10:29.600Z`"
+            returned: on success
+            type: string
+            sample: 2016-08-25T21:10:29.600Z
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -203,6 +252,9 @@ esxi_host:
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "current_sku": "HOUR",
+        "next_sku": "HOUR",
+        "billing_contract_end_date": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -339,6 +391,12 @@ def main():
         dict(
             sddc_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            current_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
+            next_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

@@ -91,11 +91,11 @@ EXAMPLES = """
 - name: List identity_providers
   oci_identity_provider_facts:
     protocol: SAML2
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific identity_provider
   oci_identity_provider_facts:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -111,13 +111,13 @@ identity_providers:
                 - The OCID of the `IdentityProvider`.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the `IdentityProvider`.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the `IdentityProvider` during creation. The name

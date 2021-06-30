@@ -25,6 +25,9 @@ description:
     - Perform actions on a ByoipRange resource in Oracle Cloud Infrastructure
     - For I(action=advertise), begins BGP route advertisements for the BYOIP CIDR block you imported to the Oracle Cloud.
       The `ByoipRange` resource must be in the PROVISIONED state before the BYOIP CIDR block routes can be advertised with BGP.
+    - For I(action=change_compartment), moves a BYOIP CIDR block to a different compartment. For information
+      about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=validate), submits the BYOIP CIDR block you are importing for validation. Do not submit to Oracle for validation if you have not already
       modified the information for the BYOIP CIDR block with your Regional Internet Registry. See L(To import a CIDR
       block,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
@@ -39,6 +42,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the destination compartment for the BYOIP CIDR block
+              move.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the ByoipRange.
@@ -46,6 +55,7 @@ options:
         required: true
         choices:
             - "advertise"
+            - "change_compartment"
             - "validate"
             - "withdraw"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -54,17 +64,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action advertise on byoip_range
   oci_network_byoip_range_actions:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: advertise
+
+- name: Perform action change_compartment on byoip_range
+  oci_network_byoip_range_actions:
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action validate on byoip_range
   oci_network_byoip_range_actions:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: validate
 
 - name: Perform action withdraw on byoip_range
   oci_network_byoip_range_actions:
-    byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: withdraw
 
 """
@@ -87,11 +103,11 @@ byoip_range:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -107,7 +123,7 @@ byoip_range:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -117,7 +133,7 @@ byoip_range:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The `ByoipRange` resource's current status.
@@ -197,6 +213,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import VirtualNetworkClient
+    from oci.core.models import ChangeByoipRangeCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -207,6 +224,7 @@ class ByoipRangeActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         advertise
+        change_compartment
         validate
         withdraw
     """
@@ -239,6 +257,29 @@ class ByoipRangeActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 byoip_range_id=self.module.params.get("byoip_range_id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeByoipRangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_byoip_range_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                byoip_range_id=self.module.params.get("byoip_range_id"),
+                change_byoip_range_compartment_details=action_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -303,8 +344,11 @@ def main():
     module_args.update(
         dict(
             byoip_range_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             action=dict(
-                type="str", required=True, choices=["advertise", "validate", "withdraw"]
+                type="str",
+                required=True,
+                choices=["advertise", "change_compartment", "validate", "withdraw"],
             ),
         )
     )

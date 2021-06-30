@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new BDS instance.
     - "This resource has the following action operations in the M(oci_bds_instance_actions) module: add_block_storage, add_cloud_sql, add_worker_nodes,
-      change_shape, remove_cloud_sql, restart_node."
+      change_compartment, change_shape, remove_cloud_sql, restart_node."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -71,7 +71,7 @@ options:
         type: bool
     network_config:
         description:
-            - Additional configuration of customer's network.
+            - ""
         type: dict
         suboptions:
             is_nat_gateway_required:
@@ -143,7 +143,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create bds_instance
   oci_bds_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     cluster_version: cluster_version_example
     cluster_public_key: cluster_public_key_example
@@ -154,11 +154,11 @@ EXAMPLES = """
     - node_type: node_type_example
       shape: shape_example
       block_volume_size_in_gbs: 56
-      subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -167,16 +167,16 @@ EXAMPLES = """
   oci_bds_instance:
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete bds_instance
   oci_bds_instance:
-    bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_instance:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -194,13 +194,13 @@ bds_instance:
                 - The OCID of the BDS resource
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Name of the BDS instance
@@ -239,7 +239,7 @@ bds_instance:
             sample: true
         network_config:
             description:
-                - Additional configuration of customer's network.
+                - ""
             returned: on success
             type: complex
             contains:
@@ -257,7 +257,7 @@ bds_instance:
                     sample: 172.16.0.0/16
         cluster_details:
             description:
-                - Specific info about a Hadoop cluster
+                - ""
             returned: on success
             type: complex
             contains:
@@ -345,7 +345,7 @@ bds_instance:
                         - The OCID of the underlying compute instance
                     returned: on success
                     type: string
-                    sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The name of the node
@@ -381,7 +381,7 @@ bds_instance:
                                 - The OCID of the volume attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_size_in_gbs:
                             description:
                                 - The size of the volume in GBs.
@@ -393,7 +393,7 @@ bds_instance:
                         - The OCID of the subnet in which the node should be created
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
                         - IP address of the node
@@ -411,7 +411,7 @@ bds_instance:
                         - The OCID of the image from which the node was created
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 ssh_fingerprint:
                     description:
                         - The fingerprint of the SSH key used for node access
@@ -444,7 +444,7 @@ bds_instance:
                     sample: 2019-03-29T09:36:42.000+0000
         cloud_sql_details:
             description:
-                - The information about added Cloud SQL capability
+                - ""
             returned: on success
             type: complex
             contains:

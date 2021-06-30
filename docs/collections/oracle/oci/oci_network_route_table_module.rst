@@ -20,7 +20,7 @@ oracle.oci.oci_network_route_table -- Manage a RouteTable resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *state=present*, creates a new route table for the specified VCN. In the request you must also include at least one route rule for the new route table. For information on the number of rules you can have in a route table, see `Service Limits <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm>`_. For general information about route tables in your VCN and the types of targets you can use in route rules, see `Route Tables <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm>`_.
 - For the purposes of access control, you must provide the OCID of the compartment where you want the route table to reside. Notice that the route table doesn't have to be in the same compartment as the VCN, subnets, or other Networking Service components. If you're not sure which compartment to use, put the route table in the same compartment as the VCN. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_.
 - You may optionally specify a *display name* for the route table, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- This resource has the following action operations in the :ref:`oci_route_table_actions <ansible_collections.oci_route_table_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -57,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -148,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -214,8 +216,29 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-delete_route_rules"></div>
+                    <b>delete_route_rules</b>
+                    <a class="ansibleOptionLink" href="#parameter-delete_route_rules" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                                    <b>Default:</b><br/><div style="color: blue">"false"</div>
+                                    </td>
+                                                                <td>
+                                            <div>Delete route rules from existing route table which are present in the route rules provided by <em>route_rules</em>. If <em>delete_route_rules=yes</em>, route rules provided by <em>route_rules</em> would be deleted, if they are part of existing route table. If they are not part of existing route table, they will be ignored. <em>purge_route_rules</em> and <em>delete_route_rules</em> are mutually exclusive.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -268,7 +291,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -286,6 +309,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of comma-separated attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-purge_route_rules"></div>
+                    <b>purge_route_rules</b>
+                    <a class="ansibleOptionLink" href="#parameter-purge_route_rules" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                                    <b>Default:</b><br/><div style="color: blue">"true"</div>
+                                    </td>
+                                                                <td>
+                                            <div>Purge route rules from route table which are not present in the provided route table. If <em>purge_route_rules=no</em>, provided route rules would be appended to existing route rules. <em>purge_route_rules</em> and <em>delete_route_rules</em> are mutually exclusive.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,6 +379,7 @@ Parameters
                                                                 <td>
                                             <div>Deprecated. Instead use `destination` and `destinationType`. Requests that include both `cidrBlock` and `destination` will be rejected.</div>
                                             <div>A destination IP address range in CIDR notation. Matching packets will be routed to the indicated network entity (the target).</div>
+                                            <div>Cannot be an IPv6 CIDR.</div>
                                             <div>Example: `0.0.0.0/0`</div>
                                                         </td>
             </tr>
@@ -369,7 +414,7 @@ Parameters
                                                                 <td>
                                             <div>Conceptually, this is the range of IP addresses used for matching when routing traffic. Required if you provide a `destinationType`.</div>
                                             <div>Allowed values:</div>
-                                            <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
+                                            <div>* IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule&#x27;s target can only be a DRG or internet gateway. IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a route rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                                         </td>
             </tr>
@@ -424,7 +469,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the route table.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -540,36 +585,38 @@ Examples
     
     - name: Create route_table
       oci_network_route_table:
-        display_name: MyRouteTable
-        vcn_id: ocid1.vcn.oc1.phx.unique_ID
+        display_name: "MyRouteTable"
+        vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
         route_rules:
-        - cidr_block: 0.0.0.0/0
-          network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        - cidr_block: "0.0.0.0/0"
+          network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
 
     - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyRouteTable
         freeform_tags: {'Department': 'Finance'}
         route_rules:
         - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+        purge_route_rules: false
+        delete_route_rules: true
 
     - name: Update route_table
       oci_network_route_table:
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: MyRouteTable
-        rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete route_table
       oci_network_route_table:
-        rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+        rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_route_table:
-        compartment_id: ocid1.compartment.oc1..unique_ID
+        compartment_id: "ocid1.compartment.oc1..unique_ID"
         display_name: MyRouteTable
         state: absent
 
@@ -641,7 +688,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -678,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -752,6 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Deprecated. Instead use `destination` and `destinationType`. Requests that include both `cidrBlock` and `destination` will be rejected.</div>
                                             <div>A destination IP address range in CIDR notation. Matching packets will be routed to the indicated network entity (the target).</div>
+                                            <div>Cannot be an IPv6 CIDR.</div>
                                             <div>Example: `0.0.0.0/0`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -792,7 +840,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Conceptually, this is the range of IP addresses used for matching when routing traffic. Required if you provide a `destinationType`.</div>
                                             <div>Allowed values:</div>
-                                            <div>* IP address range in CIDR notation. For example: `192.168.1.0/24`</div>
+                                            <div>* IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24` or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule&#x27;s target can only be a DRG or internet gateway. IPv6 addressing is supported for all commercial and government regions. See <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm'>IPv6 Addresses</a>.</div>
                                             <div>* The `cidrBlock` value for a <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/'>Service</a>, if you&#x27;re setting up a route rule for traffic destined for a particular `Service` through a service gateway. For example: `oci-phx-objectstorage`.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -871,7 +919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the VCN the route table list belongs to.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN the route table list belongs to.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>

@@ -83,12 +83,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
 
 - name: Delete image_shape_compatibility_entry
   oci_compute_image_shape_compatibility_entry:
-    image_id: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+    image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     state: absent
 
@@ -106,7 +106,7 @@ image_shape_compatibility_entry:
                 - The image OCID.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The shape name.

@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_listing_package_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -59,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -150,6 +150,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -338,11 +339,11 @@ Examples
     
     - name: List listing_packages
       oci_marketplace_listing_package_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific listing_package
       oci_marketplace_listing_package_facts:
-        listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version: package_version_example
 
 
@@ -380,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ListingPackage resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;app_catalog_listing_id&#x27;: &#x27;ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;app_catalog_listing_resource_version&#x27;: &#x27;app_catalog_listing_resource_version_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;package_version&#x27;: &#x27;package_version_example&#x27;, &#x27;pricing&#x27;: {&#x27;currency&#x27;: &#x27;USD&#x27;, &#x27;pay_go_strategy&#x27;: &#x27;PER_OCPU_LINEAR&#x27;, &#x27;rate&#x27;: 10, &#x27;type&#x27;: &#x27;FREE&#x27;}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_link&#x27;: &#x27;resource_link_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: [{&#x27;data_type&#x27;: &#x27;STRING&#x27;, &#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hint_message&#x27;: &#x27;hint_message_example&#x27;, &#x27;is_mandatory&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;app_catalog_listing_id&#x27;: &#x27;ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;app_catalog_listing_resource_version&#x27;: &#x27;app_catalog_listing_resource_version_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;operating_system&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;package_version&#x27;: &#x27;package_version_example&#x27;, &#x27;pricing&#x27;: {&#x27;currency&#x27;: &#x27;USD&#x27;, &#x27;pay_go_strategy&#x27;: &#x27;PER_OCPU_LINEAR&#x27;, &#x27;rate&#x27;: 10, &#x27;type&#x27;: &#x27;FREE&#x27;}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_link&#x27;: &#x27;resource_link_example&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: [{&#x27;data_type&#x27;: &#x27;STRING&#x27;, &#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hint_message&#x27;: &#x27;hint_message_example&#x27;, &#x27;is_mandatory&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -473,6 +474,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-listing_packages/operating_system"></div>
+                    <b>operating_system</b>
+                    <a class="ansibleOptionLink" href="#return-listing_packages/operating_system" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-listing_packages/operating_system/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-listing_packages/operating_system/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>name of the operating system</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

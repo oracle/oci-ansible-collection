@@ -10,14 +10,15 @@
   collections:
     - oracle.oci
   vars:
-    vcn_name: "sample_file_system_vcn"
+    vcn_name: "ansible-sample-create-mount-file-system-vcn"
     cidr_block: "10.0.0.0/16"
     dns_label: "samplefsvcn"
-    ig_name: "sample_ig"
-    rt_name: "sample_rt"
-    sec_list_name: "sample_sec_list"
+    ig_name: "ansible-sample-create-mount-file-system-ig"
+    rt_name: "ansible-sample-create-mount-file-system-rt"
+    sec_list_name: "ansible-sample-create-mount-file-system-sec-list"
 
-    sample_subnet_ad2: 'subnetad2'
+    sample_subnet_ad2: 'ansible-sample-create-mount-file-system-subnetad2'
+    subnet_dns_label: 'samplefsdns'
     subnet_cidr_block_ad2: "10.0.1.0/24"
     all_cidr_block: '0.0.0.0/0'
     all_protocol: 'all'
@@ -29,16 +30,17 @@
     https_port: 443
 
     mt_hostname_label: 'samplemt'
-    mt_display_name: 'samplemt'
-    fs_display_name: 'samplefs'
+    mt_display_name: 'ansible-sample-create-mount-file-system-mt'
+    fs_display_name: 'ansible-sample-create-mount-file-system-fs'
     export_path: '/sample_path'
 
-    first_instance_hostname_label: 'instancehl1'
-    second_instance_hostname_label: 'instancehl2'
+    first_instance_hostname_label: 'ansible-sample-create-and-mount-file-system-instancehl1'
+    second_instance_hostname_label: 'ansible-sample-create-and-mount-file-system-instancehl2'
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
-    first_instance_name: 'first_instance'
-    second_instance_name: 'second_instance'
+    first_instance_name: 'ansible-sample-create-and-mount-file-system-first-instance'
+    second_instance_name: 'ansible-sample-create-and-mount-file-system-second-instance'
     nfs_utils_script: './files/nfs-utils'
+
     #########################################
     # Tenancy specific configuration
     # *Note* - Override the following variables based on your tenancy
@@ -48,7 +50,7 @@
     tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
   tasks:
     - block:
-      - include_tasks: setup.yaml
+      - import_tasks: setup.yaml
   # Create the Mount Target
       - name: "Create Mount Target"
         oci_file_storage_mount_target:
@@ -107,14 +109,16 @@
         oci_compute_image_facts:
           compartment_id: "{{ tenancy_ocid }}"
           operating_system: "Oracle Linux"
-          operating_system_version: "7.8"
           sort_by: "TIMECREATED"
+          sort_order: "ASC"
         register: output
 
       - set_fact:
           instance_image_id: "{{ item.id }}"
         loop: "{{ output.images }}"
-        when: item.display_name.find("GPU") == -1
+        when:
+          - item.display_name.find("GPU") == -1
+          - item.display_name.find("aarch64") == -1
 
   #==========================================================================================
       - name: Launch first instance to mount filesystem
@@ -263,10 +267,10 @@
       - debug:
           msg: "Details of the Snapshot: {{ result.snapshots | string }}"
   #==========================================================================================
-      - include_tasks: teardown.yaml
+      - import_tasks: teardown.yaml
 
       rescue:
-        - include_tasks: teardown.yaml
+        - import_tasks: teardown.yaml
           ignore_errors: yes
 
         - fail:

@@ -64,18 +64,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create tag_default
   oci_identity_tag_default:
-    compartment_id: ocid1.compartment.oc1..aaaaaaaaexampleuniqueID
-    tag_definition_id: ocid1.tagdefinition.oc1..aaaaaaaaexampleuniqueID
-    value: W123
+    compartment_id: "ocid1.compartment.oc1..aaaaaaaaexampleuniqueID"
+    tag_definition_id: "ocid1.tagdefinition.oc1..aaaaaaaaexampleuniqueID"
+    value: "W123"
 
 - name: Update tag_default
   oci_identity_tag_default:
-    value: W123
-    tag_default_id: ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx
+    value: "W123"
+    tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete tag_default
   oci_identity_tag_default:
-    tag_default_id: ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx
+    tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -92,26 +92,26 @@ tag_default:
                 - The OCID of the tag default.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment. The tag default applies to all new resources that get created in the
                   compartment. Resources that existed before the tag default was created are not tagged.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the tag namespace that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_id:
             description:
                 - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_name:
             description:
                 - The name used in the tag definition. This field is informational in the context of the tag default.

@@ -20,7 +20,7 @@ oracle.oci.oci_announcements_service_announcement_facts -- Fetches details about
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -162,6 +162,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -252,7 +253,7 @@ Examples
     
     - name: Get a specific announcement
       oci_announcements_service_announcement_facts:
-        announcement_id: ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx
+        announcement_id: "ocid1.announcement.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -271,12 +272,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-announcement"></div>
                     <b>announcement</b>
                     <a class="ansibleOptionLink" href="#return-announcement" title="Permalink to this return value"></a>
@@ -289,12 +290,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Announcement resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_information&#x27;: &#x27;additional_information_example&#x27;, &#x27;affected_regions&#x27;: [], &#x27;affected_resources&#x27;: [{&#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;}], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2019-01-01T17:43:01.389+0000&#x27;, &#x27;time_one_title&#x27;: &#x27;Time Started&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;Time Ended&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2019-01-01T17:43:01.389+0000&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_information&#x27;: &#x27;additional_information_example&#x27;, &#x27;affected_regions&#x27;: [], &#x27;affected_resources&#x27;: [{&#x27;additional_properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_name&#x27;: &#x27;resource_name_example&#x27;}], &#x27;announcement_type&#x27;: &#x27;ACTION_RECOMMENDED&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_banner&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;reference_ticket_number&#x27;: &#x27;reference_ticket_number_example&#x27;, &#x27;services&#x27;: [], &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2019-01-01T17:43:01.389+0000&#x27;, &#x27;time_one_title&#x27;: &#x27;Time Started&#x27;, &#x27;time_one_type&#x27;: &#x27;START_TIME&#x27;, &#x27;time_one_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_two_title&#x27;: &#x27;Time Ended&#x27;, &#x27;time_two_type&#x27;: &#x27;END_TIME&#x27;, &#x27;time_two_value&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2019-01-01T17:43:01.389+0000&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/additional_information"></div>
                     <b>additional_information</b>
                     <a class="ansibleOptionLink" href="#return-announcement/additional_information" title="Permalink to this return value"></a>
@@ -312,7 +313,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/affected_regions"></div>
                     <b>affected_regions</b>
                     <a class="ansibleOptionLink" href="#return-announcement/affected_regions" title="Permalink to this return value"></a>
@@ -328,7 +329,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/affected_resources"></div>
                     <b>affected_resources</b>
                     <a class="ansibleOptionLink" href="#return-announcement/affected_resources" title="Permalink to this return value"></a>
@@ -345,7 +346,65 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/additional_properties"></div>
+                    <b>additional_properties</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/affected_resources/additional_properties" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Additional properties associated with the resource.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/additional_properties/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/affected_resources/additional_properties/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the property.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/additional_properties/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/affected_resources/additional_properties/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the property.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#return-announcement/affected_resources/region" title="Permalink to this return value"></a>
@@ -364,7 +423,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/resource_id"></div>
                     <b>resource_id</b>
                     <a class="ansibleOptionLink" href="#return-announcement/affected_resources/resource_id" title="Permalink to this return value"></a>
@@ -383,7 +442,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-announcement/affected_resources/resource_name"></div>
                     <b>resource_name</b>
                     <a class="ansibleOptionLink" href="#return-announcement/affected_resources/resource_name" title="Permalink to this return value"></a>
@@ -402,7 +461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/announcement_type"></div>
                     <b>announcement_type</b>
                     <a class="ansibleOptionLink" href="#return-announcement/announcement_type" title="Permalink to this return value"></a>
@@ -420,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-announcement/description" title="Permalink to this return value"></a>
@@ -438,7 +497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-announcement/id" title="Permalink to this return value"></a>
@@ -456,7 +515,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/is_banner"></div>
                     <b>is_banner</b>
                     <a class="ansibleOptionLink" href="#return-announcement/is_banner" title="Permalink to this return value"></a>
@@ -474,7 +533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-announcement/lifecycle_state" title="Permalink to this return value"></a>
@@ -492,7 +551,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/reference_ticket_number"></div>
                     <b>reference_ticket_number</b>
                     <a class="ansibleOptionLink" href="#return-announcement/reference_ticket_number" title="Permalink to this return value"></a>
@@ -510,7 +569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/services"></div>
                     <b>services</b>
                     <a class="ansibleOptionLink" href="#return-announcement/services" title="Permalink to this return value"></a>
@@ -526,7 +585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/summary"></div>
                     <b>summary</b>
                     <a class="ansibleOptionLink" href="#return-announcement/summary" title="Permalink to this return value"></a>
@@ -544,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_created" title="Permalink to this return value"></a>
@@ -562,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_one_title"></div>
                     <b>time_one_title</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_one_title" title="Permalink to this return value"></a>
@@ -580,7 +639,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-announcement/time_one_type"></div>
+                    <b>time_one_type</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/time_one_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of a time associated with an initial time value. If the `timeOneTitle` attribute is present, then the `timeOneTitle` attribute contains a label of `timeOneType` in English. Example: `START_TIME`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">START_TIME</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_one_value"></div>
                     <b>time_one_value</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_one_value" title="Permalink to this return value"></a>
@@ -590,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The actual value of the first time value for the event. Typically, this is the time an event started, but the meaning can vary, depending on the announcement type.</div>
+                                            <div>The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning can vary, depending on the announcement type. The `timeOneType` attribute describes the meaning.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -598,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_two_title"></div>
                     <b>time_two_title</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_two_title" title="Permalink to this return value"></a>
@@ -616,7 +693,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-announcement/time_two_type"></div>
+                    <b>time_two_type</b>
+                    <a class="ansibleOptionLink" href="#return-announcement/time_two_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of a time associated with second time value. If the `timeTwoTitle` attribute is present, then the `timeTwoTitle` attribute contains a label of `timeTwoType` in English. Example: `END_TIME`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">END_TIME</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_two_value"></div>
                     <b>time_two_value</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_two_value" title="Permalink to this return value"></a>
@@ -626,7 +721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The actual value of the second time value. Typically, this is the time an event ended, but the meaning can vary, depending on the announcement type.</div>
+                                            <div>The actual value of the second time value. Typically, this denotes the time an event ended, but the meaning can vary, depending on the announcement type. The `timeTwoType` attribute describes the meaning.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -634,7 +729,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-announcement/time_updated" title="Permalink to this return value"></a>
@@ -652,7 +747,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-announcement/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-announcement/type" title="Permalink to this return value"></a>
@@ -662,7 +757,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The entity type.</div>
+                                            <div>The entity type, which is either an announcement or the summary representation of an announcement.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>

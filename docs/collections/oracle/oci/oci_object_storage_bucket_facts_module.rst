@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_bucket_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -149,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -230,11 +231,12 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>approximateCount</li>
                                                                                                                                                                                                 <li>approximateSize</li>
+                                                                                                                                                                                                <li>autoTiering</li>
                                                                                                                                                                                                 <li>tags</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Bucket summary includes the &#x27;namespace&#x27;, &#x27;name&#x27;, &#x27;compartmentId&#x27;, &#x27;createdBy&#x27;, &#x27;timeCreated&#x27;, and &#x27;etag&#x27; fields. This parameter can also include &#x27;approximateCount&#x27; (approximate number of objects) and &#x27;approximateSize&#x27; (total approximate size in bytes of all objects). For example &#x27;approximateCount,approximateSize&#x27;.</div>
+                                            <div>Bucket summary includes the &#x27;namespace&#x27;, &#x27;name&#x27;, &#x27;compartmentId&#x27;, &#x27;createdBy&#x27;, &#x27;timeCreated&#x27;, and &#x27;etag&#x27; fields. This parameter can also include &#x27;approximateCount&#x27; (approximate number of objects), &#x27;approximateSize&#x27; (total approximate size in bytes of all objects) and &#x27;autoTiering&#x27; (state of auto tiering on the bucket). For example &#x27;approximateCount,approximateSize,autoTiering&#x27;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -307,7 +309,7 @@ Examples
     - name: List buckets
       oci_object_storage_bucket_facts:
         namespace_name: namespace_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific bucket
       oci_object_storage_bucket_facts:
@@ -349,7 +351,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Bucket resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approximate_count&#x27;: 56, &#x27;approximate_size&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_read_only&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metadata&#x27;: {}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_events_enabled&#x27;: True, &#x27;object_lifecycle_policy_etag&#x27;: &#x27;object_lifecycle_policy_etag_example&#x27;, &#x27;public_access_type&#x27;: &#x27;NoPublicAccess&#x27;, &#x27;replication_enabled&#x27;: True, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;versioning&#x27;: &#x27;Enabled&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approximate_count&#x27;: 56, &#x27;approximate_size&#x27;: 56, &#x27;auto_tiering&#x27;: &#x27;Disabled&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_read_only&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metadata&#x27;: {}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_events_enabled&#x27;: True, &#x27;object_lifecycle_policy_etag&#x27;: &#x27;object_lifecycle_policy_etag_example&#x27;, &#x27;public_access_type&#x27;: &#x27;NoPublicAccess&#x27;, &#x27;replication_enabled&#x27;: True, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;versioning&#x27;: &#x27;Enabled&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -386,6 +388,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-buckets/auto_tiering"></div>
+                    <b>auto_tiering</b>
+                    <a class="ansibleOptionLink" href="#return-buckets/auto_tiering" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The auto tiering status on the bucket. A bucket is created with auto tiering `Disabled` by default. For auto tiering `InfrequentAccess`, objects are transitioned automatically between the &#x27;Standard&#x27; and &#x27;InfrequentAccess&#x27; tiers based on the access pattern of the objects.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Disabled</div>
                                     </td>
             </tr>
                                 <tr>

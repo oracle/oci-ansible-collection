@@ -20,7 +20,7 @@ oracle.oci.oci_streaming_stream_pool -- Manage a StreamPool resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a StreamPool resource in Oracle Cloud Infrastructure
 - For *state=present*, starts the provisioning of a new stream pool. To track the progress of the provisioning, you can periodically call GetStreamPool. In the response, the `lifecycleState` parameter of the object tells you its current state.
+- This resource has the following action operations in the :ref:`oci_stream_pool_actions <ansible_collections.oci_stream_pool_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -596,8 +598,8 @@ Examples
     
     - name: Create stream_pool
       oci_streaming_stream_pool:
-        compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
-        name: MyStreamPool
+        compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
+        name: "MyStreamPool"
 
     - name: Update stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_streaming_stream_pool:
@@ -608,16 +610,16 @@ Examples
 
     - name: Update stream_pool
       oci_streaming_stream_pool:
-        stream_pool_id: ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx
+        stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete stream_pool
       oci_streaming_stream_pool:
-        stream_pool_id: ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx
+        stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete stream_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_streaming_stream_pool:
-        compartment_id: ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta
+        compartment_id: "ocid1.tenancy.oc1..exampleasgadvsw7l6cvb4fhssurjqs4irbkzma3wc2fauxv4novazj5guta"
         name: MyStreamPool
         state: absent
 

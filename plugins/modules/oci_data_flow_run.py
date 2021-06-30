@@ -24,14 +24,20 @@ short_description: Manage a Run resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create and update a Run resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a run for an application.
-    - "This resource has the following action operations in the M(oci_run_actions) module: cancel."
+    - "This resource has the following action operations in the M(oci_run_actions) module: change_compartment, cancel."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     application_id:
         description:
-            - The application ID.
-            - Required for create using I(state=present).
+            - The OCID of the associated application. If this value is set, then no value for the execute parameter is required. If this value is not set, then
+              a value for the execute parameter is required, and a new application is created and associated with the new run.
+        type: str
+    archive_uri:
+        description:
+            - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python, Java,
+              or Scala application.
+              See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
         type: str
     arguments:
         description:
@@ -67,14 +73,26 @@ options:
         type: dict
     display_name:
         description:
-            - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - A user-friendly name that does not have to be unique. Avoid entering confidential information. If this value is not specified, it will be derived
+              from the associated application's displayName or set by API using fileUri's application file name.
+            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
     driver_shape:
         description:
             - The VM shape for the driver. Sets the driver cores and memory.
+        type: str
+    execute:
+        description:
+            - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+              applications-with-spark-submit.
+              Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+              Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+              oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+              10``
+              Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during application
+              create/update, or run create/submit,
+              Data Flow service will use derived information from execute input only."
         type: str
     executor_shape:
         description:
@@ -118,6 +136,11 @@ options:
                       Examples: \\"\\" (empty string), \\"10\\", \\"mydata.xml\\", \\"${x}\\""
                 type: str
                 required: true
+    spark_version:
+        description:
+            - The Spark version utilized to run the application. This value may be set if applicationId is not since the Spark version will be taken from the
+              associated application.
+        type: str
     warehouse_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -144,24 +167,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create run
   oci_data_flow_run:
-    display_name: test_wordcount_run
-    application_id: applicationId
-    compartment_id: compartmentId
-    driver_shape: VM.Standard2.1
-    executor_shape: VM.Standard2.1
+    display_name: "test_wordcount_run"
+    application_id: "applicationId"
+    compartment_id: "compartmentId"
+    driver_shape: "VM.Standard2.1"
+    executor_shape: "VM.Standard2.1"
     num_executors: 1
     arguments:
-    - oci://.../WordCount.txt
+    - "oci://.../WordCount.txt"
     parameters: []
     configuration: {}
 
 - name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_run:
-    freeform_tags: '{''Department'': ''Finance''}'
+    freeform_tags: "{'Department': 'Finance'}"
 
 - name: Update run
   oci_data_flow_run:
-    run_id: ocid1.run.oc1..xxxxxxEXAMPLExxxxxx
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -198,7 +221,7 @@ run:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
@@ -210,7 +233,7 @@ run:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         configuration:
             description:
                 - "The Spark configuration passed to the running process.
@@ -253,6 +276,20 @@ run:
             returned: on success
             type: string
             sample: driver_shape_example
+        execute:
+            description:
+                - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+                  applications-with-spark-submit.
+                  Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+                  Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+                  oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+                  10``
+                  Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
+                  application create/update, or run create/submit,
+                  Data Flow service will use derived information from execute input only."
+            returned: on success
+            type: string
+            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -279,7 +316,7 @@ run:
                 - The ID of a run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -317,13 +354,13 @@ run:
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
             type: string
-            sample: ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
         owner_principal_id:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -383,13 +420,13 @@ run:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
                 - The duration of the run in milliseconds.
@@ -442,6 +479,7 @@ run:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -595,12 +633,14 @@ def main():
     module_args.update(
         dict(
             application_id=dict(type="str"),
+            archive_uri=dict(type="str"),
             arguments=dict(type="list"),
             compartment_id=dict(type="str"),
             configuration=dict(type="dict"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             driver_shape=dict(type="str"),
+            execute=dict(type="str"),
             executor_shape=dict(type="str"),
             freeform_tags=dict(type="dict"),
             logs_bucket_uri=dict(type="str"),
@@ -613,6 +653,7 @@ def main():
                     value=dict(type="str", required=True),
                 ),
             ),
+            spark_version=dict(type="str"),
             warehouse_bucket_uri=dict(type="str"),
             run_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),

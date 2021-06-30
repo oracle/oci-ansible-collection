@@ -23,10 +23,14 @@ module: oci_mysql_analytics_cluster_actions
 short_description: Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
-    - For I(action=add), adds an Analytics Cluster to the DB System.
-    - For I(action=restart), restarts the Analytics Cluster.
-    - For I(action=start), starts the Analytics Cluster.
-    - For I(action=stop), stops the Analytics Cluster.
+    - "For I(action=add), dEPRECATED -- please use HeatWave API instead.
+      Adds an Analytics Cluster to the DB System."
+    - "For I(action=restart), dEPRECATED -- please use HeatWave API instead.
+      Restarts the Analytics Cluster."
+    - "For I(action=start), dEPRECATED -- please use HeatWave API instead.
+      Starts the Analytics Cluster."
+    - "For I(action=stop), dEPRECATED -- please use HeatWave API instead.
+      Stops the Analytics Cluster."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -64,24 +68,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action add on analytics_cluster
   oci_mysql_analytics_cluster_actions:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     shape_name: shape_name_example
     cluster_size: 56
     action: add
 
 - name: Perform action restart on analytics_cluster
   oci_mysql_analytics_cluster_actions:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action start on analytics_cluster
   oci_mysql_analytics_cluster_actions:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on analytics_cluster
   oci_mysql_analytics_cluster_actions:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -98,7 +102,7 @@ analytics_cluster:
                 - The OCID of the parent DB System this Analytics Cluster is attached to.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - "The shape determines resources to allocate to the Analytics
@@ -124,7 +128,7 @@ analytics_cluster:
                         - The ID of the node within MySQL Analytics Cluster.
                     returned: on success
                     type: string
-                    sample: ocid1.node.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
                 lifecycle_state:
                     description:
                         - The current state of the MySQL Analytics Cluster node.

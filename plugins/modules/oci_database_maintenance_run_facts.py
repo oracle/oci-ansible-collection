@@ -53,6 +53,7 @@ options:
             - "EXADATA_DB_SYSTEM"
             - "CLOUD_EXADATA_INFRASTRUCTURE"
             - "EXACC_INFRASTRUCTURE"
+            - "AUTONOMOUS_DATABASE"
     maintenance_type:
         description:
             - The maintenance type.
@@ -90,6 +91,7 @@ options:
             - "UPDATING"
             - "DELETING"
             - "DELETED"
+            - "CANCELED"
     availability_domain:
         description:
             - A filter to return only resources that match the given availability domain exactly.
@@ -100,11 +102,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List maintenance_runs
   oci_database_maintenance_run_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific maintenance_run
   oci_database_maintenance_run_facts:
-    maintenance_run_id: ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+    maintenance_run_id: "ocid1.maintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,13 +122,13 @@ maintenance_runs:
                 - The OCID of the maintenance run.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the maintenance run.
@@ -141,7 +143,8 @@ maintenance_runs:
             sample: description_example
         lifecycle_state:
             description:
-                - The current state of the maintenance run.
+                - The current state of the maintenance run. For Autonomous Database on shared Exadata infrastructure, valid states are IN_PROGRESS, SUCCEEDED
+                  and FAILED.
             returned: on success
             type: string
             sample: SCHEDULED
@@ -180,7 +183,7 @@ maintenance_runs:
                 - The ID of the target resource on which the maintenance run occurs.
             returned: on success
             type: string
-            sample: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_type:
             description:
                 - Maintenance type.
@@ -189,10 +192,12 @@ maintenance_runs:
             sample: PLANNED
         patch_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch to be applied in the maintenance run.
+                - The unique identifier of the patch. The identifier string includes the patch type, the Oracle Database version, and the patch creation date
+                  (using the format YYMMDD). For example, the identifier `ru_patch_19.9.0.0_201030` is used for an RU patch for Oracle Database 19.9.0.0 that
+                  was released October 30, 2020.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_subtype:
             description:
                 - Maintenance sub-type.
@@ -205,7 +210,19 @@ maintenance_runs:
                   association's peer container database.
             returned: on success
             type: string
-            sample: ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        patching_mode:
+            description:
+                - "Maintenance method, it will be either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+            returned: on success
+            type: string
+            sample: ROLLING
+        patch_failure_count:
+            description:
+                - Contain the patch failure count.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -221,7 +238,9 @@ maintenance_runs:
         "maintenance_type": "PLANNED",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",
         "maintenance_subtype": "QUARTERLY",
-        "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "patching_mode": "ROLLING",
+        "patch_failure_count": 56
     }]
 """
 
@@ -306,6 +325,7 @@ def main():
                     "EXADATA_DB_SYSTEM",
                     "CLOUD_EXADATA_INFRASTRUCTURE",
                     "EXACC_INFRASTRUCTURE",
+                    "AUTONOMOUS_DATABASE",
                 ],
             ),
             maintenance_type=dict(type="str", choices=["PLANNED", "UNPLANNED"]),
@@ -324,6 +344,7 @@ def main():
                     "UPDATING",
                     "DELETING",
                     "DELETED",
+                    "CANCELED",
                 ],
             ),
             availability_domain=dict(type="str"),

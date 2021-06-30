@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,9 @@ Synopsis
 .. Description
 
 - Perform actions on a Vcn resource in Oracle Cloud Infrastructure
+- For *action=add_ipv6_vcn_cidr*, add an IPv6 CIDR to a VCN. The VCN size is always /56 and assigned by Oracle. Once added the IPv6 CIDR block cannot be removed or modified.
 - For *action=add_vcn_cidr*, adds a CIDR block to a VCN. The CIDR block you add: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
+- For *action=change_compartment*, moves a VCN into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=modify_vcn_cidr*, updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules. - No IP address in an existing subnet should be outside of the new CIDR block range. **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
 - For *action=remove_vcn_cidr*, removes a specified CIDR block from a VCN. **Notes:** - You cannot remove a CIDR block if an IP address in its range is in use. - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 
@@ -57,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -85,7 +87,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>add_vcn_cidr</li>
+                                                                                                                                                                <li>add_ipv6_vcn_cidr</li>
+                                                                                                                                                                                                <li>add_vcn_cidr</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>modify_vcn_cidr</li>
                                                                                                                                                                                                 <li>remove_vcn_cidr</li>
                                                                                     </ul>
@@ -168,6 +172,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -188,6 +193,22 @@ Parameters
                                                                 <td>
                                             <div>The CIDR block to add.</div>
                                             <div>Required for <em>action=add_vcn_cidr</em>, <em>action=remove_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the VCN to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -354,22 +375,33 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action add_ipv6_vcn_cidr on vcn
+      oci_network_vcn_actions:
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        action: add_ipv6_vcn_cidr
+
     - name: Perform action add_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: cidr_block_example
         action: add_vcn_cidr
 
+    - name: Perform action change_compartment on vcn
+      oci_network_vcn_actions:
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
+
     - name: Perform action modify_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         original_cidr_block: original_cidr_block_example
         new_cidr_block: new_cidr_block_example
         action: modify_vcn_cidr
 
     - name: Perform action remove_vcn_cidr on vcn
       oci_network_vcn_actions:
-        vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: cidr_block_example
         action: remove_vcn_cidr
 
@@ -408,7 +440,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Vcn resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;vcn1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn1.oraclevcn.com&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;vcn1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn1.oraclevcn.com&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -530,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -588,7 +620,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -611,6 +643,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn/ipv6_cidr_blocks"></div>
+                    <b>ipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcn/ipv6_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

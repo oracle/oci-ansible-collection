@@ -43,7 +43,7 @@ options:
             - "BULK_MOVE_RESOURCES"
             - "BULK_DELETE_RESOURCES"
         required: true
-extends_documentation_fragment: [ oracle.oci.oracle ]
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
@@ -60,33 +60,25 @@ bulk_action_resource_type_collections:
     returned: on success
     type: complex
     contains:
-        items:
+        name:
             description:
-                - Collection of the resource-types supported by a compartment bulk action.
+                - The unique name of the resource-type.
             returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The unique name of the resource-type.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                metadata_keys:
-                    description:
-                        - "List of metadata keys required to identify a specific resource. Some resource-types require information besides an OCID to identify
-                          a specific resource. For example, the resource-type `buckets` requires metadataKeys L(\\"namespaceName\\", \\"bucketName\\"] to
-                          identify a specific bucket. The required information to identify a resource is in the API documentation for the
-                          resource-type. For example, the required information for `buckets` is found in the
-                          [DeleteBucket API,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/Bucket/DeleteBucket)."
-                    returned: on success
-                    type: list
-                    sample: []
+            type: string
+            sample: name_example
+        metadata_keys:
+            description:
+                - "List of metadata keys required to identify a specific resource. Some resource-types require information besides an OCID to identify
+                  a specific resource. For example, the resource-type `buckets` requires metadataKeys L(\\"namespaceName\\", \\"bucketName\\"] to
+                  identify a specific bucket. The required information to identify a resource is in the API documentation for the
+                  resource-type. For example, the required information for `buckets` is found in the
+                  [DeleteBucket API,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/Bucket/DeleteBucket)."
+            returned: on success
+            type: list
+            sample: []
     sample: [{
-        "items": [{
-            "name": "name_example",
-            "metadata_keys": []
-        }]
+        "name": "name_example",
+        "metadata_keys": []
     }]
 """
 
@@ -114,7 +106,9 @@ class BulkActionResourceTypeCollectionFactsHelperGen(OCIResourceFactsHelperBase)
         ]
 
     def list_resources(self):
-        optional_list_method_params = []
+        optional_list_method_params = [
+            "name",
+        ]
         optional_kwargs = dict(
             (param, self.module.params[param])
             for param in optional_list_method_params
@@ -148,6 +142,7 @@ def main():
                 required=True,
                 choices=["BULK_MOVE_RESOURCES", "BULK_DELETE_RESOURCES"],
             ),
+            name=dict(type="str"),
         )
     )
 

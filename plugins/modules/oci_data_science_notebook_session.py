@@ -24,13 +24,13 @@ short_description: Manage a NotebookSession resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a NotebookSession resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new notebook session.
-    - "This resource has the following action operations in the M(oci_notebook_session_actions) module: activate, deactivate."
+    - "This resource has the following action operations in the M(oci_notebook_session_actions) module: activate, change_compartment, deactivate."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+            - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
               Example: `My NotebookSession`"
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -38,12 +38,12 @@ options:
         aliases: ["name"]
     project_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the notebook session.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the notebook session.
             - Required for create using I(state=present).
         type: str
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment where you want to create the notebook
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the notebook
               session.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -58,8 +58,8 @@ options:
         suboptions:
             shape:
                 description:
-                    - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved from
-                      the `ListNotebookSessionShapes` endpoint.
+                    - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
+                      using the `ListNotebookSessionShapes` endpoint.
                 type: str
                 required: true
             block_storage_size_in_gbs:
@@ -69,10 +69,24 @@ options:
             subnet_id:
                 description:
                     - A notebook session instance is provided with a VNIC for network access.  This specifies the
-                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should be
-                      in a VCN with a NAT gateway for egress to the internet.
+                      L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should
+                      be in a VCN with a NAT gateway for egress to the internet.
                 type: str
                 required: true
+            notebook_session_shape_config_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                        type: float
+                    memory_in_gbs:
+                        description:
+                            - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in
+                              GBs.
+                        type: float
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -89,7 +103,7 @@ options:
         type: dict
     notebook_session_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -109,19 +123,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create notebook_session
   oci_data_science_notebook_session:
-    project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
-      subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+      shape: VM.Standard.E3.Flex
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
     display_name: My NotebookSession
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
-      subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+      shape: VM.Standard.E3.Flex
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -129,19 +143,19 @@ EXAMPLES = """
   oci_data_science_notebook_session:
     display_name: My NotebookSession
     notebook_session_configuration_details:
-      shape: VM.Standard2.1
-      subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-    notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+      shape: VM.Standard.E3.Flex
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete notebook_session
   oci_data_science_notebook_session:
-    notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
     display_name: My NotebookSession
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -155,42 +169,42 @@ notebook_session:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         display_name:
             description:
-                - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
                   Example: `My NotebookSession`"
             returned: on success
             type: string
             sample: My NotebookSession
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the notebook session.
             returned: on success
             type: string
-            sample: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the notebook session.
             returned: on success
             type: string
             sample: created_by_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notebook_session_configuration_details:
             description:
                 - ""
@@ -200,10 +214,10 @@ notebook_session:
                 shape:
                     description:
                         - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
-                          from the `ListNotebookSessionShapes` endpoint.
+                          using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
                     type: string
-                    sample: VM.Standard2.1
+                    sample: VM.Standard.E3.Flex
                 block_storage_size_in_gbs:
                     description:
                         - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
@@ -213,11 +227,30 @@ notebook_session:
                 subnet_id:
                     description:
                         - A notebook session instance is provided with a VNIC for network access.  This specifies the
-                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should
-                          be in a VCN with a NAT gateway for egress to the internet.
+                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet
+                          should be in a VCN with a NAT gateway for egress to the internet.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                notebook_session_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 64.0
+                        memory_in_gbs:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
+                                  in GBs.
+                            returned: on success
+                            type: float
+                            sample: 1024.0
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -260,9 +293,13 @@ notebook_session:
         "created_by": "created_by_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "notebook_session_configuration_details": {
-            "shape": "VM.Standard2.1",
+            "shape": "VM.Standard.E3.Flex",
             "block_storage_size_in_gbs": 1024,
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "notebook_session_shape_config_details": {
+                "ocpus": 64.0,
+                "memory_in_gbs": 1024.0
+            }
         },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",
@@ -422,6 +459,12 @@ def main():
                     shape=dict(type="str", required=True),
                     block_storage_size_in_gbs=dict(type="int"),
                     subnet_id=dict(type="str", required=True),
+                    notebook_session_shape_config_details=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                        ),
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),

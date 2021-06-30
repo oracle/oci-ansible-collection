@@ -20,7 +20,7 @@ oracle.oci.oci_oda_instance -- Manage an OdaInstance resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete an OdaInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, starts an asynchronous job to create a Digital Assistant instance.
 - To monitor the status of the job, take the `opc-work-request-id` response header value and use it to call `GET /workRequests/{workRequestID}`.
-- This resource has the following action operations in the :ref:`oci_oda_instance_actions <ansible_collections.oci_oda_instance_actions_module>` module: start, stop.
+- This resource has the following action operations in the :ref:`oci_oda_instance_actions <ansible_collections.oci_oda_instance_actions_module>` module: change_compartment, start, stop.
 
 
 .. Aliases
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -148,6 +148,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -449,14 +450,14 @@ Examples
     
     - name: Create oda_instance
       oci_oda_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name: DEVELOPMENT
 
     - name: Update oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_oda_instance:
         display_name: display_name_example
         description: description_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -464,17 +465,17 @@ Examples
       oci_oda_instance:
         display_name: display_name_example
         description: description_example
-        oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete oda_instance
       oci_oda_instance:
-        oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete oda_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_oda_instance:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

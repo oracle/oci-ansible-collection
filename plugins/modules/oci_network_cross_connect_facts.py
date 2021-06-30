@@ -24,25 +24,25 @@ short_description: Fetches details about one or multiple CrossConnect resources 
 description:
     - Fetches details about one or multiple CrossConnect resources in Oracle Cloud Infrastructure
     - Lists the cross-connects in the specified compartment. You can filter the list
-      by specifying the OCID of a cross-connect group.
+      by specifying the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a cross-connect group.
     - If I(cross_connect_id) is specified, the details of a single CrossConnect will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
-            - The OCID of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
             - Required to get a specific cross_connect.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple cross_connects.
         type: str
     cross_connect_group_id:
         description:
-            - The OCID of the cross-connect group.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect group.
         type: str
     display_name:
         description:
@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cross_connects
   oci_network_cross_connect_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cross_connect
   oci_network_cross_connect_facts:
-    cross_connect_id: ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx
+    cross_connect_id: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -108,17 +108,17 @@ cross_connects:
                 - The OCID of the compartment containing the cross-connect group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_group_id:
             description:
                 - The OCID of the cross-connect group this cross-connect belongs to (if any).
             returned: on success
             type: string
-            sample: ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -134,7 +134,7 @@ cross_connects:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -144,7 +144,7 @@ cross_connects:
                 - The cross-connect's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The cross-connect's current state.

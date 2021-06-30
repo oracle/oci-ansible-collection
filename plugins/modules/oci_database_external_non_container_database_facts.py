@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List external_non_container_databases
   oci_database_external_non_container_database_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific external_non_container_database
   oci_database_external_non_container_database_facts:
-    external_non_container_database_id: ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -94,12 +94,32 @@ external_non_container_databases:
     returned: on success
     type: complex
     contains:
+        operations_insights_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                operations_insights_status:
+                    description:
+                        - The status of Operations Insights
+                    returned: on success
+                    type: string
+                    sample: ENABLING
+                operations_insights_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -127,7 +147,7 @@ external_non_container_databases:
                   resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -157,7 +177,7 @@ external_non_container_databases:
                 - The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.
             returned: on success
             type: string
-            sample: ocid1.db.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The Oracle Database version.
@@ -196,6 +216,12 @@ external_non_container_databases:
             returned: on success
             type: string
             sample: db_packs_example
+        database_configuration:
+            description:
+                - The Oracle Database configuration
+            returned: on success
+            type: string
+            sample: RAC
         database_management_config:
             description:
                 - ""
@@ -215,7 +241,7 @@ external_non_container_databases:
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
                     type: string
-                    sample: ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 license_model:
                     description:
                         - The Oracle license model that applies to the external database.
@@ -223,6 +249,10 @@ external_non_container_databases:
                     type: string
                     sample: LICENSE_INCLUDED
     sample: [{
+        "operations_insights_config": {
+            "operations_insights_status": "ENABLING",
+            "operations_insights_connector_id": "ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -239,6 +269,7 @@ external_non_container_databases:
         "character_set": "character_set_example",
         "ncharacter_set": "ncharacter_set_example",
         "db_packs": "db_packs_example",
+        "database_configuration": "RAC",
         "database_management_config": {
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",

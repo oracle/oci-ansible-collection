@@ -20,7 +20,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an ExadataInfrastructure resource in Oracle Cloud Infrastructure
-- For *state=present*, creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only. To create an Exadata Cloud Service infrastructure resource, use the  `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/CloudExadataInfrastructure/CreateCloudExadataInfrastructure>`_ operation.
-- This resource has the following action operations in the :ref:`oci_exadata_infrastructure_actions <ansible_collections.oci_exadata_infrastructure_actions_module>` module: activate, download_exadata_infrastructure_config_file.
+- For *state=present*, creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only. To create an Exadata Cloud Service infrastructure resource, use the  `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure>`_ operation.
+- This resource has the following action operations in the :ref:`oci_exadata_infrastructure_actions <ansible_collections.oci_exadata_infrastructure_actions_module>` module: activate, change_compartment, download_exadata_infrastructure_config_file.
 
 
 .. Aliases
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -287,6 +288,26 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-contacts/is_contact_mos_validated"></div>
+                    <b>is_contact_mos_validated</b>
+                    <a class="ansibleOptionLink" href="#parameter-contacts/is_contact_mos_validated" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact is not a valid MOS contact.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-contacts/is_primary"></div>
                     <b>is_primary</b>
                     <a class="ansibleOptionLink" href="#parameter-contacts/is_primary" title="Permalink to this option"></a>
@@ -301,7 +322,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.</div>
+                                            <div>If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,7 +371,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The corporate network proxy for access to the control plane network. Oracle recommends using an HTTPS proxy when possible for enhanced security.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -860,34 +880,34 @@ Examples
     
     - name: Create exadata_infrastructure
       oci_database_exadata_infrastructure:
-        compartment_id: ocid1.tenancy.oc1.unique_ID
-        display_name: tstExaInfra
-        shape: Exadata.Full2.336
-        time_zone: PST
-        cloud_control_plane_server1: 192.168.19.1
-        cloud_control_plane_server2: 192.168.19.2
-        netmask: 255.255.0.0
-        gateway: 192.168.20.1
-        admin_network_cidr: 192.168.19.2/16
-        infini_band_network_cidr: 10.172.19.1/24
-        corporate_proxy: 192.168.20.1
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        display_name: "tstExaInfra"
+        shape: "Exadata.Full2.336"
+        time_zone: "PST"
+        cloud_control_plane_server1: "192.168.19.1"
+        cloud_control_plane_server2: "192.168.19.2"
+        netmask: "255.255.0.0"
+        gateway: "192.168.20.1"
+        admin_network_cidr: "192.168.19.2/16"
+        infini_band_network_cidr: "10.172.19.1/24"
+        corporate_proxy: "192.168.20.1"
         dns_server:
-        - 192.168.10.10
+        - "192.168.10.10"
         ntp_server:
-        - 192.168.10.20
+        - "192.168.10.20"
 
     - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_exadata_infrastructure:
-        admin_network_cidr: 192.168.19.1/16
-        infini_band_network_cidr: 10.172.19.2/24
+        admin_network_cidr: "192.168.19.1/16"
+        infini_band_network_cidr: "10.172.19.2/24"
 
     - name: Update exadata_infrastructure
       oci_database_exadata_infrastructure:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete exadata_infrastructure
       oci_database_exadata_infrastructure:
-        exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -931,7 +951,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ExadataInfrastructure resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_contact_mos_validated&#x27;: True, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_slo_status&#x27;: &#x27;OK&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1045,6 +1065,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/contacts/is_contact_mos_validated"></div>
+                    <b>is_contact_mos_validated</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/contacts/is_contact_mos_validated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact is not a valid MOS contact.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/contacts/is_primary"></div>
                     <b>is_primary</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructure/contacts/is_primary" title="Permalink to this return value"></a>
@@ -1054,7 +1093,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.</div>
+                                            <div>If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1317,6 +1356,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/last_maintenance_run_id"></div>
+                    <b>last_maintenance_run_id</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/last_maintenance_run_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the last maintenance run.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructure/lifecycle_details" title="Permalink to this return value"></a>
@@ -1348,6 +1405,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/maintenance_slo_status"></div>
+                    <b>maintenance_slo_status</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/maintenance_slo_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A field to capture &#x27;Maintenance SLO Status&#x27; for the Exadata infrastructure with values &#x27;OK&#x27;, &#x27;DEGRADED&#x27;. Default is &#x27;OK&#x27; when the infrastructure is provisioned.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1621,6 +1696,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">netmask_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/next_maintenance_run_id"></div>
+                    <b>next_maintenance_run_id</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/next_maintenance_run_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the next maintenance run.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

@@ -24,6 +24,11 @@ short_description: Perform actions on an ExadataInfrastructure resource in Oracl
 description:
     - Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(action=activate), activates the specified Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
+    - For I(action=change_compartment), moves an Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata
+      Cloud@Customer instances only.
+      To move an Exadata Cloud Service infrastructure resource to another compartment, use the
+      L(ChangeCloudExadataInfrastructureCompartment,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ChangeCloudExadataInfrastructureCompartment) operation.
     - For I(action=download_exadata_infrastructure_config_file), downloads the configuration file for the specified Exadata Cloud@Customer infrastructure.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -40,6 +45,11 @@ options:
               64 encode its contents. For example: {{ lookup('file', 'activation.zip') | b64encode }}"
             - Required for I(action=activate).
         type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     config_file_dest:
         description:
             - The destination file path to write the config file to when I(action=download_exadata_infrastructure_config_file). The file will be created if it
@@ -53,6 +63,7 @@ options:
         required: true
         choices:
             - "activate"
+            - "change_compartment"
             - "download_exadata_infrastructure_config_file"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -60,12 +71,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
+
+- name: Perform action change_compartment on exadata_infrastructure
+  oci_database_exadata_infrastructure_actions:
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
-    exadata_infrastructure_id: ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: download_exadata_infrastructure_config_file
 
 """
@@ -82,13 +99,13 @@ exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Exadata infrastructure.
@@ -260,10 +277,24 @@ exadata_infrastructure:
                     sample: email_example
                 is_primary:
                     description:
-                        - True, if this Exadata Infrastructure contact is a primary contact. False, if this Exadata Infrastructure is a secondary contact.
+                        - If `true`, this Exadata Infrastructure contact is a primary contact. If `false`, this Exadata Infrastructure is a secondary contact.
                     returned: on success
                     type: bool
                     sample: true
+                is_contact_mos_validated:
+                    description:
+                        - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure
+                          contact is not a valid MOS contact.
+                    returned: on success
+                    type: bool
+                    sample: true
+        maintenance_slo_status:
+            description:
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
+            returned: on success
+            type: string
+            sample: OK
         maintenance_window:
             description:
                 - ""
@@ -327,6 +358,18 @@ exadata_infrastructure:
                     returned: on success
                     type: int
                     sample: 56
+        last_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        next_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
+            returned: on success
+            type: string
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -373,8 +416,10 @@ exadata_infrastructure:
             "name": "name_example",
             "phone_number": "phone_number_example",
             "email": "email_example",
-            "is_primary": true
+            "is_primary": true,
+            "is_contact_mos_validated": true
         }],
+        "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
             "months": [{
@@ -387,6 +432,8 @@ exadata_infrastructure:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -406,6 +453,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import ActivateExadataInfrastructureDetails
+    from oci.database.models import ChangeExadataInfrastructureCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -416,6 +464,7 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         activate
+        change_compartment
         download_exadata_infrastructure_config_file
     """
 
@@ -455,6 +504,29 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
                     "exadata_infrastructure_id"
                 ),
                 activate_exadata_infrastructure_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeExadataInfrastructureCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_exadata_infrastructure_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_exadata_infrastructure_compartment_details=action_details,
+                exadata_infrastructure_id=self.module.params.get(
+                    "exadata_infrastructure_id"
+                ),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -507,11 +579,16 @@ def main():
         dict(
             exadata_infrastructure_id=dict(aliases=["id"], type="str", required=True),
             activation_file=dict(type="str"),
+            compartment_id=dict(type="str"),
             config_file_dest=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["activate", "download_exadata_infrastructure_config_file"],
+                choices=[
+                    "activate",
+                    "change_compartment",
+                    "download_exadata_infrastructure_config_file",
+                ],
             ),
         )
     )

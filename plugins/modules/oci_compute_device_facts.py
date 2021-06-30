@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     instance_id:
         description:
-            - The OCID of the instance.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
         type: str
         required: true
     is_available:
@@ -67,7 +67,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List devices
   oci_compute_device_facts:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

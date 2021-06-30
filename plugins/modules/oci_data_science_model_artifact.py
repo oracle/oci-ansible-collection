@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     model_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
         type: str
         required: true
     content_length:
@@ -38,13 +38,18 @@ options:
         type: int
     model_artifact:
         description:
-            - The model artifact to upload.
+            - The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.
+            - Required for create using I(state=present).
         type: str
-        required: true
     content_disposition:
         description:
             - The content disposition of the body.
         type: str
+    model_artifact_file:
+        description:
+            - The model artifact file path to upload
+        type: str
+        required: true
     state:
         description:
             - The state of the ModelArtifact.
@@ -59,8 +64,9 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model_artifact
   oci_data_science_model_artifact:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     model_artifact: B
+    model_artifact_file: model.zip
 
 """
 
@@ -134,8 +140,9 @@ def main():
         dict(
             model_id=dict(type="str", required=True),
             content_length=dict(type="int"),
-            model_artifact=dict(type="str", required=True),
+            model_artifact=dict(type="str"),
             content_disposition=dict(type="str"),
+            model_artifact_file=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

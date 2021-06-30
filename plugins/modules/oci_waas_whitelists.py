@@ -68,7 +68,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update whitelists
   oci_waas_whitelists:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     whitelists:
     - name: name_example
 
@@ -165,6 +165,16 @@ class WhitelistsHelperGen(OCIResourceHelperBase):
 
     def get_update_model_class(self):
         return Whitelist
+
+    def get_update_model(self):
+        if self.module.params.get("whitelists"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["whitelists"]
+            ]
+        return []
 
     def update_resource(self):
         update_details = self.get_update_model()

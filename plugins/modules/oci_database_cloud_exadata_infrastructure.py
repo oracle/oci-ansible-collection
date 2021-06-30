@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cloud Exadata infrastructure resource. This resource is used to create an L(Exadata Cloud
       Service,https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm) instance.
+    - "This resource has the following action operations in the M(oci_cloud_exadata_infrastructure_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -177,25 +178,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: tstExaInfra
-    shape: Exadata.X8M
-    compute_count: 2
-    storage_count: 3
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    display_name: "tstExaInfra"
+    shape: "Exadata.X8M"
+    compute_count: "2"
+    storage_count: "3"
 
 - name: Update cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_exadata_infrastructure:
-    compute_count: 3
-    storage_count: 4
-    display_name: displayName
+    compute_count: "3"
+    storage_count: "4"
+    display_name: "displayName"
 
 - name: Update cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
-    cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure:
-    cloud_exadata_infrastructure_id: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cloud_exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -218,13 +219,13 @@ cloud_exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the cloud Exadata infrastructure resource.
@@ -353,13 +354,13 @@ cloud_exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

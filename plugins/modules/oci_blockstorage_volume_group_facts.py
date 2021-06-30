@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple VolumeGroup resources i
 description:
     - Fetches details about one or multiple VolumeGroup resources in Oracle Cloud Infrastructure
     - Lists the volume groups in the specified compartment and availability domain.
-      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+      For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
     - If I(volume_group_id) is specified, the details of a single VolumeGroup will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -37,7 +37,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple volume_groups.
         type: str
     availability_domain:
@@ -88,11 +88,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List volume_groups
   oci_blockstorage_volume_group_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific volume_group
   oci_blockstorage_volume_group_facts:
-    volume_group_id: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -114,11 +114,11 @@ volume_groups:
                 - The OCID of the compartment that contains the volume group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -134,7 +134,7 @@ volume_groups:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -144,7 +144,7 @@ volume_groups:
                 - The OCID for the volume group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume group.
@@ -180,7 +180,7 @@ volume_groups:
                         - The OCID of the volume group to clone from.
                     returned: on success
                     type: string
-                    sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_ids:
                     description:
                         - OCIDs for the volumes in this volume group.
@@ -192,7 +192,7 @@ volume_groups:
                         - The OCID of the volume group backup to restore from.
                     returned: on success
                     type: string
-                    sample: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume group was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

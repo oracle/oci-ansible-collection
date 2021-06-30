@@ -43,11 +43,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific node_pool_options
   oci_container_engine_node_pool_options_facts:
-    node_pool_option_id: all
+    node_pool_option_id: "all"
 
 - name: Get a specific node_pool_options
   oci_container_engine_node_pool_options_facts:
-    node_pool_option_id: ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx
+    node_pool_option_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,7 +102,7 @@ node_pool_options:
                         - The OCID of the image.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "kubernetes_versions": [],
         "shapes": [],

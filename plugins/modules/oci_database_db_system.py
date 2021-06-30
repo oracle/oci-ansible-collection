@@ -25,12 +25,19 @@ description:
     - This module allows the user to create, update and delete a DbSystem resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DB system in the specified compartment and availability domain. The Oracle
       Database edition that you specify applies to all the databases on that DB system. The selected edition cannot be changed.
-    - "An initial database is created on the DB system based on the request parameters you provide and some default
-      options. For detailed information about default options, see the following:"
-    - "- L(Bare metal and virtual machine DB system default
-      options,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)
-      - L(Exadata DB system default options,https://docs.cloud.oracle.com/Content/Database/Tasks/exacreatingDBsystem.htm#DefaultOptionsfortheInitialDatabase)"
-    - "This resource has the following action operations in the M(oci_db_system_actions) module: migrate_exadata_db_system_resource_model."
+    - An initial database is created on the DB system based on the request parameters you provide and some default
+      options. For detailed information about default options, see L(Bare metal and virtual machine DB system default
+      options.,https://docs.cloud.oracle.com/Content/Database/Tasks/creatingDBsystem.htm#Default)
+    - "**Note:** Deprecated for Exadata Cloud Service systems. Use the L(new resource model
+      APIs,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model) instead."
+    - For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See L(Switching an Exadata DB System to the New Resource Model and
+      APIs,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing
+      Exadata DB systems to the new resource model.
+    - Use the L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/) and
+      L(CreateCloudVmCluster,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/) APIs to provision a new
+      Exadata Cloud Service instance.
+    - "This resource has the following action operations in the M(oci_db_system_actions) module: change_compartment, migrate_exadata_db_system_resource_model."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -53,7 +60,7 @@ options:
               The system assigns your nodes automatically to the Fault Domains you specify so that
               no Fault Domain contains more than one node.
             - To get a list of Fault Domains, use the
-              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/FaultDomain/ListFaultDomains) operation in the
               Identity and Access Management Service API.
             - "Example: `FAULT-DOMAIN-1`"
         type: list
@@ -108,7 +115,7 @@ options:
               - For virtual machine shapes, the number of CPU cores and memory
               - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage"
             - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.
+              us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -253,12 +260,12 @@ options:
             db_version:
                 description:
                     - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                      us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'NONE'
                 type: str
             database_software_image_id:
                 description:
-                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     - Applicable when source is 'NONE'
                 type: str
             database:
@@ -284,7 +291,7 @@ options:
                         type: str
                     pdb_name:
                         description:
-                            - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight
+                            - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty
                               alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.
                             - Applicable when source is 'NONE'
                         type: str
@@ -628,34 +635,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_system
   oci_database_db_system:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.tenancy.oc1..unique_ID
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     cpu_core_count: 8
-    database_edition: ENTERPRISE_EDITION
+    database_edition: "ENTERPRISE_EDITION"
     db_home:
       database:
-        admin_password: password
-        db_name: myTestDb
+        admin_password: "password"
+        db_name: "myTestDb"
         db_backup_config:
           backup_destination_details:
-          - type: RECOVERY_APPLIANCE
-            id: ocid1.bkupdest.oc1.phx.unique_ID
-            vpc_user: vpcUser1
-            vpc_password: password
+          - type: "RECOVERY_APPLIANCE"
+            id: "ocid1.bkupdest.oc1.phx.unique_ID"
+            vpc_user: "vpcUser1"
+            vpc_password: "password"
           recovery_window_in_days: 30
           auto_backup_enabled: true
-      db_version: 12.1.0.2
+      db_version: "12.1.0.2"
       display_name: null
     db_system_options:
-      storage_management: LVM
+      storage_management: "LVM"
     disk_redundancy: null
-    display_name: tst3dbsys
-    domain: example.com
-    hostname: athena
-    shape: BM.DenseIO1.36
-    source: NONE
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-    subnet_id: ocid1.subnet.oc1.phx.unique_ID
+    display_name: "tst3dbsys"
+    domain: "example.com"
+    hostname: "athena"
+    shape: "BM.DenseIO1.36"
+    source: "NONE"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    subnet_id: "ocid1.subnet.oc1.phx.unique_ID"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
@@ -664,33 +671,33 @@ EXAMPLES = """
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     version:
-      patch_id: ocid1.patch.oc1.phx.unique_ID
-      action: APPLY
+      patch_id: "ocid1.patch.oc1.phx.unique_ID"
+      action: "APPLY"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
     cpu_core_count: 10
     version:
-      patch_id: ocid1.patch.oc1.phx.unique_ID
-      action: APPLY
-    ssh_public_keys: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+      patch_id: "ocid1.patch.oc1.phx.unique_ID"
+      action: "APPLY"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
 
 - name: Update db_system
   oci_database_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete db_system
   oci_database_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
-    compartment_id: ocid1.tenancy.oc1..unique_ID
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     display_name: tst3dbsys
     state: absent
 
@@ -759,13 +766,13 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB system. The name does not have to be unique.
@@ -795,7 +802,7 @@ db_system:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet the DB system is associated
@@ -803,7 +810,7 @@ db_system:
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
             type: string
-            sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -875,7 +882,7 @@ db_system:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The Oracle Database version of the DB system.
@@ -915,7 +922,7 @@ db_system:
                   a patch operation starts.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         listener_port:
             description:
                 - The port number configured for the listener on the DB system.
@@ -980,7 +987,19 @@ db_system:
                   associated with the DB system.
             returned: on success
             type: string
-            sample: ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the DB system is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.
@@ -1073,13 +1092,13 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -1100,7 +1119,7 @@ db_system:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         point_in_time_data_disk_clone_timestamp:
             description:
                 - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC
@@ -1152,6 +1171,8 @@ db_system:
         "scan_ip_ids": [],
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
         "reco_storage_size_in_gb": 56,
         "node_count": 56,

@@ -97,8 +97,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create backup
   oci_mysql_backup:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_backup:
@@ -107,23 +107,23 @@ EXAMPLES = """
     retention_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update backup
   oci_mysql_backup:
     display_name: display_name_example
     description: description_example
-    backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete backup
   oci_mysql_backup:
-    backup_id: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+    backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete backup using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_backup:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -140,7 +140,7 @@ backup:
                 - OCID of the backup itself
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-supplied display name for the backup.
@@ -158,7 +158,7 @@ backup:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the backup record was created.
@@ -200,7 +200,7 @@ backup:
                 - The OCID of the DB System the backup is associated with.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_snapshot:
             description:
                 - ""
@@ -212,7 +212,7 @@ backup:
                         - The OCID of the DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The user-friendly name for the DB System. It does not have to be unique.
@@ -230,13 +230,13 @@ backup:
                         - The OCID of the compartment the DB System belongs in.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The OCID of the subnet the DB System is associated with.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The Availability Domain where the primary DB System should be located.
@@ -325,7 +325,7 @@ backup:
                         - The OCID of the Configuration to be used for Instances in this DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
                 data_storage_size_in_gbs:
                     description:
                         - Initial size of the data volume in GiBs that will be created and attached.
@@ -362,6 +362,13 @@ backup:
                     returned: on success
                     type: int
                     sample: 56
+                is_highly_available:
+                    description:
+                        - If the policy is to enable high availability of the instance, by
+                          maintaining secondary/failover capacity as necessary.
+                    returned: on success
+                    type: bool
+                    sample: true
                 endpoints:
                     description:
                         - The network endpoints available for this DB System.
@@ -521,6 +528,7 @@ backup:
             "ip_address": "ip_address_example",
             "port": 56,
             "port_x": 56,
+            "is_highly_available": true,
             "endpoints": [{
                 "hostname": "hostname_example",
                 "ip_address": "ip_address_example",

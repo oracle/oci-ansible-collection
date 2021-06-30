@@ -34,6 +34,7 @@ description:
       retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the
       Console. For more information, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
+    - "This resource has the following action operations in the M(oci_notification_topic_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -91,22 +92,22 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create notification_topic
   oci_ons_notification_topic:
-    name: Admins
-    compartment_id: compartment_OCID
-    description: Channel for admin messages
+    name: "Admins"
+    compartment_id: "compartment_OCID"
+    description: "Channel for admin messages"
 
 - name: Update notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_ons_notification_topic:
-    description: Channel for admin messages
+    description: "Channel for admin messages"
 
 - name: Update notification_topic
   oci_ons_notification_topic:
-    description: Channel for admin messages
-    topic_id: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+    description: "Channel for admin messages"
+    topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete notification_topic
   oci_ons_notification_topic:
-    topic_id: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+    topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete notification_topic using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -135,13 +136,19 @@ notification_topic:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+        short_topic_id:
+            description:
+                - A unique short topic Id. This is used only for SMS subscriptions.
+            returned: on success
+            type: string
+            sample: "ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The lifecycle state of the topic.
@@ -191,6 +198,7 @@ notification_topic:
     sample: {
         "name": "name_example",
         "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
+        "short_topic_id": "ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
         "description": "description_example",

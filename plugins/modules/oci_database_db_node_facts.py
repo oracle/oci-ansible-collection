@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List db_nodes
   oci_database_db_node_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific db_node
   oci_database_db_node_facts:
-    db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -101,25 +101,25 @@ db_nodes:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database node.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
         backup_vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup VNIC.
             returned: on success
             type: string
-            sample: ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the database node.
@@ -174,6 +174,18 @@ db_nodes:
             returned: on success
             type: string
             sample: additional_details_example
+        primary_private_ip:
+            description:
+                - The private IP of the primary VNIC attached to this db node
+            returned: on success
+            type: string
+            sample: 10.0.0.10
+        primary_public_ip:
+            description:
+                - The public IP of the primary VNIC attached to this db node
+            returned: on success
+            type: string
+            sample: 140.34.93.209
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -187,7 +199,9 @@ db_nodes:
         "maintenance_type": "VMDB_REBOOT_MIGRATION",
         "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
         "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
-        "additional_details": "additional_details_example"
+        "additional_details": "additional_details_example",
+        "primary_private_ip": 10.0.0.10,
+        "primary_public_ip": 140.34.93.209
     }]
 """
 

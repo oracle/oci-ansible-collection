@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     cluster_option_id:
         description:
-            - "The id of the option set to retrieve. Only \\"all\\" is supported."
+            - "The id of the option set to retrieve. Use \\"all\\" get all options, or use a cluster ID to get options specific to the provided cluster."
         type: str
         aliases: ["id"]
         required: true
@@ -43,7 +43,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific cluster_options
   oci_container_engine_cluster_options_facts:
-    cluster_option_id: all
+    cluster_option_id: "all"
 
 """
 

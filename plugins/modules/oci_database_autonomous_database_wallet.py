@@ -52,7 +52,7 @@ EXAMPLES = """
 - name: Update autonomous_database_wallet
   oci_database_autonomous_database_wallet:
     should_rotate: true
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

@@ -20,7 +20,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1186,19 +1187,19 @@ Examples
     
     - name: Perform action export_dashboard on management_dashboard
       oci_management_dashboard_actions:
-        export_dashboard_id: ocid1.exportdashboard.oc1..xxxxxxEXAMPLExxxxxx
+        export_dashboard_id: "ocid1.exportdashboard.oc1..xxxxxxEXAMPLExxxxxx"
         action: export_dashboard
 
     - name: Perform action import_dashboard on management_dashboard
       oci_management_dashboard_actions:
         dashboards:
-        - dashboard_id: ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx
-          provider_id: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+        - dashboard_id: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
+          provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
           provider_name: provider_name_example
           provider_version: provider_version_example
           tiles:
           - display_name: display_name_example
-            saved_search_id: ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx
+            saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
             row: 56
             column: 56
             height: 56
@@ -1206,7 +1207,7 @@ Examples
             state: DELETED
           display_name: display_name_example
           description: description_example
-          compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+          compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
           is_oob_dashboard: true
           is_show_in_home: true
           metadata_version: metadata_version_example
@@ -1215,12 +1216,12 @@ Examples
           type: type_example
           is_favorite: true
           saved_searches:
-          - id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+          - id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
             display_name: display_name_example
-            provider_id: ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx
+            provider_id: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
             provider_version: provider_version_example
             provider_name: provider_name_example
-            compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
             is_oob_saved_search: true
             description: description_example
             type: SEARCH_SHOW_IN_DASHBOARD

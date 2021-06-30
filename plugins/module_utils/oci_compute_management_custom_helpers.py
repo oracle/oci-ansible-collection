@@ -13,10 +13,23 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
 )
 
+
+logger = oci_common_utils.get_logger("oci_compute_management_custom_helpers")
+
+
+def _debug(s):
+    get_logger().debug(s)
+
+
+def get_logger():
+    return logger
+
+
 try:
     import oci
     from oci.util import to_dict
     from oci.core import VirtualNetworkClient, ComputeClient, BlockstorageClient
+    from oci.exceptions import ServiceError
     from oci.core.models import (
         InstanceConfigurationLaunchInstanceDetails,
         InstanceConfigurationBlockVolumeDetails,
@@ -140,13 +153,15 @@ class InstanceConfigurationActionsHelperCustom:
 
     # instance_configuration launch action returns an instance and not instance_configuration. Currently the base
     # classes do not support custom return field names and use the resource types. Until the feature is added
-    # manually update the return field to instance.
+    # manually update the return field to instance. Added check for action name, change_compartment action returns instance_configuration
     # TODO: Update base class to handle custom return field names from generated code.
     def prepare_result(self, *args, **kwargs):
         super_result = super(
             InstanceConfigurationActionsHelperCustom, self
         ).prepare_result(*args, **kwargs)
-        super_result["instance"] = super_result.pop("instance_configuration", None)
+        action = self.module.params.get("action")
+        if action == "launch":
+            super_result["instance"] = super_result.pop("instance_configuration", None)
         return super_result
 
 
@@ -280,3 +295,51 @@ class InstancePoolActionsHelperCustom:
             fetch_func=lambda **kwargs: self.get_resource(),
         )
         return wait_response.data
+
+
+class InstancePoolInstanceHelperCustom:
+    # adding this override as get_get_model_from_summary_model in resource utils
+    # needs get_module_resource_id_param to handle the TypeError case.
+    # Refer get_get_model_from_summary_model to get more insights.
+    def get_module_resource_id_param(self):
+        return "instance_id"
+
+    # is state is present the assuming it is always create
+    # default value for state is present
+    def is_create(self):
+        return self.module.params.get("state") == "present"
+
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        existing_dict = super(
+            InstancePoolInstanceHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+        if "id" in existing_dict:
+            existing_dict["instance_id"] = existing_dict["id"]
+            existing_dict.pop("id", None)
+        return existing_dict
+
+
+class InstancePoolInstanceActionsHelperCustom:
+
+    # when we do a get resource, we sometimes get 404 error from backend while the resource is detaching
+    # so we return a dummy response sometimes.
+    def get_resource(self):
+        try:
+            return super(InstancePoolInstanceActionsHelperCustom, self).get_resource()
+        except ServiceError as se:
+            if se.status == 404:
+                return oci_common_utils.get_default_response_from_resource(
+                    resource=None
+                )
+            raise
+
+    # when we do a get resource, we sometimes get 404 error from backend while the resource is detaching
+    # so we return a dummy response sometimes (where response.data is set as None)
+    # parameter resource is passed from perform_action is actually response.data
+    def is_action_necessary(self, action, resource=None):
+        if action == "detach":
+            return resource is not None
+
+        return super(InstancePoolInstanceActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

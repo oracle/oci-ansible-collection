@@ -17,9 +17,9 @@
     HTTP_port: "80"
     Oracle_DB_port: "1521"
 
-    vcn_name: "mytestvcn"
+    vcn_name: "ansible-sample-private-subnets-vcn"
     vcn_cidr_block: "172.16.0.0/16"
-    vcn_dns_label: "mytestvcn"
+    vcn_dns_label: "samplevcn"
 
     # route all internet access to the dynamic routing gateway
     route_table_rules:
@@ -29,31 +29,32 @@
     subnet1_cidr: "172.16.1.0/24"
     subnet2_cidr: "172.16.2.0/24"
 
-    subnet1_name: "mytestsubnet_ad1"
-    subnet2_name: "mytestsubnet_ad2"
+    subnet1_name: "ansible-sample-private-subnets-subnetad1"
+    subnet2_name: "ansible-sample-private-subnets-subnetad2"
 
-    subnet1_dns_label: "mytestsubnet1"
-    subnet2_dns_label: "mytestsubnet2"
+    subnet1_dns_label: "samplesubnet1"
+    subnet2_dns_label: "samplesubnet2"
 
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
 
-    instance1_name: "test_instance_1"
-    instance2_name: "test_instance_2"
+    instance1_name: "ansible-sample-private-subnets-instance1"
+    instance2_name: "ansible-sample-private-subnets-instance2"
 
-    instance1_hostname: "mytestinstance1"
-    instance2_hostname: "mytestinstance2"
+    instance1_hostname: "sampleinstance1"
+    instance2_hostname: "sampleinstance2"
 
-    drg_name: "sample_drg"
-    drg_attachment_name: "sample_drg_attachment_name"
+    drg_name: "ansible-sample-private-subnets-drg"
+    drg_attachment_name: "ansible-sample-private-subnets-drg-attachment"
 
-    cpe_name: "sample_cpe"
-    ipsec_name: "sample_ipsec"
+    cpe_name: "ansible-sample-private-subnets-cpe"
+    ipsec_name: "ansible-sample-private-subnets-ipsec"
 
     #########################################
     # Tenancy specific configuration
     # *Note* - Override the following variables based on your tenancy
     # or set a valid value for the corresponding environment variable
     #########################################
+
     ad1: "{{ lookup('env', 'SAMPLE_AD1_NAME') }}"
     ad2: "{{ lookup('env', 'SAMPLE_AD2_NAME') }}"
     sample_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
@@ -145,14 +146,16 @@
         oci_compute_image_facts:
           compartment_id: "{{ tenancy_ocid }}"
           operating_system: "Oracle Linux"
-          operating_system_version: "7.8"
           sort_by: "TIMECREATED"
+          sort_order: "ASC"
         register: output
 
       - set_fact:
           instance_image: "{{ item.id }}"
         loop: "{{ output.images }}"
-        when: item.display_name.find("GPU") == -1
+        when: 
+          - item.display_name.find("GPU") == -1
+          - item.display_name.find("aarch64") == -1
 
   # To launch instances, uncomment following task.
 

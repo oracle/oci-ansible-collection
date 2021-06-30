@@ -82,13 +82,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List instance_agent_command_executions
   oci_compute_instance_agent_instance_agent_command_execution_facts:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific instance_agent_command_execution
   oci_compute_instance_agent_instance_agent_command_execution_facts:
-    instance_agent_command_id: ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+    instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -104,13 +104,13 @@ instance_agent_command_executions:
                 - The OCID of the command
             returned: on success
             type: string
-            sample: ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         delivery_state:
             description:
                 - "Specifies the command delivery state.

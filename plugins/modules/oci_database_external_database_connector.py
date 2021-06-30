@@ -24,6 +24,8 @@ short_description: Manage an ExternalDatabaseConnector resource in Oracle Cloud 
 description:
     - This module allows the user to create, update and delete an ExternalDatabaseConnector resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new external database connector.
+    - "This resource has the following action operations in the M(oci_external_database_connector_actions) module:
+      check_external_database_connector_connection_status."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -114,7 +116,14 @@ options:
                 default: "DETAILS"
             credential_name:
                 description:
-                    - The name of the credential information that used to connect to the database.
+                    - "The name of the credential information that used to connect to the database. The name should be in \\"x.y\\" format, where
+                      the length of \\"x\\" has a maximum of 64 characters, and length of \\"y\\" has a maximum of 199 characters.
+                      The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for
+                      the \\".\\" character that separates the \\"x\\" and \\"y\\" portions of the name.
+                      *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name
+                      that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already
+                      using the name."
+                    - "For example: inventorydb.abc112233445566778899"
                     - Required when credential_type is 'NAME_REFERENCE'
                 type: str
             username:
@@ -171,41 +180,41 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create external_database_connector
   oci_database_external_database_connector:
-    display_name: myTestConn
+    display_name: "myTestConn"
     connection_string:
-      hostname: myHost.test
+      hostname: "myHost.test"
       port: 1521
-      service: testService
-      protocol: TCP
+      service: "testService"
+      protocol: "TCP"
     connection_credentials:
-      username: testUser
-      password: greatPassword
-      role: SYSDBA
-    connector_type: MACS
-    connector_agent_id: ocid
-    external_database_id: ocid
+      username: "testUser"
+      password: "greatPassword"
+      role: "SYSDBA"
+    connector_type: "MACS"
+    connector_agent_id: "ocid"
+    external_database_id: "ocid"
 
 - name: Update external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_database_connector:
     connection_credentials:
-      username: testUser
-      password: greatPassword2
-      role: SYSDBA
+      username: "testUser"
+      password: "greatPassword2"
+      role: "SYSDBA"
 
 - name: Update external_database_connector
   oci_database_external_database_connector:
-    external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete external_database_connector
   oci_database_external_database_connector:
-    external_database_connector_id: ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_database_connector:
     display_name: myTestConn
     external_database_id: ocid
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -222,7 +231,7 @@ external_database_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -254,7 +263,7 @@ external_database_connector:
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the external database connector resource.
@@ -284,7 +293,7 @@ external_database_connector:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external database resource.
             returned: on success
             type: string
-            sample: ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
         connection_status:
             description:
                 - The status of connectivity to the external database.
@@ -341,7 +350,14 @@ external_database_connector:
                     sample: NAME_REFERENCE
                 credential_name:
                     description:
-                        - The name of the credential information that used to connect to the database.
+                        - "The name of the credential information that used to connect to the database. The name should be in \\"x.y\\" format, where
+                          the length of \\"x\\" has a maximum of 64 characters, and length of \\"y\\" has a maximum of 199 characters.
+                          The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for
+                          the \\".\\" character that separates the \\"x\\" and \\"y\\" portions of the name.
+                          *IMPORTANT* - The name must be unique within the OCI region the credential is being created in. If you specify a name
+                          that duplicates the name of another credential within the same OCI region, you may overwrite or corrupt the credential that is already
+                          using the name."
+                        - "For example: inventorydb.abc112233445566778899"
                     returned: on success
                     type: string
                     sample: credential_name_example
@@ -370,7 +386,7 @@ external_database_connector:
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
             type: string
-            sample: ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},

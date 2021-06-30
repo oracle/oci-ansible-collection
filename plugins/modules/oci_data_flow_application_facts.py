@@ -23,7 +23,8 @@ module: oci_data_flow_application_facts
 short_description: Fetches details about one or multiple Application resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Application resources in Oracle Cloud Infrastructure
-    - Lists all applications in the specified compartment.
+    - Lists all applications in the specified compartment. Only one parameter other than compartmentId may also be included in a query. The query must include
+      compartmentId. If the query does not include compartmentId, or includes compartmentId but two or more other parameters an error is returned.
     - If I(application_id) is specified, the details of a single Application will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -73,11 +74,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List applications
   oci_data_flow_application_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific application
   oci_data_flow_application_facts:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -130,7 +131,7 @@ applications:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -157,6 +158,20 @@ applications:
             returned: on success
             type: string
             sample: driver_shape_example
+        execute:
+            description:
+                - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+                  applications-with-spark-submit.
+                  Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+                  Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+                  oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+                  10``
+                  Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
+                  application create/update, or run create/submit,
+                  Data Flow service will use derived information from execute input only."
+            returned: on success
+            type: string
+            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -183,7 +198,7 @@ applications:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -214,7 +229,7 @@ applications:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -252,7 +267,7 @@ applications:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.
@@ -291,6 +306,7 @@ applications:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},

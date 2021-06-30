@@ -23,6 +23,7 @@ module: oci_dns_resolver
 short_description: Manage a Resolver resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Resolver resource in Oracle Cloud Infrastructure
+    - "This resource has the following action operations in the M(oci_resolver_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -145,17 +146,17 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     attached_views:
-    - view_id: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+    - view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
     rules:
     - action: FORWARD
       source_endpoint_name: source_endpoint_name_example
     if_unmodified_since: if_unmodified_since_example
     scope: GLOBAL
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update resolver
   oci_dns_resolver:
-    resolver_id: ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
 """
@@ -172,13 +173,13 @@ resolver:
                 - The OCID of the owning compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         attached_vcn_id:
             description:
                 - The OCID of the attached VCN.
             returned: on success
             type: string
-            sample: ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the resolver.
@@ -206,7 +207,7 @@ resolver:
                 - The OCID of the resolver.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
@@ -240,7 +241,7 @@ resolver:
                 - The OCID of the default view.
             returned: on success
             type: string
-            sample: ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx"
         is_protected:
             description:
                 - A Boolean flag indicating whether or not parts of the resource are unable to be explicitly managed.
@@ -297,7 +298,7 @@ resolver:
                           and will be updated if the resolver's compartment is changed.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format
@@ -331,7 +332,7 @@ resolver:
                         - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         attached_views:
             description:
                 - The attached views. Views are evaluated in order.
@@ -343,7 +344,7 @@ resolver:
                         - The OCID of the view.
                     returned: on success
                     type: string
-                    sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         rules:
             description:
                 - Rules for the resolver. Rules are evaluated in order.

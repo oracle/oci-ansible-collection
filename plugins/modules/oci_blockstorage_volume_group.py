@@ -28,7 +28,8 @@ description:
       volume group, or by restoring a volume group backup. A volume group can contain up to 64 volumes.
       You may optionally specify a *display name* for the volume group, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
-    - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/Content/Block/Concepts/volumegroups.htm).
+    - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
+    - "This resource has the following action operations in the M(oci_volume_group_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -52,7 +53,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -68,7 +69,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -129,16 +130,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume_group
   oci_blockstorage_volume_group:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     source_details:
-      type: volumeIds
+      type: "volumeIds"
       volume_ids:
-      - ocid1.volume.oc1..xxxxxEXAMPLExxxxx...vm62xq
+      - "ocid1.volume.oc1..xxxxxEXAMPLExxxxx...vm62xq"
 
 - name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -147,16 +148,16 @@ EXAMPLES = """
   oci_blockstorage_volume_group:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_group_id: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume_group
   oci_blockstorage_volume_group:
-    volume_group_id: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+    volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume_group:
-    compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
+    compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
     display_name: display_name_example
     state: absent
 
@@ -180,11 +181,11 @@ volume_group:
                 - The OCID of the compartment that contains the volume group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -200,7 +201,7 @@ volume_group:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -210,7 +211,7 @@ volume_group:
                 - The OCID for the volume group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume group.
@@ -246,7 +247,7 @@ volume_group:
                         - The OCID of the volume group to clone from.
                     returned: on success
                     type: string
-                    sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_ids:
                     description:
                         - OCIDs for the volumes in this volume group.
@@ -258,7 +259,7 @@ volume_group:
                         - The OCID of the volume group backup to restore from.
                     returned: on success
                     type: string
-                    sample: ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume group was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).

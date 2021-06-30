@@ -20,7 +20,7 @@ oracle.oci.oci_identity_tag_namespace -- Manage a TagNamespace resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -47,7 +47,7 @@ Synopsis
 - You must specify the compartment ID in the request object (remember that the tenancy is simply the root compartment).
 - You must also specify a *name* for the namespace, which must be unique across all namespaces in your tenancy and cannot be changed. The name can contain any ASCII character except the space (_) or period (.). Names are case insensitive. That means, for example, "myNamespace" and "mynamespace" are not allowed in the same tenancy. Once you created a namespace, you cannot change the name. If you specify a name that's already in use in the tenancy, a 409 error is returned.
 - You must also specify a *description* for the namespace. It does not have to be unique, and you can change it with `UpdateTagNamespace <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace>`_.
-- This resource has the following action operations in the :ref:`oci_tag_namespace_actions <ansible_collections.oci_tag_namespace_actions_module>` module: cascade_delete.
+- This resource has the following action operations in the :ref:`oci_tag_namespace_actions <ansible_collections.oci_tag_namespace_actions_module>` module: cascade_delete, change_compartment.
 
 
 .. Aliases
@@ -59,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -150,6 +150,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -453,13 +454,13 @@ Examples
     
     - name: Create tag_namespace
       oci_identity_tag_namespace:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
 
     - name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_tag_namespace:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -470,16 +471,16 @@ Examples
       oci_identity_tag_namespace:
         description: description_example
         freeform_tags: {'Department': 'Finance'}
-        tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete tag_namespace
       oci_identity_tag_namespace:
-        tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+        tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_tag_namespace:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
 

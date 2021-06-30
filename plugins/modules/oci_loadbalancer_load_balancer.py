@@ -45,6 +45,7 @@ description:
     - When you create a load balancer, the system assigns an IP address.
       To get the IP address, use the L(GetLoadBalancer,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancer/GetLoadBalancer)
       operation.
+    - "This resource has the following action operations in the M(oci_load_balancer_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -167,16 +168,16 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create load_balancer
   oci_loadbalancer_load_balancer:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    display_name: example_load_balancer
-    shape_name: 100Mbps
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: "example_load_balancer"
+    shape_name: "100Mbps"
     is_private: true
     subnet_ids:
-    - ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx
+    - "ocid1.subnet.oc1.phx.xxxxxxEXAMPLExxxxxx"
 
 - name: Update load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_loadbalancer_load_balancer:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: example_load_balancer
     shape_name: 100Mbps
     freeform_tags: {'Department': 'Finance'}
@@ -186,16 +187,16 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     display_name: example_load_balancer
     shape_name: 100Mbps
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete load_balancer
   oci_loadbalancer_load_balancer:
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete load_balancer using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_loadbalancer_load_balancer:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: example_load_balancer
     state: absent
 
@@ -213,13 +214,13 @@ load_balancer:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -272,7 +273,7 @@ load_balancer:
                                 - ""
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
@@ -384,6 +385,7 @@ load_balancer:
                     sample: []
                 path_route_set_name:
                     description:
+                        - Deprecated. Please use `routingPolicies` instead.
                         - The name of the set of path-based routing rules, L(PathRouteSet,https://docs.cloud.oracle.com/en-
                           us/iaas/api/#/en/loadbalancer/20170115/PathRouteSet/),
                           applied to this listener's traffic.
@@ -508,6 +510,13 @@ load_balancer:
                     returned: on success
                     type: list
                     sample: []
+                routing_policy_name:
+                    description:
+                        - The name of the routing policy applied to this listener's traffic.
+                        - "Example: `example_routing_policy_name`"
+                    returned: on success
+                    type: string
+                    sample: example_routing_policy_name
         hostnames:
             description:
                 - ""
@@ -674,13 +683,13 @@ load_balancer:
                     description:
                         - The public certificate, in PEM format, that you received from your SSL certificate provider.
                         - "Example:"
-                        -     -----BEGIN CERTIFICATE-----
+                        - "   -----BEGIN CERTIFICATE-----
                               MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG
                               A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE
                               MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl
                               YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw
                               ...
-                              -----END CERTIFICATE-----
+                              -----END CERTIFICATE-----"
                     returned: on success
                     type: string
                     sample: public_certificate_example
@@ -688,13 +697,13 @@ load_balancer:
                     description:
                         - The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.
                         - "Example:"
-                        -     -----BEGIN CERTIFICATE-----
+                        - "   -----BEGIN CERTIFICATE-----
                               MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix
                               EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD
                               VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y
                               aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy
                               ...
-                              -----END CERTIFICATE-----
+                              -----END CERTIFICATE-----"
                     returned: on success
                     type: string
                     sample: ca_certificate_example
@@ -1171,7 +1180,10 @@ load_balancer:
                             sample: example_header_name
                         value:
                             description:
-                                - A header value that conforms to RFC 7230.
+                                - "A header value that conforms to RFC 7230. With the following exceptions:
+                                  *  value cannot contain `$`
+                                  *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are
+                                  invalid."
                                 - "Example: `example_value`"
                             returned: on success
                             type: string
@@ -1327,14 +1339,22 @@ load_balancer:
                                     sample: query_example
                         prefix:
                             description:
-                                - A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                                - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                                  With the following exceptions:
+                                  *  value cannot contain `$`
+                                  *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are
+                                  invalid."
                                 - "Example: `example_prefix_value`"
                             returned: on success
                             type: string
                             sample: example_prefix_value
                         suffix:
                             description:
-                                - A string to append to the header value. The resulting header value must conform to RFC 7230.
+                                - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                                  With the following exceptions:
+                                  *  value cannot contain `$`
+                                  *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are
+                                  invalid."
                                 - "Example: `example_suffix_value`"
                             returned: on success
                             type: string
@@ -1386,6 +1406,62 @@ load_balancer:
                             returned: on success
                             type: int
                             sample: 56
+        routing_policies:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The unique name for this list of routing rules. Avoid entering confidential information.
+                        - "Example: `example_routing_policy`"
+                    returned: on success
+                    type: string
+                    sample: example_routing_policy
+                condition_language_version:
+                    description:
+                        - The version of the language in which `condition` of `rules` are composed.
+                    returned: on success
+                    type: string
+                    sample: V1
+                rules:
+                    description:
+                        - The ordered list of routing rules.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - A unique name for the routing policy rule. Avoid entering confidential information.
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        condition:
+                            description:
+                                - A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.
+                            returned: on success
+                            type: string
+                            sample: condition_example
+                        actions:
+                            description:
+                                - A list of actions to be applied when conditions of the routing rule are met.
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: string
+                                    sample: FORWARD_TO_BACKENDSET
+                                backend_set_name:
+                                    description:
+                                        - Name of the backend set the listener will forward the traffic to.
+                                        - "Example: `backendSetForImages`"
+                                    returned: on success
+                                    type: string
+                                    sample: backendSetForImages
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1426,7 +1502,8 @@ load_balancer:
                 "idle_timeout": 1200,
                 "backend_tcp_proxy_protocol_version": 1
             },
-            "rule_set_names": []
+            "rule_set_names": [],
+            "routing_policy_name": "example_routing_policy_name"
         },
         "hostnames": {
             "name": "example_hostname_001",
@@ -1524,6 +1601,18 @@ load_balancer:
                 "description": "description_example",
                 "are_invalid_characters_allowed": true,
                 "http_large_header_size_in_kb": 56
+            }]
+        },
+        "routing_policies": {
+            "name": "example_routing_policy",
+            "condition_language_version": "V1",
+            "rules": [{
+                "name": "name_example",
+                "condition": "condition_example",
+                "actions": [{
+                    "name": "FORWARD_TO_BACKENDSET",
+                    "backend_set_name": "backendSetForImages"
+                }]
             }]
         }
     }

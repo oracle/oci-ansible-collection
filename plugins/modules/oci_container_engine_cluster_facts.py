@@ -75,11 +75,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List clusters
   oci_container_engine_cluster_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cluster
   oci_container_engine_cluster_facts:
-    cluster_id: ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -107,7 +107,33 @@ clusters:
                 - The OCID of the compartment in which the cluster exists.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+            sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
+        endpoint_config:
+            description:
+                - The network configuration for access to the Cluster control plane.
+            returned: on success
+            type: complex
+            contains:
+                subnet_id:
+                    description:
+                        - The OCID of the regional subnet in which to place the Cluster endpoint.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see
+                          L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                    returned: on success
+                    type: list
+                    sample: []
+                is_public_ip_enabled:
+                    description:
+                        - Whether the cluster should be assigned a public IP address. Defaults to false. If set to true on a private subnet, the cluster
+                          provisioning will fail.
+                    returned: on success
+                    type: bool
+                    sample: true
         vcn_id:
             description:
                 - The OCID of the virtual cloud network (VCN) in which the cluster exists.
@@ -125,7 +151,7 @@ clusters:
                 - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         options:
             description:
                 - Optional attributes for the cluster.
@@ -203,7 +229,7 @@ clusters:
                         - The user who created the cluster.
                     returned: on success
                     type: string
-                    sample: ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 created_by_work_request_id:
                     description:
                         - The OCID of the work request which created the cluster.
@@ -221,7 +247,7 @@ clusters:
                         - The user who deleted the cluster.
                     returned: on success
                     type: string
-                    sample: ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 deleted_by_work_request_id:
                     description:
                         - The OCID of the work request which deleted the cluster.
@@ -239,7 +265,7 @@ clusters:
                         - The user who updated the cluster.
                     returned: on success
                     type: string
-                    sample: ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
+                    sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 updated_by_work_request_id:
                     description:
                         - The OCID of the work request which updated the cluster.
@@ -266,20 +292,62 @@ clusters:
             contains:
                 kubernetes:
                     description:
-                        - The Kubernetes API server endpoint.
+                        - The non-native networking Kubernetes API server endpoint.
                     returned: on success
                     type: string
                     sample: https://yourkubernetes
+                public_endpoint:
+                    description:
+                        - The public native networking Kubernetes API server endpoint, if one was requested.
+                    returned: on success
+                    type: string
+                    sample: https://yourPublicEndpoint
+                private_endpoint:
+                    description:
+                        - The private native networking Kubernetes API server endpoint.
+                    returned: on success
+                    type: string
+                    sample: https://yourPrivateEndpoint
         available_kubernetes_upgrades:
             description:
                 - Available Kubernetes versions to which the clusters masters may be upgraded.
             returned: on success
             type: list
             sample: []
+        image_policy_config:
+            description:
+                - The image verification policy for signature validation.
+            returned: on success
+            type: complex
+            contains:
+                is_policy_enabled:
+                    description:
+                        - Whether the image verification policy is enabled. Defaults to false. If set to true, the images will be verified against the policy at
+                          runtime.
+                    returned: on success
+                    type: bool
+                    sample: true
+                key_details:
+                    description:
+                        - A list of KMS key details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        kms_key_id:
+                            description:
+                                - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
         "name": "My Cluster",
         "compartment_id": "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq",
+        "endpoint_config": {
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": [],
+            "is_public_ip_enabled": true
+        },
         "vcn_id": "ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa",
         "kubernetes_version": "v1.9.4",
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
@@ -311,9 +379,17 @@ clusters:
         "lifecycle_state": "UPDATING",
         "lifecycle_details": "waiting for node pools",
         "endpoints": {
-            "kubernetes": "https://yourkubernetes"
+            "kubernetes": "https://yourkubernetes",
+            "public_endpoint": "https://yourPublicEndpoint",
+            "private_endpoint": "https://yourPrivateEndpoint"
         },
-        "available_kubernetes_upgrades": []
+        "available_kubernetes_upgrades": [],
+        "image_policy_config": {
+            "is_policy_enabled": true,
+            "key_details": [{
+                "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        }
     }]
 """
 

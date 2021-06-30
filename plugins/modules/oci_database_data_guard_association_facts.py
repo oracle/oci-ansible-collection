@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List data_guard_associations
   oci_database_data_guard_association_facts:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific data_guard_association
   oci_database_data_guard_association_facts:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-    data_guard_association_id: ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,13 +66,13 @@ data_guard_associations:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Data Guard association.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the reporting database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         role:
             description:
                 - The role of the reporting database in this Data Guard association.
@@ -97,26 +97,26 @@ data_guard_associations:
                   peer database.
             returned: on success
             type: string
-            sample: ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         peer_db_home_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home containing the associated peer
                   database.
             returned: on success
             type: string
-            sample: ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
         peer_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated peer database.
             returned: on success
             type: string
-            sample: ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         peer_data_guard_association_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer database's Data Guard association.
             returned: on success
             type: string
-            sample: ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
         peer_role:
             description:
                 - The role of the peer database in this Data Guard association.

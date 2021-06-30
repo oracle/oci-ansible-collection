@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent -- Manage a ManagementAgent resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -400,22 +401,22 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update management_agent
       oci_management_agent:
-        management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+        management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable: true
 
     - name: Delete management_agent
       oci_management_agent:
-        management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+        management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_management_agent:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

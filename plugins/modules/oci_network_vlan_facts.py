@@ -36,13 +36,12 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple vlans.
         type: str
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required to list multiple vlans.
         type: str
     display_name:
         description:
@@ -87,12 +86,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vlans
   oci_network_vlan_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vlan
   oci_network_vlan_facts:
-    vlan_id: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+    vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -123,11 +121,11 @@ vlans:
                 - The OCID of the compartment containing the VLAN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -143,7 +141,7 @@ vlans:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -153,7 +151,7 @@ vlans:
                 - The VLAN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VLAN's current state.
@@ -181,7 +179,7 @@ vlans:
                 - The OCID of the route table that the VLAN uses.
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VLAN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -194,7 +192,7 @@ vlans:
                 - The OCID of the VCN the VLAN is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "cidr_block": "192.168.1.0/24",
@@ -238,7 +236,6 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
     def get_required_params_for_list(self):
         return [
             "compartment_id",
-            "vcn_id",
         ]
 
     def get_resource(self):
@@ -248,6 +245,7 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "vcn_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -261,7 +259,6 @@ class VlanFactsHelperGen(OCIResourceFactsHelperBase):
         return oci_common_utils.list_all_resources(
             self.client.list_vlans,
             compartment_id=self.module.params.get("compartment_id"),
-            vcn_id=self.module.params.get("vcn_id"),
             **optional_kwargs
         )
 

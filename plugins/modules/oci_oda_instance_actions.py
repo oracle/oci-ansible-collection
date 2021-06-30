@@ -23,6 +23,8 @@ module: oci_oda_instance_actions
 short_description: Perform actions on an OdaInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an OdaInstance resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves an Digital Assistant instance into a different compartment. When provided, If-Match is checked against
+      ETag values of the resource.
     - For I(action=start), starts an inactive Digital Assistant instance. Once active, the instance will be accessible and metering
       of requests will be started again.
     - For I(action=stop), stops an active Digital Assistant instance. Once inactive, the instance will not be accessible and metering
@@ -37,26 +39,38 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - Identifier of the compartment into which the Digital Assistant instance should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the OdaInstance.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on oda_instance
+  oci_oda_instance_actions:
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action start on oda_instance
   oci_oda_instance_actions:
-    oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on oda_instance
   oci_oda_instance_actions:
-    oda_instance_id: ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -73,7 +87,7 @@ oda_instance:
                 - Unique immutable identifier that was assigned when the instance was created.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User-defined name for the Digital Assistant instance. Avoid entering confidential information.
@@ -92,7 +106,7 @@ oda_instance:
                 - Identifier of the compartment that the instance belongs to.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - Shape or size of the instance.
@@ -188,6 +202,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.oda import OdaClient
+    from oci.oda.models import ChangeOdaInstanceCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -197,6 +212,7 @@ except ImportError:
 class OdaInstanceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         start
         stop
     """
@@ -215,6 +231,27 @@ class OdaInstanceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_oda_instance,
             oda_instance_id=self.module.params.get("oda_instance_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeOdaInstanceCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_oda_instance_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                oda_instance_id=self.module.params.get("oda_instance_id"),
+                change_oda_instance_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def start(self):
@@ -266,7 +303,12 @@ def main():
     module_args.update(
         dict(
             oda_instance_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["start", "stop"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "start", "stop"],
+            ),
         )
     )
 

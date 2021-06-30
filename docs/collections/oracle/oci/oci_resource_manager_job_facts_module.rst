@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_job_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -148,6 +148,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -363,11 +364,11 @@ Examples
     
     - name: List jobs
       oci_resource_manager_job_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific job
       oci_resource_manager_job_facts:
-        job_id: ocid1.job.oc1..xxxxxxEXAMPLExxxxxx
+        job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -404,7 +405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Job resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;IMPORT_TF_STATE&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;PHX&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;IMPORT_TF_STATE&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -538,6 +539,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-jobs/config_source/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#return-jobs/config_source/bucket_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-jobs/config_source/commit_id"></div>
                     <b>commit_id</b>
                     <a class="ansibleOptionLink" href="#return-jobs/config_source/commit_id" title="Permalink to this return value"></a>
@@ -589,6 +609,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-jobs/config_source/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-jobs/config_source/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Object Storage namespace that contains the bucket.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-jobs/config_source/region"></div>
+                    <b>region</b>
+                    <a class="ansibleOptionLink" href="#return-jobs/config_source/region" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the bucket&#x27;s region. Example: `PHX`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PHX</div>
                                     </td>
             </tr>
                                 <tr>

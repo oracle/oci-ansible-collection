@@ -20,7 +20,7 @@ oracle.oci.oci_database_console_connection -- Manage a ConsoleConnection resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -373,13 +374,13 @@ Examples
     
     - name: Create console_connection
       oci_database_console_connection:
-        public_key: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
-        db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete console_connection
       oci_database_console_connection:
-        db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
-        console_connection_id: ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx
+        db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
+        console_connection_id: "ocid1.consoleconnection.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

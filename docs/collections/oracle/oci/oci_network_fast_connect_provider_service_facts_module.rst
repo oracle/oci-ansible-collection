@@ -20,7 +20,7 @@ oracle.oci.oci_network_fast_connect_provider_service_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - Fetches details about one or multiple FastConnectProviderService resources in Oracle Cloud Infrastructure
 - Lists the service offerings from supported providers. You need this information so you can specify your desired provider and service offering when you create a virtual circuit.
-- For the compartment ID, provide the OCID of your tenancy (the root compartment).
+- For the compartment ID, provide the `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ of your tenancy (the root compartment).
 - For more information, see `FastConnect Overview <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm>`_.
 - If *provider_service_id* is specified, the details of a single FastConnectProviderService will be returned.
 
@@ -58,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -149,6 +149,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -167,7 +168,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required to list multiple fast_connect_provider_services.</div>
                                                         </td>
             </tr>
@@ -213,7 +214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the provider service.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the provider service.</div>
                                             <div>Required to get a specific fast_connect_provider_service.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -272,11 +273,11 @@ Examples
     
     - name: List fast_connect_provider_services
       oci_network_fast_connect_provider_service_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific fast_connect_provider_service
       oci_network_fast_connect_provider_service_facts:
-        provider_service_id: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+        provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

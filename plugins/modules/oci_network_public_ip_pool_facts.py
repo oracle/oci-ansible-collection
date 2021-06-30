@@ -37,7 +37,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple public_ip_pools.
         type: str
     display_name:
@@ -76,11 +76,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List public_ip_pools
   oci_network_public_ip_pool_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific public_ip_pool
   oci_network_public_ip_pool_facts:
-    public_ip_pool_id: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -102,11 +102,11 @@ public_ip_pools:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this pool.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -122,7 +122,7 @@ public_ip_pools:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -132,7 +132,7 @@ public_ip_pools:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The public IP pool's current state.
@@ -146,62 +146,6 @@ public_ip_pools:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
-        items:
-            description:
-                - A list of public IP pool summaries.
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the public IP
-                          pool.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                defined_tags:
-                    description:
-                        - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                display_name:
-                    description:
-                        - A user-friendly name. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                freeform_tags:
-                    description:
-                        - Free-form tags for this resource. Each tag is a simple key-value pair with no
-                          predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                        - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                lifecycle_state:
-                    description:
-                        - The public IP pool's current state.
-                    returned: on success
-                    type: string
-                    sample: lifecycle_state_example
-                time_created:
-                    description:
-                        - The date and time the public IP pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                        - "Example: `2016-08-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
     sample: [{
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -210,16 +154,7 @@ public_ip_pools:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "INACTIVE",
-        "time_created": "2016-08-25T21:10:29.600Z",
-        "items": [{
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "display_name": "display_name_example",
-            "freeform_tags": {'Department': 'Finance'},
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "lifecycle_state": "lifecycle_state_example",
-            "time_created": "2016-08-25T21:10:29.600Z"
-        }]
+        "time_created": "2016-08-25T21:10:29.600Z"
     }]
 """
 

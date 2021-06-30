@@ -36,6 +36,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the route table, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_route_table_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -49,7 +50,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -65,7 +66,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -82,6 +83,7 @@ options:
                       `cidrBlock` and `destination` will be rejected.
                     - A destination IP address range in CIDR notation. Matching packets will
                       be routed to the indicated network entity (the target).
+                    - Cannot be an IPv6 CIDR.
                     - "Example: `0.0.0.0/0`"
                 type: str
             destination:
@@ -89,7 +91,11 @@ options:
                     - Conceptually, this is the range of IP addresses used for matching when routing
                       traffic. Required if you provide a `destinationType`.
                     - "Allowed values:"
-                    - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                    - " * IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24`
+                        or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule's target
+                        can only be a DRG or internet gateway.
+                        IPv6 addressing is supported for all commercial and government regions.
+                        See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                     - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                           setting up a route rule for traffic destined for a particular `Service` through
                           a service gateway. For example: `oci-phx-objectstorage`."
@@ -123,11 +129,29 @@ options:
         type: str
     rt_id:
         description:
-            - The OCID of the route table.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    purge_route_rules:
+        description:
+            - Purge route rules from route table which are not present in the provided route table.
+              If I(purge_route_rules=no), provided route rules would be appended to existing route
+              rules. I(purge_route_rules) and I(delete_route_rules) are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "true"
+    delete_route_rules:
+        description:
+            - Delete route rules from existing route table which are present in the
+              route rules provided by I(route_rules). If I(delete_route_rules=yes), route rules provided by
+              I(route_rules) would be deleted, if they are part of existing route table. If they are not
+              part of existing route table, they will be ignored. I(purge_route_rules) and I(delete_route_rules)
+              are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "false"
     state:
         description:
             - The state of the RouteTable.
@@ -143,36 +167,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create route_table
   oci_network_route_table:
-    display_name: MyRouteTable
-    vcn_id: ocid1.vcn.oc1.phx.unique_ID
+    display_name: "MyRouteTable"
+    vcn_id: "ocid1.vcn.oc1.phx.unique_ID"
     route_rules:
-    - cidr_block: 0.0.0.0/0
-      network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    - cidr_block: "0.0.0.0/0"
+      network_entity_id: "ocid1.internetgateway.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
     freeform_tags: {'Department': 'Finance'}
     route_rules:
     - network_entity_id: ocid1.internetgateway.oc1.phx.unique_ID
+    purge_route_rules: false
+    delete_route_rules: true
 
 - name: Update route_table
   oci_network_route_table:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyRouteTable
-    rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete route_table
   oci_network_route_table:
-    rt_id: ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx
+    rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyRouteTable
     state: absent
 
@@ -190,11 +216,11 @@ route_table:
                 - The OCID of the compartment containing the route table.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -210,7 +236,7 @@ route_table:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -220,7 +246,7 @@ route_table:
                 - The route table's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The route table's current state.
@@ -239,6 +265,7 @@ route_table:
                           `cidrBlock` and `destination` will be rejected.
                         - A destination IP address range in CIDR notation. Matching packets will
                           be routed to the indicated network entity (the target).
+                        - Cannot be an IPv6 CIDR.
                         - "Example: `0.0.0.0/0`"
                     returned: on success
                     type: string
@@ -248,7 +275,11 @@ route_table:
                         - Conceptually, this is the range of IP addresses used for matching when routing
                           traffic. Required if you provide a `destinationType`.
                         - "Allowed values:"
-                        - " * IP address range in CIDR notation. For example: `192.168.1.0/24`"
+                        - " * IP address range in CIDR notation. Can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24`
+                            or `2001:0db8:0123:45::/56`. If you set this to an IPv6 CIDR, the route rule's target
+                            can only be a DRG or internet gateway.
+                            IPv6 addressing is supported for all commercial and government regions.
+                            See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm)."
                         - " * The `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/), if you're
                               setting up a route rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
@@ -272,7 +303,7 @@ route_table:
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success
                     type: string
-                    sample: ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
                 description:
                     description:
                         - An optional description of your choice for the rule.
@@ -288,10 +319,10 @@ route_table:
             sample: 2016-08-25T21:10:29.600Z
         vcn_id:
             description:
-                - The OCID of the VCN the route table list belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the route table list belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -468,6 +499,8 @@ def main():
             ),
             vcn_id=dict(type="str"),
             rt_id=dict(aliases=["id"], type="str"),
+            purge_route_rules=dict(type="bool", default="true"),
+            delete_route_rules=dict(type="bool", default="false"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

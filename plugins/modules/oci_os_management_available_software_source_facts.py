@@ -63,7 +63,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List available_software_sources
   oci_os_management_available_software_source_facts:
-    managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+    managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -79,13 +79,13 @@ available_software_sources:
                 - unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
@@ -97,7 +97,7 @@ available_software_sources:
                 - OCID for the parent software source, if there is one
             returned: on success
             type: string
-            sample: ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name of the parent software source, if there is one

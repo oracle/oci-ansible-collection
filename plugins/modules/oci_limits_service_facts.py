@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Service resources in Or
 description:
     - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
     - Returns the list of supported services.
-      This will include the programmatic service name, along with the friendly service name.
+      This includes the programmatic service name, along with the friendly service name.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -42,7 +42,7 @@ options:
             - "description"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'. By default it will be ascending.
+            - The sort order to use, either 'asc' or 'desc'. By default, it is ascending.
         type: str
         choices:
             - "ASC"
@@ -53,7 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List services
   oci_limits_service_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,7 +66,7 @@ services:
     contains:
         name:
             description:
-                - The service name. Use this when calling the other APIs.
+                - The service name. Use this when calling other APIs.
             returned: on success
             type: string
             sample: name_example

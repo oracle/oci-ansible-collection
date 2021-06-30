@@ -362,14 +362,14 @@ EXAMPLES = """
 - name: Create target
   oci_cloud_guard_target:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     target_resource_type: COMPARTMENT
-    target_resource_id: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+    target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_target:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -377,17 +377,17 @@ EXAMPLES = """
 - name: Update target
   oci_cloud_guard_target:
     display_name: display_name_example
-    target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+    target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete target
   oci_cloud_guard_target:
-    target_id: ocid1.target.oc1..xxxxxxEXAMPLExxxxxx
+    target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete target using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_target:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -404,7 +404,7 @@ target:
                 - Unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Target Identifier, can be renamed
@@ -416,7 +416,7 @@ target:
                 - Compartment Identifier where the resource is created
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The target description.
@@ -434,7 +434,7 @@ target:
                 - Resource ID which the target uses to monitor
             returned: on success
             type: string
-            sample: ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
         recipe_count:
             description:
                 - Total number of recipes attached to target
@@ -452,7 +452,7 @@ target:
                         - Ocid for detector recipe
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - DisplayName of detector recipe
@@ -470,13 +470,13 @@ target:
                         - compartmentId of detector recipe
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 detector_recipe_id:
                     description:
                         - Unique identifier for Detector Recipe of which this is an extension
                     returned: on success
                     type: string
-                    sample: ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
                 owner:
                     description:
                         - Owner of detector recipe
@@ -500,7 +500,7 @@ target:
                                 - The unique identifier of the detector rule
                             returned: on success
                             type: string
-                            sample: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - displayName
@@ -620,7 +620,7 @@ target:
                                                 - compartment associated with condition
                                             returned: on success
                                             type: string
-                                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                                         condition:
                                             description:
                                                 - ""
@@ -667,7 +667,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                                 composite_operator:
                                                     description:
@@ -685,7 +685,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                 labels:
                                     description:
@@ -741,7 +741,7 @@ target:
                                 - The unique identifier of the detector rule
                             returned: on success
                             type: string
-                            sample: ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - displayName
@@ -861,7 +861,7 @@ target:
                                                 - compartment associated with condition
                                             returned: on success
                                             type: string
-                                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                                         condition:
                                             description:
                                                 - ""
@@ -908,7 +908,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                                 composite_operator:
                                                     description:
@@ -926,7 +926,7 @@ target:
                                                             description:
                                                                 - Type of condition object
                                                             returned: on success
-                                                            type: dict
+                                                            type: string
                                                             sample: COMPOSITE
                                 labels:
                                     description:
@@ -1000,19 +1000,19 @@ target:
                         - Unique identifier of TargetResponderRecipe that is immutable on creation
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 responder_recipe_id:
                     description:
                         - Unique identifier for Responder Recipe of which this is an extension
                     returned: on success
                     type: string
-                    sample: ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - Compartment Identifier
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - ResponderRecipe Identifier Name
@@ -1054,7 +1054,7 @@ target:
                                 - Identifier for ResponderRule.
                             returned: on success
                             type: string
-                            sample: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - ResponderRule Display Name
@@ -1137,7 +1137,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                         composite_operator:
                                             description:
@@ -1155,7 +1155,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                 configurations:
                                     description:
@@ -1198,7 +1198,7 @@ target:
                                 - Compartment Identifier
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         time_created:
                             description:
                                 - The date and time the target responder recipe rule was created. Format defined by RFC3339.
@@ -1235,7 +1235,7 @@ target:
                                 - Identifier for ResponderRule.
                             returned: on success
                             type: string
-                            sample: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - ResponderRule Display Name
@@ -1318,7 +1318,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                         composite_operator:
                                             description:
@@ -1336,7 +1336,7 @@ target:
                                                     description:
                                                         - Type of condition object
                                                     returned: on success
-                                                    type: dict
+                                                    type: string
                                                     sample: COMPOSITE
                                 configurations:
                                     description:
@@ -1379,7 +1379,7 @@ target:
                                 - Compartment Identifier
                             returned: on success
                             type: string
-                            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         time_created:
                             description:
                                 - The date and time the target responder recipe rule was created. Format defined by RFC3339.

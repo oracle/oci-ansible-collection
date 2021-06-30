@@ -34,7 +34,7 @@ options:
         required: true
     service_name:
         description:
-            - The target service name
+            - The target service name.
         type: str
         required: true
     scope_type:
@@ -47,7 +47,7 @@ options:
             - "AD"
     availability_domain:
         description:
-            - Filter entries by availability domain. This implies that only AD-specific values will be returned.
+            - Filter entries by availability domain. This implies that only AD-specific values are returned.
         type: str
     name:
         description:
@@ -55,13 +55,13 @@ options:
         type: str
     sort_by:
         description:
-            - The field to sort by. We will be implicitly sorting by availabilityDomain, as a second level field, if available.
+            - The field to sort by. The sorting is by availabilityDomain, as a second level field, if available.
         type: str
         choices:
             - "name"
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'. By default it will be ascending.
+            - The sort order to use, either 'asc' or 'desc'. By default, it is ascending.
         type: str
         choices:
             - "ASC"
@@ -72,7 +72,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List limit_values
   oci_limits_limit_value_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     service_name: service_name_example
 
 """

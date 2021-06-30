@@ -20,7 +20,7 @@ oracle.oci.oci_ons_subscription_actions -- Perform actions on a Subscription res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Subscription resource in Oracle Cloud Infrastructure
-- For *action=get_unsubscription*, gets the unsubscription details for the specified subscription. Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
+- For *action=get_unsubscription*, unsubscribes the subscription from the topic. Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 - For *action=resend_subscription_confirmation*, resends the confirmation details for the specified subscription. Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -230,7 +231,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The protocol used for the subscription.</div>
-                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `PAGERDUTY` * `SLACK` * `ORACLE_FUNCTIONS`</div>
+                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `ORACLE_FUNCTIONS` * `PAGERDUTY` * `SLACK` * `SMS`</div>
                                             <div>For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
                                             <div>Required for <em>action=get_unsubscription</em>.</div>
                                                         </td>
@@ -339,14 +340,14 @@ Examples
     
     - name: Perform action get_unsubscription on subscription
       oci_ons_subscription_actions:
-        id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         token: token_example
         protocol: protocol_example
         action: get_unsubscription
 
     - name: Perform action resend_subscription_confirmation on subscription
       oci_ons_subscription_actions:
-        id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         action: resend_subscription_confirmation
 
 
@@ -563,7 +564,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The protocol used for the subscription. For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
+                                            <div>The protocol used for the subscription.</div>
+                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `ORACLE_FUNCTIONS` * `PAGERDUTY` * `SLACK` * `SMS`</div>
+                                            <div>For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EMAIL</div>

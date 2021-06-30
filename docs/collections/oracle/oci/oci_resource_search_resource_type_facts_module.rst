@@ -20,7 +20,7 @@ oracle.oci.oci_resource_search_resource_type_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -275,12 +276,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-resource_types"></div>
                     <b>resource_types</b>
                     <a class="ansibleOptionLink" href="#return-resource_types" title="Permalink to this return value"></a>
@@ -293,12 +294,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ResourceType resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;fields&#x27;: [{&#x27;field_name&#x27;: &#x27;field_name_example&#x27;, &#x27;field_type&#x27;: &#x27;IDENTIFIER&#x27;, &#x27;is_array&#x27;: True, &#x27;object_properties&#x27;: []}], &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;fields&#x27;: [{&#x27;field_name&#x27;: &#x27;field_name_example&#x27;, &#x27;field_type&#x27;: &#x27;IDENTIFIER&#x27;, &#x27;is_array&#x27;: True, &#x27;object_properties&#x27;: [{&#x27;field_name&#x27;: &#x27;field_name_example&#x27;, &#x27;field_type&#x27;: &#x27;IDENTIFIER&#x27;, &#x27;is_array&#x27;: True, &#x27;object_properties&#x27;: []}]}], &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-resource_types/fields"></div>
                     <b>fields</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/fields" title="Permalink to this return value"></a>
@@ -315,7 +316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_types/fields/field_name"></div>
                     <b>field_name</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/fields/field_name" title="Permalink to this return value"></a>
@@ -334,7 +335,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_types/fields/field_type"></div>
                     <b>field_type</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/fields/field_type" title="Permalink to this return value"></a>
@@ -353,7 +354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_types/fields/is_array"></div>
                     <b>is_array</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/fields/is_array" title="Permalink to this return value"></a>
@@ -372,10 +373,88 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-resource_types/fields/object_properties"></div>
                     <b>object_properties</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/fields/object_properties" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If the field type is `OBJECT`, then this property will provide all the individual properties of the object that can be queried.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_types/fields/object_properties/field_name"></div>
+                    <b>field_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_types/fields/object_properties/field_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the field to use when constructing the query. Field names are present for all types except `OBJECT`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">field_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_types/fields/object_properties/field_type"></div>
+                    <b>field_type</b>
+                    <a class="ansibleOptionLink" href="#return-resource_types/fields/object_properties/field_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of the field, which dictates what semantics and query constraints you can use when searching or querying.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IDENTIFIER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_types/fields/object_properties/is_array"></div>
+                    <b>is_array</b>
+                    <a class="ansibleOptionLink" href="#return-resource_types/fields/object_properties/is_array" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates that this field is actually an array of the specified field type.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_types/fields/object_properties/object_properties"></div>
+                    <b>object_properties</b>
+                    <a class="ansibleOptionLink" href="#return-resource_types/fields/object_properties/object_properties" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                        / <span style="color: purple">elements=string</span>                    </div>
@@ -387,9 +466,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-resource_types/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-resource_types/name" title="Permalink to this return value"></a>

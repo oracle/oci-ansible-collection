@@ -20,7 +20,7 @@ oracle.oci.oci_limits_limit_definition_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -277,7 +278,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default it will be ascending.</div>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default, it is ascending.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -319,7 +320,7 @@ Examples
     
     - name: List limit_definitions
       oci_limits_limit_definition_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -356,7 +357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of LimitDefinition resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_quotas_supported&#x27;: True, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_resource_availability_supported&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;scope_type&#x27;: &#x27;GLOBAL&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;are_quotas_supported&#x27;: True, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_deprecated&#x27;: True, &#x27;is_dynamic&#x27;: True, &#x27;is_eligible_for_limit_increase&#x27;: True, &#x27;is_resource_availability_supported&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;scope_type&#x27;: &#x27;GLOBAL&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -398,6 +399,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-limit_definitions/is_deprecated"></div>
+                    <b>is_deprecated</b>
+                    <a class="ansibleOptionLink" href="#return-limit_definitions/is_deprecated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the limit has been deprecated.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-limit_definitions/is_dynamic"></div>
+                    <b>is_dynamic</b>
+                    <a class="ansibleOptionLink" href="#return-limit_definitions/is_dynamic" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The limit for this resource has a dynamic value that is based on consumption across all OCI services.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-limit_definitions/is_eligible_for_limit_increase"></div>
+                    <b>is_eligible_for_limit_increase</b>
+                    <a class="ansibleOptionLink" href="#return-limit_definitions/is_eligible_for_limit_increase" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates if the customer can request a limit increase for this resource.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-limit_definitions/is_resource_availability_supported"></div>
                     <b>is_resource_availability_supported</b>
                     <a class="ansibleOptionLink" href="#return-limit_definitions/is_resource_availability_supported" title="Permalink to this return value"></a>
@@ -407,7 +462,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reflects if the GetResourceAvailability API is supported for this limit or not. If not, the API will return an empty JSON response.</div>
+                                            <div>Reflects whether or not the GetResourceAvailability API is supported for this limit. If not, the API returns an empty JSON response.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -443,7 +498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Reflects the scope of the resource limit: which can be Global (across all regions), regional or ad specific.</div>
+                                            <div>Reflects the scope of the resource limit, whether Global (across all regions), regional, or availability domain-specific.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GLOBAL</div>

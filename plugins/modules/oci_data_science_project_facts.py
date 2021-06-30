@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     project_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
             - Required to get a specific project.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple projects.
         type: str
     display_name:
@@ -55,7 +55,8 @@ options:
             - "DELETED"
     created_by:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the resource.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the
+              resource.
         type: str
     sort_order:
         description:
@@ -67,9 +68,9 @@ options:
     sort_by:
         description:
             - Specifies the field to sort by. Accepts only one field.
-              By default, when you sort by `timeCreated`, results are shown
-              in descending order. When you sort by `displayName`, results are
-              shown in ascending order. Sort order for `displayName` field is case sensitive.
+              By default, when you sort by `timeCreated`, the results are shown
+              in descending order. When you sort by `displayName`, the results are
+              shown in ascending order. Sort order for the `displayName` field is case sensitive.
         type: str
         choices:
             - "timeCreated"
@@ -80,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List projects
   oci_data_science_project_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific project
   oci_data_science_project_facts:
-    project_id: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -97,38 +98,38 @@ projects:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         display_name:
             description:
-                - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - A short blurb describing the project.
+                - A short description of the project.
             returned: on success
             type: string
             sample: description_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created this project.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created this project.
             returned: on success
             type: string
             sample: created_by_example

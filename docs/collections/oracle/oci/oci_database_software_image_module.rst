@@ -20,7 +20,7 @@ oracle.oci.oci_database_software_image -- Manage a DatabaseSoftwareImage resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 - For *state=present*, create database software image in the specified compartment.
+- This resource has the following action operations in the :ref:`oci_database_software_image_actions <ansible_collections.oci_database_software_image_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -246,7 +248,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The database version with which the database software image is to be built.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -333,6 +334,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>VM_BM_SHAPE</li>
                                                                                                                                                                                                 <li>EXADATA_SHAPE</li>
+                                                                                                                                                                                                <li>EXACC_SHAPE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -355,7 +357,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>List of the Fault Domains in which this DB system is provisioned.</div>
+                                            <div>The type of software image. Can be grid or database.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -400,8 +402,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The PSU or PBP or Release Updates. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>The PSU or PBP or Release Updates. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -417,6 +418,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-source_db_home_id"></div>
+                    <b>source_db_home_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-source_db_home_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Home.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -513,27 +529,25 @@ Examples
     
     - name: Create database_software_image
       oci_database_software_image:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        database_version: database_version_example
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         display_name: image2
-        patch_set: patch_set_example
 
     - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_software_image:
-        display_name: image2
+        display_name: "image2"
 
     - name: Update database_software_image
       oci_database_software_image:
-        database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete database_software_image
       oci_database_software_image:
-        database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_software_image:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         display_name: image2
         state: absent
 
@@ -854,7 +868,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The PSU or PBP or Release Updates. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>The PSU or PBP or Release Updates. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">patch_set_example</div>

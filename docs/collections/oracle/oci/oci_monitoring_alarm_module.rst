@@ -20,7 +20,7 @@ oracle.oci.oci_monitoring_alarm -- Manage an Alarm resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,7 +45,7 @@ Synopsis
 - This module allows the user to create, update and delete an Alarm resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new alarm in the specified compartment. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
 - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations. Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests, or transactions, per second (TPS) for a given tenancy.
-- This resource has the following action operations in the :ref:`oci_alarm_actions <ansible_collections.oci_alarm_actions_module>` module: remove_alarm_suppression.
+- This resource has the following action operations in the :ref:`oci_alarm_actions <ansible_collections.oci_alarm_actions_module>` module: change_compartment, remove_alarm_suppression.
 
 
 .. Aliases
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -713,8 +714,8 @@ Examples
     - name: Create alarm
       oci_monitoring_alarm:
         display_name: System Down
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-        metric_compartment_id: ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: compartment_OCID
+        metric_compartment_id: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace: oci_computeagent
         query: query_example
         severity: CRITICAL
@@ -722,21 +723,21 @@ Examples
 
     - name: Update alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_monitoring_alarm:
-        display_name: System Down
+        display_name: "System Down"
 
     - name: Update alarm
       oci_monitoring_alarm:
-        alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+        alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete alarm
       oci_monitoring_alarm:
-        alarm_id: ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx
+        alarm_id: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete alarm using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_monitoring_alarm:
         display_name: System Down
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: compartment_OCID
         state: absent
 
 

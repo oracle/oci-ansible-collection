@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     tenant_id:
         description:
-            - Tenant ID
+            - Tenant ID.
         type: str
         required: true
     time_usage_started:
@@ -56,9 +56,34 @@ options:
             - "MONTHLY"
             - "TOTAL"
         required: true
+    is_aggregate_by_time:
+        description:
+            - is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period
+        type: bool
+    forecast:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            forecast_type:
+                description:
+                    - BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent
+                      historical days for which projection is being made.
+                type: str
+                choices:
+                    - "BASIC"
+            time_forecast_started:
+                description:
+                    - forecast start time. Will default to UTC-1 if not specified
+                type: str
+            time_forecast_ended:
+                description:
+                    - forecast end time.
+                type: str
+                required: true
     query_type:
         description:
-            - "The query usage type.
+            - "The query usage type. COST by default if it is missing
               Usage - Query the usage data.
               Cost - Query the cost/billing data."
         type: str
@@ -69,19 +94,110 @@ options:
         description:
             - "Aggregate the result by.
               example:
-                `[\\"service\\"]`"
+                `[\\"tagNamespace\\", \\"tagKey\\", \\"tagValue\\", \\"service\\", \\"skuName\\", \\"skuPartNumber\\", \\"unit\\",
+                  \\"compartmentName\\", \\"compartmentPath\\", \\"compartmentId\\", \\"platform\\", \\"region\\", \\"logicalAd\\",
+                  \\"resourceId\\", \\"tenantId\\", \\"tenantName\\"]`"
         type: list
+    group_by_tag:
+        description:
+            - "GroupBy a specific tagKey. Provide tagNamespace and tagKey in tag object. Only support one tag in the list
+              example:
+                `[{\\"namespace\\":\\"oracle\\", \\"key\\":\\"createdBy\\"]`"
+        type: list
+        suboptions:
+            namespace:
+                description:
+                    - The tag namespace.
+                type: str
+            key:
+                description:
+                    - The tag key.
+                type: str
+            value:
+                description:
+                    - The tag value.
+                type: str
     compartment_depth:
         description:
             - The compartment depth level.
         type: float
+    filter:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            operator:
+                description:
+                    - "The filter operator. Example: 'AND', 'OR', 'NOT'."
+                type: str
+                choices:
+                    - "AND"
+                    - "NOT"
+                    - "OR"
+            dimensions:
+                description:
+                    - The dimensions to filter on.
+                type: list
+                suboptions:
+                    key:
+                        description:
+                            - The dimension key.
+                        type: str
+                        required: true
+                    value:
+                        description:
+                            - The dimension value.
+                        type: str
+                        required: true
+            tags:
+                description:
+                    - The tags to filter on.
+                type: list
+                suboptions:
+                    namespace:
+                        description:
+                            - The tag namespace.
+                        type: str
+                    key:
+                        description:
+                            - The tag key.
+                        type: str
+                    value:
+                        description:
+                            - The tag value.
+                        type: str
+            filters:
+                description:
+                    - The nested filter object.
+                type: list
+                suboptions:
+                    operator:
+                        description:
+                            - "The filter operator. Example: 'AND', 'OR', 'NOT'."
+                        type: str
+                        choices:
+                            - "AND"
+                            - "NOT"
+                            - "OR"
+                    dimensions:
+                        description:
+                            - The dimensions to filter on.
+                        type: list
+                    tags:
+                        description:
+                            - The tags to filter on.
+                        type: list
+                    filters:
+                        description:
+                            - The nested filter object.
+                        type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List usages
   oci_usage_facts:
-    tenant_id: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+    tenant_id: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
     time_usage_started: 2013-10-20T19:20:30+01:00
     time_usage_ended: 2013-10-20T19:20:30+01:00
     granularity: HOURLY
@@ -100,7 +216,7 @@ usages:
                 - The tenancy OCID.
             returned: on success
             type: string
-            sample: ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         tenant_name:
             description:
                 - The tenancy name.
@@ -112,7 +228,7 @@ usages:
                 - The compartment OCID.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_path:
             description:
                 - The compartment path, starting from root.
@@ -142,7 +258,7 @@ usages:
                 - The resource OCID that is incurring the cost.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region of the usage.
@@ -250,13 +366,19 @@ usages:
                 - The subscription ID.
             returned: on success
             type: string
-            sample: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
         overage:
             description:
                 - The overage usage.
             returned: on success
             type: string
             sample: overage_example
+        is_forecast:
+            description:
+                - is forecasted data
+            returned: on success
+            type: bool
+            sample: true
         tags:
             description:
                 - For grouping, a tag definition. For filtering, a definition and key.
@@ -309,6 +431,7 @@ usages:
         "currency": "currency_example",
         "subscription_id": "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx",
         "overage": "overage_example",
+        "is_forecast": true,
         "tags": [{
             "namespace": "namespace_example",
             "key": "key_example",
@@ -375,9 +498,60 @@ def main():
                 required=True,
                 choices=["HOURLY", "DAILY", "MONTHLY", "TOTAL"],
             ),
+            is_aggregate_by_time=dict(type="bool"),
+            forecast=dict(
+                type="dict",
+                options=dict(
+                    forecast_type=dict(type="str", choices=["BASIC"]),
+                    time_forecast_started=dict(type="str"),
+                    time_forecast_ended=dict(type="str", required=True),
+                ),
+            ),
             query_type=dict(type="str", choices=["USAGE", "COST"]),
             group_by=dict(type="list"),
+            group_by_tag=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    namespace=dict(type="str"),
+                    key=dict(type="str"),
+                    value=dict(type="str"),
+                ),
+            ),
             compartment_depth=dict(type="float"),
+            filter=dict(
+                type="dict",
+                options=dict(
+                    operator=dict(type="str", choices=["AND", "NOT", "OR"]),
+                    dimensions=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            key=dict(type="str", required=True),
+                            value=dict(type="str", required=True),
+                        ),
+                    ),
+                    tags=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            namespace=dict(type="str"),
+                            key=dict(type="str"),
+                            value=dict(type="str"),
+                        ),
+                    ),
+                    filters=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            operator=dict(type="str", choices=["AND", "NOT", "OR"]),
+                            dimensions=dict(type="list"),
+                            tags=dict(type="list"),
+                            filters=dict(type="list"),
+                        ),
+                    ),
+                ),
+            ),
         )
     )
 

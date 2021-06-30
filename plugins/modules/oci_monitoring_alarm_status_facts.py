@@ -76,7 +76,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List alarm_statuses
   oci_monitoring_alarm_status_facts:
-    compartment_id: ocid1.compartment.oc1..exampleuniqueID
+    compartment_id: "ocid1.compartment.oc1..exampleuniqueID"
 
 """
 
@@ -92,7 +92,7 @@ alarm_statuses:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The configured name of the alarm.

@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cloud_vm_clusters
   oci_database_cloud_vm_cluster_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cloud_vm_cluster
   oci_database_cloud_vm_cluster_facts:
-    cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -152,13 +152,13 @@ cloud_vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud VM cluster.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The name of the availability domain that the cloud Exadata infrastructure resource is located in.
@@ -175,7 +175,7 @@ cloud_vm_clusters:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup network subnet associated with the cloud VM
@@ -183,7 +183,7 @@ cloud_vm_clusters:
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
             type: string
-            sample: ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -209,7 +209,7 @@ cloud_vm_clusters:
                   updated when a maintenance update starts.
             returned: on success
             type: string
-            sample: ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The model name of the Exadata hardware running the cloud VM cluster.
@@ -312,7 +312,7 @@ cloud_vm_clusters:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
             returned: on success
             type: string
-            sample: ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
                 - If true, sparse disk group is configured for the cloud VM cluster. If false, sparse disk group is not created.
@@ -377,7 +377,7 @@ cloud_vm_clusters:
                   associated with the cloud VM cluster.
             returned: on success
             type: string
-            sample: ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -393,6 +393,18 @@ cloud_vm_clusters:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the cloud VM cluster.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the cloud VM cluster is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -438,7 +450,9 @@ cloud_vm_clusters:
         "vip_ids": [],
         "scan_dns_record_id": "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

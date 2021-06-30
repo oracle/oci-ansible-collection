@@ -32,7 +32,7 @@ description:
       *Bare metal and Exadata systems* - The _stop_ state has no effect on the resources you consume.
       Billing continues for DB nodes that you stop, and related resources continue
       to apply against any relevant quotas. You must terminate the DB system
-      (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystem/TerminateDbSystem))
+      (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/DbSystem/TerminateDbSystem))
       to remove its resources from billing and quotas.
       *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node."
 version_added: "2.9"
@@ -60,7 +60,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action stop on db_node
   oci_database_db_node_actions:
-    db_node_id: ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx
+    db_node_id: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -77,25 +77,25 @@ db_node:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database node.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
         backup_vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup VNIC.
             returned: on success
             type: string
-            sample: ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the database node.

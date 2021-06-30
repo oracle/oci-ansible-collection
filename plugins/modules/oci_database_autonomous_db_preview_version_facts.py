@@ -53,7 +53,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_db_preview_versions
   oci_database_autonomous_db_preview_version_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -88,7 +88,7 @@ autonomous_db_preview_versions:
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
                   - AJD - indicates an Autonomous JSON Database
-                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
+                  - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
             type: string
             sample: OLTP

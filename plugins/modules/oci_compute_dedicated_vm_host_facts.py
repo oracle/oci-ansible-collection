@@ -38,7 +38,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple dedicated_vm_hosts.
         type: str
     availability_domain:
@@ -87,17 +87,25 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    remaining_memory_in_gbs_greater_than_or_equal_to:
+        description:
+            - The remaining memory of the dedicated VM host, in GBs.
+        type: float
+    remaining_ocpus_greater_than_or_equal_to:
+        description:
+            - The available OCPUs of the dedicated VM host.
+        type: float
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List dedicated_vm_hosts
   oci_compute_dedicated_vm_host_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific dedicated_vm_host
   oci_compute_dedicated_vm_host_facts:
-    dedicated_vm_host_id: ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx
+    dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,7 +128,7 @@ dedicated_vm_hosts:
                 - The OCID of the compartment that contains the dedicated virtual machine host.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_shape:
             description:
                 - The dedicated virtual machine host shape. The shape determines the number of CPUs and
@@ -131,7 +139,7 @@ dedicated_vm_hosts:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -160,17 +168,17 @@ dedicated_vm_hosts:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The OCID of the dedicated VM host.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dedicated VM host.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the dedicated VM host.
@@ -196,6 +204,18 @@ dedicated_vm_hosts:
             returned: on success
             type: float
             sample: 3.4
+        total_memory_in_gbs:
+            description:
+                - The total memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
+        remaining_memory_in_gbs:
+            description:
+                - The remaining memory of the dedicated VM host, in GBs.
+            returned: on success
+            type: float
+            sample: 3.4
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -208,7 +228,9 @@ dedicated_vm_hosts:
         "lifecycle_state": "CREATING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "total_ocpus": 3.4,
-        "remaining_ocpus": 3.4
+        "remaining_ocpus": 3.4,
+        "total_memory_in_gbs": 3.4,
+        "remaining_memory_in_gbs": 3.4
     }]
 """
 
@@ -254,6 +276,8 @@ class DedicatedVmHostFactsHelperGen(OCIResourceFactsHelperBase):
             "instance_shape_name",
             "sort_by",
             "sort_order",
+            "remaining_memory_in_gbs_greater_than_or_equal_to",
+            "remaining_ocpus_greater_than_or_equal_to",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -298,6 +322,8 @@ def main():
             instance_shape_name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            remaining_memory_in_gbs_greater_than_or_equal_to=dict(type="float"),
+            remaining_ocpus_greater_than_or_equal_to=dict(type="float"),
         )
     )
 

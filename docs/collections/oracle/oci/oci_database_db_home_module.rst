@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -648,7 +649,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
+                                            <div>The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.</div>
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
@@ -748,7 +749,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
+                                            <div>A valid Oracle Database version. To get a list of supported versions, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions'>ListDbVersions</a> operation.</div>
                                             <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
@@ -786,6 +787,25 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Whether to attempt non-idempotent creation of a resource. By default, create resource is an idempotent operation, and doesn&#x27;t create the resource if it already exists. Setting this option to true, forcefully creates a copy of the resource, even if it already exists.This option is mutually exclusive with <em>key_by</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-is_desupported_version"></div>
+                    <b>is_desupported_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_desupported_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, the customer acknowledges that the specified Oracle Database software is an older release that is not currently supported by OCI.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1089,14 +1109,14 @@ Examples
     
     - name: Create db_home
       oci_database_db_home:
-        db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
-        display_name: createdDbHome
-        source: NONE
-        db_version: 12.1.0.2
+        db_system_id: "ocid1.dbsystem.oc1.phx.unique_ID"
+        display_name: "createdDbHome"
+        source: "NONE"
+        db_version: "12.1.0.2"
         database:
-          admin_password: password
-          db_name: myTestDb
-          db_unique_name: myTestDb_phx1cs
+          admin_password: "password"
+          db_name: "myTestDb"
+          db_unique_name: "myTestDb_phx1cs"
           db_backup_config:
             recovery_window_in_days: 30
             auto_backup_enabled: true
@@ -1104,21 +1124,21 @@ Examples
     - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_home:
         display_name: createdDbHome
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update db_home
       oci_database_db_home:
-        db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete db_home
       oci_database_db_home:
-        db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+        db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_home:
         display_name: createdDbHome
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

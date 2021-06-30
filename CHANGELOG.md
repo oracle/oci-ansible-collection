@@ -6,6 +6,220 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.24.0] - 2021-06-17
+
+## Added
+- Support for filtering options `exclude_host_filters` and `include_host_filters` in the Inventory plugin. Both 
+  options take a list of Jinja2 conditional expressions.
+- Support for Java Management Service
+- Support for Database Migration Service
+- Support for Application Performance Monitoring Control Plane
+- Support for Application Performance Monitoring Synthetic Monitoring
+- Support for configure autonomous database KMS key
+- Support for creating database software images from an existing db-home
+- Support for listing Secret Bundles by secret name and valultId
+
+## Fixed
+- Inventory plugin issue for VMWare instances.
+- Idempotency for Generic Artifact Content upload.
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## [2.23.0] - 2021-06-03
+
+## Added
+- Option hostname_format_preferences in inventory plugin which allows a list of preferred hostname formats which can be specified using jinja 2 template expressions
+- Support for OCI Bastion service
+- Support for Generic Artifacts Service
+- Support in Database Management Service for getting the AWR database report for the specific database
+- Support in Database Management Service for getting the AWR SQL report for a specific SQL
+- Support in Database Management Service to list the AWR snapshots of the specified database
+- Support in Database Management Service to list AWR database information on snapshot
+- Support for getting Automatic Workload Repository (AWR) data on external databases in the Database Management service
+- Support for new field `isDynamic` in the response objects of (`oci limits definition list`) command
+- Support for creation of Notebook Sessions with larger block volumes through the Data Science service
+- Support for the VM.Standard.E3.Flex Flexible Compute Shape with customizable OCPUs and memory for Data Science Notebooks
+- Support for getting billable image sizes in the Compute service
+- Support for Object Storage Configuration Source for Resource Manager Service
+- Support for database maintenance run patch modes in the Database service
+- Support for spark-submit compatible options in DataFlow service
+- Support for the HCX Enterprise add-on in the VMware Solution service
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## [2.22.0] - 2021-05-20
+
+## Added
+- Support for Golden Gate service
+- Support for Marketplace Service Catalog
+- Operations Insights support for Enterprise Manager external databases and Management Agent Service managed external databases and hosts
+- Support for enabling and disabling Operations Insights for External Non-Container and External Pluggable Databases.
+- Support for Data Masking in cloud guard
+- Support for autonomous database on Exadata Cloud at Customer infrastructure patching in the Database service
+- Support for getting a list of tablespaces for a specified Managed Database
+- Support for getting the list of database parameters for the specified Managed Database. The parameters are listed in alphabetical order, along with their current values.
+- Support for changing the database parameters' values for the specified Managed Database
+- Support for resetting the database parameters' values to their default or startup values for the specified Managed Database.
+- Support for getting RAC related details for a fleet of databases, managed database, and summary metrics as part of Database Management Service
+- Improved announcement email preferences by introducing preference types Opt-In Tenant Announcement, Opt-In Tenant And Informational Announcements, and Opt-Out All Announcements options
+- Support for SDK resource in Apigatway service
+- Support `change_compartment` action in `compute_management_instance_configuration`
+- Added db_system_display_name, region hostvars for db hosts in inventory plugin
+- Support for Vault actions - `create_vault_replica`, `delete_vault_replica` and `change_compartment`
+- `oci_database_db_node_facts` module now returns `primary_public_ip` and `primary_private_ip` as well
+
+## Fixed
+- DB Home patching with database software image issue
+- Duplicate aliases for parameters `instance_pool_id` and `instance_id` in the module `oci_compute_management_instance_pool_instance_facts` module. Now only `instance_pool_id` has the alias `id`
+- Idempotence issue for `remove_export_drg_route_distribution` action in `oci_network_drg_attachment_actions` module
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## [2.21.0] - 2021-05-06
+
+## Added
+- Support for `delegation_token` based authentication for Inventory Plugin
+- Support for forceful deletion of a non-empty Object Storage bucket
+- Support for business name annotation of harvested objects in Data Catalog
+- Support to customer contacts feature for autonomous database
+- Support for `display_name` to be used in the hostname_format of the inventory plugin for compute instances
+- Introducing Graph Studio Url option in the connection urls
+- Expanding DRG functionality in the Networking Service
+     - More than one VCN can be attached to a DRG
+     - Flexible routing inside DRG enables packet flow between any two attachments
+     - Routing policy to customize dynamic import/export of routes
+- Support for opt out of DNS record during instance launch, as well as attaching secondary VNICs
+- Support for option to opt-in and opt-out of live migration at an instance level
+- Support for mutable sizes on cluster networks 
+- Support for SDK generation feature in the API Gateway service
+- Support for KMS Cross Regional Replication of Keys
+- Support for request validation policies within the deployment specification in the API Gateway service
+- Support to configure an API Gateway with an external RESP-compliant response cache and to configure response caching on a per-route basis for Deployments
+- `purge_route_rules` and `delete_route_rules` options to `oci_network_route_table` module to allow adding and deleting specific rules
+- Support for setting the auto-tiering property for a bucket
+- Support for creation, updation and deletion of `entity_type` for Log Analytics.
+- Support for `resource_action` in `policies` declaration in `autoscaling` service
+
+## Fixed
+- Idempotence issue for `bulk_add_virtual_circuit_public_prefixes` and `bulk_delete_virtual_circuit_public_prefixes` actions in `oci_network_virtual_circuit_actions` module
+- Issue with logging exceptions in inventory plugin
+
+## Changed
+- Updated python supported versions to >=3.6 in the documentation
+- Parameter `specification` is marked optional for API deployment create in the API Gateway service
+- `vcn_id` is now optional for listing vlans in `oci_network_vlan_facts` module
+- corporate proxy field is now optional when a creating exadata infrastructure
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## [2.20.0] - 2021-04-22
+
+## Added
+- Support for Ipv6
+- Support for Network Topology service
+- Support for [preemptible instances](https://docs.oracle.com/en-us/iaas/Content/Compute/Concepts/preemptible.htm) in the Compute service
+- Support for burstable instances in the Compute service
+- Support for `routing_policy` in virtual circuit
+- Support for configuring APM tracing functionality for Application and Functions resources.
+- Support for Streaming Analytics feature in Service Connector Hub.
+- Support for Read/Write-Any object from buckets using Pre-authenticated Request (PAR) in Object Storage. Support for restricting PARs by prefix and for listing object.
+- Support for showing if a contact for Exadata Infrastructure is valid in MOS (My Oracle Support) and if Exadata Infrastructure is in Degraded SLO state.
+- Support for os updating cloud vm cluster
+- Support for Data Guard with Autonomous Container Databases on Exadata Cloud @ Customer Infrastructure
+- Support to specify Peer ACD unique name when creating Data Guard enabled Autonomous Container Database on Exadata Cloud@Customer
+- Access Control List support for Autonomous Database with Data Guard enabled on Exadata Cloud@Customer
+- Support for `scan_dns_name` and `zone_id` as part of Dbsystem/CloudVmCluster/AutonomousExadataInfrastructure API response.
+- Support for additional upgrade options supported by DBUA(Database Upgrade Assistant)
+- Support for fractional support for resource usage and availability service limit api
+- Support for data_science model_deployment module and model_deployment_shape_facts module
+- Support for container image signing
+- Support for cluster features as a part of the Container Engine for Kubernetes Service
+- Support for Oracle Cloud VMware Solution Flexible Billing
+- compartment name to the hostvars of OCI Inventory Plugin
+
+## Fixed
+- Issue with debug logging in inventory plugin when there is a service error
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## Deprecated:
+- Module `oci_load_balancer_routing_policy` is deprecated,  
+  use `oci_loadbalancer_routing_policy` instead
+- Module `oci_load_balancer_routing_policy_facts` is deprecated,  
+  use `oci_loadbalancer_routing_policy_facts` instead
+
+## [2.19.0] - 2021-04-08
+
+## Added
+- Support for resource principal authentication
+- Support for Network Load Balancer
+- Support for OCI Vulnerability Scanning Service
+- Support for compute capacity reservation
+- Support for attaching and detaching compute instance to an instance pool
+- Support for vSphere 7.0 in the VMware Solution service
+- Support for Marketplace Publications
+- Support for highly-available MySQL DB Systems
+- Support for private_access_channel and vanity_url in Analytics service
+- HeatWave (in-memory analytics accelerator) support for the MySQL Database Service. (Renaming Analytics Service to HeatWave)
+- Support for Oracle Enterprise Manager bridges, source auto-association, source event type mappings, and plugins to upload data in the Logging Analytics service
+- Support for nosql table change compartment
+
+## Fixed
+- Updated the modules `oci_resource_manager_stack_tf_state_facts` and `oci_resource_manager_job_tf_state_facts` to write the output to the given file
+- Idempotence for resource manager stack creation `oci_resource_manager_stack` via private templates
+- Inventory plugin to return hostsvars for db hosts
+
+### Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+- pyyaml requirement version from 5.1.2 to 5.4 in oci-cloudnative solution
+
+## [2.18.0] - 2021-03-25
+
+## Added
+
+- Support change compartment for all the supported services (except database)
+- Support for [Database groups](https://docs.oracle.com/en-us/iaas/database-management/doc/create-and-use-database-groups.html) in Database management service
+- Support for Routing Policies in Load Balancer Service
+- Support for Auto-Scale Configs in Big Data Service
+- Support for Log Analytics Log groups and entities
+- Support for File System Service Clones Feature
+- Support for enabling disabling message map flag on SCH Service
+- Support for SMS subscriptions through the Oracle Cloud Infrastructure Notifications service
+- Support for searching OCI resources in another tenancy
+- Support updating OCE instance usage type
+- Support for private clusters to the Container Engine for Kubernetes service
+- Modules `oci_opsi_database_insights_facts` and `oci_opsi_sql_searches_facts` in opsi service
+
+### Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+### Deprecated:
+- Module `oci_apigateway_waas_certificate_facts` is deprecated use `oci_apigateway_certificate_facts` instead
+- Module `oci_apigateway_waas_certificate` is deprecated use `oci_apigateway_certificate` instead
+
+## [2.17.0] - 2021-03-11
+
+### Added
+- Support for the OCI Registry Service
+- Support for enabling and disabling database management for external database
+- Support for listing recommendation strategies in the optimizer service
+- Support for providing target tags and target compartments on profiles in the optimizer service
+- Support for custom endpoint feature in the Integration Service
+- Support for change network endpoint for integration instance in Integration Service
+- `primary_vnic_only` option in inventory plugin to process only the primary vnic of a compute instance
+
+### Fixed
+- Return documentation for `oci_object_storage_object_actions` module
+
+### Changed
+- Python 2 reached end of life on 1st January, 2020 and [OCI Python SDK](https://github.com/oracle/oci-python-sdk) stopped support for Python 2 long back. We cannot support Python 2 since we have a hard dependency on [OCI Python SDK](https://github.com/oracle/oci-python-sdk). We strongly recommend you to move to Python 3 if you are still using Python 2
+- `resource_action_ids` parameter is made optional in `oci_optimizer_recommendation_actions` module
+- Parameter `name` is now updatable in `oci_optimizer_profile`
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
 ## [2.16.0] - 2021-2-25
 
 ### Added

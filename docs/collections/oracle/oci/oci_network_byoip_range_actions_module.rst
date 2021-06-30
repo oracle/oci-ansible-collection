@@ -20,7 +20,7 @@ oracle.oci.oci_network_byoip_range_actions -- Perform actions on a ByoipRange re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - Perform actions on a ByoipRange resource in Oracle Cloud Infrastructure
 - For *action=advertise*, begins BGP route advertisements for the BYOIP CIDR block you imported to the Oracle Cloud. The `ByoipRange` resource must be in the PROVISIONED state before the BYOIP CIDR block routes can be advertised with BGP.
+- For *action=change_compartment*, moves a BYOIP CIDR block to a different compartment. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=validate*, submits the BYOIP CIDR block you are importing for validation. Do not submit to Oracle for validation if you have not already modified the information for the BYOIP CIDR block with your Regional Internet Registry. See `To import a CIDR block <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr>`_ for details.
 - For *action=withdraw*, withdraws BGP route advertisement for the BYOIP CIDR block.
 
@@ -57,7 +58,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -86,6 +87,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>advertise</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>validate</li>
                                                                                                                                                                                                 <li>withdraw</li>
                                                                                     </ul>
@@ -168,6 +170,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -189,6 +192,22 @@ Parameters
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource containing the BYOIP CIDR block.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the destination compartment for the BYOIP CIDR block move.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -308,17 +327,23 @@ Examples
     
     - name: Perform action advertise on byoip_range
       oci_network_byoip_range_actions:
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
         action: advertise
+
+    - name: Perform action change_compartment on byoip_range
+      oci_network_byoip_range_actions:
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: change_compartment
 
     - name: Perform action validate on byoip_range
       oci_network_byoip_range_actions:
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
         action: validate
 
     - name: Perform action withdraw on byoip_range
       oci_network_byoip_range_actions:
-        byoip_range_id: ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx
+        byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
         action: withdraw
 
 
@@ -407,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -444,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

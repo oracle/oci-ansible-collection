@@ -26,6 +26,7 @@ description:
     - For I(state=present), creates a new steering policy in the specified compartment. For more information on
       creating policies with templates, see L(Traffic Management API
       Guide,https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm).
+    - "This resource has the following action operations in the M(oci_steering_policy_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -353,78 +354,78 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create steering_policy
   oci_dns_steering_policy:
-    compartment_id: ocid1.compartment.oc1..
-    display_name: failover between endpoints
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: "failover between endpoints"
     ttl: 30
-    health_check_monitor_id: ocid1.httpmonitor.oc1..
-    template: FAILOVER
+    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    template: "FAILOVER"
     answers:
-    - name: server-primary
-      rtype: A
-      rdata: 192.0.2.0
-      pool: primary
-    - name: server-secondary
-      rtype: A
-      rdata: 192.0.4.6
-      pool: secondary
+    - name: "server-primary"
+      rtype: "A"
+      rdata: "192.0.2.0"
+      pool: "primary"
+    - name: "server-secondary"
+      rtype: "A"
+      rdata: "192.0.4.6"
+      pool: "secondary"
     rules:
-    - rule_type: FILTER
+    - rule_type: "FILTER"
       default_answer_data:
-      - answer_condition: answer.isDisabled != true
+      - answer_condition: "answer.isDisabled != true"
         should_keep: true
-    - rule_type: HEALTH
-    - rule_type: PRIORITY
+    - rule_type: "HEALTH"
+    - rule_type: "PRIORITY"
       default_answer_data:
-      - answer_condition: answer.pool == 'primary'
+      - answer_condition: "answer.pool == 'primary'"
         value: 1
-      - answer_condition: answer.pool == 'secondary'
+      - answer_condition: "answer.pool == 'secondary'"
         value: 99
-    - rule_type: LIMIT
+    - rule_type: "LIMIT"
       default_count: 1
 
 - name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
-    compartment_id: ocid1.compartment.oc1..
-    display_name: LA data center failover
+    compartment_id: "ocid1.compartment.oc1.."
+    display_name: "LA data center failover"
     ttl: 30
-    health_check_monitor_id: ocid1.httpmonitor.oc1..
-    template: FAILOVER
+    health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+    template: "FAILOVER"
     answers:
-    - name: server-primary
-      rtype: A
-      rdata: 192.0.2.0
-      pool: primary
-    - name: server-secondary
-      rtype: A
-      rdata: 192.0.4.1
-      pool: secondary
+    - name: "server-primary"
+      rtype: "A"
+      rdata: "192.0.2.0"
+      pool: "primary"
+    - name: "server-secondary"
+      rtype: "A"
+      rdata: "192.0.4.1"
+      pool: "secondary"
     rules:
-    - rule_type: FILTER
+    - rule_type: "FILTER"
       default_answer_data:
-      - answer_condition: answer.isDisabled != true
+      - answer_condition: "answer.isDisabled != true"
         should_keep: true
-    - rule_type: HEALTH
-    - rule_type: PRIORITY
+    - rule_type: "HEALTH"
+    - rule_type: "PRIORITY"
       default_answer_data:
-      - answer_condition: answer.pool == 'primary'
+      - answer_condition: "answer.pool == 'primary'"
         value: 1
-      - answer_condition: answer.pool == 'secondary'
+      - answer_condition: "answer.pool == 'secondary'"
         value: 99
-    - rule_type: LIMIT
+    - rule_type: "LIMIT"
       default_count: 1
 
 - name: Update steering_policy
   oci_dns_steering_policy:
-    steering_policy_id: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete steering_policy
   oci_dns_steering_policy:
-    steering_policy_id: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+    steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
-    compartment_id: ocid1.compartment.oc1..
+    compartment_id: "ocid1.compartment.oc1.."
     display_name: failover between endpoints
     state: absent
 
@@ -442,7 +443,7 @@ steering_policy:
                 - The OCID of the compartment containing the steering policy.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the steering policy. Does not have to be unique and can be changed.
@@ -469,7 +470,7 @@ steering_policy:
                   Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
             returned: on success
             type: string
-            sample: ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
         template:
             description:
                 - A set of predefined rules based on the desired purpose of the steering policy. Each
@@ -722,7 +723,7 @@ steering_policy:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.

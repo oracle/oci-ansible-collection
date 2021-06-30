@@ -133,15 +133,18 @@ options:
             method:
                 description:
                     - Load balancing methods are algorithms used to efficiently distribute traffic among origin servers.
-                    - "- **IP_HASH:** All the incoming requests from the same client IP address should go to the same content origination server. IP_HASH load
-                      balancing method uses origin weights when choosing which origin should the hash be assigned to initially."
-                    - "- **ROUND_ROBIN:** Forwards requests sequentially to the available origin servers. The first request - to the first origin server, the
-                      second request - to the next origin server, and so on. After it sends a request to the last origin server, it starts again with the first
-                      origin server. When using weights on origins, Weighted Round Robin assigns more requests to origins with a greater weight. Over a period
-                      of time, origins will receive a number of requests in proportion to their weight."
-                    - "- **STICKY_COOKIE:** Adds a session cookie to the first response from the origin server and identifies the server that sent the response.
-                      The client's next request contains the cookie value, and nginx routes the request to the origin server that responded to the first
-                      request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
+                    - "- **L(IP_HASH,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/IPHashLoadBalancingMethod):** All the incoming requests
+                      from the same client IP address should go to the same content origination server. IP_HASH load balancing method uses origin weights when
+                      choosing which origin should the hash be assigned to initially."
+                    - "- **L(ROUND_ROBIN,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/RoundRobinLoadBalancingMethod):** Forwards requests
+                      sequentially to the available origin servers. The first request - to the first origin server, the second request - to the next origin
+                      server, and so on. After it sends a request to the last origin server, it starts again with the first origin server. When using weights on
+                      origins, Weighted Round Robin assigns more requests to origins with a greater weight. Over a period of time, origins will receive a number
+                      of requests in proportion to their weight."
+                    - "- **L(STICKY_COOKIE,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/StickyCookieLoadBalancingMethod):** Adds a session
+                      cookie to the first response from the origin server and identifies the server that sent the response. The client's next request contains
+                      the cookie value, and nginx routes the request to the origin server that responded to the first request. STICKY_COOKIE load balancing
+                      method falls back to Round Robin for the first request."
                     - This parameter is updatable.
                 type: str
                 choices:
@@ -275,10 +278,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update policy_config
   oci_waas_policy_config:
-    certificate_id: ocid1.waascertificate.oc1..
+    certificate_id: "ocid1.waascertificate.oc1.."
     is_https_enabled: true
     is_https_forced: true
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -294,7 +297,7 @@ policy_config:
                 - The OCID of the SSL certificate to use if HTTPS is supported.
             returned: on success
             type: string
-            sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         is_https_enabled:
             description:
                 - Enable or disable HTTPS support. If true, a `certificateId` is required. If unspecified, defaults to `false`.
@@ -388,15 +391,18 @@ policy_config:
                 method:
                     description:
                         - Load balancing methods are algorithms used to efficiently distribute traffic among origin servers.
-                        - "- **IP_HASH:** All the incoming requests from the same client IP address should go to the same content origination server. IP_HASH
-                          load balancing method uses origin weights when choosing which origin should the hash be assigned to initially."
-                        - "- **ROUND_ROBIN:** Forwards requests sequentially to the available origin servers. The first request - to the first origin server,
-                          the second request - to the next origin server, and so on. After it sends a request to the last origin server, it starts again with
-                          the first origin server. When using weights on origins, Weighted Round Robin assigns more requests to origins with a greater weight.
-                          Over a period of time, origins will receive a number of requests in proportion to their weight."
-                        - "- **STICKY_COOKIE:** Adds a session cookie to the first response from the origin server and identifies the server that sent the
-                          response. The client's next request contains the cookie value, and nginx routes the request to the origin server that responded to the
-                          first request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
+                        - "- **L(IP_HASH,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/IPHashLoadBalancingMethod):** All the incoming
+                          requests from the same client IP address should go to the same content origination server. IP_HASH load balancing method uses origin
+                          weights when choosing which origin should the hash be assigned to initially."
+                        - "- **L(ROUND_ROBIN,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/RoundRobinLoadBalancingMethod):** Forwards
+                          requests sequentially to the available origin servers. The first request - to the first origin server, the second request - to the
+                          next origin server, and so on. After it sends a request to the last origin server, it starts again with the first origin server. When
+                          using weights on origins, Weighted Round Robin assigns more requests to origins with a greater weight. Over a period of time, origins
+                          will receive a number of requests in proportion to their weight."
+                        - "- **L(STICKY_COOKIE,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/StickyCookieLoadBalancingMethod):** Adds a
+                          session cookie to the first response from the origin server and identifies the server that sent the response. The client's next
+                          request contains the cookie value, and nginx routes the request to the origin server that responded to the first request.
+                          STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
                     returned: on success
                     type: string
                     sample: ROUND_ROBIN

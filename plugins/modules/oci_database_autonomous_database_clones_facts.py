@@ -73,6 +73,7 @@ options:
             - "RECREATING"
             - "ROLE_CHANGE_IN_PROGRESS"
             - "UPGRADING"
+            - "INACCESSIBLE"
     sort_by:
         description:
             - The field to sort by.  You can provide one sort order (`sortOrder`).  Default order for TIMECREATED is descending.  Default order for DISPLAYNAME
@@ -95,8 +96,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List autonomous_database_clones
   oci_database_autonomous_database_clones_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -112,13 +113,13 @@ autonomous_database_clones:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
@@ -131,6 +132,25 @@ autonomous_database_clones:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_lifecycle_details:
+            description:
+                - KMS key lifecycle details.
+            returned: on success
+            type: string
+            sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
@@ -184,6 +204,32 @@ autonomous_database_clones:
                     returned: on success
                     type: string
                     sample: NONE
+        key_history_entry:
+            description:
+                - Key History Entry.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
+                          service key management history entry.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vault_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+                time_activated:
+                    description:
+                        - The date and time the kms key activated.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -219,7 +265,7 @@ autonomous_database_clones:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
@@ -305,6 +351,12 @@ autonomous_database_clones:
                     returned: on success
                     type: string
                     sample: machine_learning_user_management_url_example
+                graph_studio_url:
+                    description:
+                        - The URL of the Graph Studio for the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: graph_studio_url_example
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -352,7 +404,7 @@ autonomous_database_clones:
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -400,7 +452,7 @@ autonomous_database_clones:
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
                   - AJD - indicates an Autonomous JSON Database
-                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
+                  - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
             type: string
             sample: OLTP
@@ -433,15 +485,40 @@ autonomous_database_clones:
             returned: on success
             type: list
             sample: []
+        are_primary_whitelisted_ips_used:
+            description:
+                - This field will be null if the Autonomous Database is not Data Guard enabled or Access Control is disabled.
+                  It's value would be `TRUE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  primary IP access control list (ACL) for standby.
+                  It's value would be `FALSE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  different IP access control list (ACL) for standby compared to primary.
+            returned: on success
+            type: bool
+            sample: true
+        standby_whitelisted_ips:
+            description:
+                - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+                - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+                  Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`
+                  For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
+                - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+            returned: on success
+            type: list
+            sample: []
         apex_details:
             description:
-                - Information about Autonomous Application Express.
+                - Information about Oracle APEX Application Development.
             returned: on success
             type: complex
             contains:
                 apex_version:
                     description:
-                        - The Oracle Application Express service version.
+                        - The Oracle APEX Application Development version.
                     returned: on success
                     type: string
                     sample: apex_version_example
@@ -532,7 +609,7 @@ autonomous_database_clones:
                   the current Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
@@ -590,7 +667,7 @@ autonomous_database_clones:
                     sample: lifecycle_details_example
         role:
             description:
-                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -605,18 +682,33 @@ autonomous_database_clones:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        customer_contacts:
+            description:
+                - Customer Contacts.
+            returned: on success
+            type: complex
+            contains:
+                email:
+                    description:
+                        - The email address of an Oracle Autonomous Database contact.
+                    returned: on success
+                    type: string
+                    sample: email_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -626,6 +718,11 @@ autonomous_database_clones:
             "manual_backup_bucket_name": "manual_backup_bucket_name_example",
             "manual_backup_type": "NONE"
         },
+        "key_history_entry": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_activated": "2013-10-20T19:20:30+01:00"
+        }],
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -645,7 +742,8 @@ autonomous_database_clones:
         "connection_urls": {
             "sql_dev_web_url": "sql_dev_web_url_example",
             "apex_url": "apex_url_example",
-            "machine_learning_user_management_url": "machine_learning_user_management_url_example"
+            "machine_learning_user_management_url": "machine_learning_user_management_url_example",
+            "graph_studio_url": "graph_studio_url_example"
         },
         "license_model": "LICENSE_INCLUDED",
         "used_data_storage_size_in_tbs": 56,
@@ -661,6 +759,8 @@ autonomous_database_clones:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "are_primary_whitelisted_ips_used": true,
+        "standby_whitelisted_ips": [],
         "apex_details": {
             "apex_version": "apex_version_example",
             "ords_version": "ords_version_example"
@@ -691,7 +791,10 @@ autonomous_database_clones:
         "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_store_wallet_name": "key_store_wallet_name_example"
+        "key_store_wallet_name": "key_store_wallet_name_example",
+        "customer_contacts": [{
+            "email": "email_example"
+        }]
     }]
 """
 
@@ -781,6 +884,7 @@ def main():
                     "RECREATING",
                     "ROLE_CHANGE_IN_PROGRESS",
                     "UPGRADING",
+                    "INACCESSIBLE",
                 ],
             ),
             sort_by=dict(type="str", choices=["NONE", "TIMECREATED", "DISPLAYNAME"]),

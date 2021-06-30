@@ -81,11 +81,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List workspaces
   oci_data_integration_workspace_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific workspace
   oci_data_integration_workspace_facts:
-    workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -101,13 +101,13 @@ workspaces:
                 - The OCID of the VCN the subnet is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet for customer connected databases.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         dns_server_ip:
             description:
                 - The IP of the custom DNS.
@@ -159,7 +159,7 @@ workspaces:
                 - The OCID of the compartment containing the workspace.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the workspace was created, in the timestamp format defined by RFC3339.
@@ -201,7 +201,7 @@ workspaces:
                 - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",

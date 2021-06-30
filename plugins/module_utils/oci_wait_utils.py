@@ -613,6 +613,35 @@ class UpdateAutonomousDatabaseWorkRequestWaiter(WorkRequestWaiter):
         ]
 
 
+class NosqlChangeCompartmentCustomWaiter(WorkRequestWaiter):
+    # Getting the resource immediately after the work request succeeds gives a 404 error.
+    def get_resource_from_wait_response(self, wait_response):
+        time.sleep(30)
+        get_response = self.resource_helper.get_resource()
+        return get_response.data
+
+
+# getting the resource requires identifier of sdk resource
+# but api returns identifier for parent resource i.e paigateway
+# using get_matching_resource to get the resource after creation
+class ApiGatewayCreateSdkWorkRequestWaiter(CreateOperationWorkRequestWaiter):
+    def __init__(self, client, resource_helper, operation_response, wait_for_states):
+        super(ApiGatewayCreateSdkWorkRequestWaiter, self).__init__(
+            client, resource_helper, operation_response, wait_for_states
+        )
+
+    # We get identifier for apigateway resource and not sdk resource
+    # return get_matching resource in that case
+    # we fail the task if we couldnt find the resource post creation (rare case)
+    def get_resource_from_wait_response(self, wait_response):
+        matching_resource = self.resource_helper.get_matching_resource()
+        if matching_resource is None:
+            self.resource_helper.module.fail_json(
+                msg="Resource created successfuly. Error while fetching the resource"
+            )
+        return matching_resource
+
+
 # A map specifying the overrides for the default waiters.
 # Key is a tuple consisting spec name, resource type and the operation and the value is the waiter class.
 # For ex: ("waas", "waas_policy", oci_common_utils.UPDATE_OPERATION_KEY) -> CustomWaasWaiterClass
@@ -717,6 +746,11 @@ _WAITER_OVERRIDE_MAP = {
     (
         "load_balancer",
         "backend",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "load_balancer",
+        "routing_policy",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): WorkRequestWaiter,
     (
@@ -867,6 +901,11 @@ _WAITER_OVERRIDE_MAP = {
         "external_container_database",
         oci_common_utils.CREATE_OPERATION_KEY,
     ): NoneWaiter,
+    # For Marketplace Publications, resource creation and
+    # resource updation takes way too long and involves manual
+    # approval from the service team that can take a lot of time.
+    ("marketplace", "publication", oci_common_utils.CREATE_OPERATION_KEY,): NoneWaiter,
+    ("marketplace", "publication", oci_common_utils.UPDATE_OPERATION_KEY,): NoneWaiter,
     # work-request generated for operation `bulk_edit` can not be fetched using the generic Identity work-request api.
     # all tagging operations, use tagging work request api.
     (
@@ -879,6 +918,55 @@ _WAITER_OVERRIDE_MAP = {
         "autonomous_database",
         oci_common_utils.UPDATE_OPERATION_KEY,
     ): UpdateAutonomousDatabaseWorkRequestWaiter,
+    (
+        "core",
+        "instance_pool_instance",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "nosql",
+        "table",
+        "{0}_{1}".format("CHANGE_COMPARTMENT", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): NosqlChangeCompartmentCustomWaiter,
+    # overriding as change compartment for vault changes the state from active to updating
+    (
+        "key_management",
+        "vault",
+        "{0}_{1}".format("CHANGE_COMPARTMENT", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): LifecycleStateWaiter,
+    # the backend_set,backend,listener work requests doesn't contain the OCID of the resource being created
+    # so we want to fallback to the default WorkRequestWaiter which calls the generated
+    # get_resource() method to retrieve the resource
+    (
+        "network_load_balancer",
+        "backend_set",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "network_load_balancer",
+        "backend",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "network_load_balancer",
+        "listener",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "analytics",
+        "vanity_url",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "analytics",
+        "private_access_channel",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): WorkRequestWaiter,
+    (
+        "apigateway",
+        "sdk",
+        oci_common_utils.CREATE_OPERATION_KEY,
+    ): ApiGatewayCreateSdkWorkRequestWaiter,
 }
 
 
@@ -1017,7 +1105,20 @@ def get_resource_identifier_from_wait_response(wait_response, entity_type):
             and getattr(resource, "entity_type").lower().strip().replace("-", "")
             == entity_type.lower()
         ):
-            identifier = resource.identifier
+            # Different resources sometimes have
+            # the resource identifier in attributes
+            # other than ".identifier".
+            # We are checking for all of them.
+            if hasattr(resource, "identifier"):
+                identifier = resource.identifier
+            elif hasattr(resource, "id"):
+                identifier = resource.id
+            elif hasattr(resource, "entity_id"):
+                identifier = resource.entity_id
+            else:
+                raise AttributeError(
+                    "resource object has no valid resource identifier attribute"
+                )
         # this handles Analytics Instance & Digital Assistant Instance style WorkRequests which contains a field
         # 'resource_type' instead of 'entity_type'
         elif (

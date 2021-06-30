@@ -20,7 +20,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -148,6 +148,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -467,7 +468,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The virtual machine DB system shape to launch for the standby database in the Data Guard association. The shape determines the number of CPU cores and the amount of memory available for the DB system. Only virtual machine shapes are valid options. If you do not supply this parameter, the default shape is the shape of the primary DB system.</div>
-                                            <div>To get a list of all shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes'>ListDbSystemShapes</a> operation.</div>
+                                            <div>To get a list of all shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes'>ListDbSystemShapes</a> operation.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
@@ -603,7 +604,7 @@ Examples
     
     - name: Create data_guard_association
       oci_database_data_guard_association:
-        database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         database_admin_password: database_admin_password_example
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC

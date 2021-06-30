@@ -35,7 +35,7 @@ options:
     resource_metric:
         description:
             - Filter by resource metric.
-              Supported values are CPU and STORAGE.
+              Supported values are CPU , STORAGE, MEMORY and IO.
         type: str
         required: true
     analysis_time_interval:
@@ -64,16 +64,23 @@ options:
     database_type:
         description:
             - Filter by one or more database type.
-              Possible values are ADW-S, ATP-S, ADW-D, ATP-D
+              Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
         choices:
             - "ADW-S"
             - "ATP-S"
             - "ADW-D"
             - "ATP-D"
+            - "EXTERNAL-PDB"
+            - "EXTERNAL-NONCDB"
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
+              insight resource.
         type: list
     forecast_days:
         description:
@@ -85,7 +92,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific resource_utilization_insight
   oci_opsi_resource_utilization_insight_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resource_metric: resource_metric_example
 
 """
@@ -111,7 +118,7 @@ resource_utilization_insight:
             sample: 2020-12-06T00:00:00.000Z
         resource_metric:
             description:
-                - Defines the type of resource metric (CPU, STORAGE)
+                - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
             type: string
             sample: STORAGE
@@ -227,6 +234,7 @@ class ResourceUtilizationInsightFactsHelperGen(OCIResourceFactsHelperBase):
             "time_interval_end",
             "database_type",
             "database_id",
+            "id",
             "forecast_days",
         ]
         optional_kwargs = dict(
@@ -264,9 +272,18 @@ def main():
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
             database_type=dict(
-                type="list", choices=["ADW-S", "ATP-S", "ADW-D", "ATP-D"]
+                type="list",
+                choices=[
+                    "ADW-S",
+                    "ATP-S",
+                    "ADW-D",
+                    "ATP-D",
+                    "EXTERNAL-PDB",
+                    "EXTERNAL-NONCDB",
+                ],
             ),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             forecast_days=dict(type="int"),
         )
     )

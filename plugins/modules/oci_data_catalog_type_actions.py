@@ -56,13 +56,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action associate_custom_property on type
   oci_data_catalog_type_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
     action: associate_custom_property
 
 - name: Perform action disassociate_custom_property on type
   oci_data_catalog_type_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
     action: disassociate_custom_property
 
@@ -98,7 +98,7 @@ type:
                 - The data catalog's OCID.
             returned: on success
             type: string
-            sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         properties:
             description:
                 - |
@@ -232,6 +232,12 @@ type:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_service_defined:
                     description:
                         - If this field is defined by service or by a user
@@ -274,7 +280,7 @@ type:
                                 - Unique type key identifier
                             returned: on success
                             type: string
-                            sample: ocid1.type.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx"
                         type_name:
                             description:
                                 - Name of the type associated with
@@ -317,6 +323,7 @@ type:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_service_defined": true,
             "is_hidden_in_search": true,
             "time_created": "2019-03-25T21:10:29.600Z",

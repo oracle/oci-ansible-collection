@@ -82,13 +82,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List plugins
   oci_compute_instance_agent_plugin_facts:
-    instanceagent_id: ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific plugin
   oci_compute_instance_agent_plugin_facts:
-    instanceagent_id: ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     plugin_name: plugin_name_example
 
 """

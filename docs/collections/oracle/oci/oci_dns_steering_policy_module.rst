@@ -20,7 +20,7 @@ oracle.oci.oci_dns_steering_policy -- Manage a SteeringPolicy resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a SteeringPolicy resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new steering policy in the specified compartment. For more information on creating policies with templates, see `Traffic Management API Guide <https://docs.cloud.oracle.com/iaas/Content/TrafficManagement/Concepts/trafficmanagementapi.htm>`_.
+- This resource has the following action operations in the :ref:`oci_steering_policy_actions <ansible_collections.oci_steering_policy_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -282,6 +283,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -940,78 +942,78 @@ Examples
     
     - name: Create steering_policy
       oci_dns_steering_policy:
-        compartment_id: ocid1.compartment.oc1..
-        display_name: failover between endpoints
+        compartment_id: "ocid1.compartment.oc1.."
+        display_name: "failover between endpoints"
         ttl: 30
-        health_check_monitor_id: ocid1.httpmonitor.oc1..
-        template: FAILOVER
+        health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+        template: "FAILOVER"
         answers:
-        - name: server-primary
-          rtype: A
-          rdata: 192.0.2.0
-          pool: primary
-        - name: server-secondary
-          rtype: A
-          rdata: 192.0.4.6
-          pool: secondary
+        - name: "server-primary"
+          rtype: "A"
+          rdata: "192.0.2.0"
+          pool: "primary"
+        - name: "server-secondary"
+          rtype: "A"
+          rdata: "192.0.4.6"
+          pool: "secondary"
         rules:
-        - rule_type: FILTER
+        - rule_type: "FILTER"
           default_answer_data:
-          - answer_condition: answer.isDisabled != true
+          - answer_condition: "answer.isDisabled != true"
             should_keep: true
-        - rule_type: HEALTH
-        - rule_type: PRIORITY
+        - rule_type: "HEALTH"
+        - rule_type: "PRIORITY"
           default_answer_data:
-          - answer_condition: answer.pool == 'primary'
+          - answer_condition: "answer.pool == 'primary'"
             value: 1
-          - answer_condition: answer.pool == 'secondary'
+          - answer_condition: "answer.pool == 'secondary'"
             value: 99
-        - rule_type: LIMIT
+        - rule_type: "LIMIT"
           default_count: 1
 
     - name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy:
-        compartment_id: ocid1.compartment.oc1..
-        display_name: LA data center failover
+        compartment_id: "ocid1.compartment.oc1.."
+        display_name: "LA data center failover"
         ttl: 30
-        health_check_monitor_id: ocid1.httpmonitor.oc1..
-        template: FAILOVER
+        health_check_monitor_id: "ocid1.httpmonitor.oc1.."
+        template: "FAILOVER"
         answers:
-        - name: server-primary
-          rtype: A
-          rdata: 192.0.2.0
-          pool: primary
-        - name: server-secondary
-          rtype: A
-          rdata: 192.0.4.1
-          pool: secondary
+        - name: "server-primary"
+          rtype: "A"
+          rdata: "192.0.2.0"
+          pool: "primary"
+        - name: "server-secondary"
+          rtype: "A"
+          rdata: "192.0.4.1"
+          pool: "secondary"
         rules:
-        - rule_type: FILTER
+        - rule_type: "FILTER"
           default_answer_data:
-          - answer_condition: answer.isDisabled != true
+          - answer_condition: "answer.isDisabled != true"
             should_keep: true
-        - rule_type: HEALTH
-        - rule_type: PRIORITY
+        - rule_type: "HEALTH"
+        - rule_type: "PRIORITY"
           default_answer_data:
-          - answer_condition: answer.pool == 'primary'
+          - answer_condition: "answer.pool == 'primary'"
             value: 1
-          - answer_condition: answer.pool == 'secondary'
+          - answer_condition: "answer.pool == 'secondary'"
             value: 99
-        - rule_type: LIMIT
+        - rule_type: "LIMIT"
           default_count: 1
 
     - name: Update steering_policy
       oci_dns_steering_policy:
-        steering_policy_id: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+        steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete steering_policy
       oci_dns_steering_policy:
-        steering_policy_id: ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx
+        steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy:
-        compartment_id: ocid1.compartment.oc1..
+        compartment_id: "ocid1.compartment.oc1.."
         display_name: failover between endpoints
         state: absent
 

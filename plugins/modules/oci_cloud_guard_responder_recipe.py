@@ -24,6 +24,7 @@ short_description: Manage a ResponderRecipe resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a ResponderRecipe resource in Oracle Cloud Infrastructure
     - For I(state=present), create a ResponderRecipe.
+    - "This resource has the following action operations in the M(oci_responder_recipe_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -108,16 +109,16 @@ EXAMPLES = """
 - name: Create responder_recipe
   oci_cloud_guard_responder_recipe:
     display_name: display_name_example
-    source_responder_recipe_id: ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    source_responder_recipe_id: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_responder_recipe:
     display_name: display_name_example
     description: description_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     responder_rules:
-    - responder_rule_id: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+    - responder_rule_id: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
       details:
         is_enabled: true
     freeform_tags: {'Department': 'Finance'}
@@ -127,17 +128,17 @@ EXAMPLES = """
   oci_cloud_guard_responder_recipe:
     display_name: display_name_example
     description: description_example
-    responder_recipe_id: ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+    responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete responder_recipe
   oci_cloud_guard_responder_recipe:
-    responder_recipe_id: ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+    responder_recipe_id: "ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_responder_recipe:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -154,7 +155,7 @@ responder_recipe:
                 - Identifier for ResponderRecipe.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ResponderRecipe Display Name
@@ -184,7 +185,7 @@ responder_recipe:
                         - Identifier for ResponderRule.
                     returned: on success
                     type: string
-                    sample: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - ResponderRule Display Name
@@ -267,7 +268,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -285,7 +286,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         configurations:
                             description:
@@ -328,7 +329,7 @@ responder_recipe:
                         - Compartment Identifier
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - The date and time the responder recipe rule was created. Format defined by RFC3339.
@@ -365,7 +366,7 @@ responder_recipe:
                         - Identifier for ResponderRule.
                     returned: on success
                     type: string
-                    sample: ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - ResponderRule Display Name
@@ -448,7 +449,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
@@ -466,7 +467,7 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: dict
+                                            type: string
                                             sample: COMPOSITE
                         configurations:
                             description:
@@ -509,7 +510,7 @@ responder_recipe:
                         - Compartment Identifier
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - The date and time the responder recipe rule was created. Format defined by RFC3339.
@@ -540,13 +541,13 @@ responder_recipe:
                 - The id of the source responder recipe.
             returned: on success
             type: string
-            sample: ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the responder recipe was created. Format defined by RFC3339.

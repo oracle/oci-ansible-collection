@@ -24,6 +24,7 @@ short_description: Manage an Application resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new application.
+    - "This resource has the following action operations in the M(oci_application_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -67,6 +68,20 @@ options:
             - "Example: `tcp://logserver.myserver:1234`"
             - This parameter is updatable.
         type: str
+    trace_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_enabled:
+                description:
+                    - Define if tracing is enabled for the resource.
+                type: bool
+            domain_id:
+                description:
+                    - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
+                type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -103,31 +118,31 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create application
   oci_functions_application:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: Example Application
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "ExampleApplication"
     subnet_ids:
-    - ocid1.subnet.oc1..unique_ID
+    - "ocid1.subnet.oc1..unique_ID"
 
 - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
-    syslog_url: tcp://logserver.myserver:1234
-    display_name: myapplication
+    syslog_url: "tcp://logserver.myserver:1234"
+    display_name: "myapplication"
     config:
-      EXAMPLE_KEY: example-value
+      EXAMPLE_KEY: "example-value"
 
 - name: Update application
   oci_functions_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete application
   oci_functions_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_functions_application:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: Example Application
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: ExampleApplication
     state: absent
 
 """
@@ -144,13 +159,13 @@ application:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the application.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the application. The display name is unique within the compartment containing the application.
@@ -191,6 +206,24 @@ application:
             returned: on success
             type: string
             sample: tcp://logserver.myserver:1234
+        trace_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - Define if tracing is enabled for the resource.
+                    returned: on success
+                    type: bool
+                    sample: true
+                domain_id:
+                    description:
+                        - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -231,6 +264,10 @@ application:
         "config": {},
         "subnet_ids": [],
         "syslog_url": "tcp://logserver.myserver:1234",
+        "trace_config": {
+            "is_enabled": true,
+            "domain_id": "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",
@@ -384,6 +421,10 @@ def main():
             config=dict(type="dict"),
             subnet_ids=dict(type="list"),
             syslog_url=dict(type="str"),
+            trace_config=dict(
+                type="dict",
+                options=dict(is_enabled=dict(type="bool"), domain_id=dict(type="str")),
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             application_id=dict(aliases=["id"], type="str"),

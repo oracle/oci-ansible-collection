@@ -92,14 +92,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create index
   oci_nosql_index:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     keys:
     - column_name: column_name_example
 
 - name: Delete index
   oci_nosql_index:
-    table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
 
@@ -123,7 +123,7 @@ index:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         table_name:
             description:
                 - The name of the table to which this index belongs.
@@ -135,7 +135,7 @@ index:
                 - the OCID of the table to which this index belongs.
             returned: on success
             type: string
-            sample: ocid1.table.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
         keys:
             description:
                 - A set of keys for a secondary index.

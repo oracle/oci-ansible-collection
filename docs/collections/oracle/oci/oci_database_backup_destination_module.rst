@@ -20,7 +20,7 @@ oracle.oci.oci_database_backup_destination -- Manage a BackupDestination resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BackupDestination resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a backup destination in an Exadata Cloud@Customer system.
+- This resource has the following action operations in the :ref:`oci_backup_destination_actions <ansible_collections.oci_backup_destination_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -624,14 +626,14 @@ Examples
     - name: Create backup_destination
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         type: RECOVERY_APPLIANCE
         connection_string: connection_string_example
 
     - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         local_mount_point_path: local_mount_point_path_example
@@ -643,17 +645,17 @@ Examples
       oci_database_backup_destination:
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+        backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete backup_destination
       oci_database_backup_destination:
-        backup_destination_id: ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx
+        backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup_destination:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid.compartment.oc1..unique_ID"
         state: absent
 
 

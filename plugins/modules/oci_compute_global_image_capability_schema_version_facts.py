@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     compute_global_image_capability_schema_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute global image capability schema
         type: str
         required: true
     compute_global_image_capability_schema_version_name:
@@ -70,11 +70,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List compute_global_image_capability_schema_versions
   oci_compute_global_image_capability_schema_version_facts:
-    compute_global_image_capability_schema_id: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific compute_global_image_capability_schema_version
   oci_compute_global_image_capability_schema_version_facts:
-    compute_global_image_capability_schema_id: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+    compute_global_image_capability_schema_id: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
     compute_global_image_capability_schema_version_name: compute_global_image_capability_schema_version_name_example
 
 """
@@ -97,7 +97,7 @@ compute_global_image_capability_schema_versions:
                 - The ocid of the compute global image capability schema
             returned: on success
             type: string
-            sample: ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the compute global image capability schema

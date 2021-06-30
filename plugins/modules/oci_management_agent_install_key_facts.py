@@ -86,11 +86,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List management_agent_install_keys
   oci_management_agent_install_key_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific management_agent_install_key
   oci_management_agent_install_key_facts:
-    management_agent_install_key_id: ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -106,7 +106,7 @@ management_agent_install_keys:
                 - Agent install Key identifier
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Install Key Name
@@ -124,13 +124,13 @@ management_agent_install_keys:
                 - Principal id of user who created the Agent Install key
             returned: on success
             type: string
-            sample: ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         allowed_key_install_count:
             description:
                 - Total number of install for this keys

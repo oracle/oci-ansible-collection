@@ -30,13 +30,13 @@ author: Oracle (@oracle)
 options:
     snapshot_id:
         description:
-            - The OCID of the snapshot.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
             - Required to get a specific snapshot.
         type: str
         aliases: ["id"]
     file_system_id:
         description:
-            - The OCID of the file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             - Required to list multiple snapshots.
         type: str
     lifecycle_state:
@@ -65,11 +65,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List snapshots
   oci_file_storage_snapshot_facts:
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific snapshot
   oci_file_storage_snapshot_facts:
-    snapshot_id: ocid1.snapshot.oc1..xxxxxxEXAMPLExxxxxx
+    snapshot_id: "ocid1.snapshot.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -82,17 +82,17 @@ snapshots:
     contains:
         file_system_id:
             description:
-                - The OCID of the file system from which the snapshot
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system from which the snapshot
                   was created.
             returned: on success
             type: string
-            sample: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The OCID of the snapshot.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the snapshot.
@@ -115,6 +115,28 @@ snapshots:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        provenance_id:
+            description:
+                - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
+                  If this snapshot was not cloned, then the `provenanceId` is the same as the snapshot `id` value.
+                  If this snapshot was cloned, then the `provenanceId` value is the parent's `provenanceId`.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: string
+            sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
+        is_clone_source:
+            description:
+                - Specifies whether the snapshot has been cloned.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_details:
+            description:
+                - Additional information about the current 'lifecycleState'.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair
@@ -138,6 +160,9 @@ snapshots:
         "lifecycle_state": "CREATING",
         "name": "Sunday",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_clone_source": true,
+        "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

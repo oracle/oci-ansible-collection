@@ -143,7 +143,7 @@ object_versions:
                 - VersionId of the object.
             returned: on success
             type: string
-            sample: ocid1.version.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
         is_delete_marker:
             description:
                 - This flag will indicate if the version is deleted or not.

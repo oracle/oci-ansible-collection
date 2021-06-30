@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_key_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -91,7 +91,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt. Currently, only AES, RSA and ECDSA are supported.</div>
+                                            <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt data. Currently, support includes AES, RSA, and ECDSA algorithms.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -168,6 +168,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -237,7 +238,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The curve Id of the keys in case of ECDSA keys</div>
+                                            <div>The curve ID of the keys. (This pertains only to ECDSA keys.)</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -284,7 +285,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The length of the key in bytes, expressed as an integer. Values of 16, 24, 32 are supported.</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Supported values include 16, 24, or 32.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -413,12 +414,12 @@ Examples
     
     - name: List keys
       oci_key_management_key_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: Get a specific key
       oci_key_management_key_facts:
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 
@@ -456,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Key resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;curve_id&#x27;: &#x27;ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_key_version&#x27;: &#x27;current_key_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_primary&#x27;: True, &#x27;key_shape&#x27;: {&#x27;algorithm&#x27;: &#x27;AES&#x27;, &#x27;curve_id&#x27;: &#x27;ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;length&#x27;: 56}, &#x27;lifecycle_state&#x27;: &#x27;ENABLED&#x27;, &#x27;protection_mode&#x27;: &#x27;HSM&#x27;, &#x27;replica_details&#x27;: {&#x27;replication_id&#x27;: &#x27;ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2018-04-03T21:10:29.600Z&#x27;, &#x27;time_of_deletion&#x27;: &#x27;2019-04-03T21:10:29.600Z&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -471,7 +472,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt.</div>
+                                            <div>The algorithm used by a key&#x27;s key versions to encrypt or decrypt data.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AES</div>
@@ -588,6 +589,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-keys/is_primary"></div>
+                    <b>is_primary</b>
+                    <a class="ansibleOptionLink" href="#return-keys/is_primary" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the is_primary property of this Key.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-keys/key_shape"></div>
                     <b>key_shape</b>
                     <a class="ansibleOptionLink" href="#return-keys/key_shape" title="Permalink to this return value"></a>
@@ -633,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Supported curve Ids for ECDSA keys</div>
+                                            <div>Supported curve IDs for ECDSA keys.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -652,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The length of the key in bytes, expressed as an integer. Values supported: - AES: 16, 24 or 32 - RSA: 256, 384 or 512 - ECDSA: 32, 48, 66</div>
+                                            <div>The length of the key in bytes, expressed as an integer. Supported values include the following: - AES: 16, 24, or 32 - RSA: 256, 384, or 512 - ECDSA: 32, 48, or 66</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -696,6 +715,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HSM</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-keys/replica_details"></div>
+                    <b>replica_details</b>
+                    <a class="ansibleOptionLink" href="#return-keys/replica_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value to assign to the replica_details property of this Key.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-keys/replica_details/replication_id"></div>
+                    <b>replication_id</b>
+                    <a class="ansibleOptionLink" href="#return-keys/replica_details/replication_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ReplicationId associated with a key operation</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

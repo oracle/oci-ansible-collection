@@ -79,11 +79,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List integration_instances
   oci_integration_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific integration_instance
   oci_integration_instance_facts:
-    integration_instance_id: ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx
+    integration_instance_id: "ocid1.integrationinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -99,7 +99,7 @@ integration_instances:
                 - Unique identifier that is immutable on creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Integration Instance Identifier, can be renamed.
@@ -111,7 +111,7 @@ integration_instances:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
                 - Standard or Enterprise type
@@ -183,12 +183,108 @@ integration_instances:
             returned: on success
             type: bool
             sample: true
+        is_visual_builder_enabled:
+            description:
+                - VisualBuilder is enabled or not.
+            returned: on success
+            type: bool
+            sample: true
+        custom_endpoint:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
+        alternate_custom_endpoints:
+            description:
+                - A list of alternate custom endpoints used for the integration instance URL.
+            returned: on success
+            type: complex
+            contains:
+                hostname:
+                    description:
+                        - A custom hostname to be used for the integration instance URL, in FQDN format.
+                    returned: on success
+                    type: string
+                    sample: hostname_example
+                certificate_secret_id:
+                    description:
+                        - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_secret_version:
+                    description:
+                        - The secret version used for the certificate-secret-id (if certificate-secret-id is specified).
+                    returned: on success
+                    type: int
+                    sample: 56
         consumption_model:
             description:
                 - The entitlement used for billing purposes.
             returned: on success
             type: string
             sample: UCM
+        network_endpoint_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_endpoint_type:
+                    description:
+                        - The type of network endpoint.
+                    returned: on success
+                    type: string
+                    sample: PUBLIC
+                allowlisted_http_ips:
+                    description:
+                        - Source IP addresses or IP address ranges ingress rules.
+                    returned: on success
+                    type: list
+                    sample: []
+                allowlisted_http_vcns:
+                    description:
+                        - Virtual Cloud Networks allowed to access this network endpoint.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The Virtual Cloud Network OCID.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        allowlisted_ips:
+                            description:
+                                - Source IP addresses or IP address ranges ingress rules.
+                            returned: on success
+                            type: list
+                            sample: []
+                is_integration_vcn_allowlisted:
+                    description:
+                        - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -204,7 +300,27 @@ integration_instances:
         "instance_url": "instance_url_example",
         "message_packs": 56,
         "is_file_server_enabled": true,
-        "consumption_model": "UCM"
+        "is_visual_builder_enabled": true,
+        "custom_endpoint": {
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        },
+        "alternate_custom_endpoints": [{
+            "hostname": "hostname_example",
+            "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_secret_version": 56
+        }],
+        "consumption_model": "UCM",
+        "network_endpoint_details": {
+            "network_endpoint_type": "PUBLIC",
+            "allowlisted_http_ips": [],
+            "allowlisted_http_vcns": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "allowlisted_ips": []
+            }],
+            "is_integration_vcn_allowlisted": true
+        }
     }]
 """
 

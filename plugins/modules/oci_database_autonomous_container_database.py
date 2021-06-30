@@ -24,7 +24,7 @@ short_description: Manage an AutonomousContainerDatabase resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete an AutonomousContainerDatabase resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
-    - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: restart,
+    - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: change_compartment, restart,
       rotate_autonomous_container_database_encryption_key."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -70,6 +70,64 @@ options:
         choices:
             - "MAXIMUM_AVAILABILITY"
             - "MAXIMUM_PERFORMANCE"
+    peer_autonomous_vm_cluster_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer Autonomous VM cluster for Autonomous Data Guard.
+              Required to enable Data Guard.
+        type: str
+    peer_autonomous_container_database_compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the standby Autonomous Container
+              Database
+              will be created.
+        type: str
+    peer_autonomous_container_database_backup_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            backup_destination_details:
+                description:
+                    - Backup destination details.
+                type: list
+                suboptions:
+                    type:
+                        description:
+                            - Type of the database backup destination.
+                        type: str
+                        choices:
+                            - "NFS"
+                            - "RECOVERY_APPLIANCE"
+                            - "OBJECT_STORE"
+                            - "LOCAL"
+                        required: true
+                    id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+                        type: str
+                    vpc_user:
+                        description:
+                            - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.
+                        type: str
+                    vpc_password:
+                        description:
+                            - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
+                        type: str
+                    internet_proxy:
+                        description:
+                            - Proxy URL to connect to object store.
+                        type: str
+            recovery_window_in_days:
+                description:
+                    - Number of days between the current and the earliest point of recoverability covered by automatic backups.
+                      This value applies to automatic backups. After a new automatic backup has been created, Oracle removes old automatic backups that are
+                      created before the window.
+                      When the value is updated, it is applied to all existing automatic backups.
+                type: int
+    peer_db_unique_name:
+        description:
+            - The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association.
+        type: str
     autonomous_vm_cluster_id:
         description:
             - The OCID of the Autonomous VM Cluster.
@@ -269,26 +327,26 @@ EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
     display_name: containerdatabases2
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     patch_model: RELEASE_UPDATES
 
 - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
-    display_name: new Display name
+    display_name: "new Display name"
 
 - name: Update autonomous_container_database
   oci_database_autonomous_container_database:
-    autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete autonomous_container_database
   oci_database_autonomous_container_database:
-    autonomous_container_database_id: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
     display_name: containerdatabases2
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     state: absent
 
 """
@@ -305,13 +363,13 @@ autonomous_container_database:
                 - The OCID of the Autonomous Container Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Autonomous Container Database.
@@ -335,13 +393,13 @@ autonomous_container_database:
                 - The OCID of the Autonomous Exadata Infrastructure.
             returned: on success
             type: string
-            sample: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_vm_cluster_id:
             description:
                 - The OCID of the Autonomous VM Cluster.
             returned: on success
             type: string
-            sample: ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         infrastructure_type:
             description:
                 - The infrastructure type this resource belongs to.
@@ -353,14 +411,14 @@ autonomous_container_database:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                   L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
@@ -390,19 +448,19 @@ autonomous_container_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_window:
             description:
                 - ""
@@ -529,7 +587,7 @@ autonomous_container_database:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
@@ -563,7 +621,7 @@ autonomous_container_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.
@@ -791,6 +849,35 @@ def main():
             protection_mode=dict(
                 type="str", choices=["MAXIMUM_AVAILABILITY", "MAXIMUM_PERFORMANCE"]
             ),
+            peer_autonomous_vm_cluster_id=dict(type="str"),
+            peer_autonomous_container_database_compartment_id=dict(type="str"),
+            peer_autonomous_container_database_backup_config=dict(
+                type="dict",
+                options=dict(
+                    backup_destination_details=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "NFS",
+                                    "RECOVERY_APPLIANCE",
+                                    "OBJECT_STORE",
+                                    "LOCAL",
+                                ],
+                            ),
+                            id=dict(type="str"),
+                            vpc_user=dict(type="str"),
+                            vpc_password=dict(type="str", no_log=True),
+                            internet_proxy=dict(type="str"),
+                        ),
+                    ),
+                    recovery_window_in_days=dict(type="int"),
+                ),
+            ),
+            peer_db_unique_name=dict(type="str"),
             autonomous_vm_cluster_id=dict(type="str"),
             compartment_id=dict(type="str"),
             patch_model=dict(

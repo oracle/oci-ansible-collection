@@ -25,7 +25,7 @@ description:
     - This module allows the user to create and delete a VnicAttachment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a secondary VNIC and attaches it to the specified instance.
       For more information about secondary VNICs, see
-      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+      L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -54,13 +54,20 @@ options:
                       about the public IP limits, see
                       L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm)."
                     - "Example: `false`"
-                    - If you specify a `vlanId`, the `assignPublicIp` is required to be set to false. See
+                    - If you specify a `vlanId`, then `assignPublicIp` must be set to false. See
                       L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
+                type: bool
+            assign_private_dns_record:
+                description:
+                    - Whether the VNIC should be assigned a DNS record. If set to false, there will be no DNS record
+                      registration for the VNIC. If set to true, the DNS record will be registered. The default
+                      value is true.
+                    - If you specify a `hostnameLabel`, then `assignPrivateDnsRecord` must be set to true.
                 type: bool
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
             display_name:
@@ -73,7 +80,7 @@ options:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
                 type: dict
             hostname_label:
@@ -95,8 +102,8 @@ options:
                       L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/requests/LaunchInstanceDetails).
                       If you provide both, the values must match.
                     - "Example: `bminstance-1`"
-                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. vnics on a Vlan
-                      can not be assigned a hostname  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
+                    - If you specify a `vlanId`, the `hostnameLabel` cannot be specified. VNICs on a VLAN
+                      can not be assigned a hostname. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 type: str
             nsg_ids:
                 description:
@@ -169,7 +176,7 @@ options:
               Certain bare metal instance shapes have two active physical NICs (0 and 1). If
               you add a secondary VNIC to one of these instances, you can specify which NIC
               the VNIC will use. For more information, see
-              L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+              L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
         type: int
     vnic_attachment_id:
         description:
@@ -179,7 +186,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -198,18 +205,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vnic_attachment
   oci_compute_vnic_attachment:
-    instance_id: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vnic_attachment
   oci_compute_vnic_attachment:
-    vnic_attachment_id: ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx
+    vnic_attachment_id: "ocid1.vnicattachment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vnic_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_vnic_attachment:
     display_name: display_name_example
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -234,7 +241,7 @@ vnic_attachment:
                   compartment the instance is in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique.
@@ -247,13 +254,13 @@ vnic_attachment:
                 - The OCID of the VNIC attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VNIC attachment.
@@ -266,7 +273,7 @@ vnic_attachment:
                   Certain bare metal instance shapes have two active physical NICs (0 and 1). If
                   you add a secondary VNIC to one of these instances, you can specify which NIC
                   the VNIC will use. For more information, see
-                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/Content/Network/Tasks/managingVNICs.htm).
+                  L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
             returned: on success
             type: int
             sample: 56
@@ -275,16 +282,16 @@ vnic_attachment:
                 - The OCID of the subnet to create the VNIC in.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         vlan_id:
             description:
                 - The OCID of the VLAN to create the VNIC in. Creating the VNIC in a VLAN (instead
                   of a subnet) is possible only if you are an Oracle Cloud VMware Solution customer.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - An error is returned if the instance already has a VNIC attached to it from this VLAN.
             returned: on success
             type: string
-            sample: ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -298,7 +305,7 @@ vnic_attachment:
                   attachment process is complete.
                 - However, if the VNIC belongs to a VLAN as part of the Oracle Cloud VMware Solution,
                   the `vlanTag` value is instead the value of the `vlanTag` attribute for the VLAN.
-                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Vlan).
+                  See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `0`"
             returned: on success
             type: int
@@ -308,7 +315,7 @@ vnic_attachment:
                 - The OCID of the VNIC. Available after the attachment process is complete.
             returned: on success
             type: string
-            sample: ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -448,6 +455,7 @@ def main():
                 type="dict",
                 options=dict(
                     assign_public_ip=dict(type="bool"),
+                    assign_private_dns_record=dict(type="bool"),
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),

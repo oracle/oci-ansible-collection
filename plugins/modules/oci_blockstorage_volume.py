@@ -26,15 +26,16 @@ description:
     - For I(state=present), creates a new volume in the specified compartment. Volumes can be created in sizes ranging from
       50 GB (51200 MB) to 32 TB (33554432 MB), in 1 GB (1024 MB) increments. By default, volumes are 1 TB (1048576 MB).
       For general information about block volumes, see
-      L(Overview of Block Volume Service,https://docs.cloud.oracle.com/Content/Block/Concepts/overview.htm).
+      L(Overview of Block Volume Service,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/overview.htm).
     - A volume and instance can be in separate compartments but must be in the same availability domain.
       For information about access control and compartments, see
-      L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm). For information about
-      availability domains, see L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
+      L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm). For information about
+      availability domains, see L(Regions and Availability Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
       To get a list of availability domains, use the `ListAvailabilityDomains` operation
       in the Identity and Access Management Service API.
     - "You may optionally specify a *display name* for the volume, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_volume_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -59,7 +60,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -75,7 +76,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -88,7 +89,7 @@ options:
         description:
             - The number of volume performance units (VPUs) that will be applied to this volume per GB,
               representing the Block Volume service's elastic performance options.
-              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
               information.
             - "Allowed values:"
             - " * `0`: Represents Lower Cost option."
@@ -116,12 +117,13 @@ options:
                     - ""
                 type: str
                 choices:
+                    - "blockVolumeReplica"
                     - "volume"
                     - "volumeBackup"
                 required: true
             id:
                 description:
-                    - The OCID of the volume.
+                    - The OCID of the block volume replica.
                 type: str
                 required: true
     volume_backup_id:
@@ -135,6 +137,25 @@ options:
             - Specifies whether the auto-tune performance is enabled for this volume.
             - This parameter is updatable.
         type: bool
+    block_volume_replicas:
+        description:
+            - The list of block volume replicas to be enabled for this volume
+              in the specified destination availability domains.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            display_name:
+                description:
+                    - "The display name of the block volume replica. You may optionally specify a *display name* for
+                      the block volume replica, otherwise a default is provided."
+                type: str
+                aliases: ["name"]
+            availability_domain:
+                description:
+                    - The availability domain of the block volume replica.
+                    - "Example: `Uocm:PHX-AD-1`"
+                type: str
+                required: true
     volume_id:
         description:
             - The OCID of the volume.
@@ -158,32 +179,34 @@ EXAMPLES = """
 - name: Create volume
   oci_blockstorage_volume:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     vpus_per_gb: 56
     size_in_gbs: 56
     is_auto_tune_enabled: true
+    block_volume_replicas:
+    - availability_domain: Uocm:PHX-AD-1
 
 - name: Update volume
   oci_blockstorage_volume:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete volume
   oci_blockstorage_volume:
-    volume_id: ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx
+    volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -208,11 +231,11 @@ volume:
                 - The OCID of the compartment that contains the volume.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -228,7 +251,7 @@ volume:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -245,7 +268,7 @@ volume:
                 - The OCID of the volume.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
                 - Specifies whether the cloned volume's data has finished copying from the source volume or backup.
@@ -257,7 +280,7 @@ volume:
                 - The OCID of the Key Management key which is the master encryption key for the volume.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume.
@@ -268,7 +291,7 @@ volume:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
                   information.
                 - "Allowed values:"
                 - " * `0`: Represents Lower Cost option."
@@ -301,13 +324,13 @@ volume:
                         - ""
                     returned: on success
                     type: string
-                    sample: volume
+                    sample: blockVolumeReplica
                 id:
                     description:
-                        - The OCID of the volume.
+                        - The OCID of the block volume replica.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -319,7 +342,7 @@ volume:
                 - The OCID of the source volume group.
             returned: on success
             type: string
-            sample: ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
                 - Specifies whether the auto-tune performance is enabled for this volume.
@@ -332,6 +355,31 @@ volume:
             returned: on success
             type: int
             sample: 56
+        block_volume_replicas:
+            description:
+                - The list of block volume replicas of this volume.
+            returned: on success
+            type: complex
+            contains:
+                display_name:
+                    description:
+                        - The display name of the block volume replica
+                    returned: on success
+                    type: string
+                    sample: display_name_example
+                block_volume_replica_id:
+                    description:
+                        - The block volume replica's Oracle ID (OCID).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - The availability domain of the block volume replica.
+                        - "Example: `Uocm:PHX-AD-1`"
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -347,13 +395,18 @@ volume:
         "size_in_gbs": 56,
         "size_in_mbs": 56,
         "source_details": {
-            "type": "volume",
+            "type": "blockVolumeReplica",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "is_auto_tune_enabled": true,
-        "auto_tuned_vpus_per_gb": 56
+        "auto_tuned_vpus_per_gb": 56,
+        "block_volume_replicas": [{
+            "display_name": "display_name_example",
+            "block_volume_replica_id": "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1"
+        }]
     }
 """
 
@@ -507,13 +560,23 @@ def main():
                 type="dict",
                 options=dict(
                     type=dict(
-                        type="str", required=True, choices=["volume", "volumeBackup"]
+                        type="str",
+                        required=True,
+                        choices=["blockVolumeReplica", "volume", "volumeBackup"],
                     ),
                     id=dict(type="str", required=True),
                 ),
             ),
             volume_backup_id=dict(type="str"),
             is_auto_tune_enabled=dict(type="bool"),
+            block_volume_replicas=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    display_name=dict(aliases=["name"], type="str"),
+                    availability_domain=dict(type="str", required=True),
+                ),
+            ),
             volume_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

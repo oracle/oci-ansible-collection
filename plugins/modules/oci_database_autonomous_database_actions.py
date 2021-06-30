@@ -25,6 +25,11 @@ description:
     - Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
     - For I(action=autonomous_database_manual_refresh), initiates a data refresh for an Autonomous Database refreshable clone. Data is refreshed from the source
       database to the point of a specified timestamp.
+    - For I(action=change_compartment), move the Autonomous Database and its dependent resources to the specified compartment.
+      For more information about moving Autonomous Databases, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
+    - For I(action=configure_autonomous_database_vault_key), configures the Autonomous Database Vault service
+      L(key,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
     - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
     - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
@@ -54,6 +59,27 @@ options:
               not part of the data refresh.
             - Applicable only for I(action=autonomous_database_manual_refresh).
         type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
+    kms_key_id:
+        description:
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: str
+    is_using_oracle_managed_keys:
+        description:
+            - True if disable Customer Managed Keys and use Oracle Managed Keys.
+            - Applicable only for I(action=configure_autonomous_database_vault_key).
+        type: bool
     pdb_admin_password:
         description:
             - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
@@ -98,10 +124,12 @@ options:
         description:
             - The destination file path with file name when downloading wallet. The file must have 'zip' extension. I(wallet_file) is required if
               I(state='generate_wallet').
+            - Required for I(action=generate_autonomous_database_wallet).
         type: str
     force:
         description:
             - Force overwriting existing wallet file when downloading wallet.
+            - Applicable only for I(action=generate_autonomous_database_wallet).
         type: bool
         default: "true"
         aliases: ["overwrite"]
@@ -112,6 +140,8 @@ options:
         required: true
         choices:
             - "autonomous_database_manual_refresh"
+            - "change_compartment"
+            - "configure_autonomous_database_vault_key"
             - "deregister_autonomous_database_data_safe"
             - "disable_autonomous_database_operations_insights"
             - "enable_autonomous_database_operations_insights"
@@ -130,71 +160,83 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action autonomous_database_manual_refresh on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: autonomous_database_manual_refresh
+
+- name: Perform action change_compartment on autonomous_database
+  oci_database_autonomous_database_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
+- name: Perform action configure_autonomous_database_vault_key on autonomous_database
+  oci_database_autonomous_database_actions:
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: configure_autonomous_database_vault_key
 
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: pdb_admin_password_example
     action: deregister_autonomous_database_data_safe
 
 - name: Perform action disable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_autonomous_database_operations_insights
 
 - name: Perform action enable_autonomous_database_operations_insights on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_autonomous_database_operations_insights
 
 - name: Perform action fail_over on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: fail_over
 
 - name: Perform action generate_autonomous_database_wallet on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     password: password_example
+    wallet_file: /tmp/atp_wallet.zip
     action: generate_autonomous_database_wallet
 
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: pdb_admin_password_example
     action: register_autonomous_database_data_safe
 
 - name: Perform action restart on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart
 
 - name: Perform action restore on autonomous_database
   oci_database_autonomous_database_actions:
-    timestamp: 2018-04-11T01:59:07.032Z
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
-    action: restore
+    timestamp: "2018-04-11T01:59:07.032Z"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "restore"
 
 - name: Perform action rotate_autonomous_database_encryption_key on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_autonomous_database_encryption_key
 
 - name: Perform action start on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 - name: Perform action switchover on autonomous_database
   oci_database_autonomous_database_actions:
-    autonomous_database_id: ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: switchover
 
 """
@@ -211,13 +253,13 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
@@ -230,6 +272,25 @@ autonomous_database:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        kms_key_id:
+            description:
+                - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            returned: on success
+            type: string
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: string
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_lifecycle_details:
+            description:
+                - KMS key lifecycle details.
+            returned: on success
+            type: string
+            sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
@@ -283,6 +344,32 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: NONE
+        key_history_entry:
+            description:
+                - Key History Entry.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
+                          service key management history entry.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                vault_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+                time_activated:
+                    description:
+                        - The date and time the kms key activated.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -318,7 +405,7 @@ autonomous_database:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
@@ -404,6 +491,12 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: machine_learning_user_management_url_example
+                graph_studio_url:
+                    description:
+                        - The URL of the Graph Studio for the Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: graph_studio_url_example
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -451,7 +544,7 @@ autonomous_database:
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -499,7 +592,7 @@ autonomous_database:
                 - "- OLTP - indicates an Autonomous Transaction Processing database
                   - DW - indicates an Autonomous Data Warehouse database
                   - AJD - indicates an Autonomous JSON Database
-                  - APEX - indicates an Autonomous Database with the Oracle Application Express (APEX) workload type."
+                  - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
             type: string
             sample: OLTP
@@ -532,15 +625,40 @@ autonomous_database:
             returned: on success
             type: list
             sample: []
+        are_primary_whitelisted_ips_used:
+            description:
+                - This field will be null if the Autonomous Database is not Data Guard enabled or Access Control is disabled.
+                  It's value would be `TRUE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  primary IP access control list (ACL) for standby.
+                  It's value would be `FALSE` if Autonomous Database is Data Guard enabled and Access Control is enabled and if the Autonomous Database uses
+                  different IP access control list (ACL) for standby compared to primary.
+            returned: on success
+            type: bool
+            sample: true
+        standby_whitelisted_ips:
+            description:
+                - The client IP access control list (ACL). This feature is available for autonomous databases on L(shared Exadata
+                  infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI) and on Exadata Cloud@Customer.
+                  Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance.
+                - "For shared Exadata infrastructure, this is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID.
+                  Use a semicolon (;) as a deliminator between the VCN-specific subnets or IPs.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"ocid1.vcn.oc1.sea.<unique_id>\\",\\"ocid1.vcn.oc1.sea.<unique_id1>;1.1.1.1\\",\\"ocid1.vcn.oc1.se
+                  a.<unique_id2>;1.1.0.0/16\\"]`
+                  For Exadata Cloud@Customer, this is an array of IP addresses or CIDR (Classless Inter-Domain Routing) notations.
+                  Example: `[\\"1.1.1.1\\",\\"1.1.1.0/24\\",\\"1.1.2.25\\"]`"
+                - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
+            returned: on success
+            type: list
+            sample: []
         apex_details:
             description:
-                - Information about Autonomous Application Express.
+                - Information about Oracle APEX Application Development.
             returned: on success
             type: complex
             contains:
                 apex_version:
                     description:
-                        - The Oracle Application Express service version.
+                        - The Oracle APEX Application Development version.
                     returned: on success
                     type: string
                     sample: apex_version_example
@@ -631,7 +749,7 @@ autonomous_database:
                   the current Autonomous Database.
             returned: on success
             type: string
-            sample: ocid1.source.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
@@ -689,7 +807,7 @@ autonomous_database:
                     sample: lifecycle_details_example
         role:
             description:
-                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -704,18 +822,33 @@ autonomous_database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
             type: string
-            sample: ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        customer_contacts:
+            description:
+                - Customer Contacts.
+            returned: on success
+            type: complex
+            contains:
+                email:
+                    description:
+                        - The email address of an Oracle Autonomous Database contact.
+                    returned: on success
+                    type: string
+                    sample: email_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "lifecycle_details": "lifecycle_details_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "db_name": "db_name_example",
         "is_free_tier": true,
         "system_tags": {},
@@ -725,6 +858,11 @@ autonomous_database:
             "manual_backup_bucket_name": "manual_backup_bucket_name_example",
             "manual_backup_type": "NONE"
         },
+        "key_history_entry": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+            "time_activated": "2013-10-20T19:20:30+01:00"
+        }],
         "cpu_core_count": 56,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -744,7 +882,8 @@ autonomous_database:
         "connection_urls": {
             "sql_dev_web_url": "sql_dev_web_url_example",
             "apex_url": "apex_url_example",
-            "machine_learning_user_management_url": "machine_learning_user_management_url_example"
+            "machine_learning_user_management_url": "machine_learning_user_management_url_example",
+            "graph_studio_url": "graph_studio_url_example"
         },
         "license_model": "LICENSE_INCLUDED",
         "used_data_storage_size_in_tbs": 56,
@@ -760,6 +899,8 @@ autonomous_database:
         "db_workload": "OLTP",
         "is_access_control_enabled": true,
         "whitelisted_ips": [],
+        "are_primary_whitelisted_ips_used": true,
+        "standby_whitelisted_ips": [],
         "apex_details": {
             "apex_version": "apex_version_example",
             "ords_version": "ords_version_example"
@@ -790,7 +931,10 @@ autonomous_database:
         "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
-        "key_store_wallet_name": "key_store_wallet_name_example"
+        "key_store_wallet_name": "key_store_wallet_name_example",
+        "customer_contacts": [{
+            "email": "email_example"
+        }]
     }
 """
 
@@ -808,6 +952,8 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import AutonomousDatabaseManualRefreshDetails
+    from oci.database.models import ChangeCompartmentDetails
+    from oci.database.models import ConfigureAutonomousDatabaseVaultKeyDetails
     from oci.database.models import DeregisterAutonomousDatabaseDataSafeDetails
     from oci.database.models import GenerateAutonomousDatabaseWalletDetails
     from oci.database.models import RegisterAutonomousDatabaseDataSafeDetails
@@ -822,6 +968,8 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         autonomous_database_manual_refresh
+        change_compartment
+        configure_autonomous_database_vault_key
         deregister_autonomous_database_data_safe
         disable_autonomous_database_operations_insights
         enable_autonomous_database_operations_insights
@@ -868,6 +1016,48 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
                 autonomous_database_manual_refresh_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_autonomous_database_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def configure_autonomous_database_vault_key(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ConfigureAutonomousDatabaseVaultKeyDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.configure_autonomous_database_vault_key,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                configure_autonomous_database_vault_key_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1121,6 +1311,10 @@ def main():
         dict(
             autonomous_database_id=dict(aliases=["id"], type="str", required=True),
             time_refresh_cutoff=dict(type="str"),
+            compartment_id=dict(type="str"),
+            kms_key_id=dict(type="str"),
+            vault_id=dict(type="str"),
+            is_using_oracle_managed_keys=dict(type="bool"),
             pdb_admin_password=dict(type="str", no_log=True),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
@@ -1134,6 +1328,8 @@ def main():
                 required=True,
                 choices=[
                     "autonomous_database_manual_refresh",
+                    "change_compartment",
+                    "configure_autonomous_database_vault_key",
                     "deregister_autonomous_database_data_safe",
                     "disable_autonomous_database_operations_insights",
                     "enable_autonomous_database_operations_insights",

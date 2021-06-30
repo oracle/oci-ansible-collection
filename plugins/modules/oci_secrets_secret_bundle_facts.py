@@ -23,7 +23,7 @@ module: oci_secrets_secret_bundle_facts
 short_description: Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
-    - Gets a secret bundle that matches either the specified `stage`, `label`, or `versionNumber` parameter.
+    - Gets a secret bundle that matches either the specified `stage`, `secretVersionName`, or `versionNumber` parameter.
       If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -31,9 +31,9 @@ options:
     secret_id:
         description:
             - The OCID of the secret.
+            - Required to get a specific secret_bundle.
         type: str
         aliases: ["id"]
-        required: true
     version_number:
         description:
             - The version number of the secret.
@@ -52,13 +52,25 @@ options:
             - "LATEST"
             - "PREVIOUS"
             - "DEPRECATED"
+    secret_name:
+        description:
+            - A user-friendly name for the secret. Secret names are unique within a vault. Secret names are case-sensitive.
+            - Required to get a specific secret_bundle.
+        type: str
+    vault_id:
+        description:
+            - The OCID of the vault that contains the secret
+            - Required to get a specific secret_bundle.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific secret_bundle
   oci_secrets_secret_bundle_facts:
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_name: SecretForIntegrationTests
+    vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
 
 """
 
@@ -74,7 +86,7 @@ secret_bundle:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time when the secret bundle was created.
@@ -207,13 +219,15 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            secret_id=dict(aliases=["id"], type="str", required=True),
+            secret_id=dict(aliases=["id"], type="str"),
             version_number=dict(type="int"),
             secret_version_name=dict(type="str"),
             stage=dict(
                 type="str",
                 choices=["CURRENT", "PENDING", "LATEST", "PREVIOUS", "DEPRECATED"],
             ),
+            secret_name=dict(type="str"),
+            vault_id=dict(type="str"),
         )
     )
 

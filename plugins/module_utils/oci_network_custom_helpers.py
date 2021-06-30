@@ -7,10 +7,11 @@
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
-
+import logging
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
+    import oci
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
     from oci.util import to_dict
     from oci.core.models import (
@@ -25,22 +26,24 @@ try:
     from oci.core.models.get_public_ip_by_ip_address_details import (
         GetPublicIpByIpAddressDetails,
     )
+    from oci.core.models import AddDrgRouteDistributionStatementsDetails
+    from oci.core.models import UpdateDrgRouteDistributionStatementsDetails
+    from oci.core.models import AddDrgRouteRulesDetails
+    from oci.core.models import UpdateDrgRouteRulesDetails
 
     HAS_OCI_PY_SDK = True
 
 except ImportError:
     HAS_OCI_PY_SDK = False
 
+try:
+    from ansible.module_utils.basic import _load_params
+except ImportError:
+    # _load_params is an internal method and it is possible for ansible to remove this method. So use it
+    # only if it is available.
+    pass
 
-logger = oci_common_utils.get_logger("oci_network_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
@@ -215,52 +218,56 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
 
 class ServiceGatewayActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        service_id = self.module.params.get("service_id")
-        if not service_id:
-            return False
         existing_service_ids = [service.service_id for service in resource.services]
         if action == "attach_service_id":
-            if service_id in existing_service_ids:
+            if self.module.params.get("service_id") in existing_service_ids:
                 return False
             return True
         elif action == "detach_service_id":
-            if service_id not in existing_service_ids:
+            if self.module.params.get("service_id") not in existing_service_ids:
                 return False
             return True
-        return True
+        return super(ServiceGatewayActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class LocalPeeringGatewayActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        this_lpg = resource
-        peer_lpg = self.client.get_local_peering_gateway(
-            local_peering_gateway_id=self.module.params.get("peer_id")
-        ).data
+        if action == "connect":
+            this_lpg = resource
+            peer_lpg = self.client.get_local_peering_gateway(
+                local_peering_gateway_id=self.module.params.get("peer_id")
+            ).data
 
-        this_vcn = self.client.get_vcn(vcn_id=this_lpg.vcn_id).data
-        peer_vcn = self.client.get_vcn(vcn_id=peer_lpg.vcn_id).data
+            this_vcn = self.client.get_vcn(vcn_id=this_lpg.vcn_id).data
+            peer_vcn = self.client.get_vcn(vcn_id=peer_lpg.vcn_id).data
 
-        if (
-            this_lpg.peering_status == "PEERED"
-            and this_lpg.peer_advertised_cidr == peer_vcn.cidr_block
-        ) and (
-            peer_lpg.peering_status == "PEERED"
-            and peer_lpg.peer_advertised_cidr == this_vcn.cidr_block
-        ):
-            return False
-
-        return True
+            if (
+                this_lpg.peering_status == "PEERED"
+                and this_lpg.peer_advertised_cidr == peer_vcn.cidr_block
+            ) and (
+                peer_lpg.peering_status == "PEERED"
+                and peer_lpg.peer_advertised_cidr == this_vcn.cidr_block
+            ):
+                return False
+        return super(LocalPeeringGatewayActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class RemotePeeringConnectionActionsHelperCustom:
     def is_action_necessary(self, action, resource):
-        this_rpc = resource
-        if (
-            this_rpc.peering_status == "PEERED"
-            and this_rpc.peer_id == self.module.params.get("peer_id")
-        ):
-            return False
-        return True
+        if action == "connect":
+            this_rpc = resource
+            if (
+                this_rpc.peering_status == "PEERED"
+                and this_rpc.peer_id == self.module.params.get("peer_id")
+            ):
+                return False
+        return super(
+            RemotePeeringConnectionActionsHelperCustom, self
+        ).is_action_necessary(action, resource)
 
 
 class CrossConnectGroupHelperCustom:
@@ -357,11 +364,7 @@ class VirtualCircuitActionsHelperCustom:
                 BulkDeleteVirtualCircuitPublicPrefixesDetails(public_prefixes=[])
             )
         else:
-            self.module.fail_json(
-                msg="Performing action failed for unrecognized action: {0}".format(
-                    action
-                )
-            )
+            return super(VirtualCircuitActionsHelperCustom, self).perform_action(action)
 
         result = action_idempotency_checks_fn()
         if result:
@@ -399,6 +402,42 @@ class VirtualCircuitActionsHelperCustom:
             self.client.list_virtual_circuit_public_prefixes,
             virtual_circuit_id=self.module.params.get("virtual_circuit_id"),
         )
+
+    def bulk_add_virtual_circuit_public_prefixes(self):
+        result = super(
+            VirtualCircuitActionsHelperCustom, self
+        ).bulk_add_virtual_circuit_public_prefixes()
+        # The super method has a none waiter. But the virtual_circuit does not come to ready state
+        # immediately. So wait until the virtual_circuit comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_virtual_circuit(
+                virtual_circuit_id=self.module.params.get("virtual_circuit_id")
+            ),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        )
+
+        return result
+
+    def bulk_delete_virtual_circuit_public_prefixes(self):
+        result = super(
+            VirtualCircuitActionsHelperCustom, self
+        ).bulk_delete_virtual_circuit_public_prefixes()
+        # The super method has a none waiter. But the virtual_circuit does not come to ready state
+        # immediately. So wait until the virtual_circuit comes to proper state.
+        oci.wait_until(
+            self.client,
+            self.client.get_virtual_circuit(
+                virtual_circuit_id=self.module.params.get("virtual_circuit_id")
+            ),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        )
+
+        return result
 
 
 class IpSecConnectionTunnelHelperCustom:
@@ -448,8 +487,6 @@ class SecurityListHelperCustom:
         try:
             # since the purge and delete options have default values we cannot check directly if a user has provided
             # value for it or not. _load_params returns only the params that user has provided.
-            from ansible.module_utils.basic import _load_params
-
             user_provided_params = _load_params()
             if (
                 user_provided_params.get("purge_security_rules") is not None
@@ -459,7 +496,7 @@ class SecurityListHelperCustom:
                     msg="purge_security_rules and delete_security_rules are mutually exclusive"
                 )
         except Exception as ex:
-            _debug(
+            logger.debug(
                 "Error checking the load params for purge and delete validation: {0}. Skipping validation.".format(
                     str(ex)
                 )
@@ -546,14 +583,14 @@ def patch_base_client_call_api(client):
 
     def call_api(*args, **kwargs):
         header_params = kwargs.pop("header_params", {})
-        _debug(header_params)
+        logger.debug(header_params)
         for header_key in header_params:
             if (
                 header_key == "accept"
                 and header_params[header_key] == "text/plain; charset&#x3D;utf-8"
             ):
                 header_params[header_key] = "*/*"
-        _debug(header_params)
+        logger.debug(header_params)
         return original_call_api(*args, header_params=header_params, **kwargs)
 
     client.base_client.call_api = call_api
@@ -650,13 +687,16 @@ class ByoipRangeActionsHelperCustom:
             ):
                 return False
             return False
-        super(ByoipRangeActionsHelperCustom, self).is_action_necessary(action, resource)
+        return super(ByoipRangeActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class VcnActionsHelperCustom:
     ADD_VCN_CIDR_ACTION = "add_vcn_cidr"
     MODIFY_VCN_CIDR_ACTION = "modify_vcn_cidr"
     REMOVE_VCN_CIDR_ACTION = "remove_vcn_cidr"
+    ADD_IPV6_VCN_CIDR_ACTION = "add_ipv6_vcn_cidr"
 
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
@@ -676,5 +716,336 @@ class VcnActionsHelperCustom:
             if self.module.params.get("cidr_block") not in resource.cidr_blocks:
                 return False
             return True
+        elif action == self.ADD_IPV6_VCN_CIDR_ACTION:
+            # we get an array of ipv6_cidr_blocks. If the vcn is not added in ipv6
+            # then the array is [ null ], so checking for None in the array
+            ipv6_cidr_blocks = getattr(resource, "ipv6_cidr_blocks", None)
+            if ipv6_cidr_blocks:
+                for ipv6_cidr_block in ipv6_cidr_blocks:
+                    if ipv6_cidr_block is None:
+                        return True
+                return False
+            return True
 
         return super(VcnActionsHelperCustom, self).is_action_necessary(action, resource)
+
+
+class VcnHelperCustom:
+    def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
+        existing_dict = super(
+            VcnHelperCustom, self
+        ).get_existing_resource_dict_for_idempotence_check(existing_resource)
+        ipv6_cidr_blocks = existing_dict.get("ipv6_cidr_blocks") or []
+        existing_dict["is_ipv6_enabled"] = any(
+            [
+                True
+                for ipv6_cidr_block in ipv6_cidr_blocks
+                if ipv6_cidr_block is not None
+            ]
+        )
+        return existing_dict
+
+
+class DrgRouteDistributionStatementsActionsHelperCustom:
+    ADD_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY = "add"
+    UPDATE_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY = "update"
+    REMOVE_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY = "remove"
+
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(
+            oci_common_utils.list_all_resources(
+                self.client.list_drg_route_distribution_statements,
+                drg_route_distribution_id=self.module.params.get(
+                    "drg_route_distribution_id"
+                ),
+            )
+        )
+
+    def is_action_necessary(self, action, resource=None):
+        existing_statements = to_dict(resource or self.get_resource().data)
+        logger.debug("Existing statements: {0}".format(existing_statements))
+        if action == self.ADD_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY:
+            if not self.module.params.get("statements"):
+                return False
+            logger.debug(
+                "Original statements to add: {0}".format(
+                    self.module.params.get("statements")
+                )
+            )
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, AddDrgRouteDistributionStatementsDetails
+            )
+            statements = to_dict(getattr(action_details, "statements", []) or [])
+            statements_to_add = []
+            for statement in statements:
+                if not oci_common_utils.is_in_list(existing_statements, statement):
+                    statements_to_add.append(statement)
+            logger.debug("Statements to add: {0}".format(statements_to_add))
+            if statements_to_add:
+                self.module.params["statements"] = statements_to_add
+                return True
+            return False
+        elif action == self.UPDATE_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY:
+            if not self.module.params.get("statements"):
+                return False
+            logger.debug(
+                "Original statements to update: {0}".format(
+                    self.module.params.get("statements")
+                )
+            )
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, UpdateDrgRouteDistributionStatementsDetails
+            )
+            statements = to_dict(getattr(action_details, "statements", []) or [])
+            statements_to_update = []
+            for statement in statements:
+                existing_statement = None
+                for existing_stmt in existing_statements:
+                    if existing_stmt.get("id") == statement.get("id"):
+                        existing_statement = existing_stmt
+                if not existing_statement:
+                    self.module.fail_json(
+                        msg="Could not find an existing statement with id: {0}".format(
+                            statement.get("id")
+                        )
+                    )
+                if not oci_common_utils.compare_dicts(statement, existing_statement):
+                    statements_to_update.append(statement)
+            logger.debug("Statements to update: {0}".format(statements_to_update))
+            if statements_to_update:
+                self.module.params["statements"] = statements_to_update
+                return True
+            return False
+        elif action == self.REMOVE_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY:
+            statement_ids = self.module.params.get("statement_ids")
+            if not statement_ids:
+                return False
+            existing_statement_ids = [
+                existing_statement.get("id")
+                for existing_statement in existing_statements
+            ]
+            logger.debug("Original statement_ids to remove: {0}".format(statement_ids))
+            statement_ids_to_remove = []
+            for statement_id in statement_ids:
+                if statement_id in existing_statement_ids:
+                    statement_ids_to_remove.append(statement_id)
+            logger.debug("statement_ids to remove: {0}".format(statement_ids_to_remove))
+            if statement_ids_to_remove:
+                self.module.params["statement_ids"] = statement_ids_to_remove
+                return True
+            return False
+        return super(
+            DrgRouteDistributionStatementsActionsHelperCustom, self
+        ).is_action_necessary(action, resource)
+
+
+class DrgRouteTableActionsHelperCustom:
+    REMOVE_IMPORT_DRG_ROUTE_DISTRIBUTION_KEY = "remove_import_drg_route_distribution"
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.REMOVE_IMPORT_DRG_ROUTE_DISTRIBUTION_KEY:
+            if not getattr(resource, "import_drg_route_distribution_id", None):
+                return False
+            return True
+        return super(DrgRouteTableActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+
+class DrgRouteRulesActionsHelperCustom:
+    ADD_KEY = "add"
+    UPDATE_KEY = "update"
+    REMOVE_KEY = "remove"
+
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(
+            oci_common_utils.list_all_resources(
+                self.client.list_drg_route_rules,
+                drg_route_table_id=self.module.params.get("drg_route_table_id"),
+            )
+        )
+
+    def is_action_necessary(self, action, resource=None):
+        existing_route_rules = to_dict(resource or self.get_resource().data)
+        logger.debug("Existing rules: {0}".format(existing_route_rules))
+        if action == self.ADD_KEY:
+            if not self.module.params.get("route_rules"):
+                return False
+            logger.debug(
+                "Original route rules to add: {0}".format(
+                    self.module.params.get("route_rules")
+                )
+            )
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, AddDrgRouteRulesDetails
+            )
+            route_rules = to_dict(getattr(action_details, "route_rules", []) or [])
+            route_rules_to_add = []
+            for route_rule in route_rules:
+                if not oci_common_utils.is_in_list(existing_route_rules, route_rule):
+                    route_rules_to_add.append(route_rule)
+            logger.debug("Route rules to add: {0}".format(route_rules_to_add))
+            if route_rules_to_add:
+                self.module.params["route_rules"] = route_rules_to_add
+                return True
+            return False
+        elif action == self.UPDATE_KEY:
+            if not self.module.params.get("route_rules"):
+                return False
+            logger.debug(
+                "Original route rules to update: {0}".format(
+                    self.module.params.get("route_rules")
+                )
+            )
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, UpdateDrgRouteRulesDetails
+            )
+            route_rules = to_dict(getattr(action_details, "route_rules", []) or [])
+            route_rules_to_update = []
+            for route_rule in route_rules:
+                existing_route_rule = None
+                for existing_rule in existing_route_rules:
+                    if existing_rule.get("id") == route_rule.get("id"):
+                        existing_route_rule = existing_rule
+                if not existing_route_rule:
+                    self.module.fail_json(
+                        msg="Could not find an existing rule with id: {0}".format(
+                            route_rule.get("id")
+                        )
+                    )
+                if not oci_common_utils.compare_dicts(route_rule, existing_route_rule):
+                    route_rules_to_update.append(route_rule)
+            logger.debug("Route rules to update: {0}".format(route_rules_to_update))
+            if route_rules_to_update:
+                self.module.params["route_rules"] = route_rules_to_update
+                return True
+            return False
+        elif action == self.REMOVE_KEY:
+            route_rule_ids = self.module.params.get("route_rule_ids")
+            if not route_rule_ids:
+                return False
+            existing_route_rule_ids = [
+                existing_route_rule.get("id")
+                for existing_route_rule in existing_route_rules
+            ]
+            logger.debug(
+                "Original route_rule_ids to remove: {0}".format(route_rule_ids)
+            )
+            route_rule_ids_to_remove = []
+            for route_rule_id in route_rule_ids:
+                if route_rule_id in existing_route_rule_ids:
+                    route_rule_ids_to_remove.append(route_rule_id)
+            logger.debug(
+                "route_rule_ids to remove: {0}".format(route_rule_ids_to_remove)
+            )
+            if route_rule_ids_to_remove:
+                self.module.params["route_rule_ids"] = route_rule_ids_to_remove
+                return True
+            return False
+        return super(DrgRouteRulesActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+
+class RouteTableHelperCustom:
+    def __init__(self, *args, **kwargs):
+        super(RouteTableHelperCustom, self).__init__(*args, **kwargs)
+        try:
+            # since the purge and delete options have default values we cannot check directly if a user has provided
+            # value for it or not. _load_params returns only the params that user has provided.
+            user_provided_params = _load_params()
+            if (
+                user_provided_params.get("purge_route_rules") is not None
+                and user_provided_params.get("delete_route_rules") is not None
+            ):
+                self.module.fail_json(
+                    msg="purge_route_rules and delete_route_rules are mutually exclusive"
+                )
+        except Exception as ex:
+            logger.debug(
+                "Error checking the load params for purge and delete validation: {0}. Skipping validation.".format(
+                    str(ex)
+                )
+            )
+            pass
+
+    def get_update_model(self):
+        update_model = super(RouteTableHelperCustom, self).get_update_model()
+        existing_route_table = self.get_resource().data
+        existing_route_rules = getattr(existing_route_table, "route_rules", []) or []
+        existing_route_rules_dict = to_dict(existing_route_rules)
+        if self.module.params.get("purge_route_rules") is False:
+            if existing_route_rules:
+                update_model.route_rules = (
+                    getattr(update_model, "route_rules", []) or []
+                )
+                update_model.route_rules = existing_route_rules + [
+                    route_rule
+                    for route_rule in update_model.route_rules
+                    if not oci_common_utils.is_in_list(
+                        existing_route_rules_dict, to_dict(route_rule)
+                    )
+                ]
+        elif self.module.params.get("delete_route_rules") is True:
+            update_model.route_rules = getattr(update_model, "route_rules", []) or []
+            if not update_model.route_rules:
+                update_model.route_rules = existing_route_rules
+            else:
+                existing_route_rules = existing_route_rules or []
+                update_model.route_rules = [
+                    existing_route_rule
+                    for existing_route_rule in existing_route_rules
+                    if not any(
+                        [
+                            oci_common_utils.compare_dicts(
+                                to_dict(route_rule), to_dict(existing_route_rule)
+                            )
+                            for route_rule in update_model.route_rules
+                        ]
+                    )
+                ]
+        return update_model
+
+
+class PrivateIpHelperCustom:
+    # list_resources requires vnic_id as the query param(list_resources is used in checking the idempotence)
+    # so making it compulsory
+    # Sometime vnic can also be updated. If clients use OCI_USE_NAME_AS_IDENTIFER flag then vnic_id won't be updated
+    # as we will fetch resources for the vnic_id given in the input and if it is a updated value then we will not get
+    # a private_ip of the same name. In that case a new private ip will be created in the new vnic.
+    def get_optional_kwargs_for_list(self):
+        vnic_id = self.module.params.get("vnic_id", None)
+        vlan_id = self.module.params.get("vlan_id", None)
+        # any one of the parameter should be present to list the existing resources for idempotence
+        # both cannot be specified at a time
+        if not vnic_id and not vlan_id:
+            self.module.fail_json(
+                msg="vnic_id or vlan_id is missing. Please specify any one parameter. Set vnic_id in case of update call"
+            )
+        # if only vlanid is passed in case of update service may raise error as it is not a field in the sdk's update model.
+        optional_list_method_params = ["vnic_id", "vlan_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+        )
+
+
+class DrgAttachmentActionsHelperCustom:
+    REMOVE_EXPORT_DRG_ROUTE_DISTRIBUTION_ACTION_KEY = (
+        "remove_export_drg_route_distribution"
+    )
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.REMOVE_EXPORT_DRG_ROUTE_DISTRIBUTION_ACTION_KEY:
+            if hasattr(resource, "export_drg_route_distribution_id"):
+                if not resource.export_drg_route_distribution_id:
+                    return False
+                return True
+            return False
+        super(DrgAttachmentActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

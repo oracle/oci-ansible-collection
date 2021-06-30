@@ -109,7 +109,7 @@ options:
                     - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or `SHOW_ERROR_PAGE`, and
                       the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`,
                       `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`,
-                      `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                      `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
                     - This parameter is updatable.
                 type: int
             block_error_page_message:
@@ -175,24 +175,24 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update human_interaction_challenge
   oci_waas_human_interaction_challenge:
-    action: BLOCK
+    action: "BLOCK"
     action_expiration_in_seconds: 600
     challenge_settings:
-      block_action: SHOW_ERROR_PAGE
-      block_error_page_code: HIC
-      block_error_page_description: Access blocked by website owner. Please contact support.
-      block_error_page_message: Access to the website is blocked.
+      block_action: "SHOW_ERROR_PAGE"
+      block_error_page_code: "HIC"
+      block_error_page_description: "Access blocked by website owner. Please contact support."
+      block_error_page_message: "Access to the website is blocked."
       block_response_code: 403
-      captcha_footer: Enter the letters and numbers as they are shown in image above.
-      captcha_header: please let us know that you are not a robot by entering the text from the image below.
-      captcha_submit_label: Yes, I am human.
-      captcha_title: Are you human?
+      captcha_footer: "Enter the letters and numbers as they are shown in image above."
+      captcha_header: "please let us know that you are not a robot by entering the text from the image below."
+      captcha_submit_label: "Yes, I am human."
+      captcha_title: "Are you human?"
     failure_threshold: 100
     failure_threshold_expiration_in_seconds: 600
     interaction_threshold: 3
     is_enabled: false
     recording_period_in_seconds: 15
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -282,7 +282,7 @@ human_interaction_challenge:
                         - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or `SHOW_ERROR_PAGE`,
                           and the request is blocked. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`,
                           `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`,
-                          `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                          `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
                     returned: on success
                     type: int
                     sample: 56

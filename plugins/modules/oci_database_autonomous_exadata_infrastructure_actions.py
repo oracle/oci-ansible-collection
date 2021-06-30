@@ -23,11 +23,19 @@ module: oci_database_autonomous_exadata_infrastructure_actions
 short_description: Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AutonomousExadataInfrastructure resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves the Autonomous Exadata Infrastructure resource and its dependent resources to the specified compartment.
+      For more information, see
+      L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=rotate_ords_certs), rotates Oracle REST Data Services (ORDS) certs for an Autonomous Exadata Infrastructure resource.
     - For I(action=rotate_ssl_certs), rotates SSL certs for an Autonomous Exadata Infrastructure resource.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     autonomous_exadata_infrastructure_id:
         description:
             - The Autonomous Exadata Infrastructure  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -40,20 +48,27 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "rotate_ords_certs"
             - "rotate_ssl_certs"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on autonomous_exadata_infrastructure
+  oci_database_autonomous_exadata_infrastructure_actions:
+    compartment_id: "ocid.compartment.oc1..unique_ID"
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
+
 - name: Perform action rotate_ords_certs on autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_actions:
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_ords_certs
 
 - name: Perform action rotate_ssl_certs on autonomous_exadata_infrastructure
   oci_database_autonomous_exadata_infrastructure_actions:
-    autonomous_exadata_infrastructure_id: ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx
+    autonomous_exadata_infrastructure_id: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_ssl_certs
 
 """
@@ -70,13 +85,13 @@ autonomous_exadata_infrastructure:
                 - The OCID of the Autonomous Exadata Infrastructure.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Autonomous Exadata Infrastructure.
@@ -99,7 +114,7 @@ autonomous_exadata_infrastructure:
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
                 - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -221,13 +236,13 @@ autonomous_exadata_infrastructure:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
             type: string
-            sample: ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
             type: string
-            sample: ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -243,6 +258,18 @@ autonomous_exadata_infrastructure:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        scan_dns_name:
+            description:
+                - The FQDN of the DNS record for the SCAN IP addresses that are associated with the Autonomous Exadata Infrastructure.
+            returned: on success
+            type: string
+            sample: scan_dns_name_example
+        zone_id:
+            description:
+                - The OCID of the zone the Autonomous Exadata Infrastructure is associated with.
+            returned: on success
+            type: string
+            sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -272,7 +299,9 @@ autonomous_exadata_infrastructure:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "scan_dns_name": "scan_dns_name_example",
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -289,6 +318,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import ChangeCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -298,6 +328,7 @@ except ImportError:
 class AutonomousExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         rotate_ords_certs
         rotate_ssl_certs
     """
@@ -326,6 +357,29 @@ class AutonomousExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
             autonomous_exadata_infrastructure_id=self.module.params.get(
                 "autonomous_exadata_infrastructure_id"
             ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_autonomous_exadata_infrastructure_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                change_compartment_details=action_details,
+                autonomous_exadata_infrastructure_id=self.module.params.get(
+                    "autonomous_exadata_infrastructure_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def rotate_ords_certs(self):
@@ -385,13 +439,14 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             autonomous_exadata_infrastructure_id=dict(
                 aliases=["id"], type="str", required=True
             ),
             action=dict(
                 type="str",
                 required=True,
-                choices=["rotate_ords_certs", "rotate_ssl_certs"],
+                choices=["change_compartment", "rotate_ords_certs", "rotate_ssl_certs"],
             ),
         )
     )

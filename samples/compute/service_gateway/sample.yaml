@@ -21,6 +21,7 @@
     # *Note* - Override the following variables based on your tenancy
     # or set a valid value for the corresponding environment variable
     #########################################
+
     tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
     instance_ad: "{{ lookup('env', 'SAMPLE_AD_NAME') }}"
     instance_compartment: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
@@ -29,23 +30,23 @@
     namespace_name: "{{ lookup('env', 'SAMPLE_OBJECT_NS_NAME') }}"
     region: "{{ lookup('env', 'SAMPLE_REGION') }}"
 
-    vcn_name: "mytest_service_gateway_vcn"
+    vcn_name: "ansible-sample-service-gateway-vcn"
     vcn_cidr_block: "10.0.0.0/16"
 
-    sg_name: "myservicegateway_for_{{vcn_name}}"
-    ng_name: "mynatgateway_for_{{vcn_name}}"
-    ig_name: "myinternetgateway_for_{{vcn_name}}"
+    sg_name: "ansible-sample-service-gateway-sg"
+    ng_name: "ansible-sample-service-gateway-ng"
+    ig_name: "ansible-sample-service-gateway-ig"
 
     private_subnet_cidr: "10.0.1.0/24"
     public_subnet_cidr: "10.0.0.0/24"
 
-    private_subnet_name: "myprivatesubnet_in_{{vcn_name}}"
-    public_subnet_name: "mypublicsubnet_in_{{vcn_name}}"
+    private_subnet_name: "ansible-sample-service-gateway-private-subnet"
+    public_subnet_name: "ansible-sample-service-gateway-public-subnet"
 
-    public_subnet_securitylist_name: "mysecuritylist_for_{{public_subnet_name}}"
-    private_subnet_securitylist_name: "mysecuritylist_for_{{private_subnet_name}}"
+    public_subnet_securitylist_name: "ansible-sample-service-gateway-public-ssl"
+    private_subnet_securitylist_name: "ansible-sample-service-gateway-private-ssl"
 
-    public_subnet_route_table_name: "myroutetable_for_{{public_subnet_name}}"
+    public_subnet_route_table_name: "ansible-sample-service-gateway-public-rt"
     # route all internet access from the public subnet to the Internet Gateway
     public_subnet_route_table_rules:
         - cidr_block: "{{ quad_zero_route }}"
@@ -65,7 +66,7 @@
             min: "{{ SSH_port }}"
             max: "{{ SSH_port }}"
 
-    private_subnet_route_table_name: "myroutetable_for_{{private_subnet_name}}"
+    private_subnet_route_table_name: "ansible-sample-service-gateway-private-rt"
 
     # temporary rule which allows private instance to install oci cli
     quad_zero_nat_gateway_route_rule:
@@ -99,8 +100,8 @@
             min: "{{ SSH_port }}"
             max: "{{ SSH_port }}"
 
-    public_subnet_instance_name: "my_bastion_instance_for_{{vcn_name}}"
-    private_subnet_instance_name: "my_private_instance_in_{{private_subnet_name}}"
+    public_subnet_instance_name: "ansible-sample-service-gateway-public-instance"
+    private_subnet_instance_name: "ansible-sample-service-gateway-private-instance"
 
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
     public_subnet_instance_hostname: "mybastioninstance"
@@ -123,11 +124,13 @@
     api_key_passphrase: "testuserpassphrase"
 
     # this bucket will be created from the private instance using oci cli
-    test_bucket_name: "mytest_service_gateway_bucket"
+    test_bucket_name: "ansible-sample-service-gateway-bucket"
 
   tasks:
     - block:
       - import_tasks: setup.yaml
+
+      #==========================================================================================
 
       - name: Create bucket in private instance
         oci_object_storage_bucket:
@@ -139,6 +142,8 @@
       - name: Print bucket create response
         debug:
           msg: "Create bucket response -> {{ result.bucket }}"
+
+      #==========================================================================================
 
       - name: get the bucket details
         oci_object_storage_bucket_facts:
@@ -154,6 +159,13 @@
           that:
             - result.buckets[0].name == "{{ test_bucket_name }}"
 
-      always:
+      #==========================================================================================
+
+      - import_tasks: teardown.yaml
+
+      rescue:
         - import_tasks: teardown.yaml
           ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

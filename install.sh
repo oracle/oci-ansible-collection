@@ -10,8 +10,9 @@
 # Description:
 # Shell script for installing ansible collection for Oracle Cloud Infrastructure
 
-SCRIPT_NAME="install.py"
+SCRIPT_NAME="./install.py"
 INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/install.py"
+
 
 usage="$(basename "$0")
         -- Bash script to install oci-ansible-collection for Oracle Cloud Infrastructure           
@@ -37,11 +38,15 @@ Following arguments can be passed to the script:
         will be installed. If not specified the latest value will be used.
         Ex: --oci-ansible-collection-path /home/collections
 
-    --oci-ansible-collection-version
+    --version
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
         To use the latest version don't set any value(recommended). If not specified the latest 
         version will be used.
         Ex: 2.20
+    
+    --python
+        Users can specify the python version they want to use for installation. Minimum python version 3.6
+        is needed.
 
     --verbose
         Users can use this flag to enable more loggings in case of debugging purpose.
@@ -60,6 +65,7 @@ Following arguments can be passed to the script:
 
 install_args=""
 OFFLINE=false
+PYTHON=""
 
 while [[ $# -gt 0 ]];do
 key=$1
@@ -102,6 +108,11 @@ case $key in
     OFFLINE=true
     shift
     ;;
+    --python)
+    PYTHON="python$2"
+    shift
+    shift
+    ;;
     --help|-h)
     echo "$usage"
     exit 1
@@ -114,20 +125,42 @@ esac
 done
 
 # check if there is a python >=3.6 as oci-ansible-collection is supported for python>=3.6
-python_exe=python3
+declare -a supported_versions=(python3.9 python3.8 python3.7 python3.6)
+
+unsupported_py_version=false
 python_installed=false
-command -v python >/dev/null 2>&1
-if [ $? -eq 0 ]; then
+python_exe=$PYTHON
+
+set +e
+if [ ! -z "$PYTHON" ]; then
+        $PYTHON -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
+        if [ ! $? -eq 0 ]; then
+            unsupported_py_version=true
+        else
+            python_installed=true
+        fi
+fi
+
+if [ "$unsupported_py_version" == true ]; then
+    echo "Incorrect/Unsupported python version $PYTHON passed as argument"
+    exit 1
+fi
+
+command -v python3 >/dev/null 2>&1
+if [ $? -eq 0 -a -z "$PYTHON" ]; then
     # python3 is installed.   
     # check if python>=3.6 is present
-    python3 -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
-    if [ $? -eq 0 ]; then
-        python_exe=python3
-        python_installed=true
-    else
-        exit 1
-    fi
+    for i in "${supported_versions[@]}"; do
+        echo $i
+        $i -c "import sys; v = sys.version_info; valid = v >= (3, 6, ); sys.exit(0) if valid else sys.exit(1)"
+        if [ $? -eq 0 ]; then
+            python_exe=$i
+            python_installed=true
+            break
+        fi
+    done
 fi
+set -e
 
 
 if [ "$python_installed" == false ]; then
@@ -138,8 +171,8 @@ fi
 
 if [ "$OFFLINE" == false ]; then
     downloaded_script=false
-    echo "Downloading installer script"
-    install_script=$(mktemp -t oci_cli_install_tmp_XXXX) || exit
+    echo "Downloading installer script..."
+    install_script=$(mktemp -t oci_ansible_install_tmp_XXXX) || exit
     echo "Downloading oci-ansible-collection install script from $INSTALL_SCRIPT_URL to $install_script."
     curl -# -f $INSTALL_SCRIPT_URL > $install_script
     if [ $? -ne 0 ]; then
@@ -151,11 +184,12 @@ else
     echo "Using offline mode, installing using local script $SCRIPT_NAME"
 fi
 
-echo "$downloaded_script"
 if [ "$downloaded_script" == false ]; then
     echo "Error while downloading the installer script"
     exit 1
 fi
+
+set -e
 
 chmod 775 $SCRIPT_NAME
 

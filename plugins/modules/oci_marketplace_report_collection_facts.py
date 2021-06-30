@@ -50,7 +50,7 @@ EXAMPLES = """
   oci_marketplace_report_collection_facts:
     report_type: report_type_example
     date: 2013-10-20T19:20:30+01:00
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -61,43 +61,35 @@ report_collections:
     returned: on success
     type: complex
     contains:
-        items:
+        report_type:
             description:
-                - An array of reports.
+                - The type of report.
             returned: on success
-            type: complex
-            contains:
-                report_type:
-                    description:
-                        - The type of report.
-                    returned: on success
-                    type: string
-                    sample: report_type_example
-                date:
-                    description:
-                        - The date of the report.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                columns:
-                    description:
-                        - The columns in the report.
-                    returned: on success
-                    type: list
-                    sample: []
-                content:
-                    description:
-                        - The contents of the report in comma-separated values (CSV) file format.
-                    returned: on success
-                    type: string
-                    sample: content_example
+            type: string
+            sample: report_type_example
+        date:
+            description:
+                - The date of the report.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        columns:
+            description:
+                - The columns in the report.
+            returned: on success
+            type: list
+            sample: []
+        content:
+            description:
+                - The contents of the report in comma-separated values (CSV) file format.
+            returned: on success
+            type: string
+            sample: content_example
     sample: [{
-        "items": [{
-            "report_type": "report_type_example",
-            "date": "2013-10-20T19:20:30+01:00",
-            "columns": [],
-            "content": "content_example"
-        }]
+        "report_type": "report_type_example",
+        "date": "2013-10-20T19:20:30+01:00",
+        "columns": [],
+        "content": "content_example"
     }]
 """
 

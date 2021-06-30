@@ -20,7 +20,7 @@ oracle.oci.oci_blockchain_platform -- Manage a BlockchainPlatform resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BlockchainPlatform resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Blockchain Platform.
-- This resource has the following action operations in the :ref:`oci_blockchain_platform_actions <ansible_collections.oci_blockchain_platform_actions_module>` module: start, stop.
+- This resource has the following action operations in the :ref:`oci_blockchain_platform_actions <ansible_collections.oci_blockchain_platform_actions_module>` module: change_compartment, start, stop.
 
 
 .. Aliases
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -642,7 +643,7 @@ Examples
     - name: Create blockchain_platform
       oci_blockchain_platform:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         platform_role: platform_role_example
         compute_shape: compute_shape_example
         idcs_access_token: idcs_access_token_example
@@ -650,7 +651,7 @@ Examples
     - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockchain_platform:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -662,17 +663,17 @@ Examples
       oci_blockchain_platform:
         description: description_example
         freeform_tags: {'Department': 'Finance'}
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete blockchain_platform
       oci_blockchain_platform:
-        blockchain_platform_id: ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx
+        blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockchain_platform:
         display_name: display_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

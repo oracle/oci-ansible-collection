@@ -76,11 +76,11 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List oce_instances
   oci_oce_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific oce_instance
   oci_oce_instance_facts:
-    oce_instance_id: ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx
+    oce_instance_id: "ocid1.oceinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -96,7 +96,7 @@ oce_instances:
                 - Unique identifier that is immutable on creation
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         guid:
             description:
                 - Unique GUID identifier that is immutable on creation
@@ -114,7 +114,7 @@ oce_instances:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - OceInstance Name
@@ -126,7 +126,7 @@ oce_instances:
                 - Tenancy Identifier
             returned: on success
             type: string
-            sample: ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         idcs_tenancy:
             description:
                 - IDCS Tenancy Identifier

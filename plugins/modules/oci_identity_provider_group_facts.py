@@ -52,7 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_n
 EXAMPLES = """
 - name: List identity_provider_groups
   oci_identity_provider_group_facts:
-    identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -68,13 +68,13 @@ identity_provider_groups:
                 - The OCID of the `IdentityProviderGroup`.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         identity_provider_id:
             description:
                 - The OCID of the `IdentityProvider` this group belongs to.
             returned: on success
             type: string
-            sample: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Display name of the group

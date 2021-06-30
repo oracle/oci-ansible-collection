@@ -23,7 +23,8 @@ module: oci_mysql_analytics_cluster_memory_estimate_actions
 short_description: Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
-    - For I(action=generate), sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory.
+    - "For I(action=generate), dEPRECATED -- please use HeatWave API instead.
+      Sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -46,7 +47,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action generate on analytics_cluster_memory_estimate
   oci_mysql_analytics_cluster_memory_estimate_actions:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate
 
 """
@@ -63,7 +64,7 @@ analytics_cluster_memory_estimate:
                 - The OCID of the DB System the Analytics Cluster memory estimate is associated with.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - Current status of the Work Request generating the Analytics Cluster memory estimate.

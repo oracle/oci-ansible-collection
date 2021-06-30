@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -253,12 +254,28 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-model_artifact" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-model_artifact_file"></div>
+                    <b>model_artifact_file</b>
+                    <a class="ansibleOptionLink" href="#parameter-model_artifact_file" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
                                                  / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The model artifact to upload.</div>
+                                            <div>The model artifact file path to upload</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -273,7 +290,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm'>OCID</a> of the model.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the model.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -349,8 +366,9 @@ Examples
     
     - name: Create model_artifact
       oci_data_science_model_artifact:
-        model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
         model_artifact: B
+        model_artifact_file: model.zip
 
 
 

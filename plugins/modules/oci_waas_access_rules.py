@@ -179,8 +179,8 @@ options:
                 description:
                     - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the access criteria
                       are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`,
-                      `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`,
-                      `500`, `501`, `502`, `503`, `504`, `507`."
+                      `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`,
+                      `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
                     - This parameter is updatable.
                 type: int
             block_error_page_message:
@@ -294,7 +294,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update access_rules
   oci_waas_access_rules:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     access_rules:
     - name: name_example
       criteria:
@@ -421,8 +421,8 @@ access_rules:
             description:
                 - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the access criteria are
                   met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`,
-                  `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`,
-                  `502`, `503`, `504`, `507`."
+                  `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`, `495`, `496`,
+                  `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
             returned: on success
             type: int
             sample: 56
@@ -608,6 +608,16 @@ class AccessRulesHelperGen(OCIResourceHelperBase):
 
     def get_update_model_class(self):
         return AccessRule
+
+    def get_update_model(self):
+        if self.module.params.get("access_rules"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["access_rules"]
+            ]
+        return []
 
     def update_resource(self):
         update_details = self.get_update_model()

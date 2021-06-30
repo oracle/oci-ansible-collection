@@ -99,13 +99,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create group
   oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
-    description: Group for network administrators
-    name: NetworkAdmins
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
+    description: "Group for network administrators"
+    name: "NetworkAdmins"
 
 - name: Update group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
     name: NetworkAdmins
     description: Group for network administrators
     freeform_tags: {'Department': 'Finance'}
@@ -115,16 +115,16 @@ EXAMPLES = """
   oci_identity_group:
     description: Group for network administrators
     freeform_tags: {'Department': 'Finance'}
-    group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete group
   oci_identity_group:
-    group_id: ocid1.group.oc1..xxxxxxEXAMPLExxxxxx
+    group_id: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_group:
-    compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID
+    compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pvexampleuniqueID"
     name: NetworkAdmins
     state: absent
 
@@ -142,13 +142,13 @@ group:
                 - The OCID of the group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the group.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the group during creation. The name must be unique across all groups in

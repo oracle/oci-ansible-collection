@@ -52,13 +52,16 @@ options:
         required: true
     key_version_id:
         description:
-            - The OCID of the keyVersion used to encrypt the ciphertext.
+            - The OCID of the key version used to encrypt the ciphertext.
         type: str
     encryption_algorithm:
         description:
-            - Encryption algorithm to be used while encrypting/decrypting data using a customer key
-              AES_256_GCM is the supported value AES keys and uses GCM mode of operation
-              RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.
+            - The encryption algorithm to use to encrypt and decrypt data with a customer-managed key.
+              `AES_256_GCM` indicates that the key is a symmetric key that uses the Advanced Encryption Standard (AES) algorithm and
+              that the mode of encryption is the Galois/Counter Mode (GCM). `RSA_OAEP_SHA_1` indicates that the
+              key is an asymmetric key that uses the RSA encryption algorithm and uses Optimal Asymmetric Encryption Padding (OAEP).
+              `RSA_OAEP_SHA_256` indicates that the key is an asymmetric key that uses the RSA encryption algorithm with a SHA-256 hash
+              and uses OAEP.
         type: str
         choices:
             - "AES_256_GCM"
@@ -83,8 +86,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create encrypted_data
   oci_key_management_encrypted_data:
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
-    plaintext: aGVsbG8sIHdvcmxk
+    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
+    plaintext: "aGVsbG8sIHdvcmxk"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -104,21 +107,24 @@ encrypted_data:
             sample: ciphertext_example
         key_id:
             description:
-                - The OCID of the key used to sign the message
+                - The OCID of the key used to encrypt the ciphertext.
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
-                - The OCID of the keyVersion used to encrypt the ciphertext.
+                - The OCID of the key version used to encrypt the ciphertext.
             returned: on success
             type: string
-            sample: ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         encryption_algorithm:
             description:
-                - Encryption algorithm to be used while encrypting/decrypting data using a customer key
-                  AES_256_GCM is the supported value AES keys and uses GCM mode of operation
-                  RSA_OAEP_SHA_1 and RSA_OAEP_SHA_256 are supported for RSA keys and use OAEP padding.
+                - The encryption algorithm to use to encrypt and decrypt data with a customer-managed key.
+                  `AES_256_GCM` indicates that the key is a symmetric key that uses the Advanced Encryption Standard (AES) algorithm and
+                  that the mode of encryption is the Galois/Counter Mode (GCM). `RSA_OAEP_SHA_1` indicates that the
+                  key is an asymmetric key that uses the RSA encryption algorithm and uses Optimal Asymmetric Encryption Padding (OAEP).
+                  `RSA_OAEP_SHA_256` indicates that the key is an asymmetric key that uses the RSA encryption algorithm with a SHA-256 hash
+                  and uses OAEP.
             returned: on success
             type: string
             sample: AES_256_GCM

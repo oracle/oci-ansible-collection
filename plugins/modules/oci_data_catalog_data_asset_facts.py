@@ -125,11 +125,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List data_assets
   oci_data_catalog_data_asset_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific data_asset
   oci_data_catalog_data_asset_facts:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
 
 """
@@ -165,7 +165,7 @@ data_assets:
                 - The data catalog's OCID.
             returned: on success
             type: string
-            sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         external_key:
             description:
                 - External URI that can be used to reference the object. Format will differ based on the type of object.
@@ -202,13 +202,13 @@ data_assets:
                 - OCID of the user who created the data asset.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         uri:
             description:
                 - URI to the data asset instance in the API.
@@ -281,6 +281,12 @@ data_assets:
                     returned: on success
                     type: bool
                     sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -323,7 +329,7 @@ data_assets:
                         - The data catalog's OCID.
                     returned: on success
                     type: string
-                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -353,74 +359,6 @@ data_assets:
             returned: on success
             type: dict
             sample: {}
-        count:
-            description:
-                - Total number of items returned.
-            returned: on success
-            type: int
-            sample: 56
-        items:
-            description:
-                - Collection of data asset summaries.
-            returned: on success
-            type: complex
-            contains:
-                key:
-                    description:
-                        - Unique data asset key that is immutable.
-                    returned: on success
-                    type: string
-                    sample: key_example
-                display_name:
-                    description:
-                        - A user-friendly display name. Does not have to be unique, and it's changeable.
-                          Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                description:
-                    description:
-                        - Detailed description of the data asset.
-                    returned: on success
-                    type: string
-                    sample: description_example
-                catalog_id:
-                    description:
-                        - The data catalog's OCID.
-                    returned: on success
-                    type: string
-                    sample: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-                external_key:
-                    description:
-                        - External URI that can be used to reference the object. Format will differ based on the type of object.
-                    returned: on success
-                    type: string
-                    sample: external_key_example
-                uri:
-                    description:
-                        - URI to the data asset instance in the API.
-                    returned: on success
-                    type: string
-                    sample: uri_example
-                time_created:
-                    description:
-                        - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                          Example: `2019-03-25T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2019-03-25T21:10:29.600Z
-                type_key:
-                    description:
-                        - The key of the object type. Type keys's can be found via the '/types' endpoint.
-                    returned: on success
-                    type: string
-                    sample: type_key_example
-                lifecycle_state:
-                    description:
-                        - State of the data asset.
-                    returned: on success
-                    type: string
-                    sample: CREATING
     sample: [{
         "key": "key_example",
         "display_name": "display_name_example",
@@ -445,6 +383,7 @@ data_assets:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],
@@ -457,19 +396,7 @@ data_assets:
             "expression": "expression_example",
             "lifecycle_state": "CREATING"
         }],
-        "properties": {},
-        "count": 56,
-        "items": [{
-            "key": "key_example",
-            "display_name": "display_name_example",
-            "description": "description_example",
-            "catalog_id": "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx",
-            "external_key": "external_key_example",
-            "uri": "uri_example",
-            "time_created": "2019-03-25T21:10:29.600Z",
-            "type_key": "type_key_example",
-            "lifecycle_state": "CREATING"
-        }]
+        "properties": {}
     }]
 """
 

@@ -177,4 +177,3 @@
 - name: Print SSH response from launched instance
   debug:
     msg: "SSH response from instance -> {{ result.stdout_lines }}"
-- assert: { that: "'Linux mytestinstance' in result.stdout" }

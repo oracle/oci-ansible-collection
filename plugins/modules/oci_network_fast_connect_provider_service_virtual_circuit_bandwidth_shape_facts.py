@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
-            - The OCID of the provider service.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the provider service.
         type: str
         aliases: ["id"]
         required: true
@@ -41,7 +41,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List fast_connect_provider_service_virtual_circuit_bandwidth_shapes
   oci_network_fast_connect_provider_service_virtual_circuit_bandwidth_shape_facts:
-    provider_service_id: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+    provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 

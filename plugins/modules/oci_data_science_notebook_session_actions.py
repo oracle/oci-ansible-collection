@@ -24,16 +24,22 @@ short_description: Perform actions on a NotebookSession resource in Oracle Cloud
 description:
     - Perform actions on a NotebookSession resource in Oracle Cloud Infrastructure
     - For I(action=activate), activates the notebook session.
+    - For I(action=change_compartment), moves a notebook session resource into a different compartment.
     - For I(action=deactivate), deactivates the notebook session.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     notebook_session_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the NotebookSession.
@@ -41,6 +47,7 @@ options:
         required: true
         choices:
             - "activate"
+            - "change_compartment"
             - "deactivate"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -48,12 +55,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on notebook_session
   oci_data_science_notebook_session_actions:
-    notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
+
+- name: Perform action change_compartment on notebook_session
+  oci_data_science_notebook_session_actions:
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action deactivate on notebook_session
   oci_data_science_notebook_session_actions:
-    notebook_session_id: ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx
+    notebook_session_id: "ocid1.notebooksession.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 
 """
@@ -67,42 +80,42 @@ notebook_session:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         display_name:
             description:
-                - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
                   Example: `My NotebookSession`"
             returned: on success
             type: string
             sample: My NotebookSession
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the notebook session.
             returned: on success
             type: string
-            sample: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the notebook session.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the notebook session.
             returned: on success
             type: string
             sample: created_by_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notebook_session_configuration_details:
             description:
                 - ""
@@ -112,10 +125,10 @@ notebook_session:
                 shape:
                     description:
                         - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
-                          from the `ListNotebookSessionShapes` endpoint.
+                          using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
                     type: string
-                    sample: VM.Standard2.1
+                    sample: VM.Standard.E3.Flex
                 block_storage_size_in_gbs:
                     description:
                         - A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.
@@ -125,11 +138,30 @@ notebook_session:
                 subnet_id:
                     description:
                         - A notebook session instance is provided with a VNIC for network access.  This specifies the
-                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet should
-                          be in a VCN with a NAT gateway for egress to the internet.
+                          L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet
+                          should be in a VCN with a NAT gateway for egress to the internet.
                     returned: on success
                     type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                notebook_session_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 64.0
+                        memory_in_gbs:
+                            description:
+                                - A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory
+                                  in GBs.
+                            returned: on success
+                            type: float
+                            sample: 1024.0
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -172,9 +204,13 @@ notebook_session:
         "created_by": "created_by_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "notebook_session_configuration_details": {
-            "shape": "VM.Standard2.1",
+            "shape": "VM.Standard.E3.Flex",
             "block_storage_size_in_gbs": 1024,
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "notebook_session_shape_config_details": {
+                "ocpus": 64.0,
+                "memory_in_gbs": 1024.0
+            }
         },
         "notebook_session_url": "notebook_session_url_example",
         "lifecycle_state": "CREATING",
@@ -196,6 +232,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_science import DataScienceClient
+    from oci.data_science.models import ChangeNotebookSessionCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -206,6 +243,7 @@ class DataScienceNotebookSessionActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         activate
+        change_compartment
         deactivate
     """
 
@@ -240,6 +278,29 @@ class DataScienceNotebookSessionActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeNotebookSessionCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_notebook_session_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                notebook_session_id=self.module.params.get("notebook_session_id"),
+                change_notebook_session_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def deactivate(self):
@@ -279,7 +340,12 @@ def main():
     module_args.update(
         dict(
             notebook_session_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["activate", "deactivate"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["activate", "change_compartment", "deactivate"],
+            ),
         )
     )
 

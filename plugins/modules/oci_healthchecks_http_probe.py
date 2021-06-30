@@ -91,10 +91,10 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create http_probe
   oci_healthchecks_http_probe:
-    compartment_id: ocid1.tenancy.oc1...
+    compartment_id: "ocid1.tenancy.oc1..."
     targets:
-    - 192.0.2.0
-    protocol: HTTP
+    - "192.0.2.0"
+    protocol: "HTTP"
 
 """
 
@@ -110,7 +110,7 @@ http_probe:
                 - The OCID of the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         results_url:
             description:
                 - A URL for fetching the probe results.
@@ -134,7 +134,7 @@ http_probe:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
                 - A list of targets (hostnames or IP addresses) of the probe.

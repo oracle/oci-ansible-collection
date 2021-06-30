@@ -20,7 +20,7 @@ oracle.oci.oci_limits_quota -- Manage a Quota resource in Oracle Cloud Infrastru
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -444,16 +445,16 @@ Examples
     
     - name: Create quota
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
-        description: Quotas for Compute VM.DenseIO1.16 resources
-        name: ComputeQuotas
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
+        description: "Quotas for Compute VM.DenseIO1.16 resources"
+        name: "ComputeQuotas"
         statements:
-        - Zero instance-family quotas in compartment DeveloperCompartment
-        - Set {INSTANCE_VM.STANDARD2.2} quota to 3 in compartment DeveloperCompartment where all {request.region = 'iad', request.ad = 'ad1'}
+        - "Zero instance-family quotas in compartment DeveloperCompartment"
+        - "Set {INSTANCE_VM.STANDARD2.2} quota to 3 in compartment DeveloperCompartment where all {request.region = 'iad', request.ad = 'ad1'}"
 
     - name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
         description: Quotas for Compute VM.DenseIO1.16 resources
         name: ComputeQuotas
         statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
@@ -464,16 +465,16 @@ Examples
       oci_limits_quota:
         description: Quotas for Compute VM.DenseIO1.16 resources
         statements: [ "Zero instance-family quotas in compartment DeveloperCompartment" ]
-        quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+        quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete quota
       oci_limits_quota:
-        quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+        quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_limits_quota:
-        compartment_id: ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq
+        compartment_id: "ocid1.tenancy.oc1..aaaaaaaaba3pv6wkcr4jqae5f44n2b2cmdt2j6rx32uzr4h25vqstifsfdsq"
         name: ComputeQuotas
         state: absent
 
@@ -669,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the quota was created, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`</div>
+                                            <div>Date and time the quota was created, in the format defined by RFC 3339. Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>

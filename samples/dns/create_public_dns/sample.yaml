@@ -10,7 +10,7 @@
   collections:
     - oracle.oci
   vars:
-    zone_name: 'dns_zone.com'
+    zone_name: 'ansible-sample-create-public-dns-zone.com'
     zone_type: 'PRIMARY'
     zone_scope: 'GLOBAL'
     steering_policy_display_name: 'steering_policy'

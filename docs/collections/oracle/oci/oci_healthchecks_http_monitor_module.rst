@@ -20,7 +20,7 @@ oracle.oci.oci_healthchecks_http_monitor -- Manage a HttpMonitor resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a HttpMonitor resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an HTTP monitor. Vantage points will be automatically selected if not specified, and probes will be initiated from each vantage point to each of the targets at the frequency specified by `intervalInSeconds`.
+- This resource has the following action operations in the :ref:`oci_http_monitor_actions <ansible_collections.oci_http_monitor_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -554,32 +556,32 @@ Examples
     
     - name: Create http_monitor
       oci_healthchecks_http_monitor:
-        compartment_id: ocid1.tenancy.oc1....
+        compartment_id: "ocid1.tenancy.oc1...."
         targets:
-        - 192.0.2.0
-        protocol: HTTP
-        display_name: test
+        - "192.0.2.0"
+        protocol: "HTTP"
+        display_name: "test"
         interval_in_seconds: 300
 
     - name: Update http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_healthchecks_http_monitor:
-        protocol: HTTPS
+        protocol: "HTTPS"
         port: 443
 
     - name: Update http_monitor
       oci_healthchecks_http_monitor:
-        protocol: HTTPS
+        protocol: "HTTPS"
         port: 443
-        monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+        monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete http_monitor
       oci_healthchecks_http_monitor:
-        monitor_id: ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx
+        monitor_id: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete http_monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_healthchecks_http_monitor:
-        compartment_id: ocid1.tenancy.oc1....
+        compartment_id: "ocid1.tenancy.oc1...."
         display_name: test
         state: absent
 

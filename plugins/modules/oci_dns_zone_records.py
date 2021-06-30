@@ -186,7 +186,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Update zone_records
   oci_dns_zone_records:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     update_items:
     - domain: domain_example
       rdata: rdata_example

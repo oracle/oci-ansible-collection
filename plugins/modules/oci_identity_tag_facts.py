@@ -53,11 +53,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List tags
   oci_identity_tag_facts:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific tag
   oci_identity_tag_facts:
-    tag_namespace_id: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     tag_name: tag_name_example
 
 """
@@ -74,13 +74,13 @@ tags:
                 - The OCID of the compartment that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
             returned: on success
             type: string
-            sample: ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_name:
             description:
                 - The name of the tag namespace that contains the tag definition.
@@ -92,7 +92,7 @@ tags:
                 - The OCID of the tag definition.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the tag during creation. This is the tag key definition.

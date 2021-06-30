@@ -31,6 +31,7 @@ def get_custom_class_mapping(modules):
 # import the customisation files.
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_identity_custom_helpers,
+    oci_database_management_custom_helpers,
     oci_network_custom_helpers,
     oci_compute_custom_helpers,
     oci_blockstorage_custom_helpers,
@@ -76,11 +77,22 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_opsi_custom_helpers,
     oci_optimizer_custom_helpers,
     oci_management_dashboards_custom_helpers,
+    oci_artifacts_custom_helpers,
+    oci_compute_capacity_reservation_helper,
+    oci_network_load_balancer_custom_helpers,
+    oci_service_catalog_custom_helpers,
+    oci_golden_gate_custom_helpers,
+    oci_generic_artifacts_content_custom_helpers,
+    oci_database_migration_custom_helpers,
+    oci_secrets_custom_helpers,
+    oci_apm_control_plane_custom_helpers,
+    oci_apm_synthetics_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
     [
         oci_identity_custom_helpers,
+        oci_database_management_custom_helpers,
         oci_network_custom_helpers,
         oci_compute_custom_helpers,
         oci_blockstorage_custom_helpers,
@@ -108,6 +120,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_waas_custom_helpers,
         oci_data_flow_custom_helpers,
         oci_analytics_custom_helpers,
+        oci_generic_artifacts_content_custom_helpers,
         oci_data_science_custom_helpers,
         oci_data_safe_custom_helpers,
         oci_data_catalog_custom_helpers,
@@ -126,5 +139,14 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_opsi_custom_helpers,
         oci_optimizer_custom_helpers,
         oci_management_dashboards_custom_helpers,
+        oci_artifacts_custom_helpers,
+        oci_compute_capacity_reservation_helper,
+        oci_network_load_balancer_custom_helpers,
+        oci_service_catalog_custom_helpers,
+        oci_golden_gate_custom_helpers,
+        oci_database_migration_custom_helpers,
+        oci_secrets_custom_helpers,
+        oci_apm_control_plane_custom_helpers,
+        oci_apm_synthetics_custom_helpers,
     ]
 )

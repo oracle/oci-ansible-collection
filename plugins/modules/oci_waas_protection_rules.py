@@ -89,7 +89,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update protection_rules
   oci_waas_protection_rules:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     protection_rules:
     - key: key_example
       action: OFF
@@ -236,6 +236,16 @@ class ProtectionRulesHelperGen(OCIResourceHelperBase):
 
     def get_update_model_class(self):
         return ProtectionRuleAction
+
+    def get_update_model(self):
+        if self.module.params.get("protection_rules"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["protection_rules"]
+            ]
+        return []
 
     def update_resource(self):
         update_details = self.get_update_model()

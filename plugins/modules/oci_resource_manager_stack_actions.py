@@ -23,6 +23,7 @@ module: oci_resource_manager_stack_actions
 short_description: Perform actions on a Stack resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Stack resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a Stack and it's associated Jobs into a different compartment.
     - For I(action=detect_stack_drift), checks drift status for the specified stack.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -33,6 +34,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+              into which the Stack should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     resource_addresses:
         description:
             - "The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address,
@@ -41,6 +48,7 @@ options:
               For example, the resource address for the fourth Compute instance with the name \\"test_instance\\" is oci_core_instance.test_instanceL(3].
               For more details and examples of resource addresses, see the Terraform documentation at [Resource
               spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples)."
+            - Applicable only for I(action=detect_stack_drift).
         type: list
     action:
         description:
@@ -48,14 +56,21 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "detect_stack_drift"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on stack
+  oci_resource_manager_stack_actions:
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action detect_stack_drift on stack
   oci_resource_manager_stack_actions:
-    stack_id: ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx
+    stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
     action: detect_stack_drift
 
 """
@@ -72,14 +87,14 @@ stack:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the stack.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the compartment where the stack is
                   located.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the stack.
@@ -133,7 +148,7 @@ stack:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
                     returned: on success
                     type: string
-                    sample: ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository for the configuration source.
@@ -146,6 +161,25 @@ stack:
                     returned: on success
                     type: string
                     sample: branch_name_example
+                region:
+                    description:
+                        - "The name of the bucket's region.
+                          Example: `PHX`"
+                    returned: on success
+                    type: string
+                    sample: PHX
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket.
+                    returned: on success
+                    type: string
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the Terraform configuration files.
+                    returned: on success
+                    type: string
+                    sample: bucket_name_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
@@ -153,14 +187,7 @@ stack:
                           resource types in this compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                region:
-                    description:
-                        - The region to use for creating the stack. The new stack will include definitions for
-                          supported resource types in this region.
-                    returned: on success
-                    type: string
-                    sample: region_example
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 services_to_discover:
                     description:
                         - "Filter for L(services to use with Resource
@@ -231,8 +258,10 @@ stack:
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
+            "region": "PHX",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "region": "region_example",
             "services_to_discover": []
         },
         "variables": {},
@@ -256,6 +285,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.resource_manager import ResourceManagerClient
+    from oci.resource_manager.models import ChangeStackCompartmentDetails
     from oci.resource_manager.models import DetectStackDriftDetails
 
     HAS_OCI_PY_SDK = True
@@ -266,6 +296,7 @@ except ImportError:
 class StackActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         detect_stack_drift
     """
 
@@ -282,6 +313,27 @@ class StackActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_stack, stack_id=self.module.params.get("stack_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeStackCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_stack_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                stack_id=self.module.params.get("stack_id"),
+                change_stack_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def detect_stack_drift(self):
@@ -320,8 +372,13 @@ def main():
     module_args.update(
         dict(
             stack_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             resource_addresses=dict(type="list"),
-            action=dict(type="str", required=True, choices=["detect_stack_drift"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "detect_stack_drift"],
+            ),
         )
     )
 

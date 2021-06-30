@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ComputeImageCapabilitySchema resource in Oracle Cloud Infrastructure
 - For *state=present*, creates compute image capability schema.
+- This resource has the following action operations in the :ref:`oci_compute_image_capability_schema_actions <ansible_collections.oci_compute_image_capability_schema_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -244,7 +246,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -298,7 +300,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -557,34 +559,34 @@ Examples
     
     - name: Create compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compartment_id: ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq
-        compute_global_image_capability_schema_version_name: 2c0xx226-xxx-xxxx-xxxx-193cc17xx90b
+        compartment_id: "ocid1.compartment.oc1..xxxxxEXAMPLExxxxx...vm62xq"
+        compute_global_image_capability_schema_version_name: "2c0xx226-xxx-xxxx-xxxx-193cc17xx90b"
         schema_data:
           Compute.LaunchMode:
-            descriptor_type: enumstring
-            source: IMAGE
+            descriptor_type: "enumstring"
+            source: "IMAGE"
             enum_string_values:
-            - EMULATED
-            - PARAVIRTUALIZED
-            - CUSTOM
-            enum_string_default_value: PARAVIRTUALIZED
+            - "EMULATED"
+            - "PARAVIRTUALIZED"
+            - "CUSTOM"
+            enum_string_default_value: "PARAVIRTUALIZED"
 
     - name: Update compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         schema_data:
           Storage.ConsistentVolumeNaming:
-            descriptor_type: boolean
-            source: IMAGE
+            descriptor_type: "boolean"
+            source: "IMAGE"
             enum_string_default_value: true
 
     - name: Update compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete compute_image_capability_schema
       oci_compute_image_capability_schema:
-        compute_image_capability_schema_id: ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx
+        compute_image_capability_schema_id: "ocid1.computeimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete compute_image_capability_schema using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -696,7 +698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Operations&quot;: {&quot;CostCenter&quot;: &quot;42&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -733,7 +735,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

@@ -23,6 +23,9 @@ module: oci_network_remote_peering_connection_actions
 short_description: Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a RemotePeeringConnection resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a remote peering connection (RPC) into a different compartment within the same tenancy. For information
+      about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - "For I(action=connect), connects this RPC to another one in a different region.
       This operation must be called by the VCN administrator who is designated as
       the *requestor* in the peering relationship. The *acceptor* must implement
@@ -35,36 +38,49 @@ author: Oracle (@oracle)
 options:
     remote_peering_connection_id:
         description:
-            - The OCID of the remote peering connection (RPC).
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote peering connection (RPC).
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              remote peering connection to.
+            - Required for I(action=change_compartment).
+        type: str
     peer_id:
         description:
             - The OCID of the RPC you want to peer with.
+            - Required for I(action=connect).
         type: str
-        required: true
     peer_region_name:
         description:
             - The name of the region that contains the RPC you want to peer with.
             - "Example: `us-ashburn-1`"
+            - Required for I(action=connect).
         type: str
-        required: true
     action:
         description:
             - The action to perform on the RemotePeeringConnection.
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "connect"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on remote_peering_connection
+  oci_network_remote_peering_connection_actions:
+    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action connect on remote_peering_connection
   oci_network_remote_peering_connection_actions:
-    remote_peering_connection_id: ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx
-    peer_id: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
     peer_region_name: us-ashburn-1
     action: connect
 
@@ -82,11 +98,11 @@ remote_peering_connection:
                 - The OCID of the compartment that contains the RPC.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -103,12 +119,12 @@ remote_peering_connection:
                 - The OCID of the DRG that this RPC belongs to.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -118,7 +134,7 @@ remote_peering_connection:
                 - The OCID of the RPC.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
                 - Whether the VCN at the other end of the peering is in a different tenancy.
@@ -137,7 +153,7 @@ remote_peering_connection:
                 - If this RPC is peered, this value is the OCID of the other RPC.
             returned: on success
             type: string
-            sample: ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         peer_region_name:
             description:
                 - If this RPC is peered, this value is the region that contains the other RPC.
@@ -150,7 +166,7 @@ remote_peering_connection:
                 - If this RPC is peered, this value is the OCID of the other RPC's tenancy.
             returned: on success
             type: string
-            sample: ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx"
         peering_status:
             description:
                 - Whether the RPC is peered with another RPC. `NEW` means the RPC has not yet been
@@ -195,6 +211,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.core import VirtualNetworkClient
+    from oci.core.models import ChangeRemotePeeringConnectionCompartmentDetails
     from oci.core.models import ConnectRemotePeeringConnectionsDetails
 
     HAS_OCI_PY_SDK = True
@@ -205,6 +222,7 @@ except ImportError:
 class RemotePeeringConnectionActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         connect
     """
 
@@ -223,6 +241,31 @@ class RemotePeeringConnectionActionsHelperGen(OCIActionsHelperBase):
             self.client.get_remote_peering_connection,
             remote_peering_connection_id=self.module.params.get(
                 "remote_peering_connection_id"
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeRemotePeeringConnectionCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_remote_peering_connection_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                remote_peering_connection_id=self.module.params.get(
+                    "remote_peering_connection_id"
+                ),
+                change_remote_peering_connection_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
             ),
         )
 
@@ -272,9 +315,12 @@ def main():
             remote_peering_connection_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            peer_id=dict(type="str", required=True),
-            peer_region_name=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["connect"]),
+            compartment_id=dict(type="str"),
+            peer_id=dict(type="str"),
+            peer_region_name=dict(type="str"),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "connect"]
+            ),
         )
     )
 

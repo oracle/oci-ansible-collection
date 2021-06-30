@@ -20,7 +20,7 @@ oracle.oci.oci_identity_provider -- Manage an IdentityProvider resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -60,7 +60,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -151,6 +151,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -527,7 +528,7 @@ Examples
     
     - name: Create identity_provider
       oci_identity_provider:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         product_type: IDCS
@@ -537,7 +538,7 @@ Examples
 
     - name: Update identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_provider:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         product_type: IDCS
@@ -549,23 +550,23 @@ Examples
 
     - name: Update identity_provider
       oci_identity_provider:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         product_type: IDCS
         protocol: SAML2
         metadata_url: metadata_url_example
         metadata: metadata_example
-        identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+        identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete identity_provider
       oci_identity_provider:
-        identity_provider_id: ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx
+        identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete identity_provider using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_provider:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         description: description_example
         product_type: IDCS

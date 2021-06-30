@@ -184,39 +184,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create channel
   oci_mysql_channel:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    is_enabled: "false"
     source:
-      source_type: MYSQL
+      source_type: "MYSQL"
+      hostname: "hostname.my.company.com"
+      username: "username"
+      password: "password"
+      ssl_mode: "REQUIRED"
     target:
-      target_type: DBSYSTEM
+      target_type: "DBSYSTEM"
+      db_system_id: "ocid1.dbsystem.oc1.TargetDbSystemOCID"
 
 - name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_channel:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    display_name: display_name_example
-    is_enabled: true
-    source:
-      source_type: MYSQL
+    is_enabled: "true"
     target:
-      target_type: DBSYSTEM
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+      target_type: "DBSYSTEM"
+      applier_username: "admin"
+
+- name: Update channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_mysql_channel:
+    source:
+      ssl_mode: "VERIFY_IDENTITY"
+      ssl_ca_certificate:
+        certificate_type: "PEM"
+        contents: "CA certificate in PEM format"
 
 - name: Update channel
   oci_mysql_channel:
-    display_name: display_name_example
-    is_enabled: true
-    channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete channel
   oci_mysql_channel:
-    channel_id: ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx
+    channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete channel using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_channel:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -234,13 +239,13 @@ channel:
                 - The OCID of the Channel.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Channel. It does not have to be unique.
@@ -326,7 +331,7 @@ channel:
                         - The OCID of the source DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                 channel_name:
                     description:
                         - The case-insensitive name that identifies the replication channel. Channel names

@@ -23,7 +23,7 @@ module: oci_ons_subscription_actions
 short_description: Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Subscription resource in Oracle Cloud Infrastructure
-    - "For I(action=get_unsubscription), gets the unsubscription details for the specified subscription.
+    - "For I(action=get_unsubscription), unsubscribes the subscription from the topic.
       Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
     - "For I(action=resend_subscription_confirmation), resends the confirmation details for the specified subscription.
       Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
@@ -47,9 +47,10 @@ options:
                 * `CUSTOM_HTTPS`
                 * `EMAIL`
                 * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                * `ORACLE_FUNCTIONS`
                 * `PAGERDUTY`
                 * `SLACK`
-                * `ORACLE_FUNCTIONS`"
+                * `SMS`"
             - For information about subscription protocols, see
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             - Required for I(action=get_unsubscription).
@@ -68,14 +69,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action get_unsubscription on subscription
   oci_ons_subscription_actions:
-    id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     token: token_example
     protocol: protocol_example
     action: get_unsubscription
 
 - name: Perform action resend_subscription_confirmation on subscription
   oci_ons_subscription_actions:
-    id: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: resend_subscription_confirmation
 
 """
@@ -92,17 +93,25 @@ subscription:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
             returned: on success
             type: string
-            sample: ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         protocol:
             description:
                 - The protocol used for the subscription.
-                  For information about subscription protocols, see
+                - "Allowed values:
+                    * `CUSTOM_HTTPS`
+                    * `EMAIL`
+                    * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`)
+                    * `ORACLE_FUNCTIONS`
+                    * `PAGERDUTY`
+                    * `SLACK`
+                    * `SMS`"
+                - For information about subscription protocols, see
                   L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             returned: on success
             type: string
@@ -126,7 +135,7 @@ subscription:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_time:
             description:
                 - The time when this suscription was created.

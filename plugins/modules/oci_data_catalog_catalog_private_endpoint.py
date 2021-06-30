@@ -24,6 +24,7 @@ short_description: Manage a CatalogPrivateEndpoint resource in Oracle Cloud Infr
 description:
     - This module allows the user to create, update and delete a CatalogPrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new private reverse connection endpoint.
+    - "This resource has the following action operations in the M(oci_catalog_private_endpoint_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -87,12 +88,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create catalog_private_endpoint
   oci_data_catalog_catalog_private_endpoint:
-    subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update catalog_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog_private_endpoint:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
@@ -101,16 +102,16 @@ EXAMPLES = """
   oci_data_catalog_catalog_private_endpoint:
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete catalog_private_endpoint
   oci_data_catalog_catalog_private_endpoint:
-    catalog_private_endpoint_id: ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_private_endpoint_id: "ocid1.catalogprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete catalog_private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog_private_endpoint:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -128,19 +129,19 @@ catalog_private_endpoint:
                 - Unique identifier that is immutable
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - Subnet Identifier
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Private Reverse Connection Endpoint display name

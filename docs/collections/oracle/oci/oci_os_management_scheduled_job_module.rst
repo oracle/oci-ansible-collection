@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_scheduled_job -- Manage a ScheduledJob resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ScheduledJob resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Scheduled Job to perform a specific package operation on a set of managed instances or managed instance groups.  Can be created as a one-time execution in the future, or as a recurring execution that repeats on a defined interval.
-- This resource has the following action operations in the :ref:`oci_scheduled_job_actions <ansible_collections.oci_scheduled_job_actions_module>` module: run_scheduled_job_now, skip_next_scheduled_job_execution.
+- This resource has the following action operations in the :ref:`oci_scheduled_job_actions <ansible_collections.oci_scheduled_job_actions_module>` module: change_compartment, run_scheduled_job_now, skip_next_scheduled_job_execution.
 
 
 .. Aliases
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -717,7 +718,7 @@ Examples
     
     - name: Create scheduled_job
       oci_os_management_scheduled_job:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         schedule_type: ONETIME
         time_next_execution: 2013-10-20T19:20:30+01:00
@@ -725,7 +726,7 @@ Examples
 
     - name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_scheduled_job:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         schedule_type: ONETIME
@@ -743,16 +744,16 @@ Examples
       oci_os_management_scheduled_job:
         display_name: display_name_example
         description: description_example
-        scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+        scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete scheduled_job
       oci_os_management_scheduled_job:
-        scheduled_job_id: ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx
+        scheduled_job_id: "ocid1.scheduledjob.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_os_management_scheduled_job:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

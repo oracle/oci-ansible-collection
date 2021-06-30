@@ -20,7 +20,7 @@ oracle.oci.oci_network_cpe_device_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - Fetches details about one or multiple CpeDeviceShape resources in Oracle Cloud Infrastructure
 - Lists the CPE device types that the Networking service provides CPE configuration content for (example: Cisco ASA). The content helps a network engineer configure the actual CPE device represented by a `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object.
-- If you want to generate CPE configuration content for one of the returned CPE device types, ensure that the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object's `cpeDeviceShapeId` attribute is set to the CPE device type's OCID (returned by this operation).
+- If you want to generate CPE configuration content for one of the returned CPE device types, ensure that the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object's `cpeDeviceShapeId` attribute is set to the CPE device type's `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ (returned by this operation).
 - For information about generating CPE configuration content, see these operations:
 -  * `GetCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent>`_ * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_
 - If *cpe_device_shape_id* is specified, the details of a single CpeDeviceShape will be returned.
@@ -59,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -150,6 +150,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -260,7 +261,7 @@ Examples
 
     - name: Get a specific cpe_device_shape
       oci_network_cpe_device_shape_facts:
-        cpe_device_shape_id: ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx
+        cpe_device_shape_id: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

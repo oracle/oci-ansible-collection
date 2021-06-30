@@ -55,7 +55,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action test on connection
   oci_data_catalog_connection_actions:
-    catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     connection_key: connection_key_example
     action: test
@@ -106,13 +106,13 @@ connection:
                 - OCID of the user who created the connection.
             returned: on success
             type: string
-            sample: ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who modified the connection.
             returned: on success
             type: string
-            sample: ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_members:
             description:
                 - The list of customized properties along with the values for this object
@@ -176,6 +176,12 @@ connection:
                 is_editable:
                     description:
                         - If this field is a editable field
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_shown_in_list:
+                    description:
+                        - If this field is displayed in a list view of applicable objects.
                     returned: on success
                     type: bool
                     sample: true
@@ -262,6 +268,7 @@ connection:
             "is_multi_valued": true,
             "is_hidden": true,
             "is_editable": true,
+            "is_shown_in_list": true,
             "is_list_type": true,
             "allowed_values": []
         }],

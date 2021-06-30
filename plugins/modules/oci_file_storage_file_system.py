@@ -43,10 +43,11 @@ description:
       Management Service API.
     - All Oracle Cloud Infrastructure resources, including
       file systems, get an Oracle-assigned, unique ID called an Oracle
-      Cloud Identifier (OCID).  When you create a resource, you can
-      find its OCID in the response. You can also retrieve a
-      resource's OCID by using a List API operation on that resource
+      Cloud Identifier (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+      When you create a resource, you can find its OCID in the response.
+      You can also retrieve a resource's OCID by using a List API operation on that resource
       type or by viewing the resource in the Console.
+    - "This resource has the following action operations in the M(oci_file_system_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -60,7 +61,7 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment to create the file system in.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to create the file system in.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -91,12 +92,18 @@ options:
         type: dict
     kms_key_id:
         description:
-            - The OCID of KMS key used to encrypt the encryption keys associated with this file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the KMS key used to encrypt the encryption keys associated
+              with this file system.
             - This parameter is updatable.
+        type: str
+    source_snapshot_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system.
+              See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
         type: str
     file_system_id:
         description:
-            - The OCID of the file system.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -116,34 +123,34 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create file_system
   oci_file_storage_file_system:
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
-    display_name: media-files-1
+    availability_domain: "Uocm:PHX-AD-1"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "media-files-1"
 
 - name: Update file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update file_system
   oci_file_storage_file_system:
     display_name: media-files-1
     freeform_tags: {'Department': 'Finance'}
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete file_system
   oci_file_storage_file_system:
-    file_system_id: ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete file_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_file_storage_file_system:
     availability_domain: Uocm:PHX-AD-1
-    compartment_id: ocid1.compartment.oc1..examplea4ssrz2joq66nyomcvb4ydlbfmn2qg7wow5neo2ytcdznohhsyca
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: media-files-1
     state: absent
 
@@ -170,15 +177,16 @@ file_system:
                   any snapshots. This number reflects the metered size of the file
                   system and is updated asynchronously with respect to
                   updates to the file system.
+                  For more information, see L(File System Usage and Metering,https://docs.cloud.oracle.com/Content/File/Concepts/FSutilization.htm).
             returned: on success
             type: int
             sample: 56
         compartment_id:
             description:
-                - The OCID of the compartment that contains the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the file system.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -189,10 +197,10 @@ file_system:
             sample: My file system
         id:
             description:
-                - The OCID of the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the file system.
@@ -226,10 +234,55 @@ file_system:
             sample: {'Operations': {'CostCenter': 'US'}}
         kms_key_id:
             description:
-                - The OCID of the KMS key which is the master encryption key for the file system.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the KMS key which is the master encryption key for the
+                  file system.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        source_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                parent_file_system_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source
+                          snapshot of a cloned file system.
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
+                source_snapshot_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
+                          system.
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                    returned: on success
+                    type: string
+                    sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
+        is_clone_parent:
+            description:
+                - Specifies whether the file system has been cloned.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+            returned: on success
+            type: bool
+            sample: true
+        is_hydrated:
+            description:
+                - Specifies whether the data has finished copying from the source to the clone.
+                  Hydration can take up to several hours to complete depending on the size of the source.
+                  The source and clone remain available during hydration, but there may be some performance impact.
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm#hydration).
+            returned: on success
+            type: bool
+            sample: true
+        lifecycle_details:
+            description:
+                - Additional information about the current 'lifecycleState'.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -240,7 +293,14 @@ file_system:
         "time_created": "2016-08-25T21:10:29.600Z",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "source_details": {
+            "parent_file_system_id": "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_snapshot_id": "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_clone_parent": true,
+        "is_hydrated": true,
+        "lifecycle_details": "lifecycle_details_example"
     }
 """
 
@@ -293,7 +353,7 @@ class FileSystemHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["display_name"]
+        optional_list_method_params = ["display_name", "source_snapshot_id"]
 
         return dict(
             (param, self.module.params[param])
@@ -392,6 +452,7 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
+            source_snapshot_id=dict(type="str"),
             file_system_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

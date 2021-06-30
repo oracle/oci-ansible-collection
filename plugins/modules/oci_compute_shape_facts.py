@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
     availability_domain:
@@ -48,7 +48,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List shapes
   oci_compute_shape_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -59,10 +59,23 @@ shapes:
     returned: on success
     type: complex
     contains:
+        baseline_ocpu_utilizations:
+            description:
+                - For a subcore burstable VM, the supported baseline OCPU utilization for instances that use this shape.
+            returned: on success
+            type: list
+            sample: []
+        min_total_baseline_ocpus_required:
+            description:
+                - For a subcore burstable VM, the minimum total baseline OCPUs required. The total baseline OCPUs is equal to
+                  baselineOcpuUtilization chosen multiplied by the number of OCPUs chosen.
+            returned: on success
+            type: float
+            sample: 10
         shape:
             description:
                 - The name of the shape. You can enumerate all available shapes by calling
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -129,6 +142,12 @@ shapes:
             returned: on success
             type: string
             sample: local_disk_description_example
+        is_live_migration_supported:
+            description:
+                - Whether live migration is supported for this shape.
+            returned: on success
+            type: bool
+            sample: true
         ocpu_options:
             description:
                 - ""
@@ -232,6 +251,8 @@ shapes:
                     type: float
                     sample: 3.4
     sample: [{
+        "baseline_ocpu_utilizations": [],
+        "min_total_baseline_ocpus_required": 10,
         "shape": "shape_example",
         "processor_description": "processor_description_example",
         "ocpus": 3.4,
@@ -243,6 +264,7 @@ shapes:
         "local_disks": 56,
         "local_disks_total_size_in_gbs": 3.4,
         "local_disk_description": "local_disk_description_example",
+        "is_live_migration_supported": true,
         "ocpu_options": {
             "min": 3.4,
             "max": 3.4

@@ -113,6 +113,19 @@ options:
             - "Enabled"
             - "Disabled"
             - "Suspended"
+    auto_tiering:
+        description:
+            - Set the auto tiering status on the bucket. By default, a bucket is created with auto tiering `Disabled`.
+              Use this option to enable auto tiering during bucket creation. Objects in a bucket with auto tiering set to
+              `InfrequentAccess` are transitioned automatically between the 'Standard' and 'InfrequentAccess'
+              tiers based on the access pattern of the objects.
+            - This parameter is updatable.
+        type: str
+    force:
+        description:
+            - Force delete a bucket along with all the objects contained in it. Use with (state=absent).
+        type: bool
+        default: "false"
     state:
         description:
             - The state of the Bucket.
@@ -130,7 +143,7 @@ EXAMPLES = """
   oci_object_storage_bucket:
     namespace_name: namespace_name_example
     name: my-test-1
-    compartment_id: ocid.compartment.oc1..exampleuniquecompartmentID
+    compartment_id: "ocid.compartment.oc1..exampleuniquecompartmentID"
 
 - name: Update bucket
   oci_object_storage_bucket:
@@ -170,7 +183,7 @@ bucket:
                 - The compartment ID in which the bucket is authorized.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metadata:
             description:
                 - Arbitrary string keys and values for user-defined metadata.
@@ -244,7 +257,7 @@ bucket:
                   service to generate a data encryption key or to encrypt or decrypt a data encryption key.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         object_lifecycle_policy_etag:
             description:
                 - The entity tag (ETag) for the live object lifecycle policy on the bucket.
@@ -284,7 +297,7 @@ bucket:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         versioning:
             description:
                 - The versioning status on the bucket. A bucket is created with versioning `Disabled` by default.
@@ -293,6 +306,14 @@ bucket:
             returned: on success
             type: string
             sample: Enabled
+        auto_tiering:
+            description:
+                - The auto tiering status on the bucket. A bucket is created with auto tiering `Disabled` by default.
+                  For auto tiering `InfrequentAccess`, objects are transitioned automatically between the 'Standard'
+                  and 'InfrequentAccess' tiers based on the access pattern of the objects.
+            returned: on success
+            type: string
+            sample: Disabled
     sample: {
         "namespace": "namespace_example",
         "name": "name_example",
@@ -313,7 +334,8 @@ bucket:
         "replication_enabled": true,
         "is_read_only": true,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "versioning": "Enabled"
+        "versioning": "Enabled",
+        "auto_tiering": "Disabled"
     }
 """
 
@@ -476,6 +498,8 @@ def main():
             defined_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
             versioning=dict(type="str", choices=["Enabled", "Disabled", "Suspended"]),
+            auto_tiering=dict(type="str"),
+            force=dict(type="bool", default="false"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

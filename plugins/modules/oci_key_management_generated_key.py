@@ -60,15 +60,15 @@ options:
                 required: true
             length:
                 description:
-                    - "The length of the key in bytes, expressed as an integer. Values supported:
-                        - AES: 16, 24 or 32
-                        - RSA: 256, 384 or 512
-                        - ECDSA: 32, 48, 66"
+                    - "The length of the key in bytes, expressed as an integer. Supported values include the following:
+                        - AES: 16, 24, or 32
+                        - RSA: 256, 384, or 512
+                        - ECDSA: 32, 48, or 66"
                 type: int
                 required: true
             curve_id:
                 description:
-                    - Supported curve Ids for ECDSA keys
+                    - Supported curve IDs for ECDSA keys.
                 type: str
                 choices:
                     - "NIST_P256"
@@ -99,9 +99,9 @@ EXAMPLES = """
 - name: Create generated_key
   oci_key_management_generated_key:
     include_plaintext_key: true
-    key_id: ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a
+    key_id: "ocid1.key.oc1.iad.exampledaaeug.examplestkvmbjdnbickxcvbotxd5q23tteidhj4q2c6qfauxm32i577yu5a"
     key_shape:
-      algorithm: AES
+      algorithm: "AES"
       length: 16
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

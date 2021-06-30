@@ -23,6 +23,7 @@ module: oci_data_integration_workspace_actions
 short_description: Perform actions on a Workspace resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Workspace resource in Oracle Cloud Infrastructure
+    - For I(action=change_compartment), moves a workspace to a specified compartment.
     - For I(action=start), starts a workspace.
     - For I(action=stop), stops a workspace.
 version_added: "2.9"
@@ -34,6 +35,11 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The OCID of the compartment to move the the workspace to.
+            - Required for I(action=change_compartment).
+        type: str
     quiesce_timeout:
         description:
             - Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.
@@ -50,20 +56,27 @@ options:
         type: str
         required: true
         choices:
+            - "change_compartment"
             - "start"
             - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action change_compartment on workspace
+  oci_data_integration_workspace_actions:
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
+
 - name: Perform action start on workspace
   oci_data_integration_workspace_actions:
-    workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     action: start
 
 - name: Perform action stop on workspace
   oci_data_integration_workspace_actions:
-    workspace_id: ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
 """
@@ -80,13 +93,13 @@ workspace:
                 - The OCID of the VCN the subnet is in.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet for customer connected databases.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         dns_server_ip:
             description:
                 - The IP of the custom DNS.
@@ -138,7 +151,7 @@ workspace:
                 - The OCID of the compartment containing the workspace.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the workspace was created, in the timestamp format defined by RFC3339.
@@ -180,7 +193,7 @@ workspace:
                 - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -212,6 +225,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_integration import DataIntegrationClient
+    from oci.data_integration.models import ChangeCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -221,6 +235,7 @@ except ImportError:
 class WorkspaceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        change_compartment
         start
         stop
     """
@@ -239,6 +254,27 @@ class WorkspaceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_workspace,
             workspace_id=self.module.params.get("workspace_id"),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                workspace_id=self.module.params.get("workspace_id"),
+                change_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def start(self):
@@ -290,9 +326,14 @@ def main():
     module_args.update(
         dict(
             workspace_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str"),
             quiesce_timeout=dict(type="int"),
             is_force_operation=dict(type="bool"),
-            action=dict(type="str", required=True, choices=["start", "stop"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "start", "stop"],
+            ),
         )
     )
 

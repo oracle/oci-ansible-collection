@@ -25,7 +25,8 @@ description:
     - This module allows the user to create and update a Secret resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new secret according to the details of the request.
     - This operation is not supported by the Oracle Cloud Infrastructure Terraform Provider.
-    - "This resource has the following action operations in the M(oci_secret_actions) module: cancel_secret_deletion, schedule_secret_deletion."
+    - "This resource has the following action operations in the M(oci_secret_actions) module: cancel_secret_deletion, change_compartment,
+      schedule_secret_deletion."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -180,21 +181,21 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create secret
   oci_vault_secret:
-    vault_id: vault_OCID
-    secret_rules: '[]'
-    compartment_id:
-    secret_name: testSecret
-    description: my test secret
-    key_id: key_OCID
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_rules: []
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_name: "testSecret"
+    description: "my test secret"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     secret_content:
-      content: base64_encoded_secret_contents
-      content_type: BASE64
+      content: "base64_encoded_secret_contents"
+      content_type: "BASE64"
 
 - name: Update secret
   oci_vault_secret:
-    description: updated version of my test secret
+    description: "updated version of my test secret"
     current_version_number: 4
-    secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -210,7 +211,7 @@ secret:
                 - The OCID of the compartment where you want to create the secret.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_version_number:
             description:
                 - The version number of the secret version that's currently in use.
@@ -244,13 +245,13 @@ secret:
                 - The OCID of the secret.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the master encryption key that is used to encrypt the secret.
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state of the secret.
@@ -352,7 +353,7 @@ secret:
                 - The OCID of the vault where the secret exists.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "current_version_number": 56,

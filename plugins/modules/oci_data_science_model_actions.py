@@ -24,16 +24,22 @@ short_description: Perform actions on a Model resource in Oracle Cloud Infrastru
 description:
     - Perform actions on a Model resource in Oracle Cloud Infrastructure
     - For I(action=activate), activates the model.
+    - For I(action=change_compartment), moves a model resource into a different compartment.
     - For I(action=deactivate), deactivates the model.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     model_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
         type: str
         aliases: ["id"]
         required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the Model.
@@ -41,6 +47,7 @@ options:
         required: true
         choices:
             - "activate"
+            - "change_compartment"
             - "deactivate"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -48,12 +55,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action activate on model
   oci_data_science_model_actions:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
+
+- name: Perform action change_compartment on model
+  oci_data_science_model_actions:
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action deactivate on model
   oci_data_science_model_actions:
-    model_id: ocid1.model.oc1..xxxxxxEXAMPLExxxxxx
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
 
 """
@@ -67,31 +80,31 @@ model:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model's compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
             returned: on success
             type: string
-            sample: ocid1.project.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+                - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         description:
             description:
-                - A short blurb describing the model.
+                - A short description of the model.
             returned: on success
             type: string
             sample: description_example
@@ -103,14 +116,14 @@ model:
             sample: ACTIVE
         time_created:
             description:
-                - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
         created_by:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
             returned: on success
             type: string
             sample: created_by_example
@@ -156,6 +169,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_science import DataScienceClient
+    from oci.data_science.models import ChangeModelCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -166,6 +180,7 @@ class DataScienceModelActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         activate
+        change_compartment
         deactivate
     """
 
@@ -190,6 +205,29 @@ class DataScienceModelActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(model_id=self.module.params.get("model_id"),),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeModelCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_model_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                model_id=self.module.params.get("model_id"),
+                change_model_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -237,7 +275,12 @@ def main():
     module_args.update(
         dict(
             model_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["activate", "deactivate"]),
+            compartment_id=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["activate", "change_compartment", "deactivate"],
+            ),
         )
     )
 

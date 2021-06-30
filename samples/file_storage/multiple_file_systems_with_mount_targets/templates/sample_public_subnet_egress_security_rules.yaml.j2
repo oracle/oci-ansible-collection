@@ -18,7 +18,7 @@ sample_public_subnet_egress_security_rules:
       destination_port_range:
         min: {{ https_port }}
         max: {{ https_port }}
-  - destination: "{{ subnet_cidr_block_ad2 }}"
+  - destination: "{{ subnet_cidr_block_ad3 }}"
     protocol: "{{ tcp_protocol }}"
     tcp_options:
       destination_port_range:

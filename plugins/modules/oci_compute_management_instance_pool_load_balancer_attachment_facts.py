@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     instance_pool_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
         type: str
         required: true
     instance_pool_load_balancer_attachment_id:
@@ -44,8 +44,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific instance_pool_load_balancer_attachment
   oci_compute_management_instance_pool_load_balancer_attachment_facts:
-    instance_pool_id: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
-    instance_pool_load_balancer_attachment_id: ocid1.instancepoolloadbalancerattachment.oc1..xxxxxxEXAMPLExxxxxx
+    instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_pool_load_balancer_attachment_id: "ocid1.instancepoolloadbalancerattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -58,22 +58,22 @@ instance_pool_load_balancer_attachment:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_pool_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer attachment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer attachment.
             returned: on success
             type: string
-            sample: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         load_balancer_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance pool.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance pool.
             returned: on success
             type: string
-            sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name:
             description:
                 - The name of the backend set on the load balancer.

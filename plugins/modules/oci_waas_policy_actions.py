@@ -28,6 +28,10 @@ description:
       Application Firewall's security profile. Only the rules specified in the request body will be updated; all other rules will remain unchanged.
       Use the `GET /waasPolicies/{waasPolicyId}/wafConfig/recommendations` method to view a list of recommended Web Application Firewall protection rules. For
       more information, see L(WAF Protection Rules,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafprotectionrules.htm).
+    - For I(action=change_compartment), moves WAAS policy into a different compartment. When provided, If-Match is checked against ETag values of the WAAS
+      policy.
+      For information about moving resources between compartments, see L(Moving Resources to a Different
+      Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=purge_cache), performs a purge of the cache for each specified resource. If no resources are passed, the cache for the entire Web Application
       Firewall will be purged.
       For more information, see L(Caching Rules,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/cachingrules.htm#purge).
@@ -45,6 +49,13 @@ options:
             - ""
             - Required for I(action=accept_recommendations).
         type: list
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the resource should be moved.
+              For information about moving resources between compartments, see L(Moving Resources to a Different
+              Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+            - Required for I(action=change_compartment).
+        type: str
     resources:
         description:
             - "A resource to purge, specified by either a hostless absolute path starting with a single slash (Example: `/path/to/resource`) or by a relative
@@ -58,6 +69,7 @@ options:
         required: true
         choices:
             - "accept_recommendations"
+            - "change_compartment"
             - "purge_cache"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -65,12 +77,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action accept_recommendations on waas_policy
   oci_waas_policy_actions:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     action: accept_recommendations
+
+- name: Perform action change_compartment on waas_policy
+  oci_waas_policy_actions:
+    compartment_id: "ocid1.compartment.oc1.."
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "change_compartment"
 
 - name: Perform action purge_cache on waas_policy
   oci_waas_policy_actions:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     action: purge_cache
 
 """
@@ -87,13 +105,13 @@ waas_policy:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the WAAS policy. The name can be changed and does not need to be unique.
@@ -145,13 +163,15 @@ waas_policy:
                     sample: uri_example
                 http_port:
                     description:
-                        - The HTTP port on the origin that the web application listens on. If unspecified, defaults to `80`.
+                        - "The HTTP port on the origin that the web application listens on. If unspecified, defaults to `80`. If `0` is specified - the origin
+                          is not used for HTTP traffic."
                     returned: on success
                     type: int
                     sample: 56
                 https_port:
                     description:
-                        - The HTTPS port on the origin that the web application listens on. If unspecified, defaults to `443`.
+                        - "The HTTPS port on the origin that the web application listens on. If unspecified, defaults to `443`. If `0` is specified - the origin
+                          is not used for HTTPS traffic."
                     returned: on success
                     type: int
                     sample: 56
@@ -210,7 +230,7 @@ waas_policy:
                         - The OCID of the SSL certificate to use if HTTPS is supported.
                     returned: on success
                     type: string
-                    sample: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
                 is_https_enabled:
                     description:
                         - Enable or disable HTTPS support. If true, a `certificateId` is required. If unspecified, defaults to `false`.
@@ -304,16 +324,18 @@ waas_policy:
                         method:
                             description:
                                 - Load balancing methods are algorithms used to efficiently distribute traffic among origin servers.
-                                - "- **IP_HASH:** All the incoming requests from the same client IP address should go to the same content origination server.
-                                  IP_HASH load balancing method uses origin weights when choosing which origin should the hash be assigned to initially."
-                                - "- **ROUND_ROBIN:** Forwards requests sequentially to the available origin servers. The first request - to the first origin
-                                  server, the second request - to the next origin server, and so on. After it sends a request to the last origin server, it
-                                  starts again with the first origin server. When using weights on origins, Weighted Round Robin assigns more requests to
-                                  origins with a greater weight. Over a period of time, origins will receive a number of requests in proportion to their
-                                  weight."
-                                - "- **STICKY_COOKIE:** Adds a session cookie to the first response from the origin server and identifies the server that sent
-                                  the response. The client's next request contains the cookie value, and nginx routes the request to the origin server that
-                                  responded to the first request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
+                                - "- **L(IP_HASH,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/IPHashLoadBalancingMethod):** All the
+                                  incoming requests from the same client IP address should go to the same content origination server. IP_HASH load balancing
+                                  method uses origin weights when choosing which origin should the hash be assigned to initially."
+                                - "- **L(ROUND_ROBIN,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/RoundRobinLoadBalancingMethod):**
+                                  Forwards requests sequentially to the available origin servers. The first request - to the first origin server, the second
+                                  request - to the next origin server, and so on. After it sends a request to the last origin server, it starts again with the
+                                  first origin server. When using weights on origins, Weighted Round Robin assigns more requests to origins with a greater
+                                  weight. Over a period of time, origins will receive a number of requests in proportion to their weight."
+                                - "- **L(STICKY_COOKIE,https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/StickyCookieLoadBalancingMethod):**
+                                  Adds a session cookie to the first response from the origin server and identifies the server that sent the response. The
+                                  client's next request contains the cookie value, and nginx routes the request to the origin server that responded to the first
+                                  request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
                             returned: on success
                             type: string
                             sample: ROUND_ROBIN
@@ -565,7 +587,7 @@ waas_policy:
                                 - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE`, and the
                                   access criteria are met. If unspecified, defaults to `403`. The list of available response codes: `200`, `201`, `202`, `204`,
                                   `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`,
-                                  `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                                  `415`, `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
                             returned: on success
                             type: int
                             sample: 56
@@ -695,8 +717,8 @@ waas_policy:
                         block_response_code:
                             description:
                                 - "The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available
-                                  response codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`,
-                                  `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                                  response codes: `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `494`,
+                                  `495`, `496`, `497`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
                             returned: on success
                             type: int
                             sample: 56
@@ -818,8 +840,8 @@ waas_policy:
                                         - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response
                                           codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`,
-                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`,
-                                          `507`."
+                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`,
+                                          `502`, `503`, `504`, `507`."
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -992,8 +1014,8 @@ waas_policy:
                                         - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response
                                           codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`,
-                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`,
-                                          `507`."
+                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`,
+                                          `502`, `503`, `504`, `507`."
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -1125,8 +1147,8 @@ waas_policy:
                                         - "The response status code to return when `action` is set to `BLOCK`, `blockAction` is set to `SET_RESPONSE_CODE` or
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `403`. The list of available response
                                           codes: `200`, `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`,
-                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`,
-                                          `507`."
+                                          `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `444`, `494`, `495`, `496`, `497`, `499`, `500`, `501`,
+                                          `502`, `503`, `504`, `507`."
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -1381,7 +1403,7 @@ waas_policy:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         action:
                             description:
                                 - "The action to take when the custom protection rule is triggered.
@@ -1933,6 +1955,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.waas import WaasClient
+    from oci.waas.models import ChangeWaasPolicyCompartmentDetails
     from oci.waas.models import PurgeCache
 
     HAS_OCI_PY_SDK = True
@@ -1944,6 +1967,7 @@ class WaasPolicyActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         accept_recommendations
+        change_compartment
         purge_cache
     """
 
@@ -1979,6 +2003,29 @@ class WaasPolicyActionsHelperGen(OCIActionsHelperBase):
             waiter_client=self.get_waiter_client(),
             resource_helper=self,
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeWaasPolicyCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_waas_policy_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                waas_policy_id=self.module.params.get("waas_policy_id"),
+                change_waas_policy_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def purge_cache(self):
@@ -2018,11 +2065,12 @@ def main():
         dict(
             waas_policy_id=dict(aliases=["id"], type="str", required=True),
             protection_rule_keys=dict(type="list"),
+            compartment_id=dict(type="str"),
             resources=dict(type="list"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["accept_recommendations", "purge_cache"],
+                choices=["accept_recommendations", "change_compartment", "purge_cache"],
             ),
         )
     )

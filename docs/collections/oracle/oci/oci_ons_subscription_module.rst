@@ -20,7 +20,7 @@ oracle.oci.oci_ons_subscription -- Manage a Subscription resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -57,7 +57,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -148,6 +148,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -386,7 +387,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The protocol used for the subscription.</div>
-                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `PAGERDUTY` * `SLACK` * `ORACLE_FUNCTIONS`</div>
+                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `ORACLE_FUNCTIONS` * `PAGERDUTY` * `SLACK` * `SMS`</div>
                                             <div>For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
@@ -534,19 +535,19 @@ Examples
     
     - name: Create subscription
       oci_ons_subscription:
-        topic_id: topic_OCID
-        compartment_id: compartment_OCID
-        protocol: EMAIL
-        endpoint: john.smith@example.com
+        topic_id: "topic_OCID"
+        compartment_id: "compartment_OCID"
+        protocol: "EMAIL"
+        endpoint: "john.smith@example.com"
 
     - name: Update subscription
       oci_ons_subscription:
-        freeform_tags: '{''Department'': ''Finance''}'
-        subscription_id: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+        freeform_tags: "{'Department': 'Finance'}"
+        subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete subscription
       oci_ons_subscription:
-        subscription_id: ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx
+        subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -763,7 +764,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The protocol used for the subscription. For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
+                                            <div>The protocol used for the subscription.</div>
+                                            <div>Allowed values: * `CUSTOM_HTTPS` * `EMAIL` * `HTTPS` (deprecated; for PagerDuty endpoints, use `PAGERDUTY`) * `ORACLE_FUNCTIONS` * `PAGERDUTY` * `SLACK` * `SMS`</div>
+                                            <div>For information about subscription protocols, see <a href='https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub'>To create a subscription</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EMAIL</div>

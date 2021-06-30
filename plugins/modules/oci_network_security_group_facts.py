@@ -23,7 +23,8 @@ module: oci_network_security_group_facts
 short_description: Fetches details about one or multiple NetworkSecurityGroup resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple NetworkSecurityGroup resources in Oracle Cloud Infrastructure
-    - Lists the network security groups in the specified compartment.
+    - Lists either the network security groups in the specified compartment, or those associated with the specified VLAN.
+      You must specify either a `vlanId` or a `compartmentId`, but not both. If you specify a `vlanId`, all other parameters are ignored.
     - If I(network_security_group_id) is specified, the details of a single NetworkSecurityGroup will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -36,8 +37,11 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-            - Required to list multiple network_security_groups.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+        type: str
+    vlan_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VLAN.
         type: str
     vcn_id:
         description:
@@ -85,11 +89,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List network_security_groups
   oci_network_security_group_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific network_security_group
   oci_network_security_group_facts:
-    network_security_group_id: ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx
+    network_security_group_id: "ocid1.networksecuritygroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -105,11 +109,11 @@ network_security_groups:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the network security group is in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -125,7 +129,7 @@ network_security_groups:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -135,7 +139,7 @@ network_security_groups:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The network security group's current state.
@@ -154,7 +158,7 @@ network_security_groups:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group's VCN.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -191,9 +195,7 @@ class NetworkSecurityGroupFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_required_params_for_list(self):
-        return [
-            "compartment_id",
-        ]
+        return []
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -205,6 +207,8 @@ class NetworkSecurityGroupFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "compartment_id",
+            "vlan_id",
             "vcn_id",
             "display_name",
             "sort_by",
@@ -217,9 +221,7 @@ class NetworkSecurityGroupFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_network_security_groups,
-            compartment_id=self.module.params.get("compartment_id"),
-            **optional_kwargs
+            self.client.list_network_security_groups, **optional_kwargs
         )
 
 
@@ -240,6 +242,7 @@ def main():
         dict(
             network_security_group_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            vlan_id=dict(type="str"),
             vcn_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),

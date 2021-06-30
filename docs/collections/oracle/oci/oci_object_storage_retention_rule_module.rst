@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_retention_rule -- Manage a RetentionRule resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -426,33 +427,33 @@ Examples
     
     - name: Create retention_rule
       oci_object_storage_retention_rule:
-        display_name: sampleRetentionRule
+        display_name: "sampleRetentionRule"
         duration:
           time_amount: 30
-          time_unit: DAYS
-        time_rule_locked: 2019-12-13T17:23:46.000Z
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
+          time_unit: "DAYS"
+        time_rule_locked: "2019-12-13T17:23:46.000Z"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
 
     - name: Update retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_object_storage_retention_rule:
-        display_name: sampleRetentionRule
+        display_name: "sampleRetentionRule"
         duration:
-          time_unit: DAYS
+          time_unit: "DAYS"
           time_amount: 30
-        time_rule_locked: 2019-12-13T17:23:46.000Z
+        time_rule_locked: "2019-12-13T17:23:46.000Z"
 
     - name: Update retention_rule
       oci_object_storage_retention_rule:
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
-        retention_rule_id: ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx
+        retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete retention_rule
       oci_object_storage_retention_rule:
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
-        retention_rule_id: ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx
+        retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

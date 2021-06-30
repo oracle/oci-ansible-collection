@@ -40,6 +40,7 @@ description:
     - Also, for reserved public IPs, the optional assignment part of this operation is
       asynchronous. Poll the public IP's `lifecycleState` to determine if the assignment
       succeeded.
+    - "This resource has the following action operations in the M(oci_public_ip_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -54,7 +55,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -70,7 +71,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -100,7 +101,7 @@ options:
         type: str
     public_ip_id:
         description:
-            - The OCID of the public IP.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the public IP.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -137,33 +138,33 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create public_ip
   oci_network_public_ip:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifetime: EPHEMERAL
     scope: REGION
 
 - name: Update public_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_public_ip:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    private_ip_id: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+    private_ip_id: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
     scope: REGION
 
 - name: Update public_ip
   oci_network_public_ip:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    public_ip_id: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
+    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete public_ip
   oci_network_public_ip:
-    public_ip_id: ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx
+    public_ip_id: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete public_ip using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_public_ip:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     scope: REGION
     state: absent
@@ -183,7 +184,7 @@ public_ip:
                   being assigned to.
             returned: on success
             type: string
-            sample: ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx"
         assigned_entity_type:
             description:
                 - The type of entity the public IP is assigned to, or in the process of being
@@ -208,11 +209,11 @@ public_ip:
                   its compartment can be different from the assigned private IP's.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -228,7 +229,7 @@ public_ip:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -238,7 +239,7 @@ public_ip:
                 - The public IP's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the `publicIp` object.
@@ -277,7 +278,7 @@ public_ip:
                   in the process of being assigned to one."
             returned: on success
             type: string
-            sample: ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - Whether the public IP is regional or specific to a particular availability domain.
@@ -303,7 +304,7 @@ public_ip:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
             returned: on success
             type: string
-            sample: ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "assigned_entity_id": "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx",
         "assigned_entity_type": "PRIVATE_IP",

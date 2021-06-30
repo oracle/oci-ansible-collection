@@ -75,17 +75,24 @@ namespace:
                 - The is the tenancy ID
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_onboarded:
             description:
                 - This indicates if the tenancy is onboarded to Logging Analytics
             returned: on success
             type: bool
             sample: true
+        is_log_set_enabled:
+            description:
+                - This indicates if the log set feature is enabled for the tenancy
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "namespace_name": "namespace_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "is_onboarded": true
+        "is_onboarded": true,
+        "is_log_set_enabled": true
     }
 """
 

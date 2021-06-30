@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment.
+            - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
@@ -38,7 +38,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_opti
 EXAMPLES = """
 - name: List notebook_session_shapes
   oci_data_science_notebook_session_shape_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -67,10 +67,17 @@ notebook_session_shapes:
             returned: on success
             type: int
             sample: 15
+        shape_series:
+            description:
+                - The family that the compute shape belongs to.
+            returned: on success
+            type: string
+            sample: AMD_ROME
     sample: [{
         "name": "VM.STANDARD2.1",
         "core_count": 1,
-        "memory_in_gbs": 15
+        "memory_in_gbs": 15,
+        "shape_series": "AMD_ROME"
     }]
 """
 

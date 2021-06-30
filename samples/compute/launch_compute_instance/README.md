@@ -13,3 +13,15 @@ To run the sample, after ensuring that you have the pre-requisites for OCI ansib
 - instance_ad
 - instance_compartment
 - instance_image  # provide an OL image
+
+Additionally, you can set the `SAMPLE_PUBLIC_SSH_KEY` env variable  
+to set the public ssh key for the compute instance.  
+For example:
+> export SAMPLE_PUBLIC_SSH_KEY="ssh-rsa AAA.................................xyz"
+
+This must be the default ssh key on your system.  
+You can run the following command to set the environment variable:
+> export SAMPLE_PUBLIC_SSH_KEY=\`cat ~/.ssh/id_rsa.pub\`
+
+
+If this is not set, the sample will generate a new key-pair every run anyway.

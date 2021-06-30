@@ -46,24 +46,54 @@ DOCUMENTATION = """
             env:
                 - name: OCI_USER_KEY_PASS_PHRASE
         instance_principal_authentication:
-             description: Use instance principal based authentication.
-                 If not set, the API key in your config will be used.
-             env:
+             description:
+                - This parameter is DEPRECATED. Please use auth_type instead.
+                - Use instance principal based authentication.
+                  If not set, the API key in your config will be used.
+        auth_type:
+            description:
+                - The type of authentication to use for making API requests. By default C(auth_type="api_key") based
+                  authentication is performed and the API key (see I(api_user_key_file)) in your config file will be
+                  used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
+                  if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
+                  when running ansible playbooks within an OCI compute instance.
+            choices: ['api_key', 'instance_principal', 'instance_obo_user']
+            default: 'api_key'
+            type: str
+            env:
                - name: OCI_ANSIBLE_AUTH_TYPE
+        delegation_token_file:
+            description:
+                - Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable,
+                  if any, is used. Otherwise, defaults to config_file.
+                - This parameter is only applicable when C(auth_type=instance_obo_user) is set.
+            type: str
+            env:
+                - name: OCI_DELEGATION_TOKEN_FILE
         enable_parallel_processing:
               description: Use multiple threads to speedup lookup. Default is set to True
         regions:
              description: A list of regions to search. If not specified, the region is read from config file. Use 'all'
                           to generate inventory from all subscribed regions.
+             type: list
         hostnames:
              description: A list of hostnames to search for.
+             type: list
+        hostname_format_preferences:
+            description: A list of Jinja2 expressions in order of precedence to compose inventory_hostname.
+                         Ignores expression if result is an empty string or None value.
+                         hostname_format_preferences and hostname_format cannot be used together.
+                         The instance is ignored if none of the hostname_format_preferences resulted in a non-empty value
+            type: list
         hostname_format:
              description: Host naming format to use. Use 'fqdn' to list hosts using the instance's
                           Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN
                           resolver specified through the subnet's DHCP options. Please see
                           https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details.
                           Use 'public_ip' to list hosts using public IP address. Use 'private_ip' to list hosts using
-                          private IP address. By default, hosts are listed using public IP address.
+                          private IP address. Use 'display_name' to list hosts using display_name of the Instances.
+                          'display_name' cannot be used when fetch_db_hosts is True. By default, hosts are listed using public IP address.
+                          hostname_format_preferences and hostname_format cannot be used together
              env:
                - name: OCI_HOSTNAME_FORMAT
         filters:
@@ -72,18 +102,37 @@ DOCUMENTATION = """
                - Available filters are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.
                - "Note: defined_tags and freeform_tags filters are not supported for db hosts. The db hosts will not
                  be returned when you use either of these filters."
+             type: list
+        exclude_host_filters:
+             description: A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host;
+                          when any of the expressions is evaluated to Truthy value, the host is excluded from the inventory.
+                          exclude_host_filters take priority over the include_host_filters and filters.
+             type: list
+        include_host_filters:
+             description: A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host;
+                          when any of the expressions is evaluated to Truthy value, the host is included in the inventory.
+                          include_host_filters and filters options cannot be used together.
+             type: list
         fetch_db_hosts:
              description: When set, the db nodes are also fetched. Default value set to False.
+             type: bool
         fetch_compute_hosts:
              description: When set, the compute nodes are fetched. Default value set to True.
              type: bool
+        primary_vnic_only:
+            description: The default behavior of the plugin is to process all VNIC's attached to a compute instance.
+                         This might result in instance having multiple entries. When this parameter is set to True,
+                         the plugin will only process the primary VNIC and thus having only a single entry for
+                         each compute instance.
+            type: bool
+            env:
+                - name: OCI_PRIMARY_VNIC_ONLY
         debug:
             description: Parameter to enable logs while running the inventory plugin. Default value is set to False
             type: boolean
         compartments:
-            description: A dictionary of compartment identifier to obtain list of hosts. This config parameter is
-                         optional. If compartment is not specified, the plugin fetches all compartments from
-                         the tenancy
+            description: A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional.
+                         If compartment is not specified, the plugin fetches all compartments from the tenancy.
             type: list
             suboptions:
                 compartment_ocid:
@@ -134,9 +183,24 @@ hostnames:
 # Example filtering using hostname_format
 hostname_format: "private_ip"
 
+# Sets the inventory_hostname. Each item is a Jinja2 expression and it gets evaluated on host_vars.
+#hostname_format_preferences and hostname_format cannot be used together
+hostname_format_preferences:
+  - "display_name+'.oci.com'"
+  - "id"
+
 # Example group results by key
 keyed_groups:
   - key: availability_domain
+
+# Excludes a host from the inventory when any of the Jinja2 expression evaluates to true.
+exclude_host_filters:
+  - "region not in ['iad']"
+
+# Includes a host in the inventory when any of the Jinja2 expression evaluates to true.
+#include_host_filters and filters options cannot be used together.
+include_host_filters:
+  - "display_name is match('.*.oci.com')"
 
 # Example using filters
 filters:
@@ -149,8 +213,7 @@ filters:
       }
     }
   - freeform_tags: {
-     "oci:compute:instanceconfiguration": "ocid1.instanceconfiguration.oc1.phx.xxxx",
-     "oci:compute:instancepool": "ocid1.instancepool.oc1.phx.xxxx"
+     "Environment": "Production"
     }
 
 # Example flag to turn on debug mode
@@ -168,6 +231,9 @@ fetch_db_hosts: True
 
 # Compute Hosts (bool type)
 fetch_compute_hosts: True
+
+# Process only the primary vnic of a compute instance
+primary_vnic_only: True
 """
 import os
 import re
@@ -242,8 +308,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "freeform_tags": None,
             "defined_tags": None,
             "regions": None,
-            "strict_hostname_checking": "no",
             "filters": None,
+            "primary_vnic_only": False,
+            "auth_type": "api_key",
+            "delegation_token_file": None,
         }
 
         self.group_prefix = "oci_"
@@ -269,7 +337,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.params["profile"] = os.environ.get("OCI_CONFIG_PROFILE")
 
     def _get_key_file(self):
-        # preference order: .oci.yml > environment variable > settings from config file
+        # preference order: .oci.yml > environment variable > settings from config file.
         if self.get_option("api_user_key_file") is not None:
             self.params["key_file"] = os.path.expanduser(
                 self.get_option("api_user_key_file")
@@ -295,6 +363,60 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if os.environ.get("OCI_HOSTNAME_FORMAT"):
             return os.environ.get("OCI_HOSTNAME_FORMAT")
         return "public_ip"
+
+    def _get_hostname_from_preference(self, host_vars):
+        hostname_format_preferences = (
+            self.get_option("hostname_format_preferences") or []
+        )
+        host_vars = host_vars or {}
+        hostname = None
+        for preference in hostname_format_preferences:
+            try:
+                hostname = self._compose(preference, host_vars)
+            except Exception as e:
+                self.debug(
+                    "Error occurred while composing hostname_format_preferences - {0} to hostname -  {1}".format(
+                        preference, str(e)
+                    )
+                )
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "Error occurred while composing hostname_format_preferences - {0} to hostname -  {1}".format(
+                            preference, str(e)
+                        )
+                    )
+            if hostname:
+                return hostname
+        return None
+
+    def _validate_hostname_format(self):
+        hostname_format = self.params.get("hostname_format")
+        hostname_format_preferences = self.get_option("hostname_format_preferences")
+        if hostname_format_preferences and self.get_option("hostname_format"):
+            raise AnsibleError(
+                "hostname_format and hostname_format_preferences cannot be used together"
+            )
+        if hostname_format == "display_name" and self._fetch_db_hosts():
+            raise AnsibleError(
+                "The hostname_format %s is not supported for db_hosts"
+                % (hostname_format)
+            )
+
+    def _validate_filters(self):
+        static_filter = self.get_option("filters")
+        include_filter = self.get_option("include_host_filters")
+        if static_filter and include_filter:
+            raise AnsibleError(
+                "The options filters and include_host_filters cannot be used together"
+            )
+
+    def _get_primary_vnic_only(self):
+        # Preference order: .oci.yml > environment variable
+        if self.get_option("primary_vnic_only"):
+            return self.get_option("primary_vnic_only")
+        if os.environ.get("OCI_PRIMARY_VNIC_ONLY"):
+            return os.environ.get("OCI_PRIMARY_VNIC_ONLY")
+        return False
 
     def read_config(self):
 
@@ -373,6 +495,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         )
 
     def create_service_client(self, service_client_class, region=None):
+        """
+        Creates a service client using the common module options provided by the user.
+        :param module: An AnsibleModule that represents user provided options for a Task
+        :param service_client_class: A class that represents a client to an OCI Service
+        :param client_kwargs: kwargs that would be passed to the client class
+        :return: A fully configured client
+        """
         if not region:
             region = self.params["region"]
         params = dict(self.params, region=region)
@@ -380,14 +509,59 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if self._is_instance_principal_auth():
             kwargs["signer"] = self.create_instance_principal_signer()
 
+        elif self._is_delegation_token_auth():
+            delegation_token_location = self._get_delegation_token_file()
+            kwargs["signer"] = self.create_instance_principal_signer(
+                delegation_token_location=delegation_token_location
+            )
+
         # Create service client class with the signer.
         client = service_client_class(params, **kwargs)
 
         return client
 
     def _is_instance_principal_auth(self):
-        # check if auth is set to `instance_principal`.
-        return self.get_option("instance_principal_authentication")
+        # check if auth is set to `instance_principal`. Support for backward compatibility.
+        if self.get_option("instance_principal_authentication") == "instance_principal":
+            self.debug(
+                "instance_principal_authentication parameter is DEPRECATED. Please use auth_type parameter instead."
+            )
+            return True
+        # check if auth type is overridden via module params
+        if self.get_option("auth_type") == "instance_principal":
+            self.params["auth_type"] = "instance_principal"
+            return True
+        elif (
+            self.get_option("auth_type") is None
+            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_principal"
+        ):
+            self.params["auth_type"] = "instance_principal"
+            return True
+        return False
+
+    def _is_delegation_token_auth(self):
+        # check if auth type is overridden via module params
+        if self.get_option("auth_type") == "instance_obo_user":
+            self.params["auth_type"] = "instance_obo_user"
+            return True
+        elif (
+            self.get_option("auth_type") is None
+            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_obo_user"
+        ):
+            self.params["auth_type"] = "instance_obo_user"
+            return True
+        return False
+
+    def _get_delegation_token_file(self):
+        if self.get_option("delegation_token_file") is not None:
+            self.params["delegation_token_file"] = os.path.expanduser(
+                self.get_option("delegation_token_file")
+            )
+        elif "OCI_DELEGATION_TOKEN_FILE" in os.environ:
+            self.params["delegation_token_file"] = os.environ.get(
+                "OCI_DELEGATION_TOKEN_FILE"
+            )
+        return self.params.get("delegation_token_file")
 
     def _fetch_db_hosts(self):
         # check if we should fetch db hosts
@@ -402,9 +576,45 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return self.get_option("fetch_compute_hosts")
 
     @staticmethod
-    def create_instance_principal_signer():
+    def create_instance_principal_signer(delegation_token_location=None):
+        """
+        Creates a signer for API authentication.
+        :param delegation_token_location: path for delegation_token file. If None, Instance_Principal signer will be created.
+        :return: A signer for authentication
+        """
+        signer = None
         try:
-            signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+            if delegation_token_location:  # instance_obo_user
+                signer_kwargs = {}
+                delegation_token = None
+                # expand file location
+                expanded_location = os.path.expanduser(delegation_token_location)
+                if not os.path.exists(expanded_location):
+                    raise IOError(
+                        "ERROR: delegation_token_file not found at {0}".format(
+                            expanded_location
+                        )
+                    )
+                # read from file
+                with open(expanded_location, "r") as delegation_token_file:
+                    delegation_token = delegation_token_file.read().strip()
+                # check if token is there
+                if not delegation_token:
+                    raise ValueError(
+                        "ERROR: delegation_token not found in file {0}".format(
+                            expanded_location
+                        )
+                    )
+                # fill up kwarg
+                signer_kwargs["delegation_token"] = delegation_token
+                # create instance_principal_delegation_auth signer
+                signer = oci.auth.signers.InstancePrincipalsDelegationTokenSigner(
+                    **signer_kwargs
+                )
+            else:
+                signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+        except (ValueError, IOError):
+            raise
         except Exception as ex:
             raise Exception(
                 "Failed retrieving certificates from localhost. Instance principal based authentication is only"
@@ -428,8 +638,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def _get_instances_by_region(self, regions):
         """
-           :param regions: a list of regions in which to describe instances
-           :return A list of instance dictionaries
+        :param regions: a list of regions in which to describe instances
+        :return A list of instance dictionaries
         """
         self.setup_clients(regions)
 
@@ -726,7 +936,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             compartment = self.compartments[instance.compartment_id]
 
-            instance_vars = to_dict(instance)
+            instance_common_vars = to_dict(instance)
 
             common_groups = set(["all_hosts"])
             # Group by availability domain
@@ -736,13 +946,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by compartments
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-
+            instance_common_vars.update({"compartment_name": compartment_name})
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
 
             # Group by freeform tags tag_key=value
-            if hasattr(instance, "freeform_tags"):
+            if hasattr(instance, "freeform_tags") and instance.freeform_tags:
                 for key in instance.freeform_tags:
                     tag_group_name = self.sanitize(
                         "tag_" + key + "=" + instance.freeform_tags[key]
@@ -750,7 +960,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     common_groups.add(tag_group_name)
 
             # Group by defined tags
-            if hasattr(instance, "defined_tags"):
+            if hasattr(instance, "defined_tags") and instance.defined_tags:
                 for namespace in instance.defined_tags:
                     for key in instance.defined_tags[namespace]:
                         defined_tag_group_name = self.sanitize(
@@ -775,7 +985,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             ]
 
             for vnic_attachment in vnic_attachments:
-
+                instance_vars = instance_common_vars.copy()
                 vnic = oci_common_utils.call_with_backoff(
                     virtual_nw_client.get_vnic, vnic_id=vnic_attachment.vnic_id
                 ).data
@@ -785,42 +995,65 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     )
                 )
 
-                subnet = oci_common_utils.call_with_backoff(
-                    virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
-                ).data
+                # create inventory for instance for all vnics if primary_vnic_only option set to false
+                # else create inventory only if the vnic is primary vnic for the instance
+                if not self._get_primary_vnic_only() or vnic.is_primary:
 
-                if instance_vars.get("id") == vnic_attachment.instance_id:
-                    instance_vars.update({"vcn_id": subnet.vcn_id})
-                    instance_vars.update({"vnic_id": vnic.id})
-                    instance_vars.update({"subnet_id": vnic.subnet_id})
-                    instance_vars.update({"public_ip": vnic.public_ip})
-                    instance_vars.update({"private_ip": vnic.private_ip})
-
-                host_name = self.get_host_name(vnic, region=region)
-
-                # Skip vnic which is not addressable using given hostname_format
-                if not host_name:
-                    if self.params["strict_hostname_checking"] == "yes":
-                        raise Exception(
-                            "Instance with OCID: {0} does not have a valid hostname.".format(
-                                vnic_attachment.instance_id
+                    subnet = vlan = None
+                    if getattr(vnic, "subnet_id", None):
+                        subnet = oci_common_utils.call_with_backoff(
+                            virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
+                        ).data
+                    elif getattr(vnic, "vlan_id", None):
+                        vlan = oci_common_utils.call_with_backoff(
+                            virtual_nw_client.get_vlan, vlan_id=vnic.vlan_id
+                        ).data
+                    else:
+                        self.debug(
+                            "VNIC {} attached to instance {} doesn't have subnet_id or vlan_id associated. Skipping it".format(
+                                vnic_attachment.vnic_id, vnic_attachment.instance_id
                             )
                         )
+                        continue
+
+                    if instance_vars.get("id") == vnic_attachment.instance_id:
+                        instance_vars.update({"vnic_id": vnic.id})
+                        if getattr(vnic, "subnet_id", None):
+                            instance_vars.update({"subnet_id": vnic.subnet_id})
+                            instance_vars.update({"vcn_id": subnet.vcn_id})
+                        elif getattr(vnic, "vlan_id", None):
+                            instance_vars.update({"vlan_id": vnic.vlan_id})
+                            instance_vars.update({"vcn_id": vlan.vcn_id})
+                        instance_vars.update({"public_ip": vnic.public_ip})
+                        instance_vars.update({"private_ip": vnic.private_ip})
+
+                    host_name = self.get_hostname(instance_vars, vnic, region)
                     self.debug(
-                        "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
-                            vnic_attachment.instance_id, self.params["hostname_format"]
+                        "hostname : {0} built for instance {1}".format(
+                            host_name, instance_vars.get("id")
                         )
                     )
-                    continue
+                    if not host_name:
+                        if self.get_option("strict"):
+                            raise AnsibleError(
+                                "Instance with OCID: {0} does not have a valid hostname.".format(
+                                    instance.id
+                                )
+                            )
+                        self.debug(
+                            "hostname is {0}. Skipped instance with OCID: {1} ".format(
+                                host_name, instance.id
+                            )
+                        )
+                        continue
+                    host_name = self.sanitize(host_name)
 
-                host_name = self.sanitize(host_name)
+                    groups = set(common_groups)
 
-                groups = set(common_groups)
-
-                self.debug("Creating inventory for host {0}.".format(host_name))
-                self.create_instance_inventory_for_host(
-                    instance_inventory, host_name, vars=instance_vars, groups=groups
-                )
+                    self.debug("Creating inventory for host {0}.".format(host_name))
+                    self.create_instance_inventory_for_host(
+                        instance_inventory, host_name, vars=instance_vars, groups=groups
+                    )
             self.debug(
                 "Final inventory for {0}.".format(
                     str(self.get_resource_for_logging(instance_inventory))
@@ -830,9 +1063,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
 
     def build_inventory_for_db_host(self, db_host, region):
         """Build and return inventory for a database host"""
@@ -851,7 +1084,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # Group by compartments
             compartment_name = self.sanitize(compartment.name)
             common_groups.add(compartment_name)
-
+            db_host_vars.update({"compartment_name": compartment_name})
             # Group by region
             region_grp = self.sanitize("region_" + region)
             common_groups.add(region_grp)
@@ -897,20 +1130,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             db_host_vars.update({"subnet_id": vnic.subnet_id})
             db_host_vars.update({"public_ip": vnic.public_ip})
             db_host_vars.update({"private_ip": vnic.private_ip})
-
-            host_name = self.get_host_name(vnic, region=region)
-
-            # Skip host which is not addressable using hostname_format
+            host_name = self.get_hostname(db_host_vars, vnic, region)
             if not host_name:
-                if self.params["strict_hostname_checking"] == "yes":
-                    raise Exception(
-                        "Instance with OCID: {0} does not have a valid hostname.".format(
-                            db_host.id
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "DB Instance with OCID: {0} does not have a valid hostname.".format(
+                            db_host_vars.get("id")
                         )
                     )
                 self.debug(
-                    "Skipped instance with OCID: {0} due to hostname_format: {1}".format(
-                        db_host.id, self.params["hostname_format"]
+                    "hostname is {0}. Skipped DB instance with OCID: {1}".format(
+                        host_name, db_host_vars.get(id)
                     )
                 )
                 return None
@@ -928,9 +1158,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
 
     def create_instance_inventory_for_host(
         self, instance_inventory, host_name, vars, groups
@@ -954,6 +1184,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return re.sub(regex + "]", "_", word)
         return word
 
+    def _filter_hosts(self, filter_template_list, hostvars):
+        self.templar.available_variables = hostvars
+        for condition_template in filter_template_list:
+            try:
+                jinja_condition = "%s%s%s" % ("{{", condition_template, "}}")
+                if self.templar.template(jinja_condition):
+                    return True
+            except Exception as ex:
+                self.debug(
+                    "parsing template {0} failed with exception {1}".format(
+                        condition_template, str(ex)
+                    )
+                )
+                if self.get_option("strict"):
+                    raise AnsibleParserError(
+                        "failed parsing filter_template {0} for instance {1} with exception {2}".format(
+                            condition_template, hostvars.get("id"), str(ex)
+                        )
+                    )
+                continue
+        return False
+
     def get_filtered_resources(self, resources, compartment_ocid):
 
         self.debug(
@@ -962,18 +1214,30 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         )
         filters = ["display_name", "availability_domain", "lifecycle_state"]
-        resources = [
-            resource
-            for resource in resources
+
+        resources_filtered = []
+        for resource in resources:
+            resource_dict = to_dict(resource)
+            if self.get_option("exclude_host_filters") and self._filter_hosts(
+                self.get_option("exclude_host_filters"), resource_dict
+            ):
+                continue
+            if self.get_option("include_host_filters"):
+                if self._filter_hosts(
+                    self.get_option("include_host_filters"), resource_dict
+                ):
+                    resources_filtered.append(resource)
+                continue
             if all(
                 True
                 if not self.filters.get(filter)
                 or getattr(resource, filter, None) == self.filters[filter]
                 else False
                 for filter in filters
-            )
-        ]
+            ):
+                resources_filtered.append(resource)
 
+        resources = resources_filtered
         if self.filters.get("freeform_tags"):
             resources = [
                 resource
@@ -1066,6 +1330,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         db_node,
                         availability_domain=db_system.availability_domain,
                         compartment_id=db_system.compartment_id,
+                        db_system_display_name=db_system.display_name,
+                        region=region,
                     )
                     for db_system in oci_common_utils.list_all_resources(
                         target_fn=database_client.list_db_systems,
@@ -1084,9 +1350,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
             return []
 
     def get_filtered_instances(self, compartment_ocid, region):
@@ -1104,9 +1370,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return instances
         except ServiceError as ex:
             if ex.status == 401:
-                self.debug(ex)
+                self.debug(str(ex))
                 raise
-            self.debug(ex)
+            self.debug(str(ex))
             return []
 
     def get_compute_client_for_region(self, region):
@@ -1117,7 +1383,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return self._compute_clients[region]
 
     def get_virtual_nw_client_for_region(self, region):
-        if region not in self._compute_clients:
+        if region not in self._virtual_nw_clients:
             raise ValueError(
                 "Could not fetch the virtual network client for region {0}.".format(
                     region
@@ -1132,9 +1398,16 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
         return self._database_clients[region]
 
-    def get_host_name(self, vnic, region):
-        virtual_nw_client = self.get_virtual_nw_client_for_region(region)
-        if self.params["hostname_format"] == "fqdn":
+    def get_hostname(self, host_vars, vnic, region):
+        if self.get_option("hostname_format_preferences"):
+            return self._get_hostname_from_preference(host_vars)
+        return self.get_host_from_hostname_format(host_vars, vnic, region)
+
+    def get_host_from_hostname_format(self, host_vars, vnic, region):
+        # This method should return public_ip by default
+        hostname_format = self.params.get("hostname_format", "public_ip")
+        if hostname_format == "fqdn":
+            virtual_nw_client = self.get_virtual_nw_client_for_region(region)
             subnet = oci_common_utils.call_with_backoff(
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
             ).data
@@ -1156,12 +1429,30 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
             return fqdn
 
-        elif self.params["hostname_format"] == "private_ip":
+        elif hostname_format == "private_ip":
             self.debug(
                 "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)
             )
             return vnic.private_ip
-
+        elif hostname_format == "display_name":
+            if self._fetch_db_hosts():
+                if self.get_option("strict"):
+                    raise AnsibleError(
+                        "The hostname_format %s is not supported for db_hosts"
+                        % (self.params["hostname_format"])
+                    )
+                return None
+            self.debug(
+                "Display_name of instance : {0} is {1}.".format(
+                    host_vars.get("id"), host_vars.get("display_name")
+                )
+            )
+            return host_vars.get("display_name")
+        self.debug(
+            "public_ip of the instance : {0} is {1}".format(
+                host_vars.get("id"), vnic.public_ip
+            )
+        )
         return vnic.public_ip
 
     def _query(self, regions):
@@ -1184,12 +1475,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                                     host_inventory["vars"]["display_name"],
                                     host_inventory["vars"],
                                 )
-                                for host_variable in host_inventory["vars"]:
-                                    self.inventory.set_variable(
-                                        host_name,
-                                        host_variable,
-                                        host_inventory["vars"][host_variable],
-                                    )
+                            for host_variable in host_inventory["vars"]:
+                                self.inventory.set_variable(
+                                    host_name,
+                                    host_variable,
+                                    host_inventory["vars"][host_variable],
+                                )
                             self.inventory.add_child("all", host_name)
                             self._set_composite_vars(
                                 self.get_option("compose"),
@@ -1209,9 +1500,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
     def verify_file(self, path):
         """
-            :param loader: an ansible.parsing.dataloader.DataLoader object
-            :param path: the path to the inventory config file
-            :return the contents of the config file
+        :param loader: an ansible.parsing.dataloader.DataLoader object
+        :param path: the path to the inventory config file
+        :return the contents of the config file
         """
         if super(InventoryModule, self).verify_file(path):
             if path.endswith(".oci.yml") or path.endswith(".oci.yaml"):
@@ -1311,6 +1602,12 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         super(InventoryModule, self).parse(inventory, loader, path)
 
         config_data = self._read_config_data(path)
+
+        # debug flag
+        if self.get_option("debug") is not None:
+            self.params["debug"] = self.get_option("debug")
+        self.debug("The debug flag is set to {0}".format(self.params["debug"]))
+
         # read oci config
         self.read_config()
 
@@ -1320,19 +1617,21 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         regions, filters, hostnames = self._get_query_options(config_data)
 
-        # hostname format
-        self.params["hostname_format"] = self._get_hostname_format()
-        self.debug(
-            "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
-                self.params["hostname_format"]
+        self._validate_hostname_format()
+        if self.get_option("hostname_format_preferences"):
+            self.debug(
+                "Using hostname_format_preferences: {0} and can be changed via the option 'hostname_format_preferences'".format(
+                    self.get_option("hostname_format_preferences")
+                )
             )
-        )
-
-        # debug flag
-        if self.get_option("debug") is not None:
-            self.params["debug"] = self.get_option("debug")
-        self.debug("The debug flag is set to {0}".format(self.params["debug"]))
-
+        else:
+            self.params["hostname_format"] = self._get_hostname_format()
+            self.debug(
+                "Using hostname format: {0} and can be changed via the option 'hostname_format'".format(
+                    self.params["hostname_format"]
+                )
+            )
+        self._validate_filters()
         cache_key = self.get_cache_key(path)
 
         if not regions:

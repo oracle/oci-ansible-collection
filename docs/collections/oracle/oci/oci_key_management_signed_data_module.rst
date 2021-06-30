@@ -20,7 +20,7 @@ oracle.oci.oci_key_management_signed_data -- Manage a SignedData resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create a SignedData resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a digital signature for a message or message digest by using the private key in an asymmetric key. To verify the generated signature, you can use the Verify operation or use the public key in the same asymmetric key outside of KMS
+- For *state=present*, creates a digital signature for a message or message digest by using the private key of a public-private key pair, also known as an asymmetric key. To verify the generated signature, you can use the `Verify <https://docs.cloud.oracle.com/api/#/en/key/latest/VerifiedData/Verify>`_ operation. Or, if you want to validate the signature outside of the service, you can do so by using the public key of the same asymmetric key.
 
 
 .. Aliases
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -228,7 +229,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the key used to sign the message</div>
+                                            <div>The OCID of the key used to sign the message.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -243,7 +244,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the keyVersion used to sign the message.</div>
+                                            <div>The OCID of the key version used to sign the message.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -258,7 +259,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Base64-encoded binary data object denoting the message or message digest to be signed. Message can be upto 4096 size in bytes. To sign a larger message, provide the message digest.</div>
+                                            <div>The base64-encoded binary data object denoting the message or message digest to sign. You can have a message up to 4096 bytes in size. To sign a larger message, provide the message digest.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -277,7 +278,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Denotes whether the value of the message parameter is a raw message or a message digest. The default value, RAW, indicates a message. To indicate a message digest, use DIGEST.</div>
+                                            <div>Denotes whether the value of the message parameter is a raw message or a message digest. The default value, `RAW`, indicates a message. To indicate a message digest, use `DIGEST`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -335,7 +336,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The algorithm to be used for signing the message or message digest For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with different Hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. In case of passing digest for signing, make sure the same hashing algorithm is specified as used for created for digest.</div>
+                                            <div>The algorithm to use to sign the message or message digest. For RSA keys, supported signature schemes include PKCS #1 and RSASSA-PSS, along with different hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. When you pass a message digest for signing, ensure that you specify the same hashing algorithm as used when creating the message digest.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -397,7 +398,7 @@ Examples
     - name: Create signed_data
       oci_key_management_signed_data:
         message: message_example
-        key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         signing_algorithm: SHA_224_RSA_PKCS_PSS
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
@@ -451,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the key used to sign the message</div>
+                                            <div>The OCID of the key used to sign the message.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -469,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the keyVersion used to sign the message</div>
+                                            <div>The OCID of the key version used to sign the message.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -487,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Base64-encoded binary data object denoting the cryptographic signature that was generated for the message or message digest.</div>
+                                            <div>The base64-encoded binary data object denoting the cryptographic signature generated for the message or message digest.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">signature_example</div>
@@ -505,7 +506,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The algorithm to be used for signing the message or message digest For RSA keys, there are two supported Signature Schemes: PKCS1 and PSS along with different Hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. In case of passing digest for signing, make sure the same hashing algorithm is specified as used for created for digest.</div>
+                                            <div>The algorithm to use to sign the message or message digest. For RSA keys, supported signature schemes include PKCS #1 and RSASSA-PSS, along with different hashing algorithms. For ECDSA keys, ECDSA is the supported signature scheme with different hashing algorithms. When you pass a message digest for signing, ensure that you specify the same hashing algorithm as used when creating the message digest.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SHA_224_RSA_PKCS_PSS</div>

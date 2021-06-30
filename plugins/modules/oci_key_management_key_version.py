@@ -57,7 +57,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create key_version
   oci_key_management_key_version:
-    key_id: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 """
@@ -74,25 +74,25 @@ key_version:
                 - The OCID of the compartment that contains this key version.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the key version.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the key associated with this key version.
             returned: on success
             type: string
-            sample: ocid1.key.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         public_key:
             description:
-                - The public key in PEM format which will be populated only in case of RSA and ECDSA keys.
+                - The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
             returned: on success
             type: string
-            sample: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...
+            sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         lifecycle_state:
             description:
                 - The key version's current lifecycle state.
@@ -128,7 +128,25 @@ key_version:
                 - The OCID of the vault that contains this key version.
             returned: on success
             type: string
-            sample: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a key version operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - ""
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -138,7 +156,11 @@ key_version:
         "origin": "INTERNAL",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_of_deletion": "2019-04-03T21:10:29.600Z",
-        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true
     }
 """
 

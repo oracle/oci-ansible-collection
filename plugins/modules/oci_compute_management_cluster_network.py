@@ -25,6 +25,7 @@ description:
     - This module allows the user to create, update and delete a ClusterNetwork resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cluster network. For more information about cluster networks, see
       L(Managing Cluster Networks,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingclusternetworks.htm).
+    - "This resource has the following action operations in the M(oci_cluster_network_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -39,7 +40,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -55,7 +56,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -64,37 +65,45 @@ options:
             - The data to create the instance pools in the cluster network.
             - Each cluster network can have one instance pool.
             - Required for create using I(state=present).
+            - This parameter is updatable.
         type: list
         suboptions:
             defined_tags:
                 description:
                     - Defined tags for this resource. Each key is predefined and scoped to a
-                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                    - This parameter is updatable.
                 type: dict
             display_name:
                 description:
                     - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
+                    - This parameter is updatable.
                 type: str
                 aliases: ["name"]
             freeform_tags:
                 description:
                     - Free-form tags for this resource. Each tag is a simple key-value pair with no
                       predefined name, type, or namespace. For more information, see L(Resource
-                      Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                      Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                     - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - This parameter is updatable.
                 type: dict
             instance_configuration_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
                       associated with the instance pool.
                 type: str
-                required: true
             size:
                 description:
                     - The number of instances that should be in the instance pool.
+                    - This parameter is updatable.
                 type: int
-                required: true
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
+                    - This parameter is updatable.
+                type: str
     placement_configuration:
         description:
             - ""
@@ -126,7 +135,7 @@ options:
                         aliases: ["name"]
                     subnet_id:
                         description:
-                            - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
+                            - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                         type: str
                         required: true
     cluster_network_id:
@@ -151,30 +160,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create cluster_network
   oci_compute_management_cluster_network:
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    instance_pools:
-    - instance_configuration_id: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
-      size: 56
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     placement_configuration:
       availability_domain: Uocm:PHX-AD-1
-      primary_subnet_id: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+      primary_subnet_id: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
-    display_name: example_cluster_network
+    display_name: "example_cluster_network"
 
 - name: Update cluster_network
   oci_compute_management_cluster_network:
-    cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete cluster_network
   oci_compute_management_cluster_network:
-    cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_management_cluster_network:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: example_cluster_network
     state: absent
 
@@ -192,17 +198,17 @@ cluster_network:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cluster network.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cluster netowrk.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -217,7 +223,7 @@ cluster_network:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -231,21 +237,21 @@ cluster_network:
             contains:
                 id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
                           pool.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 defined_tags:
                     description:
                         - Defined tags for this resource. Each key is predefined and scoped to a
-                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                         - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                     returned: on success
                     type: dict
@@ -260,18 +266,18 @@ cluster_network:
                     description:
                         - Free-form tags for this resource. Each tag is a simple key-value pair with no
                           predefined name, type, or namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                          Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                         - "Example: `{\\"Department\\": \\"Finance\\"}`"
                     returned: on success
                     type: dict
                     sample: {'Department': 'Finance'}
                 instance_configuration_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance configuration associated
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration associated
                           with the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
                 lifecycle_state:
                     description:
                         - The current state of the instance pool.
@@ -293,10 +299,11 @@ cluster_network:
                             sample: Uocm:PHX-AD-1
                         primary_subnet_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place
+                                  instances.
                             returned: on success
                             type: string
-                            sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                         fault_domains:
                             description:
                                 - The fault domains to place instances.
@@ -327,10 +334,10 @@ cluster_network:
                                     sample: display_name_example
                                 subnet_id:
                                     description:
-                                        - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
+                                        - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                                     returned: on success
                                     type: string
-                                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 size:
                     description:
                         - The number of instances that should be in the instance pool.
@@ -352,24 +359,24 @@ cluster_network:
                     contains:
                         id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         instance_pool_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
-                                  attachment.
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool of the load
+                                  balancer attachment.
                             returned: on success
                             type: string
-                            sample: ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
                         load_balancer_id:
                             description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer attached to the
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attached to the
                                   instance pool.
                             returned: on success
                             type: string
-                            sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                         backend_set_name:
                             description:
                                 - The name of the backend set on the load balancer.
@@ -415,7 +422,7 @@ cluster_network:
                           instances.
                     returned: on success
                     type: string
-                    sample: ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                 secondary_vnic_subnets:
                     description:
                         - The set of secondary VNIC data for instances in the pool.
@@ -431,10 +438,10 @@ cluster_network:
                             sample: display_name_example
                         subnet_id:
                             description:
-                                - The subnet L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
+                                - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the cluster network.
@@ -659,8 +666,9 @@ def main():
                     defined_tags=dict(type="dict"),
                     display_name=dict(aliases=["name"], type="str"),
                     freeform_tags=dict(type="dict"),
-                    instance_configuration_id=dict(type="str", required=True),
-                    size=dict(type="int", required=True),
+                    instance_configuration_id=dict(type="str"),
+                    size=dict(type="int"),
+                    id=dict(type="str"),
                 ),
             ),
             placement_configuration=dict(

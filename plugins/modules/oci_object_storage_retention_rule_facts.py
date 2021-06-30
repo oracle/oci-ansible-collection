@@ -59,7 +59,7 @@ EXAMPLES = """
   oci_object_storage_retention_rule_facts:
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
-    retention_rule_id: ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx
+    retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -75,7 +75,7 @@ retention_rules:
                 - Unique identifier for the retention rule.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User specified name for the retention rule.
@@ -126,68 +126,6 @@ retention_rules:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
-        items:
-            description:
-                - An array of retention rule summaries.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - Unique identifier for the retention rule.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                display_name:
-                    description:
-                        - User specified name for the retention rule.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                duration:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        time_amount:
-                            description:
-                                - The timeAmount is interpreted in units defined by the timeUnit parameter, and is calculated in relation
-                                  to each object's Last-Modified timestamp.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        time_unit:
-                            description:
-                                - The unit that should be used to interpret timeAmount.
-                            returned: on success
-                            type: string
-                            sample: YEARS
-                etag:
-                    description:
-                        - The entity tag (ETag) for the retention rule.
-                    returned: on success
-                    type: string
-                    sample: etag_example
-                time_rule_locked:
-                    description:
-                        - The date and time as per L(RFC 3339,https://tools.ietf.org/html/rfc3339) after which this rule becomes locked.
-                          and can only be deleted by deleting the bucket.
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_created:
-                    description:
-                        - The date and time that the retention rule was created as per L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
-                time_modified:
-                    description:
-                        - The date and time that the retention rule was modified as per L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                    returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -198,19 +136,7 @@ retention_rules:
         "etag": "etag_example",
         "time_rule_locked": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_modified": "2013-10-20T19:20:30+01:00",
-        "items": [{
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "duration": {
-                "time_amount": 56,
-                "time_unit": "YEARS"
-            },
-            "etag": "etag_example",
-            "time_rule_locked": "2013-10-20T19:20:30+01:00",
-            "time_created": "2013-10-20T19:20:30+01:00",
-            "time_modified": "2013-10-20T19:20:30+01:00"
-        }]
+        "time_modified": "2013-10-20T19:20:30+01:00"
     }]
 """
 

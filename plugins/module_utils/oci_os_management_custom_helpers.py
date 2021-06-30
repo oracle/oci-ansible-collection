@@ -191,7 +191,9 @@ class ManagedInstanceGroupActionsHelperCustom:
             if len(matching_managed_instances) == 0:
                 return False
 
-        return True
+        return super(ManagedInstanceGroupActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
 
 
 class SoftwareSourceActionsHelperCustom:
@@ -222,5 +224,6 @@ class SoftwareSourceActionsHelperCustom:
 
             if all_packages_already_absent:
                 return False
-
-        return True
+        return super(SoftwareSourceActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

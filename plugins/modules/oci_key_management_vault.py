@@ -31,7 +31,8 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
-    - "This resource has the following action operations in the M(oci_vault_actions) module: cancel_vault_deletion, schedule_vault_deletion."
+    - "This resource has the following action operations in the M(oci_vault_actions) module: cancel_vault_deletion, change_compartment, create_vault_replica,
+      delete_vault_replica, schedule_vault_deletion."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -92,17 +93,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vault
   oci_key_management_vault:
-    compartment_id: ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea
-    display_name: Vault 1
-    vault_type: VIRTUAL_PRIVATE
+    compartment_id: "ocid1.tenancy.oc1..exampleati4wjo6cvbxq4iusld5ltpneskcfy7lr4a6wfauxuwrwed5bsdea"
+    display_name: "Vault 1"
+    vault_type: "VIRTUAL_PRIVATE"
 
 - name: Update vault using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_key_management_vault:
-    display_name: Vault 1
+    display_name: "Vault 1"
 
 - name: Update vault
   oci_key_management_vault:
-    vault_id: ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -118,7 +119,7 @@ vault:
                 - The OCID of the compartment that contains this vault.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         crypto_endpoint:
             description:
                 - The service endpoint to perform cryptographic operations against. Cryptographic operations include
@@ -156,7 +157,7 @@ vault:
                 - The OCID of the vault.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The vault's current lifecycle state.
@@ -197,7 +198,25 @@ vault:
                 - The OCID of the vault's wrapping key.
             returned: on success
             type: string
-            sample: ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        replica_details:
+            description:
+                - The value to assign to the replica_details property of this Vault.
+            returned: on success
+            type: complex
+            contains:
+                replication_id:
+                    description:
+                        - ReplicationId associated with a vault operation
+                    returned: on success
+                    type: string
+                    sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        is_primary:
+            description:
+                - The value to assign to the is_primary property of this Vault.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "crypto_endpoint": "crypto_endpoint_example",
@@ -210,7 +229,11 @@ vault:
         "time_created": "2018-04-03T21:10:29.600Z",
         "time_of_deletion": "2018-04-03T21:10:29.600Z",
         "vault_type": "VIRTUAL_PRIVATE",
-        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
+        "wrappingkey_id": "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx",
+        "replica_details": {
+            "replication_id": "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "is_primary": true
     }
 """
 

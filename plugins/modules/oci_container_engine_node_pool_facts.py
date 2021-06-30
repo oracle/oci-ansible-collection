@@ -68,11 +68,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List node_pools
   oci_container_engine_node_pool_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific node_pool
   oci_container_engine_node_pool_facts:
-    node_pool_id: ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx
+    node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -94,7 +94,7 @@ node_pools:
                 - The OCID of the compartment in which the node pool exists.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq
+            sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         cluster_id:
             description:
                 - The OCID of the cluster to which this node pool is attached.
@@ -174,7 +174,7 @@ node_pools:
                         - The OCID of the image.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         node_source_details:
             description:
                 - Source running on the nodes in the node pool.
@@ -193,7 +193,7 @@ node_pools:
                         - The OCID of the image used to boot the node.
                     returned: on success
                     type: string
-                    sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
                         - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
@@ -230,7 +230,7 @@ node_pools:
                 - The SSH public key on each node in the node pool on launch.
             returned: on success
             type: string
-            sample: ssh-rsa AAAAB3NzaC1yc2abc123...
+            sample: "ssh-rsa AAAAB3NzaC1yc2abc123..."
         quantity_per_subnet:
             description:
                 - The number of nodes in each subnet.
@@ -381,7 +381,7 @@ node_pools:
                                 - The OCID of the subnet in which to place nodes.
                             returned: on success
                             type: string
-                            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",
         "compartment_id": "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq",

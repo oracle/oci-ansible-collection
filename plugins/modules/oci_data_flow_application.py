@@ -24,6 +24,7 @@ short_description: Manage an Application resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Application resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an application.
+    - "This resource has the following action operations in the M(oci_application_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -91,6 +92,19 @@ options:
         description:
             - The VM shape for the driver. Sets the driver cores and memory.
             - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    execute:
+        description:
+            - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+              applications-with-spark-submit.
+              Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+              Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+              oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+              10``
+              Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during application
+              create/update, or run create/submit,
+              Data Flow service will use derived information from execute input only."
             - This parameter is updatable.
         type: str
     executor_shape:
@@ -218,6 +232,7 @@ EXAMPLES = """
     description: description_example
     display_name: test_wordcount_app
     driver_shape: VM.Standard2.1
+    execute: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
     executor_shape: VM.Standard2.1
     file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
@@ -227,17 +242,17 @@ EXAMPLES = """
     parameters:
     - name: name_example
       value: value_example
-    private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     spark_version: 2.4
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application
   oci_data_flow_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete application
   oci_data_flow_application:
-    application_id: ocid1.application.oc1..xxxxxxEXAMPLExxxxxx
+    application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -297,7 +312,7 @@ application:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -324,6 +339,20 @@ application:
             returned: on success
             type: string
             sample: driver_shape_example
+        execute:
+            description:
+                - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
+                  applications-with-spark-submit.
+                  Supported options include ``--class``, ``--file``, ``--jars``, ``--conf``, ``--py-files``, and main application file with arguments.
+                  Example: ``--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv --py-files
+                  oci://path/to/a.py,oci://path/to/b.py --conf spark.sql.crossJoin.enabled=true --class org.apache.spark.examples.SparkPi oci://path/to/main.jar
+                  10``
+                  Note: If execute is specified together with applicationId, className, configuration, fileUri, language, arguments, parameters during
+                  application create/update, or run create/submit,
+                  Data Flow service will use derived information from execute input only."
+            returned: on success
+            type: string
+            sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
@@ -350,7 +379,7 @@ application:
                 - The application ID.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
@@ -381,7 +410,7 @@ application:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -419,7 +448,7 @@ application:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         spark_version:
             description:
                 - The Spark version utilized to run the application.
@@ -458,6 +487,7 @@ application:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "execute": "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv...",
         "executor_shape": "executor_shape_example",
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
@@ -630,6 +660,7 @@ def main():
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             driver_shape=dict(type="str"),
+            execute=dict(type="str"),
             executor_shape=dict(type="str"),
             file_uri=dict(type="str"),
             freeform_tags=dict(type="dict"),

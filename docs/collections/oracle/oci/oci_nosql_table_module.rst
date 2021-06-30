@@ -20,7 +20,7 @@ oracle.oci.oci_nosql_table -- Manage a Table resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Table resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new table.
+- This resource has the following action operations in the :ref:`oci_table_actions <ansible_collections.oci_table_actions_module>` module: change_compartment.
 
 
 .. Aliases
@@ -55,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -536,7 +538,7 @@ Examples
     - name: Create table
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           max_read_units: 56
@@ -546,7 +548,7 @@ Examples
     - name: Update table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
         table_limits:
           max_read_units: 56
@@ -557,19 +559,19 @@ Examples
 
     - name: Update table
       oci_nosql_table:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         ddl_statement: ddl_statement_example
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete table
       oci_nosql_table:
-        table_name_or_id: ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx
+        table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_nosql_table:
         name: name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_custom_property -- Manage a CustomProperty resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -162,6 +162,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -408,6 +409,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_shown_in_list"></div>
+                    <b>is_shown_in_list</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_shown_in_list" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If this field is displayed in a list view of applicable objects.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-is_sortable"></div>
                     <b>is_sortable</b>
                     <a class="ansibleOptionLink" href="#parameter-is_sortable" title="Permalink to this option"></a>
@@ -581,14 +602,14 @@ Examples
     
     - name: Create custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
     - name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         is_sortable: true
@@ -596,25 +617,26 @@ Examples
         is_multi_valued: true
         is_hidden: true
         is_editable: true
+        is_shown_in_list: true
         is_hidden_in_search: true
 
     - name: Update custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_key: custom_property_key_example
 
     - name: Delete custom_property
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_key: custom_property_key_example
         state: absent
 
     - name: Delete custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
-        catalog_id: ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx
-        namespace_id: ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 
@@ -653,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the CustomProperty resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -865,6 +887,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If this field is defined by service or by a user</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-custom_property/is_shown_in_list"></div>
+                    <b>is_shown_in_list</b>
+                    <a class="ansibleOptionLink" href="#return-custom_property/is_shown_in_list" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If this field is displayed in a list view of applicable objects.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

@@ -26,6 +26,7 @@ description:
     - For I(state=present), allows an SSL certificate to be added to a WAAS policy. The Web Application Firewall terminates SSL connections to inspect requests
       in runtime, and then re-encrypts requests before sending them to the origin for fulfillment.
     - For more information, see L(WAF Settings,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafsettings.htm).
+    - "This resource has the following action operations in the M(oci_waas_certificate_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -100,31 +101,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create waas_certificate
   oci_waas_certificate:
-    compartment_id: ocid1.compartment.oc1..
-    certificate_data: '-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END
-      CERTIFICATE-----'
-    private_key_data: '-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END
-      PRIVATE KEY-----'
+    compartment_id: "ocid1.compartment.oc1.."
+    certificate_data: "-----BEGIN CERTIFICATE-----Base64_encoded_certificate-----END CERTIFICATE-----"
+    private_key_data: "-----BEGIN PRIVATE KEY-----Base64_encoded_certificate-----END PRIVATE KEY-----"
 
 - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_certificate:
-    compartment_id: ocid1.compartment.oc1..
+    compartment_id: "ocid1.compartment.oc1.."
     display_name: example.com Certificate
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update waas_certificate
   oci_waas_certificate:
-    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete waas_certificate
   oci_waas_certificate:
-    certificate_id: ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_certificate:
-    compartment_id: ocid1.compartment.oc1..
+    compartment_id: "ocid1.compartment.oc1.."
     display_name: example.com Certificate
     state: absent
 
@@ -142,13 +141,13 @@ waas_certificate:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate's compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the certificate.
@@ -365,6 +364,19 @@ waas_certificate:
             returned: on success
             type: string
             sample: 2018-11-16T21:10:29Z
+        is_trust_verification_disabled:
+            description:
+                - This indicates whether trust verification was disabled during the creation of SSL certificate.
+                  If `true` SSL certificate trust verification was disabled and this SSL certificate is most likely self-signed.
+            returned: on success
+            type: bool
+            sample: true
+        certificate_data:
+            description:
+                - The data of the SSL certificate.
+            returned: on success
+            type: string
+            sample: certificate_data_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -406,7 +418,9 @@ waas_certificate:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "time_created": "2018-11-16T21:10:29Z"
+        "time_created": "2018-11-16T21:10:29Z",
+        "is_trust_verification_disabled": true,
+        "certificate_data": "certificate_data_example"
     }
 """
 

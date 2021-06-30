@@ -20,7 +20,7 @@ oracle.oci.oci_limits_quota_facts -- Fetches details about one or multiple Quota
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Quota resources in Oracle Cloud Infrastructure
-- Lists all quotas on resources from the given compartment
+- Lists all quotas on resources from the given compartment.
 - If *quota_id* is specified, the details of a single Quota will be returned.
 
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -214,7 +215,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filters returned quotas based on whether the given state.</div>
+                                            <div>Filters returned quotas based on the given state.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -280,7 +281,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. Only one sort order may be provided. Time created is default ordered as descending. Display name is default ordered as ascending.</div>
+                                            <div>The field to sort by. Only one sort order can be provided. Time created is default ordered as descending. Display name is default ordered as ascending.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -299,7 +300,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default it will be ascending.</div>
+                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;. By default, it is ascending.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -341,11 +342,11 @@ Examples
     
     - name: List quotas
       oci_limits_quota_facts:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Get a specific quota
       oci_limits_quota_facts:
-        quota_id: ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx
+        quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -539,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the quota was created, in the format defined by RFC3339. Example: `2016-08-25T21:10:29.600Z`</div>
+                                            <div>Date and time the quota was created, in the format defined by RFC 3339. Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>

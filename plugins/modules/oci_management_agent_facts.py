@@ -93,11 +93,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List management_agents
   oci_management_agent_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific management_agent
   oci_management_agent_facts:
-    management_agent_id: ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -113,13 +113,13 @@ management_agents:
                 - agent identifier
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         install_key_id:
             description:
                 - agent install key identifier
             returned: on success
             type: string
-            sample: ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Name
@@ -173,7 +173,7 @@ management_agents:
                         - Plugin Id
                     returned: on success
                     type: string
-                    sample: ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx"
                 plugin_name:
                     description:
                         - Management Agent Plugin Name
@@ -197,7 +197,7 @@ management_agents:
                 - Compartment Identifier
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
                 - true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.

@@ -18,6 +18,7 @@ import sys
 import json
 
 try:
+    os.environ["OCI_PYTHON_SDK_NO_SERVICE_IMPORTS"] = "1"
     import oci
     from oci.retry import RetryStrategyBuilder
     from oci.exceptions import ServiceError
@@ -117,6 +118,8 @@ RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
     "bds_instance": "bds",
     "stack": "ormstack",
     "workspace": "disworkspace",
+    "bastion": "bastionsresource",
+    "session": "sessionresource",
 }
 
 CREATE_OPERATION_KEY = "CREATE"
@@ -411,7 +414,12 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
         api_user_key_pass_phrase=dict(type="str", no_log=True),
         auth_type=dict(
             type="str",
-            choices=["api_key", "instance_principal", "instance_obo_user"],
+            choices=[
+                "api_key",
+                "instance_principal",
+                "instance_obo_user",
+                "resource_principal",
+            ],
             default="api_key",
         ),
         tenancy=dict(type="str"),

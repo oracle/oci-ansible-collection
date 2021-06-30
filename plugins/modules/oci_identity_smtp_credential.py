@@ -64,18 +64,18 @@ EXAMPLES = """
 - name: Create smtp_credential
   oci_identity_smtp_credential:
     description: description_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update smtp_credential
   oci_identity_smtp_credential:
     description: description_example
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    smtp_credential_id: ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    smtp_credential_id: "ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete smtp_credential
   oci_identity_smtp_credential:
-    user_id: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
-    smtp_credential_id: ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
+    smtp_credential_id: "ocid1.smtpcredential.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -98,13 +98,13 @@ smtp_credential:
                 - The OCID of the SMTP credential.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the SMTP credential belongs to.
             returned: on success
             type: string
-            sample: ocid1.user.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description you assign to the SMTP credential. Does not have to be unique, and it's changeable.

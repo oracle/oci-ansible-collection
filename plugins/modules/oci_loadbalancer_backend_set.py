@@ -341,7 +341,7 @@ EXAMPLES = """
     policy: LEAST_CONNECTIONS
     health_checker:
       protocol: HTTP
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update backend_set
   oci_loadbalancer_backend_set:
@@ -352,12 +352,12 @@ EXAMPLES = """
       port: 8080
     health_checker:
       protocol: HTTP
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete backend_set
   oci_loadbalancer_backend_set:
     name: example_backend_set
-    load_balancer_id: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """

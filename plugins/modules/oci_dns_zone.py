@@ -26,6 +26,7 @@ description:
     - For I(state=present), creates a new zone in the specified compartment. If the `Content-Type` header for the request is `text/dns`, the
       `compartmentId` query parameter is required. Additionally, for `text/dns`, the `scope` and `viewId` query
       parameters are required to create a private zone.
+    - "This resource has the following action operations in the M(oci_zone_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -202,27 +203,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create zone
   oci_dns_zone:
-    compartment_id: ocid1.compartment.oc1..
-    name: example.com
-    zone_type: PRIMARY
+    compartment_id: "ocid1.compartment.oc1.."
+    name: "example.com"
+    zone_type: "PRIMARY"
 
 - name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
-    freeform_tags: '{''Department'': ''Finance''}'
+    freeform_tags: "{'Department': 'Finance'}"
 
 - name: Update zone
   oci_dns_zone:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete zone
   oci_dns_zone:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
     name: example.com
-    compartment_id: ocid1.compartment.oc1..
+    compartment_id: "ocid1.compartment.oc1.."
     state: absent
 
 """
@@ -251,7 +252,7 @@ zone:
                 - The OCID of the compartment containing the zone.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         view_id:
             description:
                 - The OCID of the private view containing the zone. This value will
@@ -259,7 +260,7 @@ zone:
                   not part of a private view.
             returned: on success
             type: string
-            sample: ocid1.view.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - The scope of the zone.
@@ -334,7 +335,7 @@ zone:
                         - The OCID of the TSIG key.
                     returned: on success
                     type: string
-                    sample: ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
@@ -346,7 +347,7 @@ zone:
                 - The OCID of the zone.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in \\"YYYY-MM-ddThh:mm:ssZ\\" format

@@ -83,11 +83,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List private_endpoints
   oci_data_flow_private_endpoint_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific private_endpoint
   oci_data_flow_private_endpoint_facts:
-    private_endpoint_id: ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -103,7 +103,7 @@ private_endpoints:
                 - The OCID of a compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
@@ -144,7 +144,7 @@ private_endpoints:
                 - The OCID of a private endpoint.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
@@ -177,7 +177,7 @@ private_endpoints:
                 - The OCID of the user who created the resource.
             returned: on success
             type: string
-            sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
@@ -190,7 +190,7 @@ private_endpoints:
                 - The OCID of a subnet.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -205,107 +205,6 @@ private_endpoints:
             returned: on success
             type: string
             sample: 2018-04-03T21:10:29.600Z
-        items:
-            description:
-                - A list of private endpoints
-            returned: on success
-            type: complex
-            contains:
-                compartment_id:
-                    description:
-                        - The OCID of a compartment.
-                    returned: on success
-                    type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-                defined_tags:
-                    description:
-                        - "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-                          Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                          Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
-                display_name:
-                    description:
-                        - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                dns_zones:
-                    description:
-                        - "An array of DNS zone names.
-                          Example: `[ \\"app.examplecorp.com\\", \\"app.examplecorp2.com\\" ]`"
-                    returned: on success
-                    type: list
-                    sample: []
-                freeform_tags:
-                    description:
-                        - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                          For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                          Example: `{\\"Department\\": \\"Finance\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                id:
-                    description:
-                        - The OCID of a private endpoint.
-                    returned: on success
-                    type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
-                lifecycle_state:
-                    description:
-                        - The current state of this private endpoint.
-                    returned: on success
-                    type: string
-                    sample: CREATING
-                max_host_count:
-                    description:
-                        - The maximum number of hosts to be accessed through the private endpoint. This value is used
-                          to calculate the relevant CIDR block and should be a multiple of 256.  If the value is not a
-                          multiple of 256, it is rounded up to the next multiple of 256. For example, 300 is rounded up
-                          to 512.
-                    returned: on success
-                    type: int
-                    sample: 56
-                nsg_ids:
-                    description:
-                        - An array of network security group OCIDs.
-                    returned: on success
-                    type: list
-                    sample: []
-                owner_principal_id:
-                    description:
-                        - The OCID of the user who created the resource.
-                    returned: on success
-                    type: string
-                    sample: ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx
-                owner_user_name:
-                    description:
-                        - The username of the user who created the resource.  If the username of the owner does not exist,
-                          `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
-                    returned: on success
-                    type: string
-                    sample: owner_user_name_example
-                subnet_id:
-                    description:
-                        - The OCID of a subnet.
-                    returned: on success
-                    type: string
-                    sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
-                time_created:
-                    description:
-                        - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                          Example: `2018-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2018-04-03T21:10:29.600Z
-                time_updated:
-                    description:
-                        - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
-                          Example: `2018-04-03T21:10:29.600Z`"
-                    returned: on success
-                    type: string
-                    sample: 2018-04-03T21:10:29.600Z
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -322,23 +221,7 @@ private_endpoints:
         "owner_user_name": "owner_user_name_example",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2018-04-03T21:10:29.600Z",
-        "time_updated": "2018-04-03T21:10:29.600Z",
-        "items": [{
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "defined_tags": {'Operations': {'CostCenter': 'US'}},
-            "display_name": "display_name_example",
-            "dns_zones": [],
-            "freeform_tags": {'Department': 'Finance'},
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "lifecycle_state": "CREATING",
-            "max_host_count": 56,
-            "nsg_ids": [],
-            "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
-            "owner_user_name": "owner_user_name_example",
-            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "time_created": "2018-04-03T21:10:29.600Z",
-            "time_updated": "2018-04-03T21:10:29.600Z"
-        }]
+        "time_updated": "2018-04-03T21:10:29.600Z"
     }]
 """
 

@@ -20,7 +20,7 @@ oracle.oci.oci_limits_resource_availability_facts -- Fetches details about a Res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ResourceAvailability resource in Oracle Cloud Infrastructure
-- For a given compartmentId, resource limit name, and scope, returns the following: - the number of available resources associated with the given limit - the usage in the selected compartment for the given limit Note: not all resource limits support this API. If the value is not available, the API will return 404.
+- For a given compartmentId, resource limit name, and scope, returns the following: * The number of available resources associated with the given limit. * The usage in the selected compartment for the given limit. Note that not all resource limits support this API. If the value is not available, the API returns a 404 response.
 
 
 .. Aliases
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -146,6 +146,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -164,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This field is mandatory if the scopeType of the target resource limit is AD. Otherwise, this field should be omitted. If the above requirements are not met, the API will return a 400 - InvalidParameter response.</div>
+                                            <div>This field is mandatory if the scopeType of the target resource limit is AD. Otherwise, this field should be omitted. If the above requirements are not met, the API returns a 400 - InvalidParameter response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -298,7 +299,7 @@ Examples
       oci_limits_resource_availability_facts:
         service_name: service_name_example
         limit_name: limit_name_example
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -335,7 +336,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceAvailability resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available&#x27;: 56, &#x27;used&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;available&#x27;: 56, &#x27;effective_quota_value&#x27;: 10, &#x27;fractional_availability&#x27;: 10, &#x27;fractional_usage&#x27;: 10, &#x27;used&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -350,10 +351,64 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The count of available resources.</div>
+                                            <div>The count of available resources. To support resources with fractional counts, the field rounds down to the nearest integer.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/effective_quota_value"></div>
+                    <b>effective_quota_value</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/effective_quota_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The effective quota value for the given compartment. This field is only present if there is a current quota policy affecting the current resource in the target region or availability domain.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/fractional_availability"></div>
+                    <b>fractional_availability</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/fractional_availability" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The most accurate count of available resources.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_availability/fractional_usage"></div>
+                    <b>fractional_usage</b>
+                    <a class="ansibleOptionLink" href="#return-resource_availability/fractional_usage" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current most accurate usage in the given compartment.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
                                 <tr>
@@ -368,7 +423,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current usage in the given compartment.</div>
+                                            <div>The current usage in the given compartment. To support resources with fractional counts, the field rounds up to the nearest integer.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

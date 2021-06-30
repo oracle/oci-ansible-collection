@@ -82,11 +82,11 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List listing_packages
   oci_marketplace_listing_package_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific listing_package
   oci_marketplace_listing_package_facts:
-    listing_id: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     package_version: package_version_example
 
 """
@@ -109,7 +109,7 @@ listing_packages:
                 - The ID of the listing this package belongs to.
             returned: on success
             type: string
-            sample: ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The package version.
@@ -157,7 +157,7 @@ listing_packages:
                 - The unique identifier for the package resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time this listing package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -166,6 +166,18 @@ listing_packages:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        operating_system:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - name of the operating system
+                    returned: on success
+                    type: string
+                    sample: name_example
         resource_link:
             description:
                 - Link to the orchestration resource.
@@ -257,7 +269,7 @@ listing_packages:
                   L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
             returned: on success
             type: string
-            sample: ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
         app_catalog_listing_resource_version:
             description:
                 - The resource version of the listing resource associated with this listing package.
@@ -269,7 +281,7 @@ listing_packages:
                 - The ID of the image corresponding to the package.
             returned: on success
             type: string
-            sample: ocid1.image.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The version of the specified package.
@@ -289,6 +301,9 @@ listing_packages:
         },
         "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2016-08-25T21:10:29.600Z",
+        "operating_system": {
+            "name": "name_example"
+        },
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",

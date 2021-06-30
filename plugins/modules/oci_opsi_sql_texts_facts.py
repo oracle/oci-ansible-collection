@@ -40,7 +40,11 @@ options:
         required: true
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the assosicated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
         type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -48,7 +52,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List sql_texts
   oci_opsi_sql_texts_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sql_identifier: [ "6rgjh9bjmy2s7" ]
 
 """
@@ -66,12 +70,18 @@ sql_texts:
             returned: on success
             type: string
             sample: sql_identifier_example
+        id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
+            returned: on success
+            type: string
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         sql_text:
             description:
                 - SQL Text
@@ -80,6 +90,7 @@ sql_texts:
             sample: sql_text_example
     sample: [{
         "sql_identifier": "sql_identifier_example",
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "sql_text": "sql_text_example"
     }]
@@ -112,6 +123,7 @@ class SqlTextsFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "database_id",
+            "id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -140,6 +152,7 @@ def main():
             compartment_id=dict(type="str", required=True),
             sql_identifier=dict(type="list", required=True),
             database_id=dict(type="list"),
+            id=dict(type="list"),
         )
     )
 

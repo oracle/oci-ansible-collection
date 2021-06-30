@@ -42,7 +42,7 @@ description:
       traffic will not flow. For more information, see
       L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm)."
     - "This resource has the following action operations in the M(oci_virtual_circuit_actions) module: bulk_add_virtual_circuit_public_prefixes,
-      bulk_delete_virtual_circuit_public_prefixes."
+      bulk_delete_virtual_circuit_public_prefixes, change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -101,6 +101,29 @@ options:
                     - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                     - "Example: `10.0.0.19/31`"
                 type: str
+            customer_bgp_peering_ipv6:
+                description:
+                    - The BGP IPv6 address for the router on the other end of the BGP session from
+                      Oracle. Specified by the owner of that router. If the session goes from Oracle
+                      to a customer, this is the BGP IPv6 address of the customer's edge router. If the
+                      session goes from Oracle to a provider, this is the BGP IPv6 address of the
+                      provider's edge router. Only subnet masks from /64 up to /127 are allowed.
+                    - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
+                    - IPv6 addressing is supported for all commercial and government regions. See
+                      L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+                    - "Example: `2001:db8::1/64`"
+                type: str
+            oracle_bgp_peering_ipv6:
+                description:
+                    - The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed.
+                      If the session goes from Oracle to a customer's edge router,
+                      the customer specifies this information. If the session goes from Oracle to
+                      a provider's edge router, the provider specifies this.
+                    - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
+                    - Note that IPv6 addressing is currently supported only in certain regions. See
+                      L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+                    - "Example: `2001:db8::2/64`"
+                type: str
             vlan:
                 description:
                     - The number of the specific VLAN (on the cross-connect or cross-connect group)
@@ -109,6 +132,19 @@ options:
                       the provider if the customer is connecting via provider).
                     - "Example: `200`"
                 type: int
+    routing_policy:
+        description:
+            - "The routing policy sets how routing information about the Oracle cloud is shared over a public virtual circuit.
+              Policies available are: `ORACLE_SERVICE_NETWORK`, `REGIONAL`, `MARKET_LEVEL`, and `GLOBAL`.
+              See L(Route Filtering,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/routingonprem.htm#route_filtering) for details.
+              By default, routing information is shared for all routes in the same market."
+            - This parameter is updatable.
+        type: list
+        choices:
+            - "ORACLE_SERVICE_NETWORK"
+            - "REGIONAL"
+            - "MARKET_LEVEL"
+            - "GLOBAL"
     customer_bgp_asn:
         description:
             - Deprecated. Instead use `customerAsn`.
@@ -127,7 +163,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -142,7 +178,7 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -209,7 +245,7 @@ options:
             - "PRIVATE"
     virtual_circuit_id:
         description:
-            - The OCID of the virtual circuit.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the virtual circuit.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -249,19 +285,19 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create virtual_circuit
   oci_network_virtual_circuit:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: PUBLIC
 
 - name: Update virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_virtual_circuit:
     bandwidth_shape_name: 10 Gbps
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     customer_bgp_asn: 56
     customer_asn: 12345
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    gateway_id: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+    gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
     provider_service_key_name: provider_service_key_name_example
     provider_state: ACTIVE
     reference_comment: reference_comment_example
@@ -269,16 +305,16 @@ EXAMPLES = """
 - name: Update virtual_circuit
   oci_network_virtual_circuit:
     bandwidth_shape_name: 10 Gbps
-    virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete virtual_circuit
   oci_network_virtual_circuit:
-    virtual_circuit_id: ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx
+    virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_virtual_circuit:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -310,7 +346,13 @@ virtual_circuit:
             sample: CUSTOMER_MANAGED
         bgp_session_state:
             description:
-                - The state of the BGP session associated with the virtual circuit.
+                - The state of the Ipv4 BGP session associated with the virtual circuit.
+            returned: on success
+            type: string
+            sample: UP
+        bgp_ipv6_session_state:
+            description:
+                - The state of the Ipv6 BGP session associated with the virtual circuit.
             returned: on success
             type: string
             sample: UP
@@ -319,7 +361,7 @@ virtual_circuit:
                 - The OCID of the compartment containing the virtual circuit.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_mappings:
             description:
                 - An array of mappings, each containing properties for a
@@ -344,7 +386,7 @@ virtual_circuit:
                           customer is connecting via provider).
                     returned: on success
                     type: string
-                    sample: ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
                 customer_bgp_peering_ip:
                     description:
                         - The BGP IPv4 address for the router on the other end of the BGP session from
@@ -368,6 +410,33 @@ virtual_circuit:
                     returned: on success
                     type: string
                     sample: 10.0.0.19/31
+                customer_bgp_peering_ipv6:
+                    description:
+                        - The BGP IPv6 address for the router on the other end of the BGP session from
+                          Oracle. Specified by the owner of that router. If the session goes from Oracle
+                          to a customer, this is the BGP IPv6 address of the customer's edge router. If the
+                          session goes from Oracle to a provider, this is the BGP IPv6 address of the
+                          provider's edge router. Only subnet masks from /64 up to /127 are allowed.
+                        - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
+                        - IPv6 addressing is supported for all commercial and government regions. See
+                          L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+                        - "Example: `2001:db8::1/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::1/64
+                oracle_bgp_peering_ipv6:
+                    description:
+                        - The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed.
+                          If the session goes from Oracle to a customer's edge router,
+                          the customer specifies this information. If the session goes from Oracle to
+                          a provider's edge router, the provider specifies this.
+                        - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
+                        - Note that IPv6 addressing is currently supported only in certain regions. See
+                          L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+                        - "Example: `2001:db8::2/64`"
+                    returned: on success
+                    type: string
+                    sample: 2001:db8::2/64
                 vlan:
                     description:
                         - The number of the specific VLAN (on the cross-connect or cross-connect group)
@@ -378,6 +447,15 @@ virtual_circuit:
                     returned: on success
                     type: int
                     sample: 200
+        routing_policy:
+            description:
+                - "The routing policy sets how routing information about the Oracle cloud is shared over a public virtual circuit.
+                  Policies available are: `ORACLE_SERVICE_NETWORK`, `REGIONAL`, `MARKET_LEVEL`, and `GLOBAL`.
+                  See L(Route Filtering,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/routingonprem.htm#route_filtering) for details.
+                  By default, routing information is shared for all routes in the same market."
+            returned: on success
+            type: list
+            sample: []
         customer_bgp_asn:
             description:
                 - Deprecated. Instead use `customerAsn`.
@@ -399,7 +477,7 @@ virtual_circuit:
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -415,7 +493,7 @@ virtual_circuit:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -426,13 +504,13 @@ virtual_circuit:
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
             type: string
-            sample: ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The virtual circuit's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The virtual circuit's current state. For information about
@@ -458,7 +536,7 @@ virtual_circuit:
                 - The OCID of the service offered by the provider (if the customer is connecting via a provider).
             returned: on success
             type: string
-            sample: ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name:
             description:
                 - The service key name offered by the provider (if the customer is connecting via a provider).
@@ -527,14 +605,18 @@ virtual_circuit:
         "bandwidth_shape_name": "10 Gbps",
         "bgp_management": "CUSTOMER_MANAGED",
         "bgp_session_state": "UP",
+        "bgp_ipv6_session_state": "UP",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cross_connect_mappings": [{
             "bgp_md5_auth_key": "bgp_md5_auth_key_example",
             "cross_connect_or_cross_connect_group_id": "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",
             "customer_bgp_peering_ip": "10.0.0.18/31",
             "oracle_bgp_peering_ip": "10.0.0.19/31",
+            "customer_bgp_peering_ipv6": "2001:db8::1/64",
+            "oracle_bgp_peering_ipv6": "2001:db8::2/64",
             "vlan": 200
         }],
+        "routing_policy": [],
         "customer_bgp_asn": 56,
         "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -709,8 +791,19 @@ def main():
                     cross_connect_or_cross_connect_group_id=dict(type="str"),
                     customer_bgp_peering_ip=dict(type="str"),
                     oracle_bgp_peering_ip=dict(type="str"),
+                    customer_bgp_peering_ipv6=dict(type="str"),
+                    oracle_bgp_peering_ipv6=dict(type="str"),
                     vlan=dict(type="int"),
                 ),
+            ),
+            routing_policy=dict(
+                type="list",
+                choices=[
+                    "ORACLE_SERVICE_NETWORK",
+                    "REGIONAL",
+                    "MARKET_LEVEL",
+                    "GLOBAL",
+                ],
             ),
             customer_bgp_asn=dict(type="int"),
             customer_asn=dict(type="int"),

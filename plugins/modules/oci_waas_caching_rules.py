@@ -128,7 +128,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update caching_rules
   oci_waas_caching_rules:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     caching_rules_details:
     - name: name_example
       action: CACHE
@@ -289,6 +289,16 @@ class CachingRulesHelperGen(OCIResourceHelperBase):
 
     def get_update_model_class(self):
         return CachingRule
+
+    def get_update_model(self):
+        if self.module.params.get("caching_rules_details"):
+            return [
+                oci_common_utils.convert_input_data_to_model_class(
+                    resource, self.get_update_model_class()
+                )
+                for resource in self.module.params["caching_rules_details"]
+            ]
+        return []
 
     def update_resource(self):
         update_details = self.get_update_model()

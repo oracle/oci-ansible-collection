@@ -44,7 +44,7 @@ EXAMPLES = """
 
 - name: Get a specific service
   oci_network_service_facts:
-    service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+    service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -81,7 +81,7 @@ services:
                 - The `Service` object's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Name of the `Service` object. This name can change and is not guaranteed to be unique.

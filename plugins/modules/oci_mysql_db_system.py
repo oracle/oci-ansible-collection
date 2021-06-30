@@ -47,14 +47,32 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    is_highly_available:
+        description:
+            - Specifies if the DB System is highly available.
+            - "When creating a DB System with High Availability, three instances
+              are created and placed according to your region- and
+              subnet-type. The secondaries are placed automatically in the other
+              two availability or fault domains.  You can choose the preferred
+              location of your primary instance, only."
+            - This parameter is updatable.
+        type: bool
     availability_domain:
         description:
-            - The Availability Domain where the primary instance should be located.
+            - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+            - In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains
+              and the MySQL instance in that domain is promoted to the primary instance.
+              This redirection does not affect the IP address of the DB System in any way.
+            - For a standalone DB System, this defines the availability domain in which the DB System is placed.
             - This parameter is updatable.
         type: str
     fault_domain:
         description:
-            - The name of the Fault Domain the DB System is located in.
+            - The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+            - In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains
+              and the MySQL instance in that domain is promoted to the primary instance.
+              This redirection does not affect the IP address of the DB System in any way.
+            - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             - This parameter is updatable.
         type: str
     configuration_id:
@@ -242,25 +260,26 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_system
   oci_mysql_db_system:
-    admin_password: password
-    admin_username: adminUser
-    compartment_id: ocid1.compartment.oc1..UniqueID
-    configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+    admin_password: "password"
+    admin_username: "adminUser"
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
     data_storage_size_in_gbs: 63
-    description: MySQL Database Service
-    display_name: DBSystem001
-    shape_name: VM.Standard.E2.1
-    subnet_id: ocid1.subnet.oc1.iad.UniqueID
-    mysql_version: 8.0.20
+    description: "MySQL Database Service"
+    display_name: "DBSystem001"
+    shape_name: "VM.Standard.E2.1"
+    subnet_id: "ocid1.subnet.oc1.iad.UniqueID"
+    mysql_version: "8.0.20"
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     display_name: DBSystem001
     description: MySQL Database Service
-    compartment_id: ocid1.compartment.oc1..UniqueID
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
+    is_highly_available: true
     availability_domain: Uocm:PHX-AD-1
     fault_domain: fault_domain_example
-    configuration_id: ocid1.mysqlconfiguration.oc1..UniqueID
+    configuration_id: "ocid1.mysqlconfiguration.oc1..UniqueID"
     shape_name: VM.Standard.E2.1
     mysql_version: 8.0.20
     subnet_id: ocid1.subnet.oc1.iad.UniqueID
@@ -278,17 +297,17 @@ EXAMPLES = """
   oci_mysql_db_system:
     display_name: DBSystem001
     description: MySQL Database Service
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete db_system
   oci_mysql_db_system:
-    db_system_id: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_mysql_db_system:
     display_name: DBSystem001
-    compartment_id: ocid1.compartment.oc1..UniqueID
+    compartment_id: "ocid1.compartment.oc1..UniqueID"
     state: absent
 
 """
@@ -305,7 +324,7 @@ db_system:
                 - The OCID of the DB System.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB System. It does not have to be unique.
@@ -323,16 +342,42 @@ db_system:
                 - The OCID of the compartment the DB System belongs in.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
             returned: on success
             type: string
-            sample: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        is_highly_available:
+            description:
+                - If the policy is to enable high availability of the instance, by
+                  maintaining secondary/failover capacity as necessary.
+            returned: on success
+            type: bool
+            sample: true
+        current_placement:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                availability_domain:
+                    description:
+                        - The availability domain in which the DB System is placed.
+                    returned: on success
+                    type: string
+                    sample: Uocm:PHX-AD-1
+                fault_domain:
+                    description:
+                        - The fault domain in which the DB System is placed.
+                    returned: on success
+                    type: string
+                    sample: fault_domain_example
         is_analytics_cluster_attached:
             description:
-                - If the DB System has an Analytics Cluster attached.
+                - "DEPRECATED -- please use `isHeatWaveClusterAttached` instead.
+                  If the DB System has an Analytics Cluster attached."
             returned: on success
             type: bool
             sample: true
@@ -374,15 +419,69 @@ db_system:
                     returned: on success
                     type: string
                     sample: 2013-10-20T19:20:30+01:00
+        is_heat_wave_cluster_attached:
+            description:
+                - If the DB System has a HeatWave Cluster attached.
+            returned: on success
+            type: bool
+            sample: true
+        heat_wave_cluster:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                shape_name:
+                    description:
+                        - "The shape determines resources to allocate to the HeatWave
+                          nodes - CPU cores, memory."
+                    returned: on success
+                    type: string
+                    sample: shape_name_example
+                cluster_size:
+                    description:
+                        - The number of analytics-processing compute instances, of the
+                          specified shape, in the HeatWave cluster.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the MySQL HeatWave cluster.
+                    returned: on success
+                    type: string
+                    sample: lifecycle_state_example
+                time_created:
+                    description:
+                        - The date and time the HeatWave cluster was created,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                time_updated:
+                    description:
+                        - The time the HeatWave cluster was last updated,
+                          as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         availability_domain:
             description:
-                - The Availability Domain where the primary DB System should be located.
+                - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other availability domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the availability domain in which the DB System is placed.
             returned: on success
             type: string
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
-                - The name of the Fault Domain the DB System is located in.
+                - The fault domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
+                - In a failover scenario, the Read/Write endpoint is redirected to one of the other fault domains
+                  and the MySQL instance in that domain is promoted to the primary instance.
+                  This redirection does not affect the IP address of the DB System in any way.
+                - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
             type: string
             sample: fault_domain_example
@@ -468,13 +567,13 @@ db_system:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
                     type: string
-                    sample: ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
             returned: on success
             type: string
-            sample: ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
                 - Initial size of the data volume in GiBs that will be created and attached.
@@ -571,13 +670,13 @@ db_system:
                         - The OCID of the Channel.
                     returned: on success
                     type: string
-                    sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The OCID of the compartment.
                     returned: on success
                     type: string
-                    sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_enabled:
                     description:
                         - Whether the Channel has been enabled by the user.
@@ -657,7 +756,7 @@ db_system:
                                 - The OCID of the source DB System.
                             returned: on success
                             type: string
-                            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                         channel_name:
                             description:
                                 - The case-insensitive name that identifies the replication channel. Channel names
@@ -776,8 +875,21 @@ db_system:
         "description": "description_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_highly_available": true,
+        "current_placement": {
+            "availability_domain": "Uocm:PHX-AD-1",
+            "fault_domain": "fault_domain_example"
+        },
         "is_analytics_cluster_attached": true,
         "analytics_cluster": {
+            "shape_name": "shape_name_example",
+            "cluster_size": 56,
+            "lifecycle_state": "lifecycle_state_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "time_updated": "2013-10-20T19:20:30+01:00"
+        },
+        "is_heat_wave_cluster_attached": true,
+        "heat_wave_cluster": {
             "shape_name": "shape_name_example",
             "cluster_size": 56,
             "lifecycle_state": "lifecycle_state_example",
@@ -995,6 +1107,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             compartment_id=dict(type="str"),
+            is_highly_available=dict(type="bool"),
             availability_domain=dict(type="str"),
             fault_domain=dict(type="str"),
             configuration_id=dict(type="str"),

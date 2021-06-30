@@ -14,24 +14,6 @@
     - "SAMPLE_TENANCY_OCID"
 
 # ===========================================================================================
-# Use a jinja2 template of the ingress and egress security rules to generate
-# a templated version of the final rules.
-- name: create ingress rules yaml body
-  template: src=templates/sample_public_subnet_ingress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_ingress_security_rules.yaml
-- name: create egress yaml body
-  template: src=templates/sample_public_subnet_egress_security_rules.yaml.j2 dest=/tmp/sample_public_subnet_egress_security_rules.yaml
-#===========================================================================================
-# Load the variables defined in the generated files
-- name: Load the variables defined in the ingress rules yaml body
-  include_vars:
-    file: /tmp/sample_public_subnet_ingress_security_rules.yaml
-    name: loaded_ingress
-
-- name: Load the variables defined in the egress rules yaml body
-  include_vars:
-    file: /tmp/sample_public_subnet_egress_security_rules.yaml
-    name: loaded_egress
-#===========================================================================================
 - name: Create a VCN
   oci_network_vcn:
     compartment_id: "{{ compartment_id }}"
@@ -84,8 +66,24 @@
     compartment_id: "{{ compartment_id }}"
     vcn_id: '{{ sample_vcn_id }}'
     state: 'present'
-    ingress_security_rules: '{{ loaded_ingress.sample_public_subnet_ingress_security_rules }}'
-    egress_security_rules: '{{ loaded_egress.sample_public_subnet_egress_security_rules }}'
+    ingress_security_rules:
+      # HTTP
+      - source: "{{ all_cidr_block }}"
+        protocol: "{{ tcp_protocol }}"
+        tcp_options:
+          destination_port_range:
+            min: "{{ http_port }}"
+            max: "{{ http_port }}"
+      # SSL/TLS
+      - source: "{{ all_cidr_block }}"
+        protocol: "{{ tcp_protocol }}"
+        tcp_options:
+          destination_port_range:
+            min: "{{ https_port }}"
+            max: "{{ https_port }}"
+    egress_security_rules:
+      - destination: "{{ all_cidr_block }}"
+        protocol: "{{ all_protocol }}"
   register: result
 - set_fact:
     sample_sec_list_id: "{{ result.security_list.id }}"
@@ -94,7 +92,7 @@
   oci_network_subnet:
     availability_domain: "{{ sample_availability_domain_ad1 }}"
     name: '{{ sample_subnet_ad1}}'
-    dns_label: '{{ sample_subnet_ad1}}'
+    dns_label: '{{ sample_subnet_ad1_dnslabel }}'
     route_table_id: '{{ sample_rt_id }}'
     security_list_ids: ['{{ sample_sec_list_id }}']
     cidr_block: "{{ subnet_cidr_block_ad1 }}"
@@ -109,7 +107,7 @@
   oci_network_subnet:
     availability_domain: "{{ sample_availability_domain_ad2 }}"
     name: '{{ sample_subnet_ad2}}'
-    dns_label: '{{ sample_subnet_ad2}}'
+    dns_label: '{{ sample_subnet_ad2_dnslabel }}'
     route_table_id: '{{ sample_rt_id }}'
     security_list_ids: ['{{ sample_sec_list_id }}']
     cidr_block: "{{ subnet_cidr_block_ad2 }}"
@@ -125,14 +123,16 @@
   oci_compute_image_facts:
     compartment_id: "{{ tenancy_ocid }}"
     operating_system: "Oracle Linux"
-    operating_system_version: "7.8"
     sort_by: "TIMECREATED"
+    sort_order: "ASC"
   register: output
 
 - set_fact:
     sample_app_server_image_id: "{{ item.id }}"
   loop: "{{ output.images }}"
-  when: item.display_name.find("GPU") == -1
+  when:
+    - item.display_name.find("GPU") == -1
+    - item.display_name.find("aarch64") == -1
 #==========================================================================================
 - name: Launch First App Server Instance in Availability Domain 1
   oci_compute_instance:

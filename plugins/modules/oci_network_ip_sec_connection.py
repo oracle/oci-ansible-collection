@@ -30,13 +30,13 @@ description:
       If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for
       the static routes. For more information, see the important note in
       L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/)."
-    - For the purposes of access control, you must provide the OCID of the compartment where you want the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
+      where you want the
       IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment
       as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to
       use, put the IPSec connection in the same compartment as the DRG. For more information about
       compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
-      For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the IPSec connection, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "After creating the IPSec connection, you need to configure your on-premises router
@@ -46,6 +46,7 @@ description:
     - For each tunnel, you need the IP address of Oracle's VPN headend and the shared secret
       (that is, the pre-shared key). For more information, see
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
+    - "This resource has the following action operations in the M(oci_ip_sec_connection_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -64,7 +65,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -78,14 +79,14 @@ options:
         aliases: ["name"]
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
@@ -120,7 +121,10 @@ options:
               you must provide at least one valid static route. If you configure both
               tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
               For more information, see the important note in L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/).
+            - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+              See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
             - "Example: `10.0.1.0/24`"
+            - "Example: `2001:db8::/32`"
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
@@ -189,6 +193,30 @@ options:
                             - The value must be a /30 or /31.
                             - "Example: `10.0.0.5/31`"
                         type: str
+                    oracle_interface_ipv6:
+                        description:
+                            - The IPv6 address for the Oracle end of the inside tunnel interface. This IP address is optional.
+                            - If the tunnel's `routing` attribute is set to `BGP`
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
+                              address
+                              is used for the tunnel's BGP session.
+                            - If `routing` is instead set to `STATIC`, you can set this IP
+                              address to troubleshoot or monitor the tunnel.
+                            - Only subnet masks from /64 up to /127 are allowed.
+                            - "Example: `2001:db8::1/64`"
+                        type: str
+                    customer_interface_ipv6:
+                        description:
+                            - The IPv6 address for the CPE end of the inside tunnel interface. This IP address is optional.
+                            - If the tunnel's `routing` attribute is set to `BGP`
+                              (see L(IPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/)), this IP
+                              address
+                              is used for the tunnel's BGP session.
+                            - If `routing` is instead set to `STATIC`, you can set this IP
+                              address to troubleshoot or monitor the tunnel.
+                            - Only subnet masks from /64 up to /127 are allowed.
+                            - "Example: `2001:db8::1/64`"
+                        type: str
                     customer_bgp_asn:
                         description:
                             - "If the tunnel's `routing` attribute is set to `BGP`
@@ -213,7 +241,7 @@ options:
                         type: list
     ipsc_id:
         description:
-            - The OCID of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -233,16 +261,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create ip_sec_connection
   oci_network_ip_sec_connection:
-    display_name: MyIPSecConnection
-    cpe_id: ocid1.cpe.oc1.phx.unique_ID
+    display_name: "MyIPSecConnection"
+    cpe_id: "ocid1.cpe.oc1.phx.unique_ID"
     static_routes:
-    - 192.0.2.0/24
-    drg_id: ocid1.drg.oc1.phx.unique_ID
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    - "192.0.2.0/24"
+    - "2001:db8::/32"
+    drg_id: "ocid1.drg.oc1.phx.unique_ID"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
     freeform_tags: {'Department': 'Finance'}
@@ -254,16 +283,16 @@ EXAMPLES = """
   oci_network_ip_sec_connection:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyIPSecConnection
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete ip_sec_connection
   oci_network_ip_sec_connection:
-    ipsc_id: ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx
+    ipsc_id: "ocid1.ipsc.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete ip_sec_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_ip_sec_connection:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyIPSecConnection
     state: absent
 
@@ -281,17 +310,17 @@ ip_sec_connection:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
                 - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
             type: string
-            sample: ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -305,25 +334,25 @@ ip_sec_connection:
             sample: display_name_example
         drg_id:
             description:
-                - The OCID of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: string
-            sample: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The IPSec connection's Oracle ID (OCID).
+                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The IPSec connection's current state.
@@ -360,7 +389,10 @@ ip_sec_connection:
                   is using static routing. If you configure at least one tunnel to use static routing, then
                   you must provide at least one valid static route. If you configure both
                   tunnels to use BGP dynamic routing, you can provide an empty list for the static routes.
+                - The CIDR can be either IPv4 or IPv6. IPv6 addressing is supported for all commercial and government regions.
+                  See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `10.0.1.0/24`"
+                - "Example: `2001:db8::/32`"
             returned: on success
             type: list
             sample: []
@@ -550,6 +582,8 @@ def main():
                         options=dict(
                             oracle_interface_ip=dict(type="str"),
                             customer_interface_ip=dict(type="str"),
+                            oracle_interface_ipv6=dict(type="str"),
+                            customer_interface_ipv6=dict(type="str"),
                             customer_bgp_asn=dict(type="str"),
                         ),
                     ),

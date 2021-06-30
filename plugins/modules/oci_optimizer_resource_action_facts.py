@@ -103,13 +103,13 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List resource_actions
   oci_optimizer_resource_action_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
-    recommendation_id: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific resource_action
   oci_optimizer_resource_action_facts:
-    resource_action_id: ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx
+    resource_action_id: "ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -125,25 +125,25 @@ resource_actions:
                 - The unique OCID associated with the resource action.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - The unique OCID associated with the category.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         recommendation_id:
             description:
                 - The unique OCID associated with the recommendation.
             returned: on success
             type: string
-            sample: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
         resource_id:
             description:
                 - The unique OCID associated with the resource.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the resource.
@@ -161,7 +161,7 @@ resource_actions:
                 - The OCID of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_name:
             description:
                 - The name associated with the compartment.

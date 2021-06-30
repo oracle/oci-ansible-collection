@@ -24,6 +24,7 @@ short_description: Manage a DatabaseSoftwareImage resource in Oracle Cloud Infra
 description:
     - This module allows the user to create, update and delete a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
     - For I(state=present), create database software image in the specified compartment.
+    - "This resource has the following action operations in the M(oci_database_software_image_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -37,7 +38,6 @@ options:
     database_version:
         description:
             - The database version with which the database software image is to be built.
-            - Required for create using I(state=present).
         type: str
     display_name:
         description:
@@ -54,9 +54,10 @@ options:
         choices:
             - "VM_BM_SHAPE"
             - "EXADATA_SHAPE"
+            - "EXACC_SHAPE"
     image_type:
         description:
-            - List of the Fault Domains in which this DB system is provisioned.
+            - The type of software image. Can be grid or database.
         type: str
         choices:
             - "GRID_IMAGE"
@@ -64,8 +65,7 @@ options:
     patch_set:
         description:
             - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
-            - Required for create using I(state=present).
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
         type: str
     database_software_image_one_off_patches:
         description:
@@ -88,6 +88,10 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    source_db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+        type: str
     database_software_image_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -110,27 +114,25 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create database_software_image
   oci_database_software_image:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    database_version: database_version_example
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     display_name: image2
-    patch_set: patch_set_example
 
 - name: Update database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
-    display_name: image2
+    display_name: "image2"
 
 - name: Update database_software_image
   oci_database_software_image:
-    database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete database_software_image
   oci_database_software_image:
-    database_software_image_id: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete database_software_image using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_software_image:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid.compartment.oc1..unique_ID"
     display_name: image2
     state: absent
 
@@ -148,13 +150,13 @@ database_software_image:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The database version with which the database software image is to be built.
@@ -200,7 +202,7 @@ database_software_image:
         patch_set:
             description:
                 - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                  us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             returned: on success
             type: string
             sample: patch_set_example
@@ -430,7 +432,7 @@ def main():
             database_version=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             image_shape_family=dict(
-                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE"]
+                type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE", "EXACC_SHAPE"]
             ),
             image_type=dict(type="str", choices=["GRID_IMAGE", "DATABASE_IMAGE"]),
             patch_set=dict(type="str"),
@@ -438,6 +440,7 @@ def main():
             ls_inventory=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            source_db_home_id=dict(type="str"),
             database_software_image_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -20,7 +20,7 @@ oracle.oci.oci_vault_secret_version_actions -- Perform actions on a SecretVersio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -166,6 +166,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -302,16 +303,16 @@ Examples
     
     - name: Perform action cancel_secret_version_deletion on secret_version
       oci_vault_secret_version_actions:
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         secret_version_number: 789
         action: cancel_secret_version_deletion
 
     - name: Perform action schedule_secret_version_deletion on secret_version
       oci_vault_secret_version_actions:
-        time_of_deletion: 2018-04-03T21:10:29.600Z
-        secret_id: ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx
-        secret_version_number: 789
-        action: schedule_secret_version_deletion
+        time_of_deletion: "2018-04-03T21:10:29.600Z"
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_version_number: "789"
+        action: "schedule_secret_version_deletion"
 
 
 

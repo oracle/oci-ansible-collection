@@ -15,6 +15,7 @@ import sys
 import os
 import subprocess
 import tempfile
+import platform
 from urllib.request import urlopen
 
 
@@ -27,10 +28,8 @@ class OciAnsibleCollectionInstaller:
     MIN_PYTHON_VERSION_MINOR = 6
     ORACLE_COLLECTION_NAMESPACE = "oracle.oci"
     DEFAULT_VENV_DIR = os.path.expanduser(os.path.join("~", "venv"))
-    DEFAULT_VENV_NAME = "oci-ansible-coll"
-    DEFAULT_OCI_ANSIBLE_COLLECTIONS_PATH = os.path.expanduser(
-        os.path.join("~", ".ansible", "collections")
-    )
+    DEFAULT_VENV_NAME = "oci-ansible-collection"
+
     DEPENDENCIES = ["oci", "ansible"]
     GET_PIP_DOWNLOAD_URL = "https://bootstrap.pypa.io/get-pip.py"
 
@@ -52,49 +51,43 @@ class OciAnsibleCollectionInstaller:
         self.virtual_env_directory = virtual_env_directory or self.DEFAULT_VENV_DIR
         self.virtual_env_name = virtual_env_name or self.DEFAULT_VENV_NAME
         self.ansible_version = ansible_version
-        self.oci_ansible_collection_path = (
-            oci_ansible_collection_path or self.DEFAULT_OCI_ANSIBLE_COLLECTIONS_PATH
-        )
+        self.oci_ansible_collection_path = oci_ansible_collection_path
         self.oci_ansible_collection_version = oci_ansible_collection_version
         self.verbose = verbose or False
 
         self.python_path = None  # value is set to venv python path if provided
 
     def _get_collection_name(self):
-        return (
-            self.ORACLE_COLLECTION_NAMESPACE
-            + ":=="
-            + self.oci_ansible_collection_version
-            if self.oci_ansible_collection_version
-            else self.ORACLE_COLLECTION_NAMESPACE
-        )
+        name = self.ORACLE_COLLECTION_NAMESPACE
+        if self.oci_ansible_collection_version:
+            name = name + ":==" + self.oci_ansible_collection_version
+        return name
 
-    def _log(self, msg, force=False):
-        if self.verbose or force:
+    def _debug(self, msg):
+        if self.verbose:
             print("-- " + msg)
+
+    def _log(self, msg):
+        print("-- " + msg)
+
+    def _fail(self, msg):
+        print("-- " + msg)
+        sys.exit(1)
 
     def _exec(self, cmd):
         if not self.dry_run:
             try:
                 subprocess.check_call(cmd)
-                self._log("Executing command: " + str(cmd))
+                self._debug("Executing command: " + str(cmd))
             except Exception as e:
-                self._log(
-                    "Error while running command {0} {1}".format(cmd, str(e)),
-                    force=True,
-                )
-                sys.exit(1)
+                self._fail("Error while running command {0} {1}".format(cmd, str(e)))
 
     def _exec_output(self, cmd):
         if not self.dry_run:
             try:
                 return subprocess.check_output(cmd)
-            except Exception:
-                self._log(
-                    "Error while running command {0}".format((" ").join(cmd)),
-                    force=True,
-                )
-                sys.exit(1)
+            except Exception as e:
+                self._fail("Error while running command {0} {1}".format(cmd, str(e)))
 
     def _get_pip_path(self):
         base_path = self.python_path
@@ -103,21 +96,22 @@ class OciAnsibleCollectionInstaller:
         if os.path.exists(pip3):
             return pip3
 
-        self._log("Using pip2 {} for installing dependencies".format(pip2))
+        self._debug("Using pip2 {} for installing dependencies".format(pip2))
         return pip2
 
     def _get_ansible_galaxy_path(self):
         return os.path.join(self.python_path, "bin/ansible-galaxy")
 
-    def _get_python_path(self):
-        return os.path.join(self._get_base_path(), "bin/python3")
-
     def verify_os(self):
-        if sys.platform == "win32":
-            raise CollectionInstallerException("WindoesOS not supported")
+        if (
+            sys.platform == "win32"
+            or sys.platform == "win64"
+            or "Windows" in platform.system()
+        ):
+            self._fail("Not supported for windows based OS")
 
     def verify_python_version(self):
-        self._log("Verifying Python version.")
+        self._debug("Verifying Python version.")
         version = sys.version_info
         if not (
             version.major >= self.MIN_PYTHON_VERSION_MAJOR
@@ -128,22 +122,26 @@ class OciAnsibleCollectionInstaller:
                     self.MIN_PYTHON_VERSION_MAJOR, self.MIN_PYTHON_VERSION_MINOR
                 )
             )
-        self._log(
+        self._debug(
             "Python version {0}.{1}.{2} okay.".format(
                 version.major, version.minor, version.micro
             )
         )
-
-    def _get_base_path(self):
-        return ("/").join(sys.executable.split("/")[0:-2])
 
     def setup_venv(self):
         base_path = os.path.join(self.virtual_env_directory, self.virtual_env_name)
         if not os.path.exists(base_path):
             cmd = [sys.executable, "-m", "venv", base_path]
             self._exec(cmd)
-            self._log("Virtual environment {0} created successfully".format(base_path))
+            self._debug(
+                "Virtual environment {0} created successfully".format(base_path)
+            )
         self.python_path = base_path
+        self._debug(
+            "Using following python environment for package management {}".format(
+                self.python_path
+            )
+        )
 
     def setup_pip(self):
         pip_path = self._get_pip_path()
@@ -151,63 +149,63 @@ class OciAnsibleCollectionInstaller:
             if self.upgrade_pip:
                 cmd = [pip_path, "install", "--upgrade", "pip", "-q"]
                 self._exec(cmd)
-                self._log("upgraded pip")
+                self._debug("upgraded pip")
         else:
             if not self.dry_run:
+                self._debug("Installing pip..")
                 tmp_dir = tempfile.mkdtemp()
                 try:
                     response = urlopen(self.GET_PIP_DOWNLOAD_URL)
                     tmp_file = os.path.join(tmp_dir, "getpip.py")
                     with (tmp_file, "wb"):
                         tmp_file.write(response.read())
-                    cmd = [self._get_python_path(), tmp_file]
+                    cmd = [sys.executable, tmp_file]
                     self._exec(cmd)
                     shutil.rmtree(tmp_dir)
-                    self._log("Installed pip")
+                    self._debug("Installed pip")
                 except Exception as e:
                     shutil.rmtree(tmp_dir)
-                    self._log("Error while setting up pip " + str(e), force=True)
+                    self._fail("Error while setting up pip " + str(e))
 
     def install_dependencies(self):
         pip_path = self._get_pip_path()
-        self._log("Using python pip path {}".format(pip_path))
+        self._debug("Using forllowing pip for package management {}".format(pip_path))
         for dep in self.DEPENDENCIES:
             cmd = [pip_path, "install", dep]
             if not self.verbose:
                 cmd.append("-q")
-            self._log("Installing {0} dependency via pip".format(dep))
+            self._debug("Installing {0} dependency ".format(dep))
             self._exec(cmd)
 
     def install_ansible_collection(self):
         collection_name = self._get_collection_name()
         ansible_galaxy_path = self._get_ansible_galaxy_path()
-        cmd = [
-            ansible_galaxy_path,
-            "collection",
-            "install",
-            collection_name,
-            "-vvv",
-            "-p",
-            self.oci_ansible_collection_path,
-        ]
-        self._log(
-            "Installing oci-ansible-collection at {0}".format(
-                self.oci_ansible_collection_path
+        cmd = [ansible_galaxy_path, "collection", "install", collection_name]
+        if self.oci_ansible_collection_path:
+            cmd.extend(["-p", self.oci_ansible_collection_path])
+            self._debug(
+                "Installing oci-ansible-collection at {0}".format(
+                    self.oci_ansible_collection_path
+                )
             )
-        )
+
+        if self.verbose:
+            cmd.append("-vvv")
+
         self._exec(cmd)
-        self._log("Installed successfully...")
+        self._debug("Installed successfully...")
 
     def post_installation(self):
-        pip_path = self._get_pip_path()
-        packages = self._exec_output([pip_path, "freeze"]).decode().split("\n")
-        packages = [p.split("==")[0] for p in packages]
+        if not self.dry_run:
+            pip_path = self._get_pip_path()
+            packages = self._exec_output([pip_path, "freeze"]).decode().split("\n")
+            packages = [p.split("==")[0] for p in packages]
 
-        for dep in self.DEPENDENCIES:
-            if dep not in packages:
-                self._log("Required {} is not installed".format(dep))
-                return
-        self._log("All dependencies installed correctly")
+            for dep in self.DEPENDENCIES:
+                if dep not in packages:
+                    self._debug("Required {} is not installed".format(dep))
+                    return
+            self._debug("All dependencies installed correctly")
 
         activate_venv_cmd = "source " + os.path.join(self.python_path, "bin/activate")
         export_collection_path_cmd = (
@@ -216,12 +214,18 @@ class OciAnsibleCollectionInstaller:
             + "}:"
             + self.oci_ansible_collection_path
         )
+
         print(
             "\n==========================COMMANDS====================================\n"
         )
-        print("Run the following commands to run use oci-ansible-collection\n")
+        print(
+            "Run the following commands to use the installed oci-ansible-collection\n"
+        )
         print(activate_venv_cmd)
-        print(export_collection_path_cmd)
+        if self.oci_ansible_collection_path:
+            print(export_collection_path_cmd)
+        print("\n")
+        print("ansible-doc oracle.oci.oci_netowrk_vcn")
         print(
             "\n==========================COMMANDS====================================\n"
         )
@@ -261,7 +265,7 @@ def main():
         help="""Users can use this flag to specify the location of collections where oci-ansible-collection will be installed""",
     )
     parser.add_argument(
-        "--oci-ansible-collection-version",
+        "--version",
         help="""Users can use this flag to specify the version of oci-ansible-collection will be installed.
                     To use the latest version don't set any value(recommended)""",
     )
@@ -281,7 +285,7 @@ def main():
         virtual_env_name=args.virtual_env_name,
         ansible_version=args.ansible_version,
         oci_ansible_collection_path=args.oci_ansible_collection_path,
-        oci_ansible_collection_version=args.oci_ansible_collection_version,
+        oci_ansible_collection_version=args.version,
     )
 
     installer.verify_python_version()

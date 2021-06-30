@@ -20,7 +20,7 @@ oracle.oci.oci_budget_alert_rule -- Manage a BudgetAlertRule resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -55,7 +55,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -164,6 +164,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -517,14 +518,14 @@ Examples
     
     - name: Create budget_alert_rule
       oci_budget_alert_rule:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         type: ACTUAL
         threshold: 10
         threshold_type: PERCENTAGE
 
     - name: Update budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget_alert_rule:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         type: ACTUAL
@@ -537,19 +538,19 @@ Examples
 
     - name: Update budget_alert_rule
       oci_budget_alert_rule:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        alert_rule_id: ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx
+        alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete budget_alert_rule
       oci_budget_alert_rule:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
-        alert_rule_id: ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
+        alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete budget_alert_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_budget_alert_rule:
-        budget_id: ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 

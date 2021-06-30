@@ -38,7 +38,41 @@ options:
             - The unique OCIDs of the resource actions that recommendations are applied to. The recommendation will be applied to the given OCIDs irrespective
               of the existing status.
         type: list
-        required: true
+    actions:
+        description:
+            - The unique resource actions that recommendations are applied to.
+        type: list
+        suboptions:
+            resource_action_id:
+                description:
+                    - The unique OCIDs of the resource actions that recommendations are applied to.
+                type: str
+                required: true
+            status:
+                description:
+                    - The current status of the recommendation.
+                type: str
+                choices:
+                    - "PENDING"
+                    - "DISMISSED"
+                    - "POSTPONED"
+                    - "IMPLEMENTED"
+            time_status_end:
+                description:
+                    - The date and time the current status will change. The format is defined by RFC3339.
+                    - "For example, \\"The current `postponed` status of the resource action will end and change to `pending` on this
+                      date and time.\\""
+                type: str
+            parameters:
+                description:
+                    - "Additional parameter key-value pairs defining the resource action.
+                      For example:"
+                    - "`{\\"timeAmount\\": 15, \\"timeUnit\\": \\"seconds\\"}`"
+                type: dict
+            strategy_name:
+                description:
+                    - The name of the strategy.
+                type: str
     status:
         description:
             - The current status of the recommendation.
@@ -68,7 +102,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action bulk_apply on recommendation
   oci_optimizer_recommendation_actions:
-    recommendation_id: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
     action: bulk_apply
 
@@ -86,19 +120,19 @@ recommendation:
                 - The unique OCID associated with the recommendation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - The unique OCID associated with the category.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the recommendation.
@@ -186,12 +220,18 @@ recommendation:
             returned: on success
             type: complex
             contains:
-                name:
+                items:
                     description:
-                        - The name of the profile level.
+                        - The list of supported levels.
                     returned: on success
-                    type: string
-                    sample: name_example
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name of the profile level.
+                            returned: on success
+                            type: string
+                            sample: name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -211,7 +251,9 @@ recommendation:
         "time_created": "2020-08-25T21:10:29.600Z",
         "time_updated": "2020-08-25T21:10:29.600Z",
         "supported_levels": {
-            "name": "name_example"
+            "items": [{
+                "name": "name_example"
+            }]
         }
     }
 """
@@ -295,7 +337,21 @@ def main():
     module_args.update(
         dict(
             recommendation_id=dict(aliases=["id"], type="str", required=True),
-            resource_action_ids=dict(type="list", required=True),
+            resource_action_ids=dict(type="list"),
+            actions=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    resource_action_id=dict(type="str", required=True),
+                    status=dict(
+                        type="str",
+                        choices=["PENDING", "DISMISSED", "POSTPONED", "IMPLEMENTED"],
+                    ),
+                    time_status_end=dict(type="str"),
+                    parameters=dict(type="dict"),
+                    strategy_name=dict(type="str"),
+                ),
+            ),
             status=dict(
                 type="str",
                 required=True,

@@ -15,27 +15,28 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    vcn_name: "mytestvcn"
+    vcn_name: "ansible-sample-instance-console-conn-vcn"
     vcn_cidr_block: "10.0.0.0/16"
-    vcn_dns_label: "mytestvcn"
+    vcn_dns_label: "samplevcn"
 
-    ig_name: "myinternetgatewayformytestvcn"
+    ig_name: "ansible-sample-instance-console-conn-ig "
 
-    route_table_name: "myroutetable"
+    route_table_name: "ansible-sample-instance-console-conn-rt"
     # route all internet access to our Internet Gateway
     route_table_rules:
-        - cidr_block: "{{ quad_zero_route }}"
-          network_entity_id: "{{ ig_id }}"
+      - cidr_block: "{{ quad_zero_route }}"
+        network_entity_id: "{{ ig_id }}"
 
 
-    subnet_cidr: "10.0.0.48/28"
-    subnet_name: "mytestsubnet"
-    subnet_dns_label: "mytestsubnet"
+    subnet_cidr: "10.0.1.0/24"
+    subnet_name: "ansible-sample-instance-console-conn-subnet"
+    subnet_dns_label: "samplesubnet"
 
-    securitylist_name: "mysecuritylist"
+    securitylist_name: "ansible-sample-instance-console-conn-sec-list"
 
     instance_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
-    instance_hostname: "mytestinstance"
+    instance_hostname: "samplehostname"
+    instance_name: "ansible-sample-instance-console-conn-instance"
 
     #########################################
     # Tenancy specific configuration
@@ -51,11 +52,13 @@
     - block:
       - import_tasks: setup.yaml
 
+      #==========================================================================================
+
       - name: Launch an instance
         oci_compute_instance:
           availability_domain: "{{ instance_ad }}"
           compartment_id: "{{ instance_compartment }}"
-          name: "my_test_instance"
+          name: "{{ instance_name }}"
           image_id: "{{ instance_image }}"
           shape: "{{ instance_shape }}"
           create_vnic_details:
@@ -69,6 +72,8 @@
           msg: "Launched a new instance {{ result }}"
       - set_fact:
           instance_id: "{{result.instance.id }}"
+
+      #==========================================================================================
 
       - name: Get the VNIC attachment details of instance
         oci_compute_vnic_attachment_facts:
@@ -87,6 +92,8 @@
         debug:
           msg: "Public IP of launched instance {{ instance_public_ip }}"
 
+      #==========================================================================================
+
       - name: Wait (upto 5 minutes) for port 22 to become open
         wait_for:
           port: 22
@@ -95,6 +102,8 @@
           delay: 10
         vars:
           ansible_connection: local
+
+      #==========================================================================================
 
       - name: Create a new console connection to the instance
         oci_compute_instance_console_connection:
@@ -120,6 +129,8 @@
       - debug:
           msg: "SSH Instance console connection string to use to connect to the serial console of the new instance {{final_connection_string}}"
 
+      #==========================================================================================
+
       - name: Capture instance console history
         oci_compute_instance_console_history:
           instance_id: "{{ instance_id }}"
@@ -127,6 +138,8 @@
         register: result
       - set_fact:
           console_history_id: "{{result.instance_console_history.id}}"
+
+      #==========================================================================================
 
       - name: create temporary directory to write instance console history content to
         tempfile:
@@ -143,6 +156,8 @@
           id: "{{ console_history_id }}"
         register: result
 
+      #==========================================================================================
+
       - name: Copy the console history data into a file
         copy:
           content: "{{ result.instance_console_history_content }}"
@@ -158,6 +173,13 @@
           that:
             - stat_result.stat.exists == True
 
-      always:
+      #==========================================================================================
+
+      - import_tasks: teardown.yaml
+
+      rescue:
         - import_tasks: teardown.yaml
-          ignore_errors: true
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"

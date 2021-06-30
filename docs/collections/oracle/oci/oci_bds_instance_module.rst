@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance -- Manage a BdsInstance resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new BDS instance.
-- This resource has the following action operations in the :ref:`oci_bds_instance_actions <ansible_collections.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_worker_nodes, change_shape, remove_cloud_sql, restart_node.
+- This resource has the following action operations in the :ref:`oci_bds_instance_actions <ansible_collections.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_worker_nodes, change_compartment, change_shape, remove_cloud_sql, restart_node.
 
 
 .. Aliases
@@ -56,7 +56,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -147,6 +147,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -404,7 +405,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Additional configuration of customer&#x27;s network.</div>
+                                            <div></div>
                                                         </td>
             </tr>
                                         <tr>
@@ -634,7 +635,7 @@ Examples
     
     - name: Create bds_instance
       oci_bds_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         cluster_version: cluster_version_example
         cluster_public_key: cluster_public_key_example
@@ -645,11 +646,11 @@ Examples
         - node_type: node_type_example
           shape: shape_example
           block_volume_size_in_gbs: 56
-          subnet_id: ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -658,16 +659,16 @@ Examples
       oci_bds_instance:
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete bds_instance
       oci_bds_instance:
-        bds_instance_id: ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
     - name: Delete bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_instance:
-        compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 
@@ -721,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The information about added Cloud SQL capability</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -872,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specific info about a Hadoop cluster</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>
@@ -1315,7 +1316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional configuration of customer&#x27;s network.</div>
+                                            <div></div>
                                         <br/>
                                     </td>
             </tr>

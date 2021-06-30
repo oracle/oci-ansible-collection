@@ -49,7 +49,8 @@ description:
     - The VCN and subnets you create are not accessible until you attach an internet gateway or set up an IPSec VPN
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
-    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_vcn_cidr, modify_vcn_cidr, remove_vcn_cidr."
+    - "This resource has the following action operations in the M(oci_vcn_actions) module: add_ipv6_vcn_cidr, add_vcn_cidr, change_compartment, modify_vcn_cidr,
+      remove_vcn_cidr."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -76,7 +77,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -107,10 +108,17 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    is_ipv6_enabled:
+        description:
+            - Whether IPv6 is enabled for the VCN. Default is `false`.
+              If enabled, Oracle will assign the VCN a IPv6 /56 CIDR block.
+              For important details about IPv6 addressing in a VCN, see L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `true`"
+        type: bool
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
@@ -133,13 +141,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vcn
   oci_network_vcn:
-    cidr_block: 10.0.0.0/16
-    compartment_id: ocid1.compartment.oc1..unique_ID
-    display_name: MyVcn
+    cidr_block: "10.0.0.0/16"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
+    display_name: "MyVcn"
 
 - name: Update vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
     freeform_tags: {'Department': 'Finance'}
@@ -148,16 +156,16 @@ EXAMPLES = """
   oci_network_vcn:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyVcn
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete vcn
   oci_network_vcn:
-    vcn_id: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete vcn using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_vcn:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyVcn
     state: absent
 
@@ -188,29 +196,29 @@ vcn:
                 - The OCID of the compartment containing the VCN.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
             type: string
-            sample: ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
             type: string
-            sample: ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
             type: string
-            sample: ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -241,7 +249,7 @@ vcn:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -251,7 +259,14 @@ vcn:
                 - The VCN's Oracle ID (OCID).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN's IP address space.
+                  The CIDRs are provided by Oracle and the sizes are always /56.
+            returned: on success
+            type: list
+            sample: []
         lifecycle_state:
             description:
                 - The VCN's current state.
@@ -287,6 +302,7 @@ vcn:
         "dns_label": "vcn1",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_blocks": [],
         "lifecycle_state": "PROVISIONING",
         "time_created": "2016-08-25T21:10:29.600Z",
         "vcn_domain_name": "vcn1.oraclevcn.com"
@@ -436,6 +452,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             dns_label=dict(type="str"),
             freeform_tags=dict(type="dict"),
+            is_ipv6_enabled=dict(type="bool"),
             vcn_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

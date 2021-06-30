@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -59,7 +59,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -172,6 +172,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -904,38 +905,38 @@ Examples
     
     - name: Perform action copy on object
       oci_object_storage_object_actions:
-        source_object_name: backup.tar.gz
-        source_object_if_match_e_tag: '*'
-        destination_region: uk-london-1
-        destination_namespace: ansh8lvru1zp
-        destination_bucket: backup
-        destination_object_name: backup2.tar.gz
-        destination_object_if_match_e_tag: '*'
-        destination_object_if_none_match_e_tag: '*'
+        source_object_name: "backup.tar.gz"
+        source_object_if_match_e_tag: "*"
+        destination_region: "uk-london-1"
+        destination_namespace: "ansh8lvru1zp"
+        destination_bucket: "backup"
+        destination_object_name: "backup2.tar.gz"
+        destination_object_if_match_e_tag: "*"
+        destination_object_if_none_match_e_tag: "*"
         destination_object_metadata:
-          opc-meta-a: b
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        action: copy
+          opc-meta-a: "b"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        action: "copy"
 
     - name: Perform action reencrypt on object
       oci_object_storage_object_actions:
-        kms_key_id: ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        object_name: test/object1.log
-        action: reencrypt
+        kms_key_id: "ocid1.key.region1.sea.examplemaag4s.examples3wg32j37cvbyhs5edj3qxlblk6sevxr7faux4cbc5wyctpnsukva"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        object_name: "test/object1.log"
+        action: "reencrypt"
 
     - name: Perform action rename on object
       oci_object_storage_object_actions:
-        source_name: SourceObjectName
-        new_name: TargetObjectName
-        src_obj_if_match_e_tag: '*'
-        new_obj_if_match_e_tag: '*'
-        new_obj_if_none_match_e_tag: '*'
-        namespace_name: namespace_name_example
-        bucket_name: my-new-bucket1
-        action: rename
+        source_name: "SourceObjectName"
+        new_name: "TargetObjectName"
+        src_obj_if_match_e_tag: "*"
+        new_obj_if_match_e_tag: "*"
+        new_obj_if_none_match_e_tag: "*"
+        namespace_name: "namespace_name_example"
+        bucket_name: "my-new-bucket1"
+        action: "rename"
 
     - name: Perform action restore on object
       oci_object_storage_object_actions:
@@ -987,7 +988,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Object resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;headers&#x27;: {&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1024,6 +1025,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-object/headers"></div>
+                    <b>headers</b>
+                    <a class="ansibleOptionLink" href="#return-object/headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>response headers for the object</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}</div>
                                     </td>
             </tr>
                                 <tr>

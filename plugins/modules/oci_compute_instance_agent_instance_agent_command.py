@@ -177,17 +177,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create instance_agent_command
   oci_compute_instance_agent_instance_agent_command:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     execution_time_out_in_seconds: 56
 
 - name: Delete instance_agent_command
   oci_compute_instance_agent_instance_agent_command:
-    instance_agent_command_id: ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx
+    instance_agent_command_id: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete instance_agent_command using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance_agent_instance_agent_command:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: Database Backup Script
     state: absent
 
@@ -205,13 +205,13 @@ instance_agent_command:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the command.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique. Avoid entering confidential information.
@@ -256,7 +256,7 @@ instance_agent_command:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target instance.
                     returned: on success
                     type: string
-                    sample: ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         content:
             description:
                 - The contents of the command.

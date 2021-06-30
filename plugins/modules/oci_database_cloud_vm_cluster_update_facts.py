@@ -46,18 +46,19 @@ options:
         choices:
             - "GI_UPGRADE"
             - "GI_PATCH"
+            - "OS_UPDATE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: List cloud_vm_cluster_updates
   oci_database_cloud_vm_cluster_update_facts:
-    cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific cloud_vm_cluster_update
   oci_database_cloud_vm_cluster_update_facts:
-    cloud_vm_cluster_id: ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx
-    update_id: ocid1.update.oc1..xxxxxxEXAMPLExxxxxx
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -73,7 +74,7 @@ cloud_vm_cluster_updates:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Details of the maintenance update package.
@@ -204,7 +205,9 @@ def main():
         dict(
             cloud_vm_cluster_id=dict(type="str", required=True),
             update_id=dict(aliases=["id"], type="str"),
-            update_type=dict(type="str", choices=["GI_UPGRADE", "GI_PATCH"]),
+            update_type=dict(
+                type="str", choices=["GI_UPGRADE", "GI_PATCH", "OS_UPDATE"]
+            ),
         )
     )
 

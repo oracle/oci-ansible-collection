@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
     cluster_network_id:
@@ -69,8 +69,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List cluster_network_instances
   oci_compute_management_cluster_network_instance_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
-    cluster_network_id: ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_network_id: "ocid1.clusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -86,7 +86,7 @@ cluster_network_instances:
                 - The OCID of the instance.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
@@ -98,7 +98,7 @@ cluster_network_instances:
                 - The OCID of the compartment that contains the instance.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name. Does not have to be unique.
@@ -116,7 +116,7 @@ cluster_network_instances:
                 - The OCID of the instance confgiuration used to create the instance.
             returned: on success
             type: string
-            sample: ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region that contains the availability domain the instance is running in.
@@ -128,7 +128,7 @@ cluster_network_instances:
                 - The shape of an instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
                 - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
-                  us/iaas/api/#/en/iaas/20160918/Shape/ListShapes).
+                  us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
             type: string
             sample: shape_example
@@ -156,7 +156,7 @@ cluster_network_instances:
                         - The OCID of the load balancer attached to the instance pool.
                     returned: on success
                     type: string
-                    sample: ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.

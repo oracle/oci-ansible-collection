@@ -27,7 +27,7 @@ description:
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
     - Restore a Database based on the request parameters you provide.
     - Creates a new version of an existing L(Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
-    - Upgrade the specified database.
+    - Upgrades the specified Oracle Database instance.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -83,16 +83,23 @@ options:
         suboptions:
             source:
                 description:
-                    - The source of the database upgrade
-                      Use 'DB_HOME' for using existing db home to upgrade the database
-                      Use 'DB_VERSION' for using database version to upgrade the database
-                      Use 'DB_SOFTWARE_IMAGE' for using database software image to upgrade the database
+                    - "The source of the Oracle Database software to be used for the upgrade.
+                       - Use `DB_HOME` to specify an existing Database Home to upgrade the database. The database is moved to the target Database Home and makes
+                         use of the Oracle Database software version of the target Database Home.
+                       - Use `DB_VERSION` to specify a generally-available Oracle Database software version to upgrade the database.
+                       - Use `DB_SOFTWARE_IMAGE` to specify a L(database software
+                         image,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databasesoftwareimage.htm) to upgrade the database."
                 type: str
                 choices:
                     - "DB_HOME"
                     - "DB_SOFTWARE_IMAGE"
                     - "DB_VERSION"
                 required: true
+            options:
+                description:
+                    - "Additional upgrade options supported by DBUA(Database Upgrade Assistant).
+                      Example: \\"-upgradeTimezone false -keepEvents\\""
+                type: str
             db_home_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
@@ -100,13 +107,14 @@ options:
                 type: str
             database_software_image_id:
                 description:
-                    - the database software id used for upgrading the database.
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the image to be used to
+                      upgrade a database.
                     - Required when source is 'DB_SOFTWARE_IMAGE'
                 type: str
             db_version:
                 description:
                     - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-                      us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+                      us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'DB_VERSION'
                 type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -115,27 +123,27 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
-    kms_key_id: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_vault_key
 
 - name: Perform action restore on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: restore
 
 - name: Perform action rotate_vault_key on database
   oci_database_database_actions:
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: rotate_vault_key
 
 - name: Perform action precheck on database
   oci_database_database_actions:
     database_upgrade_source_details:
-      db_version: 19.7.0.0
-      source: DB_VERSION
-    action: PRECHECK
-    database_id: ocid1.database.oc1..xxxxxxEXAMPLExxxxxx
+      db_version: "19.7.0.0"
+      source: "DB_VERSION"
+    action: "PRECHECK"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -151,13 +159,13 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         character_set:
             description:
                 - The character set for the database.
@@ -175,19 +183,19 @@ database:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
             type: string
-            sample: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_name:
             description:
                 - The database name.
@@ -196,7 +204,7 @@ database:
             sample: db_name_example
         pdb_name:
             description:
-                - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric
+                - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                   characters. Special characters are not permitted. Pluggable database should not be same as database name.
             returned: on success
             type: string
@@ -288,7 +296,7 @@ database:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
                             type: string
-                            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
@@ -352,7 +360,7 @@ database:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -365,7 +373,7 @@ database:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
             type: string
-            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -577,6 +585,7 @@ def main():
                         required=True,
                         choices=["DB_HOME", "DB_SOFTWARE_IMAGE", "DB_VERSION"],
                     ),
+                    options=dict(type="str"),
                     db_home_id=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     db_version=dict(type="str"),

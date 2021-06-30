@@ -76,7 +76,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific rrset
   oci_dns_rrset_facts:
-    zone_name_or_id: ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     domain: domain_example
     rtype: rtype_example
 

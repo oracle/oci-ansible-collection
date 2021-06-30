@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_managed_instance_actions -- Perform actions on a Ma
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.16.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -64,7 +64,7 @@ Requirements
 ------------
 The below requirements are needed on the host that executes this module.
 
-- python >= 2.7
+- python >= 3.6
 - Python SDK for Oracle Cloud Infrastructure https://oracle-cloud-infrastructure-python-sdk.readthedocs.io
 
 
@@ -182,6 +182,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -370,59 +371,59 @@ Examples
     
     - name: Perform action attach_child_software_source on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_child_software_source
 
     - name: Perform action attach_parent_software_source on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: attach_parent_software_source
 
     - name: Perform action detach_child_software_source on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_child_software_source
 
     - name: Perform action detach_parent_software_source on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
-        software_source_id: ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        software_source_id: "ocid1.softwaresource.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_parent_software_source
 
     - name: Perform action install_all_package_updates on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_all_package_updates
 
     - name: Perform action install_all_windows_updates on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_all_windows_updates
 
     - name: Perform action install_package on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_package_name: software_package_name_example
         action: install_package
 
     - name: Perform action install_package_update on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_package_name: software_package_name_example
         action: install_package_update
 
     - name: Perform action install_windows_update on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         windows_update_name: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
         action: install_windows_update
 
     - name: Perform action remove_package on managed_instance
       oci_os_management_managed_instance_actions:
-        managed_instance_id: ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_package_name: software_package_name_example
         action: remove_package
 

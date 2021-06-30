@@ -58,6 +58,10 @@ options:
             - "NONE"
             - "VM_CLUSTER_NEW"
         default: "NONE"
+    is_desupported_version:
+        description:
+            - If true, the customer acknowledges that the specified Oracle Database software is an older release that is not currently supported by OCI.
+        type: bool
     db_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
@@ -113,7 +117,7 @@ options:
                 type: str
             pdb_name:
                 description:
-                    - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric
+                    - The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                       characters. Special characters are not permitted. Pluggable database should not be same as database name.
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
@@ -254,7 +258,7 @@ options:
     db_version:
         description:
             - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
         type: str
     db_home_id:
@@ -323,14 +327,14 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create db_home
   oci_database_db_home:
-    db_system_id: ocid1.dbsystem.oc1.phx.unique_ID
-    display_name: createdDbHome
-    source: NONE
-    db_version: 12.1.0.2
+    db_system_id: "ocid1.dbsystem.oc1.phx.unique_ID"
+    display_name: "createdDbHome"
+    source: "NONE"
+    db_version: "12.1.0.2"
     database:
-      admin_password: password
-      db_name: myTestDb
-      db_unique_name: myTestDb_phx1cs
+      admin_password: "password"
+      db_name: "myTestDb"
+      db_unique_name: "myTestDb_phx1cs"
       db_backup_config:
         recovery_window_in_days: 30
         auto_backup_enabled: true
@@ -338,21 +342,21 @@ EXAMPLES = """
 - name: Update db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_home:
     display_name: createdDbHome
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update db_home
   oci_database_db_home:
-    db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete db_home
   oci_database_db_home:
-    db_home_id: ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx
+    db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete db_home using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_home:
     display_name: createdDbHome
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -369,13 +373,13 @@ db_home:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Database Home. The name does not need to be unique.
@@ -388,7 +392,7 @@ db_home:
                   a patch operation is started.
             returned: on success
             type: string
-            sample: ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Database Home.
@@ -400,13 +404,13 @@ db_home:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
             type: string
-            sample: ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
             type: string
-            sample: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_version:
             description:
                 - The Oracle Database version.
@@ -436,7 +440,7 @@ db_home:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
             type: string
-            sample: ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         one_off_patches:
             description:
                 - List of one-off patches for Database Homes.
@@ -448,7 +452,7 @@ db_home:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
             type: string
-            sample: ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -628,6 +632,7 @@ def main():
                     "VM_CLUSTER_NEW",
                 ],
             ),
+            is_desupported_version=dict(type="bool"),
             db_system_id=dict(type="str"),
             database=dict(
                 type="dict",

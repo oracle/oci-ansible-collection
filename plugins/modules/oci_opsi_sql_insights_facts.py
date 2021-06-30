@@ -36,16 +36,23 @@ options:
     database_type:
         description:
             - Filter by one or more database type.
-              Possible values are ADW-S, ATP-S, ADW-D, ATP-D
+              Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
         choices:
             - "ADW-S"
             - "ATP-S"
             - "ADW-D"
             - "ATP-D"
+            - "EXTERNAL-PDB"
+            - "EXTERNAL-NONCDB"
     database_id:
         description:
-            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
+        type: list
+    id:
+        description:
+            - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
+              insight resource.
         type: list
     database_time_pct_greater_than:
         description:
@@ -80,7 +87,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific sql_insights
   oci_opsi_sql_insights_facts:
-    compartment_id: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -137,7 +144,7 @@ sql_insights:
                     description:
                         - Insight text.
                           For example `Degrading SQLs`, `Variant SQLs`,
-                            `Inefficient SQLs`, `SQLs with Plan Changes`,
+                            `Inefficient SQLs`, `Improving SQLs`, `SQLs with Plan Changes`,
                             `Degrading SQLs have increasing IO Time above 50%`,
                             `Degrading SQLs are variant`,
                             `2 of the 2 variant SQLs have plan changes`,
@@ -158,6 +165,7 @@ sql_insights:
                           VARIANT,
                           INEFFICIENT,
                           CHANGING_PLANS,
+                          IMPROVING,
                           DEGRADING_VARIANT,
                           DEGRADING_INEFFICIENT,
                           DEGRADING_CHANGING_PLANS,
@@ -228,6 +236,12 @@ sql_insights:
                     returned: on success
                     type: int
                     sample: 56
+                improved_in_pct:
+                    description:
+                        - Improved Percent Threshold is used to derive improving SQLs.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: {
         "time_interval_start": "2020-12-06T00:00:00.000Z",
         "time_interval_end": "2020-12-06T00:00:00.000Z",
@@ -247,7 +261,8 @@ sql_insights:
             "inefficiency_in_pct": 56,
             "increase_in_io_in_pct": 56,
             "increase_in_cpu_in_pct": 56,
-            "increase_in_inefficient_wait_in_pct": 56
+            "increase_in_inefficient_wait_in_pct": 56,
+            "improved_in_pct": 56
         }
     }
 """
@@ -279,6 +294,7 @@ class SqlInsightsFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "database_type",
             "database_id",
+            "id",
             "database_time_pct_greater_than",
             "analysis_time_interval",
             "time_interval_start",
@@ -309,9 +325,18 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             database_type=dict(
-                type="list", choices=["ADW-S", "ATP-S", "ADW-D", "ATP-D"]
+                type="list",
+                choices=[
+                    "ADW-S",
+                    "ATP-S",
+                    "ADW-D",
+                    "ATP-D",
+                    "EXTERNAL-PDB",
+                    "EXTERNAL-NONCDB",
+                ],
             ),
             database_id=dict(type="list"),
+            id=dict(type="list"),
             database_time_pct_greater_than=dict(type="float"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),

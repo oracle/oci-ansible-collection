@@ -45,12 +45,12 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: List vm_cluster_patch_history_entries
   oci_database_vm_cluster_patch_history_entry_facts:
-    vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Get a specific vm_cluster_patch_history_entry
   oci_database_vm_cluster_patch_history_entry_facts:
-    vm_cluster_id: ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx
-    patch_history_entry_id: ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    patch_history_entry_id: "ocid1.patchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -66,13 +66,13 @@ vm_cluster_patch_history_entries:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch history entry.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         patch_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             returned: on success
             type: string
-            sample: ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         action:
             description:
                 - The action being performed or was completed.

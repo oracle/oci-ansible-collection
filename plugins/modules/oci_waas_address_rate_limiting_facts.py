@@ -39,7 +39,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific address_rate_limiting
   oci_waas_address_rate_limiting_facts:
-    waas_policy_id: ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -70,9 +70,9 @@ address_rate_limiting:
             sample: 56
         block_response_code:
             description:
-                - "The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available response codes: `200`,
-                  `201`, `202`, `204`, `206`, `300`, `301`, `302`, `303`, `304`, `307`, `400`, `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`,
-                  `414`, `415`, `416`, `422`, `444`, `499`, `500`, `501`, `502`, `503`, `504`, `507`."
+                - "The response status code returned when a request is blocked. If unspecified, defaults to `503`. The list of available response codes: `400`,
+                  `401`, `403`, `404`, `405`, `408`, `409`, `411`, `412`, `413`, `414`, `415`, `416`, `422`, `494`, `495`, `496`, `497`, `499`, `500`, `501`,
+                  `502`, `503`, `504`, `507`."
             returned: on success
             type: int
             sample: 56

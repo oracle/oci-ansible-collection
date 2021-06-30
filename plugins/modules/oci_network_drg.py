@@ -33,12 +33,13 @@ description:
       For information about OCIDs, see L(Resource Identifiers,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
     - "You may optionally specify a *display name* for the DRG, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
+    - "This resource has the following action operations in the M(oci_drg_actions) module: change_compartment, get_all_drg_attachments, upgrade."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment to contain the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the DRG.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -46,7 +47,7 @@ options:
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
@@ -62,17 +63,50 @@ options:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
               predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
     drg_id:
         description:
-            - The OCID of the DRG.
+            - The L([OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)](/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    default_drg_route_tables:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            vcn:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to DRG
+                      attachments
+                      of type VCN on creation.
+                    - This parameter is updatable.
+                type: str
+            ipsec_tunnel:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table assigned to DRG
+                      attachments
+                      of type IPSEC_TUNNEL on creation.
+                    - This parameter is updatable.
+                type: str
+            virtual_circuit:
+                description:
+                    - The OCID of the default DRG route table to be assigned to DRG attachments
+                      of type VIRTUAL_CIRCUIT on creation.
+                    - This parameter is updatable.
+                type: str
+            remote_peering_connection:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to
+                      DRG attachments
+                      of type REMOTE_PEERING_CONNECTION on creation.
+                    - This parameter is updatable.
+                type: str
     state:
         description:
             - The state of the Drg.
@@ -88,12 +122,12 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create drg
   oci_network_drg:
-    display_name: MyDrg
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    display_name: "MyDrg"
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
 
 - name: Update drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
     freeform_tags: {'Department': 'Finance'}
@@ -102,16 +136,16 @@ EXAMPLES = """
   oci_network_drg:
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: MyDrg
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg
   oci_network_drg:
-    drg_id: ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 - name: Delete drg using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg:
-    compartment_id: ocid1.compartment.oc1..unique_ID
+    compartment_id: "ocid1.compartment.oc1..unique_ID"
     display_name: MyDrg
     state: absent
 
@@ -126,14 +160,14 @@ drg:
     contains:
         compartment_id:
             description:
-                - The OCID of the compartment containing the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -149,17 +183,17 @@ drg:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The DRG's Oracle ID (OCID).
+                - The DRG's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG's current state.
@@ -173,6 +207,50 @@ drg:
             returned: on success
             type: string
             sample: 2016-08-25T21:10:29.600Z
+        default_drg_route_tables:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                vcn:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned to
+                          DRG attachments
+                          of type VCN on creation.
+                    returned: on success
+                    type: string
+                    sample: vcn_example
+                ipsec_tunnel:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table assigned to DRG
+                          attachments
+                          of type IPSEC_TUNNEL on creation.
+                    returned: on success
+                    type: string
+                    sample: ipsec_tunnel_example
+                virtual_circuit:
+                    description:
+                        - The OCID of the default DRG route table to be assigned to DRG attachments
+                          of type VIRTUAL_CIRCUIT on creation.
+                    returned: on success
+                    type: string
+                    sample: virtual_circuit_example
+                remote_peering_connection:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the default DRG route table to be assigned
+                          to DRG attachments
+                          of type REMOTE_PEERING_CONNECTION on creation.
+                    returned: on success
+                    type: string
+                    sample: remote_peering_connection_example
+        default_export_drg_route_distribution_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this DRG's default export route distribution for the DRG
+                  attachments.
+            returned: on success
+            type: string
+            sample: "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -180,7 +258,14 @@ drg:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
-        "time_created": "2016-08-25T21:10:29.600Z"
+        "time_created": "2016-08-25T21:10:29.600Z",
+        "default_drg_route_tables": {
+            "vcn": "vcn_example",
+            "ipsec_tunnel": "ipsec_tunnel_example",
+            "virtual_circuit": "virtual_circuit_example",
+            "remote_peering_connection": "remote_peering_connection_example"
+        },
+        "default_export_drg_route_distribution_id": "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -312,6 +397,15 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             drg_id=dict(aliases=["id"], type="str"),
+            default_drg_route_tables=dict(
+                type="dict",
+                options=dict(
+                    vcn=dict(type="str"),
+                    ipsec_tunnel=dict(type="str"),
+                    virtual_circuit=dict(type="str"),
+                    remote_peering_connection=dict(type="str"),
+                ),
+            ),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

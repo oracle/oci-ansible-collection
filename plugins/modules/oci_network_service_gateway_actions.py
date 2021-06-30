@@ -33,6 +33,9 @@ description:
       L(UpdateServiceGateway,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/ServiceGateway/UpdateServiceGateway), which replaces
       the entire existing list of enabled `Service` objects with the list that you provide in the
       `Update` call."
+    - For I(action=change_compartment), moves a service gateway into a different compartment within the same tenancy. For information
+      about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - "For I(action=detach_service_id), removes the specified L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) from the list of
       enabled
       `Service` objects for the specified gateway. You do not need to remove any route
@@ -58,8 +61,14 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the L(Service,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/iaas/latest/Service/).
+            - Required for I(action=attach_service_id), I(action=detach_service_id).
         type: str
-        required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              service gateway to.
+            - Required for I(action=change_compartment).
+        type: str
     action:
         description:
             - The action to perform on the ServiceGateway.
@@ -67,6 +76,7 @@ options:
         required: true
         choices:
             - "attach_service_id"
+            - "change_compartment"
             - "detach_service_id"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -74,14 +84,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Perform action attach_service_id on service_gateway
   oci_network_service_gateway_actions:
-    service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
-    service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+    service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_service_id
+
+- name: Perform action change_compartment on service_gateway
+  oci_network_service_gateway_actions:
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_compartment
 
 - name: Perform action detach_service_id on service_gateway
   oci_network_service_gateway_actions:
-    service_gateway_id: ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx
-    service_id: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+    service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
+    service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_service_id
 
 """
@@ -107,11 +123,11 @@ service_gateway:
                   service gateway.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
-                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
@@ -127,7 +143,7 @@ service_gateway:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
                   predefined name, type, or namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                 - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
@@ -137,7 +153,7 @@ service_gateway:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service gateway.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The service gateway's current state.
@@ -152,7 +168,7 @@ service_gateway:
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."
             returned: on success
             type: string
-            sample: ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         services:
             description:
                 - List of the L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) objects enabled for this service gateway.
@@ -167,7 +183,7 @@ service_gateway:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service.
                     returned: on success
                     type: string
-                    sample: ocid1.service.oc1..xxxxxxEXAMPLExxxxxx
+                    sample: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
                 service_name:
                     description:
                         - The name of the service.
@@ -187,7 +203,7 @@ service_gateway:
                   belongs to.
             returned: on success
             type: string
-            sample: ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "block_traffic": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -219,6 +235,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.core import VirtualNetworkClient
     from oci.core.models import ServiceIdRequestDetails
+    from oci.core.models import ChangeServiceGatewayCompartmentDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -229,6 +246,7 @@ class ServiceGatewayActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         attach_service_id
+        change_compartment
         detach_service_id
     """
 
@@ -260,6 +278,29 @@ class ServiceGatewayActionsHelperGen(OCIActionsHelperBase):
                 attach_service_details=action_details,
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def change_compartment(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangeServiceGatewayCompartmentDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_service_gateway_compartment,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                service_gateway_id=self.module.params.get("service_gateway_id"),
+                change_service_gateway_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -311,11 +352,16 @@ def main():
     module_args.update(
         dict(
             service_gateway_id=dict(aliases=["id"], type="str", required=True),
-            service_id=dict(type="str", required=True),
+            service_id=dict(type="str"),
+            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["attach_service_id", "detach_service_id"],
+                choices=[
+                    "attach_service_id",
+                    "change_compartment",
+                    "detach_service_id",
+                ],
             ),
         )
     )

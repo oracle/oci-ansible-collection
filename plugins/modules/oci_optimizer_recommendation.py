@@ -64,7 +64,7 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update recommendation
   oci_optimizer_recommendation:
-    recommendation_id: ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
     status: PENDING
 
 """
@@ -81,19 +81,19 @@ recommendation:
                 - The unique OCID associated with the recommendation.
             returned: on success
             type: string
-            sample: ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
             type: string
-            sample: ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - The unique OCID associated with the category.
             returned: on success
             type: string
-            sample: ocid1.category.oc1..xxxxxxEXAMPLExxxxxx
+            sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the recommendation.
@@ -181,12 +181,18 @@ recommendation:
             returned: on success
             type: complex
             contains:
-                name:
+                items:
                     description:
-                        - The name of the profile level.
+                        - The list of supported levels.
                     returned: on success
-                    type: string
-                    sample: name_example
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name of the profile level.
+                            returned: on success
+                            type: string
+                            sample: name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -206,7 +212,9 @@ recommendation:
         "time_created": "2020-08-25T21:10:29.600Z",
         "time_updated": "2020-08-25T21:10:29.600Z",
         "supported_levels": {
-            "name": "name_example"
+            "items": [{
+                "name": "name_example"
+            }]
         }
     }
 """
