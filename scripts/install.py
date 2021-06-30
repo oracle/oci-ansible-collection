@@ -201,7 +201,7 @@ class OciAnsibleCollectionInstaller:
                     f = open(os.path.join(tmp_dir, "getpip.py"), "wb")
                     f.write(response.read())
                     f.close()
-                    cmd = [self.python_path, tmp_file]
+                    cmd = [self.python_path+"/bin/python3", tmp_file]
                     self._exec(cmd)
                     shutil.rmtree(tmp_dir)
                     self._debug("Installed pip")
