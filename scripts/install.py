@@ -97,7 +97,7 @@ class OciAnsibleCollectionInstaller:
         (
             linux_distribution_id,
             linux_distribution_id_like,
-        ) = self._get_linux_distribution_id_like()
+        ) = self.get_linux_distribution_id_like()
         return (
             linux_distribution_id_like
             and any(x in linux_distribution_id_like for x in ["ubuntu", "debian"])
@@ -184,10 +184,8 @@ class OciAnsibleCollectionInstaller:
         )
 
     def setup_pip(self):
-        if self._is_ubuntu_or_debian():
-            self._install_python3_venv()
         pip_path = self._get_pip_path()
-        if os.path.exists(pip_path):
+        if not os.path.exists(pip_path):
             self._debug("pip already installed at {}".format(pip_path))
             if self.upgrade_pip:
                 cmd = [pip_path, "install", "--upgrade", "pip", "-q"]
@@ -200,9 +198,10 @@ class OciAnsibleCollectionInstaller:
                 try:
                     response = urlopen(self.GET_PIP_DOWNLOAD_URL)
                     tmp_file = os.path.join(tmp_dir, "getpip.py")
-                    with (tmp_file, "wb"):
-                        tmp_file.write(response.read())
-                    cmd = [sys.executable, tmp_file]
+                    f = open(os.path.join(tmp_dir, "getpip.py"), "wb")
+                    f.write(response.read())
+                    f.close()
+                    cmd = [self.python_path, tmp_file]
                     self._exec(cmd)
                     shutil.rmtree(tmp_dir)
                     self._debug("Installed pip")
@@ -212,7 +211,7 @@ class OciAnsibleCollectionInstaller:
 
     def install_dependencies(self):
         pip_path = self._get_pip_path()
-        self._debug("Using forllowing pip for package management {}".format(pip_path))
+        self._debug("Using {} for package management".format(pip_path))
         for dep in self.DEPENDENCIES:
             cmd = [pip_path, "install", dep]
             if not self.verbose:
@@ -251,23 +250,24 @@ class OciAnsibleCollectionInstaller:
             self._debug("All dependencies installed correctly")
 
         activate_venv_cmd = "source " + os.path.join(self.python_path, "bin/activate")
-        export_collection_path_cmd = (
-            "export ANSIBLE_COLLECTIONS_PATHS=${"
-            + "ANSIBLE_COLLECTIONS_PATHS"
-            + "}:"
-            + self.oci_ansible_collection_path
-        )
 
         print(
             "\n==========================COMMANDS====================================\n"
         )
         print(
-            "Run the following commands to use the installed oci-ansible-collection\n"
+            "Run the following command(s) to use the installed oci-ansible-collection\n"
         )
         print(activate_venv_cmd)
         if self.oci_ansible_collection_path:
+            export_collection_path_cmd = (
+                "export ANSIBLE_COLLECTIONS_PATHS="
+                + self.oci_ansible_collection_path
+                + ":${"
+                + "ANSIBLE_COLLECTIONS_PATHS}"
+            )
             print(export_collection_path_cmd)
-        print("\n")
+
+        print("\nRun the following command to check ")
         print("ansible-doc oracle.oci.oci_netowrk_vcn")
         print(
             "\n==========================COMMANDS====================================\n"
