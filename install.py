@@ -106,17 +106,6 @@ class OciAnsibleCollectionInstaller:
             and any(x in linux_distribution_id for x in ["ubuntu", "debian"])
         )
 
-    # def get_ubuntu_version(self):
-    #     try:
-    #         with open("/etc/os-release") as f:
-    #             d = {}
-    #             for line in f:
-    #                 k, v = line.rstrip().split("=")
-    #                 d[k.lower()] = v.strip('"')
-    #         return d["version_id"] if d["name"] == "Ubuntu" else None
-    #     except Exception as e:
-    #         return None
-
     def _install_python3_venv(self):
         cmd = ["sudo", "apt-get", "update"]
         self._exec(cmd)
@@ -195,6 +184,8 @@ class OciAnsibleCollectionInstaller:
         )
 
     def setup_pip(self):
+        if self._is_ubuntu_or_debian():
+            self._install_python3_venv()
         pip_path = self._get_pip_path()
         if os.path.exists(pip_path):
             self._debug("pip already installed at {}".format(pip_path))
