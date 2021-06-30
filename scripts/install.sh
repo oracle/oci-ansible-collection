@@ -100,7 +100,6 @@ case $key in
     install_args="$install_args --verbose"
     shift
     ;;
-    ;;
     --upgrade-pip)
     install_args="$install_args --upgrade-pip"
     shift
