@@ -74,6 +74,57 @@ class OciAnsibleCollectionInstaller:
         print("-- " + msg)
         sys.exit(1)
 
+    def _get_linux_distribution_id_like(self):
+        # An example of a line in /etc/os-release is ID_LIKE=ubuntu
+        # An example of a line in /etc/os-release is ID=debian
+        # See ID, ID_LIKE on https://www.freedesktop.org/software/systemd/man/os-release.html
+
+        id_value = id_like_value = None
+        try:
+            with open("/etc/os-release") as lines:
+                for line in lines:
+                    if "=" in line:
+                        key, value = line.split("=", 1)
+                        if key.lower() == "id_like":
+                            id_like_value = value.lower()
+                        if key.lower() == "id":
+                            id_value = value.lower()
+                return id_value, id_like_value
+        except Exception:
+            return id_value, id_like_value
+
+    def _is_ubuntu_or_debian(self):
+        (
+            linux_distribution_id,
+            linux_distribution_id_like,
+        ) = self.get_linux_distribution_id_like()
+        return (
+            linux_distribution_id_like
+            and any(x in linux_distribution_id_like for x in ["ubuntu", "debian"])
+        ) or (
+            linux_distribution_id
+            and any(x in linux_distribution_id for x in ["ubuntu", "debian"])
+        )
+
+    # def get_ubuntu_version(self):
+    #     try:
+    #         with open("/etc/os-release") as f:
+    #             d = {}
+    #             for line in f:
+    #                 k, v = line.rstrip().split("=")
+    #                 d[k.lower()] = v.strip('"')
+    #         return d["version_id"] if d["name"] == "Ubuntu" else None
+    #     except Exception as e:
+    #         return None
+
+    def _install_python3_venv(self):
+        cmd = ["sudo", "apt-get", "update"]
+        self._exec(cmd)
+
+        self._debug("Installing python3-venv...")
+        cmd = ["sudo", "apt-get", "install", "python3-venv", "-y"]
+        self._exec(cmd)
+
     def _exec(self, cmd):
         if not self.dry_run:
             try:
@@ -146,6 +197,7 @@ class OciAnsibleCollectionInstaller:
     def setup_pip(self):
         pip_path = self._get_pip_path()
         if os.path.exists(pip_path):
+            self._debug("pip already installed at {}".format(pip_path))
             if self.upgrade_pip:
                 cmd = [pip_path, "install", "--upgrade", "pip", "-q"]
                 self._exec(cmd)
