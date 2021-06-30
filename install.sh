@@ -11,7 +11,7 @@
 # Shell script for installing ansible collection for Oracle Cloud Infrastructure
 
 SCRIPT_NAME="./install.py"
-INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/install.py"
+INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/test-branch/install.py"
 
 
 usage="$(basename "$0")
