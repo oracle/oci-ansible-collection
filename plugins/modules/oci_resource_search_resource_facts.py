@@ -195,6 +195,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.resource_search import ResourceSearchClient
+    from oci.resource_search.models import SearchDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -206,7 +207,7 @@ class ResourceFactsHelperGen(OCIResourceFactsHelperBase):
 
     def get_required_params_for_list(self):
         return [
-            "search_details",
+            "type",
         ]
 
     def list_resources(self):
@@ -221,7 +222,9 @@ class ResourceFactsHelperGen(OCIResourceFactsHelperBase):
         )
         return oci_common_utils.list_all_resources(
             self.client.search_resources,
-            search_details=self.module.params.get("search_details"),
+            search_details=oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, SearchDetails
+            ),
             **optional_kwargs
         )
 

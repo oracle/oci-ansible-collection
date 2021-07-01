@@ -45,14 +45,6 @@ class DeploymentActionsHelperCustom:
 
 
 class DatabaseRegistrationHelperCustom:
-    # password and wallet are not available in the get model. So cannot compare them for idempotence.
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            DatabaseRegistrationHelperCustom, self
-        ).get_exclude_attributes()
-        exclude_attributes += ["password", "wallet"]
-        return exclude_attributes
-
     def is_update_necessary(self, existing_resource_dict):
 
         # password and wallet are not available in the resource. So if the user is trying to update them, there

@@ -33,6 +33,7 @@ class ClusterHelperCustom:
 
 class ClusterActionsHelperCustom:
     UPDATE_CLUSTER_ENDPOINT_CONFIG_KEY = "update_cluster_endpoint_config"
+    CLUSTER_MIGRATE_TO_NATIVE_VCN_KEY = "cluster_migrate_to_native_vcn"
 
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
@@ -42,6 +43,15 @@ class ClusterActionsHelperCustom:
             )
             return not oci_common_utils.compare_dicts(
                 to_dict(action_details),
+                to_dict(getattr(resource, "endpoint_config", None)),
+            )
+        elif action == self.CLUSTER_MIGRATE_TO_NATIVE_VCN_KEY:
+            # decommission_delay_duration does not exist in the get model and I am not really sure
+            # how this can be compared. So letting the API do the right thing.
+            if self.module.params.get("decommission_delay_duration"):
+                return True
+            return not oci_common_utils.compare_dicts(
+                self.module.params.get("endpoint_config"),
                 to_dict(getattr(resource, "endpoint_config", None)),
             )
         return super(ClusterActionsHelperCustom, self).is_action_necessary(

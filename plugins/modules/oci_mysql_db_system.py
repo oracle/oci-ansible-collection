@@ -1046,6 +1046,9 @@ class MysqlDbSystemHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateDbSystemDetails
 
+    def get_exclude_attributes(self):
+        return ["admin_username", "admin_password"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

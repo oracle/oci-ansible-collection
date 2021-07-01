@@ -1164,6 +1164,17 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAutonomousDatabaseBase
 
+    def get_exclude_attributes(self):
+        return [
+            "admin_password",
+            "is_preview_version_with_service_terms_accepted",
+            "source",
+            "clone_type",
+            "autonomous_database_backup_id",
+            "autonomous_database_id",
+            "timestamp",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

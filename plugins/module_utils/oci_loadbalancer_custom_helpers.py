@@ -66,15 +66,6 @@ class CertificateHelperCustom:
 
         return True
 
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            CertificateHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            "private_key",
-            "passphrase",
-        ]
-
 
 class CertificateFactsHelperCustom:
     def list_resources(self):
@@ -245,13 +236,6 @@ class NetworkSecurityGroupsHelperCustom:
 
 
 class LoadBalancerHelperCustom:
-    # since ip_mode parameter is not returned by the resource, we remove this parameter
-    # while comparing the dicts for idempotency
-    def get_exclude_attributes(self):
-        return super(LoadBalancerHelperCustom, self).get_exclude_attributes() + [
-            "ip_mode"
-        ]
-
     # adding this customization to support the update operation of shape of LoadBalancer
     # within the resource module.
     def is_update_necessary(self, existing_resource_dict):
@@ -315,6 +299,20 @@ class LoadBalancerHelperCustom:
             reserved_ips.append(ip_address["reserved_ip"])
         resource_dict["reserved_ips"] = reserved_ips
         return resource_dict
+
+    # we are populating reserved ips from resource dictionary for comparison
+    # check get_existing_resource_dict_for_idempotence_check
+    def get_exclude_attributes(self):
+        exclude_attributes = super(
+            LoadBalancerHelperCustom, self
+        ).get_exclude_attributes()
+
+        remove_exclude_attributes = ["reserved_ips"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes
 
 
 class LoadBalancerActionsHelperCustom:

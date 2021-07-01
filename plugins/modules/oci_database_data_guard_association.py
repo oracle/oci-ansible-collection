@@ -374,6 +374,21 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateDataGuardAssociationDetails
 
+    def get_exclude_attributes(self):
+        return [
+            "database_software_image_id",
+            "database_admin_password",
+            "creation_type",
+            "display_name",
+            "availability_domain",
+            "shape",
+            "subnet_id",
+            "nsg_ids",
+            "backup_network_nsg_ids",
+            "hostname",
+            "peer_vm_cluster_id",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

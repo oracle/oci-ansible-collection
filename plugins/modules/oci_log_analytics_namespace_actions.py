@@ -88,11 +88,18 @@ namespace:
             returned: on success
             type: bool
             sample: true
+        is_data_ever_ingested:
+            description:
+                - This indicates if data has ever been ingested for the tenancy in Logging Analytics
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "namespace_name": "namespace_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "is_onboarded": true,
-        "is_log_set_enabled": true
+        "is_log_set_enabled": true,
+        "is_data_ever_ingested": true
     }
 """
 

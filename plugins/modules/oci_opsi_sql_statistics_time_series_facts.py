@@ -46,6 +46,10 @@ options:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
         type: list
+    host_name:
+        description:
+            - Filter by one or more hostname.
+        type: list
     analysis_time_interval:
         description:
             - Specify time period in ISO 8601 format with respect to current time.
@@ -256,6 +260,7 @@ class SqlStatisticsTimeSeriesFactsHelperGen(OCIResourceFactsHelperBase):
         optional_get_method_params = [
             "database_id",
             "id",
+            "host_name",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -292,6 +297,7 @@ def main():
             sql_identifier=dict(type="str", required=True),
             database_id=dict(type="list"),
             id=dict(type="list"),
+            host_name=dict(type="list"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),

@@ -31,26 +31,25 @@ def get_logger():
 
 
 class ApiKeyHelperCustom:
-    def get_create_model_dict_for_idempotence_check(self, create_model):
-        model_dict = super(
+    # For idempotence comparison
+    # We pass as key and get key_value in response
+    def get_existing_resource_dict_for_idempotence_check(self, resource):
+        existing_dict = super(
             ApiKeyHelperCustom, self
-        ).get_create_model_dict_for_idempotence_check(create_model)
+        ).get_existing_resource_dict_for_idempotence_check(resource)
+        if "key_value" in existing_dict:
+            existing_dict["key"] = existing_dict["key_value"]
+        return existing_dict
 
-        if model_dict["key"]:
-            model_dict["key_value"] = model_dict["key"]
-            del model_dict["key"]
+    def get_exclude_attributes(self):
+        exclude_attributes = super(ApiKeyHelperCustom, self).get_exclude_attributes()
+        remove_exlcuded_attributes = ["key"]
 
-        return model_dict
+        exclude_attributes = [
+            x not in remove_exlcuded_attributes for x in exclude_attributes
+        ]
 
-    def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
-        attributes_to_consider = super(
-            ApiKeyHelperCustom, self
-        ).get_attributes_to_consider_for_create_idempotency_check(create_model)
-        if "key" in attributes_to_consider:
-            attributes_to_consider.remove("key")
-            attributes_to_consider.append("key_value")
-
-        return attributes_to_consider
+        return exclude_attributes
 
 
 class CompartmentHelperCustom:
@@ -104,11 +103,6 @@ class CompartmentFactsHelperCustom:
         super(CompartmentFactsHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
-
-    def get_required_params_for_list(self):
-        return [
-            "parent_compartment_id",
-        ]
 
     def list_subcompartments(self, compartment_id, optional_kwargs):
         subcompartments = []
@@ -236,18 +230,6 @@ class PolicyHelperCustom:
         ).get_update_model_dict_for_idempotence_check(update_model)
         self.update_version_date(model_dict)
         return model_dict
-
-
-class IdentityProviderHelperCustom:
-
-    # metadata is not returned by GET or LIST so we should not try
-    # to match using it
-    def get_exclude_attributes(self):
-        global_exclude_attribtes = super(
-            IdentityProviderHelperCustom, self
-        ).get_exclude_attributes()[:]
-        global_exclude_attribtes.append("metadata")
-        return global_exclude_attribtes
 
 
 class UiPasswordHelperCustom:

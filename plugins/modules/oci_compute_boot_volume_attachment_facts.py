@@ -134,6 +134,13 @@ boot_volume_attachments:
             returned: on success
             type: bool
             sample: true
+        encryption_in_transit_type:
+            description:
+                - Refer the top-level definition of encryptionInTransitType.
+                  The default value is NONE.
+            returned: on success
+            type: string
+            sample: NONE
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
@@ -143,7 +150,8 @@ boot_volume_attachments:
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "is_pv_encryption_in_transit_enabled": true
+        "is_pv_encryption_in_transit_enabled": true,
+        "encryption_in_transit_type": "NONE"
     }]
 """
 

@@ -43,6 +43,14 @@ options:
             - The OCID of the instance.
             - Required for create using I(state=present).
         type: str
+    encryption_in_transit_type:
+        description:
+            - Refer the top-level definition of encryptionInTransitType.
+              The default value is NONE.
+        type: str
+        choices:
+            - "NONE"
+            - "BM_ENCRYPTION_IN_TRANSIT"
     boot_volume_attachment_id:
         description:
             - The OCID of the boot volume attachment.
@@ -161,6 +169,13 @@ boot_volume_attachment:
             returned: on success
             type: bool
             sample: true
+        encryption_in_transit_type:
+            description:
+                - Refer the top-level definition of encryptionInTransitType.
+                  The default value is NONE.
+            returned: on success
+            type: string
+            sample: NONE
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
@@ -170,7 +185,8 @@ boot_volume_attachment:
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ATTACHING",
         "time_created": "2016-08-25T21:10:29.600Z",
-        "is_pv_encryption_in_transit_enabled": true
+        "is_pv_encryption_in_transit_enabled": true,
+        "encryption_in_transit_type": "NONE"
     }
 """
 
@@ -301,6 +317,9 @@ def main():
             boot_volume_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             instance_id=dict(type="str"),
+            encryption_in_transit_type=dict(
+                type="str", choices=["NONE", "BM_ENCRYPTION_IN_TRANSIT"]
+            ),
             boot_volume_attachment_id=dict(aliases=["id"], type="str"),
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),

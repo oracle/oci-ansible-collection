@@ -509,6 +509,9 @@ class ZoneHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateZoneBaseDetails
 
+    def get_exclude_attributes(self):
+        return ["migration_source", "dynect_migration_details"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         optional_enum_params = [

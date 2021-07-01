@@ -384,13 +384,13 @@ image:
             contains:
                 is_monitoring_supported:
                     description:
-                        - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance.
+                        - This attribute is not used.
                     returned: on success
                     type: bool
                     sample: true
                 is_management_supported:
                     description:
-                        - Whether Oracle Cloud Agent can run all the available management plugins.
+                        - This attribute is not used.
                     returned: on success
                     type: bool
                     sample: true
@@ -535,6 +535,9 @@ class ImageHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateImageDetails
+
+    def get_exclude_attributes(self):
+        return ["image_source_details", "instance_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()

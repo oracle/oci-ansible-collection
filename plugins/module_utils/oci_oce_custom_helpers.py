@@ -22,11 +22,4 @@ def get_logger():
 
 
 class OceInstanceHelperCustom:
-    # exclude the attributes from the create model which are not present in the get model for idempotency check
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            OceInstanceHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            "idcs_access_token",
-        ]
+    pass

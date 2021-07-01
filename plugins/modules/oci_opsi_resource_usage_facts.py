@@ -84,6 +84,16 @@ options:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
               insight resource.
         type: list
+    host_name:
+        description:
+            - Filter by one or more hostname.
+        type: list
+    is_database_instance_level_metrics:
+        description:
+            - Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied.
+              When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the
+              whole database which contains an instance on this host.
+        type: bool
     percentile:
         description:
             - Percentile values of daily usage to be used for computing the aggregate resource usage.
@@ -191,6 +201,8 @@ class ResourceUsageFactsHelperGen(OCIResourceFactsHelperBase):
             "database_type",
             "database_id",
             "id",
+            "host_name",
+            "is_database_instance_level_metrics",
             "percentile",
         ]
         optional_kwargs = dict(
@@ -235,6 +247,8 @@ def main():
             ),
             database_id=dict(type="list"),
             id=dict(type="list"),
+            host_name=dict(type="list"),
+            is_database_instance_level_metrics=dict(type="bool"),
             percentile=dict(type="int"),
         )
     )

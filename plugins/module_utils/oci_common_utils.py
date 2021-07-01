@@ -5,6 +5,8 @@
 # See LICENSE.TXT for details.
 
 from __future__ import absolute_import, division, print_function
+from contextlib import contextmanager
+from multiprocessing.pool import ThreadPool
 
 __metaclass__ = type
 from ansible.module_utils import six
@@ -640,19 +642,24 @@ def setup_logging(
     env_log_level = "LOG_LEVEL"
 
     log_path = os.getenv(env_log_path, default_log_path)
-
     log_level_str = os.getenv(env_log_level, default_level)
-
     log_format = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
-
     if log_level_str.lower() == "debug":
         _httpclient_debug_logging_patch()
 
     log_level = logging.getLevelName(log_level_str)
+    # check write access
     log_file_path = os.path.join(log_path, "oci_ansible_module.log")
-    logging.basicConfig(
-        filename=log_file_path, filemode="a", level=log_level, format=log_format
-    )
+    if not os.path.exists(log_file_path) or os.access(log_file_path, os.W_OK):
+        logging.basicConfig(
+            filename=log_file_path, filemode="a", level=log_level, format=log_format
+        )
+    else:
+        # the log file exists but the user does not have write permissions to the file.
+        # Disable the logging in this case to avoid failures for now.
+        handlers = [logging.NullHandler()]
+        logging.basicConfig(level=log_level, format=log_format, handlers=handlers)
+
     return logging
 
 
@@ -699,6 +706,19 @@ def deserialize_datetime(string):
                     string
                 )
             )
+
+
+@contextmanager
+def threaded_worker_pool(*args, **kwargs):
+    pool = ThreadPool(*args, **kwargs)
+    try:
+        yield pool
+    finally:
+        pool.close()
+        # wait for all the instances to be processed
+        pool.join()
+        # terminate the pool
+        pool.terminate()
 
 
 logger = get_logger("oci_common_utils")

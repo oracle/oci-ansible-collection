@@ -27,6 +27,22 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    src:
+        description:
+            - The source file path when uploading an object. Use with I(state=present) to upload an object. This option is mutually exclusive with I(dest).
+            - This parameter is updatable.
+        type: str
+    force:
+        description:
+            - Force overwriting existing local file when downloading or existing remote object when uploading.
+            - This parameter is updatable.
+        type: bool
+        default: "true"
+    dest:
+        description:
+            - The destination file path when downloading an object. Use with I(namespace_name), I(bucket_name) and I(object_name) to download an object.
+            - This parameter is updatable.
+        type: str
     namespace_name:
         description:
             - The Object Storage namespace used for the request.
@@ -143,20 +159,6 @@ options:
         description:
             - VersionId used to identify a particular version of the object
         type: str
-    src:
-        description:
-            - The source file path when uploading an object. Use with I(state=present) to upload an object. This option is mutually exclusive with I(dest).
-            - This parameter is updatable.
-        type: str
-    dest:
-        description:
-            - The destination file path when downloading an object. Use with I(namespace_name), I(bucket_name) and I(object_name) to download an object.
-        type: str
-    force:
-        description:
-            - Force overwriting existing local file when downloading or existing remote object when uploading.
-        type: bool
-        default: "true"
     state:
         description:
             - The state of the Object.
@@ -427,6 +429,9 @@ def main():
     )
     module_args.update(
         dict(
+            src=dict(type="str"),
+            force=dict(type="bool", default="true"),
+            dest=dict(type="str"),
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str", required=True),
             object_name=dict(type="str", required=True),
@@ -446,9 +451,6 @@ def main():
             ),
             opc_meta=dict(type="dict"),
             version_id=dict(type="str"),
-            src=dict(type="str"),
-            dest=dict(type="str"),
-            force=dict(type="bool", default="true"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

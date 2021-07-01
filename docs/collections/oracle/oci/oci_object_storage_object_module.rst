@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object -- Manage an Object resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -324,6 +324,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The destination file path when downloading an object. Use with <em>namespace_name</em>, <em>bucket_name</em> and <em>object_name</em> to download an object.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -360,6 +361,7 @@ Parameters
                                     </td>
                                                                 <td>
                                             <div>Force overwriting existing local file when downloading or existing remote object when uploading.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>

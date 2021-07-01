@@ -24,6 +24,8 @@ short_description: Perform actions on an ExadataInfrastructure resource in Oracl
 description:
     - Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
     - For I(action=activate), activates the specified Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
+    - For I(action=add_storage_capacity), makes the storage capacity from additional storage servers available for VM Cluster consumption. Applies to Exadata
+      Cloud@Customer instances only.
     - For I(action=change_compartment), moves an Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata
       Cloud@Customer instances only.
       To move an Exadata Cloud Service infrastructure resource to another compartment, use the
@@ -63,6 +65,7 @@ options:
         required: true
         choices:
             - "activate"
+            - "add_storage_capacity"
             - "change_compartment"
             - "download_exadata_infrastructure_config_file"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
@@ -73,6 +76,11 @@ EXAMPLES = """
   oci_database_exadata_infrastructure_actions:
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     action: activate
+
+- name: Perform action add_storage_capacity on exadata_infrastructure
+  oci_database_exadata_infrastructure_actions:
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_storage_capacity
 
 - name: Perform action change_compartment on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
@@ -179,6 +187,30 @@ exadata_infrastructure:
             returned: on success
             type: float
             sample: 1.2
+        storage_count:
+            description:
+                - The number of Exadata storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        additional_storage_count:
+            description:
+                - The requested number of additional storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        activated_storage_count:
+            description:
+                - The requested number of additional storage servers activated for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        compute_count:
+            description:
+                - The number of compute servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
         cloud_control_plane_server1:
             description:
                 - The IP address for the first control plane server.
@@ -400,6 +432,10 @@ exadata_infrastructure:
         "max_db_node_storage_in_g_bs": 56,
         "data_storage_size_in_tbs": 1.2,
         "max_data_storage_in_t_bs": 1.2,
+        "storage_count": 56,
+        "additional_storage_count": 56,
+        "activated_storage_count": 56,
+        "compute_count": 56,
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
         "cloud_control_plane_server2": "cloud_control_plane_server2_example",
         "netmask": "netmask_example",
@@ -464,6 +500,7 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         activate
+        add_storage_capacity
         change_compartment
         download_exadata_infrastructure_config_file
     """
@@ -504,6 +541,25 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
                     "exadata_infrastructure_id"
                 ),
                 activate_exadata_infrastructure_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def add_storage_capacity(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_storage_capacity_exadata_infrastructure,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                exadata_infrastructure_id=self.module.params.get(
+                    "exadata_infrastructure_id"
+                ),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -586,6 +642,7 @@ def main():
                 required=True,
                 choices=[
                     "activate",
+                    "add_storage_capacity",
                     "change_compartment",
                     "download_exadata_infrastructure_config_file",
                 ],

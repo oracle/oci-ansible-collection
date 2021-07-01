@@ -200,8 +200,8 @@ db_nodes:
         "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
         "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
         "additional_details": "additional_details_example",
-        "primary_private_ip": 10.0.0.10,
-        "primary_public_ip": 140.34.93.209
+        "primary_private_ip": "10.0.0.10",
+        "primary_public_ip": "140.34.93.209"
     }]
 """
 

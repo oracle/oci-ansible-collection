@@ -41,3 +41,19 @@ class DataFlowRunHelperCustom:
             del optional_kwargs_for_list["display_name"]
 
         return optional_kwargs_for_list
+
+
+class DataFlowApplicationHelperCustom:
+    def get_optional_kwargs_for_list(self):
+        optional_kwargs_for_list = super(
+            DataFlowApplicationHelperCustom, self
+        ).get_optional_kwargs_for_list()
+
+        # it is not allowed to specify both display_name and spark_version together in the same list call.
+        # So, if this happens, we prefer display_name
+        if (
+            "display_name" in optional_kwargs_for_list
+            and "spark_version" in optional_kwargs_for_list
+        ):
+            del optional_kwargs_for_list["spark_version"]
+        return optional_kwargs_for_list

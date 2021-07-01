@@ -117,13 +117,6 @@ class JobHelperCustom:
         return False
 
 
-class ConfigurationSourceProviderHelperCustom:
-    def get_exclude_attributes(self):
-        return super(
-            ConfigurationSourceProviderHelperCustom, self
-        ).get_exclude_attributes() + ["access_token"]
-
-
 class TemplateHelperCustom:
     """
     Custom helper for Resource Manager Template resource.
@@ -250,3 +243,21 @@ class TemplateHelperCustom:
             self.client.get_template_logo, template_id
         ).data
         return b64encode(response.content).decode("ascii")
+
+    def get_exclude_attributes(self):
+        """
+        Overriding the method to remove logo_file_base64_encoded
+        from the excluded attributes.
+
+        logo_file_base64_encoded will not be ignored during idempotence
+        check as we are populating the required data in
+        get_existing_resource_dict_for_update method.
+        """
+        exclude_attributes = super(TemplateHelperCustom, self).get_exclude_attributes()
+
+        remove_exclude_attributes = ["logo_file_base64_encoded"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes

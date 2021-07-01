@@ -54,6 +54,10 @@ options:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database
               insight resource.
         type: list
+    host_name:
+        description:
+            - Filter by one or more hostname.
+        type: list
     database_time_pct_greater_than:
         description:
             - Filter sqls by percentage of db time.
@@ -295,6 +299,7 @@ class SqlInsightsFactsHelperGen(OCIResourceFactsHelperBase):
             "database_type",
             "database_id",
             "id",
+            "host_name",
             "database_time_pct_greater_than",
             "analysis_time_interval",
             "time_interval_start",
@@ -337,6 +342,7 @@ def main():
             ),
             database_id=dict(type="list"),
             id=dict(type="list"),
+            host_name=dict(type="list"),
             database_time_pct_greater_than=dict(type="float"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),

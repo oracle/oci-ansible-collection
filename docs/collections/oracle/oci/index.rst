@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.24.0
+Collection version 2.25.0
 
 .. toctree::
     :maxdepth: 1
@@ -220,6 +220,7 @@ Modules
 * :ref:`oci_container_engine_cluster <ansible_collections.oracle.oci.oci_container_engine_cluster_module>` -- Manage a Cluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_cluster_actions <ansible_collections.oracle.oci.oci_container_engine_cluster_actions_module>` -- Perform actions on a Cluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_cluster_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_facts_module>` -- Fetches details about one or multiple Cluster resources in Oracle Cloud Infrastructure
+* :ref:`oci_container_engine_cluster_migrate_to_native_vcn_status_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_migrate_to_native_vcn_status_facts_module>` -- Fetches details about a ClusterMigrateToNativeVcnStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_cluster_options_facts <ansible_collections.oracle.oci.oci_container_engine_cluster_options_facts_module>` -- Fetches details about a ClusterOptions resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_kubeconfig <ansible_collections.oracle.oci.oci_container_engine_kubeconfig_module>` -- Manage a Kubeconfig resource in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node_pool <ansible_collections.oracle.oci.oci_container_engine_node_pool_module>` -- Manage a NodePool resource in Oracle Cloud Infrastructure
@@ -265,6 +266,9 @@ Modules
 * :ref:`oci_data_safe_private_endpoint <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_module>` -- Manage a DataSafePrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_private_endpoint_actions <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_actions_module>` -- Perform actions on a DataSafePrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_private_endpoint_facts <ansible_collections.oracle.oci.oci_data_safe_private_endpoint_facts_module>` -- Fetches details about one or multiple DataSafePrivateEndpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_safe_target_database <ansible_collections.oracle.oci.oci_data_safe_target_database_module>` -- Manage a TargetDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_safe_target_database_actions <ansible_collections.oracle.oci.oci_data_safe_target_database_actions_module>` -- Perform actions on a TargetDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_safe_target_database_facts <ansible_collections.oracle.oci.oci_data_safe_target_database_facts_module>` -- Fetches details about one or multiple TargetDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model <ansible_collections.oracle.oci.oci_data_science_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_actions <ansible_collections.oracle.oci.oci_data_science_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact <ansible_collections.oracle.oci.oci_data_science_model_artifact_module>` -- Manage a ModelArtifact resource in Oracle Cloud Infrastructure
@@ -864,6 +868,7 @@ Modules
 * :ref:`oci_ons_subscription_actions <ansible_collections.oracle.oci.oci_ons_subscription_actions_module>` -- Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_confirmation_facts <ansible_collections.oracle.oci.oci_ons_subscription_confirmation_facts_module>` -- Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_facts <ansible_collections.oracle.oci.oci_ons_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_database_configuration_facts <ansible_collections.oracle.oci.oci_opsi_database_configuration_facts_module>` -- Fetches details about one or multiple DatabaseConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights <ansible_collections.oracle.oci.oci_opsi_database_insights_module>` -- Manage a DatabaseInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` -- Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights_facts <ansible_collections.oracle.oci.oci_opsi_database_insights_facts_module>` -- Fetches details about one or multiple DatabaseInsights resources in Oracle Cloud Infrastructure
@@ -992,6 +997,12 @@ Modules
 * :ref:`oci_vault_secret_facts <ansible_collections.oracle.oci.oci_vault_secret_facts_module>` -- Fetches details about one or multiple Secret resources in Oracle Cloud Infrastructure
 * :ref:`oci_vault_secret_version_actions <ansible_collections.oracle.oci.oci_vault_secret_version_actions_module>` -- Perform actions on a SecretVersion resource in Oracle Cloud Infrastructure
 * :ref:`oci_vault_secret_version_facts <ansible_collections.oracle.oci.oci_vault_secret_version_facts_module>` -- Fetches details about one or multiple SecretVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_recipe <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_module>` -- Manage a ContainerScanRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_recipe_actions <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_actions_module>` -- Perform actions on a ContainerScanRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_recipe_facts <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_recipe_facts_module>` -- Fetches details about one or multiple ContainerScanRecipe resources in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_target <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_target_module>` -- Manage a ContainerScanTarget resource in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_target_actions <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_target_actions_module>` -- Perform actions on a ContainerScanTarget resource in Oracle Cloud Infrastructure
+* :ref:`oci_vulnerability_scanning_container_scan_target_facts <ansible_collections.oracle.oci.oci_vulnerability_scanning_container_scan_target_facts_module>` -- Fetches details about one or multiple ContainerScanTarget resources in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_host_scan_recipe <ansible_collections.oracle.oci.oci_vulnerability_scanning_host_scan_recipe_module>` -- Manage a HostScanRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_host_scan_recipe_facts <ansible_collections.oracle.oci.oci_vulnerability_scanning_host_scan_recipe_facts_module>` -- Fetches details about one or multiple HostScanRecipe resources in Oracle Cloud Infrastructure
 * :ref:`oci_vulnerability_scanning_host_scan_target <ansible_collections.oracle.oci.oci_vulnerability_scanning_host_scan_target_module>` -- Manage a HostScanTarget resource in Oracle Cloud Infrastructure
@@ -1255,6 +1266,7 @@ Modules
     oci_container_engine_cluster_module
     oci_container_engine_cluster_actions_module
     oci_container_engine_cluster_facts_module
+    oci_container_engine_cluster_migrate_to_native_vcn_status_facts_module
     oci_container_engine_cluster_options_facts_module
     oci_container_engine_kubeconfig_module
     oci_container_engine_node_pool_module
@@ -1300,6 +1312,9 @@ Modules
     oci_data_safe_private_endpoint_module
     oci_data_safe_private_endpoint_actions_module
     oci_data_safe_private_endpoint_facts_module
+    oci_data_safe_target_database_module
+    oci_data_safe_target_database_actions_module
+    oci_data_safe_target_database_facts_module
     oci_data_science_model_module
     oci_data_science_model_actions_module
     oci_data_science_model_artifact_module
@@ -1899,6 +1914,7 @@ Modules
     oci_ons_subscription_actions_module
     oci_ons_subscription_confirmation_facts_module
     oci_ons_subscription_facts_module
+    oci_opsi_database_configuration_facts_module
     oci_opsi_database_insights_module
     oci_opsi_database_insights_actions_module
     oci_opsi_database_insights_facts_module
@@ -2027,6 +2043,12 @@ Modules
     oci_vault_secret_facts_module
     oci_vault_secret_version_actions_module
     oci_vault_secret_version_facts_module
+    oci_vulnerability_scanning_container_scan_recipe_module
+    oci_vulnerability_scanning_container_scan_recipe_actions_module
+    oci_vulnerability_scanning_container_scan_recipe_facts_module
+    oci_vulnerability_scanning_container_scan_target_module
+    oci_vulnerability_scanning_container_scan_target_actions_module
+    oci_vulnerability_scanning_container_scan_target_facts_module
     oci_vulnerability_scanning_host_scan_recipe_module
     oci_vulnerability_scanning_host_scan_recipe_facts_module
     oci_vulnerability_scanning_host_scan_target_module

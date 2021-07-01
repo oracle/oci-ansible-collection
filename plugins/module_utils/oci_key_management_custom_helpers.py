@@ -168,15 +168,6 @@ def kms_is_action_necessary(resource_helper, action, resource):
     return True
 
 
-class SecretHelperCustom:
-    # No idempotency for secret_content because it is not returned in the get call
-    def get_exclude_attributes(self):
-        exclude_attributes = super(SecretHelperCustom, self).get_exclude_attributes()
-        return exclude_attributes + [
-            "secret_content",
-        ]
-
-
 class SecretActionsHelperCustom:
     def is_action_necessary(self, action, resource):
         if kms_is_action_necessary(self, action, resource) is False:

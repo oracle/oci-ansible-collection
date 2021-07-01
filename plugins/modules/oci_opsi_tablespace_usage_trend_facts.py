@@ -84,7 +84,7 @@ tablespace_usage_trend:
     contains:
         tablespace_name:
             description:
-                - Name of tablespace
+                - The name of tablespace.
             returned: on success
             type: string
             sample: tablespace_name_example

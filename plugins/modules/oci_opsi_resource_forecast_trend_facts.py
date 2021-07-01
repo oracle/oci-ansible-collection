@@ -134,6 +134,12 @@ options:
         description:
             - Tablespace name for a database
         type: str
+    is_database_instance_level_metrics:
+        description:
+            - Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied.
+              When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the
+              whole database which contains an instance on this host.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -182,6 +188,12 @@ resource_forecast_trend:
             returned: on success
             type: string
             sample: LINEAR
+        tablespace_name:
+            description:
+                - The name of tablespace.
+            returned: on success
+            type: string
+            sample: tablespace_name_example
         historical_data:
             description:
                 - Time series data used for the forecast analysis.
@@ -236,6 +248,7 @@ resource_forecast_trend:
         "resource_metric": "STORAGE",
         "usage_unit": "CORES",
         "pattern": "LINEAR",
+        "tablespace_name": "tablespace_name_example",
         "historical_data": [{
             "end_timestamp": "2020-05-01T00:00:00.000Z",
             "usage": 34.5
@@ -288,6 +301,7 @@ class ResourceForecastTrendFactsHelperGen(OCIResourceFactsHelperBase):
             "confidence",
             "host_name",
             "tablespace_name",
+            "is_database_instance_level_metrics",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -352,6 +366,7 @@ def main():
             confidence=dict(type="int"),
             host_name=dict(type="list"),
             tablespace_name=dict(type="str"),
+            is_database_instance_level_metrics=dict(type="bool"),
         )
     )
 

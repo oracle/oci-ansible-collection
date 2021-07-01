@@ -41,9 +41,9 @@ author: Oracle (@oracle)
 options:
     availability_domain:
         description:
-            - The availability domain of the volume.
+            - The availability domain of the volume. Omissible for cloning a volume. The new volume will be created in the availability domain of the source
+              volume.
             - "Example: `Uocm:PHX-AD-1`"
-            - Required for create using I(state=present).
         type: str
     backup_policy_id:
         description:
@@ -178,7 +178,6 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create volume
   oci_blockstorage_volume:
-    availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -481,6 +480,9 @@ class VolumeHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateVolumeDetails
+
+    def get_exclude_attributes(self):
+        return ["backup_policy_id", "volume_backup_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()

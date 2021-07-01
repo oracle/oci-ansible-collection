@@ -82,12 +82,6 @@ class MysqlDbSystemHelperCustom:
 
     # get model doesn't return admin_username and admin_password of existing database resources. Thus, excluding
     # these for idempotency.
-    def get_exclude_attributes(self):
-        return super(MysqlDbSystemHelperCustom, self).get_exclude_attributes() + [
-            "admin_password",
-            "admin_username",
-        ]
-
     def get_update_model(self):
         # right now this happens to be the same as exclude attributes
         # if the service eventually supports updating username / password

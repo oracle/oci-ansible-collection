@@ -63,11 +63,6 @@ class ApigatewayApiHelperCustom:
     def get_waiter_client(self):
         return self.work_request_client
 
-    def get_exclude_attributes(self):
-        return super(ApigatewayApiHelperCustom, self).get_exclude_attributes() + [
-            "content",
-        ]
-
     # remove the content parameter for the idempotence check
     def get_update_model_dict_for_idempotence_check(self, update_model):
         update_model_dict = super(
@@ -148,14 +143,6 @@ class ApigatewayCertificateHelperCustom:
         super(ApigatewayCertificateHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
-
-    def get_exclude_attributes(self):
-        excluded_attributes = super(
-            ApigatewayCertificateHelperCustom, self
-        ).get_exclude_attributes()
-        return excluded_attributes + [
-            "private_key",
-        ]
 
     def get_waiter_client(self):
         return self.work_request_client

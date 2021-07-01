@@ -74,18 +74,6 @@ class AppCatalogSubscriptionHelperCustom:
             message="The app catalog subscription does not exist."
         )
 
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            AppCatalogSubscriptionHelperCustom, self
-        ).get_exclude_attributes()
-        # exclude the attributes from the create model which are not present in the get model for idempotency check
-        return exclude_attributes + [
-            "oracle_terms_of_use_link",
-            "eula_link",
-            "time_retrieved",
-            "signature",
-        ]
-
 
 def get_primary_ips(compute_client, network_client, instance):
     if not instance:
@@ -140,11 +128,6 @@ class InstanceHelperCustom:
         self.network_client = oci_config_utils.create_service_client(
             self.module, VirtualNetworkClient
         )
-
-    def get_exclude_attributes(self):
-        return super(InstanceHelperCustom, self).get_exclude_attributes() + [
-            "create_vnic_details",
-        ]
 
     def get_create_model_dict_for_idempotence_check(self, create_model):
         create_model_dict = super(
@@ -220,20 +203,13 @@ class BootVolumeAttachmentHelperCustom:
     # An instance can only be attached to one boot volume and the name given to the attachment does not affect the
     # resource. Also a display_name update to the attachment resource does not seem to take affect.
     # So exclude display_name for idempotency.
+
+    # Irrespective of the value we pass for display_name we get
+    # "Remote boot attachment for instance" as the name in response model
     def get_exclude_attributes(self):
         return super(
             BootVolumeAttachmentHelperCustom, self
         ).get_exclude_attributes() + ["display_name"]
-
-
-class ImageHelperCustom:
-    def get_exclude_attributes(self):
-        exclude_attributes = super(ImageHelperCustom, self).get_exclude_attributes()
-        # exclude the attributes from the create model which are not present in the get model for idempotency check
-        return exclude_attributes + [
-            "instance_id",
-            "image_source_details",
-        ]
 
 
 class ImageShapeCompatibilityEntryHelperCustom:
@@ -441,8 +417,7 @@ class VolumeAttachmentHelperCustom:
         # get model has the attribute name "attachment_type" which defines the attachment type where as it "type" in
         # get model. So change the key name to avoid mismatch.
         create_model_dict["attachment_type"] = create_model_dict.pop("type", None)
-        # use_chap param does not exist in the get model. So remove it from the create model.
-        create_model_dict.pop("use_chap", None)
+
         return create_model_dict
 
 
@@ -566,3 +541,17 @@ class InstanceActionsHelperCustom:
     def get_action_fn(self, action):
         action_fn_name = get_compute_instane_action_fn_attr(action)
         return super(InstanceActionsHelperCustom, self).get_action_fn(action_fn_name)
+
+
+class InstanceConsoleConnectionHelperCustom:
+    def get_exclude_attributes(self):
+        exclude_attriubtes = super(
+            InstanceConsoleConnectionHelperCustom, self
+        ).get_exclude_attributes()
+
+        remove_exclude_attributes = ["public_key"]
+        exclude_attriubtes = [
+            x for x in exclude_attriubtes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attriubtes

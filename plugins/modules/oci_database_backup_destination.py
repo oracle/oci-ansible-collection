@@ -409,6 +409,9 @@ class BackupDestinationHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateBackupDestinationDetails
 
+    def get_exclude_attributes(self):
+        return ["mount_type_details"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

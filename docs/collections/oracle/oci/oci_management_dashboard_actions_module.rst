@@ -20,7 +20,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
-- For *action=export_dashboard*, exports an array of dashboards and their saved searches.
-- For *action=import_dashboard*, imports an array of dashboards and their saved searches.
+- For *action=export_dashboard*, exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. An example using OCI CLI is $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json $oci management-dashboard dashboard import --from-json file://dashboards.json
+- For *action=import_dashboard*, imports an array of dashboards and their saved searches. Import is designed to work with exportDashboard. An example using OCI CLI is $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json $oci management-dashboard dashboard import --from-json file://dashboards.json
 
 
 .. Aliases
@@ -447,6 +447,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-dashboards/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-dashboards/parameters_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines parameters for the dashboard.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-dashboards/provider_id"></div>
                     <b>provider_id</b>
                     <a class="ansibleOptionLink" href="#parameter-dashboards/provider_id" title="Permalink to this option"></a>
@@ -681,6 +697,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>JSON that contains internationalization options.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-dashboards/saved_searches/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-dashboards/saved_searches/parameters_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defines parameters for the saved search.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -965,6 +998,23 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-dashboards/tiles/parameters_map"></div>
+                    <b>parameters_map</b>
+                    <a class="ansibleOptionLink" href="#parameter-dashboards/tiles/parameters_map" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the saved search parameters values</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-dashboards/tiles/row"></div>
                     <b>row</b>
                     <a class="ansibleOptionLink" href="#parameter-dashboards/tiles/row" title="Permalink to this option"></a>
@@ -1113,7 +1163,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>{&quot;dashboardIds&quot;:[&quot;dashboardId1&quot;, &quot;dashboardId2&quot;, ...]}</div>
+                                            <div>List of dashboardIds in plain text. The syntaxt is &#x27;{&quot;dashboardIds&quot;:[&quot;dashboardId1&quot;, &quot;dashboardId2&quot;, ...]}&#x27;. Escaping is needed when using in OCI CLI. For example, &quot;{\&quot;dashboardIds\&quot;:[\&quot;ocid1.managementdashboard.oc1..dashboardId1\&quot;]}&quot; .</div>
                                             <div>Required for <em>action=export_dashboard</em>.</div>
                                                         </td>
             </tr>
@@ -1266,7 +1316,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagementDashboard resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: {}, &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dashboards&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dashboard_id&#x27;: &#x27;ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_favorite&#x27;: True, &#x27;is_oob_dashboard&#x27;: True, &#x27;is_show_description&#x27;: True, &#x27;is_show_in_home&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;saved_searches&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_config&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_oob_saved_search&#x27;: True, &#x27;metadata_version&#x27;: &#x27;metadata_version_example&#x27;, &#x27;nls&#x27;: {}, &#x27;parameters_config&#x27;: [], &#x27;provider_id&#x27;: &#x27;ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_version&#x27;: &#x27;provider_version_example&#x27;, &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;type&#x27;: &#x27;SEARCH_SHOW_IN_DASHBOARD&#x27;, &#x27;ui_config&#x27;: {}, &#x27;widget_template&#x27;: &#x27;widget_template_example&#x27;, &#x27;widget_vm&#x27;: &#x27;widget_vm_example&#x27;}], &#x27;screen_image&#x27;: &#x27;screen_image_example&#x27;, &#x27;tiles&#x27;: [{&#x27;column&#x27;: 56, &#x27;data_config&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;drilldown_config&#x27;: {}, &#x27;height&#x27;: 56, &#x27;nls&#x27;: {}, &#x27;parameters_map&#x27;: {}, &#x27;row&#x27;: 56, &#x27;saved_search_id&#x27;: &#x27;ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;state&#x27;: &#x27;DELETED&#x27;, &#x27;ui_config&#x27;: {}, &#x27;width&#x27;: 56}], &#x27;type&#x27;: &#x27;type_example&#x27;, &#x27;ui_config&#x27;: {}}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1525,6 +1575,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>JSON that contains internationalization options.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/parameters_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines parameters for the dashboard.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1795,6 +1862,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>JSON that contains internationalization options.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/saved_searches/parameters_config"></div>
+                    <b>parameters_config</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/saved_searches/parameters_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines parameters for the saved search.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -2112,6 +2197,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/tiles/parameters_map"></div>
+                    <b>parameters_map</b>
+                    <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/tiles/parameters_map" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the saved search parameters values</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-management_dashboard/dashboards/tiles/row"></div>
                     <b>row</b>
                     <a class="ansibleOptionLink" href="#return-management_dashboard/dashboards/tiles/row" title="Permalink to this return value"></a>
@@ -2243,42 +2346,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-management_dashboard/defined_tags"></div>
-                    <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-management_dashboard/defined_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-management_dashboard/freeform_tags"></div>
-                    <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-management_dashboard/freeform_tags" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
-                                    </td>
-            </tr>
                     
                         </table>
     <br/><br/>

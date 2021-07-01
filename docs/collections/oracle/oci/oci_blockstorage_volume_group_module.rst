@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group -- Manage a VolumeGroup resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a VolumeGroup resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new volume group in the specified compartment. A volume group is a collection of volumes and may be created from a list of volumes, cloning an existing volume group, or by restoring a volume group backup. A volume group can contain up to 64 volumes. You may optionally specify a *display name* for the volume group, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
+- For *state=present*, creates a new volume group in the specified compartment. A volume group is a collection of volumes and may be created from a list of volumes, cloning an existing volume group, or by restoring a volume group backup. You may optionally specify a *display name* for the volume group, which is simply a friendly name or description. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - For more information, see `Volume Groups <https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm>`_.
 - This resource has the following action operations in the :ref:`oci_volume_group_actions <ansible_collections.oci_volume_group_actions_module>` module: change_compartment.
 

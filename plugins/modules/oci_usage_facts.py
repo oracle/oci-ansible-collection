@@ -449,6 +449,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.usage_api import UsageapiClient
+    from oci.usage_api.models import RequestSummarizedUsagesDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -460,7 +461,10 @@ class UsageFactsHelperGen(OCIResourceFactsHelperBase):
 
     def get_required_params_for_list(self):
         return [
-            "request_summarized_usages_details",
+            "tenant_id",
+            "time_usage_started",
+            "time_usage_ended",
+            "granularity",
         ]
 
     def list_resources(self):
@@ -472,8 +476,8 @@ class UsageFactsHelperGen(OCIResourceFactsHelperBase):
         )
         return oci_common_utils.list_all_resources(
             self.client.request_summarized_usages,
-            request_summarized_usages_details=self.module.params.get(
-                "request_summarized_usages_details"
+            request_summarized_usages_details=oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, RequestSummarizedUsagesDetails
             ),
             **optional_kwargs
         )
