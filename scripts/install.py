@@ -97,7 +97,7 @@ class OciAnsibleCollectionInstaller:
         (
             linux_distribution_id,
             linux_distribution_id_like,
-        ) = self.get_linux_distribution_id_like()
+        ) = self._get_linux_distribution_id_like()
         return (
             linux_distribution_id_like
             and any(x in linux_distribution_id_like for x in ["ubuntu", "debian"])
