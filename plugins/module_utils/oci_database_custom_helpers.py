@@ -59,17 +59,6 @@ def get_opsi_status(resource):
     return resource.operations_insights_config.operations_insights_status
 
 
-class AutonomousDatabaseHelperCustom:
-    # get model doesn't return admin_password of existing database resources. Thus, excluding
-    # admin_password for idempotency.
-    def get_exclude_attributes(self):
-        return super(AutonomousDatabaseHelperCustom, self).get_exclude_attributes() + [
-            "admin_password",
-            "source",
-            "is_preview_version_with_service_terms_accepted",
-        ]
-
-
 class AutonomousDatabaseRegionalWalletHelperCustom:
     def is_update(self):
         return True
@@ -306,6 +295,17 @@ class DbSystemHelperCustom:
             )
         return create_model_dict
 
+    def get_exclude_attributes(self):
+        # data_storage_size_in_gbs is there in
+        exclude_attributes = super(DbSystemHelperCustom, self).get_exclude_attributes()
+
+        remove_exclude_attributes = ["data_storage_size_in_gbs"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes
+
     def get_update_model_dict_for_idempotence_check(self, update_model):
         update_model_dict = super(
             DbSystemHelperCustom, self
@@ -316,23 +316,6 @@ class DbSystemHelperCustom:
         update_model_dict.pop("version", None)
 
         return update_model_dict
-
-    def get_exclude_attributes(self):
-        exclude_attributes = super(DbSystemHelperCustom, self).get_exclude_attributes()
-        return exclude_attributes + [
-            # source is the discriminator and is not returned by the GET model because post-creation
-            # it doesn't matter what the DB was created from
-            "source",
-            # the db_home resource is not returned on GetDbSystem and cannot be updated through UpdateDbSystem
-            # so we do not consider it
-            # This means that if the user updates db_home in their playbook after the initial create, the resource
-            # will continue to match and will not be updated
-            "db_home",
-            # attribute source_db_system_id is not returned on GetDbSystem
-            "source_db_system_id",
-            # attribute kms_key_version_id is not returned in Get model
-            "kms_key_version_id",
-        ]
 
     def is_update_necessary(self, existing_resource_dict):
         needs_update = super(DbSystemHelperCustom, self).is_update_necessary(
@@ -378,24 +361,6 @@ class DbHomeHelperCustom:
         super(DbHomeHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace
         )
-
-    def get_exclude_attributes(self):
-        exclude_attributes = super(DbHomeHelperCustom, self).get_exclude_attributes()
-
-        return exclude_attributes + [
-            # source is the discriminator and is not returned by the GET model because post-creation
-            # it doesn't matter what the DB was created from
-            "source",
-            # the database resource is not returned on GetDbHome and cannot be updated through UpdateDbHome
-            # so we do not consider it
-            # This means that if the user updates database in their playbook after the initial create, the resource
-            # will continue to match and will not be updated
-            "database",
-            "kms_key_version_id",
-            # This is just a flag for customer to acknowledge that a desupported version is being used. It does not exist
-            # in the get model as well.
-            "is_desupported_version",
-        ]
 
     def get_update_model_dict_for_idempotence_check(self, update_model):
         update_model_dict = super(
@@ -479,17 +444,6 @@ class DataGuardAssociationHelperCustom:
 
         return get_fn
         # return self.client.get_data_guard_association
-
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            DataGuardAssociationHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            # not returned by GET model
-            "database_admin_password",
-            # discriminator, not returned by GET (existing vs new db system)
-            "creation_type",
-        ]
 
 
 class DataGuardAssociationActionsHelperCustom:
@@ -583,6 +537,8 @@ class ExadataInfrastructureHelperCustom:
 
 
 class ExadataInfrastructureActionsHelperCustom:
+    ACTIVATE_ACTION_KEY = "activate"
+
     def download_exadata_infrastructure_config_file(self):
         operation_response = oci_common_utils.call_with_backoff(
             self.client.download_exadata_infrastructure_config_file,
@@ -600,6 +556,16 @@ class ExadataInfrastructureActionsHelperCustom:
                 dest_file.write(chunk)
 
         return None
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if self.module.params.get("action") == self.ACTIVATE_ACTION_KEY:
+            if getattr(resource, "lifecycle_state", None) == "ACTIVE":
+                return False
+            return True
+        return super(
+            ExadataInfrastructureActionsHelperCustom, self
+        ).is_action_necessary(action, resource)
 
 
 class AutonomousContainerDatabaseHelperCustom:
@@ -660,12 +626,16 @@ class AutonomousContainerDatabaseHelperCustom:
         exclude_attributes = super(
             AutonomousContainerDatabaseHelperCustom, self
         ).get_exclude_attributes()
-        return exclude_attributes + [
-            "kms_key_version_id",
-            "peer_autonomous_exadata_infrastructure_id",
-            "peer_autonomous_container_database_display_name",
-            "protection_mode",
+
+        # removing this because the name in response model is maintenance_window
+        # which is handled in get_existing_resource_dict_for_idempotence_check
+        # in order to compare this parameter for idempotency check
+        remove_exclude_attributes = ["maintenance_window_details"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
         ]
+
+        return exclude_attributes
 
 
 class VmClusterNetworkHelperCustom:
@@ -749,16 +719,6 @@ class VmClusterHelperCustom:
 
         return model_dict
 
-    def get_attributes_to_consider_for_create_idempotency_check(self, create_model):
-        attributes_to_consider = super(
-            VmClusterHelperCustom, self
-        ).get_attributes_to_consider_for_create_idempotency_check(create_model)
-        if "cpu_core_count" in attributes_to_consider:
-            attributes_to_consider.remove("cpu_core_count")
-            attributes_to_consider.append("cpus_enabled")
-
-        return attributes_to_consider
-
     def get_update_model_dict_for_idempotence_check(self, update_model):
         # The cpu count param has different names in update model (cpu_core_count) and get model
         # (cpus_enabled). So update the name in the update model for idempotence logic to work.
@@ -788,23 +748,10 @@ class DatabaseHelperCustom:
         create_model_dict = super(
             DatabaseHelperCustom, self
         ).get_create_model_dict_for_idempotence_check(create_model)
-        create_model_dict = dict(
-            (k, v)
-            for k, v in six.iteritems(create_model_dict)
-            if k not in ["source", "db_version"]
-        )
         for k, v in six.iteritems(create_model_dict.pop("database", dict())):
             if k not in ["backup_id", "backup_tde_password", "admin_password"]:
                 create_model_dict[k] = v
         return create_model_dict
-
-    # model returned by GetDatabase operation doesn't have attribute `kms_key_version_id` & `tde_wallet_password`
-    def get_exclude_attributes(self):
-        exclude_attributes = super(DatabaseHelperCustom, self).get_exclude_attributes()
-        return exclude_attributes + [
-            "kms_key_version_id",
-            "tde_wallet_password",
-        ]
 
     # attributes `new_admin_password`, `old_tde_wallet_password`, "new_tde_wallet_password" are not returned in GET model
     # for security reasons.
@@ -816,6 +763,25 @@ class DatabaseHelperCustom:
         update_model_dict.pop("old_tde_wallet_password", None)
         update_model_dict.pop("new_tde_wallet_password", None)
         return update_model_dict
+
+    def get_exclude_attributes(self):
+        exclude_attributes = super(DatabaseHelperCustom, self).get_exclude_attributes()
+
+        # model returned by GetDatabase operation doesn't have attribute `kms_key_version_id` & `tde_wallet_password`
+        # and we have populated it from the database param of the CreateDatabaseDetails
+        # check get_create_model_dict_for_idempotence_check
+        exclude_attributes = exclude_attributes + [
+            "tde_wallet_password",
+        ]
+
+        # this is already removed in the get_create_model_dict_for_idempotence_check
+        # populating additional information
+        remove_exclude_attributes = ["database"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes
 
 
 class AutonomousVmClusterHelperCustom:

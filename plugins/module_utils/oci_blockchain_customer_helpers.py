@@ -29,20 +29,6 @@ def get_logger():
 
 
 class BlockchainPlatformHelperCustom:
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            BlockchainPlatformHelperCustom, self
-        ).get_exclude_attributes()
-        # These attributes are used for authentication and not really representative of the resource itself except maybe
-        # ca_cert_archive_text but it is not available in the get model and there is no way for us to compare it with
-        # the existing resource.
-        exclude_attributes += [
-            "idcs_access_token",
-            "federated_user_id",
-            "ca_cert_archive_text",
-        ]
-        return exclude_attributes
-
     def get_entity_type(self):
         return "instance"
 

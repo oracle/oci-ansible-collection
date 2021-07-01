@@ -68,6 +68,10 @@ options:
         description:
             - The displayName prefix.
         type: str
+    spark_version:
+        description:
+            - The Spark version utilized to run the application.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -370,6 +374,7 @@ class DataFlowApplicationFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "owner_principal_id",
             "display_name_starts_with",
+            "spark_version",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -407,6 +412,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             owner_principal_id=dict(type="str"),
             display_name_starts_with=dict(type="str"),
+            spark_version=dict(type="str"),
         )
     )
 

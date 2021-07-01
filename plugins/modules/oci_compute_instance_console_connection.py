@@ -257,6 +257,9 @@ class InstanceConsoleConnectionHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateInstanceConsoleConnectionDetails
 
+    def get_exclude_attributes(self):
+        return ["public_key"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

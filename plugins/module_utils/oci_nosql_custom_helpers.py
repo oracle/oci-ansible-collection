@@ -13,14 +13,6 @@ class IndexHelperCustom:
     def is_create(self):
         return self.module.params.get("state") == "present"
 
-    def get_exclude_attributes(self):
-        exclude_attributes = super(IndexHelperCustom, self).get_exclude_attributes()
-
-        # exclude the attributes from the create model which are not present in the get model for idempotency check
-        return exclude_attributes + [
-            "is_if_not_exists",
-        ]
-
     def get_matching_resource(self):
         # if is_if_not_exists is explicitly set to False that means the user wants to disable idempotency
         # which will attmept to create the index and fail if it already exists

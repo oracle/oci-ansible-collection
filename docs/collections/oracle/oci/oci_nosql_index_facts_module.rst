@@ -20,7 +20,7 @@ oracle.oci.oci_nosql_index_facts -- Fetches details about one or multiple Index 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

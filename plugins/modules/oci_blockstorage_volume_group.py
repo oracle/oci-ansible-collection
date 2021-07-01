@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a VolumeGroup resource in Oracle Cloud Infrastructure
     - "For I(state=present), creates a new volume group in the specified compartment.
       A volume group is a collection of volumes and may be created from a list of volumes, cloning an existing
-      volume group, or by restoring a volume group backup. A volume group can contain up to 64 volumes.
+      volume group, or by restoring a volume group backup.
       You may optionally specify a *display name* for the volume group, which is simply a friendly name or
       description. It does not have to be unique, and you can change it. Avoid entering confidential information."
     - For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
@@ -375,6 +375,9 @@ class VolumeGroupHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateVolumeGroupDetails
+
+    def get_exclude_attributes(self):
+        return ["backup_policy_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()

@@ -1280,6 +1280,16 @@ class DbSystemHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return LaunchDbSystemBase
 
+    def get_exclude_attributes(self):
+        return [
+            "data_storage_size_in_gbs",
+            "kms_key_version_id",
+            "source",
+            "private_ip",
+            "db_home",
+            "maintenance_window_details",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

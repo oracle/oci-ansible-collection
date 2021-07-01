@@ -119,6 +119,12 @@ options:
         description:
             - Filter by one or more hostname.
         type: list
+    is_database_instance_level_metrics:
+        description:
+            - Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied.
+              When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the
+              whole database which contains an instance on this host.
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -242,6 +248,7 @@ class ResourceCapacityTrendFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "tablespace_name",
             "host_name",
+            "is_database_instance_level_metrics",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -304,6 +311,7 @@ def main():
             ),
             tablespace_name=dict(type="str"),
             host_name=dict(type="list"),
+            is_database_instance_level_metrics=dict(type="bool"),
         )
     )
 

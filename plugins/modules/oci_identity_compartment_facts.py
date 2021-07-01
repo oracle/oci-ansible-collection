@@ -236,7 +236,7 @@ class CompartmentFactsHelperGen(OCIResourceFactsHelperBase):
 
     def get_required_params_for_list(self):
         return [
-            "compartment_id",
+            "parent_compartment_id",
         ]
 
     def get_resource(self):

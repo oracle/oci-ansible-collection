@@ -23,6 +23,7 @@ module: oci_container_engine_cluster_actions
 short_description: Perform actions on a Cluster resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Cluster resource in Oracle Cloud Infrastructure
+    - For I(action=cluster_migrate_to_native_vcn), initiates cluster migration to use native VCN.
     - For I(action=update_cluster_endpoint_config), update the details of the cluster endpoint configuration.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -33,14 +34,41 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    endpoint_config:
+        description:
+            - The network configuration for access to the Cluster control plane.
+            - Required for I(action=cluster_migrate_to_native_vcn).
+        type: dict
+        suboptions:
+            subnet_id:
+                description:
+                    - The OCID of the regional subnet in which to place the Cluster endpoint.
+                type: str
+            nsg_ids:
+                description:
+                    - A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                type: list
+            is_public_ip_enabled:
+                description:
+                    - Whether the cluster should be assigned a public IP address. Defaults to false. If set to true on a private subnet, the cluster
+                      provisioning will fail.
+                type: bool
+    decommission_delay_duration:
+        description:
+            - The optional override of the non-native endpoint decommission time after migration is complete. Defaults to 30 days.
+            - Applicable only for I(action=cluster_migrate_to_native_vcn).
+        type: str
     nsg_ids:
         description:
             - A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see
               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+            - Applicable only for I(action=update_cluster_endpoint_config).
         type: list
     is_public_ip_enabled:
         description:
             - Whether the cluster should be assigned a public IP address. Defaults to false. If set to true on a private subnet, the cluster update will fail.
+            - Applicable only for I(action=update_cluster_endpoint_config).
         type: bool
     action:
         description:
@@ -48,11 +76,17 @@ options:
         type: str
         required: true
         choices:
+            - "cluster_migrate_to_native_vcn"
             - "update_cluster_endpoint_config"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action cluster_migrate_to_native_vcn on cluster
+  oci_container_engine_cluster_actions:
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: cluster_migrate_to_native_vcn
+
 - name: Perform action update_cluster_endpoint_config on cluster
   oci_container_engine_cluster_actions:
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
@@ -382,6 +416,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.container_engine import ContainerEngineClient
+    from oci.container_engine.models import ClusterMigrateToNativeVcnDetails
     from oci.container_engine.models import UpdateClusterEndpointConfigDetails
 
     HAS_OCI_PY_SDK = True
@@ -392,6 +427,7 @@ except ImportError:
 class ClusterActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        cluster_migrate_to_native_vcn
         update_cluster_endpoint_config
     """
 
@@ -408,6 +444,27 @@ class ClusterActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_cluster, cluster_id=self.module.params.get("cluster_id"),
+        )
+
+    def cluster_migrate_to_native_vcn(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ClusterMigrateToNativeVcnDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.cluster_migrate_to_native_vcn,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                cluster_id=self.module.params.get("cluster_id"),
+                cluster_migrate_to_native_vcn_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def update_cluster_endpoint_config(self):
@@ -446,10 +503,24 @@ def main():
     module_args.update(
         dict(
             cluster_id=dict(aliases=["id"], type="str", required=True),
+            endpoint_config=dict(
+                type="dict",
+                options=dict(
+                    subnet_id=dict(type="str"),
+                    nsg_ids=dict(type="list"),
+                    is_public_ip_enabled=dict(type="bool"),
+                ),
+            ),
+            decommission_delay_duration=dict(type="str"),
             nsg_ids=dict(type="list"),
             is_public_ip_enabled=dict(type="bool"),
             action=dict(
-                type="str", required=True, choices=["update_cluster_endpoint_config"]
+                type="str",
+                required=True,
+                choices=[
+                    "cluster_migrate_to_native_vcn",
+                    "update_cluster_endpoint_config",
+                ],
             ),
         )
     )

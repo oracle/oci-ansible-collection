@@ -20,7 +20,7 @@ oracle.oci.oci_compute_volume_attachment -- Manage a VolumeAttachment resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -42,7 +42,7 @@ Synopsis
 
 .. Description
 
-- This module allows the user to create and delete a VolumeAttachment resource in Oracle Cloud Infrastructure
+- This module allows the user to create, update and delete a VolumeAttachment resource in Oracle Cloud Infrastructure
 - For *state=present*, attaches the specified storage volume to the specified instance.
 
 
@@ -167,6 +167,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
@@ -228,9 +229,29 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.</div>
-                                            <div>Required for create, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-encryption_in_transit_type"></div>
+                    <b>encryption_in_transit_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-encryption_in_transit_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NONE</li>
+                                                                                                                                                                                                <li>BM_ENCRYPTION_IN_TRANSIT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Refer the top-level definition of encryptionInTransitType. The default value is NONE.</div>
+                                            <div>Applicable when type is &#x27;iscsi&#x27;</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -327,6 +348,31 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-iscsi_login_state"></div>
+                    <b>iscsi_login_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-iscsi_login_state" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>UNKNOWN</li>
+                                                                                                                                                                                                <li>LOGGING_IN</li>
+                                                                                                                                                                                                <li>LOGIN_SUCCEEDED</li>
+                                                                                                                                                                                                <li>LOGIN_FAILED</li>
+                                                                                                                                                                                                <li>LOGGING_OUT</li>
+                                                                                                                                                                                                <li>LOGOUT_SUCCEEDED</li>
+                                                                                                                                                                                                <li>LOGOUT_FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The iscsi login state of the volume attachment. For a multipath volume attachment, all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -372,7 +418,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The state of the VolumeAttachment.</div>
-                                            <div>Use <em>state=present</em> to create a VolumeAttachment.</div>
+                                            <div>Use <em>state=present</em> to create or update a VolumeAttachment.</div>
                                             <div>Use <em>state=absent</em> to delete a VolumeAttachment.</div>
                                                         </td>
             </tr>
@@ -446,6 +492,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the volume attachment.</div>
+                                            <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -529,6 +576,17 @@ Examples
         volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
+    - name: Update volume_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_compute_volume_attachment:
+        display_name: display_name_example
+        iscsi_login_state: UNKNOWN
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update volume_attachment
+      oci_compute_volume_attachment:
+        volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
+        iscsi_login_state: UNKNOWN
+
     - name: Delete volume_attachment
       oci_compute_volume_attachment:
         volume_attachment_id: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -557,12 +615,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment"></div>
                     <b>volume_attachment</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment" title="Permalink to this return value"></a>
@@ -575,12 +633,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VolumeAttachment resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;attachment_type_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;attachment_type_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;169.254.2.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195&#x27;, &#x27;port&#x27;: 3260}], &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/attachment_type"></div>
                     <b>attachment_type</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/attachment_type" title="Permalink to this return value"></a>
@@ -598,7 +656,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/availability_domain" title="Permalink to this return value"></a>
@@ -617,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/chap_secret"></div>
                     <b>chap_secret</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/chap_secret" title="Permalink to this return value"></a>
@@ -635,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/chap_username"></div>
                     <b>chap_username</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/chap_username" title="Permalink to this return value"></a>
@@ -654,7 +712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/compartment_id" title="Permalink to this return value"></a>
@@ -672,7 +730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/device"></div>
                     <b>device</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/device" title="Permalink to this return value"></a>
@@ -690,7 +748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/display_name" title="Permalink to this return value"></a>
@@ -709,7 +767,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/encryption_in_transit_type"></div>
+                    <b>encryption_in_transit_type</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/encryption_in_transit_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Refer the top-level definition of encryptionInTransitType. The default value is NONE.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/id" title="Permalink to this return value"></a>
@@ -727,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/instance_id"></div>
                     <b>instance_id</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/instance_id" title="Permalink to this return value"></a>
@@ -745,7 +821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/ipv4"></div>
                     <b>ipv4</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/ipv4" title="Permalink to this return value"></a>
@@ -764,7 +840,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/iqn"></div>
                     <b>iqn</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/iqn" title="Permalink to this return value"></a>
@@ -783,7 +859,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/is_multipath"></div>
+                    <b>is_multipath</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/is_multipath" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the attachment is multipath or not.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/is_pv_encryption_in_transit_enabled"></div>
                     <b>is_pv_encryption_in_transit_enabled</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/is_pv_encryption_in_transit_enabled" title="Permalink to this return value"></a>
@@ -801,7 +895,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/is_read_only"></div>
                     <b>is_read_only</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/is_read_only" title="Permalink to this return value"></a>
@@ -819,7 +913,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/is_shareable"></div>
                     <b>is_shareable</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/is_shareable" title="Permalink to this return value"></a>
@@ -837,7 +931,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/iscsi_attach_commands"></div>
                     <b>iscsi_attach_commands</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/iscsi_attach_commands" title="Permalink to this return value"></a>
@@ -855,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/iscsi_detach_commands"></div>
                     <b>iscsi_detach_commands</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/iscsi_detach_commands" title="Permalink to this return value"></a>
@@ -873,7 +967,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/iscsi_login_state"></div>
+                    <b>iscsi_login_state</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/iscsi_login_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The iscsi login state of the volume attachment. For a multipath volume attachment, all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UNKNOWN</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/lifecycle_state" title="Permalink to this return value"></a>
@@ -891,7 +1003,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/multipath_devices"></div>
+                    <b>multipath_devices</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/multipath_devices" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of secondary multipath devices</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/multipath_devices/ipv4"></div>
+                    <b>ipv4</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/multipath_devices/ipv4" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The volume&#x27;s iSCSI IP address.</div>
+                                            <div>Example: `169.254.2.2`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">169.254.2.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/multipath_devices/iqn"></div>
+                    <b>iqn</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/multipath_devices/iqn" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The target volume&#x27;s iSCSI Qualified Name in the format defined by <a href='https://tools.ietf.org/html/rfc3720#page-32'>RFC 3720</a>.</div>
+                                            <div>Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/multipath_devices/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/multipath_devices/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The volume&#x27;s iSCSI port, usually port 860 or 3260.</div>
+                                            <div>Example: `3260`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3260</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/port" title="Permalink to this return value"></a>
@@ -910,7 +1099,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/time_created" title="Permalink to this return value"></a>
@@ -929,7 +1118,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-volume_attachment/volume_id"></div>
                     <b>volume_id</b>
                     <a class="ansibleOptionLink" href="#return-volume_attachment/volume_id" title="Permalink to this return value"></a>

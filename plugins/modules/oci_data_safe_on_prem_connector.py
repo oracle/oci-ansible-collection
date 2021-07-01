@@ -178,6 +178,13 @@ on_prem_connector:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         available_version:
             description:
                 - Latest available version of the on-premises connector.
@@ -200,6 +207,7 @@ on_prem_connector:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "available_version": "available_version_example",
         "created_version": "created_version_example"
     }

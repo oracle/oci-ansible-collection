@@ -26,8 +26,8 @@ description:
     - For I(state=present), creates an Exadata infrastructure resource. Applies to Exadata Cloud@Customer instances only.
       To create an Exadata Cloud Service infrastructure resource, use the  L(CreateCloudExadataInfrastructure,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
-    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, change_compartment,
-      download_exadata_infrastructure_config_file."
+    - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, add_storage_capacity,
+      change_compartment, download_exadata_infrastructure_config_file."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -203,6 +203,14 @@ options:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                 type: int
+    storage_count:
+        description:
+            - The number of storage servers for the Exadata infrastructure.
+        type: int
+    compute_count:
+        description:
+            - The number of compute servers for the Exadata infrastructure.
+        type: int
     dns_server:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
@@ -235,6 +243,11 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    additional_storage_count:
+        description:
+            - The requested number of additional storage servers for the Exadata infrastructure.
+            - This parameter is updatable.
+        type: int
     state:
         description:
             - The state of the ExadataInfrastructure.
@@ -380,6 +393,30 @@ exadata_infrastructure:
             returned: on success
             type: float
             sample: 1.2
+        storage_count:
+            description:
+                - The number of Exadata storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        additional_storage_count:
+            description:
+                - The requested number of additional storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        activated_storage_count:
+            description:
+                - The requested number of additional storage servers activated for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        compute_count:
+            description:
+                - The number of compute servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
         cloud_control_plane_server1:
             description:
                 - The IP address for the first control plane server.
@@ -601,6 +638,10 @@ exadata_infrastructure:
         "max_db_node_storage_in_g_bs": 56,
         "data_storage_size_in_tbs": 1.2,
         "max_data_storage_in_t_bs": 1.2,
+        "storage_count": 56,
+        "additional_storage_count": 56,
+        "activated_storage_count": 56,
+        "compute_count": 56,
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
         "cloud_control_plane_server2": "cloud_control_plane_server2_example",
         "netmask": "netmask_example",
@@ -868,11 +909,14 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
+            storage_count=dict(type="int"),
+            compute_count=dict(type="int"),
             dns_server=dict(type="list"),
             ntp_server=dict(type="list"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             exadata_infrastructure_id=dict(aliases=["id"], type="str"),
+            additional_storage_count=dict(type="int"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

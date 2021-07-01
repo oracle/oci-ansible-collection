@@ -768,6 +768,19 @@ class AutonomousContainerDatabaseHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAutonomousContainerDatabaseDetails
 
+    def get_exclude_attributes(self):
+        return [
+            "peer_autonomous_exadata_infrastructure_id",
+            "peer_autonomous_container_database_display_name",
+            "protection_mode",
+            "peer_autonomous_vm_cluster_id",
+            "peer_autonomous_container_database_compartment_id",
+            "peer_autonomous_container_database_backup_config",
+            "peer_db_unique_name",
+            "maintenance_window_details",
+            "kms_key_version_id",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_application_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -315,6 +315,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The ordering of results in ascending or descending order.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-spark_version"></div>
+                    <b>spark_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-spark_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Spark version utilized to run the application.</div>
                                                         </td>
             </tr>
                                 <tr>

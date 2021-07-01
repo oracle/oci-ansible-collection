@@ -704,8 +704,8 @@ instances:
             "type": "AMD_MILAN_BM",
             "numa_nodes_per_socket": "NPS0"
         },
-        "primary_private_ip": 10.0.0.10,
-        "primary_public_ip": 140.34.93.209
+        "primary_private_ip": "10.0.0.10",
+        "primary_public_ip": "140.34.93.209"
     }]
 """
 

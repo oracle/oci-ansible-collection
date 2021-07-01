@@ -223,6 +223,9 @@ class CertificateHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateCertificateDetails
 
+    def get_exclude_attributes(self):
+        return ["passphrase", "private_key"]
+
     def is_update(self):
         if not self.module.params.get("state") == "present":
             return False

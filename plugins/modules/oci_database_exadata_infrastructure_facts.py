@@ -183,6 +183,30 @@ exadata_infrastructures:
             returned: on success
             type: float
             sample: 1.2
+        storage_count:
+            description:
+                - The number of Exadata storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        additional_storage_count:
+            description:
+                - The requested number of additional storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        activated_storage_count:
+            description:
+                - The requested number of additional storage servers activated for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        compute_count:
+            description:
+                - The number of compute servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
         cloud_control_plane_server1:
             description:
                 - The IP address for the first control plane server.
@@ -404,6 +428,10 @@ exadata_infrastructures:
         "max_db_node_storage_in_g_bs": 56,
         "data_storage_size_in_tbs": 1.2,
         "max_data_storage_in_t_bs": 1.2,
+        "storage_count": 56,
+        "additional_storage_count": 56,
+        "activated_storage_count": 56,
+        "compute_count": 56,
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
         "cloud_control_plane_server2": "cloud_control_plane_server2_example",
         "netmask": "netmask_example",

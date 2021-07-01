@@ -31,17 +31,6 @@ class MountTargetFactsHelperCustom:
         return result
 
 
-class MountTargetHelperCustom:
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            MountTargetHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            "hostname_label",
-            "ip_address",
-        ]
-
-
 class FileSystemHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):
         create_model_dict = super(

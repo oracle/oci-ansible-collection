@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume -- Manage a Volume resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -168,9 +168,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The availability domain of the volume.</div>
+                                            <div>The availability domain of the volume. Omissible for cloning a volume. The new volume will be created in the availability domain of the source volume.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -654,7 +653,6 @@ Examples
     
     - name: Create volume
       oci_blockstorage_volume:
-        availability_domain: Uocm:PHX-AD-1
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)

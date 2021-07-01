@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.25.0] - 2021-07-01
+
+## Added
+- Elastic Storage feature for Exadata Infrastructure and Vm Cluster resources for ExaCC
+- Support for migrating OKE cluster with a public Kubernetes API Endpoint that is not integrated with your VCN to a VCN-Native cluster (more secure)
+- Support for managing container scan recipes and targets in Vulnerability Scanning Service
+- Support to update iscsiLoginState for a VolumeAttachment
+- `encryption_in_transit_type` parameter in `oci_compute_volume_attachment` module
+- `parameters_config` parameter in `oci_management_dashboard_actions` module.
+- `parameters_map` sub-parameter under `tiles` parameter in `oci_management_dashboard_actions` module
+- Support for 'host_name' and 'is_database_instance_level_metrics' parameters in Operations Insights (opsi) service
+- Data Safe support for registration and management of target databases.
+- support for sparkVersion property in the DataFlow Application
+- support for `is_data_ever_ingested` return parameter for `log_analytics_namespace` modules.
+
+## Fixed
+- Instance configuration creation from instance issue
+- logging file permission issue
+
+## Changed
+- Please update to the latest version of [OCI Python SDK](https://github.com/oracle/oci-python-sdk)
+
+## Breaking
+- For Management Dashboard Service, fields `freeform_tags` and `defined_tags` removed from the response for the action `export_dashboard`.
+- For DataFlow Application, property spark_version is required for create
+
 ## [2.24.0] - 2021-06-17
 
 ## Added

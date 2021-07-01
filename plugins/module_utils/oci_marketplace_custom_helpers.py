@@ -17,15 +17,6 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class AcceptedAgreementHelperCustom:
-    # get model doesn't return `signature` of accepted aggreement. Thus, excluding
-    # `signature` for idempotency.
-    def get_exclude_attributes(self):
-        return super(AcceptedAgreementHelperCustom, self).get_exclude_attributes() + [
-            "signature",
-        ]
-
-
 class PublicationHelperCustom:
     """
     Helper Custom for Marketplace Publications.
@@ -47,9 +38,6 @@ class PublicationHelperCustom:
 
         if create_model_dict and "package_details" in create_model_dict:
             create_model_dict["package_details"].pop("eula", None)
-
-        if create_model_dict:
-            create_model_dict.pop("is_agreement_acknowledged", None)
 
         return create_model_dict
 
@@ -83,3 +71,23 @@ class PublicationHelperCustom:
         }
 
         return existing_resource_dict
+
+    def get_exclude_attributes(self):
+        """
+        Overrides the generated method to remove package_details
+        from the attributes excluded for idempotence check.
+
+        package_details will not be excluded for idempotency check now
+        as we are populating necessary details in the resource dictionary
+        in get_existing_resource_dict_for_idempotence_check method
+        """
+        exclude_attributes = super(
+            PublicationHelperCustom, self
+        ).get_exclude_attributes()
+
+        remove_exclude_attributes = ["package_details"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes

@@ -16,7 +16,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible.module_utils._text import to_bytes
 import base64
 import os
-from multiprocessing.pool import ThreadPool
 
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
@@ -131,7 +130,7 @@ class BucketsHelper:
 
         # list all entities i.e. objects, preauthentication
         # requests and replication policies
-        with ThreadPool(4) as pool:
+        with oci_common_utils.threaded_worker_pool(4) as pool:
             (list_summary, preauthenticated_requests, replication_policies,) = pool.map(
                 BucketsHelper.list_entities, list_entities_kwargs
             )
@@ -189,7 +188,9 @@ class BucketsHelper:
 
         if entity_kwargs:
             # delete all entities
-            with ThreadPool(min(50, len(entity_kwargs))) as pool:
+            with oci_common_utils.threaded_worker_pool(
+                min(50, len(entity_kwargs))
+            ) as pool:
                 pool.map(BucketsHelper.delete_entity, entity_kwargs)
 
     @staticmethod
@@ -230,7 +231,9 @@ class BucketsHelper:
             ]
 
             # delete all objects
-            with ThreadPool(min(50, len(delete_kwargs))) as pool:
+            with oci_common_utils.threaded_worker_pool(
+                min(50, len(delete_kwargs))
+            ) as pool:
                 pool.map(BucketsHelper.delete_entity, delete_kwargs)
 
     @staticmethod

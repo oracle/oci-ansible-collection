@@ -24,7 +24,7 @@ short_description: Manage a Cluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Cluster resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new cluster.
-    - "This resource has the following action operations in the M(oci_cluster_actions) module: update_cluster_endpoint_config."
+    - "This resource has the following action operations in the M(oci_cluster_actions) module: cluster_migrate_to_native_vcn, update_cluster_endpoint_config."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

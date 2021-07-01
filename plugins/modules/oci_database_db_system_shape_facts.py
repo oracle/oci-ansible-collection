@@ -90,6 +90,36 @@ db_system_shapes:
             returned: on success
             type: int
             sample: 56
+        min_storage_count:
+            description:
+                - The minimum number of Exadata storage servers available for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        max_storage_count:
+            description:
+                - The maximum number of Exadata storage servers available for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        available_data_storage_per_server_in_tbs:
+            description:
+                - The maximum data storage available per storage server for this shape. Only applicable to ExaCC Elastic shapes.
+            returned: on success
+            type: float
+            sample: 1.2
+        available_memory_per_node_in_gbs:
+            description:
+                - The maximum memory available per database node for this shape. Only applicable to ExaCC Elastic shapes.
+            returned: on success
+            type: int
+            sample: 56
+        available_db_node_per_node_in_gbs:
+            description:
+                - The maximum Db Node storage available per database node for this shape. Only applicable to ExaCC Elastic shapes.
+            returned: on success
+            type: int
+            sample: 56
         min_core_count_per_node:
             description:
                 - The minimum number of CPU cores that can be enabled per node for this shape.
@@ -146,8 +176,8 @@ db_system_shapes:
             sample: 56
         available_core_count_per_node:
             description:
-                - The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape. Does not
-                  apply to X6, X7, and X8 fixed-shape systems.
+                - The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape and ExaCC
+                  Elastic shapes.
             returned: on success
             type: int
             sample: 56
@@ -158,6 +188,11 @@ db_system_shapes:
         "available_core_count": 56,
         "minimum_core_count": 56,
         "core_count_increment": 56,
+        "min_storage_count": 56,
+        "max_storage_count": 56,
+        "available_data_storage_per_server_in_tbs": 1.2,
+        "available_memory_per_node_in_gbs": 56,
+        "available_db_node_per_node_in_gbs": 56,
         "min_core_count_per_node": 56,
         "available_memory_in_gbs": 56,
         "min_memory_per_node_in_g_bs": 56,

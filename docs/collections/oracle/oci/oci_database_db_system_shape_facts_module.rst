@@ -20,7 +20,7 @@ oracle.oci.oci_database_db_system_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -319,7 +319,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbSystemShape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_core_count_per_node&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_core_count_per_node&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_data_storage_per_server_in_tbs&#x27;: 1.2, &#x27;available_db_node_per_node_in_gbs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;available_memory_per_node_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;max_storage_count&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;min_storage_count&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -352,7 +352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape. Does not apply to X6, X7, and X8 fixed-shape systems.</div>
+                                            <div>The maximum number of CPU cores per database node that can be enabled for this shape. Only applicable to the flex Exadata shape and ExaCC Elastic shapes.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -371,6 +371,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The maximum DATA storage that can be enabled for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_data_storage_per_server_in_tbs"></div>
+                    <b>available_data_storage_per_server_in_tbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_data_storage_per_server_in_tbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum data storage available per storage server for this shape. Only applicable to ExaCC Elastic shapes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_db_node_per_node_in_gbs"></div>
+                    <b>available_db_node_per_node_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_db_node_per_node_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum Db Node storage available per database node for this shape. Only applicable to ExaCC Elastic shapes.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -415,6 +451,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/available_memory_per_node_in_gbs"></div>
+                    <b>available_memory_per_node_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/available_memory_per_node_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum memory available per database node for this shape. Only applicable to ExaCC Elastic shapes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-db_system_shapes/core_count_increment"></div>
                     <b>core_count_increment</b>
                     <a class="ansibleOptionLink" href="#return-db_system_shapes/core_count_increment" title="Permalink to this return value"></a>
@@ -425,6 +479,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The discrete number by which the CPU core count for this shape can be increased or decreased.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/max_storage_count"></div>
+                    <b>max_storage_count</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/max_storage_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum number of Exadata storage servers available for the Exadata infrastructure.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -515,6 +587,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The minimum memory that need be allocated per node for this shape.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/min_storage_count"></div>
+                    <b>min_storage_count</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/min_storage_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum number of Exadata storage servers available for the Exadata infrastructure.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

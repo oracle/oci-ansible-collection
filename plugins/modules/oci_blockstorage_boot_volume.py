@@ -33,7 +33,8 @@ author: Oracle (@oracle)
 options:
     availability_domain:
         description:
-            - The availability domain of the boot volume.
+            - The availability domain of the volume. Omissible for cloning a volume. The new volume will be created in the availability domain of the source
+              volume.
             - "Example: `Uocm:PHX-AD-1`"
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -468,6 +469,9 @@ class BootVolumeHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateBootVolumeDetails
+
+    def get_exclude_attributes(self):
+        return ["backup_policy_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()

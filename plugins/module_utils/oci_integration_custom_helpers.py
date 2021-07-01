@@ -19,15 +19,6 @@ except ImportError:
 
 
 class IntegrationInstanceHelperCustom:
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            IntegrationInstanceHelperCustom, self
-        ).get_exclude_attributes()
-        # exclude the attributes from the create model which are not present in the get model for idempotency check
-        return exclude_attributes + [
-            "idcs_at",
-        ]
-
     def get_default_module_wait_timeout(self):
         return 3600
 

@@ -423,6 +423,9 @@ class StreamPoolHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateStreamPoolDetails
 
+    def get_exclude_attributes(self):
+        return ["custom_encryption_key_details", "private_endpoint_details"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

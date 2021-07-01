@@ -30,15 +30,6 @@ def get_logger():
 
 
 class AnalyticsInstanceHelperCustom:
-    # exclude the attributes from the create model which are not present in the get model for idempotency check
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            AnalyticsInstanceHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            "idcs_access_token",
-        ]
-
     # creation of a analytics_instance is a long running process. So, increasing the timeout
     def get_default_module_wait_timeout(self):
         return 3600
@@ -86,8 +77,7 @@ class VanityUrlHelperCustom:
             "vanity_url_key"
         )
 
-    # All the attributes are not returned in the API response.
-    # So, we exclude the attributes which are not returned back by the API
+    # get_exlude_attributes not generated as vanity_url doesn't have a get/list operation
     def get_exclude_attributes(self):
         exclude_attributes = super(VanityUrlHelperCustom, self).get_exclude_attributes()
         return exclude_attributes + [

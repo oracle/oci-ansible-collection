@@ -351,6 +351,9 @@ class PrivateApplicationHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreatePrivateApplicationDetails
 
+    def get_exclude_attributes(self):
+        return ["logo_file_base64_encoded", "package_details"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

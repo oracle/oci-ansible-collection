@@ -282,10 +282,24 @@ class CrossConnectHelperCustom:
 
 
 class VirtualCircuitHelperCustom:
-    def get_exclude_attributes(self):
-        return super(VirtualCircuitHelperCustom, self).get_exclude_attributes() + [
-            "public_prefixes",
-        ]
+    def get_create_model_dict_for_idempotence_check(self, create_model):
+        create_model_dict = super(
+            VirtualCircuitHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(create_model)
+
+        # flattening out the public prefixes if present
+        # in response model we get a list[string]
+        # in request we have list[Complex]
+        # converting list[Complex] to list[string] in request for idempotence comparison
+        public_prefixes = create_model_dict.pop("public_prefixes", None)
+        if public_prefixes:
+            new_public_prefixes = []
+            for prefix in public_prefixes:
+                new_public_prefixes.append(prefix.get("cidr_block"))
+            if new_public_prefixes:
+                create_model_dict["public_prefixes"] = new_public_prefixes
+
+        return create_model_dict
 
 
 class VirtualCircuitActionsHelperCustom:

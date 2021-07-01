@@ -229,6 +229,13 @@ data_safe_private_endpoint:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -243,7 +250,8 @@ data_safe_private_endpoint:
         "lifecycle_state": "CREATING",
         "nsg_ids": [],
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {}
     }
 """
 

@@ -37,29 +37,16 @@ def get_logger():
 # because we exclude the nodes from the idempotency check.
 # Some node types can be updated using actions.
 class BdsInstanceHelperCustom:
-    # exclude the attributes from the create model which are not present in the get model for idempotency check
     def get_exclude_attributes(self):
         exclude_attributes = super(
             BdsInstanceHelperCustom, self
         ).get_exclude_attributes()
         return exclude_attributes + [
-            "cluster_public_key",
-            "cluster_admin_password",
             "nodes",  # Nodes can have different number and types, update is not supported
         ]
 
 
 class BdsInstanceActionsHelperCustom:
-    # exclude the attributes from the action which are not present in the get model for idempotency check
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            BdsInstanceActionsHelperCustom, self
-        ).get_exclude_attributes()
-        return exclude_attributes + [
-            "cluster_admin_password",
-            "nodes",  # Nodes can have different number and types, update is not supported
-        ]
-
     # We need to check the value of is_cloud_sql_configured to know if SQL is configured for idempotency check
     def is_action_necessary(self, action, resource):
         if (
@@ -142,8 +129,6 @@ class BdsAutoScaleConfigHelperCustom:
             create_model_dict["lifecycle_state"] = "ACTIVE"
         elif create_model_dict.get("is_enabled") is False:
             create_model_dict["lifecycle_state"] = "DELETED"
-        create_model_dict.pop("is_enabled", None)
-        create_model_dict.pop("cluster_admin_password", None)
         return create_model_dict
 
     # logic for idempotency

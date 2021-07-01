@@ -42,14 +42,6 @@ class PrivateApplicationHelperCustom:
 
         return "data:application/zip;base64," + b64encode(file_content).decode("ascii")
 
-    def get_exclude_attributes(self):
-        """
-        Attributes to ignore for idempotence tests.
-        """
-        return super(PrivateApplicationHelperCustom, self).get_exclude_attributes() + [
-            "package_details",
-        ]
-
     def get_existing_resource_dict_for_idempotence_check(self, existing_resource):
         """
         Overrides the generated method to include logo file.
@@ -79,3 +71,23 @@ class PrivateApplicationHelperCustom:
         existing_resource_dict["logo_file_base64_encoded"] = logo_file
 
         return existing_resource_dict
+
+    def get_exclude_attributes(self):
+        """
+        Overriding the method to remove logo_file_base64_encoded
+        from the excluded attributes.
+
+        logo_file_base64_encoded will not be ignored during idempotence
+        check as we are populating the required data in
+        get_existing_resource_dict_for_update method.
+        """
+        exclude_attributes = super(
+            PrivateApplicationHelperCustom, self
+        ).get_exclude_attributes()
+
+        remove_exclude_attributes = ["logo_file_base64_encoded"]
+        exclude_attributes = [
+            x for x in exclude_attributes if x not in remove_exclude_attributes
+        ]
+
+        return exclude_attributes

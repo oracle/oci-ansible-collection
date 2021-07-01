@@ -380,6 +380,9 @@ class FileSystemHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateFileSystemDetails
 
+    def get_exclude_attributes(self):
+        return ["source_snapshot_id"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

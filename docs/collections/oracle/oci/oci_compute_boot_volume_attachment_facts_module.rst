@@ -20,7 +20,7 @@ oracle.oci.oci_compute_boot_volume_attachment_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -375,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BootVolumeAttachment resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;My boot volume&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;My boot volume&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -450,6 +450,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">My boot volume</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-boot_volume_attachments/encryption_in_transit_type"></div>
+                    <b>encryption_in_transit_type</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volume_attachments/encryption_in_transit_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Refer the top-level definition of encryptionInTransitType. The default value is NONE.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
                                     </td>
             </tr>
                                 <tr>

@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan -- Manage a Vlan resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -184,7 +184,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The range of IPv4 addresses that will be used for layer 3 communication with hosts outside the VLAN. The CIDR must maintain the following rules -</div>
-                                            <div>a. The CIDR block is valid and correctly formatted. b. The new range is within one of the parent VCN ranges.</div>
+                                            <div>1. The CIDR block is valid and correctly formatted. 2. The new range is within one of the parent VCN ranges.</div>
                                             <div>Example: `192.0.2.0/24`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>

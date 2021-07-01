@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_resource_forecast_trend_facts -- Fetches details about a Res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -333,6 +333,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_database_instance_level_metrics"></div>
+                    <b>is_database_instance_level_metrics</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_database_instance_level_metrics" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied. When a hostname filter is applied this flag will determine whether to return metrics for the instances located on the specified host or for the whole database which contains an instance on this host.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -523,7 +542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceForecastTrend resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;usage&#x27;: 34.5}], &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 34.5}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;historical_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;usage&#x27;: 34.5}], &#x27;pattern&#x27;: &#x27;LINEAR&#x27;, &#x27;projected_data&#x27;: [{&#x27;end_timestamp&#x27;: &#x27;2020-05-01T00:00:00.000Z&#x27;, &#x27;high_value&#x27;: 1.2, &#x27;low_value&#x27;: 1.2, &#x27;usage&#x27;: 34.5}], &#x27;resource_metric&#x27;: &#x27;STORAGE&#x27;, &#x27;tablespace_name&#x27;: &#x27;tablespace_name_example&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -708,6 +727,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STORAGE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_forecast_trend/tablespace_name"></div>
+                    <b>tablespace_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_forecast_trend/tablespace_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of tablespace.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">tablespace_name_example</div>
                                     </td>
             </tr>
                                 <tr>

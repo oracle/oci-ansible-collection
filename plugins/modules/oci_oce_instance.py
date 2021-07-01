@@ -449,6 +449,9 @@ class OceInstanceHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateOceInstanceDetails
 
+    def get_exclude_attributes(self):
+        return ["idcs_access_token"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

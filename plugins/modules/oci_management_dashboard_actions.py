@@ -23,14 +23,22 @@ module: oci_management_dashboard_actions
 short_description: Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
-    - For I(action=export_dashboard), exports an array of dashboards and their saved searches.
-    - For I(action=import_dashboard), imports an array of dashboards and their saved searches.
+    - "For I(action=export_dashboard), exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. An example
+      using OCI CLI is $oci management-dashboard dashboard export --query data --export-dashboard-id
+      \\"{\\\\\\"dashboardIds\\\\\\":[\\\\\\"ocid1.managementdashboard.oc1..dashboardId1\\\\\\"]}\\"  > dashboards.json $oci management-dashboard dashboard
+      import --from-json file://dashboards.json"
+    - "For I(action=import_dashboard), imports an array of dashboards and their saved searches. Import is designed to work with exportDashboard. An example
+      using OCI CLI is
+          $oci management-dashboard dashboard export --query data --export-dashboard-id
+          \\"{\\\\\\"dashboardIds\\\\\\":[\\\\\\"ocid1.managementdashboard.oc1..dashboardId1\\\\\\"]}\\"  > dashboards.json
+          $oci management-dashboard dashboard import --from-json file://dashboards.json"
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     export_dashboard_id:
         description:
-            - "{\\"dashboardIds\\":[\\"dashboardId1\\", \\"dashboardId2\\", ...]}"
+            - "List of dashboardIds in plain text. The syntaxt is '{\\"dashboardIds\\":[\\"dashboardId1\\", \\"dashboardId2\\", ...]}'. Escaping is needed when
+              using in OCI CLI. For example, \\"{\\\\\\"dashboardIds\\\\\\":[\\\\\\"ocid1.managementdashboard.oc1..dashboardId1\\\\\\"]}\\" ."
             - Required for I(action=export_dashboard).
         type: str
     dashboards:
@@ -125,6 +133,10 @@ options:
                             - Drill-down configuration to define the destination of a drill-down action.
                         type: dict
                         required: true
+                    parameters_map:
+                        description:
+                            - Specifies the saved search parameters values
+                        type: dict
             display_name:
                 description:
                     - Display name of the dashboard.
@@ -295,6 +307,14 @@ options:
                             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
                               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
                         type: dict
+                    parameters_config:
+                        description:
+                            - Defines parameters for the saved search.
+                        type: list
+            parameters_config:
+                description:
+                    - Defines parameters for the dashboard.
+                type: list
             freeform_tags:
                 description:
                     - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -483,6 +503,12 @@ management_dashboard:
                         drilldown_config:
                             description:
                                 - Drill-down configuration to define the destination of a drill-down action.
+                            returned: on success
+                            type: dict
+                            sample: {}
+                        parameters_map:
+                            description:
+                                - Specifies the saved search parameters values
                             returned: on success
                             type: dict
                             sample: {}
@@ -682,6 +708,18 @@ management_dashboard:
                             returned: on success
                             type: dict
                             sample: {'Operations': {'CostCenter': 'US'}}
+                        parameters_config:
+                            description:
+                                - Defines parameters for the saved search.
+                            returned: on success
+                            type: list
+                            sample: []
+                parameters_config:
+                    description:
+                        - Defines parameters for the dashboard.
+                    returned: on success
+                    type: list
+                    sample: []
                 freeform_tags:
                     description:
                         - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -696,20 +734,6 @@ management_dashboard:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
-        freeform_tags:
-            description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        defined_tags:
-            description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
     sample: {
         "dashboards": [{
             "dashboard_id": "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx",
@@ -727,7 +751,8 @@ management_dashboard:
                 "ui_config": {},
                 "data_config": [],
                 "state": "DELETED",
-                "drilldown_config": {}
+                "drilldown_config": {},
+                "parameters_map": {}
             }],
             "display_name": "display_name_example",
             "description": "description_example",
@@ -760,13 +785,13 @@ management_dashboard:
                 "widget_template": "widget_template_example",
                 "widget_vm": "widget_vm_example",
                 "freeform_tags": {'Department': 'Finance'},
-                "defined_tags": {'Operations': {'CostCenter': 'US'}}
+                "defined_tags": {'Operations': {'CostCenter': 'US'}},
+                "parameters_config": []
             }],
+            "parameters_config": [],
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        }],
-        "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        }]
     }
 """
 
@@ -884,6 +909,7 @@ def main():
                                 choices=["DELETED", "UNAUTHORIZED", "DEFAULT"],
                             ),
                             drilldown_config=dict(type="dict", required=True),
+                            parameters_map=dict(type="dict"),
                         ),
                     ),
                     display_name=dict(aliases=["name"], type="str", required=True),
@@ -933,8 +959,10 @@ def main():
                             widget_vm=dict(type="str", required=True),
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
+                            parameters_config=dict(type="list"),
                         ),
                     ),
+                    parameters_config=dict(type="list"),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
                 ),

@@ -20,7 +20,7 @@ oracle.oci.oci_container_engine_cluster -- Manage a Cluster resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.24.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Cluster resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new cluster.
-- This resource has the following action operations in the :ref:`oci_cluster_actions <ansible_collections.oci_cluster_actions_module>` module: update_cluster_endpoint_config.
+- This resource has the following action operations in the :ref:`oci_cluster_actions <ansible_collections.oci_cluster_actions_module>` module: cluster_migrate_to_native_vcn, update_cluster_endpoint_config.
 
 
 .. Aliases

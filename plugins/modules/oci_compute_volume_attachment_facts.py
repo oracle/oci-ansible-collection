@@ -162,6 +162,19 @@ volume_attachments:
             returned: on success
             type: bool
             sample: true
+        is_multipath:
+            description:
+                - Whether the attachment is multipath or not.
+            returned: on success
+            type: bool
+            sample: true
+        iscsi_login_state:
+            description:
+                - The iscsi login state of the volume attachment. For a multipath volume attachment,
+                  all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.
+            returned: on success
+            type: string
+            sample: UNKNOWN
         chap_secret:
             description:
                 - "The Challenge-Handshake-Authentication-Protocol (CHAP) secret
@@ -200,18 +213,53 @@ volume_attachments:
             returned: on success
             type: int
             sample: 3260
+        multipath_devices:
+            description:
+                - A list of secondary multipath devices
+            returned: on success
+            type: complex
+            contains:
+                ipv4:
+                    description:
+                        - The volume's iSCSI IP address.
+                        - "Example: `169.254.2.2`"
+                    returned: on success
+                    type: string
+                    sample: 169.254.2.2
+                iqn:
+                    description:
+                        - The target volume's iSCSI Qualified Name in the format defined
+                          by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
+                        - "Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`"
+                    returned: on success
+                    type: string
+                    sample: iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195
+                port:
+                    description:
+                        - The volume's iSCSI port, usually port 860 or 3260.
+                        - "Example: `3260`"
+                    returned: on success
+                    type: int
+                    sample: 3260
+        encryption_in_transit_type:
+            description:
+                - Refer the top-level definition of encryptionInTransitType.
+                  The default value is NONE.
+            returned: on success
+            type: string
+            sample: NONE
         iscsi_attach_commands:
             description:
                 - Commands to attach the iSCSI block volume. Empty if attachment_type is not iscsi.
             returned: on success
             type: list
-            sample: [ "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..." ]
+            sample: [  "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..."  ]
         iscsi_detach_commands:
             description:
                 - Commands to detach the iSCSI block volume. Empty if attachment_type is not iscsi.
             returned: on success
             type: list
-            sample: [ "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN" ]
+            sample: [  "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN"  ]
     sample: [{
         "attachment_type": "attachment_type_example",
         "availability_domain": "Uocm:PHX-AD-1",
@@ -226,13 +274,21 @@ volume_attachments:
         "time_created": "2016-08-25T21:10:29.600Z",
         "volume_id": "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx",
         "is_pv_encryption_in_transit_enabled": true,
+        "is_multipath": true,
+        "iscsi_login_state": "UNKNOWN",
         "chap_secret": "chap_secret_example",
         "chap_username": "ocid1.volume.oc1.phx.<unique_ID>",
         "ipv4": "169.254.0.2",
         "iqn": "iqn.2015-12.us.oracle.com:<CHAP_username>",
         "port": 3260,
-        "iscsi_attach_commands": [ "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..." ],
-        "iscsi_detach_commands": [ "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN" ]
+        "multipath_devices": [{
+            "ipv4": "169.254.2.2",
+            "iqn": "iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195",
+            "port": 3260
+        }],
+        "encryption_in_transit_type": "NONE",
+        "iscsi_attach_commands": [  "sudo iscsiadm -m node -o new -T IQN -p IP:PORT", "sudo iscsiadm -m node -o update ..."  ],
+        "iscsi_detach_commands": [  "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN"  ]
     }]
 """
 

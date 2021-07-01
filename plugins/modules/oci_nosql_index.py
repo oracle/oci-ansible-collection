@@ -272,6 +272,9 @@ class IndexHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateIndexDetails
 
+    def get_exclude_attributes(self):
+        return ["is_if_not_exists"]
+
     def is_update(self):
         if not self.module.params.get("state") == "present":
             return False
