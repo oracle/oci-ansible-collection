@@ -13,6 +13,7 @@
 SCRIPT_NAME="./install.py"
 INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/oracle/oci-ansible-collection/test-branch/scripts/install.py"
 
+set -e
 
 usage="$(basename "$0")
         -- Bash script to install oci-ansible-collection for Oracle Cloud Infrastructure           
@@ -25,32 +26,39 @@ Following arguments can be passed to the script:
         Users can use this flag to specify the location of the python virtual environment where
         python dependencies for oci-ansible-collection will be installed. If not specified 
         default values will be used.
-        Ex: --virtual-env-dir /home
+
+        default value: ~/lib
 
     --virtual-env-name
         Users can use this flag to specify the name of the python virtual env name where
         python dependencies for oci-ansible-collection will be installed. If not specified 
         default values will be used.
-        Ex: --virtual-env-name my-venv
+        
+        default value: oci-ansible-collection
 
     --oci-ansible-collection-path
         Users can use this flag to specify the location of collections where oci-ansible-collection 
-        will be installed. If not specified the latest value will be used.
-        Ex: --oci-ansible-collection-path /home/collections
+        will be installed. If not specified the latest value will be used. Default path fot this is determined
+        by ansible-galaxy installer.
     
     --upgrade-pip
         Users can use this flag to specify whether to upgrade pip to the latest version.
-        If not specified pip version will not be upgraded
+        If not specified pip version will not be upgraded. In some cases it is recommended
+        to specify this flag
+
+        default value: false
 
     --version
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
         To use the latest version don't set any value(recommended). If not specified the latest 
         version will be used.
         Ex: 2.20
+
+        default value: latest version is picked
     
-    --python
-        Users can specify the python version they want to use for installation. Minimum python version 3.6
-        is needed.
+    --python-path
+        Users can specify the specific python they want to use for installation.
+        Note: minimum python version supported is python3.6
 
     --verbose
         Users can use this flag to enable more loggings in case of debugging purpose.
@@ -62,7 +70,8 @@ Following arguments can be passed to the script:
 
     --skip-venv-creation
         Users can use this flag to speciy to skip creating a virtual env. All the installation
-        operations will use the current python environment
+        operations will use the current python environment. If this flag is set then users need
+        to provide python-path too which will be used in installation process.
     
     --upgrade
         Users can specify to upgrade oci-ansible-collectiona and its dependencies
@@ -70,6 +79,7 @@ Following arguments can be passed to the script:
     --help
         Show help section
 "
+
 
 install_args=""
 OFFLINE=false
@@ -126,8 +136,8 @@ case $key in
     install_args="$install_args --upgrade"
     shift
     ;;
-    --python)
-    PYTHON="python$2"
+    --python-path)
+    PYTHON="$2"
     shift
     shift
     ;;
@@ -160,12 +170,17 @@ if [ ! -z "$PYTHON" ]; then
 fi
 
 if [ "$unsupported_py_version" == true ]; then
-    echo "Incorrect/Unsupported python version $PYTHON passed as argument"
+    echo "Incorrect/Unsupported python path $PYTHON passed as argument"
     exit 1
 fi
 
-command -v python3 >/dev/null 2>&1
-if [ $? -eq 0 -a -z "$PYTHON" ]; then
+if [ -z "$PYTHON" ]; then # if no pytho path provided
+    command -v python3 >/dev/null 2>&1
+    if [ $? -ne 0]; then
+        echo "ERROR: python version 3 not found. python version >=3.6 is needed to install oci-ansible-collection"
+        exit 1
+    fi
+
     # python3 is installed.   
     # check if python>=3.6 is present
     for i in "${supported_versions[@]}"; do
@@ -182,7 +197,7 @@ set -e
 
 
 if [ "$python_installed" == false ]; then
-    echo "WARN: python version >=3.6 is needed to install oci-ansible-collection"
+    echo "ERROR: python version >=3.6 is needed to install oci-ansible-collection"
     exit 1
 fi
 
@@ -207,7 +222,7 @@ fi
 set -e
 
 chmod 775 $SCRIPT_NAME
-
+# SCRIPT_NAME="./install.py" ----> uncomment to run locally
 echo "-- $python_exe $SCRIPT_NAME $install_args"
 echo
 $python_exe $SCRIPT_NAME $install_args

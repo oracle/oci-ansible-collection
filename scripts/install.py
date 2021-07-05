@@ -27,12 +27,13 @@ class OciAnsibleCollectionInstaller:
     MIN_PYTHON_VERSION_MAJOR = 3
     MIN_PYTHON_VERSION_MINOR = 6
     ORACLE_COLLECTION_NAMESPACE = "oracle.oci"
-    DEFAULT_VENV_DIR = os.path.expanduser(os.path.join("~", "venv"))
+    DEFAULT_VENV_DIR = os.path.expanduser(os.path.join("~", "lib"))
     DEFAULT_VENV_NAME = "oci-ansible-collection"
 
     DEPENDENCIES = ["oci", "ansible"]
     GET_PIP_DOWNLOAD_URL = "https://bootstrap.pypa.io/get-pip.py"
     UPGRADE = ["oci"]
+    LINUX_DISTRIBUTIONS = ["ubuntu", "debian"]
 
     def __init__(
         self,
@@ -106,10 +107,10 @@ class OciAnsibleCollectionInstaller:
         ) = self._get_linux_distribution_id_like()
         return (
             linux_distribution_id_like
-            and any(x in linux_distribution_id_like for x in ["ubuntu", "debian"])
+            and any(x in linux_distribution_id_like for x in self.LINUX_DISTRIBUTIONS)
         ) or (
             linux_distribution_id
-            and any(x in linux_distribution_id for x in ["ubuntu", "debian"])
+            and any(x in linux_distribution_id for x in self.LINUX_DISTRIBUTIONS)
         )
 
     def _install_python3_venv(self):
@@ -171,30 +172,34 @@ class OciAnsibleCollectionInstaller:
         )
 
     def setup_venv(self):
-        if not self.skip_venv_creation:
-            # Since Ubuntu and Debian are having issues with python3 venv (mising ensurepip module), install python3-venv
-            if self._is_ubuntu_or_debian():
-                self._log("Installing pythone-venv in ubuntu")
-                self._install_python3_venv()
-            base_path = os.path.join(self.virtual_env_directory, self.virtual_env_name)
-            if not os.path.exists(base_path):
-                cmd = [sys.executable, "-m", "venv", base_path]
-                self._exec(cmd)
-                self._debug(
-                    "Virtual environment {0} created successfully".format(base_path)
-                )
-            self.base_path = base_path
-            if not self.python_path:
-                self.python_path = self.base_path + "/bin/python"
-
-            self._debug(
-                "Using following python environment for package management {}".format(
-                    self.base_path
+        if self.skip_venv_creation:
+            self._log(
+                "Skipping venv creation. Using {} for package management".format(
+                    sys.executable
                 )
             )
-        else:
-            self._log("Skipping venv creation. Using current environemt for python")
-            self.python_path = "python"
+            self.python_path = sys.executable  # current env's python
+            return
+
+        # Since Ubuntu and Debian are having issues with python3 venv (mising ensurepip module), install python3-venv
+        if self._is_ubuntu_or_debian():
+            self._install_python3_venv()
+        base_path = os.path.join(self.virtual_env_directory, self.virtual_env_name)
+        if not os.path.exists(base_path):
+            cmd = [sys.executable, "-m", "venv", base_path]
+            self._exec(cmd)
+            self._debug(
+                "Virtual environment {0} created successfully".format(base_path)
+            )
+        self.base_path = base_path
+        if not self.python_path:
+            self.python_path = self.base_path + "/bin/python"
+
+        self._debug(
+            "Using following python environment for package management {}".format(
+                self.base_path
+            )
+        )
 
     def _pip_exists(self):
         try:
@@ -212,7 +217,7 @@ class OciAnsibleCollectionInstaller:
                     "-m",
                     "pip",
                     "install",
-                    "--upgrade",
+                    "--force",
                     "pip",
                 ]
                 if self.verbose:
@@ -231,9 +236,7 @@ class OciAnsibleCollectionInstaller:
                     f.write(response.read())
                     f.close()
                     cmd = [
-                        "python"
-                        if not self.python_path
-                        else self.python_path,
+                        sys.executable if not self.python_path else self.python_path,
                         tmp_file,
                     ]
                     self._exec(cmd)
@@ -255,14 +258,16 @@ class OciAnsibleCollectionInstaller:
 
     def install_ansible_collection(self):
         collection_name = self._get_collection_name()
-        ansible_galaxy_path = self._get_ansible_galaxy_path()
-        self._debug("Using galaxy path {}".format(ansible_galaxy_path))
-        cmd = [ansible_galaxy_path, "collection", "install"]
+        cmd = [
+            "ansible-galaxy",
+            "collection",
+            "install",
+        ]  # this is global, irrespective of venv
 
         # if upgrade arg is passed or no version is given we will install the latest one
         if self.upgrade or not self.oci_ansible_collection_version:
             cmd.append(self.ORACLE_COLLECTION_NAMESPACE)
-            cmd.append("--upgrade")
+            cmd.append("--force")
         else:
             cmd.append(collection_name)
 
@@ -316,6 +321,14 @@ class OciAnsibleCollectionInstaller:
         print("ansible-doc oracle.oci.oci_network_vcn ")
         print(
             "\n==========================COMMANDS====================================\n"
+        )
+
+        print("Next steps:\n")
+        print(
+            "Configure authentiation to manage and access Oracle Cloud resources using oci-ansible-collection\n"
+        )
+        print(
+            """Follow the link to know more about the configuration setup:\nhttps://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansiblegetstarted.htm#configureAuth."""
         )
 
 
