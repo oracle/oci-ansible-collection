@@ -116,6 +116,16 @@ case $key in
     install_args="$install_args --dry-run"
     shift
     ;;
+    --skip-venv-creation)
+    DRY_RUN=true
+    install_args="$install_args --skip-venv-creation"
+    shift
+    ;;
+    --upgrade)
+    DRY_RUN=true
+    install_args="$install_args --upgrade"
+    shift
+    ;;
     --python)
     PYTHON="python$2"
     shift
