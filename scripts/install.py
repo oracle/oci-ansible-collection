@@ -217,7 +217,7 @@ class OciAnsibleCollectionInstaller:
                     "-m",
                     "pip",
                     "install",
-                    "--force",
+                    "--upgrade",
                     "pip",
                 ]
                 if self.verbose:
@@ -259,7 +259,7 @@ class OciAnsibleCollectionInstaller:
     def install_ansible_collection(self):
         collection_name = self._get_collection_name()
         cmd = [
-            "ansible-galaxy",
+            self._get_ansible_galaxy_path(),
             "collection",
             "install",
         ]  # this is global, irrespective of venv
