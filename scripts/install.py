@@ -174,6 +174,7 @@ class OciAnsibleCollectionInstaller:
         if not self.skip_venv_creation:
             # Since Ubuntu and Debian are having issues with python3 venv (mising ensurepip module), install python3-venv
             if self._is_ubuntu_or_debian():
+                self._log("Installing pythone-venv in ubuntu")
                 self._install_python3_venv()
             base_path = os.path.join(self.virtual_env_directory, self.virtual_env_name)
             if not os.path.exists(base_path):
@@ -312,7 +313,7 @@ class OciAnsibleCollectionInstaller:
             )
             print(export_collection_path_cmd)
 
-        print("ansible-doc oracle.oci.oci_netowrk_vcn")
+        print("ansible-doc oracle.oci.oci_network_vcn ")
         print(
             "\n==========================COMMANDS====================================\n"
         )
