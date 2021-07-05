@@ -172,6 +172,9 @@ class OciAnsibleCollectionInstaller:
 
     def setup_venv(self):
         if not self.skip_venv_creation:
+            # Since Ubuntu and Debian are having issues with python3 venv (mising ensurepip module), install python3-venv
+            if self._is_ubuntu_or_debian():
+                self._install_python3_venv()
             base_path = os.path.join(self.virtual_env_directory, self.virtual_env_name)
             if not os.path.exists(base_path):
                 cmd = [sys.executable, "-m", "venv", base_path]
@@ -361,7 +364,8 @@ def main():
     parser.add_argument(
         "--upgrade",
         action="store_true",
-        help="""Users can specify this to upgrade the oci-ansible-collection and its required dependencies""",
+        help="""Users can specify this to upgrade the oci-ansible-collection and its required dependencies.
+                If provided all the versions provided will be """,
     )
     parser.add_argument(
         "--skip-venv-creation",
