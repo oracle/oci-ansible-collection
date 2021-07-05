@@ -60,6 +60,13 @@ Following arguments can be passed to the script:
         Runs the script in dry run mode i.e no network calls and installation of dependecies.
         Ex: --dry-run    will enable the dry run mode
 
+    --skip-venv-creation
+        Users can use this flag to speciy to skip creating a virtual env. All the installation
+        operations will use the current python environment
+    
+    --upgrade
+        Users can specify to upgrade oci-ansible-collectiona and its dependencies
+
     --help
         Show help section
 "
