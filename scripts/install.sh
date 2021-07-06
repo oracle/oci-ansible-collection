@@ -71,9 +71,11 @@ Following arguments can be passed to the script:
         Ex: --dry-run    will enable the dry run mode
 
     --skip-venv-creation
-        Users can use this flag to speciy to skip creating a virtual env.
-        When using this flag users have to provide python path using the
-        --python-path argument. Disbaled by default.
+        Users can use this flag to speciy to skip creating a virtual env. Users can specify
+        python path using --python-path to specify the path else appropriate  python path will
+        be detected and used for the installation.
+        
+        Disbaled by default.
     
     --upgrade
         Users can specify to upgrade oci-ansible-collectiona and its dependencies.

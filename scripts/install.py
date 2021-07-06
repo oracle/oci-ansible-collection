@@ -62,9 +62,6 @@ class OciAnsibleCollectionInstaller:
         self.skip_venv_creation = skip_venv_creation
         self.python_path = python_path
 
-        if self.skip_venv_creation and not self.python_path:
-            self._fail("Python path must be provided if skipping venv creation")
-
         self.upgrade = upgrade
         self.base_path = None  # value is set to venv python path if provided
 
@@ -147,7 +144,7 @@ class OciAnsibleCollectionInstaller:
         # if venv creation is skipped we will use the current ansible galaxy path
         if self.skip_venv_creation:
             return "ansible-galaxy"
-        return os.path.join(self.base_path, "bin/ansible-galaxy")
+        return os.path.join(self.base_path, "bin", "ansible-galaxy")
 
     def verify_os(self):
         if (
@@ -305,7 +302,7 @@ class OciAnsibleCollectionInstaller:
             self._debug("All dependencies installed correctly")
 
         print(
-            "\n==========================COMMANDS====================================\n"
+            "\n==========================VERIFICATION STEPS====================================\n"
         )
         print(
             "-- Run the following command(s) to use the installed oci-ansible-collection\n"
@@ -324,10 +321,8 @@ class OciAnsibleCollectionInstaller:
 
         print("ansible-doc oracle.oci.oci_network_vcn ")
         print(
-            "\n==========================COMMANDS====================================\n"
+            "\n==========================CONFIGURATION STEPS====================================\n"
         )
-
-        print("Next steps:\n")
         print(
             "Configure authentication to manage and access Oracle Cloud resources using oci-ansible-collection\n"
         )
