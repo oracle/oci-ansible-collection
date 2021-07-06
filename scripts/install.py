@@ -61,6 +61,10 @@ class OciAnsibleCollectionInstaller:
         self.verbose = verbose or False
         self.skip_venv_creation = skip_venv_creation
         self.python_path = python_path
+
+        if self.skip_venv_creation and not self.python_path:
+            self._fail("Python path must be provided if skipping venv creation")
+
         self.upgrade = upgrade
         self.base_path = None  # value is set to venv python path if provided
 
@@ -78,7 +82,7 @@ class OciAnsibleCollectionInstaller:
         print("-- " + msg)
 
     def _fail(self, msg):
-        print("-- " + msg)
+        print("-- ERROR: " + msg)
         sys.exit(1)
 
     def _get_linux_distribution_id_like(self):
@@ -325,10 +329,11 @@ class OciAnsibleCollectionInstaller:
 
         print("Next steps:\n")
         print(
-            "Configure authentiation to manage and access Oracle Cloud resources using oci-ansible-collection\n"
+            "Configure authentication to manage and access Oracle Cloud resources using oci-ansible-collection\n"
         )
+        print("""Follow the link to know more about the configuration setup:""")
         print(
-            """Follow the link to know more about the configuration setup:\nhttps://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansiblegetstarted.htm#configureAuth."""
+            "https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansiblegetstarted.htm#configureAuth."
         )
 
 
@@ -384,11 +389,12 @@ def main():
     parser.add_argument(
         "--skip-venv-creation",
         action="store_true",
-        help="""Users can specify this flag to install oci-ansible-collections and its dependencies in the current environment.
-                No new virtual env is created in this case. Current python path will be used for all the operations""",
+        help="""Users can specify this flag to install oci-ansible-collections and its dependencies.
+                No new virtual env is created in this case. Users need to specify python path.""",
     )
 
     args = parser.parse_args()
+
     installer = OciAnsibleCollectionInstaller(
         dry_run=args.dry_run,
         upgrade_pip=args.upgrade_pip,

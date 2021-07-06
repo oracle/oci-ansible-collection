@@ -44,7 +44,7 @@ Following arguments can be passed to the script:
     --upgrade-pip
         Users can use this flag to specify whether to upgrade pip to the latest version.
         If not specified pip version will not be upgraded. In some cases it is recommended
-        to specify this flag
+        to specify this flag.
 
         default value: false
 
@@ -62,21 +62,24 @@ Following arguments can be passed to the script:
 
     --verbose
         Users can use this flag to enable more loggings in case of debugging purpose.
+        Disabled by default.
         Ex: --verbose    will enable logging
 
     --dry-run
         Runs the script in dry run mode i.e no network calls and installation of dependecies.
+        Disabled by default.
         Ex: --dry-run    will enable the dry run mode
 
     --skip-venv-creation
-        Users can use this flag to speciy to skip creating a virtual env. All the installation
-        operations will use the current python environment. If this flag is set then users need
-        to provide python-path too which will be used in installation process.
+        Users can use this flag to speciy to skip creating a virtual env.
+        When using this flag users have to provide python path using the
+        --python-path argument. Disbaled by default.
     
     --upgrade
-        Users can specify to upgrade oci-ansible-collectiona and its dependencies
+        Users can specify to upgrade oci-ansible-collectiona and its dependencies.
+        Disabled by default.
 
-    --help
+    --help|-h
         Show help section
 "
 
