@@ -23,30 +23,28 @@ usage="$(basename "$0")
 
 Following arguments can be passed to the script:
     --virtual-env-dir
-        Users can use this flag to specify the location of the python virtual environment where
-        python dependencies for oci-ansible-collection will be installed. If not specified 
-        default values will be used.
+        Users can use this flag to specify the location where the virtual environment is located or should be created
+        if not already present. If this path already exists then it will used else it will be created.
 
         default value: ~/lib
 
     --virtual-env-name
-        Users can use this flag to specify the name of the python virtual env name where
-        python dependencies for oci-ansible-collection will be installed. If not specified 
-        default values will be used.
+        Users can use this flag to specify the python virtual env name where
+        python dependencies for oci-ansible-collections will be installed.
+        This virtual env is created in the path sepcified in --virtual-env-dir flag else in the default folder path
+        used by --virtual-env-dir flag
         
         default value: oci-ansible-collection
 
+    --ansible-version
+        Users can specify particular version of ansible python package they want to install. Ex: 2.9
+        To use the latest version dont't set this flag (recommended).
+
+        default value: latest version will be installed
+
     --oci-ansible-collection-path
         Users can use this flag to specify the location of collections where oci-ansible-collection 
-        will be installed. If not specified the latest value will be used. Default path fot this is determined
-        by ansible-galaxy installer.
-    
-    --upgrade-pip
-        Users can use this flag to specify whether to upgrade pip to the latest version.
-        If not specified pip version will not be upgraded. In some cases it is recommended
-        to specify this flag.
-
-        default value: false
+        will be installed. Default path fot this is determined by ansible-galaxy installer.
 
     --version
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
@@ -69,17 +67,12 @@ Following arguments can be passed to the script:
         Runs the script in dry run mode i.e no network calls and installation of dependecies.
         Disabled by default.
         Ex: --dry-run    will enable the dry run mode
-
-    --skip-venv-creation
-        Users can use this flag to speciy to skip creating a virtual env. Users can specify
-        python path using --python-path to specify the path else appropriate  python path will
-        be detected and used for the installation.
-        
-        Disbaled by default.
     
     --upgrade
-        Users can specify to upgrade oci-ansible-collectiona and its dependencies.
-        Disabled by default.
+        Users can specify this to upgrade the oci-ansible-collection and its required dependencies.
+        This is will upgrade oci package, ansible pacakge and oci-ansible-collection to the latest one.
+        If the user has specified --ansible-version or --version, these will be not be used in case
+        --upgrade is specified
 
     --help|-h
         Show help section
@@ -106,15 +99,21 @@ case $key in
     shift
     shift
     ;;
+    --ansible-version)
+    ANSIBLE_VERSION="$2"
+    install_args="$install_args --ansible-version $ANSIBLE_VERSION"
+    shift
+    shift
+    ;;
     --oci-ansible-collection-path)
     OCI_ANSIBLE_COLLECTION_PATH="$2"
     install_args="$install_args --oci-ansible-collection-path $OCI_ANSIBLE_COLLECTION_PATH"
     shift
     shift
     ;;
-    --oci-ansible-collection-version)
+    --version)
     OCI_ANSIBLE_COLLECTION_VERSION="$2"
-    install_args="$install_args --oci-ansible-collection-version $OCI_ANSIBLE_COLLECTION_VERSION"
+    install_args="$install_args --version $OCI_ANSIBLE_COLLECTION_VERSION"
     shift
     shift
     ;;
@@ -129,11 +128,6 @@ case $key in
     --dry-run)
     DRY_RUN=true
     install_args="$install_args --dry-run"
-    shift
-    ;;
-    --skip-venv-creation)
-    DRY_RUN=true
-    install_args="$install_args --skip-venv-creation"
     shift
     ;;
     --upgrade)
@@ -181,7 +175,7 @@ fi
 
 if [ -z "$PYTHON" ]; then # if no pytho path provided
     command -v python3 >/dev/null 2>&1
-    if [ $? -ne 0]; then
+    if [ $? -ne 0 ]; then
         echo "ERROR: python version 3 not found. python version >=3.6 is needed to install oci-ansible-collection"
         exit 1
     fi
@@ -227,7 +221,7 @@ fi
 set -e
 
 chmod 775 $SCRIPT_NAME
-# SCRIPT_NAME="./install.py" ----> uncomment to run locally
+# SCRIPT_NAME="./install.py" # ----> remove comment to run locally
 echo "-- $python_exe $SCRIPT_NAME $install_args"
 echo
 $python_exe $SCRIPT_NAME $install_args
