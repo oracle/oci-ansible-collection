@@ -54,8 +54,13 @@ class OciAnsibleCollectionInstaller:
         self.oci_ansible_collection_path = oci_ansible_collection_path
         self.oci_ansible_collection_version = oci_ansible_collection_version
         self.verbose = verbose or False
-
         self.upgrade = upgrade
+
+        if self.upgrade and self.oci_ansible_collection_version:
+            self._fail(
+                "Conflicting arguments provided. Either pass --upgrade or --version, not both"
+            )
+
         self.base_path = None  # path to the venv dir
         self.python_path = None  # path to the venv python
 
@@ -370,7 +375,8 @@ def main():
 
     parser.add_argument(
         "--oci-ansible-collection-path",
-        help="""Users can use this flag to specify the location of collections where oci-ansible-collection will be installed""",
+        help="""Users can use this flag to specify the location of collections where oci-ansible-collection will be installed
+                Default path for this is determined by ansible-galaxy installer.""",
     )
 
     parser.add_argument(
@@ -379,6 +385,9 @@ def main():
                 To use the latest version don't set any value(recommended). If not specified the latest
                 version will be used.
                 Ex: 2.20.0
+
+                Speciying --version along with --upgrade will result in a conflict
+                Error will raised and installation will not continue.
                 """,
     )
 
@@ -395,8 +404,9 @@ def main():
                 This is will upgrade oci package and oci-ansible-collection to the latest one.
                 Note: This will not upgrade ansible dependency to the latest version.
 
-                If the user has specified --version, these will be not be used in case
-                --upgrade is specified""",
+                Speciying --version along with --upgrade will result in a conflict
+                Error will raised and installation will not continue.
+                """,
     )
 
     args = parser.parse_args()

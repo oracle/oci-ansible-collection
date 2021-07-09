@@ -46,13 +46,16 @@ Following arguments can be passed to the script:
 
     --oci-ansible-collection-path
         Users can use this flag to specify the location of collections where oci-ansible-collection 
-        will be installed. Default path fot this is determined by ansible-galaxy installer.
+        will be installed. Default path for this is determined by ansible-galaxy installer.
 
     --version
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
         To use the latest version don't set any value(recommended). If not specified the latest 
         version will be used.
         Ex: 2.20.0
+
+        Speciying --version along with --upgrade will result in a conflict
+        Error will raised and installation will not continue.
 
         default value: latest version is picked
     
@@ -75,8 +78,8 @@ Following arguments can be passed to the script:
         This is will upgrade oci package and oci-ansible-collection to the latest one.
         Note: This will not upgrade ansible dependency to the latest version.
 
-        If the user has specified --version, these will be not be used in case
-        --upgrade is specified
+        Speciying --version along with --upgrade will result in a conflict
+        Error will raised and installation will not continue.
 
     --help|-h
         Show help section
