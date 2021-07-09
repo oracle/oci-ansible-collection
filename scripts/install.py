@@ -234,11 +234,19 @@ class OciAnsibleCollectionInstaller:
 
     def install_dependencies(self):
         for dep in self.DEPENDENCIES:
-            if self.DEPENDENCIES[dep]:
+
+            # if upgrade is sepcified we dont check for the version provided
+            # and install the latest
+            if self.DEPENDENCIES.get(dep, None) and not self.upgrade:
                 dep = dep + "==" + self.DEPENDENCIES[dep]
 
             cmd = [self.python_path, "-m", "pip", "install", dep]
             if self.upgrade:
+                self._debug(
+                    "--upgrade arg specified. Will install the latest version for {}".format(
+                        dep
+                    )
+                )
                 cmd.append("-U")
             if not self.verbose:
                 cmd.append("-q")
