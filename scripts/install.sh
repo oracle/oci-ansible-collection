@@ -24,7 +24,7 @@ usage="$(basename "$0")
 Following arguments can be passed to the script:
     --virtual-env-dir
         Users can use this flag to specify the location where the virtual environment is located or should be created
-        if not already present. If this path already exists then it will used else it will be created.
+        if not already present. If this path already exists then it will be used else it will be created.
 
         default value: ~/lib
 
@@ -32,13 +32,15 @@ Following arguments can be passed to the script:
         Users can use this flag to specify the python virtual env name where
         python dependencies for oci-ansible-collections will be installed.
         This virtual env is created in the path sepcified in --virtual-env-dir flag else in the default folder path
-        used by --virtual-env-dir flag
+        used by --virtual-env-dir flag.
         
         default value: oci-ansible-collection
 
     --ansible-version
         Users can specify particular version of ansible python package they want to install. Ex: 2.9
         To use the latest version dont't set this flag (recommended).
+        This flag doesn't support upgrading the version in case user has already installed ansible 
+        and wants to upgrade to a higher version.
 
         default value: latest version will be installed
 
@@ -50,7 +52,7 @@ Following arguments can be passed to the script:
         Users can use this flag to specify the version of oci-ansible-collection will be installed.
         To use the latest version don't set any value(recommended). If not specified the latest 
         version will be used.
-        Ex: 2.20
+        Ex: 2.20.0
 
         default value: latest version is picked
     
@@ -64,14 +66,16 @@ Following arguments can be passed to the script:
         Ex: --verbose    will enable logging
 
     --dry-run
-        Runs the script in dry run mode i.e no network calls and installation of dependecies.
+        Runs the script in dry run mode i.e no network calls during installation and installation of dependecies.
         Disabled by default.
         Ex: --dry-run    will enable the dry run mode
     
     --upgrade
         Users can specify this to upgrade the oci-ansible-collection and its required dependencies.
-        This is will upgrade oci package, ansible pacakge and oci-ansible-collection to the latest one.
-        If the user has specified --ansible-version or --version, these will be not be used in case
+        This is will upgrade oci package and oci-ansible-collection to the latest one.
+        Note: This will not upgrade ansible dependency to the latest version.
+
+        If the user has specified --version, these will be not be used in case
         --upgrade is specified
 
     --help|-h

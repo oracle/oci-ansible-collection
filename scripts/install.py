@@ -29,7 +29,7 @@ class OciAnsibleCollectionInstaller:
     ORACLE_COLLECTION_NAMESPACE = "oracle.oci"
     DEFAULT_VENV_DIR = os.path.expanduser(os.path.join("~", "lib"))
     DEFAULT_VENV_NAME = "oci-ansible-collection"
-
+    SUPPORTS_UPGRADE = ["oci"]
     DEPENDENCIES = {"oci": None, "ansible": None}
     GET_PIP_DOWNLOAD_URL = "https://bootstrap.pypa.io/get-pip.py"
     LINUX_DISTRIBUTIONS = ["ubuntu", "debian"]
@@ -237,11 +237,14 @@ class OciAnsibleCollectionInstaller:
 
             # if upgrade is sepcified we dont check for the version provided
             # and install the latest
-            if self.DEPENDENCIES.get(dep, None) and not self.upgrade:
-                dep = dep + "==" + self.DEPENDENCIES[dep]
+            if dep not in self.SUPPORTS_UPGRADE or not self.upgrade:
+                if self.DEPENDENCIES.get(dep, None) and not (
+                    dep not in self.SUPPORTS_UPGRADE or self.upgrade
+                ):
+                    dep = dep + "==" + self.DEPENDENCIES[dep]
 
             cmd = [self.python_path, "-m", "pip", "install", dep]
-            if self.upgrade:
+            if self.upgrade and dep in self.SUPPORTS_UPGRADE:
                 self._debug(
                     "--upgrade arg specified. Will install the latest version for {}".format(
                         dep
@@ -250,7 +253,7 @@ class OciAnsibleCollectionInstaller:
                 cmd.append("-U")
             if not self.verbose:
                 cmd.append("-q")
-            self._debug("Installing {0} dependency ".format(dep))
+            self._debug("Installing dependency: {0}".format(dep))
             self._exec(cmd)
 
     def install_ansible_collection(self):
@@ -262,6 +265,7 @@ class OciAnsibleCollectionInstaller:
         ]
         # if upgrade arg is passed or no version is given we will install the latest one
         if self.upgrade or not self.oci_ansible_collection_version:
+            self._log("Installing latest version of oci-ansible-collection ....")
             cmd.append(self.ORACLE_COLLECTION_NAMESPACE)
             cmd.append("--force")
         else:
@@ -279,7 +283,7 @@ class OciAnsibleCollectionInstaller:
             cmd.append("-vvv")
 
         self._exec(cmd)
-        self._log("Installed ansible collections successfully...")
+        self._log("Installed oci-ansible-collection successfully...")
 
     def post_installation(self):
         if not self.dry_run:
@@ -297,10 +301,7 @@ class OciAnsibleCollectionInstaller:
             self._debug("All dependencies installed correctly")
 
         print(
-            "\n==========================FINAL SETUP STEPS====================================\n"
-        )
-        print(
-            "-- Run the following command(s) to use the installed oci-ansible-collection\n"
+            "\n-- Run the following command(s) to use the installed oci-ansible-collection"
         )
 
         activate_venv_cmd = "source " + os.path.join(self.base_path, "bin/activate")
@@ -313,16 +314,14 @@ class OciAnsibleCollectionInstaller:
                 + "ANSIBLE_COLLECTIONS_PATHS}"
             )
             print(export_collection_path_cmd)
+
+        print("\n-- Try the following command to start using oci-ansible-collection")
+        print("ansible-doc oracle.oci.oci_network_vcn")
         print(
-            "\n==========================SAMPLE COMMAND TO USE oci-ansible-collection====================================\n"
-        )
-        print("Try the following command to start using")
-        print("ansible-doc oracle.oci.oci_network_vcn ")
-        print(
-            "\n==========================CONFIGURATION STEPS====================================\n"
+            "\n==========================NEXT STEPS====================================\n"
         )
         print(
-            "Configure authentication to manage and access Oracle Cloud resources using oci-ansible-collection\n"
+            "-- Configure authentication to manage and access Oracle Cloud resources using oci-ansible-collection\n"
         )
         print("""Follow the link to know more about the configuration setup:""")
         print(
@@ -337,7 +336,7 @@ def main():
     parser.add_argument(
         "--virtual-env-dir",
         help="""Users can use this flag to specify the location where the virtual environment is located or should be created
-                if not already present. If this path already exists then it will used else it will be created.
+                if not already present. If this path already exists then it will be used else it will be created.
 
                 default value: ~/lib
                 """,
@@ -346,9 +345,9 @@ def main():
     parser.add_argument(
         "--virtual-env-name",
         help="""Users can use this flag to specify the python virtual env name where python dependencies
-                for oci-ansible-collections will be installed.
+                for oci-ansible-collection will be installed.
                 This virtual env is created in the path sepcified in --virtual-env-dir flag else in the default folder path
-                used by --virtual-env-dir flag
+                used by --virtual-env-dir flag,
 
                 default value: oci-ansible-collection
                 """,
@@ -364,6 +363,8 @@ def main():
         "--ansible-version",
         help="""Users can specify particular version of ansible python package they want to install. Ex: 2.9
                 To use the latest version dont't set this flag (recommended).
+                This flag doesn't support upgrading the version in case user has already installed ansible 
+                and wants to upgrade to a higher version.
 
                 default value: latest version will be installed
                 """,
@@ -376,24 +377,28 @@ def main():
 
     parser.add_argument(
         "--version",
-        help="""Users can use this flag to specify the location where they want oci-ansible-collection to be installed.
-                Default path is determined by ansible-galaxy installer.
+        help="""Users can use this flag to specify the version of oci-ansible-collection will be installed.
+                To use the latest version don't set any value(recommended). If not specified the latest
+                version will be used.
+                Ex: 2.20.0
                 """,
     )
 
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="""Runs the script in dry run mode i.e no network calls and installation of dependecies""",
+        help="""Runs the script in dry run mode i.e no network calls during installation and installation of dependecies""",
     )
 
     parser.add_argument(
         "--upgrade",
         action="store_true",
         help="""Users can specify this to upgrade the oci-ansible-collection and its required dependencies.
-                This is will upgrade oci, ansible and oci-ansible-collection to the latest one.
-                If the user has specified --ansible-version or --version, these will be not be effective
-                in case of --upgrade""",
+                This is will upgrade oci package and oci-ansible-collection to the latest one.
+                Note: This will not upgrade ansible dependency to the latest version.
+
+                If the user has specified --version, these will be not be used in case
+                --upgrade is specified""",
     )
 
     args = parser.parse_args()
