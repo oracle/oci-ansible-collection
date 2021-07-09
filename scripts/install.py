@@ -238,9 +238,7 @@ class OciAnsibleCollectionInstaller:
             # if upgrade is sepcified we dont check for the version provided
             # and install the latest
             if dep not in self.SUPPORTS_UPGRADE or not self.upgrade:
-                if self.DEPENDENCIES.get(dep, None) and not (
-                    dep not in self.SUPPORTS_UPGRADE or self.upgrade
-                ):
+                if self.DEPENDENCIES.get(dep, None):
                     dep = dep + "==" + self.DEPENDENCIES[dep]
 
             cmd = [self.python_path, "-m", "pip", "install", dep]
@@ -363,7 +361,7 @@ def main():
         "--ansible-version",
         help="""Users can specify particular version of ansible python package they want to install. Ex: 2.9
                 To use the latest version dont't set this flag (recommended).
-                This flag doesn't support upgrading the version in case user has already installed ansible 
+                This flag doesn't support upgrading the version in case user has already installed ansible
                 and wants to upgrade to a higher version.
 
                 default value: latest version will be installed
