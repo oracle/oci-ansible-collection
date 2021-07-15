@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DataAsset resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new data asset.
     - "This resource has the following action operations in the M(oci_data_asset_actions) module: add_data_selector_patterns, import_connection,
-      parse_connection, remove_data_selector_patterns, validate_connection."
+      import_data_asset, parse_connection, remove_data_selector_patterns, synchronous_export, validate_connection."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -203,6 +203,12 @@ data_asset:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_harvested:
+            description:
+                - The last time that a harvest was performed on the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
         created_by_id:
             description:
                 - OCID of the user who created the data asset.
@@ -293,6 +299,12 @@ data_asset:
                     returned: on success
                     type: bool
                     sample: true
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -375,6 +387,7 @@ data_asset:
         "lifecycle_state": "CREATING",
         "time_created": "2019-03-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_harvested": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "uri": "uri_example",
@@ -390,6 +403,7 @@ data_asset:
             "is_hidden": true,
             "is_editable": true,
             "is_shown_in_list": true,
+            "is_event_enabled": true,
             "is_list_type": true,
             "allowed_values": []
         }],

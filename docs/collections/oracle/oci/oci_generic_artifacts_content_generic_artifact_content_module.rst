@@ -20,7 +20,7 @@ oracle.oci.oci_generic_artifacts_content_generic_artifact_content -- Manage a Ge
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -200,22 +200,6 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-generic_artifact_content_body"></div>
-                    <b>generic_artifact_content_body</b>
-                    <a class="ansibleOptionLink" href="#parameter-generic_artifact_content_body" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>Uploads an artifact. Provide artifact path, version and content. Avoid entering confidential information when you define the path and version.</div>
-                                            <div>Required for update using <em>state=present</em> with version present.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-generic_artifact_content_file"></div>
                     <b>generic_artifact_content_file</b>
                     <a class="ansibleOptionLink" href="#parameter-generic_artifact_content_file" title="Permalink to this option"></a>
@@ -338,7 +322,6 @@ Examples
         repository_id: "ocid1.repository.oc1..exampleuniqueID"
         artifact_path: project01/my-web-app/artifact-abc
         version: 1.1.2
-        generic_artifact_content_body: B
         generic_artifact_content_file: model.zip
 
 

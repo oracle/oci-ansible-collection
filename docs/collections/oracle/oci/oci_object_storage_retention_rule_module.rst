@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_retention_rule -- Manage a RetentionRule resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

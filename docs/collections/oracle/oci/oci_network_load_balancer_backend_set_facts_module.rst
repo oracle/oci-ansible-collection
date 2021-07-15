@@ -20,7 +20,7 @@ oracle.oci.oci_network_load_balancer_backend_set_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

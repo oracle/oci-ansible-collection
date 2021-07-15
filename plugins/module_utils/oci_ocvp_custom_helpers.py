@@ -8,10 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_config_utils
-
 try:
-    from oci.ocvp import WorkRequestClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -19,9 +16,6 @@ except ImportError:
 
 
 class SddcHelperCustom:
-    def get_waiter_client(self):
-        return oci_config_utils.create_service_client(self.module, WorkRequestClient)
-
     # As per console, a SDDC creation could take up to 3 hours but from the tests I see that it takes around 6 hours.
     # 6 hours is very long for the ansible module to wait but the other option would be to fallback to the default time
     # which would result in error for a user every time. So they will have to use wait: False option and do the waiting
@@ -74,13 +68,7 @@ class SddcActionsHelperCustom:
             action, resource
         )
 
-    def get_waiter_client(self):
-        return oci_config_utils.create_service_client(self.module, WorkRequestClient)
-
 
 class EsxiHostHelperCustom:
-    def get_waiter_client(self):
-        return oci_config_utils.create_service_client(self.module, WorkRequestClient)
-
     def get_default_module_wait_timeout(self):
         return int(1 * 3600)

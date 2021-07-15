@@ -292,6 +292,12 @@ connection:
                     returned: on success
                     type: bool
                     sample: true
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -376,6 +382,7 @@ connection:
             "is_hidden": true,
             "is_editable": true,
             "is_shown_in_list": true,
+            "is_event_enabled": true,
             "is_list_type": true,
             "allowed_values": []
         }],

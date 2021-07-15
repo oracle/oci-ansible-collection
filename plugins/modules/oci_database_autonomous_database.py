@@ -48,9 +48,13 @@ options:
     cpu_core_count:
         description:
             - The number of OCPU cores to be made available to the database.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    ocpu_count:
+        description:
+            - The number of Fractional OCPU cores to be made available to the database.
+            - This parameter is updatable.
+        type: float
     db_workload:
         description:
             - "The Autonomous Database workload type. The following values are valid:"
@@ -68,6 +72,11 @@ options:
     data_storage_size_in_tbs:
         description:
             - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
+            - This parameter is updatable.
+        type: int
+    data_storage_size_in_gbs:
+        description:
+            - The size, in gigabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
             - This parameter is updatable.
         type: int
     is_free_tier:
@@ -508,6 +517,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        ocpu_count:
+            description:
+                - The number of Fractional OCPU cores to be made available to the database.
+            returned: on success
+            type: float
+            sample: 3.4
         data_storage_size_in_tbs:
             description:
                 - The quantity of data in the database, in terabytes.
@@ -996,6 +1011,7 @@ autonomous_database:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "ocpu_count": 3.4,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",
@@ -1238,8 +1254,10 @@ def main():
             compartment_id=dict(type="str"),
             db_name=dict(type="str"),
             cpu_core_count=dict(type="int"),
+            ocpu_count=dict(type="float"),
             db_workload=dict(type="str", choices=["OLTP", "DW", "AJD", "APEX"]),
             data_storage_size_in_tbs=dict(type="int"),
+            data_storage_size_in_gbs=dict(type="int"),
             is_free_tier=dict(type="bool"),
             kms_key_id=dict(type="str"),
             vault_id=dict(type="str"),

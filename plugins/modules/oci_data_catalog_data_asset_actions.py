@@ -25,8 +25,10 @@ description:
     - Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
     - For I(action=add_data_selector_patterns), add data selector pattern to the data asset.
     - For I(action=import_connection), import new connection for this data asset.
+    - For I(action=import_data_asset), import technical objects to a Data Asset
     - For I(action=parse_connection), parse data asset references through connections from this data asset.
     - For I(action=remove_data_selector_patterns), remove data selector pattern from the data asset.
+    - For I(action=synchronous_export), export technical objects from a Data Asset
     - For I(action=validate_connection), validate connection by connecting to the data asset using credentials in metadata.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -122,6 +124,10 @@ options:
                         description:
                             - If this field is displayed in a list view of applicable objects.
                         type: bool
+                    is_event_enabled:
+                        description:
+                            - If an OCI Event will be emitted when the custom property is modified.
+                        type: bool
                     is_list_type:
                         description:
                             - Is this property allowed to have list of values
@@ -214,11 +220,51 @@ options:
             - The information used to import the connection.
             - Required for I(action=import_connection).
         type: str
+    import_file_contents:
+        description:
+            - The file contents to be imported. File size not to exceed 10 MB.
+            - Required for I(action=import_data_asset).
+        type: str
+    import_type:
+        description:
+            - Type of import.
+            - Required for I(action=import_data_asset).
+        type: list
+        choices:
+            - "CUSTOM_PROPERTY_VALUES"
+            - "ALL"
+    is_missing_value_ignored:
+        description:
+            - Specify whether to ignore the missing values in the import file.
+            - Applicable only for I(action=import_data_asset).
+        type: bool
     connection_key:
         description:
             - Unique connection key.
             - Applicable only for I(action=parse_connection).
         type: str
+    export_scope:
+        description:
+            - Array of objects and their child types to be selected for export.
+            - Applicable only for I(action=synchronous_export).
+        type: list
+        suboptions:
+            object_key:
+                description:
+                    - Unique key of the object selected for export.
+                type: str
+            export_type_ids:
+                description:
+                    - Array of type keys selected for export.
+                type: list
+    export_type:
+        description:
+            - Type of export.
+            - Required for I(action=synchronous_export).
+        type: list
+        choices:
+            - "CUSTOM_PROPERTY_VALUES"
+            - "ALL"
     action:
         description:
             - The action to perform on the DataAsset.
@@ -227,8 +273,10 @@ options:
         choices:
             - "add_data_selector_patterns"
             - "import_connection"
+            - "import_data_asset"
             - "parse_connection"
             - "remove_data_selector_patterns"
+            - "synchronous_export"
             - "validate_connection"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -246,6 +294,12 @@ EXAMPLES = """
     data_asset_key: data_asset_key_example
     action: import_connection
 
+- name: Perform action import_data_asset on data_asset
+  oci_data_catalog_data_asset_actions:
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
+    action: import_data_asset
+
 - name: Perform action parse_connection on data_asset
   oci_data_catalog_data_asset_actions:
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
@@ -257,6 +311,12 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
     action: remove_data_selector_patterns
+
+- name: Perform action synchronous_export on data_asset
+  oci_data_catalog_data_asset_actions:
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
+    action: synchronous_export
 
 - name: Perform action validate_connection on data_asset
   oci_data_catalog_data_asset_actions:
@@ -326,6 +386,12 @@ data_asset:
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        time_harvested:
+            description:
+                - The last time that a harvest was performed on the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -419,6 +485,12 @@ data_asset:
                     returned: on success
                     type: bool
                     sample: true
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
                 is_list_type:
                     description:
                         - Is this property allowed to have list of values
@@ -501,6 +573,7 @@ data_asset:
         "lifecycle_state": "CREATING",
         "time_created": "2019-03-25T21:10:29.600Z",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_harvested": "2013-10-20T19:20:30+01:00",
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "uri": "uri_example",
@@ -516,6 +589,7 @@ data_asset:
             "is_hidden": true,
             "is_editable": true,
             "is_shown_in_list": true,
+            "is_event_enabled": true,
             "is_list_type": true,
             "allowed_values": []
         }],
@@ -546,7 +620,9 @@ try:
     from oci.data_catalog import DataCatalogClient
     from oci.data_catalog.models import DataSelectorPatternDetails
     from oci.data_catalog.models import ImportConnectionDetails
+    from oci.data_catalog.models import ImportDataAssetDetails
     from oci.data_catalog.models import ParseConnectionDetails
+    from oci.data_catalog.models import ExportDataAssetDetails
     from oci.data_catalog.models import ValidateConnectionDetails
 
     HAS_OCI_PY_SDK = True
@@ -559,8 +635,10 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         add_data_selector_patterns
         import_connection
+        import_data_asset
         parse_connection
         remove_data_selector_patterns
+        synchronous_export
         validate_connection
     """
 
@@ -629,6 +707,34 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def import_data_asset(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ImportDataAssetDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.import_data_asset,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                catalog_id=self.module.params.get("catalog_id"),
+                data_asset_key=self.module.params.get("data_asset_key"),
+                import_data_asset_details=action_details,
+                import_type=self.module.params.get("import_type"),
+                is_missing_value_ignored=self.module.params.get(
+                    "is_missing_value_ignored"
+                ),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def parse_connection(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ParseConnectionDetails
@@ -667,6 +773,31 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
                 data_selector_pattern_details=action_details,
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def synchronous_export(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ExportDataAssetDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.synchronous_export_data_asset,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                catalog_id=self.module.params.get("catalog_id"),
+                data_asset_key=self.module.params.get("data_asset_key"),
+                synchronous_export_data_asset_details=action_details,
+                export_type=self.module.params.get("export_type"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -753,6 +884,7 @@ def main():
                             is_hidden=dict(type="bool"),
                             is_editable=dict(type="bool"),
                             is_shown_in_list=dict(type="bool"),
+                            is_event_enabled=dict(type="bool"),
                             is_list_type=dict(type="bool"),
                             allowed_values=dict(type="list"),
                         ),
@@ -785,15 +917,28 @@ def main():
                 ),
             ),
             connection_payload=dict(type="str"),
+            import_file_contents=dict(type="str"),
+            import_type=dict(type="list", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]),
+            is_missing_value_ignored=dict(type="bool"),
             connection_key=dict(type="str"),
+            export_scope=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    object_key=dict(type="str"), export_type_ids=dict(type="list")
+                ),
+            ),
+            export_type=dict(type="list", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]),
             action=dict(
                 type="str",
                 required=True,
                 choices=[
                     "add_data_selector_patterns",
                     "import_connection",
+                    "import_data_asset",
                     "parse_connection",
                     "remove_data_selector_patterns",
+                    "synchronous_export",
                     "validate_connection",
                 ],
             ),

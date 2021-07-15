@@ -54,6 +54,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -126,6 +127,13 @@ enterprise_manager_bridges:
             returned: on success
             type: string
             sample: object_storage_bucket_name_example
+        object_storage_bucket_status_details:
+            description:
+                - A message describing status of the object storage bucket of this resource. For example, it can be used to provide actionable information about
+                  the permission and content validity of the bucket.
+            returned: on success
+            type: string
+            sample: object_storage_bucket_status_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -179,6 +187,7 @@ enterprise_manager_bridges:
         "description": "description_example",
         "object_storage_namespace_name": "object_storage_namespace_name_example",
         "object_storage_bucket_name": "object_storage_bucket_name_example",
+        "object_storage_bucket_status_details": "object_storage_bucket_status_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
@@ -268,6 +277,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_connection_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -563,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Connection resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_asset_key&#x27;: &#x27;data_asset_key_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;is_default&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_event_enabled&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_asset_key&#x27;: &#x27;data_asset_key_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;is_default&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -688,6 +688,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If this field is a editable field</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connections/custom_property_members/is_event_enabled"></div>
+                    <b>is_event_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-connections/custom_property_members/is_event_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If an OCI Event will be emitted when the custom property is modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

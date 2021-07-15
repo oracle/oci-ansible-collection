@@ -20,7 +20,7 @@ oracle.oci.oci_container_engine_cluster_migrate_to_native_vcn_status_facts -- Fe
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

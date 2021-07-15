@@ -19,6 +19,7 @@ try:
     from oci.util import to_dict
     from oci.exceptions import ServiceError
     from oci.core import ComputeClient
+    from oci.retry.retry import RetryStrategyBuilder
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -616,8 +617,23 @@ class UpdateAutonomousDatabaseWorkRequestWaiter(WorkRequestWaiter):
 class NosqlChangeCompartmentCustomWaiter(WorkRequestWaiter):
     # Getting the resource immediately after the work request succeeds gives a 404 error.
     def get_resource_from_wait_response(self, wait_response):
-        time.sleep(30)
-        get_response = self.resource_helper.get_resource()
+        retry_strategy_builder = RetryStrategyBuilder(
+            total_elapsed_time_check=True,
+            total_elapsed_time_seconds=self.resource_helper.get_wait_timeout(),
+            retry_max_wait_between_calls_seconds=60,
+            retry_base_sleep_time_seconds=10,
+            backoff_type=oci.retry.BACKOFF_FULL_JITTER_EQUAL_ON_THROTTLE_VALUE,
+        )
+        retry_strategy_builder.add_service_error_check(
+            service_error_retry_config={429: [], 404: []},
+            service_error_retry_on_any_5xx=True,
+        )
+        retry_strategy = retry_strategy_builder.get_retry_strategy()
+        get_response = oci_common_utils.call_with_backoff(
+            self.resource_helper.client.get_table,
+            table_name_or_id=self.resource_helper.module.params.get("table_name_or_id"),
+            retry_strategy=retry_strategy,
+        )
         return get_response.data
 
 

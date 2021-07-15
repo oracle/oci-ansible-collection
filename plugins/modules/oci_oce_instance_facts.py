@@ -39,6 +39,10 @@ options:
             - The ID of the compartment in which to list resources.
             - Required to list multiple oce_instances.
         type: str
+    tenancy_id:
+        description:
+            - The ID of the tenancy in which to list resources.
+        type: str
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -241,6 +245,13 @@ oce_instances:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         service:
             description:
                 - "SERVICE data.
@@ -274,6 +285,7 @@ oce_instances:
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "service": {}
     }]
 """
@@ -314,6 +326,7 @@ class OceInstanceFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "tenancy_id",
             "display_name",
             "sort_order",
             "sort_by",
@@ -345,6 +358,7 @@ def main():
         dict(
             oce_instance_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            tenancy_id=dict(type="str"),
             display_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

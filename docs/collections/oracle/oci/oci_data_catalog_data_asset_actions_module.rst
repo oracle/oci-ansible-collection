@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_data_asset_actions -- Perform actions on a DataAsset
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -45,8 +45,10 @@ Synopsis
 - Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
 - For *action=add_data_selector_patterns*, add data selector pattern to the data asset.
 - For *action=import_connection*, import new connection for this data asset.
+- For *action=import_data_asset*, import technical objects to a Data Asset
 - For *action=parse_connection*, parse data asset references through connections from this data asset.
 - For *action=remove_data_selector_patterns*, remove data selector pattern from the data asset.
+- For *action=synchronous_export*, export technical objects from a Data Asset
 - For *action=validate_connection*, validate connection by connecting to the data asset using credentials in metadata.
 
 
@@ -89,8 +91,10 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>add_data_selector_patterns</li>
                                                                                                                                                                                                 <li>import_connection</li>
+                                                                                                                                                                                                <li>import_data_asset</li>
                                                                                                                                                                                                 <li>parse_connection</li>
                                                                                                                                                                                                 <li>remove_data_selector_patterns</li>
+                                                                                                                                                                                                <li>synchronous_export</li>
                                                                                                                                                                                                 <li>validate_connection</li>
                                                                                     </ul>
                                                                             </td>
@@ -367,6 +371,27 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>If this field is a editable field</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-connection_detail/custom_property_members/is_event_enabled"></div>
+                    <b>is_event_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-connection_detail/custom_property_members/is_event_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If an OCI Event will be emitted when the custom property is modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -827,6 +852,131 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-export_scope"></div>
+                    <b>export_scope</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_scope" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Array of objects and their child types to be selected for export.</div>
+                                            <div>Applicable only for <em>action=synchronous_export</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-export_scope/export_type_ids"></div>
+                    <b>export_type_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_scope/export_type_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Array of type keys selected for export.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-export_scope/object_key"></div>
+                    <b>object_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_scope/object_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Unique key of the object selected for export.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-export_type"></div>
+                    <b>export_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-export_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CUSTOM_PROPERTY_VALUES</li>
+                                                                                                                                                                                                <li>ALL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of export.</div>
+                                            <div>Required for <em>action=synchronous_export</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-import_file_contents"></div>
+                    <b>import_file_contents</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_file_contents" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The file contents to be imported. File size not to exceed 10 MB.</div>
+                                            <div>Required for <em>action=import_data_asset</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-import_type"></div>
+                    <b>import_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-import_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CUSTOM_PROPERTY_VALUES</li>
+                                                                                                                                                                                                <li>ALL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of import.</div>
+                                            <div>Required for <em>action=import_data_asset</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_missing_value_ignored"></div>
+                    <b>is_missing_value_ignored</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_missing_value_ignored" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specify whether to ignore the missing values in the import file.</div>
+                                            <div>Applicable only for <em>action=import_data_asset</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-items" title="Permalink to this option"></a>
@@ -939,6 +1089,12 @@ Examples
         data_asset_key: data_asset_key_example
         action: import_connection
 
+    - name: Perform action import_data_asset on data_asset
+      oci_data_catalog_data_asset_actions:
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        data_asset_key: data_asset_key_example
+        action: import_data_asset
+
     - name: Perform action parse_connection on data_asset
       oci_data_catalog_data_asset_actions:
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
@@ -950,6 +1106,12 @@ Examples
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
         action: remove_data_selector_patterns
+
+    - name: Perform action synchronous_export on data_asset
+      oci_data_catalog_data_asset_actions:
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+        data_asset_key: data_asset_key_example
+        action: synchronous_export
 
     - name: Perform action validate_connection on data_asset
       oci_data_catalog_data_asset_actions:
@@ -992,7 +1154,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DataAsset resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_selector_patterns&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;custom_property_members&#x27;: [{&#x27;allowed_values&#x27;: [], &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_event_enabled&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace_key&#x27;: &#x27;namespace_key_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;data_selector_patterns&#x27;: [{&#x27;catalog_id&#x27;: &#x27;ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_key&#x27;: &#x27;external_key_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;properties&#x27;: {}, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_harvested&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_key&#x27;: &#x27;type_key_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1135,6 +1297,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If this field is a editable field</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-data_asset/custom_property_members/is_event_enabled"></div>
+                    <b>is_event_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-data_asset/custom_property_members/is_event_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If an OCI Event will be emitted when the custom property is modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1565,6 +1746,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-data_asset/time_harvested"></div>
+                    <b>time_harvested</b>
+                    <a class="ansibleOptionLink" href="#return-data_asset/time_harvested" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The last time that a harvest was performed on the data asset. An <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> formatted datetime string.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

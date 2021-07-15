@@ -61,6 +61,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     database_type:
         description:
             - Filter by one or more database type.
@@ -472,6 +473,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             database_type=dict(

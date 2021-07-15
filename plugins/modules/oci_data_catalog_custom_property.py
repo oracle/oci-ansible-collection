@@ -96,6 +96,11 @@ options:
             - If this field is allowed to pop in search results
             - This parameter is updatable.
         type: bool
+    is_event_enabled:
+        description:
+            - If an OCI Event will be emitted when the custom property is modified.
+            - This parameter is updatable.
+        type: bool
     allowed_values:
         description:
             - Allowed values for the custom property if any
@@ -151,6 +156,7 @@ EXAMPLES = """
     is_editable: true
     is_shown_in_list: true
     is_hidden_in_search: true
+    is_event_enabled: true
 
 - name: Update custom_property
   oci_data_catalog_custom_property:
@@ -302,6 +308,12 @@ custom_property:
             returned: on success
             type: int
             sample: 56
+        is_event_enabled:
+            description:
+                - If an OCI Event will be emitted when the custom property is modified.
+            returned: on success
+            type: bool
+            sample: true
         scope:
             description:
                 - Type or scope of the custom property belongs to. This will be an array of type id it will be belongs to
@@ -326,6 +338,12 @@ custom_property:
                     returned: on success
                     type: int
                     sample: 56
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
         allowed_values:
             description:
                 - Allowed values for the custom property if any
@@ -363,10 +381,12 @@ custom_property:
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "usage_count": 56,
+        "is_event_enabled": true,
         "scope": [{
             "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
             "type_name": "type_name_example",
-            "count": 56
+            "count": 56,
+            "is_event_enabled": true
         }],
         "allowed_values": [],
         "properties": {}
@@ -543,6 +563,7 @@ def main():
             is_editable=dict(type="bool"),
             is_shown_in_list=dict(type="bool"),
             is_hidden_in_search=dict(type="bool"),
+            is_event_enabled=dict(type="bool"),
             allowed_values=dict(type="list"),
             properties=dict(type="dict"),
             custom_property_key=dict(type="str"),

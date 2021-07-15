@@ -57,7 +57,7 @@ DOCUMENTATION = """
                   used. If this 'auth_type' module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE,
                   if any, is used. Use C(auth_type="instance_principal") to use instance principal based authentication
                   when running ansible playbooks within an OCI compute instance.
-            choices: ['api_key', 'instance_principal', 'instance_obo_user']
+            choices: ['api_key', 'instance_principal', 'instance_obo_user', 'resource_principal']
             default: 'api_key'
             type: str
             env:
@@ -176,45 +176,27 @@ compartments:
   - compartment_name: "test_compartment"
     parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
-# Example filtering using hostname IP
-hostnames:
-  - "11.145.214.11"
-
-# Example filtering using hostname_format
-hostname_format: "private_ip"
-
-# Sets the inventory_hostname. Each item is a Jinja2 expression and it gets evaluated on host_vars.
-#hostname_format_preferences and hostname_format cannot be used together
+# Sets the inventory_hostname to either "display_name+'.oci.com'" or id
+# "'display_name+'.oci.com'" has more preference than id
 hostname_format_preferences:
   - "display_name+'.oci.com'"
   - "id"
+
+# Excludes host that is not in the region 'iad' from the inventory
+exclude_host_filters:
+  - "region not in ['iad']"
+
+# Includes only the hosts that has display_name ending with '.oci.com' in the inventory
+include_host_filters:
+  - "display_name is match('.*.oci.com')"
 
 # Example group results by key
 keyed_groups:
   - key: availability_domain
 
-# Excludes a host from the inventory when any of the Jinja2 expression evaluates to true.
-exclude_host_filters:
-  - "region not in ['iad']"
-
-# Includes a host in the inventory when any of the Jinja2 expression evaluates to true.
-#include_host_filters and filters options cannot be used together.
-include_host_filters:
-  - "display_name is match('.*.oci.com')"
-
-# Example using filters
-filters:
-  - availability_domain: "IwGV:US-ASHBURN-AD-3"
-  - display_name: "instance20190506231645"
-  - lifecycle_state: "RUNNING"
-  - defined_tags: {
-     "ansible_tag_2": {
-       "ansibletag448": "test_value"
-      }
-    }
-  - freeform_tags: {
-     "Environment": "Production"
-    }
+# Example to create and modify a host variable
+compose:
+  ansible_host: display_name+'.oracle.com'
 
 # Example flag to turn on debug mode
 debug: true
@@ -265,6 +247,9 @@ try:
     from oci.database import DatabaseClient
     from oci.util import to_dict
     from oci.exceptions import ServiceError
+    from oci.auth.signers.resource_principals_signer import (
+        get_resource_principals_signer,
+    )
 except ImportError:
     raise AnsibleError("The oci dynamic inventory plugin requires oci python sdk.")
 
@@ -507,14 +492,20 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         params = dict(self.params, region=region)
         kwargs = {}
         if self._is_instance_principal_auth():
+            self.params["auth_type"] = "instance_principal"
             kwargs["signer"] = self.create_instance_principal_signer()
 
         elif self._is_delegation_token_auth():
+            self.params["auth_type"] = "instance_obo_user"
             delegation_token_location = self._get_delegation_token_file()
             kwargs["signer"] = self.create_instance_principal_signer(
                 delegation_token_location=delegation_token_location
             )
 
+        elif self._is_resource_principal_auth():
+            self.params["auth_type"] = "resource_principal"
+            kwargs["signer"] = get_resource_principals_signer()
+        self.debug("auth_type : {0}".format(self.params["auth_type"]))
         # Create service client class with the signer.
         client = service_client_class(params, **kwargs)
 
@@ -529,26 +520,32 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             return True
         # check if auth type is overridden via module params
         if self.get_option("auth_type") == "instance_principal":
-            self.params["auth_type"] = "instance_principal"
             return True
         elif (
             self.get_option("auth_type") is None
             and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_principal"
         ):
-            self.params["auth_type"] = "instance_principal"
             return True
         return False
 
     def _is_delegation_token_auth(self):
         # check if auth type is overridden via module params
         if self.get_option("auth_type") == "instance_obo_user":
-            self.params["auth_type"] = "instance_obo_user"
             return True
         elif (
             self.get_option("auth_type") is None
             and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_obo_user"
         ):
-            self.params["auth_type"] = "instance_obo_user"
+            return True
+        return False
+
+    def _is_resource_principal_auth(self):
+        if self.get_option("auth_type") == "resource_principal":
+            return True
+        elif (
+            self.get_option("auth_type") is None
+            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "resource_principal"
+        ):
             return True
         return False
 

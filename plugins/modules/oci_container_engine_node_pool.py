@@ -154,6 +154,12 @@ options:
                     - The number of nodes that should be in the node pool.
                     - This parameter is updatable.
                 type: int
+            nsg_ids:
+                description:
+                    - The OCIDs of the Network Security Group(s) to associate nodes for this node pool with. For more information about NSGs, see
+                      L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                    - This parameter is updatable.
+                type: list
             placement_configs:
                 description:
                     - The placement configurations for the node pool. Provide one placement
@@ -516,6 +522,13 @@ node_pool:
                     returned: on success
                     type: int
                     sample: 56
+                nsg_ids:
+                    description:
+                        - The OCIDs of the Network Security Group(s) to associate nodes for this node pool with. For more information about NSGs, see
+                          L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                    returned: on success
+                    type: list
+                    sample: []
                 placement_configs:
                     description:
                         - The placement configurations for the node pool. Provide one placement
@@ -591,6 +604,7 @@ node_pool:
         }],
         "node_config_details": {
             "size": 56,
+            "nsg_ids": [],
             "placement_configs": [{
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -765,6 +779,7 @@ def main():
                 type="dict",
                 options=dict(
                     size=dict(type="int"),
+                    nsg_ids=dict(type="list"),
                     placement_configs=dict(
                         type="list",
                         elements="dict",

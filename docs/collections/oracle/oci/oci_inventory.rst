@@ -20,7 +20,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -119,6 +119,7 @@ Parameters
                                                                                                                                                                 <li><div style="color: blue"><b>api_key</b>&nbsp;&larr;</div></li>
                                                                                                                                                                                                 <li>instance_principal</li>
                                                                                                                                                                                                 <li>instance_obo_user</li>
+                                                                                                                                                                                                <li>resource_principal</li>
                                                                                     </ul>
                                                                             </td>
                                                     <td>
@@ -884,45 +885,27 @@ Examples
       - compartment_name: "test_compartment"
         parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
-    # Example filtering using hostname IP
-    hostnames:
-      - "11.145.214.11"
-
-    # Example filtering using hostname_format
-    hostname_format: "private_ip"
-
-    # Sets the inventory_hostname. Each item is a Jinja2 expression and it gets evaluated on host_vars.
-    #hostname_format_preferences and hostname_format cannot be used together
+    # Sets the inventory_hostname to either "display_name+'.oci.com'" or id
+    # "'display_name+'.oci.com'" has more preference than id
     hostname_format_preferences:
       - "display_name+'.oci.com'"
       - "id"
+
+    # Excludes host that is not in the region 'iad' from the inventory
+    exclude_host_filters:
+      - "region not in ['iad']"
+
+    # Includes only the hosts that has display_name ending with '.oci.com' in the inventory
+    include_host_filters:
+      - "display_name is match('.*.oci.com')"
 
     # Example group results by key
     keyed_groups:
       - key: availability_domain
 
-    # Excludes a host from the inventory when any of the Jinja2 expression evaluates to true.
-    exclude_host_filters:
-      - "region not in ['iad']"
-
-    # Includes a host in the inventory when any of the Jinja2 expression evaluates to true.
-    #include_host_filters and filters options cannot be used together.
-    include_host_filters:
-      - "display_name is match('.*.oci.com')"
-
-    # Example using filters
-    filters:
-      - availability_domain: "IwGV:US-ASHBURN-AD-3"
-      - display_name: "instance20190506231645"
-      - lifecycle_state: "RUNNING"
-      - defined_tags: {
-         "ansible_tag_2": {
-           "ansibletag448": "test_value"
-          }
-        }
-      - freeform_tags: {
-         "Environment": "Production"
-        }
+    # Example to create and modify a host variable
+    compose:
+      ansible_host: display_name+'.oracle.com'
 
     # Example flag to turn on debug mode
     debug: true
