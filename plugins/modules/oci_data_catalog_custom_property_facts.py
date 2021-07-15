@@ -103,6 +103,19 @@ options:
             - "VIEW"
             - "ATTRIBUTE"
             - "FOLDER"
+            - "ORACLE_ANALYTICS_SERVER"
+            - "ORACLE_ANALYTICS_CLOUD"
+            - "ORACLE_ANALYTICS_SUBJECT_AREA"
+            - "ORACLE_ANALYTICS_DASHBOARD"
+            - "ORACLE_ANALYTICS_BUSINESS_MODEL"
+            - "ORACLE_ANALYTICS_PHYSICAL_DATABASE"
+            - "ORACLE_ANALYTICS_PHYSICAL_SCHEMA"
+            - "ORACLE_ANALYTICS_PRESENTATION_TABLE"
+            - "ORACLE_ANALYTICS_LOGICAL_TABLE"
+            - "ORACLE_ANALYTICS_PHYSICAL_TABLE"
+            - "ORACLE_ANALYTICS_ANALYSIS"
+            - "DATABASE_SCHEMA"
+            - "TOPIC"
             - "CONNECTION"
             - "GLOSSARY"
             - "TERM"
@@ -299,6 +312,12 @@ custom_properties:
             returned: on success
             type: int
             sample: 56
+        is_event_enabled:
+            description:
+                - If an OCI Event will be emitted when the custom property is modified.
+            returned: on success
+            type: bool
+            sample: true
         scope:
             description:
                 - Type or scope of the custom property belongs to. This will be an array of type id it will be belongs to
@@ -323,6 +342,12 @@ custom_properties:
                     returned: on success
                     type: int
                     sample: 56
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
         allowed_values:
             description:
                 - Allowed values for the custom property if any
@@ -360,10 +385,12 @@ custom_properties:
         "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
         "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
         "usage_count": 56,
+        "is_event_enabled": true,
         "scope": [{
             "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
             "type_name": "type_name_example",
-            "count": 56
+            "count": 56,
+            "is_event_enabled": true
         }],
         "allowed_values": [],
         "properties": {}
@@ -506,6 +533,19 @@ def main():
                     "VIEW",
                     "ATTRIBUTE",
                     "FOLDER",
+                    "ORACLE_ANALYTICS_SERVER",
+                    "ORACLE_ANALYTICS_CLOUD",
+                    "ORACLE_ANALYTICS_SUBJECT_AREA",
+                    "ORACLE_ANALYTICS_DASHBOARD",
+                    "ORACLE_ANALYTICS_BUSINESS_MODEL",
+                    "ORACLE_ANALYTICS_PHYSICAL_DATABASE",
+                    "ORACLE_ANALYTICS_PHYSICAL_SCHEMA",
+                    "ORACLE_ANALYTICS_PRESENTATION_TABLE",
+                    "ORACLE_ANALYTICS_LOGICAL_TABLE",
+                    "ORACLE_ANALYTICS_PHYSICAL_TABLE",
+                    "ORACLE_ANALYTICS_ANALYSIS",
+                    "DATABASE_SCHEMA",
+                    "TOPIC",
                     "CONNECTION",
                     "GLOSSARY",
                     "TERM",

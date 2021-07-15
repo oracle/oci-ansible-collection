@@ -347,12 +347,43 @@ types:
                             returned: on success
                             type: int
                             sample: 56
+                        is_event_enabled:
+                            description:
+                                - If an OCI Event will be emitted when the custom property is modified.
+                            returned: on success
+                            type: bool
+                            sample: true
                 allowed_values:
                     description:
                         - Allowed values for the custom property if any
                     returned: on success
                     type: list
                     sample: []
+                time_updated:
+                    description:
+                        - The last time that any change was made to the custom property. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime
+                          string.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
+                created_by_id:
+                    description:
+                        - OCID of the user who created the custom property.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+                updated_by_id:
+                    description:
+                        - OCID of the user who last modified the custom property.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+                is_event_enabled:
+                    description:
+                        - If an OCI Event will be emitted when the custom property is modified.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "key": "key_example",
         "name": "name_example",
@@ -386,9 +417,14 @@ types:
             "scope": [{
                 "type_id": "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx",
                 "type_name": "type_name_example",
-                "count": 56
+                "count": 56,
+                "is_event_enabled": true
             }],
-            "allowed_values": []
+            "allowed_values": [],
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "created_by_id": "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx",
+            "updated_by_id": "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx",
+            "is_event_enabled": true
         }]
     }]
 """

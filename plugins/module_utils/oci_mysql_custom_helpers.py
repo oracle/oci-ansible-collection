@@ -15,7 +15,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible.module_utils import six
 
 try:
-    # from oci.mysql import WorkRequestsClient
     import oci
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
     from oci.util import to_dict
@@ -60,25 +59,10 @@ class MysqlDbSystemActionsHelperCustom:
         return action_idempotent_states
 
 
-# The waiter client for this service uses mysql WorkRequestsClient
 class MysqlDbSystemHelperCustom:
-    # def __init__(self, module, resource_type, service_client_class, namespace):
-    #     self.work_request_client = oci_config_utils.create_service_client(
-    #         module, WorkRequestsClient
-    #     )
-    #
-    #     super(MysqlDbSystemHelperCustom, self).__init__(
-    #         module, resource_type, service_client_class, namespace
-    #     )
-    #
-    # # override the waiting client with the WorkRequestsClient
-    # def get_waiter_client(self):
-    #     return self.work_request_client
-
-    # def get_wait_for_states_for_operation(self, operation, is_work_request=False):
-    #     return super(MysqlDbSystemHelperCustom, self).get_wait_for_states_for_operation(
-    #         operation, False
-    #     )
+    # # overriding entity_type
+    def get_entity_type(self):
+        return "mysqldbsystem"
 
     # get model doesn't return admin_username and admin_password of existing database resources. Thus, excluding
     # these for idempotency.
@@ -128,53 +112,6 @@ class MysqlDbSystemHelperCustom:
 
         return oci_common_utils.convert_input_data_to_model_class(
             params_to_pass_in_update_call, self.get_update_model_class()
-        )
-
-    def create_resource(self):
-        create_details = self.get_create_model()
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.create_db_system,
-            call_fn_args=(),
-            call_fn_kwargs=dict(create_db_system_details=create_details,),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation=oci_common_utils.CREATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.CREATE_OPERATION_KEY
-            ),
-        )
-
-    def update_resource(self):
-        update_details = self.get_update_model()
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.update_db_system,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                db_system_id=self.module.params.get("db_system_id"),
-                update_db_system_details=update_details,
-            ),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation=oci_common_utils.UPDATE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.UPDATE_OPERATION_KEY
-            ),
-        )
-
-    def delete_resource(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.delete_db_system,
-            call_fn_args=(),
-            call_fn_kwargs=dict(db_system_id=self.module.params.get("db_system_id"),),
-            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
-            operation=oci_common_utils.DELETE_OPERATION_KEY,
-            waiter_client=self.get_waiter_client(),
-            resource_helper=self,
-            wait_for_states=self.get_wait_for_states_for_operation(
-                oci_common_utils.DELETE_OPERATION_KEY
-            ),
         )
 
 

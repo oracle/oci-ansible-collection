@@ -914,18 +914,6 @@ class DbSystemActionsHelperCustom:
         )
 
 
-class DatabaseSoftwareImageHelperCustom:
-    def get_default_module_wait_timeout(self):
-        return int(1 * 2400)
-
-    def get_exclude_attributes(self):
-        exclude_attributes = super(
-            DatabaseSoftwareImageHelperCustom, self
-        ).get_exclude_attributes()
-
-        return exclude_attributes + ["source_db_home_id"]
-
-
 class DatabaseActionsHelperCustom:
     # mapping actions - precheck, upgrade, rollback to upgrade method.
     def get_action_fn(self, action):
@@ -1035,3 +1023,48 @@ def add_primary_ip_info_to_db_node(db_node, network_client):
     else:
         db_node["primary_private_ip"] = None
         db_node["primary_public_ip"] = None
+
+
+class PluggableDatabaseActionsHelperCustom:
+    STOP_ACTION_KEY = "stop"
+    START_ACTION_KEY = "start"
+    LOCAL_CLONE_ACTION_KEY = "local_clone"
+    REMOTE_CLONE_ACTION_KEY = "remote_clone"
+
+    def is_action_necessary(self, action, resource=None):
+        resource = resource or self.get_resource().data
+        if action == self.STOP_ACTION_KEY:
+            # https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/PluggableDatabase/StopPluggableDatabase
+            if getattr(resource, "open_mode", None) == "MOUNTED":
+                return False
+            return True
+        if action == self.START_ACTION_KEY:
+            # https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/PluggableDatabase/StartPluggableDatabase
+            if getattr(resource, "open_mode", None) == "READ_WRITE":
+                return False
+            return True
+        if action == self.LOCAL_CLONE_ACTION_KEY:
+            existing_pluggable_databases = oci_common_utils.call_with_backoff(
+                self.client.list_pluggable_databases,
+                database_id=getattr(resource, "container_database_id", None),
+            ).data
+            for existing_pluggable_database in existing_pluggable_databases:
+                if getattr(
+                    existing_pluggable_database, "pdb_name", None
+                ) == self.module.params.get("cloned_pdb_name"):
+                    return False
+            return True
+        if action == self.REMOTE_CLONE_ACTION_KEY:
+            existing_pluggable_databases = oci_common_utils.call_with_backoff(
+                self.client.list_pluggable_databases,
+                database_id=self.module.params.get("target_container_database_id"),
+            ).data
+            for existing_pluggable_database in existing_pluggable_databases:
+                if getattr(
+                    existing_pluggable_database, "pdb_name", None
+                ) == self.module.params.get("cloned_pdb_name"):
+                    return False
+            return True
+        return super(PluggableDatabaseActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

@@ -393,6 +393,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_pluggable_database <ansible_collections.oracle.oci.oci_database_pluggable_database_module>` -- Manage a PluggableDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` -- Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_pluggable_database_facts_module>` -- Fetches details about one or multiple PluggableDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_software_image <ansible_collections.oracle.oci.oci_database_software_image_module>` -- Manage a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_software_image_actions <ansible_collections.oracle.oci.oci_database_software_image_actions_module>` -- Perform actions on a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_software_image_facts <ansible_collections.oracle.oci.oci_database_software_image_facts_module>` -- Fetches details about one or multiple DatabaseSoftwareImage resources in Oracle Cloud Infrastructure
@@ -406,6 +409,19 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_vm_cluster_network_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_network_facts_module>` -- Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_patch_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_facts_module>` -- Fetches details about one or multiple VmClusterPatch resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_history_entry_facts_module>` -- Fetches details about one or multiple VmClusterPatchHistoryEntry resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_artifact <ansible_collections.oracle.oci.oci_devops_deploy_artifact_module>` -- Manage a DeployArtifact resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_artifact_facts <ansible_collections.oracle.oci.oci_devops_deploy_artifact_facts_module>` -- Fetches details about one or multiple DeployArtifact resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_environment <ansible_collections.oracle.oci.oci_devops_deploy_environment_module>` -- Manage a DeployEnvironment resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_environment_facts <ansible_collections.oracle.oci.oci_devops_deploy_environment_facts_module>` -- Fetches details about one or multiple DeployEnvironment resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_pipeline <ansible_collections.oracle.oci.oci_devops_deploy_pipeline_module>` -- Manage a DeployPipeline resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_pipeline_facts <ansible_collections.oracle.oci.oci_devops_deploy_pipeline_facts_module>` -- Fetches details about one or multiple DeployPipeline resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_stage <ansible_collections.oracle.oci.oci_devops_deploy_stage_module>` -- Manage a DeployStage resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deploy_stage_facts <ansible_collections.oracle.oci.oci_devops_deploy_stage_facts_module>` -- Fetches details about one or multiple DeployStage resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deployment <ansible_collections.oracle.oci.oci_devops_deployment_module>` -- Manage a Deployment resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_deployment_facts <ansible_collections.oracle.oci.oci_devops_deployment_facts_module>` -- Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_project <ansible_collections.oracle.oci.oci_devops_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_project_actions <ansible_collections.oracle.oci.oci_devops_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_devops_project_facts <ansible_collections.oracle.oci.oci_devops_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records <ansible_collections.oracle.oci.oci_dns_domain_records_module>` -- Manage a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_resolver <ansible_collections.oracle.oci.oci_dns_resolver_module>` -- Manage a Resolver resource in Oracle Cloud Infrastructure
@@ -431,6 +447,9 @@ oracle.oci
 * :ref:`oracle.oci.oci_dns_zone_facts <ansible_collections.oracle.oci.oci_dns_zone_facts_module>` -- Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_zone_records <ansible_collections.oracle.oci.oci_dns_zone_records_module>` -- Manage a ZoneRecords resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_email_domain <ansible_collections.oracle.oci.oci_email_domain_module>` -- Manage an EmailDomain resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_email_domain_actions <ansible_collections.oracle.oci.oci_email_domain_actions_module>` -- Perform actions on an EmailDomain resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_email_domain_facts <ansible_collections.oracle.oci.oci_email_domain_facts_module>` -- Fetches details about one or multiple EmailDomain resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_email_sender <ansible_collections.oracle.oci.oci_email_sender_module>` -- Manage a Sender resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_email_sender_actions <ansible_collections.oracle.oci.oci_email_sender_actions_module>` -- Perform actions on a Sender resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_email_sender_facts <ansible_collections.oracle.oci.oci_email_sender_facts_module>` -- Fetches details about one or multiple Sender resources in Oracle Cloud Infrastructure

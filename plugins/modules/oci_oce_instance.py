@@ -121,6 +121,8 @@ options:
         choices:
             - "NEW"
             - "BYOL"
+            - "PREMIUM"
+            - "STARTER"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -350,6 +352,13 @@ oce_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         service:
             description:
                 - "SERVICE data.
@@ -383,6 +392,7 @@ oce_instance:
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "service": {}
     }
 """
@@ -435,7 +445,20 @@ class OceInstanceHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        return dict()
+        optional_list_method_params = ["tenancy_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
 
     def list_resources(self):
 
@@ -531,7 +554,9 @@ def main():
             upgrade_schedule=dict(type="str"),
             waf_primary_domain=dict(type="str"),
             instance_access_type=dict(type="str", choices=["PUBLIC", "PRIVATE"]),
-            instance_license_type=dict(type="str", choices=["NEW", "BYOL"]),
+            instance_license_type=dict(
+                type="str", choices=["NEW", "BYOL", "PREMIUM", "STARTER"]
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oce_instance_id=dict(aliases=["id"], type="str"),

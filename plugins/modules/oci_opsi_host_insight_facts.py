@@ -57,6 +57,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     host_type:
         description:
             - Filter by one or more host types.
@@ -320,6 +321,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             host_type=dict(type="list"),

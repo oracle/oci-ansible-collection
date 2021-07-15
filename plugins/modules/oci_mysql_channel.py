@@ -426,6 +426,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
@@ -433,6 +434,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.mysql import WorkRequestsClient
     from oci.mysql import ChannelsClient
     from oci.mysql.models import CreateChannelDetails
     from oci.mysql.models import UpdateChannelDetails
@@ -444,6 +446,9 @@ except ImportError:
 
 class MysqlChannelHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def get_waiter_client(self):
+        return oci_config_utils.create_service_client(self.module, WorkRequestsClient)
 
     def get_module_resource_id_param(self):
         return "channel_id"

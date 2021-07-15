@@ -783,6 +783,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
@@ -790,6 +791,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.ocvp import WorkRequestClient
     from oci.ocvp import SddcClient
     from oci.ocvp.models import CreateSddcDetails
     from oci.ocvp.models import UpdateSddcDetails
@@ -801,6 +803,9 @@ except ImportError:
 
 class SddcHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
+
+    def get_waiter_client(self):
+        return oci_config_utils.create_service_client(self.module, WorkRequestClient)
 
     def get_module_resource_id_param(self):
         return "sddc_id"

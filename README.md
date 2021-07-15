@@ -25,48 +25,19 @@ For the complete list of supported services, please check the [modules list](htt
 
 ## Installation
 
-#### 1) Installing the Collection with yum
+### Pre-requisites
+**python>=3.6**
+#### Oracle Linux 7
 
-You can use yum to install the Oracle Cloud Infrastructure Ansible Module Collection RPM.
+`yum install -y oci-ansible-collection --enablerepo ol7_developer --enablerepo ol7_developer_EPEL`
 
-The RPM installs the OCI Ansible module collection and its required dependencies: the OCI SDK for Python and Ansible.
+#### Oracle Linux 8
 
-The following example shows how to use yum to install the Ansible Module Collection RPM:
-  ``` bash
-$ yum -y install oraclelinux-developer-release-el7 && sudo yum install oci-ansible-collection
-  ```
-Note:
-This installation uses Python version 3.6.
+`yum install -y oci-ansible-collection --enablerepo ol8_developer --enablerepo ol8_developer_EPEL`
 
-To test the installation of the RPM and configuration of the SDK, you can run a sample playbook. For example:
-  ``` bash
-$ ansible-playbook-3 /usr/share/doc/oci-ansible-collection-<version>/samples/object_storage/get_namespace/sample.yaml
-  ```
+#### Linux/macOS
 
-#### 2) Installing collections from Ansible Galaxy
-
-You can install it from [Ansible Galaxy](https://galaxy.ansible.com/oracle) using the command:
-  ``` bash
-  $ ansible-galaxy collection install oracle.oci
-  ```
-Notes:
-* Collections is supported in Ansible 2.9+.
-* For more information about collections, please check [Ansible Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
-* To update the modules to latest version, use the install --force flag.
-
-#### Install OCI Python SDK
-
-The Oracle Cloud Ansible modules are built using the [Oracle Cloud Infrastructure Python SDK](https://docs.us-phoenix-1.oraclecloud.com/Content/API/SDKDocs/pythonsdk.htm).
-
-[Install OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/installation.html#downloading-and-installing-the-sdk):
-
-  ``` bash
-  $ yum -y install oraclelinux-developer-release-el7 && yum -y install python-oci-sdk
-  or
-  $ pip install oci
-  ```
-The modules honor the [SDK configuration](https://docs.us-phoenix-1.oraclecloud.com/Content/ToolsConfig.htm) when available.
-
+`curl -L https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/scripts/install.sh | bash -s -- --verbose`
 #### For more info about installation and troubleshooting check the [Installation Guide](https://github.com/oracle/oci-ansible-collections/blob/master/InstallationGuide.md).
 
 ## Samples and Solutions

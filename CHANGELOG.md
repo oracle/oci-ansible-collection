@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.26.0] - 2021-07-15
+
+## Added
+- Simplified installation of `oci-ansible-collection`. Check [README.md](https://github.com/oracle/oci-ansible-collection/blob/master/README.md) for more details
+- Support for `Resource Principal authentication` in Inventory plugin
+- Support for `Devops` Service
+- Support for VMBM Pluggable Database feature as a part of the Database Service
+- Support for configuring Network Security Groups for OKE Node Pools
+- New lifecycle state "NEEDS_ATTENTION" to indicate issues with the bridge resource, and new field "objectStorageBucketStatusDetails" to provide detail in Operation Insights (opsi) service
+- Support for Metastore and initial Data Asset import/export in Data Catalog
+- Support for Fractional OCPU and GB storage in Autonomous Database
+- Support for Email Domain
+- Support for new OCE instance license type - Starter Edition. The new license type is: STARTER
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.41.1
+- Removed generic_artifact_content_body option from generic_artifact_content module
+
 ## [2.25.0] - 2021-07-01
 
 ## Added

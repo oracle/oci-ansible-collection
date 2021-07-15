@@ -103,19 +103,25 @@ sender:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        email_domain_id:
+            description:
+                - The email domain used to assert responsibility for emails sent from this sender.
+            returned: on success
+            type: string
+            sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
-                - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Department\\": \\"Finance\\"}`"
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace.
                   For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                  Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -126,6 +132,7 @@ sender:
         "is_spf": true,
         "lifecycle_state": "CREATING",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "email_domain_id": "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

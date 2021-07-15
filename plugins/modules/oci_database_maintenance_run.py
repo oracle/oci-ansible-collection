@@ -54,7 +54,9 @@ options:
         type: str
     patching_mode:
         description:
-            - "Maintenance method, it will be either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+            - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+            - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+              Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
             - This parameter is updatable.
         type: str
         choices:
@@ -182,7 +184,9 @@ maintenance_run:
             sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         patching_mode:
             description:
-                - "Maintenance method, it will be either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                  Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
             returned: on success
             type: string
             sample: ROLLING

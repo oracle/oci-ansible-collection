@@ -13,6 +13,8 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
 )
 
+import hashlib
+
 try:
     from oci.artifacts import ArtifactsClient
     from oci.exceptions import ServiceError
@@ -21,8 +23,6 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-import hashlib
 
 
 class GenericArtifactContentHelperCustom:
@@ -50,19 +50,31 @@ class GenericArtifactContentHelperCustom:
     def is_update_necessary(self, existing_resource_dict):
         # we need to compare the sha256 digest of the source file and the sha256 digest of the existing file
         # to check if the update is required
-        data = self.module.params["generic_artifact_content_body"]
-        readable_hash = hashlib.sha256(data).hexdigest()
+        file_path = self.module.params.get("generic_artifact_content_file")
         existing_sha256_digest = existing_resource_dict.get("sha256", None)
 
+        h = hashlib.sha256()
+        b = bytearray(oci_common_utils.MEBIBYTE)
+        # using memoryview to store and calculate the sha256 instead of an array because
+        # array internally would create a copy of the data whereas
+        # memoryview allows accessing of the buffer without creating a copy of it internally.
+        # hence it gives better performance in terms of memory using memoryview
+        mv = memoryview(b)
+        with open(file_path, "rb", buffering=0) as f:
+            # iterate through the file content till number of bytes read 0.
+            # f.readinto() returns number of bytes read.
+            for n in iter(lambda: f.readinto(mv), 0):
+                h.update(mv[:n])
+        readable_hash = h.hexdigest()
         return readable_hash != existing_sha256_digest
 
     def update(self):
-        # we need the file content  while checking for idempotence to calculate the sha256 digest of the file
-        # we need the file contenet in upload as well. so reading the contents of the file and storing in the module params
         file_path = self.module.params.get("generic_artifact_content_file")
-        with open(file_path, "rb") as input_file:
-            data = input_file.read()
-        self.module.params["generic_artifact_content_body"] = data
-        resource = super(GenericArtifactContentHelperCustom, self).update()
-        self.module.params.pop("generic_artifact_content_body", None)
-        return resource
+        try:
+            with open(file_path, "rb") as file:
+                self.module.params["generic_artifact_content_body"] = file
+                resource = super(GenericArtifactContentHelperCustom, self).update()
+                self.module.params.pop("generic_artifact_content_body", None)
+                return resource
+        finally:
+            self.module.params.pop("generic_artifact_content_body", None)

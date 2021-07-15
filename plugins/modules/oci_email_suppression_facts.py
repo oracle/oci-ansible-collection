@@ -137,12 +137,49 @@ suppressions:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
+        time_last_suppressed:
+            description:
+                - "The last date and time the suppression prevented submission
+                  in \\"YYYY-MM-ddThh:mmZ\\"
+                  format with a Z offset, as defined by RFC 3339."
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        message_id:
+            description:
+                - The value of the Message-ID header from the email that triggered a suppression.
+                  This value is as defined in RFC 5322 section 3.6.4, excluding angle-brackets.
+                  Not provided for all types of suppressions.
+            returned: on success
+            type: string
+            sample: "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx"
+        error_detail:
+            description:
+                - The specific error message returned by a system that resulted in the suppression.
+                  This message is usually an SMTP error code with additional descriptive text.
+                  Not provided for all types of suppressions.
+            returned: on success
+            type: string
+            sample: error_detail_example
+        error_source:
+            description:
+                - DNS name of the source of the error that caused the suppression.
+                  Will be set to either the remote-mta or reporting-mta field from a delivery status notification (RFC 3464) when available.
+                  Not provided for all types of suppressions, and not always known.
+                - "Note: Most SMTP errors that cause suppressions come from software run by email receiving systems rather than from OCI email delivery itself."
+            returned: on success
+            type: string
+            sample: error_source_example
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "email_address": "email_address_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "reason": "UNKNOWN",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "time_last_suppressed": "2013-10-20T19:20:30+01:00",
+        "message_id": "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx",
+        "error_detail": "error_detail_example",
+        "error_source": "error_source_example"
     }]
 """
 

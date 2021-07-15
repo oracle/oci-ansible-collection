@@ -215,6 +215,13 @@ oce_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "Usage of system tag keys. These predefined keys are scoped to namespaces.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
         service:
             description:
                 - "SERVICE data.
@@ -248,6 +255,7 @@ oce_instance:
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
         "service": {}
     }
 """

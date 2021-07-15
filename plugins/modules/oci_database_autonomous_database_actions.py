@@ -376,6 +376,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        ocpu_count:
+            description:
+                - The number of Fractional OCPU cores to be made available to the database.
+            returned: on success
+            type: float
+            sample: 3.4
         data_storage_size_in_tbs:
             description:
                 - The quantity of data in the database, in terabytes.
@@ -864,6 +870,7 @@ autonomous_database:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "ocpu_count": 3.4,
         "data_storage_size_in_tbs": 56,
         "data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",

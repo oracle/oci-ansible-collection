@@ -55,14 +55,12 @@ options:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
               Example: `{\\"bar-key\\": \\"value\\"}`"
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
     enterprise_manager_bridge_id:
@@ -90,8 +88,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     object_storage_bucket_name: object_storage_bucket_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update enterprise_manager_bridge using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_opsi_enterprise_manager_bridge:
@@ -161,6 +157,13 @@ enterprise_manager_bridge:
             returned: on success
             type: string
             sample: object_storage_bucket_name_example
+        object_storage_bucket_status_details:
+            description:
+                - A message describing status of the object storage bucket of this resource. For example, it can be used to provide actionable information about
+                  the permission and content validity of the bucket.
+            returned: on success
+            type: string
+            sample: object_storage_bucket_status_details_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -214,6 +217,7 @@ enterprise_manager_bridge:
         "description": "description_example",
         "object_storage_namespace_name": "object_storage_namespace_name_example",
         "object_storage_bucket_name": "object_storage_bucket_name_example",
+        "object_storage_bucket_status_details": "object_storage_bucket_status_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},

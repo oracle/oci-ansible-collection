@@ -167,6 +167,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
+    oci_config_utils,
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
@@ -174,6 +175,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
+    from oci.mysql import WorkRequestsClient
     from oci.mysql import DbSystemClient
 
     HAS_OCI_PY_SDK = True
@@ -186,6 +188,9 @@ class MysqlHeatWaveClusterMemoryEstimateActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         generate
     """
+
+    def get_waiter_client(self):
+        return oci_config_utils.create_service_client(self.module, WorkRequestsClient)
 
     @staticmethod
     def get_module_resource_id_param():

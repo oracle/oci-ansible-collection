@@ -45,11 +45,6 @@ options:
             - "Example: `1.1.2` or `1.2-beta-2`"
         type: str
         required: true
-    generic_artifact_content_body:
-        description:
-            - Uploads an artifact. Provide artifact path, version and content. Avoid entering confidential information when you define the path and version.
-            - Required for update using I(state=present) with version present.
-        type: str
     generic_artifact_content_file:
         description:
             - The generic artifact content artifact file path to upload
@@ -73,7 +68,6 @@ EXAMPLES = """
     repository_id: "ocid1.repository.oc1..exampleuniqueID"
     artifact_path: project01/my-web-app/artifact-abc
     version: 1.1.2
-    generic_artifact_content_body: B
     generic_artifact_content_file: model.zip
 
 """
@@ -159,7 +153,6 @@ def main():
             repository_id=dict(type="str", required=True),
             artifact_path=dict(type="str", required=True),
             version=dict(type="str", required=True),
-            generic_artifact_content_body=dict(type="str"),
             generic_artifact_content_file=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )

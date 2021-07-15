@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_custom_property_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.25.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -478,6 +478,19 @@ Parameters
                                                                                                                                                                                                 <li>VIEW</li>
                                                                                                                                                                                                 <li>ATTRIBUTE</li>
                                                                                                                                                                                                 <li>FOLDER</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_SERVER</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_CLOUD</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_SUBJECT_AREA</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_DASHBOARD</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_BUSINESS_MODEL</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_PHYSICAL_DATABASE</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_PHYSICAL_SCHEMA</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_PRESENTATION_TABLE</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_LOGICAL_TABLE</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_PHYSICAL_TABLE</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_ANALYSIS</li>
+                                                                                                                                                                                                <li>DATABASE_SCHEMA</li>
+                                                                                                                                                                                                <li>TOPIC</li>
                                                                                                                                                                                                 <li>CONNECTION</li>
                                                                                                                                                                                                 <li>GLOSSARY</li>
                                                                                                                                                                                                 <li>TERM</li>
@@ -575,7 +588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of CustomProperty resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_event_enabled&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;is_event_enabled&#x27;: True, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -679,6 +692,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If this field is a editable field</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/is_event_enabled"></div>
+                    <b>is_event_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/is_event_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If an OCI Event will be emitted when the custom property is modified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -931,6 +962,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/scope/is_event_enabled"></div>
+                    <b>is_event_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/scope/is_event_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If an OCI Event will be emitted when the custom property is modified.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
