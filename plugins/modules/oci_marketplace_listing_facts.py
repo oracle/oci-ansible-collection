@@ -101,7 +101,7 @@ options:
         type: bool
     listing_types:
         description:
-            - The type of the listing
+            - The type of the listing.
         type: list
         choices:
             - "COMMUNITY"
@@ -109,7 +109,7 @@ options:
             - "PRIVATE"
     operating_systems:
         description:
-            - OS of the listing.
+            - The operating system of the listing.
         type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -590,19 +590,19 @@ listings:
             sample: true
         listing_type:
             description:
-                - In which catalog the listing should exist.
+                - The publisher category to which the listing belongs. The publisher category informs where the listing appears for use.
             returned: on success
             type: string
             sample: COMMUNITY
         supported_operating_systems:
             description:
-                - List of operating systems supported.
+                - List of operating systems supported by the listing.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - name of the operating system
+                        - The name of the operating system.
                     returned: on success
                     type: string
                     sample: name_example

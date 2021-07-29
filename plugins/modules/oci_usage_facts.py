@@ -58,7 +58,7 @@ options:
         required: true
     is_aggregate_by_time:
         description:
-            - is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period
+            - Whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.
         type: bool
     forecast:
         description:
@@ -67,29 +67,35 @@ options:
         suboptions:
             forecast_type:
                 description:
-                    - BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent
-                      historical days for which projection is being made.
+                    - BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for projections is a
+                      periodic set of equivalent historical days for which the projection is being made.
                 type: str
                 choices:
                     - "BASIC"
             time_forecast_started:
                 description:
-                    - forecast start time. Will default to UTC-1 if not specified
+                    - The forecast start time. Defaults to UTC-1 if not specified.
                 type: str
             time_forecast_ended:
                 description:
-                    - forecast end time.
+                    - The forecast end time.
                 type: str
                 required: true
     query_type:
         description:
-            - "The query usage type. COST by default if it is missing
+            - "The query usage type. COST by default if it is missing.
               Usage - Query the usage data.
-              Cost - Query the cost/billing data."
+              Cost - Query the cost/billing data.
+              Credit - Query the credit adjustments data.
+              ExpiredCredit - Query the expired credits data.
+              AllCredit - Query the credit adjustments and expired credit."
         type: str
         choices:
             - "USAGE"
             - "COST"
+            - "CREDIT"
+            - "EXPIREDCREDIT"
+            - "ALLCREDIT"
     group_by:
         description:
             - "Aggregate the result by.
@@ -100,8 +106,8 @@ options:
         type: list
     group_by_tag:
         description:
-            - "GroupBy a specific tagKey. Provide tagNamespace and tagKey in tag object. Only support one tag in the list
-              example:
+            - "GroupBy a specific tagKey. Provide the tagNamespace and tagKey in the tag object. Only supports one tag in the list.
+              For example:
                 `[{\\"namespace\\":\\"oracle\\", \\"key\\":\\"createdBy\\"]`"
         type: list
         suboptions:
@@ -375,7 +381,7 @@ usages:
             sample: overage_example
         is_forecast:
             description:
-                - is forecasted data
+                - The forecasted data.
             returned: on success
             type: bool
             sample: true
@@ -511,7 +517,10 @@ def main():
                     time_forecast_ended=dict(type="str", required=True),
                 ),
             ),
-            query_type=dict(type="str", choices=["USAGE", "COST"]),
+            query_type=dict(
+                type="str",
+                choices=["USAGE", "COST", "CREDIT", "EXPIREDCREDIT", "ALLCREDIT"],
+            ),
             group_by=dict(type="list"),
             group_by_tag=dict(
                 type="list",

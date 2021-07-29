@@ -20,7 +20,7 @@ oracle.oci.oci_dns_tsig_key_facts -- Fetches details about one or multiple TsigK
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -228,6 +228,10 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>ACTIVE</li>
                                                                                                                                                                                                 <li>CREATING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                                                                                                                                <li>UPDATING</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

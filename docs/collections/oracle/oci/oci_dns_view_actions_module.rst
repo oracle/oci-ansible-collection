@@ -20,7 +20,7 @@ oracle.oci.oci_dns_view_actions -- Perform actions on a View resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a View resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a view into a different compartment. Protected views cannot have their compartment changed.
+- For *action=change_compartment*, moves a view into a different compartment. Protected views cannot have their compartment changed. Requires a `PRIVATE` scope query parameter.
 
 
 .. Aliases

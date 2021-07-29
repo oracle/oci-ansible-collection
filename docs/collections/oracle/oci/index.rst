@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.26.0
+Collection version 2.27.0
 
 .. toctree::
     :maxdepth: 1
@@ -24,6 +24,18 @@ Inventory Plugins
 Modules
 ~~~~~~~
 
+* :ref:`oci_ai_anomaly_detection_ai_private_endpoint <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_module>` -- Manage an AiPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_ai_private_endpoint_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_actions_module>` -- Perform actions on an AiPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_ai_private_endpoint_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_facts_module>` -- Fetches details about one or multiple AiPrivateEndpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_data_asset <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_module>` -- Manage a DataAsset resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_data_asset_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_actions_module>` -- Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_data_asset_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_data_asset_facts_module>` -- Fetches details about one or multiple DataAsset resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_model <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_model_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_model_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_project <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_project_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_anomaly_detection_project_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance <ansible_collections.oracle.oci.oci_analytics_instance_module>` -- Manage an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_actions <ansible_collections.oracle.oci.oci_analytics_instance_actions_module>` -- Perform actions on an AnalyticsInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_analytics_instance_facts <ansible_collections.oracle.oci.oci_analytics_instance_facts_module>` -- Fetches details about one or multiple AnalyticsInstance resources in Oracle Cloud Infrastructure
@@ -63,6 +75,7 @@ Modules
 * :ref:`oci_apm_control_plane_data_keys_facts <ansible_collections.oracle.oci.oci_apm_control_plane_data_keys_facts_module>` -- Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_monitor <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_module>` -- Manage a Monitor resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_monitor_facts <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_facts_module>` -- Fetches details about one or multiple Monitor resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_monitor_result_facts <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_result_facts_module>` -- Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_public_vantage_point_facts <ansible_collections.oracle.oci.oci_apm_synthetics_public_vantage_point_facts_module>` -- Fetches details about one or multiple PublicVantagePoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_script <ansible_collections.oracle.oci.oci_apm_synthetics_script_module>` -- Manage a Script resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_script_facts <ansible_collections.oracle.oci.oci_apm_synthetics_script_facts_module>` -- Fetches details about one or multiple Script resources in Oracle Cloud Infrastructure
@@ -240,6 +253,9 @@ Modules
 * :ref:`oci_data_catalog_data_asset <ansible_collections.oracle.oci.oci_data_catalog_data_asset_module>` -- Manage a DataAsset resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_data_asset_actions <ansible_collections.oracle.oci.oci_data_catalog_data_asset_actions_module>` -- Perform actions on a DataAsset resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_data_asset_facts <ansible_collections.oracle.oci.oci_data_catalog_data_asset_facts_module>` -- Fetches details about one or multiple DataAsset resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_catalog_metastore <ansible_collections.oracle.oci.oci_data_catalog_metastore_module>` -- Manage a Metastore resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_catalog_metastore_actions <ansible_collections.oracle.oci.oci_data_catalog_metastore_actions_module>` -- Perform actions on a Metastore resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_catalog_metastore_facts <ansible_collections.oracle.oci.oci_data_catalog_metastore_facts_module>` -- Fetches details about one or multiple Metastore resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_namespace <ansible_collections.oracle.oci.oci_data_catalog_namespace_module>` -- Manage a Namespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_namespace_facts <ansible_collections.oracle.oci.oci_data_catalog_namespace_facts_module>` -- Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_type_actions <ansible_collections.oracle.oci.oci_data_catalog_type_actions_module>` -- Perform actions on a Type resource in Oracle Cloud Infrastructure
@@ -406,6 +422,11 @@ Modules
 * :ref:`oci_database_migration_connection <ansible_collections.oracle.oci.oci_database_migration_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_connection_actions <ansible_collections.oracle.oci.oci_database_migration_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_connection_facts <ansible_collections.oracle.oci.oci_database_migration_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_job <ansible_collections.oracle.oci.oci_database_migration_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_job_actions <ansible_collections.oracle.oci.oci_database_migration_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_job_content_facts <ansible_collections.oracle.oci.oci_database_migration_job_content_facts_module>` -- Fetches details about a JobContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_job_facts <ansible_collections.oracle.oci.oci_database_migration_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_migration_job_output_facts <ansible_collections.oracle.oci.oci_database_migration_job_output_facts_module>` -- Fetches details about one or multiple JobOutput resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
@@ -460,9 +481,11 @@ Modules
 * :ref:`oci_dns_view_facts <ansible_collections.oracle.oci.oci_dns_view_facts_module>` -- Fetches details about one or multiple View resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone <ansible_collections.oracle.oci.oci_dns_zone_module>` -- Manage a Zone resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_actions <ansible_collections.oracle.oci.oci_dns_zone_actions_module>` -- Perform actions on a Zone resource in Oracle Cloud Infrastructure
+* :ref:`oci_dns_zone_content_facts <ansible_collections.oracle.oci.oci_dns_zone_content_facts_module>` -- Fetches details about a ZoneContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_facts <ansible_collections.oracle.oci.oci_dns_zone_facts_module>` -- Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_records <ansible_collections.oracle.oci.oci_dns_zone_records_module>` -- Manage a ZoneRecords resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+* :ref:`oci_dns_zone_transfer_server_facts <ansible_collections.oracle.oci.oci_dns_zone_transfer_server_facts_module>` -- Fetches details about one or multiple ZoneTransferServer resources in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain <ansible_collections.oracle.oci.oci_email_domain_module>` -- Manage an EmailDomain resource in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain_actions <ansible_collections.oracle.oci.oci_email_domain_actions_module>` -- Perform actions on an EmailDomain resource in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain_facts <ansible_collections.oracle.oci.oci_email_domain_facts_module>` -- Fetches details about one or multiple EmailDomain resources in Oracle Cloud Infrastructure
@@ -670,6 +693,7 @@ Modules
 * :ref:`oci_marketplace_accepted_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_facts_module>` -- Fetches details about one or multiple AcceptedAgreement resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_agreement_facts <ansible_collections.oracle.oci.oci_marketplace_agreement_facts_module>` -- Fetches details about one or multiple Agreement resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_category_facts <ansible_collections.oracle.oci.oci_marketplace_category_facts_module>` -- Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
+* :ref:`oci_marketplace_launch_eligibility_facts <ansible_collections.oracle.oci.oci_marketplace_launch_eligibility_facts_module>` -- Fetches details about a LaunchEligibility resource in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_listing_facts <ansible_collections.oracle.oci.oci_marketplace_listing_facts_module>` -- Fetches details about one or multiple Listing resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_listing_package_facts <ansible_collections.oracle.oci.oci_marketplace_listing_package_facts_module>` -- Fetches details about one or multiple ListingPackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_publication <ansible_collections.oracle.oci.oci_marketplace_publication_module>` -- Manage a Publication resource in Oracle Cloud Infrastructure
@@ -679,7 +703,9 @@ Modules
 * :ref:`oci_marketplace_publisher_facts <ansible_collections.oracle.oci.oci_marketplace_publisher_facts_module>` -- Fetches details about one or multiple Publisher resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_report_collection_facts <ansible_collections.oracle.oci.oci_marketplace_report_collection_facts_module>` -- Fetches details about one or multiple ReportCollection resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_report_type_collection_facts <ansible_collections.oracle.oci.oci_marketplace_report_type_collection_facts_module>` -- Fetches details about one or multiple ReportTypeCollection resources in Oracle Cloud Infrastructure
+* :ref:`oci_marketplace_search_listings_facts <ansible_collections.oracle.oci.oci_marketplace_search_listings_facts_module>` -- Fetches details about one or multiple SearchListings resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_tax_facts <ansible_collections.oracle.oci.oci_marketplace_tax_facts_module>` -- Fetches details about one or multiple Tax resources in Oracle Cloud Infrastructure
+* :ref:`oci_marketplace_third_party_paid_listing_eligibility_facts <ansible_collections.oracle.oci.oci_marketplace_third_party_paid_listing_eligibility_facts_module>` -- Fetches details about a ThirdPartyPaidListingEligibility resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm <ansible_collections.oracle.oci.oci_monitoring_alarm_module>` -- Manage an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_actions <ansible_collections.oracle.oci.oci_monitoring_alarm_actions_module>` -- Perform actions on an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_facts_module>` -- Fetches details about one or multiple Alarm resources in Oracle Cloud Infrastructure
@@ -1089,6 +1115,18 @@ Modules
     :hidden:
 
     oci_inventory
+    oci_ai_anomaly_detection_ai_private_endpoint_module
+    oci_ai_anomaly_detection_ai_private_endpoint_actions_module
+    oci_ai_anomaly_detection_ai_private_endpoint_facts_module
+    oci_ai_anomaly_detection_data_asset_module
+    oci_ai_anomaly_detection_data_asset_actions_module
+    oci_ai_anomaly_detection_data_asset_facts_module
+    oci_ai_anomaly_detection_model_module
+    oci_ai_anomaly_detection_model_actions_module
+    oci_ai_anomaly_detection_model_facts_module
+    oci_ai_anomaly_detection_project_module
+    oci_ai_anomaly_detection_project_actions_module
+    oci_ai_anomaly_detection_project_facts_module
     oci_analytics_instance_module
     oci_analytics_instance_actions_module
     oci_analytics_instance_facts_module
@@ -1128,6 +1166,7 @@ Modules
     oci_apm_control_plane_data_keys_facts_module
     oci_apm_synthetics_monitor_module
     oci_apm_synthetics_monitor_facts_module
+    oci_apm_synthetics_monitor_result_facts_module
     oci_apm_synthetics_public_vantage_point_facts_module
     oci_apm_synthetics_script_module
     oci_apm_synthetics_script_facts_module
@@ -1305,6 +1344,9 @@ Modules
     oci_data_catalog_data_asset_module
     oci_data_catalog_data_asset_actions_module
     oci_data_catalog_data_asset_facts_module
+    oci_data_catalog_metastore_module
+    oci_data_catalog_metastore_actions_module
+    oci_data_catalog_metastore_facts_module
     oci_data_catalog_namespace_module
     oci_data_catalog_namespace_facts_module
     oci_data_catalog_type_actions_module
@@ -1471,6 +1513,11 @@ Modules
     oci_database_migration_connection_module
     oci_database_migration_connection_actions_module
     oci_database_migration_connection_facts_module
+    oci_database_migration_job_module
+    oci_database_migration_job_actions_module
+    oci_database_migration_job_content_facts_module
+    oci_database_migration_job_facts_module
+    oci_database_migration_job_output_facts_module
     oci_database_migration_migration_module
     oci_database_migration_migration_actions_module
     oci_database_migration_migration_facts_module
@@ -1525,9 +1572,11 @@ Modules
     oci_dns_view_facts_module
     oci_dns_zone_module
     oci_dns_zone_actions_module
+    oci_dns_zone_content_facts_module
     oci_dns_zone_facts_module
     oci_dns_zone_records_module
     oci_dns_zone_records_facts_module
+    oci_dns_zone_transfer_server_facts_module
     oci_email_domain_module
     oci_email_domain_actions_module
     oci_email_domain_facts_module
@@ -1735,6 +1784,7 @@ Modules
     oci_marketplace_accepted_agreement_facts_module
     oci_marketplace_agreement_facts_module
     oci_marketplace_category_facts_module
+    oci_marketplace_launch_eligibility_facts_module
     oci_marketplace_listing_facts_module
     oci_marketplace_listing_package_facts_module
     oci_marketplace_publication_module
@@ -1744,7 +1794,9 @@ Modules
     oci_marketplace_publisher_facts_module
     oci_marketplace_report_collection_facts_module
     oci_marketplace_report_type_collection_facts_module
+    oci_marketplace_search_listings_facts_module
     oci_marketplace_tax_facts_module
+    oci_marketplace_third_party_paid_listing_eligibility_facts_module
     oci_monitoring_alarm_module
     oci_monitoring_alarm_actions_module
     oci_monitoring_alarm_facts_module

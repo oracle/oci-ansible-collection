@@ -20,7 +20,7 @@ oracle.oci.oci_usage_facts -- Fetches details about one or multiple Usage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -475,7 +475,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent historical days for which projection is being made.</div>
+                                            <div>BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for projections is a periodic set of equivalent historical days for which the projection is being made.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -491,7 +491,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>forecast end time.</div>
+                                            <div>The forecast end time.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -507,7 +507,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>forecast start time. Will default to UTC-1 if not specified</div>
+                                            <div>The forecast start time. Defaults to UTC-1 if not specified.</div>
                                                         </td>
             </tr>
                     
@@ -559,7 +559,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>GroupBy a specific tagKey. Provide tagNamespace and tagKey in tag object. Only support one tag in the list example: `[{&quot;namespace&quot;:&quot;oracle&quot;, &quot;key&quot;:&quot;createdBy&quot;]`</div>
+                                            <div>GroupBy a specific tagKey. Provide the tagNamespace and tagKey in the tag object. Only supports one tag in the list. For example: `[{&quot;namespace&quot;:&quot;oracle&quot;, &quot;key&quot;:&quot;createdBy&quot;]`</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -627,7 +627,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period</div>
+                                            <div>Whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -643,10 +643,13 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>USAGE</li>
                                                                                                                                                                                                 <li>COST</li>
+                                                                                                                                                                                                <li>CREDIT</li>
+                                                                                                                                                                                                <li>EXPIREDCREDIT</li>
+                                                                                                                                                                                                <li>ALLCREDIT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The query usage type. COST by default if it is missing Usage - Query the usage data. Cost - Query the cost/billing data.</div>
+                                            <div>The query usage type. COST by default if it is missing. Usage - Query the usage data. Cost - Query the cost/billing data. Credit - Query the credit adjustments data. ExpiredCredit - Query the expired credits data. AllCredit - Query the credit adjustments and expired credit.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -947,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>is forecasted data</div>
+                                            <div>The forecasted data.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

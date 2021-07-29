@@ -23,14 +23,14 @@ module: oci_marketplace_publication_package_facts
 short_description: Fetches details about one or multiple PublicationPackage resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PublicationPackage resources in Oracle Cloud Infrastructure
-    - Lists the packages in the given Publication
+    - Lists the packages in the specified publication.
     - If I(package_version) is specified, the details of a single PublicationPackage will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     publication_id:
         description:
-            - The unique identifier for the listing.
+            - The unique identifier for the publication.
         type: str
         required: true
     package_version:
@@ -81,13 +81,13 @@ publication_packages:
     contains:
         description:
             description:
-                - Description of this package.
+                - A description of the package.
             returned: on success
             type: string
             sample: description_example
         listing_id:
             description:
-                - The ID of the listing this package belongs to.
+                - The ID of the listing that the specified package belongs to.
             returned: on success
             type: string
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
@@ -111,7 +111,7 @@ publication_packages:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The date and time this listing package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                - The date and time the publication package was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
@@ -125,19 +125,19 @@ publication_packages:
             contains:
                 name:
                     description:
-                        - name of the operating system
+                        - The name of the operating system.
                     returned: on success
                     type: string
                     sample: name_example
         resource_link:
             description:
-                - Link to the orchestration resource.
+                - A link to the stack resource.
             returned: on success
             type: string
             sample: resource_link_example
         variables:
             description:
-                - List of variables for the orchestration resource.
+                - A list of variables for the stack resource.
             returned: on success
             type: complex
             contains:
@@ -186,13 +186,13 @@ publication_packages:
             sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
         app_catalog_listing_resource_version:
             description:
-                - The resource version of the listing resource associated with this listing package.
+                - The resource version of the listing resource associated with this publication package.
             returned: on success
             type: string
             sample: app_catalog_listing_resource_version_example
         image_id:
             description:
-                - The ID of the image corresponding to the package.
+                - The ID of the image that corresponds to the package.
             returned: on success
             type: string
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"

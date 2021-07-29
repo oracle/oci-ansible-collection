@@ -105,7 +105,7 @@ queries:
                     contains:
                         tenant_id:
                             description:
-                                - Tenant ID
+                                - Tenant ID.
                             returned: on success
                             type: string
                             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
@@ -133,7 +133,7 @@ queries:
                             sample: HOURLY
                         is_aggregate_by_time:
                             description:
-                                - is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period
+                                - Whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.
                             returned: on success
                             type: bool
                             sample: true
@@ -145,28 +145,31 @@ queries:
                             contains:
                                 forecast_type:
                                     description:
-                                        - BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of
-                                          equivalent historical days for which projection is being made.
+                                        - BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for
+                                          projections is a periodic set of equivalent historical days for which the projection is being made.
                                     returned: on success
                                     type: string
                                     sample: BASIC
                                 time_forecast_started:
                                     description:
-                                        - forecast start time. Will default to UTC-1 if not specified
+                                        - The forecast start time. Defaults to UTC-1 if not specified.
                                     returned: on success
                                     type: string
                                     sample: 2013-10-20T19:20:30+01:00
                                 time_forecast_ended:
                                     description:
-                                        - forecast end time.
+                                        - The forecast end time.
                                     returned: on success
                                     type: string
                                     sample: 2013-10-20T19:20:30+01:00
                         query_type:
                             description:
-                                - "The query usage type. COST by default if it is missing
+                                - "The query usage type. COST by default if it is missing.
                                   Usage - Query the usage data.
-                                  Cost - Query the cost/billing data."
+                                  Cost - Query the cost/billing data.
+                                  Credit - Query the credit adjustments data.
+                                  ExpiredCredit - Query the expired credits data
+                                  AllCredit - Query the credit adjustments and expired credit"
                             returned: on success
                             type: string
                             sample: USAGE
@@ -298,7 +301,7 @@ queries:
                                             sample: []
                         date_range_name:
                             description:
-                                - the date range for ui, eg LAST_THREE_MONTHS. It is conflict with timeUsageStarted and timeUsageEnded
+                                - The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.
                             returned: on success
                             type: string
                             sample: LAST_SEVEN_DAYS
@@ -310,19 +313,19 @@ queries:
                     contains:
                         graph:
                             description:
-                                - the type of graph mode.
+                                - The graph type.
                             returned: on success
                             type: string
                             sample: BARS
                         is_cumulative_graph:
                             description:
-                                - is cumulative graph.
+                                - A cumulative graph.
                             returned: on success
                             type: bool
                             sample: true
                 version:
                     description:
-                        - the version of saved query.
+                        - The saved query version.
                     returned: on success
                     type: float
                     sample: 10

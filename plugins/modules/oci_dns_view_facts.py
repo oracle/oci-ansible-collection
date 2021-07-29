@@ -26,9 +26,9 @@ description:
     - Gets a list of all views within a compartment. The collection can
       be filtered by display name, id, or lifecycle state. It can be sorted
       on creation time or displayName both in ASC or DESC order. Note that
-      when no lifecycleState query parameter is provided that the collection
+      when no lifecycleState query parameter is provided, the collection
       does not include views in the DELETED lifecycleState to be consistent
-      with other operations of the API.
+      with other operations of the API. Requires a `PRIVATE` scope query parameter.
     - If I(view_id) is specified, the details of a single View will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)

@@ -23,9 +23,11 @@ module: oci_dns_zone
 short_description: Manage a Zone resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new zone in the specified compartment. If the `Content-Type` header for the request is `text/dns`, the
-      `compartmentId` query parameter is required. Additionally, for `text/dns`, the `scope` and `viewId` query
-      parameters are required to create a private zone.
+    - For I(state=present), creates a new zone in the specified compartment. For global zones, if the `Content-Type` header for the request
+      is `text/dns`, the `compartmentId` query parameter is required. `text/dns` for the `Content-Type` header is
+      not supported for private zones. Query parameter scope with a value of `PRIVATE` is required when creating a
+      private zone. Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under
+      `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
     - "This resource has the following action operations in the M(oci_zone_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -111,33 +113,6 @@ options:
                       the port value.
                     - Applicable when migration_source is 'NONE'
                 type: int
-            tsig:
-                description:
-                    - ""
-                    - Applicable when migration_source is 'NONE'
-                type: dict
-                suboptions:
-                    name:
-                        description:
-                            - A domain name identifying the key for a given pair of hosts.
-                            - Required when migration_source is 'NONE'
-                        type: str
-                        required: true
-                    secret:
-                        description:
-                            - A base64 string encoding the binary shared secret.
-                            - Required when migration_source is 'NONE'
-                        type: str
-                        required: true
-                    algorithm:
-                        description:
-                            - "TSIG Algorithms are encoded as domain names, but most consist of only one
-                              non-empty label, which is not required to be explicitly absolute.
-                              Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
-                              hmac-sha512. For more information on these algorithms, see L(RFC 4635,https://tools.ietf.org/html/rfc4635#section-2)."
-                            - Required when migration_source is 'NONE'
-                        type: str
-                        required: true
             tsig_key_id:
                 description:
                     - The OCID of the TSIG key.
@@ -303,33 +278,6 @@ zone:
                     returned: on success
                     type: int
                     sample: 56
-                tsig:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - A domain name identifying the key for a given pair of hosts.
-                            returned: on success
-                            type: string
-                            sample: name_example
-                        secret:
-                            description:
-                                - A base64 string encoding the binary shared secret.
-                            returned: on success
-                            type: string
-                            sample: secret_example
-                        algorithm:
-                            description:
-                                - "TSIG Algorithms are encoded as domain names, but most consist of only one
-                                  non-empty label, which is not required to be explicitly absolute.
-                                  Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
-                                  hmac-sha512. For more information on these algorithms, see L(RFC 4635,https://tools.ietf.org/html/rfc4635#section-2)."
-                            returned: on success
-                            type: string
-                            sample: algorithm_example
                 tsig_key_id:
                     description:
                         - The OCID of the TSIG key.
@@ -394,6 +342,36 @@ zone:
                     returned: on success
                     type: string
                     sample: hostname_example
+        zone_transfer_servers:
+            description:
+                - The OCI nameservers that transfer the zone data with external nameservers.
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: string
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_transfer_source:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer source.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_transfer_destination:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer destination.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "name": "name_example",
         "zone_type": "PRIMARY",
@@ -405,11 +383,6 @@ zone:
         "external_masters": [{
             "address": "address_example",
             "port": 56,
-            "tsig": {
-                "name": "name_example",
-                "secret": "secret_example",
-                "algorithm": "algorithm_example"
-            },
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "self_uri": "_self_example",
@@ -421,6 +394,12 @@ zone:
         "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
+        }],
+        "zone_transfer_servers": [{
+            "address": "address_example",
+            "port": 56,
+            "is_transfer_source": true,
+            "is_transfer_destination": true
         }]
     }
 """
@@ -631,14 +610,6 @@ def main():
                 options=dict(
                     address=dict(type="str", required=True),
                     port=dict(type="int"),
-                    tsig=dict(
-                        type="dict",
-                        options=dict(
-                            name=dict(type="str", required=True),
-                            secret=dict(type="str", required=True),
-                            algorithm=dict(type="str", required=True),
-                        ),
-                    ),
                     tsig_key_id=dict(type="str"),
                 ),
             ),

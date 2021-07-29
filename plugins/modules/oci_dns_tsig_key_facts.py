@@ -64,6 +64,10 @@ options:
         choices:
             - "ACTIVE"
             - "CREATING"
+            - "DELETED"
+            - "DELETING"
+            - "FAILED"
+            - "UPDATING"
     sort_by:
         description:
             - The field by which to sort TSIG keys. If unspecified, defaults to `timeCreated`.
@@ -269,7 +273,17 @@ def main():
             scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             compartment_id=dict(type="str"),
             name=dict(type="str"),
-            lifecycle_state=dict(type="str", choices=["ACTIVE", "CREATING"]),
+            lifecycle_state=dict(
+                type="str",
+                choices=[
+                    "ACTIVE",
+                    "CREATING",
+                    "DELETED",
+                    "DELETING",
+                    "FAILED",
+                    "UPDATING",
+                ],
+            ),
             sort_by=dict(type="str", choices=["name", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

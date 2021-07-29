@@ -23,19 +23,19 @@ module: oci_bds_auto_scale_config_facts
 short_description: Fetches details about one or multiple BdsAutoScaleConfig resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple BdsAutoScaleConfig resources in Oracle Cloud Infrastructure
-    - Gets information about the  autoscaling configuration.
+    - Returns information about the autoscaling configurations for a cluster.
     - If I(auto_scaling_configuration_id) is specified, the details of a single BdsAutoScaleConfig will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     bds_instance_id:
         description:
-            - The OCID of the BDS instance
+            - The OCID of the cluster.
         type: str
         required: true
     auto_scaling_configuration_id:
         description:
-            - Unique Oracle-assigned identifier of the autoscaling configuration.
+            - Unique Oracle-assigned identifier of the autoscale configuration.
             - Required to get a specific bds_auto_scale_config.
         type: str
         aliases: ["id"]
@@ -66,7 +66,7 @@ options:
         aliases: ["name"]
     lifecycle_state:
         description:
-            - The state of the autoscaling configuration.
+            - The state of the autoscale configuration.
         type: str
         choices:
             - "CREATING"
@@ -100,38 +100,37 @@ bds_auto_scale_configs:
     contains:
         id:
             description:
-                - The unique identifier for autoscaling configuration.
+                - The unique identifier for the autoscale configuration.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                - A user-friendly name. The name does not have to be unique, and it may be changed. Avoid entering confidential information.
             returned: on success
             type: string
             sample: display_name_example
         node_type:
             description:
-                - A node type that is managed by an autoscaling configuration. The only supported type is WORKER.
+                - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
             returned: on success
             type: string
             sample: node_type_example
         lifecycle_state:
             description:
-                - The state of the autoscaling configuration
+                - The state of the autoscale configuration.
             returned: on success
             type: string
             sample: CREATING
         time_created:
             description:
-                - The time the BDS instance was created. An RFC3339 formatted datetime string
+                - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: string
             sample: 2020-03-29T09:36:42.000+0000
         time_updated:
             description:
-                - The time the autoscale configuration was updated.
-                  An RFC3339 formatted datetime string
+                - The time the autoscale configuration was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: string
             sample: 2020-04-29T09:36:42.000+0000
@@ -143,19 +142,19 @@ bds_auto_scale_configs:
             contains:
                 policy_type:
                     description:
-                        - Types of autoscaling policies. SCHEDULE-BASED or  THRESHOLD-BASED, current only supported THRESHOLD-BASED.
+                        - Types of autoscale policies. Options are SCHEDULE-BASED or THRESHOLD-BASED. (Only THRESHOLD-BASED is supported in this release.)
                     returned: on success
                     type: string
                     sample: THRESHOLD_BASED
                 rules:
                     description:
-                        - The list of rules for autoscaling. If an action have multiple rules, last rule in the array will be applied.
+                        - The list of rules for autoscaling. If an action has multiple rules, the last rule in the array will be applied.
                     returned: on success
                     type: complex
                     contains:
                         action:
                             description:
-                                - "The valid value are - CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN"
+                                - The valid value are CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN.
                             returned: on success
                             type: string
                             sample: CHANGE_SHAPE_SCALE_UP
@@ -167,7 +166,7 @@ bds_auto_scale_configs:
                             contains:
                                 metric_type:
                                     description:
-                                        - Allowed value is CPU_UTILIZATION currently
+                                        - Allowed value is CPU_UTILIZATION.
                                     returned: on success
                                     type: string
                                     sample: CPU_UTILIZATION
@@ -179,20 +178,20 @@ bds_auto_scale_configs:
                                     contains:
                                         duration_in_minutes:
                                             description:
-                                                - This value is the minimum period of time metric value meets or exceeds threshold value before action is
-                                                  trigger. The value is in minutes.
+                                                - This value is the minimum period of time the metric value meets or exceeds the threshold value before the
+                                                  action is triggered. The value is in minutes.
                                             returned: on success
                                             type: int
                                             sample: 56
                                         operator:
                                             description:
-                                                - The comparison operator to use. Options are greater than (GT), less than (LT).
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
                                             returned: on success
                                             type: string
                                             sample: GT
                                         value:
                                             description:
-                                                - integer non negative value. 0 < value < 100
+                                                - Integer non-negative value. 0 < value < 100
                                             returned: on success
                                             type: int
                                             sample: 56

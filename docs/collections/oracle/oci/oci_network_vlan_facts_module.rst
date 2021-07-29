@@ -20,7 +20,7 @@ oracle.oci.oci_network_vlan_facts -- Fetches details about one or multiple Vlan 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -419,7 +419,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The availability domain of the VLAN.</div>
+                                            <div>The VLAN&#x27;s availability domain. This attribute will be null if this is a regional VLAN rather than an AD-specific VLAN.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

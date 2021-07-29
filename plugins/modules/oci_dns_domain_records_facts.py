@@ -23,9 +23,11 @@ module: oci_dns_domain_records_facts
 short_description: Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
-    - Gets a list of all records at the specified zone and domain.
-      The results are sorted by `rtype` in alphabetical order by default. You
-      can optionally filter and/or sort the results using the listed parameters.
+    - Gets a list of all records at the specified zone and domain. The results are sorted by `rtype` in
+      alphabetical order by default. You can optionally filter and/or sort the results using the listed parameters.
+      For private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is
+      provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query
+      parameter is required.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_publication -- Manage a Publication resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Publication resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a publication of the given type with an optional default package
+- For *state=present*, creates a publication of the specified listing type with an optional default package.
 - This resource has the following action operations in the :ref:`oci_publication_actions <ansible_collections.oci_publication_actions_module>` module: change_compartment.
 
 
@@ -166,7 +166,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment to create the resource within.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where you want to create the publication.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -269,7 +269,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Acknowledgement that invoker has the right and authority to share this Community Image in accordance with their agreement with Oracle applicable to the Services and the related Service Specifications</div>
+                                            <div>Whether the publisher acknowledged that they have the right and authority to share the contents of the publication and that they accepted the Oracle terms of use agreements required to create a publication.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>In which catalog the listing should exist.</div>
+                                            <div>The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -323,7 +323,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>short description of the catalog listing</div>
+                                            <div>A long description of the publication to use in the listing.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -339,7 +339,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the listing.</div>
+                                            <div>The name of the publication, which is also used in the listing.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
@@ -374,7 +374,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>End User License Agreeement that a consumer of this listing has to accept</div>
+                                            <div>The end user license agreeement (EULA) that consumers of this listing must accept.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -394,7 +394,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>the specified eula&#x27;s type</div>
+                                            <div>The end user license agreement&#x27;s type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -411,7 +411,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>text of the eula</div>
+                                            <div>The text of the end user license agreement.</div>
                                                         </td>
             </tr>
                     
@@ -428,7 +428,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>base image id of the listing</div>
+                                            <div>The unique identifier for the base image of the publication.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -461,7 +461,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>name of the operating system</div>
+                                            <div>The name of the operating system.</div>
                                                         </td>
             </tr>
                     
@@ -481,7 +481,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of the artifact of the listing</div>
+                                            <div>The package&#x27;s type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -497,7 +497,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The version of the package</div>
+                                            <div>The package version.</div>
                                                         </td>
             </tr>
                     
@@ -513,7 +513,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique identifier for the listing.</div>
+                                            <div>The unique identifier for the publication.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -546,7 +546,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>short description of the catalog listing</div>
+                                            <div>A short description of the publication to use in the listing.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -584,7 +584,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Contact information to use to get support from the publisher for the listing.</div>
+                                            <div>Contact information for getting support from the publisher for the listing.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -816,7 +816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Compartment id where the listings exists</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where the publication exists.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -963,7 +963,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unique identifier for the listing in Marketplace.</div>
+                                            <div>The unique identifier for the publication in Marketplace.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -981,7 +981,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the listing in its lifecycle</div>
+                                            <div>The lifecycle state of the publication.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -999,7 +999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>In which catalog the listing should exist.</div>
+                                            <div>The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMMUNITY</div>
@@ -1017,7 +1017,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A long description of the listing.</div>
+                                            <div>A long description of the publication to use in the listing.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">long_description_example</div>
@@ -1035,7 +1035,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the listing.</div>
+                                            <div>The name of the publication, which is also used in the listing.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1071,7 +1071,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A short description of the listing.</div>
+                                            <div>A short description of the publication to use in the listing.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">short_description_example</div>
@@ -1089,7 +1089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Contact information to use to get support from the publisher for the listing.</div>
+                                            <div>Contact information for getting support from the publisher for the listing.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1182,7 +1182,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of operating systems supprted.</div>
+                                            <div>The list of operating systems supprted by the listing.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1199,7 +1199,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>name of the operating system</div>
+                                            <div>The name of the operating system.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1218,7 +1218,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time this publication was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
+                                            <div>The date and time the publication was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

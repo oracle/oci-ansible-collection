@@ -23,14 +23,14 @@ module: oci_marketplace_publication
 short_description: Manage a Publication resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Publication resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a publication of the given type with an optional default package
+    - For I(state=present), creates a publication of the specified listing type with an optional default package.
     - "This resource has the following action operations in the M(oci_publication_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     listing_type:
         description:
-            - In which catalog the listing should exist.
+            - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -41,25 +41,25 @@ options:
             - "PRIVATE"
     name:
         description:
-            - The name of the listing.
+            - The name of the publication, which is also used in the listing.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
     short_description:
         description:
-            - short description of the catalog listing
+            - A short description of the publication to use in the listing.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     long_description:
         description:
-            - short description of the catalog listing
+            - A long description of the publication to use in the listing.
             - This parameter is updatable.
         type: str
     support_contacts:
         description:
-            - Contact information to use to get support from the publisher for the listing.
+            - Contact information for getting support from the publisher for the listing.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
@@ -82,7 +82,7 @@ options:
                 type: str
     compartment_id:
         description:
-            - The OCID of the compartment to create the resource within.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the publication.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -95,12 +95,12 @@ options:
         suboptions:
             package_version:
                 description:
-                    - The version of the package
+                    - The package version.
                 type: str
                 required: true
             package_type:
                 description:
-                    - Type of the artifact of the listing
+                    - The package's type.
                 type: str
                 choices:
                     - "IMAGE"
@@ -113,33 +113,33 @@ options:
                 suboptions:
                     name:
                         description:
-                            - name of the operating system
+                            - The name of the operating system.
                         type: str
             eula:
                 description:
-                    - End User License Agreeement that a consumer of this listing has to accept
+                    - The end user license agreeement (EULA) that consumers of this listing must accept.
                 type: list
                 required: true
                 suboptions:
                     eula_type:
                         description:
-                            - the specified eula's type
+                            - The end user license agreement's type.
                         type: str
                         choices:
                             - "TEXT"
                         required: true
                     license_text:
                         description:
-                            - text of the eula
+                            - The text of the end user license agreement.
                         type: str
             image_id:
                 description:
-                    - base image id of the listing
+                    - The unique identifier for the base image of the publication.
                 type: str
     is_agreement_acknowledged:
         description:
-            - Acknowledgement that invoker has the right and authority to share this Community Image in accordance with their agreement with Oracle applicable
-              to the Services and the related Service Specifications
+            - Whether the publisher acknowledged that they have the right and authority to share the contents of the publication and that they accepted the
+              Oracle terms of use agreements required to create a publication.
             - Required for create using I(state=present).
         type: bool
     defined_tags:
@@ -159,7 +159,7 @@ options:
         type: dict
     publication_id:
         description:
-            - The unique identifier for the listing.
+            - The unique identifier for the publication.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -229,43 +229,43 @@ publication:
     contains:
         lifecycle_state:
             description:
-                - The state of the listing in its lifecycle
+                - The lifecycle state of the publication.
             returned: on success
             type: string
             sample: CREATING
         compartment_id:
             description:
-                - The Compartment id where the listings exists
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the publication exists.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The unique identifier for the listing in Marketplace.
+                - The unique identifier for the publication in Marketplace.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The name of the listing.
+                - The name of the publication, which is also used in the listing.
             returned: on success
             type: string
             sample: name_example
         short_description:
             description:
-                - A short description of the listing.
+                - A short description of the publication to use in the listing.
             returned: on success
             type: string
             sample: short_description_example
         long_description:
             description:
-                - A long description of the listing.
+                - A long description of the publication to use in the listing.
             returned: on success
             type: string
             sample: long_description_example
         support_contacts:
             description:
-                - Contact information to use to get support from the publisher for the listing.
+                - Contact information for getting support from the publisher for the listing.
             returned: on success
             type: complex
             contains:
@@ -331,25 +331,25 @@ publication:
             sample: ORCHESTRATION
         listing_type:
             description:
-                - In which catalog the listing should exist.
+                - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
             returned: on success
             type: string
             sample: COMMUNITY
         supported_operating_systems:
             description:
-                - List of operating systems supprted.
+                - The list of operating systems supprted by the listing.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - name of the operating system
+                        - The name of the operating system.
                     returned: on success
                     type: string
                     sample: name_example
         time_created:
             description:
-                - The date and time this publication was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                - The date and time the publication was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success

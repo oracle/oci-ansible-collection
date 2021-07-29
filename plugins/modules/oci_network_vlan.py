@@ -30,9 +30,14 @@ author: Oracle (@oracle)
 options:
     availability_domain:
         description:
-            - The availability domain of the VLAN.
+            - Controls whether the VLAN is regional or specific to an availability domain.
+              A regional VLAN has the flexibility to implement failover across availability domains.
+              Previously, all VLANs were AD-specific.
+            - To create a regional VLAN, omit this attribute. Resources created subsequently in this
+              VLAN (such as a Compute instance) can be created in any availability domain in the region.
+            - To create an AD-specific VLAN, use this attribute to specify the availability domain.
+              Resources created in this VLAN must be in that availability domain.
             - "Example: `Uocm:PHX-AD-1`"
-            - Required for create using I(state=present).
         type: str
     cidr_block:
         description:
@@ -120,7 +125,6 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vlan
   oci_network_vlan:
-    availability_domain: Uocm:PHX-AD-1
     cidr_block: 192.0.2.0/24
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
@@ -162,7 +166,8 @@ vlan:
     contains:
         availability_domain:
             description:
-                - The availability domain of the VLAN.
+                - The VLAN's availability domain. This attribute will be null if this is a regional VLAN
+                  rather than an AD-specific VLAN.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
             type: string

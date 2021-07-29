@@ -25,8 +25,8 @@ description:
     - Fetches details about one or multiple ResolverEndpoint resources in Oracle Cloud Infrastructure
     - Gets a list of all endpoints within a resolver. The collection can be filtered by name or lifecycle state.
       It can be sorted on creation time or name both in ASC or DESC order. Note that when no lifecycleState
-      query parameter is provided that the collection does not include resolver endpoints in the DELETED
-      lifecycle state to be consistent with other operations of the API.
+      query parameter is provided, the collection does not include resolver endpoints in the DELETED
+      lifecycle state to be consistent with other operations of the API. Requires a `PRIVATE` scope query parameter.
     - If I(resolver_endpoint_name) is specified, the details of a single ResolverEndpoint will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -108,7 +108,7 @@ resolver_endpoints:
     contains:
         name:
             description:
-                - The name of the resolver endpoint. Must be unique within the resolver.
+                - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
             returned: on success
             type: string
             sample: name_example
@@ -140,7 +140,7 @@ resolver_endpoints:
         listening_address:
             description:
                 - An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the
-                  subnet and will be assigned by the system if unspecified.
+                  subnet and will be assigned by the system if unspecified when isListening is true.
             returned: on success
             type: string
             sample: listening_address_example
@@ -187,7 +187,8 @@ resolver_endpoints:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - An array of NSG OCIDs for the resolver endpoint.
+                - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
+                  resolver endpoint is a part of.
             returned: on success
             type: list
             sample: []

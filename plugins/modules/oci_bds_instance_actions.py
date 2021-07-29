@@ -23,51 +23,52 @@ module: oci_bds_instance_actions
 short_description: Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
-    - For I(action=add_block_storage), adds storage to existing worker nodes. The same amount of storage will be added to all workers.
-      No change will be made to already attached storage. Block Storage once added cannot be removed.
-    - For I(action=add_cloud_sql), adds Cloud SQL to your cluster. This will add a query server node to the cluster
-      and create cell servers on all your worker nodes.
-    - For I(action=add_worker_nodes), add worker nodes to an existing cluster. The worker nodes added will be based on an identical shape
-      and have the same amount of attached block storage as other worker nodes in the cluster.
-    - For I(action=change_compartment), moves a BDS instance into a different compartment.
-    - For I(action=change_shape), scale-up/down individial nodes (per role type) in the cluster. Customer can choose
-      arbitrarty VM_STANDARD shape to scale-up/down the instance. Only VM_STANDARD nodes
-      can be re-shaped.
-    - For I(action=remove_cloud_sql), remove Cloud SQL capability.
-    - For I(action=restart_node), restarts a single node of a BDS instance.
+    - For I(action=add_block_storage), adds block storage to existing worker nodes. The same amount of  storage will be added to all worker nodes. No change
+      will be made  to storage that is already attached. Block storage cannot be removed.
+    - For I(action=add_cloud_sql), adds Cloud SQL to your cluster. You can use Cloud SQL to query against non-relational data stored in multiple big data
+      sources, including Apache Hive, HDFS, Oracle NoSQL Database, and Apache HBase. Adding Cloud SQL adds a query server node to the cluster and creates cell
+      servers on all the worker nodes in the cluster.
+    - For I(action=add_worker_nodes), increases the size (scales out) a cluster by adding worker nodes. The added worker nodes will have the same shape and will
+      have the same amount of attached block storage as other worker nodes in the cluster.
+    - For I(action=change_compartment), moves a Big Data Service cluster into a different compartment.
+    - For I(action=change_shape), changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of
+      all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD
+      shapes can be scaled.
+    - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
+    - For I(action=restart_node), restarts a single node of a Big Data Service cluster
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     bds_instance_id:
         description:
-            - The OCID of the BDS instance
+            - The OCID of the cluster.
         type: str
         aliases: ["id"]
         required: true
     cluster_admin_password:
         description:
-            - Base-64 encoded password for Cloudera Manager admin user
+            - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
             - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=remove_cloud_sql).
         type: str
     block_volume_size_in_gbs:
         description:
-            - The size of block volume in GB that needs to be added to each worker node.
-              All the necessary details needed for attachment are managed by service itself.
+            - The size of block volume in GB to be added to each worker node. All the
+              details needed for attaching the block volume are managed by service itself.
             - Required for I(action=add_block_storage).
         type: int
     shape:
         description:
-            - Shape of the node
+            - Shape of the node.
             - Required for I(action=add_cloud_sql).
         type: str
     number_of_worker_nodes:
         description:
-            - Number of additional worker nodes for the BDS instance
+            - Number of additional worker nodes for the cluster.
             - Required for I(action=add_worker_nodes).
         type: int
     compartment_id:
         description:
-            - The OCID of the compartment
+            - The OCID of the compartment.
             - Required for I(action=change_compartment).
         type: str
     nodes:
@@ -90,11 +91,11 @@ options:
                 type: str
             cloudsql:
                 description:
-                    - Change shape of cloudsql node to the desired target shape. Only VM_STANDARD shapes are allowed here.
+                    - Change shape of the Cloud SQL node to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
     node_id:
         description:
-            - OCID of the BDS node which should be restarted
+            - OCID of the node to be restarted.
             - Required for I(action=restart_node).
         type: str
     action:
@@ -170,49 +171,49 @@ bds_instance:
     contains:
         id:
             description:
-                - The OCID of the BDS resource
+                - The OCID of the Big Data Service resource.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment
+                - The OCID of the compartment.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Name of the BDS instance
+                - The name of the cluster.
             returned: on success
             type: string
             sample: display_name_example
         lifecycle_state:
             description:
-                - The state of the BDS instance
+                - The state of the cluster.
             returned: on success
             type: string
             sample: CREATING
         cluster_version:
             description:
-                - Version of the Hadoop distribution
+                - Version of the Hadoop distribution.
             returned: on success
             type: string
             sample: CDH5
         is_high_availability:
             description:
-                - Boolean flag specifying whether or not the cluster is HA
+                - Boolean flag specifying whether or not the cluster is highly available (HA)
             returned: on success
             type: bool
             sample: true
         is_secure:
             description:
-                - Boolean flag specifying whether or not the cluster should be setup as secure.
+                - Boolean flag specifying whether or not the cluster should be set up as secure.
             returned: on success
             type: bool
             sample: true
         is_cloud_sql_configured:
             description:
-                - Boolean flag specifying whether we configure Cloud SQL or not
+                - Boolean flag specifying whether or not Cloud SQL should be configured.
             returned: on success
             type: bool
             sample: true
@@ -248,104 +249,109 @@ bds_instance:
                     sample: bda_version_example
                 bdm_version:
                     description:
-                        - Big Data Manager version installed in the cluster
+                        - Big Data Manager version installed in the cluster.
                     returned: on success
                     type: string
                     sample: bdm_version_example
                 bds_version:
                     description:
-                        - Big Data Service version installed in the cluster
+                        - Big Data Service version installed in the cluster.
                     returned: on success
                     type: string
                     sample: bds_version_example
                 os_version:
                     description:
-                        - Oracle Linux version installed in the cluster
+                        - Oracle Linux version installed in the cluster.
                     returned: on success
                     type: string
                     sample: os_version_example
                 db_version:
                     description:
-                        - Query Server Database version
+                        - Cloud SQL query server database version.
                     returned: on success
                     type: string
                     sample: db_version_example
                 bd_cell_version:
                     description:
-                        - Cloud SQL cell version
+                        - Cloud SQL cell version.
                     returned: on success
                     type: string
                     sample: bd_cell_version_example
                 csql_cell_version:
                     description:
-                        - Big Data SQL version
+                        - Big Data SQL version.
                     returned: on success
                     type: string
                     sample: csql_cell_version_example
                 time_created:
                     description:
-                        - The time the cluster was created. An RFC3339 formatted datetime string
+                        - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: string
                     sample: 2019-03-29T09:36:42.000+0000
                 time_refreshed:
                     description:
-                        - The time the BDS instance was automatically, or manually refreshed.
-                          An RFC3339 formatted datetime string
+                        - The time the cluster was automatically or manually refreshed, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: string
                     sample: 2019-03-29T09:36:42.000+0000
                 cloudera_manager_url:
                     description:
-                        - The URL of a Cloudera Manager
+                        - The URL of Cloudera Manager
                     returned: on success
                     type: string
                     sample: cloudera_manager_url_example
+                ambari_url:
+                    description:
+                        - The URL of Ambari
+                    returned: on success
+                    type: string
+                    sample: ambari_url_example
                 big_data_manager_url:
                     description:
-                        - The URL of a Big Data Manager
+                        - The URL of Big Data Manager.
                     returned: on success
                     type: string
                     sample: big_data_manager_url_example
                 hue_server_url:
                     description:
-                        - The URL of a Hue Server
+                        - The URL of the Hue server.
                     returned: on success
                     type: string
                     sample: hue_server_url_example
         nodes:
             description:
-                - The list of nodes in the BDS instance
+                - The list of nodes in the cluster.
             returned: on success
             type: complex
             contains:
                 instance_id:
                     description:
-                        - The OCID of the underlying compute instance
+                        - The OCID of the underlying Oracle Cloud Infrastructure Compute instance.
                     returned: on success
                     type: string
                     sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
-                        - The name of the node
+                        - The name of the node.
                     returned: on success
                     type: string
                     sample: display_name_example
                 lifecycle_state:
                     description:
-                        - The state of the node
+                        - The state of the node.
                     returned: on success
                     type: string
                     sample: CREATING
                 node_type:
                     description:
-                        - BDS instance node type
+                        - Cluster node type.
                     returned: on success
                     type: string
                     sample: MASTER
                 shape:
                     description:
-                        - Shape of the node
+                        - Shape of the node.
                     returned: on success
                     type: string
                     sample: shape_example
@@ -369,55 +375,55 @@ bds_instance:
                             sample: 56
                 subnet_id:
                     description:
-                        - The OCID of the subnet in which the node should be created
+                        - The OCID of the subnet in which the node is to be created.
                     returned: on success
                     type: string
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
-                        - IP address of the node
+                        - IP address of the node.
                     returned: on success
                     type: string
                     sample: ip_address_example
                 hostname:
                     description:
-                        - The fully-qualified hostname (FQDN) of the node
+                        - The fully-qualified hostname (FQDN) of the node.
                     returned: on success
                     type: string
                     sample: hostname_example
                 image_id:
                     description:
-                        - The OCID of the image from which the node was created
+                        - The OCID of the image from which the node was created.
                     returned: on success
                     type: string
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 ssh_fingerprint:
                     description:
-                        - The fingerprint of the SSH key used for node access
+                        - The fingerprint of the SSH key used for node access.
                     returned: on success
                     type: string
                     sample: ssh_fingerprint_example
                 availability_domain:
                     description:
-                        - The name of the availability domain the node is running in
+                        - The name of the availability domain in which the node is running.
                     returned: on success
                     type: string
                     sample: Uocm:PHX-AD-1
                 fault_domain:
                     description:
-                        - The name of the fault domain the node is running in
+                        - The name of the fault domain in which the node is running.
                     returned: on success
                     type: string
                     sample: fault_domain_example
                 time_created:
                     description:
-                        - The time the node was created. An RFC3339 formatted datetime string
+                        - The time the node was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: string
                     sample: 2019-03-29T09:36:42.000+0000
                 time_updated:
                     description:
-                        - The time the BDS instance was updated. An RFC3339 formatted datetime string
+                        - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
                     returned: on success
                     type: string
                     sample: 2019-03-29T09:36:42.000+0000
@@ -442,26 +448,26 @@ bds_instance:
                     sample: 56
                 is_kerberos_mapped_to_database_users:
                     description:
-                        - Boolean flag specifying whether or not are Kerberos principals mapped
+                        - Boolean flag specifying whether or not Kerberos principals are mapped
                           to database users.
                     returned: on success
                     type: bool
                     sample: true
                 ip_address:
                     description:
-                        - IP address of the Cloud SQL node
+                        - IP address of the Cloud SQL node.
                     returned: on success
                     type: string
                     sample: ip_address_example
                 kerberos_details:
                     description:
-                        - Details about Kerberos principals
+                        - Details about the Kerberos principals.
                     returned: on success
                     type: complex
                     contains:
                         principal_name:
                             description:
-                                - Name of the Kerberos principal
+                                - Name of the Kerberos principal.
                             returned: on success
                             type: string
                             sample: principal_name_example
@@ -473,19 +479,19 @@ bds_instance:
                             sample: keytab_file_example
         created_by:
             description:
-                - The user who created the BDS instance.
+                - The user who created the cluster.
             returned: on success
             type: string
             sample: created_by_example
         time_created:
             description:
-                - The time the BDS instance was created. An RFC3339 formatted datetime string
+                - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: string
             sample: 2019-03-29T09:36:42.000+0000
         time_updated:
             description:
-                - The time the BDS instance was updated. An RFC3339 formatted datetime string
+                - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
             type: string
             sample: 2019-03-29T09:36:42.000+0000
@@ -497,15 +503,15 @@ bds_instance:
             sample: 56
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "Simple key-value pair that is applied without any predefined name, type, or scope.
+                  Exists for cross-compatibility only. For example, `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  For example, `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -533,6 +539,7 @@ bds_instance:
             "time_created": "2019-03-29T09:36:42.000+0000",
             "time_refreshed": "2019-03-29T09:36:42.000+0000",
             "cloudera_manager_url": "cloudera_manager_url_example",
+            "ambari_url": "ambari_url_example",
             "big_data_manager_url": "big_data_manager_url_example",
             "hue_server_url": "hue_server_url_example"
         },

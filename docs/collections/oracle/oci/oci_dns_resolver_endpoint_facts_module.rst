@@ -20,7 +20,7 @@ oracle.oci.oci_dns_resolver_endpoint_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ResolverEndpoint resources in Oracle Cloud Infrastructure
-- Gets a list of all endpoints within a resolver. The collection can be filtered by name or lifecycle state. It can be sorted on creation time or name both in ASC or DESC order. Note that when no lifecycleState query parameter is provided that the collection does not include resolver endpoints in the DELETED lifecycle state to be consistent with other operations of the API.
+- Gets a list of all endpoints within a resolver. The collection can be filtered by name or lifecycle state. It can be sorted on creation time or name both in ASC or DESC order. Note that when no lifecycleState query parameter is provided, the collection does not include resolver endpoints in the DELETED lifecycle state to be consistent with other operations of the API. Requires a `PRIVATE` scope query parameter.
 - If *resolver_endpoint_name* is specified, the details of a single ResolverEndpoint will be returned.
 
 
@@ -562,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified.</div>
+                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified when isListening is true.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listening_address_example</div>
@@ -580,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the resolver endpoint. Must be unique within the resolver.</div>
+                                            <div>The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -598,7 +598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of NSG OCIDs for the resolver endpoint.</div>
+                                            <div>An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the resolver endpoint is a part of.</div>
                                         <br/>
                                     </td>
             </tr>
