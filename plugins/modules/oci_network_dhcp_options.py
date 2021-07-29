@@ -132,6 +132,15 @@ options:
             - The OCID of the VCN the set of DHCP options belongs to.
             - Required for create using I(state=present).
         type: str
+    domain_name_type:
+        description:
+            - The search domain name type of DHCP options
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "SUBNET_DOMAIN"
+            - "VCN_DOMAIN"
+            - "CUSTOM_DOMAIN"
     dhcp_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the set of DHCP options.
@@ -171,6 +180,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     options:
     - type: DomainNameServer
+    domain_name_type: SUBNET_DOMAIN
 
 - name: Update dhcp_options
   oci_network_dhcp_options:
@@ -308,6 +318,12 @@ dhcp_options:
             returned: on success
             type: string
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        domain_name_type:
+            description:
+                - The search domain name type of DHCP options
+            returned: on success
+            type: string
+            sample: SUBNET_DOMAIN
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -322,7 +338,8 @@ dhcp_options:
             "search_domain_names": []
         }],
         "time_created": "2016-08-25T21:10:29.600Z",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "domain_name_type": "SUBNET_DOMAIN"
     }
 """
 
@@ -486,6 +503,9 @@ def main():
                 ),
             ),
             vcn_id=dict(type="str"),
+            domain_name_type=dict(
+                type="str", choices=["SUBNET_DOMAIN", "VCN_DOMAIN", "CUSTOM_DOMAIN"]
+            ),
             dhcp_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

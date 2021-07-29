@@ -20,7 +20,7 @@ oracle.oci.oci_dns_resolver_endpoint -- Manage a ResolverEndpoint resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ResolverEndpoint resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new resolver endpoint.
+- For *state=present*, creates a new resolver endpoint. Requires a `PRIVATE` scope query parameter.
 
 
 .. Aliases
@@ -319,7 +319,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified.</div>
+                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified when isListening is true.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -334,7 +334,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name of the resolver endpoint. Must be unique within the resolver.</div>
+                                            <div>The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -349,7 +349,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An array of NSG OCIDs for the resolver endpoint.</div>
+                                            <div>An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the resolver endpoint is a part of.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -706,7 +706,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified.</div>
+                                            <div>An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the subnet and will be assigned by the system if unspecified when isListening is true.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listening_address_example</div>
@@ -724,7 +724,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the resolver endpoint. Must be unique within the resolver.</div>
+                                            <div>The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -742,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of NSG OCIDs for the resolver endpoint.</div>
+                                            <div>An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the resolver endpoint is a part of.</div>
                                         <br/>
                                     </td>
             </tr>

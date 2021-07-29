@@ -23,8 +23,8 @@ module: oci_dns_zone_facts
 short_description: Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
-    - Gets a list of all zones in the specified compartment. The collection
-      can be filtered by name, time created, scope, associated view, and zone type.
+    - Gets a list of all zones in the specified compartment. The collection can be filtered by name, time created,
+      scope, associated view, and zone type. Filtering by view is only supported for private zones.
     - If I(zone_name_or_id) is specified, the details of a single Zone will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -97,6 +97,7 @@ options:
             - "DELETED"
             - "DELETING"
             - "FAILED"
+            - "UPDATING"
     sort_by:
         description:
             - The field by which to sort zones.
@@ -112,6 +113,10 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    tsig_key_id:
+        description:
+            - Search for zones that are associated with a TSIG key.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -201,33 +206,6 @@ zones:
                     returned: on success
                     type: int
                     sample: 56
-                tsig:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - A domain name identifying the key for a given pair of hosts.
-                            returned: on success
-                            type: string
-                            sample: name_example
-                        secret:
-                            description:
-                                - A base64 string encoding the binary shared secret.
-                            returned: on success
-                            type: string
-                            sample: secret_example
-                        algorithm:
-                            description:
-                                - "TSIG Algorithms are encoded as domain names, but most consist of only one
-                                  non-empty label, which is not required to be explicitly absolute.
-                                  Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
-                                  hmac-sha512. For more information on these algorithms, see L(RFC 4635,https://tools.ietf.org/html/rfc4635#section-2)."
-                            returned: on success
-                            type: string
-                            sample: algorithm_example
                 tsig_key_id:
                     description:
                         - The OCID of the TSIG key.
@@ -292,6 +270,36 @@ zones:
                     returned: on success
                     type: string
                     sample: hostname_example
+        zone_transfer_servers:
+            description:
+                - The OCI nameservers that transfer the zone data with external nameservers.
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: string
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_transfer_source:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer source.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_transfer_destination:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer destination.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "name": "name_example",
         "zone_type": "PRIMARY",
@@ -303,11 +311,6 @@ zones:
         "external_masters": [{
             "address": "address_example",
             "port": 56,
-            "tsig": {
-                "name": "name_example",
-                "secret": "secret_example",
-                "algorithm": "algorithm_example"
-            },
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "self_uri": "_self_example",
@@ -319,6 +322,12 @@ zones:
         "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
+        }],
+        "zone_transfer_servers": [{
+            "address": "address_example",
+            "port": 56,
+            "is_transfer_source": true,
+            "is_transfer_destination": true
         }]
     }]
 """
@@ -381,6 +390,7 @@ class ZoneFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "scope",
             "view_id",
+            "tsig_key_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -417,10 +427,18 @@ def main():
             time_created_less_than=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
-                choices=["ACTIVE", "CREATING", "DELETED", "DELETING", "FAILED"],
+                choices=[
+                    "ACTIVE",
+                    "CREATING",
+                    "DELETED",
+                    "DELETING",
+                    "FAILED",
+                    "UPDATING",
+                ],
             ),
             sort_by=dict(type="str", choices=["name", "zoneType", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            tsig_key_id=dict(type="str"),
         )
     )
 

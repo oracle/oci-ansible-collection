@@ -54,7 +54,7 @@ publishers:
     contains:
         id:
             description:
-                - Unique identifier for the publisher.
+                - The unique identifier for the publisher.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

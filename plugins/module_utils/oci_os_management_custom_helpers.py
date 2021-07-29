@@ -30,6 +30,10 @@ def get_logger():
 
 
 class ManagedInstanceActionsHelperCustom:
+    # Install windows update action is taking longer time, so increasing the timeout.
+    def get_default_module_wait_timeout(self):
+        return 3600
+
     def is_package_installed(self, package_name, list_packages_kwargs):
         installed_packages = oci_common_utils.list_all_resources(
             self.client.list_packages_installed_on_managed_instance,

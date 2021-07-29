@@ -20,7 +20,7 @@ oracle.oci.oci_dns_zone_records_facts -- Fetches details about a ZoneRecords res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
-- Gets all records in the specified zone. The results are sorted by `domain` in alphabetical order by default. For more information about records, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
+- Gets all records in the specified zone. The results are sorted by `domain` in alphabetical order by default. For more information about records, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns- parameters-4). For private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
 
 
 .. Aliases

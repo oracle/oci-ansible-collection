@@ -213,6 +213,12 @@ dhcp_options:
             returned: on success
             type: string
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        domain_name_type:
+            description:
+                - The search domain name type of DHCP options
+            returned: on success
+            type: string
+            sample: SUBNET_DOMAIN
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -227,7 +233,8 @@ dhcp_options:
             "search_domain_names": []
         }],
         "time_created": "2016-08-25T21:10:29.600Z",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "domain_name_type": "SUBNET_DOMAIN"
     }]
 """
 

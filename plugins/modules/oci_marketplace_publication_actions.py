@@ -23,19 +23,19 @@ module: oci_marketplace_publication_actions
 short_description: Perform actions on a Publication resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Publication resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), changes the compartment of the Publication
+    - For I(action=change_compartment), moves the specified publication from one compartment to another.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     publication_id:
         description:
-            - The unique identifier for the listing.
+            - The unique identifier for the publication.
         type: str
         aliases: ["id"]
         required: true
     compartment_id:
         description:
-            - The unique identifier for the compartment to which the Publication should be moved.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where you want to move the publication.
         type: str
     action:
         description:
@@ -64,43 +64,43 @@ publication:
     contains:
         lifecycle_state:
             description:
-                - The state of the listing in its lifecycle
+                - The lifecycle state of the publication.
             returned: on success
             type: string
             sample: CREATING
         compartment_id:
             description:
-                - The Compartment id where the listings exists
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the publication exists.
             returned: on success
             type: string
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The unique identifier for the listing in Marketplace.
+                - The unique identifier for the publication in Marketplace.
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The name of the listing.
+                - The name of the publication, which is also used in the listing.
             returned: on success
             type: string
             sample: name_example
         short_description:
             description:
-                - A short description of the listing.
+                - A short description of the publication to use in the listing.
             returned: on success
             type: string
             sample: short_description_example
         long_description:
             description:
-                - A long description of the listing.
+                - A long description of the publication to use in the listing.
             returned: on success
             type: string
             sample: long_description_example
         support_contacts:
             description:
-                - Contact information to use to get support from the publisher for the listing.
+                - Contact information for getting support from the publisher for the listing.
             returned: on success
             type: complex
             contains:
@@ -166,25 +166,25 @@ publication:
             sample: ORCHESTRATION
         listing_type:
             description:
-                - In which catalog the listing should exist.
+                - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
             returned: on success
             type: string
             sample: COMMUNITY
         supported_operating_systems:
             description:
-                - List of operating systems supprted.
+                - The list of operating systems supprted by the listing.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - name of the operating system
+                        - The name of the operating system.
                     returned: on success
                     type: string
                     sample: name_example
         time_created:
             description:
-                - The date and time this publication was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
+                - The date and time the publication was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success

@@ -29,15 +29,24 @@ For the complete list of supported services, please check the [modules list](htt
 **python>=3.6**
 #### Oracle Linux 7
 
-`yum install -y oci-ansible-collection --enablerepo ol7_developer --enablerepo ol7_developer_EPEL`
-
+```
+sudo yum-config-manager --enable ol7_developer
+sudo yum-config-manager --enable ol7_developer_EPEL
+sudo yum install oci-ansible-collection
+```
 #### Oracle Linux 8
 
-`yum install -y oci-ansible-collection --enablerepo ol8_developer --enablerepo ol8_developer_EPEL`
+```
+sudo yum-config-manager --enable ol8_developer
+sudo yum-config-manager --enable ol8_developer_EPEL
+sudo yum install oci-ansible-collection
+```
 
 #### Linux/macOS
 
-`curl -L https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/scripts/install.sh | bash -s -- --verbose`
+```
+curl -L https://raw.githubusercontent.com/oracle/oci-ansible-collection/master/scripts/install.sh | bash -s -- --verbose
+```
 #### For more info about installation and troubleshooting check the [Installation Guide](https://github.com/oracle/oci-ansible-collections/blob/master/InstallationGuide.md).
 
 ## Samples and Solutions

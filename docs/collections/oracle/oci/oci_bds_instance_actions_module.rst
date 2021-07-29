@@ -20,7 +20,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,13 +43,13 @@ Synopsis
 .. Description
 
 - Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
-- For *action=add_block_storage*, adds storage to existing worker nodes. The same amount of storage will be added to all workers. No change will be made to already attached storage. Block Storage once added cannot be removed.
-- For *action=add_cloud_sql*, adds Cloud SQL to your cluster. This will add a query server node to the cluster and create cell servers on all your worker nodes.
-- For *action=add_worker_nodes*, add worker nodes to an existing cluster. The worker nodes added will be based on an identical shape and have the same amount of attached block storage as other worker nodes in the cluster.
-- For *action=change_compartment*, moves a BDS instance into a different compartment.
-- For *action=change_shape*, scale-up/down individial nodes (per role type) in the cluster. Customer can choose arbitrarty VM_STANDARD shape to scale-up/down the instance. Only VM_STANDARD nodes can be re-shaped.
-- For *action=remove_cloud_sql*, remove Cloud SQL capability.
-- For *action=restart_node*, restarts a single node of a BDS instance.
+- For *action=add_block_storage*, adds block storage to existing worker nodes. The same amount of  storage will be added to all worker nodes. No change will be made  to storage that is already attached. Block storage cannot be removed.
+- For *action=add_cloud_sql*, adds Cloud SQL to your cluster. You can use Cloud SQL to query against non-relational data stored in multiple big data sources, including Apache Hive, HDFS, Oracle NoSQL Database, and Apache HBase. Adding Cloud SQL adds a query server node to the cluster and creates cell servers on all the worker nodes in the cluster.
+- For *action=add_worker_nodes*, increases the size (scales out) a cluster by adding worker nodes. The added worker nodes will have the same shape and will have the same amount of attached block storage as other worker nodes in the cluster.
+- For *action=change_compartment*, moves a Big Data Service cluster into a different compartment.
+- For *action=change_shape*, changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD shapes can be scaled.
+- For *action=remove_cloud_sql*, removes Cloud SQL from the cluster.
+- For *action=restart_node*, restarts a single node of a Big Data Service cluster
 
 
 .. Aliases
@@ -195,7 +195,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the BDS instance</div>
+                                            <div>The OCID of the cluster.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The size of block volume in GB that needs to be added to each worker node. All the necessary details needed for attachment are managed by service itself.</div>
+                                            <div>The size of block volume in GB to be added to each worker node. All the details needed for attaching the block volume are managed by service itself.</div>
                                             <div>Required for <em>action=add_block_storage</em>.</div>
                                                         </td>
             </tr>
@@ -227,7 +227,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Base-64 encoded password for Cloudera Manager admin user</div>
+                                            <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
                                             <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=remove_cloud_sql</em>.</div>
                                                         </td>
             </tr>
@@ -243,7 +243,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment</div>
+                                            <div>The OCID of the compartment.</div>
                                             <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
@@ -289,7 +289,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>OCID of the BDS node which should be restarted</div>
+                                            <div>OCID of the node to be restarted.</div>
                                             <div>Required for <em>action=restart_node</em>.</div>
                                                         </td>
             </tr>
@@ -322,7 +322,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Change shape of cloudsql node to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
+                                            <div>Change shape of the Cloud SQL node to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -386,7 +386,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Number of additional worker nodes for the BDS instance</div>
+                                            <div>Number of additional worker nodes for the cluster.</div>
                                             <div>Required for <em>action=add_worker_nodes</em>.</div>
                                                         </td>
             </tr>
@@ -417,7 +417,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Shape of the node</div>
+                                            <div>Shape of the node.</div>
                                             <div>Required for <em>action=add_cloud_sql</em>.</div>
                                                         </td>
             </tr>
@@ -572,7 +572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BdsInstance resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_refreshed&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_updated&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_updated&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_refreshed&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;172.16.0.0/16&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_updated&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;, &#x27;time_updated&#x27;: &#x27;2019-03-29T09:36:42.000+0000&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -623,7 +623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>IP address of the Cloud SQL node</div>
+                                            <div>IP address of the Cloud SQL node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_address_example</div>
@@ -642,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Boolean flag specifying whether or not are Kerberos principals mapped to database users.</div>
+                                            <div>Boolean flag specifying whether or not Kerberos principals are mapped to database users.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -661,7 +661,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Details about Kerberos principals</div>
+                                            <div>Details about the Kerberos principals.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -699,7 +699,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of the Kerberos principal</div>
+                                            <div>Name of the Kerberos principal.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">principal_name_example</div>
@@ -746,6 +746,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/cluster_details/ambari_url"></div>
+                    <b>ambari_url</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/cluster_details/ambari_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL of Ambari</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ambari_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/cluster_details/bd_cell_version"></div>
                     <b>bd_cell_version</b>
                     <a class="ansibleOptionLink" href="#return-bds_instance/cluster_details/bd_cell_version" title="Permalink to this return value"></a>
@@ -755,7 +774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Cloud SQL cell version</div>
+                                            <div>Cloud SQL cell version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bd_cell_version_example</div>
@@ -793,7 +812,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Big Data Manager version installed in the cluster</div>
+                                            <div>Big Data Manager version installed in the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bdm_version_example</div>
@@ -812,7 +831,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Big Data Service version installed in the cluster</div>
+                                            <div>Big Data Service version installed in the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bds_version_example</div>
@@ -831,7 +850,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The URL of a Big Data Manager</div>
+                                            <div>The URL of Big Data Manager.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">big_data_manager_url_example</div>
@@ -850,7 +869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The URL of a Cloudera Manager</div>
+                                            <div>The URL of Cloudera Manager</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cloudera_manager_url_example</div>
@@ -869,7 +888,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Big Data SQL version</div>
+                                            <div>Big Data SQL version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">csql_cell_version_example</div>
@@ -888,7 +907,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Query Server Database version</div>
+                                            <div>Cloud SQL query server database version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_version_example</div>
@@ -907,7 +926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The URL of a Hue Server</div>
+                                            <div>The URL of the Hue server.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hue_server_url_example</div>
@@ -926,7 +945,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Oracle Linux version installed in the cluster</div>
+                                            <div>Oracle Linux version installed in the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">os_version_example</div>
@@ -945,7 +964,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the cluster was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was created, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>
@@ -964,7 +983,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the BDS instance was automatically, or manually refreshed. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was automatically or manually refreshed, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>
@@ -983,7 +1002,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the Hadoop distribution</div>
+                                            <div>Version of the Hadoop distribution.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CDH5</div>
@@ -1001,7 +1020,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment</div>
+                                            <div>The OCID of the compartment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1019,7 +1038,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The user who created the BDS instance.</div>
+                                            <div>The user who created the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -1037,7 +1056,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For example, `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -1055,7 +1074,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of the BDS instance</div>
+                                            <div>The name of the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -1073,7 +1092,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. For example, `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -1091,7 +1110,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the BDS resource</div>
+                                            <div>The OCID of the Big Data Service resource.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1109,7 +1128,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Boolean flag specifying whether we configure Cloud SQL or not</div>
+                                            <div>Boolean flag specifying whether or not Cloud SQL should be configured.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1127,7 +1146,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Boolean flag specifying whether or not the cluster is HA</div>
+                                            <div>Boolean flag specifying whether or not the cluster is highly available (HA)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1145,7 +1164,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Boolean flag specifying whether or not the cluster should be setup as secure.</div>
+                                            <div>Boolean flag specifying whether or not the cluster should be set up as secure.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1163,7 +1182,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the BDS instance</div>
+                                            <div>The state of the cluster.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1236,7 +1255,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of nodes in the BDS instance</div>
+                                            <div>The list of nodes in the cluster.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -1311,7 +1330,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the availability domain the node is running in</div>
+                                            <div>The name of the availability domain in which the node is running.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
@@ -1330,7 +1349,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the node</div>
+                                            <div>The name of the node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -1349,7 +1368,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the fault domain the node is running in</div>
+                                            <div>The name of the fault domain in which the node is running.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">fault_domain_example</div>
@@ -1368,7 +1387,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The fully-qualified hostname (FQDN) of the node</div>
+                                            <div>The fully-qualified hostname (FQDN) of the node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_example</div>
@@ -1387,7 +1406,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the image from which the node was created</div>
+                                            <div>The OCID of the image from which the node was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1406,7 +1425,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the underlying compute instance</div>
+                                            <div>The OCID of the underlying Oracle Cloud Infrastructure Compute instance.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1425,7 +1444,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>IP address of the node</div>
+                                            <div>IP address of the node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_address_example</div>
@@ -1444,7 +1463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the node</div>
+                                            <div>The state of the node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1463,7 +1482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>BDS instance node type</div>
+                                            <div>Cluster node type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MASTER</div>
@@ -1482,7 +1501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Shape of the node</div>
+                                            <div>Shape of the node.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
@@ -1501,7 +1520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The fingerprint of the SSH key used for node access</div>
+                                            <div>The fingerprint of the SSH key used for node access.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ssh_fingerprint_example</div>
@@ -1520,7 +1539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the subnet in which the node should be created</div>
+                                            <div>The OCID of the subnet in which the node is to be created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1539,7 +1558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the node was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the node was created, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>
@@ -1558,7 +1577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the BDS instance was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was updated, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>
@@ -1595,7 +1614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the BDS instance was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was created, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>
@@ -1613,7 +1632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the BDS instance was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was updated, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-29T09:36:42.000+0000</div>

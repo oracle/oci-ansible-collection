@@ -23,7 +23,9 @@ module: oci_dns_zone_actions
 short_description: Perform actions on a Zone resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Zone resource in Oracle Cloud Infrastructure
-    - "For I(action=change_compartment), moves a zone into a different compartment. Protected zones cannot have their compartment changed.
+    - "For I(action=change_compartment), moves a zone into a different compartment. Protected zones cannot have their compartment changed. For private
+      zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is provided as a
+      path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
       **Note:** All SteeringPolicyAttachment objects associated with this zone will also be moved into the provided compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -141,33 +143,6 @@ zone:
                     returned: on success
                     type: int
                     sample: 56
-                tsig:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - A domain name identifying the key for a given pair of hosts.
-                            returned: on success
-                            type: string
-                            sample: name_example
-                        secret:
-                            description:
-                                - A base64 string encoding the binary shared secret.
-                            returned: on success
-                            type: string
-                            sample: secret_example
-                        algorithm:
-                            description:
-                                - "TSIG Algorithms are encoded as domain names, but most consist of only one
-                                  non-empty label, which is not required to be explicitly absolute.
-                                  Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
-                                  hmac-sha512. For more information on these algorithms, see L(RFC 4635,https://tools.ietf.org/html/rfc4635#section-2)."
-                            returned: on success
-                            type: string
-                            sample: algorithm_example
                 tsig_key_id:
                     description:
                         - The OCID of the TSIG key.
@@ -232,6 +207,36 @@ zone:
                     returned: on success
                     type: string
                     sample: hostname_example
+        zone_transfer_servers:
+            description:
+                - The OCI nameservers that transfer the zone data with external nameservers.
+            returned: on success
+            type: complex
+            contains:
+                address:
+                    description:
+                        - The server's IP address (IPv4 or IPv6).
+                    returned: on success
+                    type: string
+                    sample: address_example
+                port:
+                    description:
+                        - The server's port.
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_transfer_source:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer source.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_transfer_destination:
+                    description:
+                        - A Boolean flag indicating whether or not the server is a zone data transfer destination.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "name": "name_example",
         "zone_type": "PRIMARY",
@@ -243,11 +248,6 @@ zone:
         "external_masters": [{
             "address": "address_example",
             "port": 56,
-            "tsig": {
-                "name": "name_example",
-                "secret": "secret_example",
-                "algorithm": "algorithm_example"
-            },
             "tsig_key_id": "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "self_uri": "_self_example",
@@ -259,6 +259,12 @@ zone:
         "is_protected": true,
         "nameservers": [{
             "hostname": "hostname_example"
+        }],
+        "zone_transfer_servers": [{
+            "address": "address_example",
+            "port": 56,
+            "is_transfer_source": true,
+            "is_transfer_destination": true
         }]
     }
 """

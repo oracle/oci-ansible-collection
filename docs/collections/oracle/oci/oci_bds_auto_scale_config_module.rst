@@ -20,7 +20,7 @@ oracle.oci.oci_bds_auto_scale_config -- Manage a BdsAutoScaleConfig resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a BdsAutoScaleConfig resource in Oracle Cloud Infrastructure
-- For *state=present*, add autoscaling configuration.
+- For *state=present*, add an autoscale configuration to the cluster.
 
 
 .. Aliases
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Unique Oracle-assigned identifier of the autoscaling configuration.</div>
+                                            <div>Unique Oracle-assigned identifier of the autoscale configuration.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -183,7 +183,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the BDS instance</div>
+                                            <div>The OCID of the cluster.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -198,7 +198,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Base-64 encoded password for Cloudera Manager admin user</div>
+                                            <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for delete using <em>state=absent</em>.</div>
                                             <div>This parameter is updatable.</div>
@@ -264,7 +264,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>A user-friendly name. The name does not have to be unique, and it may be changed. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether the autoscaling configuration is enabled.</div>
+                                            <div>Whether the autoscale configuration is enabled.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -337,7 +337,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A node type that is managed by an autoscaling configuration. The only supported type is WORKER.</div>
+                                            <div>A node type that is managed by an autoscale configuration. The only supported type is WORKER.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -375,7 +375,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Types of autoscaling policies. SCHEDULE-BASED or  THRESHOLD-BASED, current only supported THRESHOLD-BASED.</div>
+                                            <div>Types of autoscale policies. Options are SCHEDULE-BASED or THRESHOLD-BASED. (Only THRESHOLD-BASED is supported in this release.)</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -391,7 +391,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of rules for autoscaling. If an action have multiple rules, last rule in the array will be applied.</div>
+                                            <div>The list of rules for autoscaling. If an action has multiple rules, the last rule in the array will be applied.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -412,7 +412,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The valid value are - CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN</div>
+                                            <div>The valid value are CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -450,7 +450,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Allowed value is CPU_UTILIZATION currently</div>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -487,7 +487,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value is the minimum period of time metric value meets or exceeds threshold value before action is trigger. The value is in minutes.</div>
+                                            <div>This value is the minimum period of time the metric value meets or exceeds the threshold value before the action is triggered. The value is in minutes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -510,7 +510,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The comparison operator to use. Options are greater than (GT), less than (LT).</div>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -529,7 +529,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>integer non negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
                                                         </td>
             </tr>
                     
@@ -749,7 +749,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly name. Does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>A user-friendly name. The name does not have to be unique, and it may be changed. Avoid entering confidential information.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -767,7 +767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unique identifier for autoscaling configuration.</div>
+                                            <div>The unique identifier for the autoscale configuration.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -785,7 +785,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the autoscaling configuration</div>
+                                            <div>The state of the autoscale configuration.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -803,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A node type that is managed by an autoscaling configuration. The only supported type is WORKER.</div>
+                                            <div>A node type that is managed by an autoscale configuration. The only supported type is WORKER.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">node_type_example</div>
@@ -838,7 +838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Types of autoscaling policies. SCHEDULE-BASED or  THRESHOLD-BASED, current only supported THRESHOLD-BASED.</div>
+                                            <div>Types of autoscale policies. Options are SCHEDULE-BASED or THRESHOLD-BASED. (Only THRESHOLD-BASED is supported in this release.)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">THRESHOLD_BASED</div>
@@ -857,7 +857,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of rules for autoscaling. If an action have multiple rules, last rule in the array will be applied.</div>
+                                            <div>The list of rules for autoscaling. If an action has multiple rules, the last rule in the array will be applied.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -875,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The valid value are - CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN</div>
+                                            <div>The valid value are CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CHANGE_SHAPE_SCALE_UP</div>
@@ -914,7 +914,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Allowed value is CPU_UTILIZATION currently</div>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU_UTILIZATION</div>
@@ -955,7 +955,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>This value is the minimum period of time metric value meets or exceeds threshold value before action is trigger. The value is in minutes.</div>
+                                            <div>This value is the minimum period of time the metric value meets or exceeds the threshold value before the action is triggered. The value is in minutes.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -977,7 +977,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The comparison operator to use. Options are greater than (GT), less than (LT).</div>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GT</div>
@@ -999,7 +999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>integer non negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1021,7 +1021,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the BDS instance was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the cluster was created, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-03-29T09:36:42.000+0000</div>
@@ -1039,7 +1039,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the autoscale configuration was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the autoscale configuration was updated, shown as an RFC 3339 formatted datetime string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-04-29T09:36:42.000+0000</div>

@@ -20,7 +20,7 @@ oracle.oci.oci_dns_zone_actions -- Perform actions on a Zone resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Zone resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a zone into a different compartment. Protected zones cannot have their compartment changed. **Note:** All SteeringPolicyAttachment objects associated with this zone will also be moved into the provided compartment.
+- For *action=change_compartment*, moves a zone into a different compartment. Protected zones cannot have their compartment changed. For private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required. **Note:** All SteeringPolicyAttachment objects associated with this zone will also be moved into the provided compartment.
 
 
 .. Aliases
@@ -326,12 +326,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-zone"></div>
                     <b>zone</b>
                     <a class="ansibleOptionLink" href="#return-zone" title="Permalink to this return value"></a>
@@ -344,12 +344,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Zone resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig&#x27;: {&#x27;algorithm&#x27;: &#x27;algorithm_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;secret&#x27;: &#x27;secret_example&#x27;}, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_protected&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;scope&#x27;: &#x27;GLOBAL&#x27;, &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;view_id&#x27;: &#x27;ocid1.view.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;external_masters&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;port&#x27;: 56, &#x27;tsig_key_id&#x27;: &#x27;ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_protected&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;nameservers&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;scope&#x27;: &#x27;GLOBAL&#x27;, &#x27;self_uri&#x27;: &#x27;_self_example&#x27;, &#x27;serial&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;view_id&#x27;: &#x27;ocid1.view.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;zone_transfer_servers&#x27;: [{&#x27;address&#x27;: &#x27;address_example&#x27;, &#x27;is_transfer_destination&#x27;: True, &#x27;is_transfer_source&#x27;: True, &#x27;port&#x27;: 56}], &#x27;zone_type&#x27;: &#x27;PRIMARY&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-zone/compartment_id" title="Permalink to this return value"></a>
@@ -367,7 +367,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-zone/defined_tags" title="Permalink to this return value"></a>
@@ -386,7 +386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/external_masters"></div>
                     <b>external_masters</b>
                     <a class="ansibleOptionLink" href="#return-zone/external_masters" title="Permalink to this return value"></a>
@@ -403,7 +403,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-zone/external_masters/address"></div>
                     <b>address</b>
                     <a class="ansibleOptionLink" href="#return-zone/external_masters/address" title="Permalink to this return value"></a>
@@ -422,7 +422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-zone/external_masters/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-zone/external_masters/port" title="Permalink to this return value"></a>
@@ -441,85 +441,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-zone/external_masters/tsig"></div>
-                    <b>tsig</b>
-                    <a class="ansibleOptionLink" href="#return-zone/external_masters/tsig" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">complex</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div></div>
-                                        <br/>
-                                    </td>
-            </tr>
-                                        <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-zone/external_masters/tsig/algorithm"></div>
-                    <b>algorithm</b>
-                    <a class="ansibleOptionLink" href="#return-zone/external_masters/tsig/algorithm" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>TSIG Algorithms are encoded as domain names, but most consist of only one non-empty label, which is not required to be explicitly absolute. Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256, hmac-sha512. For more information on these algorithms, see <a href='https://tools.ietf.org/html/rfc4635#section-2'>RFC 4635</a>.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">algorithm_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-zone/external_masters/tsig/name"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-zone/external_masters/tsig/name" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A domain name identifying the key for a given pair of hosts.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-zone/external_masters/tsig/secret"></div>
-                    <b>secret</b>
-                    <a class="ansibleOptionLink" href="#return-zone/external_masters/tsig/secret" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">string</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>A base64 string encoding the binary shared secret.</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">secret_example</div>
-                                    </td>
-            </tr>
-                    
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/external_masters/tsig_key_id"></div>
                     <b>tsig_key_id</b>
                     <a class="ansibleOptionLink" href="#return-zone/external_masters/tsig_key_id" title="Permalink to this return value"></a>
@@ -538,7 +460,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-zone/freeform_tags" title="Permalink to this return value"></a>
@@ -557,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-zone/id" title="Permalink to this return value"></a>
@@ -575,7 +497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/is_protected"></div>
                     <b>is_protected</b>
                     <a class="ansibleOptionLink" href="#return-zone/is_protected" title="Permalink to this return value"></a>
@@ -593,7 +515,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-zone/lifecycle_state" title="Permalink to this return value"></a>
@@ -611,7 +533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-zone/name" title="Permalink to this return value"></a>
@@ -629,7 +551,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/nameservers"></div>
                     <b>nameservers</b>
                     <a class="ansibleOptionLink" href="#return-zone/nameservers" title="Permalink to this return value"></a>
@@ -646,7 +568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-zone/nameservers/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-zone/nameservers/hostname" title="Permalink to this return value"></a>
@@ -665,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/scope"></div>
                     <b>scope</b>
                     <a class="ansibleOptionLink" href="#return-zone/scope" title="Permalink to this return value"></a>
@@ -683,7 +605,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/self_uri"></div>
                     <b>self_uri</b>
                     <a class="ansibleOptionLink" href="#return-zone/self_uri" title="Permalink to this return value"></a>
@@ -701,7 +623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/serial"></div>
                     <b>serial</b>
                     <a class="ansibleOptionLink" href="#return-zone/serial" title="Permalink to this return value"></a>
@@ -719,7 +641,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-zone/time_created" title="Permalink to this return value"></a>
@@ -738,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#return-zone/version" title="Permalink to this return value"></a>
@@ -756,7 +678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/view_id"></div>
                     <b>view_id</b>
                     <a class="ansibleOptionLink" href="#return-zone/view_id" title="Permalink to this return value"></a>
@@ -774,7 +696,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-zone/zone_transfer_servers"></div>
+                    <b>zone_transfer_servers</b>
+                    <a class="ansibleOptionLink" href="#return-zone/zone_transfer_servers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCI nameservers that transfer the zone data with external nameservers.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/zone_transfer_servers/address"></div>
+                    <b>address</b>
+                    <a class="ansibleOptionLink" href="#return-zone/zone_transfer_servers/address" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The server&#x27;s IP address (IPv4 or IPv6).</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">address_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/zone_transfer_servers/is_transfer_destination"></div>
+                    <b>is_transfer_destination</b>
+                    <a class="ansibleOptionLink" href="#return-zone/zone_transfer_servers/is_transfer_destination" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A Boolean flag indicating whether or not the server is a zone data transfer destination.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/zone_transfer_servers/is_transfer_source"></div>
+                    <b>is_transfer_source</b>
+                    <a class="ansibleOptionLink" href="#return-zone/zone_transfer_servers/is_transfer_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A Boolean flag indicating whether or not the server is a zone data transfer source.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-zone/zone_transfer_servers/port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#return-zone/zone_transfer_servers/port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The server&#x27;s port.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-zone/zone_type"></div>
                     <b>zone_type</b>
                     <a class="ansibleOptionLink" href="#return-zone/zone_type" title="Permalink to this return value"></a>

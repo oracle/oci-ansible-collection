@@ -23,7 +23,7 @@ module: oci_dns_resolver_endpoint
 short_description: Manage a ResolverEndpoint resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ResolverEndpoint resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new resolver endpoint.
+    - For I(state=present), creates a new resolver endpoint. Requires a `PRIVATE` scope query parameter.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -34,7 +34,7 @@ options:
         required: true
     name:
         description:
-            - The name of the resolver endpoint. Must be unique within the resolver.
+            - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
         type: str
         required: true
     endpoint_type:
@@ -63,7 +63,7 @@ options:
     listening_address:
         description:
             - An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the
-              subnet and will be assigned by the system if unspecified.
+              subnet and will be assigned by the system if unspecified when isListening is true.
         type: str
     subnet_id:
         description:
@@ -72,7 +72,8 @@ options:
         type: str
     nsg_ids:
         description:
-            - An array of NSG OCIDs for the resolver endpoint.
+            - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
+              resolver endpoint is a part of.
             - This parameter is updatable.
         type: list
     scope:
@@ -135,7 +136,7 @@ resolver_endpoint:
     contains:
         name:
             description:
-                - The name of the resolver endpoint. Must be unique within the resolver.
+                - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
             returned: on success
             type: string
             sample: name_example
@@ -167,7 +168,7 @@ resolver_endpoint:
         listening_address:
             description:
                 - An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the
-                  subnet and will be assigned by the system if unspecified.
+                  subnet and will be assigned by the system if unspecified when isListening is true.
             returned: on success
             type: string
             sample: listening_address_example
@@ -214,7 +215,8 @@ resolver_endpoint:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - An array of NSG OCIDs for the resolver endpoint.
+                - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
+                  resolver endpoint is a part of.
             returned: on success
             type: list
             sample: []

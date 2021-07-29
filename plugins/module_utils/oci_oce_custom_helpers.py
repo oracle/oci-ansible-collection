@@ -22,4 +22,16 @@ def get_logger():
 
 
 class OceInstanceHelperCustom:
-    pass
+    # NEW license type can still be passed for backward compatibility,
+    # but NEW license type is same as PREMIUM license type.
+    # API returns PREMIUM license type even if NEW license type is set.
+    def get_create_model_dict_for_idempotence_check(self, existing_resource):
+        create_model_dict = super(
+            OceInstanceHelperCustom, self
+        ).get_create_model_dict_for_idempotence_check(existing_resource)
+        if (
+            create_model_dict.get("instance_license_type") is not None
+            and create_model_dict.get("instance_license_type") == "NEW"
+        ):
+            create_model_dict["instance_license_type"] = "PREMIUM"
+        return create_model_dict

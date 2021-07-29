@@ -20,7 +20,7 @@ oracle.oci.oci_usage_query -- Manage a Query resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -284,7 +284,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>the type of graph mode.</div>
+                                            <div>The graph type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>is cumulative graph.</div>
+                                            <div>A cumulative graph.</div>
                                                         </td>
             </tr>
                     
@@ -385,7 +385,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>the date range for ui, eg LAST_THREE_MONTHS. It is conflict with timeUsageStarted and timeUsageEnded</div>
+                                            <div>The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -697,7 +697,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent historical days for which projection is being made.</div>
+                                            <div>BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for projections is a periodic set of equivalent historical days for which the projection is being made.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -715,7 +715,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>forecast end time.</div>
+                                            <div>The forecast end time.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -733,7 +733,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>forecast start time. Will default to UTC-1 if not specified</div>
+                                            <div>The forecast start time. Defaults to UTC-1 if not specified.</div>
                                                         </td>
             </tr>
                     
@@ -867,7 +867,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period</div>
+                                            <div>Whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -885,10 +885,13 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>USAGE</li>
                                                                                                                                                                                                 <li>COST</li>
+                                                                                                                                                                                                <li>CREDIT</li>
+                                                                                                                                                                                                <li>EXPIREDCREDIT</li>
+                                                                                                                                                                                                <li>ALLCREDIT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The query usage type. COST by default if it is missing Usage - Query the usage data. Cost - Query the cost/billing data.</div>
+                                            <div>The query usage type. COST by default if it is missing. Usage - Query the usage data. Cost - Query the cost/billing data. Credit - Query the credit adjustments data. ExpiredCredit - Query the expired credits data AllCredit - Query the credit adjustments and expired credit</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -905,7 +908,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Tenant ID</div>
+                                            <div>Tenant ID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -956,7 +959,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>the version of saved query.</div>
+                                            <div>The saved query version.</div>
                                                         </td>
             </tr>
                     
@@ -1197,7 +1200,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the type of graph mode.</div>
+                                            <div>The graph type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BARS</div>
@@ -1217,7 +1220,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>is cumulative graph.</div>
+                                            <div>A cumulative graph.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1294,7 +1297,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the date range for ui, eg LAST_THREE_MONTHS. It is conflict with timeUsageStarted and timeUsageEnded</div>
+                                            <div>The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LAST_SEVEN_DAYS</div>
@@ -1625,7 +1628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>BASIC uses ETS to project future usage/cost based on history data. The basis for projections will be a rolling set of equivalent historical days for which projection is being made.</div>
+                                            <div>BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for projections is a periodic set of equivalent historical days for which the projection is being made.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BASIC</div>
@@ -1646,7 +1649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>forecast end time.</div>
+                                            <div>The forecast end time.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1667,7 +1670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>forecast start time. Will default to UTC-1 if not specified</div>
+                                            <div>The forecast start time. Defaults to UTC-1 if not specified.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1808,7 +1811,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>is aggregated by time. true isAggregateByTime will add up all usage/cost over query time period</div>
+                                            <div>Whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1828,7 +1831,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The query usage type. COST by default if it is missing Usage - Query the usage data. Cost - Query the cost/billing data.</div>
+                                            <div>The query usage type. COST by default if it is missing. Usage - Query the usage data. Cost - Query the cost/billing data. Credit - Query the credit adjustments data. ExpiredCredit - Query the expired credits data AllCredit - Query the credit adjustments and expired credit</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">USAGE</div>
@@ -1848,7 +1851,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tenant ID</div>
+                                            <div>Tenant ID.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1908,7 +1911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the version of saved query.</div>
+                                            <div>The saved query version.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>

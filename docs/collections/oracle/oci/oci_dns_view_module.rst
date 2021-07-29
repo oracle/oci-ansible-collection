@@ -20,7 +20,7 @@ oracle.oci.oci_dns_view -- Manage a View resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.26.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a View resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new view in the specified compartment.
+- For *state=present*, creates a new view in the specified compartment. Requires a `PRIVATE` scope query parameter.
 - This resource has the following action operations in the :ref:`oci_view_actions <ansible_collections.oci_view_actions_module>` module: change_compartment.
 
 

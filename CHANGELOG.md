@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.27.0] - 2021-07-29
+
+## Added
+- Support for Anomaly Detection service
+- Support for fetching monitor result in APM Synthetics service
+- Support for metastore and initial data asset import/export in the Data Catalog service
+- Support for jobs in Database Migration service
+- Support for retrieving a DNS zone as a zone file for DNS Service
+- Support for searching Marketplace Listings for Marketplace Service
+- Support for new cluster type ODH for BDS Service.
+- Support for availability domain as an optional parameter when creating VLANs in the Networking service
+- Support for search domain type on DHCP options, to support multi-level domain search in the Networking service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.0
+- Oracle Linux installation instructions
+
 ## [2.26.0] - 2021-07-15
 
 ## Added

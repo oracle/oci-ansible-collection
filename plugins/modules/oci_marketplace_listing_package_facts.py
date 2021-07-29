@@ -174,7 +174,7 @@ listing_packages:
             contains:
                 name:
                     description:
-                        - name of the operating system
+                        - The name of the operating system.
                     returned: on success
                     type: string
                     sample: name_example
