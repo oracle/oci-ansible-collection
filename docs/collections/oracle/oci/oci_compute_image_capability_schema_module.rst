@@ -20,7 +20,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -629,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ComputeImageCapabilitySchema resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_id&#x27;: &#x27;ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_version_name&#x27;: &#x27;compute_global_image_capability_schema_version_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schema_data&#x27;: {&#x27;boolean_default_value&#x27;: True, &#x27;descriptor_type&#x27;: &#x27;descriptor_type_example&#x27;, &#x27;enum_integer_default_value&#x27;: 56, &#x27;enum_integer_values&#x27;: [], &#x27;enum_string_default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;enum_string_values&#x27;: [], &#x27;source&#x27;: &#x27;GLOBAL&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_id&#x27;: &#x27;ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_global_image_capability_schema_version_name&#x27;: &#x27;compute_global_image_capability_schema_version_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schema_data&#x27;: {&#x27;boolean_default_value&#x27;: True, &#x27;descriptor_type&#x27;: &#x27;boolean&#x27;, &#x27;enum_integer_default_value&#x27;: 56, &#x27;enum_integer_values&#x27;: [], &#x27;enum_string_default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;enum_string_values&#x27;: [], &#x27;source&#x27;: &#x27;GLOBAL&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -829,7 +829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The image capability schema descriptor type for the capability</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">descriptor_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">boolean</div>
                                     </td>
             </tr>
                                 <tr>

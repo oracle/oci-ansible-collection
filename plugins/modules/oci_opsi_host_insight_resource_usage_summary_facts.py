@@ -72,13 +72,41 @@ options:
             - "LINUX"
     id:
         description:
-            - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host insight
-              resource.
+            - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
     percentile:
         description:
             - Percentile values of daily usage to be used for computing the aggregate resource usage.
         type: int
+    defined_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a defined tag matching the value will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+    freeform_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
+              The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
+        type: list
+    defined_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.true\\" (for checking existence of a defined tag)
+              or \\"{namespace}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+    freeform_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
+              The key for each tag is \\"{tagName}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for different tag names are interpreted as \\"AND\\"."
+        type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -182,6 +210,10 @@ class HostInsightResourceUsageSummaryFactsHelperGen(OCIResourceFactsHelperBase):
             "platform_type",
             "id",
             "percentile",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -220,6 +252,10 @@ def main():
             platform_type=dict(type="list", choices=["LINUX"]),
             id=dict(type="list"),
             percentile=dict(type="int"),
+            defined_tag_equals=dict(type="list"),
+            freeform_tag_equals=dict(type="list"),
+            defined_tag_exists=dict(type="list"),
+            freeform_tag_exists=dict(type="list"),
         )
     )
 
@@ -239,8 +275,6 @@ def main():
 
     if resource_facts_helper.is_get():
         result = resource_facts_helper.get()
-    elif resource_facts_helper.is_list():
-        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

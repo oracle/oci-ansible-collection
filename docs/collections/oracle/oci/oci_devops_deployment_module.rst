@@ -20,7 +20,7 @@ oracle.oci.oci_devops_deployment -- Manage a Deployment resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -672,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_override_arguments&#x27;: {&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}, &#x27;deploy_pipeline_artifacts&#x27;: {&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}, &#x27;deploy_pipeline_environments&#x27;: {&#x27;deploy_environment_id&#x27;: &#x27;ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_arguments&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}, &#x27;deployment_execution_progress&#x27;: {&#x27;deploy_stage_execution_progress&#x27;: {&#x27;approval_actions&#x27;: [{&#x27;action&#x27;: &#x27;APPROVE&#x27;, &#x27;subject_id&#x27;: &#x27;ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_display_name&#x27;: &#x27;deploy_stage_display_name_example&#x27;, &#x27;deploy_stage_execution_progress_details&#x27;: [{&#x27;rollback_steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_group&#x27;: &#x27;target_group_example&#x27;, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessors&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;deploy_stage_type&#x27;: &#x27;deploy_stage_type_example&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;PIPELINE_DEPLOYMENT&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;previous_deployment_id&#x27;: &#x27;ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_override_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deploy_pipeline_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_environments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_environment_id&#x27;: &#x27;ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deployment_execution_progress&#x27;: {&#x27;deploy_stage_execution_progress&#x27;: {&#x27;approval_actions&#x27;: [{&#x27;action&#x27;: &#x27;APPROVE&#x27;, &#x27;subject_id&#x27;: &#x27;ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_display_name&#x27;: &#x27;deploy_stage_display_name_example&#x27;, &#x27;deploy_stage_execution_progress_details&#x27;: [{&#x27;rollback_steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_group&#x27;: &#x27;target_group_example&#x27;, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;PIPELINE_DEPLOYMENT&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;previous_deployment_id&#x27;: &#x27;ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -731,9 +731,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/deploy_artifact_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of artifact override arguments at the time of deployment.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/deploy_artifact_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/items/deploy_artifact_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -749,10 +767,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/name"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/items/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/items/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -768,10 +787,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/value"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_artifact_override_arguments/items/value"></div>
                     <b>value</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/value" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_artifact_override_arguments/items/value" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -784,6 +804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -805,9 +826,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/deploy_artifact_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of all artifacts used in the pipeline.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/deploy_artifact_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/deploy_artifact_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -823,10 +862,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages"></div>
                     <b>deploy_pipeline_stages</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -841,10 +881,31 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages/deploy_stage_id"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of stages.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items/deploy_stage_id"></div>
                     <b>deploy_stage_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages/deploy_stage_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items/deploy_stage_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -861,10 +922,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages/display_name"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/deploy_pipeline_stages/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/deploy_pipeline_stages/items/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -878,13 +941,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/display_name"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_artifacts/items/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_artifacts/items/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -897,6 +962,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -918,9 +984,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/deploy_environment_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of all environments used in the pipeline.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/deploy_environment_id"></div>
                     <b>deploy_environment_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/deploy_environment_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/deploy_environment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -936,10 +1020,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/deploy_pipeline_stages"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages"></div>
                     <b>deploy_pipeline_stages</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/deploy_pipeline_stages" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -954,10 +1039,31 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/deploy_pipeline_stages/deploy_stage_id"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of stages.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items/deploy_stage_id"></div>
                     <b>deploy_stage_id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/deploy_pipeline_stages/deploy_stage_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items/deploy_stage_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -974,10 +1080,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/deploy_pipeline_stages/display_name"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/deploy_pipeline_stages/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/deploy_pipeline_stages/items/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -991,13 +1099,15 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/display_name"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_pipeline_environments/items/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_pipeline_environments/items/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1010,6 +1120,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1067,9 +1178,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_arguments/name"></div>
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_arguments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_arguments/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of arguments provided at the time of deployment.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_arguments/items/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deployment_arguments/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_arguments/items/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1085,10 +1214,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_arguments/value"></div>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_arguments/items/value"></div>
                     <b>value</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deployment_arguments/value" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_arguments/items/value" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1101,6 +1231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1537,9 +1668,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/id"></div>
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of stage predecessors for a stage.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/items/id"></div>
                     <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_execution_progress/deploy_stage_execution_progress/deploy_stage_predecessors/items/id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1552,6 +1703,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1570,7 +1722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Deployment stage type.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">deploy_stage_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT</div>
                                     </td>
             </tr>
                                 <tr>

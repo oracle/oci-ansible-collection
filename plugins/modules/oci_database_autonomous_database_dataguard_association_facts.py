@@ -77,7 +77,7 @@ autonomous_database_dataguard_associations:
             sample: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         role:
             description:
-                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
+                - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -95,7 +95,7 @@ autonomous_database_dataguard_associations:
             sample: lifecycle_details_example
         peer_role:
             description:
-                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
+                - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY

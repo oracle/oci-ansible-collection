@@ -20,7 +20,7 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,10 +43,10 @@ Synopsis
 .. Description
 
 - Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
-- For *action=local_clone*, clone and start a pluggable database on the same CDB. Only a started pluggable database can be cloned.
-- For *action=remote_clone*, clone and start a pluggable database on a different CDB. Only a started pluggable database can be cloned.
-- For *action=start*, start a stopped pluggable database. The openMode of the pluggable database will be READ_WRITE upon completion.
-- For *action=stop*, stop a started pluggable database. The openMode of the pluggable database will be MOUNTED upon completion.
+- For *action=local_clone*, clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the `READ_WRITE` openMode to perform the clone operation.
+- For *action=remote_clone*, clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone.
+- For *action=start*, starts a stopped pluggable database. The `openMode` value of the pluggable database will be `READ_WRITE` upon completion.
+- For *action=stop*, stops a pluggable database. The `openMode` value of the pluggable database will be `MOUNTED` upon completion.
 
 
 .. Aliases
@@ -189,7 +189,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name for the pluggable database. The name is unique in the context of a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/Database/'>container database</a>. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.</div>
+                                            <div>The name for the pluggable database (PDB). The name is unique in the context of a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/Database/'>container database</a>. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.</div>
                                             <div>Required for <em>action=local_clone</em>, <em>action=remote_clone</em>.</div>
                                                         </td>
             </tr>
@@ -502,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>All connection strings to use to connect to the Pluggable Database.</div>
+                                            <div>All connection strings to use to connect to the pluggable database.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -519,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Host name based PDB Connection String.</div>
+                                            <div>A host name-based PDB connection string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_default_example</div>
@@ -538,7 +538,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>IP based PDB Connection String.</div>
+                                            <div>An IP-based PDB connection string.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_ip_default_example</div>
@@ -630,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The restricted mode of pluggableDatabase. If a pluggableDatabase is opened in restricted mode, the user needs both Create a session and restricted session privileges to connect to it.</div>
+                                            <div>The restricted mode of the pluggable database. If a pluggable database is opened in restricted mode, the user needs both create a session and have restricted session privileges to connect to it.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -684,7 +684,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mode that pluggableDatabase is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend.</div>
+                                            <div>The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle Database software).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ_ONLY</div>
@@ -702,7 +702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name for the pluggable database. The name is unique in the context of a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/Database/'>container database</a>. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.</div>
+                                            <div>The name for the pluggable database (PDB). The name is unique in the context of a <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/Database/'>container database</a>. The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_name_example</div>
@@ -720,7 +720,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time the pluggable database was created</div>
+                                            <div>The date and time the pluggable database was created.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

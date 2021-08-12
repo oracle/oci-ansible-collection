@@ -149,7 +149,7 @@ jobs:
                         - Terraform-specific operation to execute.
                     returned: on success
                     type: string
-                    sample: IMPORT_TF_STATE
+                    sample: APPLY
                 execution_plan_strategy:
                     description:
                         - Specifies the source of the execution plan to apply.
@@ -341,7 +341,7 @@ jobs:
         "display_name": "display_name_example",
         "operation": "PLAN",
         "job_operation_details": {
-            "operation": "IMPORT_TF_STATE",
+            "operation": "APPLY",
             "execution_plan_strategy": "FROM_PLAN_JOB_ID",
             "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         },

@@ -20,7 +20,7 @@ oracle.oci.oci_network_vcn_topology_facts -- Fetches details about a VcnTopology
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -359,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>VcnTopology resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;entities&#x27;: [], &#x27;relationships&#x27;: [{&#x27;id1&#x27;: &#x27;id1_example&#x27;, &#x27;id2&#x27;: &#x27;id2_example&#x27;, &#x27;route_rule_details&#x27;: {&#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;destination_type_example&#x27;, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;type&#x27;: &#x27;ROUTES_TO&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;NETWORKING&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;entities&#x27;: [], &#x27;relationships&#x27;: [{&#x27;id1&#x27;: &#x27;id1_example&#x27;, &#x27;id2&#x27;: &#x27;id2_example&#x27;, &#x27;route_rule_details&#x27;: {&#x27;destination&#x27;: &#x27;destination_example&#x27;, &#x27;destination_type&#x27;: &#x27;destination_type_example&#x27;, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;type&#x27;: &#x27;CONTAINS&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;NETWORKING&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -528,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of relationship between the entities.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ROUTES_TO</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CONTAINS</div>
                                     </td>
             </tr>
                     

@@ -228,20 +228,6 @@ rules:
                             returned: on success
                             type: string
                             sample: description_example
-                        stream_id:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are
-                                  delivered.
-                            returned: on success
-                            type: string
-                            sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
-                        topic_id:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to which messages are
-                                  delivered.
-                            returned: on success
-                            type: string
-                            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                         function_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle
@@ -249,6 +235,20 @@ rules:
                             returned: on success
                             type: string
                             sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                        topic_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to which messages are
+                                  delivered.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+                        stream_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are
+                                  delivered.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this rule.
@@ -286,9 +286,9 @@ rules:
                 "lifecycle_state": "CREATING",
                 "is_enabled": true,
                 "description": "description_example",
-                "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
+                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                 "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
-                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

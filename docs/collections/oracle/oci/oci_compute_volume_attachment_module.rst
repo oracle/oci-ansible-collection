@@ -20,7 +20,7 @@ oracle.oci.oci_compute_volume_attachment -- Manage a VolumeAttachment resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -633,7 +633,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VolumeAttachment resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;attachment_type_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;169.254.2.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195&#x27;, &#x27;port&#x27;: 3260}], &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;emulated&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;ocid1.volume.oc1.phx.&lt;unique_ID&gt;&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;My volume attachment&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;169.254.0.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.us.oracle.com:&lt;CHAP_username&gt;&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;169.254.2.2&#x27;, &#x27;iqn&#x27;: &#x27;iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195&#x27;, &#x27;port&#x27;: 3260}], &#x27;port&#x27;: 3260, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -651,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of volume attachment.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">attachment_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">emulated</div>
                                     </td>
             </tr>
                                 <tr>

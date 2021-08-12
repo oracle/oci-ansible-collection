@@ -333,12 +333,6 @@ instance_agent_command:
                             returned: on success
                             type: string
                             sample: TEXT
-                        output_uri:
-                            description:
-                                - The Object Storage URL or pre-authenticated request (PAR) for the command output.
-                            returned: on success
-                            type: string
-                            sample: output_uri_example
                         bucket_name:
                             description:
                                 - The Object Storage bucket for the command output.
@@ -357,6 +351,12 @@ instance_agent_command:
                             returned: on success
                             type: string
                             sample: object_name_example
+                        output_uri:
+                            description:
+                                - The Object Storage URL or pre-authenticated request (PAR) for the command output.
+                            returned: on success
+                            type: string
+                            sample: output_uri_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -380,10 +380,10 @@ instance_agent_command:
             },
             "output": {
                 "output_type": "TEXT",
-                "output_uri": "output_uri_example",
                 "bucket_name": "bucket_name_example",
                 "namespace_name": "namespace_name_example",
-                "object_name": "object_name_example"
+                "object_name": "object_name_example",
+                "output_uri": "output_uri_example"
             }
         }
     }

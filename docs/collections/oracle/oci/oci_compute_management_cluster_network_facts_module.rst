@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_cluster_network_facts -- Fetches details about
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -392,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ClusterNetwork resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pools&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;placement_configuration&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pools&#x27;: [{&#x27;availability_domains&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_configuration_id&#x27;: &#x27;ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;load_balancers&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;backend_set_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_pool_id&#x27;: &#x27;ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;port&#x27;: 56, &#x27;vnic_selection&#x27;: &#x27;vnic_selection_example&#x27;}], &#x27;placement_configurations&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;fault_domains&#x27;: [], &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}], &#x27;size&#x27;: 56, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;placement_configuration&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;primary_subnet_id&#x27;: &#x27;ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;secondary_vnic_subnets&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -505,6 +505,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cluster_networks/instance_pools/availability_domains"></div>
+                    <b>availability_domains</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_networks/instance_pools/availability_domains" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The availability domains for the instance pool.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

@@ -47,12 +47,27 @@ options:
         type: str
     cpu_core_count:
         description:
-            - The number of OCPU cores to be made available to the database.
+            - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of
+              cores is determined by the infrastructure shape. See L(Characteristics of Infrastructure
+              Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape
+              details.
+            - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             - This parameter is updatable.
         type: int
     ocpu_count:
         description:
-            - The number of Fractional OCPU cores to be made available to the database.
+            - The number of OCPU cores to be made available to the database.
+            - "The following points apply:
+              - For Autonomous Databases on dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of 0.1.
+                For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous
+                Databasese on shared Exadata infrastructure.)
+              - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape. For
+                example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both shared and dedicated Exadata
+                infrastructure."
+            - For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See
+              L(Characteristics of Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
+              GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
+            - "**Note:** This parameter cannot be used with the `cpuCoreCount` parameter."
             - This parameter is updatable.
         type: float
     db_workload:
@@ -71,12 +86,22 @@ options:
             - "APEX"
     data_storage_size_in_tbs:
         description:
-            - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
+            - The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed. For
+              Autonomous Databases on dedicated Exadata infrastructure, the maximum storage value is determined by the infrastructure shape. See
+              L(Characteristics of Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
+              GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
+            - "**Note:** This parameter cannot be used with the `dataStorageSizeInGBs` parameter."
             - This parameter is updatable.
         type: int
     data_storage_size_in_gbs:
         description:
-            - The size, in gigabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed.
+            - The size, in gigabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed. The
+              maximum storage value is determined by the infrastructure shape. See L(Characteristics of Infrastructure
+              Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape
+              details.
+            - "**Notes**
+              - This parameter is only supported for dedicated Exadata infrastructure.
+              - This parameter cannot be used with the `dataStorageSizeInTBs` parameter."
             - This parameter is updatable.
         type: int
     is_free_tier:
@@ -256,6 +281,7 @@ options:
             - "CLONE_TO_REFRESHABLE"
             - "BACKUP_FROM_ID"
             - "BACKUP_FROM_TIMESTAMP"
+            - "CROSS_REGION_DATAGUARD"
             - "NONE"
         default: "NONE"
     customer_contacts:
@@ -266,14 +292,14 @@ options:
         suboptions:
             email:
                 description:
-                    - The email address of an Oracle Autonomous Database contact.
+                    - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     - Applicable when source is 'DATABASE'
                 type: str
     source_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
               a new Autonomous Database.
-            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE']
+            - Required when source is one of ['DATABASE', 'CLONE_TO_REFRESHABLE', 'CROSS_REGION_DATAGUARD']
         type: str
     clone_type:
         description:
@@ -317,6 +343,12 @@ options:
             - Indicates whether the Autonomous Database is a refreshable clone.
             - This parameter is updatable.
         type: bool
+    peer_db_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located in a
+              different (remote) region from the source primary Autonomous Database.
+            - This parameter is updatable.
+        type: str
     open_mode:
         description:
             - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
@@ -513,13 +545,28 @@ autonomous_database:
                     sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
-                - The number of OCPU cores to be made available to the database.
+                - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum
+                  number of cores is determined by the infrastructure shape. See L(Characteristics of Infrastructure
+                  Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for
+                  shape details.
+                - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             returned: on success
             type: int
             sample: 56
         ocpu_count:
             description:
-                - The number of Fractional OCPU cores to be made available to the database.
+                - The number of OCPU cores to be made available to the database.
+                - "The following points apply:
+                  - For Autonomous Databases on dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of
+                    0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous
+                    Databasese on shared Exadata infrastructure.)
+                  - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape.
+                    For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both shared and dedicated
+                    Exadata infrastructure."
+                - For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See
+                  L(Characteristics of Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
+                  GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
+                - "**Note:** This parameter cannot be used with the `cpuCoreCount` parameter."
             returned: on success
             type: float
             sample: 3.4
@@ -952,9 +999,15 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
+                time_data_guard_role_changed:
+                    description:
+                        - The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         role:
             description:
-                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
+                - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -976,6 +1029,12 @@ autonomous_database:
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        supported_regions_to_clone_to:
+            description:
+                - The list of regions that support the creation of Autonomous Data Guard standby database.
+            returned: on success
+            type: list
+            sample: []
         customer_contacts:
             description:
                 - Customer Contacts.
@@ -984,10 +1043,43 @@ autonomous_database:
             contains:
                 email:
                     description:
-                        - The email address of an Oracle Autonomous Database contact.
+                        - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     returned: on success
                     type: string
                     sample: email_example
+        time_local_data_guard_enabled:
+            description:
+                - The date and time that Autonomous Data Guard was enabled for an Autonomous Database where the standby was provisioned in the same region as
+                  the primary database.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        dataguard_region_type:
+            description:
+                - "The Autonomous Data Guard region type of the Autonomous Database. For Autonomous Databases on shared Exadata infrastructure, Data Guard
+                  associations have designated primary and standby regions, and these region types do not change when the database changes roles. The standby
+                  regions in Data Guard associations can be the same region designated as the primary region, or they can be remote regions. Certain database
+                  administrative operations may be available only in the primary region of the Data Guard association, and cannot be performed when the database
+                  using the \\"primary\\" role is operating in a remote Data Guard standby region.```"
+            returned: on success
+            type: string
+            sample: PRIMARY_DG_REGION
+        time_data_guard_role_changed:
+            description:
+                - "The date and time the Autonomous Data Guard role was switched for the Autonomous Database. For databases that have standbys in both the
+                  primary Data Guard region and a remote Data Guard standby region, this is the latest timestamp of either the database using the \\"primary\\"
+                  role in the primary Data Guard region, or database located in the remote Data Guard standby region."
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        peer_db_ids:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of standby databases located in Autonomous Data
+                  Guard remote regions that are associated with the source database. Note that for shared Exadata infrastructure, standby databases located in
+                  the same region as the source primary database do not have OCIDs.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1074,15 +1166,21 @@ autonomous_database:
         "standby_db": {
             "lag_time_in_seconds": 56,
             "lifecycle_state": "PROVISIONING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00"
         },
         "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
         "key_store_wallet_name": "key_store_wallet_name_example",
+        "supported_regions_to_clone_to": [],
         "customer_contacts": [{
             "email": "email_example"
-        }]
+        }],
+        "time_local_data_guard_enabled": "2013-10-20T19:20:30+01:00",
+        "dataguard_region_type": "PRIMARY_DG_REGION",
+        "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
+        "peer_db_ids": []
     }
 """
 
@@ -1289,6 +1387,7 @@ def main():
                     "CLONE_TO_REFRESHABLE",
                     "BACKUP_FROM_ID",
                     "BACKUP_FROM_TIMESTAMP",
+                    "CROSS_REGION_DATAGUARD",
                     "NONE",
                 ],
             ),
@@ -1302,6 +1401,7 @@ def main():
             autonomous_database_id=dict(aliases=["id"], type="str"),
             timestamp=dict(type="str"),
             is_refreshable_clone=dict(type="bool"),
+            peer_db_id=dict(type="str"),
             open_mode=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
             permission_level=dict(type="str", choices=["RESTRICTED", "UNRESTRICTED"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),

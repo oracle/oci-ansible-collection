@@ -632,31 +632,7 @@ target:
                                                         - Type of condition object
                                                     returned: on success
                                                     type: string
-                                                    sample: SIMPLE
-                                                parameter:
-                                                    description:
-                                                        - parameter Key
-                                                    returned: on success
-                                                    type: string
-                                                    sample: parameter_example
-                                                operator:
-                                                    description:
-                                                        - type of operator
-                                                    returned: on success
-                                                    type: string
-                                                    sample: IN
-                                                value:
-                                                    description:
-                                                        - type of operator
-                                                    returned: on success
-                                                    type: string
-                                                    sample: value_example
-                                                value_type:
-                                                    description:
-                                                        - type of value
-                                                    returned: on success
-                                                    type: string
-                                                    sample: MANAGED
+                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -687,6 +663,30 @@ target:
                                                             returned: on success
                                                             type: string
                                                             sample: COMPOSITE
+                                                parameter:
+                                                    description:
+                                                        - parameter Key
+                                                    returned: on success
+                                                    type: string
+                                                    sample: parameter_example
+                                                operator:
+                                                    description:
+                                                        - type of operator
+                                                    returned: on success
+                                                    type: string
+                                                    sample: IN
+                                                value:
+                                                    description:
+                                                        - type of operator
+                                                    returned: on success
+                                                    type: string
+                                                    sample: value_example
+                                                value_type:
+                                                    description:
+                                                        - type of value
+                                                    returned: on success
+                                                    type: string
+                                                    sample: MANAGED
                                 labels:
                                     description:
                                         - user defined labels for a detector rule
@@ -873,31 +873,7 @@ target:
                                                         - Type of condition object
                                                     returned: on success
                                                     type: string
-                                                    sample: SIMPLE
-                                                parameter:
-                                                    description:
-                                                        - parameter Key
-                                                    returned: on success
-                                                    type: string
-                                                    sample: parameter_example
-                                                operator:
-                                                    description:
-                                                        - type of operator
-                                                    returned: on success
-                                                    type: string
-                                                    sample: IN
-                                                value:
-                                                    description:
-                                                        - type of operator
-                                                    returned: on success
-                                                    type: string
-                                                    sample: value_example
-                                                value_type:
-                                                    description:
-                                                        - type of value
-                                                    returned: on success
-                                                    type: string
-                                                    sample: MANAGED
+                                                    sample: COMPOSITE
                                                 left_operand:
                                                     description:
                                                         - ""
@@ -928,6 +904,30 @@ target:
                                                             returned: on success
                                                             type: string
                                                             sample: COMPOSITE
+                                                parameter:
+                                                    description:
+                                                        - parameter Key
+                                                    returned: on success
+                                                    type: string
+                                                    sample: parameter_example
+                                                operator:
+                                                    description:
+                                                        - type of operator
+                                                    returned: on success
+                                                    type: string
+                                                    sample: IN
+                                                value:
+                                                    description:
+                                                        - type of operator
+                                                    returned: on success
+                                                    type: string
+                                                    sample: value_example
+                                                value_type:
+                                                    description:
+                                                        - type of value
+                                                    returned: on success
+                                                    type: string
+                                                    sample: MANAGED
                                 labels:
                                     description:
                                         - user defined labels for a detector rule
@@ -1102,31 +1102,7 @@ target:
                                                 - Type of condition object
                                             returned: on success
                                             type: string
-                                            sample: SIMPLE
-                                        parameter:
-                                            description:
-                                                - parameter Key
-                                            returned: on success
-                                            type: string
-                                            sample: parameter_example
-                                        operator:
-                                            description:
-                                                - type of operator
-                                            returned: on success
-                                            type: string
-                                            sample: IN
-                                        value:
-                                            description:
-                                                - type of operator
-                                            returned: on success
-                                            type: string
-                                            sample: value_example
-                                        value_type:
-                                            description:
-                                                - type of value
-                                            returned: on success
-                                            type: string
-                                            sample: MANAGED
+                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -1157,6 +1133,30 @@ target:
                                                     returned: on success
                                                     type: string
                                                     sample: COMPOSITE
+                                        parameter:
+                                            description:
+                                                - parameter Key
+                                            returned: on success
+                                            type: string
+                                            sample: parameter_example
+                                        operator:
+                                            description:
+                                                - type of operator
+                                            returned: on success
+                                            type: string
+                                            sample: IN
+                                        value:
+                                            description:
+                                                - type of operator
+                                            returned: on success
+                                            type: string
+                                            sample: value_example
+                                        value_type:
+                                            description:
+                                                - type of value
+                                            returned: on success
+                                            type: string
+                                            sample: MANAGED
                                 configurations:
                                     description:
                                         - ResponderRule configurations
@@ -1283,31 +1283,7 @@ target:
                                                 - Type of condition object
                                             returned: on success
                                             type: string
-                                            sample: SIMPLE
-                                        parameter:
-                                            description:
-                                                - parameter Key
-                                            returned: on success
-                                            type: string
-                                            sample: parameter_example
-                                        operator:
-                                            description:
-                                                - type of operator
-                                            returned: on success
-                                            type: string
-                                            sample: IN
-                                        value:
-                                            description:
-                                                - type of operator
-                                            returned: on success
-                                            type: string
-                                            sample: value_example
-                                        value_type:
-                                            description:
-                                                - type of value
-                                            returned: on success
-                                            type: string
-                                            sample: MANAGED
+                                            sample: COMPOSITE
                                         left_operand:
                                             description:
                                                 - ""
@@ -1338,6 +1314,30 @@ target:
                                                     returned: on success
                                                     type: string
                                                     sample: COMPOSITE
+                                        parameter:
+                                            description:
+                                                - parameter Key
+                                            returned: on success
+                                            type: string
+                                            sample: parameter_example
+                                        operator:
+                                            description:
+                                                - type of operator
+                                            returned: on success
+                                            type: string
+                                            sample: IN
+                                        value:
+                                            description:
+                                                - type of operator
+                                            returned: on success
+                                            type: string
+                                            sample: value_example
+                                        value_type:
+                                            description:
+                                                - type of value
+                                            returned: on success
+                                            type: string
+                                            sample: MANAGED
                                 configurations:
                                     description:
                                         - ResponderRule configurations
@@ -1500,18 +1500,18 @@ target:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "SIMPLE",
-                            "parameter": "parameter_example",
-                            "operator": "IN",
-                            "value": "value_example",
-                            "value_type": "MANAGED",
+                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
                             "composite_operator": "AND",
                             "right_operand": {
                                 "kind": "COMPOSITE"
-                            }
+                            },
+                            "parameter": "parameter_example",
+                            "operator": "IN",
+                            "value": "value_example",
+                            "value_type": "MANAGED"
                         }
                     }],
                     "labels": [],
@@ -1548,18 +1548,18 @@ target:
                     "condition_groups": [{
                         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                         "condition": {
-                            "kind": "SIMPLE",
-                            "parameter": "parameter_example",
-                            "operator": "IN",
-                            "value": "value_example",
-                            "value_type": "MANAGED",
+                            "kind": "COMPOSITE",
                             "left_operand": {
                                 "kind": "COMPOSITE"
                             },
                             "composite_operator": "AND",
                             "right_operand": {
                                 "kind": "COMPOSITE"
-                            }
+                            },
+                            "parameter": "parameter_example",
+                            "operator": "IN",
+                            "value": "value_example",
+                            "value_type": "MANAGED"
                         }
                     }],
                     "labels": [],
@@ -1593,18 +1593,18 @@ target:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "SIMPLE",
-                        "parameter": "parameter_example",
-                        "operator": "IN",
-                        "value": "value_example",
-                        "value_type": "MANAGED",
+                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
                         "composite_operator": "AND",
                         "right_operand": {
                             "kind": "COMPOSITE"
-                        }
+                        },
+                        "parameter": "parameter_example",
+                        "operator": "IN",
+                        "value": "value_example",
+                        "value_type": "MANAGED"
                     },
                     "configurations": [{
                         "config_key": "config_key_example",
@@ -1629,18 +1629,18 @@ target:
                 "supported_modes": [],
                 "details": {
                     "condition": {
-                        "kind": "SIMPLE",
-                        "parameter": "parameter_example",
-                        "operator": "IN",
-                        "value": "value_example",
-                        "value_type": "MANAGED",
+                        "kind": "COMPOSITE",
                         "left_operand": {
                             "kind": "COMPOSITE"
                         },
                         "composite_operator": "AND",
                         "right_operand": {
                             "kind": "COMPOSITE"
-                        }
+                        },
+                        "parameter": "parameter_example",
+                        "operator": "IN",
+                        "value": "value_example",
+                        "value_type": "MANAGED"
                     },
                     "configurations": [{
                         "config_key": "config_key_example",

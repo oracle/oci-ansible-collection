@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.28.0] - 2021-08-12
+
+## Added
+- Support added for server-side tag filter query parameters in Capacity Planning and SQL Warehouse APIs
+- Support for creating cross-region autonomous data guards in the Database service
+- Support for the customer contacts feature on cloud exadata infrastructure in the Database service
+- Support for Exadata system network bonding in the Database service
+- Support for creating autonomous databases with early patching enabled in the Database service
+- Support for cost analysis custom tables in the Usage service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.2
+
 ## [2.27.0] - 2021-07-29
 
 ## Added

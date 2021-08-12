@@ -302,30 +302,6 @@ target_database:
                     returned: on success
                     type: string
                     sample: ORACLE_CLOUD
-                instance_id:
-                    description:
-                        - The OCID of the compute instance on which the database is running.
-                    returned: on success
-                    type: string
-                    sample: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
-                ip_addresses:
-                    description:
-                        - A List of either the IP Addresses or FQDN names of the database hosts.
-                    returned: on success
-                    type: list
-                    sample: []
-                listener_port:
-                    description:
-                        - The port number of the database listener.
-                    returned: on success
-                    type: int
-                    sample: 56
-                service_name:
-                    description:
-                        - The service name of the database registered as target database.
-                    returned: on success
-                    type: string
-                    sample: service_name_example
                 autonomous_database_id:
                     description:
                         - The OCID of the autonomous database registered as a target database in Data Safe.
@@ -344,6 +320,30 @@ target_database:
                     returned: on success
                     type: string
                     sample: ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q
+                service_name:
+                    description:
+                        - The database service name.
+                    returned: on success
+                    type: string
+                    sample: service_name_example
+                instance_id:
+                    description:
+                        - The OCID of the compute instance on which the database is running.
+                    returned: on success
+                    type: string
+                    sample: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
+                ip_addresses:
+                    description:
+                        - A List of either the IP Addresses or FQDN names of the database hosts.
+                    returned: on success
+                    type: list
+                    sample: []
+                listener_port:
+                    description:
+                        - The port number of the database listener.
+                    returned: on success
+                    type: int
+                    sample: 56
         credentials:
             description:
                 - ""
@@ -412,18 +412,18 @@ target_database:
                     returned: on success
                     type: string
                     sample: PRIVATE_ENDPOINT
-                datasafe_private_endpoint_id:
-                    description:
-                        - The OCID of the Data Safe private endpoint.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
                 on_prem_connector_id:
                     description:
                         - The OCID of the on-premises connector.
                     returned: on success
                     type: string
                     sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+                datasafe_private_endpoint_id:
+                    description:
+                        - The OCID of the Data Safe private endpoint.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the target database in Data Safe.
@@ -479,13 +479,13 @@ target_database:
         "database_details": {
             "database_type": "DATABASE_CLOUD_SERVICE",
             "infrastructure_type": "ORACLE_CLOUD",
-            "instance_id": "ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq",
-            "ip_addresses": [],
-            "listener_port": 56,
-            "service_name": "service_name_example",
             "autonomous_database_id": "ocid1.autonomousdatabase.oc1.iad.abuwcljs4hz5fnsyazyoblbm3o24ykw5iiwa44it2jzvhby73r6324522c2q",
             "vm_cluster_id": "ocid1.vmcluster.oc1.iad.abuwc33era5gex4puvmuphzxrfukxaxwqit7ze6egqquxe75ojb3lytlvtkq",
-            "db_system_id": "ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q"
+            "db_system_id": "ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q",
+            "service_name": "service_name_example",
+            "instance_id": "ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq",
+            "ip_addresses": [],
+            "listener_port": 56
         },
         "credentials": {
             "user_name": "user_name_example",
@@ -500,8 +500,8 @@ target_database:
         },
         "connection_option": {
             "connection_type": "PRIVATE_ENDPOINT",
-            "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
-            "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+            "on_prem_connector_id": "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx",
+            "datasafe_private_endpoint_id": "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",

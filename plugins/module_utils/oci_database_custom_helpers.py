@@ -706,6 +706,25 @@ class VmClusterNetworkActionsHelperCustom:
 
         return None
 
+    def download_validation_report(self):
+        operation_response = oci_common_utils.call_with_backoff(
+            self.client.download_validation_report,
+            exadata_infrastructure_id=self.module.params.get(
+                "exadata_infrastructure_id"
+            ),
+            vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
+        )
+
+        dest = self.module.params.get("validation_report_dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in operation_response.data.raw.stream(
+                chunk_size, decode_content=True
+            ):
+                dest_file.write(chunk)
+
+        return None
+
 
 class VmClusterHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):

@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates the VM cluster network. Applies to Exadata Cloud@Customer instances only.
       To create a cloud VM cluster in an Exadata Cloud Service instance, use the L(CreateCloudVmCluster ,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster) operation.
-    - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_vm_cluster_network_config_file, validate."
+    - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_validation_report,
+      download_vm_cluster_network_config_file, validate."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -63,7 +64,7 @@ options:
                 required: true
             port:
                 description:
-                    - The SCAN port. Default is 1521.
+                    - The SCAN TCPIP port. Default is 1521.
                 type: int
                 required: true
             ips:
@@ -284,7 +285,7 @@ vm_cluster_network:
                     sample: hostname_example
                 port:
                     description:
-                        - The SCAN port. Default is 1521.
+                        - The SCAN TCPIP port. Default is 1521.
                     returned: on success
                     type: int
                     sample: 56

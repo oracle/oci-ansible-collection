@@ -146,7 +146,7 @@ vm_cluster_networks:
                     sample: hostname_example
                 port:
                     description:
-                        - The SCAN port. Default is 1521.
+                        - The SCAN TCPIP port. Default is 1521.
                     returned: on success
                     type: int
                     sample: 56

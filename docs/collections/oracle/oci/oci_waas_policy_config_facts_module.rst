@@ -20,7 +20,7 @@ oracle.oci.oci_waas_policy_config_facts -- Fetches details about a PolicyConfig 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -290,7 +290,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>PolicyConfig resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cipher_group&#x27;: &#x27;DEFAULT&#x27;, &#x27;client_address_header&#x27;: &#x27;X-Client-Ip: 11.1.1.1, 13.3.3.3&#x27;, &#x27;health_checks&#x27;: {&#x27;expected_response_code_group&#x27;: [], &#x27;expected_response_text&#x27;: &#x27;expected_response_text_example&#x27;, &#x27;headers&#x27;: {}, &#x27;healthy_threshold&#x27;: 56, &#x27;interval_in_seconds&#x27;: 56, &#x27;is_enabled&#x27;: True, &#x27;is_response_text_check_enabled&#x27;: True, &#x27;method&#x27;: &#x27;GET&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;unhealthy_threshold&#x27;: 56}, &#x27;is_behind_cdn&#x27;: True, &#x27;is_cache_control_respected&#x27;: True, &#x27;is_https_enabled&#x27;: True, &#x27;is_https_forced&#x27;: True, &#x27;is_origin_compression_enabled&#x27;: True, &#x27;is_response_buffering_enabled&#x27;: True, &#x27;is_sni_enabled&#x27;: True, &#x27;load_balancing_method&#x27;: {&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;expiration_time_in_seconds&#x27;: 56, &#x27;method&#x27;: &#x27;ROUND_ROBIN&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;tls_protocols&#x27;: [], &#x27;websocket_path_prefixes&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cipher_group&#x27;: &#x27;DEFAULT&#x27;, &#x27;client_address_header&#x27;: &#x27;X-Client-Ip: 11.1.1.1, 13.3.3.3&#x27;, &#x27;health_checks&#x27;: {&#x27;expected_response_code_group&#x27;: [], &#x27;expected_response_text&#x27;: &#x27;expected_response_text_example&#x27;, &#x27;headers&#x27;: {}, &#x27;healthy_threshold&#x27;: 56, &#x27;interval_in_seconds&#x27;: 56, &#x27;is_enabled&#x27;: True, &#x27;is_response_text_check_enabled&#x27;: True, &#x27;method&#x27;: &#x27;GET&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;unhealthy_threshold&#x27;: 56}, &#x27;is_behind_cdn&#x27;: True, &#x27;is_cache_control_respected&#x27;: True, &#x27;is_https_enabled&#x27;: True, &#x27;is_https_forced&#x27;: True, &#x27;is_origin_compression_enabled&#x27;: True, &#x27;is_response_buffering_enabled&#x27;: True, &#x27;is_sni_enabled&#x27;: True, &#x27;load_balancing_method&#x27;: {&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;expiration_time_in_seconds&#x27;: 56, &#x27;method&#x27;: &#x27;IP_HASH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;tls_protocols&#x27;: [], &#x27;websocket_path_prefixes&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -777,7 +777,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>- **<a href='https://docs.cloud.oracle.com/iaas/api/#/en/waas/latest/datatypes/StickyCookieLoadBalancingMethod'>STICKY_COOKIE</a>:** Adds a session cookie to the first response from the origin server and identifies the server that sent the response. The client&#x27;s next request contains the cookie value, and nginx routes the request to the origin server that responded to the first request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ROUND_ROBIN</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IP_HASH</div>
                                     </td>
             </tr>
                                 <tr>

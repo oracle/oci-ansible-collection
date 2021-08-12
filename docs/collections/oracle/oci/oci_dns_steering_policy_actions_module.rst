@@ -20,7 +20,7 @@ oracle.oci.oci_dns_steering_policy_actions -- Perform actions on a SteeringPolic
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -344,7 +344,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the SteeringPolicy resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;_self&#x27;: &#x27;_self_example&#x27;, &#x27;answers&#x27;: [{&#x27;is_disabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pool&#x27;: &#x27;pool_example&#x27;, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;health_check_monitor_id&#x27;: &#x27;ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;rules&#x27;: [{&#x27;cases&#x27;: [{&#x27;answer_data&#x27;: [{&#x27;answer_condition&#x27;: &quot;answer.pool == &#x27;A&#x27;&quot;, &#x27;should_keep&#x27;: True}], &#x27;case_condition&#x27;: &quot;query.client.address in (subnet &#x27;198.51.100.0/24&#x27;)&quot;}], &#x27;default_answer_data&#x27;: [{&#x27;answer_condition&#x27;: &quot;answer.pool == &#x27;A&#x27;&quot;, &#x27;should_keep&#x27;: True}], &#x27;default_count&#x27;: 56, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;rule_type&#x27;: &#x27;FILTER&#x27;}], &#x27;template&#x27;: &#x27;FAILOVER&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;ttl&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;_self&#x27;: &#x27;_self_example&#x27;, &#x27;answers&#x27;: [{&#x27;is_disabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;pool&#x27;: &#x27;pool_example&#x27;, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;health_check_monitor_id&#x27;: &#x27;ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;rules&#x27;: [{&#x27;cases&#x27;: [{&#x27;answer_data&#x27;: [{&#x27;answer_condition&#x27;: &quot;answer.pool == &#x27;A&#x27;&quot;, &#x27;should_keep&#x27;: True, &#x27;value&#x27;: 56}], &#x27;case_condition&#x27;: &quot;query.client.address in (subnet &#x27;198.51.100.0/24&#x27;)&quot;, &#x27;count&#x27;: 56}], &#x27;default_answer_data&#x27;: [{&#x27;answer_condition&#x27;: &quot;answer.pool == &#x27;A&#x27;&quot;, &#x27;should_keep&#x27;: True, &#x27;value&#x27;: 56}], &#x27;default_count&#x27;: 56, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;rule_type&#x27;: &#x27;FILTER&#x27;}], &#x27;template&#x27;: &#x27;FAILOVER&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;ttl&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -735,6 +735,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-steering_policy/rules/cases/answer_data/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-steering_policy/rules/cases/answer_data/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The rank assigned to the set of answers that match the expression in `answerCondition`. Answers with the lowest values move to the beginning of the list without changing the relative order of those with the same value. Answers can be given a value between `0` and `255`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -754,6 +775,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query.client.address in (subnet &#x27;198.51.100.0/24&#x27;)</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-steering_policy/rules/cases/count"></div>
+                    <b>count</b>
+                    <a class="ansibleOptionLink" href="#return-steering_policy/rules/cases/count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of answers allowed to remain after the limit rule has been processed, keeping only the first of the remaining answers in the list. Example: If the `count` property is set to `2` and four answers remain before the limit rule is processed, only the first two answers in the list will remain after the limit rule has been processed.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
@@ -812,6 +853,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-steering_policy/rules/default_answer_data/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-steering_policy/rules/default_answer_data/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The rank assigned to the set of answers that match the expression in `answerCondition`. Answers with the lowest values move to the beginning of the list without changing the relative order of those with the same value. Answers can be given a value between `0` and `255`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     

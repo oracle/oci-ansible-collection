@@ -20,7 +20,7 @@ oracle.oci.oci_opsi_sql_texts_facts -- Fetches details about one or multiple Sql
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -211,6 +211,66 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Optional list of database <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the assosicated DBaaS entity.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tag_equals"></div>
+                    <b>defined_tag_equals</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tag_equals" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag filters to apply.  Only resources with a defined tag matching the value will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.{value}&quot;.  All inputs are case-insensitive. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tag_exists"></div>
+                    <b>defined_tag_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tag_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.true&quot; (for checking existence of a defined tag) or &quot;{namespace}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tag_equals"></div>
+                    <b>freeform_tag_equals</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tag_equals" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned. The key for each tag is &quot;{tagName}.{value}&quot;.  All inputs are case-insensitive. Multiple values for the same tag name are interpreted as &quot;OR&quot;.  Values for different tag names are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tag_exists"></div>
+                    <b>freeform_tag_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tag_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned. The key for each tag is &quot;{tagName}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for different tag names are interpreted as &quot;AND&quot;.</div>
                                                         </td>
             </tr>
                                 <tr>

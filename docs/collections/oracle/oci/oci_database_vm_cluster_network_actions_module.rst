@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_network_actions -- Perform actions on a VmClu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,6 +43,7 @@ Synopsis
 .. Description
 
 - Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
+- For *action=download_validation_report*, downloads the network validation report file for the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
 - For *action=download_vm_cluster_network_config_file*, downloads the configuration file for the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
 - For *action=validate*, validates the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
 
@@ -84,7 +85,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>download_vm_cluster_network_config_file</li>
+                                                                                                                                                                <li>download_validation_report</li>
+                                                                                                                                                                                                <li>download_vm_cluster_network_config_file</li>
                                                                                                                                                                                                 <li>validate</li>
                                                                                     </ul>
                                                                             </td>
@@ -265,6 +267,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-validation_report_dest"></div>
+                    <b>validation_report_dest</b>
+                    <a class="ansibleOptionLink" href="#parameter-validation_report_dest" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The destination file path to write the report to when <em>action=download_validation_report</em>. The file will be created if it does not exist. If the file already exists, the content will be overwritten. <em>validation_report_dest</em> is required if <em>action=download_validation_report</em>.</div>
+                                            <div>Required for <em>action=download_validation_report</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-vm_cluster_network_id"></div>
                     <b>vm_cluster_network_id</b>
                     <a class="ansibleOptionLink" href="#parameter-vm_cluster_network_id" title="Permalink to this option"></a>
@@ -335,6 +353,13 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action download_validation_report on vm_cluster_network
+      oci_database_vm_cluster_network_actions:
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+        validation_report_dest: /tmp/exadata_validation_report
+        action: download_validation_report
+
     - name: Perform action download_vm_cluster_network_config_file on vm_cluster_network
       oci_database_vm_cluster_network_actions:
         exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
@@ -627,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The SCAN port. Default is 1521.</div>
+                                            <div>The SCAN TCPIP port. Default is 1521.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

@@ -23,15 +23,16 @@ module: oci_database_pluggable_database
 short_description: Manage a PluggableDatabase resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a PluggableDatabase resource in Oracle Cloud Infrastructure
-    - For I(state=present), create and start a pluggable database in the specified container database.
-      If needed call actions/stop to stop the PDB.
+    - For I(state=present), creates and starts a pluggable database in the specified container database.
+      Use the [StartPluggableDatabase](#/en/database/latest/PluggableDatabase/StartPluggableDatabase] and
+      [StopPluggableDatabase](#/en/database/latest/PluggableDatabase/StopPluggableDatabase] APIs to start and stop the pluggable database.
     - "This resource has the following action operations in the M(oci_pluggable_database_actions) module: local_clone, remote_clone, start, stop."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
     pdb_name:
         description:
-            - The name for the pluggable database. The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
+            - The name for the pluggable database (PDB). The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/database/latest/Database/). The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
               characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.
             - Required for create using I(state=present).
@@ -129,7 +130,7 @@ pluggable_database:
             sample: "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name:
             description:
-                - The name for the pluggable database. The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
+                - The name for the pluggable database (PDB). The name is unique in the context of a L(container database,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/database/latest/Database/). The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                   characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.
             returned: on success
@@ -149,7 +150,7 @@ pluggable_database:
             sample: lifecycle_details_example
         time_created:
             description:
-                - The date and time the pluggable database was created
+                - The date and time the pluggable database was created.
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
@@ -161,32 +162,33 @@ pluggable_database:
             contains:
                 pdb_default:
                     description:
-                        - Host name based PDB Connection String.
+                        - A host name-based PDB connection string.
                     returned: on success
                     type: string
                     sample: pdb_default_example
                 pdb_ip_default:
                     description:
-                        - IP based PDB Connection String.
+                        - An IP-based PDB connection string.
                     returned: on success
                     type: string
                     sample: pdb_ip_default_example
                 all_connection_strings:
                     description:
-                        - All connection strings to use to connect to the Pluggable Database.
+                        - All connection strings to use to connect to the pluggable database.
                     returned: on success
                     type: dict
                     sample: {}
         open_mode:
             description:
-                - The mode that pluggableDatabase is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend.
+                - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
+                  Database software).
             returned: on success
             type: string
             sample: READ_ONLY
         is_restricted:
             description:
-                - The restricted mode of pluggableDatabase. If a pluggableDatabase is opened in restricted mode,
-                  the user needs both Create a session and restricted session privileges to connect to it.
+                - The restricted mode of the pluggable database. If a pluggable database is opened in restricted mode,
+                  the user needs both create a session and have restricted session privileges to connect to it.
             returned: on success
             type: bool
             sample: true

@@ -434,7 +434,7 @@ service_connector:
                                 - The type descriminator.
                             returned: on success
                             type: string
-                            sample: TRIM_HORIZON
+                            sample: LATEST
         tasks:
             description:
                 - The list of tasks.
@@ -482,7 +482,39 @@ service_connector:
                         - The type descriminator.
                     returned: on success
                     type: string
-                    sample: notifications
+                    sample: functions
+                function_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                metric_namespace:
+                    description:
+                        - The namespace of the metric.
+                        - "Example: `oci_computeagent`"
+                    returned: on success
+                    type: string
+                    sample: oci_computeagent
+                metric:
+                    description:
+                        - The name of the metric.
+                        - "Example: `CpuUtilization`"
+                    returned: on success
+                    type: string
+                    sample: CpuUtilization
                 topic_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
@@ -527,38 +559,6 @@ service_connector:
                     returned: on success
                     type: int
                     sample: 56
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                metric_namespace:
-                    description:
-                        - The namespace of the metric.
-                        - "Example: `oci_computeagent`"
-                    returned: on success
-                    type: string
-                    sample: oci_computeagent
-                metric:
-                    description:
-                        - The name of the metric.
-                        - "Example: `CpuUtilization`"
-                    returned: on success
-                    type: string
-                    sample: CpuUtilization
-                function_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
-                log_group_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -606,7 +606,7 @@ service_connector:
             }],
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
             "cursor": {
-                "kind": "TRIM_HORIZON"
+                "kind": "LATEST"
             }
         },
         "tasks": [{
@@ -617,7 +617,12 @@ service_connector:
             "condition": "condition_example"
         }],
         "target": {
-            "kind": "notifications",
+            "kind": "functions",
+            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "metric_namespace": "oci_computeagent",
+            "metric": "CpuUtilization",
             "topic_id": "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx",
             "enable_formatted_messaging": true,
             "namespace": "namespace_example",
@@ -625,11 +630,6 @@ service_connector:
             "object_name_prefix": "object_name_prefix_example",
             "batch_rollover_size_in_mbs": 56,
             "batch_rollover_time_in_ms": 56,
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "metric_namespace": "oci_computeagent",
-            "metric": "CpuUtilization",
-            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
-            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "freeform_tags": {'Department': 'Finance'},

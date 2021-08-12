@@ -166,6 +166,12 @@ deploy_artifacts:
                     returned: on success
                     type: string
                     sample: ${appVersion}
+                base64_encoded_content:
+                    description:
+                        - base64 Encoded String
+                    returned: on success
+                    type: string
+                    sample: "example_base64_encoded_content"
                 image_uri:
                     description:
                         - "Specifies OCIR Image Path - optionally include tag."
@@ -178,12 +184,6 @@ deploy_artifacts:
                     returned: on success
                     type: string
                     sample: image_digest_example
-                base64_encoded_content:
-                    description:
-                        - base64 Encoded String
-                    returned: on success
-                    type: string
-                    sample: "example_base64_encoded_content"
         time_created:
             description:
                 - Time the deployment artifact was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
@@ -243,9 +243,9 @@ deploy_artifacts:
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
             "deploy_artifact_version": "${appVersion}",
+            "base64_encoded_content": UNKNOWN TYPE - str,
             "image_uri": "image_uri_example",
-            "image_digest": "image_digest_example",
-            "base64_encoded_content": UNKNOWN TYPE - str
+            "image_digest": "image_digest_example"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

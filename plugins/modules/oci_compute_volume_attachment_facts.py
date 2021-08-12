@@ -82,7 +82,7 @@ volume_attachments:
                 - The type of volume attachment.
             returned: on success
             type: string
-            sample: attachment_type_example
+            sample: emulated
         availability_domain:
             description:
                 - The availability domain of an instance.
@@ -261,7 +261,7 @@ volume_attachments:
             type: list
             sample: [  "sudo iscsiadm -m node -T IQN -p IP:PORT -u", "sudo iscsiadm -m node -o delete -T IQN"  ]
     sample: [{
-        "attachment_type": "attachment_type_example",
+        "attachment_type": "emulated",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "device": "device_example",

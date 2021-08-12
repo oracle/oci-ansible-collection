@@ -254,6 +254,21 @@ cloud_exadata_infrastructures:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        customer_contacts:
+            description:
+                - The list of customer email addresses that receive information from Oracle about the specified OCI Database service resource.
+                  Oracle uses these email addresses to send notifications about planned and unplanned software maintenance updates, information about system
+                  hardware, and other information needed by administrators.
+                  Up to 10 email addresses can be added to the customer contacts for a cloud Exadata infrastructure instance.
+            returned: on success
+            type: complex
+            contains:
+                email:
+                    description:
+                        - The email address used by Oracle to send notifications regarding databases and infrastructure.
+                    returned: on success
+                    type: string
+                    sample: email_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -282,7 +297,10 @@ cloud_exadata_infrastructures:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "customer_contacts": [{
+            "email": "email_example"
+        }]
     }]
 """
 

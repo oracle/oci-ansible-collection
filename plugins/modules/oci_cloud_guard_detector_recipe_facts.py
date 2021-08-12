@@ -300,31 +300,7 @@ detector_recipes:
                                         - Type of condition object
                                     returned: on success
                                     type: string
-                                    sample: SIMPLE
-                                parameter:
-                                    description:
-                                        - parameter Key
-                                    returned: on success
-                                    type: string
-                                    sample: parameter_example
-                                operator:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: string
-                                    sample: IN
-                                value:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: string
-                                    sample: value_example
-                                value_type:
-                                    description:
-                                        - type of value
-                                    returned: on success
-                                    type: string
-                                    sample: MANAGED
+                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -355,6 +331,30 @@ detector_recipes:
                                             returned: on success
                                             type: string
                                             sample: COMPOSITE
+                                parameter:
+                                    description:
+                                        - parameter Key
+                                    returned: on success
+                                    type: string
+                                    sample: parameter_example
+                                operator:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: string
+                                    sample: IN
+                                value:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: string
+                                    sample: value_example
+                                value_type:
+                                    description:
+                                        - type of value
+                                    returned: on success
+                                    type: string
+                                    sample: MANAGED
                         labels:
                             description:
                                 - user defined labels for a detector rule
@@ -553,31 +553,7 @@ detector_recipes:
                                         - Type of condition object
                                     returned: on success
                                     type: string
-                                    sample: SIMPLE
-                                parameter:
-                                    description:
-                                        - parameter Key
-                                    returned: on success
-                                    type: string
-                                    sample: parameter_example
-                                operator:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: string
-                                    sample: IN
-                                value:
-                                    description:
-                                        - type of operator
-                                    returned: on success
-                                    type: string
-                                    sample: value_example
-                                value_type:
-                                    description:
-                                        - type of value
-                                    returned: on success
-                                    type: string
-                                    sample: MANAGED
+                                    sample: COMPOSITE
                                 left_operand:
                                     description:
                                         - ""
@@ -608,6 +584,30 @@ detector_recipes:
                                             returned: on success
                                             type: string
                                             sample: COMPOSITE
+                                parameter:
+                                    description:
+                                        - parameter Key
+                                    returned: on success
+                                    type: string
+                                    sample: parameter_example
+                                operator:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: string
+                                    sample: IN
+                                value:
+                                    description:
+                                        - type of operator
+                                    returned: on success
+                                    type: string
+                                    sample: value_example
+                                value_type:
+                                    description:
+                                        - type of value
+                                    returned: on success
+                                    type: string
+                                    sample: MANAGED
                         labels:
                             description:
                                 - user defined labels for a detector rule
@@ -747,18 +747,18 @@ detector_recipes:
                     }]
                 }],
                 "condition": {
-                    "kind": "SIMPLE",
-                    "parameter": "parameter_example",
-                    "operator": "IN",
-                    "value": "value_example",
-                    "value_type": "MANAGED",
+                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
                     "composite_operator": "AND",
                     "right_operand": {
                         "kind": "COMPOSITE"
-                    }
+                    },
+                    "parameter": "parameter_example",
+                    "operator": "IN",
+                    "value": "value_example",
+                    "value_type": "MANAGED"
                 },
                 "labels": [],
                 "is_configuration_allowed": true
@@ -797,18 +797,18 @@ detector_recipes:
                     }]
                 }],
                 "condition": {
-                    "kind": "SIMPLE",
-                    "parameter": "parameter_example",
-                    "operator": "IN",
-                    "value": "value_example",
-                    "value_type": "MANAGED",
+                    "kind": "COMPOSITE",
                     "left_operand": {
                         "kind": "COMPOSITE"
                     },
                     "composite_operator": "AND",
                     "right_operand": {
                         "kind": "COMPOSITE"
-                    }
+                    },
+                    "parameter": "parameter_example",
+                    "operator": "IN",
+                    "value": "value_example",
+                    "value_type": "MANAGED"
                 },
                 "labels": [],
                 "is_configuration_allowed": true

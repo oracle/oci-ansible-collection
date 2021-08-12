@@ -71,8 +71,7 @@ options:
             - "LINUX"
     id:
         description:
-            - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host insight
-              resource.
+            - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
     percentile:
         description:
@@ -105,6 +104,35 @@ options:
             - "usageChangePercent"
             - "hostName"
             - "platformType"
+    defined_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a defined tag matching the value will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+    freeform_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
+              The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
+        type: list
+    defined_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.true\\" (for checking existence of a defined tag)
+              or \\"{namespace}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+    freeform_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
+              The key for each tag is \\"{tagName}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for different tag names are interpreted as \\"AND\\"."
+        type: list
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -225,42 +253,6 @@ host_insight_resource_statistics:
                             returned: on success
                             type: string
                             sample: HOST_CPU_STATISTICS
-                        free_memory:
-                            description:
-                                - ""
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        available_memory:
-                            description:
-                                - ""
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        huge_pages_total:
-                            description:
-                                - Total number of huge pages.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        huge_page_size_in_mb:
-                            description:
-                                - Size of huge pages in megabytes.
-                            returned: on success
-                            type: float
-                            sample: 1.2
-                        huge_pages_free:
-                            description:
-                                - Total number of available huge pages.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        huge_pages_reserved:
-                            description:
-                                - Total number of huge pages which are used or reserved.
-                            returned: on success
-                            type: int
-                            sample: 56
                         load:
                             description:
                                 - ""
@@ -303,6 +295,42 @@ host_insight_resource_statistics:
                                     returned: on success
                                     type: float
                                     sample: 1.2
+                        free_memory:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        available_memory:
+                            description:
+                                - ""
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        huge_pages_total:
+                            description:
+                                - Total number of huge pages.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        huge_page_size_in_mb:
+                            description:
+                                - Size of huge pages in megabytes.
+                            returned: on success
+                            type: float
+                            sample: 1.2
+                        huge_pages_free:
+                            description:
+                                - Total number of available huge pages.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        huge_pages_reserved:
+                            description:
+                                - Total number of huge pages which are used or reserved.
+                            returned: on success
+                            type: int
+                            sample: 56
     sample: {
         "time_interval_start": "2020-12-06T00:00:00.000Z",
         "time_interval_end": "2020-12-06T00:00:00.000Z",
@@ -322,12 +350,6 @@ host_insight_resource_statistics:
                 "utilization_percent": 35.1,
                 "usage_change_percent": 5.2,
                 "resource_name": "HOST_CPU_STATISTICS",
-                "free_memory": 1.2,
-                "available_memory": 1.2,
-                "huge_pages_total": 56,
-                "huge_page_size_in_mb": 1.2,
-                "huge_pages_free": 56,
-                "huge_pages_reserved": 56,
                 "load": {
                     "minimum": 1.2,
                     "maximum": 1.2,
@@ -335,7 +357,13 @@ host_insight_resource_statistics:
                     "median": 1.2,
                     "lower_quartile": 1.2,
                     "upper_quartile": 1.2
-                }
+                },
+                "free_memory": 1.2,
+                "available_memory": 1.2,
+                "huge_pages_total": 56,
+                "huge_page_size_in_mb": 1.2,
+                "huge_pages_free": 56,
+                "huge_pages_reserved": 56
             }
         }]
     }
@@ -377,6 +405,10 @@ class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
             "forecast_days",
             "sort_order",
             "sort_by",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -428,6 +460,10 @@ def main():
                     "platformType",
                 ],
             ),
+            defined_tag_equals=dict(type="list"),
+            freeform_tag_equals=dict(type="list"),
+            defined_tag_exists=dict(type="list"),
+            freeform_tag_exists=dict(type="list"),
         )
     )
 
@@ -447,8 +483,6 @@ def main():
 
     if resource_facts_helper.is_get():
         result = resource_facts_helper.get()
-    elif resource_facts_helper.is_list():
-        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 
