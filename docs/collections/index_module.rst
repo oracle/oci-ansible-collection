@@ -430,6 +430,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_vm_cluster_network_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_network_facts_module>` -- Fetches details about one or multiple VmClusterNetwork resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_patch_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_facts_module>` -- Fetches details about one or multiple VmClusterPatch resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_vm_cluster_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_patch_history_entry_facts_module>` -- Fetches details about one or multiple VmClusterPatchHistoryEntry resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_vm_cluster_update_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_update_facts_module>` -- Fetches details about one or multiple VmClusterUpdate resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_vm_cluster_update_history_entry_facts <ansible_collections.oracle.oci.oci_database_vm_cluster_update_history_entry_facts_module>` -- Fetches details about one or multiple VmClusterUpdateHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_deploy_artifact <ansible_collections.oracle.oci.oci_devops_deploy_artifact_module>` -- Manage a DeployArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_deploy_artifact_facts <ansible_collections.oracle.oci.oci_devops_deploy_artifact_facts_module>` -- Fetches details about one or multiple DeployArtifact resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_devops_deploy_environment <ansible_collections.oracle.oci.oci_devops_deploy_environment_module>` -- Manage a DeployEnvironment resource in Oracle Cloud Infrastructure
@@ -1018,6 +1020,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_streaming_stream_pool_actions <ansible_collections.oracle.oci.oci_streaming_stream_pool_actions_module>` -- Perform actions on a StreamPool resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_streaming_stream_pool_facts <ansible_collections.oracle.oci.oci_streaming_stream_pool_facts_module>` -- Fetches details about one or multiple StreamPool resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_configuration_facts <ansible_collections.oracle.oci.oci_usage_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_usage_custom_table <ansible_collections.oracle.oci.oci_usage_custom_table_module>` -- Manage a CustomTable resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_usage_custom_table_facts <ansible_collections.oracle.oci.oci_usage_custom_table_facts_module>` -- Fetches details about one or multiple CustomTable resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_facts <ansible_collections.oracle.oci.oci_usage_facts_module>` -- Fetches details about one or multiple Usage resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_query <ansible_collections.oracle.oci.oci_usage_query_module>` -- Manage a Query resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_usage_query_facts <ansible_collections.oracle.oci.oci_usage_query_facts_module>` -- Fetches details about one or multiple Query resources in Oracle Cloud Infrastructure

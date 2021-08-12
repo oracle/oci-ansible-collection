@@ -251,6 +251,19 @@ monitors:
                     returned: on success
                     type: bool
                     sample: true
+                verify_texts:
+                    description:
+                        - Verify all the search strings present in response.
+                          If any search string is not present in the response, then it will be considered as a failure.
+                    returned: on success
+                    type: complex
+                    contains:
+                        text:
+                            description:
+                                - Verification text in the response.
+                            returned: on success
+                            type: string
+                            sample: searchString
                 is_redirection_enabled:
                     description:
                         - If redirection enabled, then redirects will be allowed while accessing target URL.
@@ -390,19 +403,6 @@ monitors:
                     returned: on success
                     type: list
                     sample: []
-                verify_texts:
-                    description:
-                        - Verify all the search strings present in response.
-                          If any search string is not present in the response, then it will be considered as a failure.
-                    returned: on success
-                    type: complex
-                    contains:
-                        text:
-                            description:
-                                - Verification text in the response.
-                            returned: on success
-                            type: string
-                            sample: searchString
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -460,6 +460,9 @@ monitors:
             "config_type": "BROWSER_CONFIG",
             "is_failure_retried": true,
             "is_certificate_validation_enabled": true,
+            "verify_texts": [{
+                "text": "searchString"
+            }],
             "is_redirection_enabled": true,
             "request_method": "GET",
             "req_authentication_scheme": "NONE",
@@ -486,10 +489,7 @@ monitors:
             }],
             "request_post_body": "openPageMonitor",
             "verify_response_content": "^searchText*",
-            "verify_response_codes": [],
-            "verify_texts": [{
-                "text": "searchString"
-            }]
+            "verify_response_codes": []
         },
         "time_created": "2020-02-12T22:47:12.613Z",
         "time_updated": "2020-02-13T22:47:12.613Z",

@@ -375,6 +375,106 @@ rule_set:
                     returned: on success
                     type: string
                     sample: example_value
+                conditions:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        attribute_name:
+                            description:
+                                - ""
+                            returned: on success
+                            type: string
+                            sample: SOURCE_IP_ADDRESS
+                        attribute_value:
+                            description:
+                                - The path string that the redirection rule applies to.
+                                - "Example: `/example`"
+                            returned: on success
+                            type: string
+                            sample: /example
+                        operator:
+                            description:
+                                - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
+                                  incoming URI.
+                                - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
+                                - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
+                                     longest match of the beginning portion of the incoming URI path."
+                                - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
+                                     `attributeValue` string."
+                                - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
+                                     string."
+                            returned: on success
+                            type: string
+                            sample: EXACT_MATCH
+                description:
+                    description:
+                        - A brief description of the access control rule. Avoid entering confidential information.
+                        - "example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`"
+                    returned: on success
+                    type: string
+                    sample: description_example
+                allowed_methods:
+                    description:
+                        - The list of HTTP methods allowed for this listener.
+                        - By default, you can specify only the standard HTTP methods defined in the
+                          L(HTTP Method Registry,http://www.iana.org/assignments/http-methods/http-methods.xhtml). You can also
+                          see a list of supported standard HTTP methods in the Load Balancing service documentation at
+                          L(Managing Rule Sets,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm).
+                        - Your backend application must be able to handle the methods specified in this list.
+                        - The list of HTTP methods is extensible. If you need to configure custom HTTP methods, contact
+                          L(My Oracle Support,http://support.oracle.com/) to remove the restriction for your tenancy.
+                        - "Example: [\\"GET\\", \\"PUT\\", \\"POST\\", \\"PROPFIND\\"]"
+                    returned: on success
+                    type: list
+                    sample: []
+                status_code:
+                    description:
+                        - The HTTP status code to return when the requested HTTP method is not in the list of allowed methods.
+                          The associated status line returned with the code is mapped from the standard HTTP specification. The
+                          default value is `405 (Method Not Allowed)`.
+                        - "Example: 403"
+                    returned: on success
+                    type: int
+                    sample: 56
+                prefix:
+                    description:
+                        - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
+                        - "Example: `example_prefix_value`"
+                    returned: on success
+                    type: string
+                    sample: example_prefix_value
+                suffix:
+                    description:
+                        - "A string to append to the header value. The resulting header value must conform to RFC 7230.
+                          With the following exceptions:
+                          *  value cannot contain `$`
+                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
+                        - "Example: `example_suffix_value`"
+                    returned: on success
+                    type: string
+                    sample: example_suffix_value
+                are_invalid_characters_allowed:
+                    description:
+                        - "Indicates whether or not invalid characters in client header fields will be allowed.
+                          Valid names are composed of English letters, digits, hyphens and underscores.
+                          If \\"true\\", invalid characters are allowed in the HTTP header.
+                          If \\"false\\", invalid characters are not allowed in the HTTP header"
+                    returned: on success
+                    type: bool
+                    sample: true
+                http_large_header_size_in_kb:
+                    description:
+                        - The maximum size of each buffer used for reading http client request header.
+                          This value indicates the maximum size allowed for each buffer.
+                          The allowed values for buffer size are 8, 16, 32 and 64.
+                    returned: on success
+                    type: int
+                    sample: 56
                 response_code:
                     description:
                         - The HTTP status code to return when the incoming request is redirected.
@@ -390,43 +490,6 @@ rule_set:
                     returned: on success
                     type: int
                     sample: 301
-                conditions:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        attribute_name:
-                            description:
-                                - ""
-                            returned: on success
-                            type: string
-                            sample: SOURCE_IP_ADDRESS
-                        attribute_value:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the originating VCN that an incoming
-                                  packet
-                                  must match.
-                                - You can use this condition in conjunction with `SourceVcnIpAddressCondition`.
-                                - "**NOTE:** If you define this condition for a rule without a `SourceVcnIpAddressCondition`, this condition
-                                  matches all incoming traffic in the specified VCN."
-                            returned: on success
-                            type: string
-                            sample: ocid1.vcn.oc1.phx.unique_ID
-                        operator:
-                            description:
-                                - A string that specifies how to compare the PathMatchCondition object's `attributeValue` string to the
-                                  incoming URI.
-                                - "*  **EXACT_MATCH** - The incoming URI path must exactly and completely match the `attributeValue` string."
-                                - "*  **FORCE_LONGEST_PREFIX_MATCH** - The system looks for the `attributeValue` string with the best,
-                                     longest match of the beginning portion of the incoming URI path."
-                                - "*  **PREFIX_MATCH** - The beginning portion of the incoming URI path must exactly match the
-                                     `attributeValue` string."
-                                - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
-                                     string."
-                            returned: on success
-                            type: string
-                            sample: EXACT_MATCH
                 redirect_uri:
                     description:
                         - ""
@@ -524,99 +587,32 @@ rule_set:
                             returned: on success
                             type: string
                             sample: query_example
-                prefix:
-                    description:
-                        - "A string to prepend to the header value. The resulting header value must conform to RFC 7230.
-                          With the following exceptions:
-                          *  value cannot contain `$`
-                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
-                        - "Example: `example_prefix_value`"
-                    returned: on success
-                    type: string
-                    sample: example_prefix_value
-                suffix:
-                    description:
-                        - "A string to append to the header value. The resulting header value must conform to RFC 7230.
-                          With the following exceptions:
-                          *  value cannot contain `$`
-                          *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
-                        - "Example: `example_suffix_value`"
-                    returned: on success
-                    type: string
-                    sample: example_suffix_value
-                allowed_methods:
-                    description:
-                        - The list of HTTP methods allowed for this listener.
-                        - By default, you can specify only the standard HTTP methods defined in the
-                          L(HTTP Method Registry,http://www.iana.org/assignments/http-methods/http-methods.xhtml). You can also
-                          see a list of supported standard HTTP methods in the Load Balancing service documentation at
-                          L(Managing Rule Sets,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm).
-                        - Your backend application must be able to handle the methods specified in this list.
-                        - The list of HTTP methods is extensible. If you need to configure custom HTTP methods, contact
-                          L(My Oracle Support,http://support.oracle.com/) to remove the restriction for your tenancy.
-                        - "Example: [\\"GET\\", \\"PUT\\", \\"POST\\", \\"PROPFIND\\"]"
-                    returned: on success
-                    type: list
-                    sample: []
-                status_code:
-                    description:
-                        - The HTTP status code to return when the requested HTTP method is not in the list of allowed methods.
-                          The associated status line returned with the code is mapped from the standard HTTP specification. The
-                          default value is `405 (Method Not Allowed)`.
-                        - "Example: 403"
-                    returned: on success
-                    type: int
-                    sample: 56
-                description:
-                    description:
-                        - A brief description of the access control rule. Avoid entering confidential information.
-                        - "example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`"
-                    returned: on success
-                    type: string
-                    sample: description_example
-                are_invalid_characters_allowed:
-                    description:
-                        - "Indicates whether or not invalid characters in client header fields will be allowed.
-                          Valid names are composed of English letters, digits, hyphens and underscores.
-                          If \\"true\\", invalid characters are allowed in the HTTP header.
-                          If \\"false\\", invalid characters are not allowed in the HTTP header"
-                    returned: on success
-                    type: bool
-                    sample: true
-                http_large_header_size_in_kb:
-                    description:
-                        - The maximum size of each buffer used for reading http client request header.
-                          This value indicates the maximum size allowed for each buffer.
-                          The allowed values for buffer size are 8, 16, 32 and 64.
-                    returned: on success
-                    type: int
-                    sample: 56
     sample: {
         "name": "example_rule_set",
         "items": [{
             "action": "ADD_HTTP_REQUEST_HEADER",
             "header": "example_header_name",
             "value": "example_value",
-            "response_code": 301,
             "conditions": [{
                 "attribute_name": "SOURCE_IP_ADDRESS",
-                "attribute_value": "ocid1.vcn.oc1.phx.unique_ID",
+                "attribute_value": "/example",
                 "operator": "EXACT_MATCH"
             }],
+            "description": "description_example",
+            "allowed_methods": [],
+            "status_code": 56,
+            "prefix": "example_prefix_value",
+            "suffix": "example_suffix_value",
+            "are_invalid_characters_allowed": true,
+            "http_large_header_size_in_kb": 56,
+            "response_code": 301,
             "redirect_uri": {
                 "protocol": "HTTPS",
                 "host": "host_example",
                 "port": 8081,
                 "path": "path_example",
                 "query": "query_example"
-            },
-            "prefix": "example_prefix_value",
-            "suffix": "example_suffix_value",
-            "allowed_methods": [],
-            "status_code": 56,
-            "description": "description_example",
-            "are_invalid_characters_allowed": true,
-            "http_large_header_size_in_kb": 56
+            }
         }]
     }
 """

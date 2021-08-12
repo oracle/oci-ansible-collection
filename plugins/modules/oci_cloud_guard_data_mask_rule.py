@@ -232,7 +232,7 @@ data_mask_rule:
                     sample: ALL
                 values:
                     description:
-                        - Types of Targets
+                        - Ids of Target
                     returned: on success
                     type: list
                     sample: []

@@ -108,7 +108,7 @@ networking_topology:
                         - The type of relationship between the entities.
                     returned: on success
                     type: string
-                    sample: ROUTES_TO
+                    sample: CONTAINS
                 route_rule_details:
                     description:
                         - ""
@@ -150,7 +150,7 @@ networking_topology:
         "relationships": [{
             "id1": "id1_example",
             "id2": "id2_example",
-            "type": "ROUTES_TO",
+            "type": "CONTAINS",
             "route_rule_details": {
                 "destination_type": "destination_type_example",
                 "destination": "destination_example",
@@ -240,8 +240,6 @@ def main():
 
     if resource_facts_helper.is_get():
         result = resource_facts_helper.get()
-    elif resource_facts_helper.is_list():
-        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

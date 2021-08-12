@@ -187,24 +187,6 @@ instance_agent_command_executions:
                     returned: on success
                     type: string
                     sample: message_example
-                text:
-                    description:
-                        - The command output.
-                    returned: on success
-                    type: string
-                    sample: text_example
-                text_sha256:
-                    description:
-                        - SHA-256 checksum value of the text content.
-                    returned: on success
-                    type: string
-                    sample: text_sha256_example
-                output_uri:
-                    description:
-                        - The Object Storage URL or pre-authenticated request (PAR) for the command output.
-                    returned: on success
-                    type: string
-                    sample: output_uri_example
                 bucket_name:
                     description:
                         - The Object Storage bucket for the command output.
@@ -223,6 +205,24 @@ instance_agent_command_executions:
                     returned: on success
                     type: string
                     sample: object_name_example
+                output_uri:
+                    description:
+                        - The Object Storage URL or pre-authenticated request (PAR) for the command output.
+                    returned: on success
+                    type: string
+                    sample: output_uri_example
+                text:
+                    description:
+                        - The command output.
+                    returned: on success
+                    type: string
+                    sample: text_example
+                text_sha256:
+                    description:
+                        - SHA-256 checksum value of the text content.
+                    returned: on success
+                    type: string
+                    sample: text_sha256_example
     sample: [{
         "instance_agent_command_id": "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
@@ -236,12 +236,12 @@ instance_agent_command_executions:
             "output_type": "TEXT",
             "exit_code": 56,
             "message": "message_example",
-            "text": "text_example",
-            "text_sha256": "text_sha256_example",
-            "output_uri": "output_uri_example",
             "bucket_name": "bucket_name_example",
             "namespace_name": "namespace_name_example",
-            "object_name": "object_name_example"
+            "object_name": "object_name_example",
+            "output_uri": "output_uri_example",
+            "text": "text_example",
+            "text_sha256": "text_sha256_example"
         }
     }]
 """

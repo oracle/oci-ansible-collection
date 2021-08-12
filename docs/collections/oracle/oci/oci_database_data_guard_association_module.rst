@@ -20,7 +20,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -42,7 +42,7 @@ Synopsis
 
 .. Description
 
-- This module allows the user to create a DataGuardAssociation resource in Oracle Cloud Infrastructure
+- This module allows the user to create and update a DataGuardAssociation resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Data Guard association.  A Data Guard association represents the replication relationship between the specified database and a peer database. For more information, see `Using Oracle Data Guard <https://docs.cloud.oracle.com/Content/Database/Tasks/usingdataguard.htm>`_.
 - All Oracle Cloud Infrastructure resources, including Data Guard associations, get an Oracle-assigned, unique ID called an Oracle Cloud Identifier (OCID). When you create a resource, you can find its OCID in the response. You can also retrieve a resource's OCID by using a List API operation on that resource type, or by viewing the resource in the Console. For more information, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 - This resource has the following action operations in the :ref:`oci_data_guard_association_actions <ansible_collections.oci_data_guard_association_actions_module>` module: failover, reinstate, switchover.
@@ -224,7 +224,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-creation_type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -235,7 +235,25 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Specifies whether to create the peer database in an existing DB system or in a new DB system.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-data_guard_association_id"></div>
+                    <b>data_guard_association_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_guard_association_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Data Guard association&#x27;s <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
+                                            <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
+                                    </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -244,7 +262,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-database_admin_password" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -256,6 +274,8 @@ Parameters
                                             <div>* At least two numeric characters.</div>
                                             <div>* At least two special characters. Valid special characters include &quot;_&quot;, &quot;#&quot;, and &quot;-&quot; only.</div>
                                             <div>**The password MUST be the same as the primary admin password.**</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -301,6 +321,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The user-friendly name of the DB system that will contain the the standby database. The display name does not have to be unique.</div>
+                                            <div>Required for create, update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
@@ -426,7 +447,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-protection_mode" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -438,6 +459,8 @@ Parameters
                                                                 <td>
                                             <div>The protection mode to set up between the primary and standby databases. For more information, see <a href='http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000'>Oracle Data Guard Protection Modes</a> in the Oracle Data Guard documentation.</div>
                                             <div>**IMPORTANT** - The only protection mode currently supported by the Database service is MAXIMUM_PERFORMANCE.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -488,7 +511,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The state of the DataGuardAssociation.</div>
-                                            <div>Use <em>state=present</em> to create a DataGuardAssociation.</div>
+                                            <div>Use <em>state=present</em> to create or update a DataGuardAssociation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -530,7 +553,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-transport_type" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -544,6 +567,8 @@ Parameters
                                             <div>* MAXIMUM_AVAILABILITY - SYNC or FASTSYNC * MAXIMUM_PERFORMANCE - ASYNC * MAXIMUM_PROTECTION - SYNC</div>
                                             <div>For more information, see <a href='http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400'>Redo Transport Services</a> in the Oracle Data Guard documentation.</div>
                                             <div>**IMPORTANT** - The only transport type currently supported by the Database service is ASYNC.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -609,6 +634,20 @@ Examples
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC
         creation_type: ExistingDbSystem
+
+    - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+      oci_database_data_guard_association:
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        database_admin_password: database_admin_password_example
+        protection_mode: MAXIMUM_AVAILABILITY
+        transport_type: SYNC
+        display_name: display_name_example
+
+    - name: Update data_guard_association
+      oci_database_data_guard_association:
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        database_admin_password: database_admin_password_example
+        data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

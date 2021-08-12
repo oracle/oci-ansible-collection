@@ -261,6 +261,12 @@ drg_attachment:
                     returned: on success
                     type: string
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                ipsec_connection_id:
+                    description:
+                        - The IPSec connection that contains the attached IPSec tunnel.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 route_table_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
@@ -272,12 +278,6 @@ drg_attachment:
                     returned: on success
                     type: string
                     sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
-                ipsec_connection_id:
-                    description:
-                        - The IPSec connection that contains the attached IPSec tunnel.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
                 - Defined tags for this resource. Each key is predefined and scoped to a
@@ -342,8 +342,8 @@ drg_attachment:
         "network_details": {
             "type": "VCN",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-            "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx",
-            "ipsec_connection_id": "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
+            "ipsec_connection_id": "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx",
+            "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'},

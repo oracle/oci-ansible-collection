@@ -58,11 +58,18 @@ class ResourceStatisticsFactsHelperCustom:
             "time_interval_end",
             "database_type",
             "database_id",
+            "id",
             "percentile",
             "insight_by",
             "forecast_days",
             "sort_order",
             "sort_by",
+            "host_name",
+            "is_database_instance_level_metrics",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -109,10 +116,16 @@ class SqlInsightsFactsHelperCustom:
         optional_get_method_params = [
             "database_type",
             "database_id",
+            "id",
+            "host_name",
             "database_time_pct_greater_than",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -149,6 +162,8 @@ class SqlPlanInsightsFactsHelperCustom:
     # Python SDK strips off the attribute other than `items` from response.
     def get_resource(self):
         optional_get_method_params = [
+            "database_id",
+            "id",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -165,7 +180,6 @@ class SqlPlanInsightsFactsHelperCustom:
             self.client.summarize_sql_plan_insights,
             "response",
             compartment_id=self.module.params.get("compartment_id"),
-            database_id=self.module.params.get("database_id"),
             sql_identifier=self.module.params.get("sql_identifier"),
             **optional_kwargs
         ):
@@ -193,6 +207,8 @@ class SqlStatisticsTimeSeriesByPlanFactsHelperCustom:
     # Python SDK strips off the attribute other than `items` from response.
     def get_resource(self):
         optional_get_method_params = [
+            "database_id",
+            "id",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -210,7 +226,6 @@ class SqlStatisticsTimeSeriesByPlanFactsHelperCustom:
             self.client.summarize_sql_statistics_time_series_by_plan,
             "response",
             compartment_id=self.module.params.get("compartment_id"),
-            database_id=self.module.params.get("database_id"),
             sql_identifier=self.module.params.get("sql_identifier"),
             **optional_kwargs
         ):
@@ -246,9 +261,15 @@ class SqlStatisticsTimeSeriesFactsHelperCustom:
     def get_resource(self):
         optional_get_method_params = [
             "database_id",
+            "id",
+            "host_name",
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])

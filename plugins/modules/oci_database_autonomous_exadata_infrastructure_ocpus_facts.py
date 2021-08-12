@@ -160,8 +160,6 @@ def main():
 
     if resource_facts_helper.is_get():
         result = resource_facts_helper.get()
-    elif resource_facts_helper.is_list():
-        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

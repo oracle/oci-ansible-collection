@@ -74,7 +74,13 @@ api_specification:
                                 - Type of the authentication policy to use.
                             returned: on success
                             type: string
-                            sample: JWT_AUTHENTICATION
+                            sample: CUSTOM_AUTHENTICATION
+                        function_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                         token_header:
                             description:
                                 - The name of the header containing the authentication token.
@@ -86,7 +92,7 @@ api_specification:
                                 - The name of the query parameter containing the authentication token.
                             returned: on success
                             type: string
-                            sample: tk
+                            sample: key
                         token_auth_scheme:
                             description:
                                 - "The authentication scheme that is to be used when authenticating
@@ -153,6 +159,26 @@ api_specification:
                                     returned: on success
                                     type: string
                                     sample: STATIC_KEYS
+                                uri:
+                                    description:
+                                        - The uri from which to retrieve the key. It must be accessible
+                                          without authentication.
+                                    returned: on success
+                                    type: string
+                                    sample: uri_example
+                                is_ssl_verify_disabled:
+                                    description:
+                                        - Defines whether or not to uphold SSL verification.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                max_cache_duration_in_hours:
+                                    description:
+                                        - The duration for which the JWKS should be cached before it is
+                                          fetched again.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
                                 keys:
                                     description:
                                         - The set of static public keys.
@@ -216,32 +242,6 @@ api_specification:
                                             returned: on success
                                             type: string
                                             sample: -----BEGIN PUBLIC KEY-----
-                                uri:
-                                    description:
-                                        - The uri from which to retrieve the key. It must be accessible
-                                          without authentication.
-                                    returned: on success
-                                    type: string
-                                    sample: uri_example
-                                is_ssl_verify_disabled:
-                                    description:
-                                        - Defines whether or not to uphold SSL verification.
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                max_cache_duration_in_hours:
-                                    description:
-                                        - The duration for which the JWKS should be cached before it is
-                                          fetched again.
-                                    returned: on success
-                                    type: int
-                                    sample: 56
-                        function_id:
-                            description:
-                                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function resource.
-                            returned: on success
-                            type: string
-                            sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 rate_limiting:
                     description:
                         - ""
@@ -397,7 +397,7 @@ api_specification:
                                           policy."
                                     returned: on success
                                     type: string
-                                    sample: ANY_OF
+                                    sample: ANONYMOUS
                                 allowed_scope:
                                     description:
                                         - A user whose scope includes any of these access ranges is allowed on
@@ -957,7 +957,7 @@ api_specification:
                                 - Type of the API backend.
                             returned: on success
                             type: string
-                            sample: HTTP_BACKEND
+                            sample: ORACLE_FUNCTIONS_BACKEND
                         url:
                             description:
                                 - ""
@@ -1028,9 +1028,10 @@ api_specification:
         "request_policies": {
             "authentication": {
                 "is_anonymous_access_allowed": true,
-                "type": "JWT_AUTHENTICATION",
+                "type": "CUSTOM_AUTHENTICATION",
+                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                 "token_header": "Authorization",
-                "token_query_param": "tk",
+                "token_query_param": "key",
                 "token_auth_scheme": "Bearer",
                 "issuers": [],
                 "audiences": [],
@@ -1042,6 +1043,9 @@ api_specification:
                 "max_clock_skew_in_seconds": 3.4,
                 "public_keys": {
                     "type": "STATIC_KEYS",
+                    "uri": "uri_example",
+                    "is_ssl_verify_disabled": true,
+                    "max_cache_duration_in_hours": 56,
                     "keys": [{
                         "kid": "kid_example",
                         "format": "JSON_WEB_KEY",
@@ -1052,12 +1056,8 @@ api_specification:
                         "n": "n_example",
                         "e": "e_example",
                         "key": "-----BEGIN PUBLIC KEY-----"
-                    }],
-                    "uri": "uri_example",
-                    "is_ssl_verify_disabled": true,
-                    "max_cache_duration_in_hours": 56
-                },
-                "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                    }]
+                }
             },
             "rate_limiting": {
                 "rate_in_requests_per_second": 56,
@@ -1086,7 +1086,7 @@ api_specification:
             "methods": [],
             "request_policies": {
                 "authorization": {
-                    "type": "ANY_OF",
+                    "type": "ANONYMOUS",
                     "allowed_scope": []
                 },
                 "cors": {
@@ -1204,7 +1204,7 @@ api_specification:
                 }
             },
             "backend": {
-                "type": "HTTP_BACKEND",
+                "type": "ORACLE_FUNCTIONS_BACKEND",
                 "url": "https://1.2.3.4:9999",
                 "connect_timeout_in_seconds": 3.4,
                 "read_timeout_in_seconds": 3.4,
@@ -1284,8 +1284,6 @@ def main():
 
     if resource_facts_helper.is_get():
         result = resource_facts_helper.get()
-    elif resource_facts_helper.is_list():
-        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

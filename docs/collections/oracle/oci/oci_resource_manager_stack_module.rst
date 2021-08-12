@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -764,7 +764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Stack resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;PHX&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;0.12.x&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;, &#x27;services_to_discover&#x27;: [], &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;stack_drift_status&#x27;: &#x27;NOT_CHECKED&#x27;, &#x27;terraform_version&#x27;: &#x27;0.12.x&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_drift_last_checked&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -928,10 +928,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the bucket&#x27;s region. Example: `PHX`</div>
+                                            <div>The region to use for creating the stack. The new stack will include definitions for supported resource types in this region.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PHX</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
                                     </td>
             </tr>
                                 <tr>

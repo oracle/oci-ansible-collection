@@ -20,7 +20,7 @@ oracle.oci.oci_devops_deploy_environment -- Manage a DeployEnvironment resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -649,12 +649,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment"></div>
                     <b>deploy_environment</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment" title="Permalink to this return value"></a>
@@ -667,12 +667,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeployEnvironment resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_selectors&#x27;: {&#x27;selector_type&#x27;: &#x27;INSTANCE_IDS&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_environment_type&#x27;: &#x27;OKE_CLUSTER&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_selectors&#x27;: {&#x27;items&#x27;: [{&#x27;compute_instance_ids&#x27;: [], &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;selector_type&#x27;: &#x27;INSTANCE_IDS&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_environment_type&#x27;: &#x27;OKE_CLUSTER&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/cluster_id"></div>
                     <b>cluster_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/cluster_id" title="Permalink to this return value"></a>
@@ -690,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/compartment_id" title="Permalink to this return value"></a>
@@ -708,7 +708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors"></div>
                     <b>compute_instance_group_selectors</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors" title="Permalink to this return value"></a>
@@ -725,10 +725,86 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/selector_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/items/compute_instance_ids"></div>
+                    <b>compute_instance_ids</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/items/compute_instance_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Compute instance OCID identifiers that are members of this group.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/items/query"></div>
+                    <b>query</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/items/query" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/items/region"></div>
+                    <b>region</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/items/region" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en- us/iaas/Content/General/Concepts/regions.htm</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/compute_instance_group_selectors/items/selector_type"></div>
                     <b>selector_type</b>
-                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/selector_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/compute_instance_group_selectors/items/selector_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -742,9 +818,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/defined_tags" title="Permalink to this return value"></a>
@@ -762,7 +839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/deploy_environment_type"></div>
                     <b>deploy_environment_type</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/deploy_environment_type" title="Permalink to this return value"></a>
@@ -780,7 +857,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/description" title="Permalink to this return value"></a>
@@ -798,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/display_name" title="Permalink to this return value"></a>
@@ -816,7 +893,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/freeform_tags" title="Permalink to this return value"></a>
@@ -834,7 +911,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/function_id" title="Permalink to this return value"></a>
@@ -852,7 +929,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/id" title="Permalink to this return value"></a>
@@ -870,7 +947,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/lifecycle_details" title="Permalink to this return value"></a>
@@ -888,7 +965,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/lifecycle_state" title="Permalink to this return value"></a>
@@ -906,7 +983,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/project_id" title="Permalink to this return value"></a>
@@ -924,7 +1001,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/system_tags" title="Permalink to this return value"></a>
@@ -940,7 +1017,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/time_created" title="Permalink to this return value"></a>
@@ -958,7 +1035,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_environment/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-deploy_environment/time_updated" title="Permalink to this return value"></a>

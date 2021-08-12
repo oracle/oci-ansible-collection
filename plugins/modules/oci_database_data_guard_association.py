@@ -22,7 +22,7 @@ DOCUMENTATION = """
 module: oci_database_data_guard_association
 short_description: Manage a DataGuardAssociation resource in Oracle Cloud Infrastructure
 description:
-    - This module allows the user to create a DataGuardAssociation resource in Oracle Cloud Infrastructure
+    - This module allows the user to create and update a DataGuardAssociation resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Data Guard association.  A Data Guard association represents the replication relationship between the
       specified database and a peer database. For more information, see L(Using Oracle Data
       Guard,https://docs.cloud.oracle.com/Content/Database/Tasks/usingdataguard.htm).
@@ -53,20 +53,22 @@ options:
             - "* At least two numeric characters."
             - "* At least two special characters. Valid special characters include \\"_\\", \\"#\\", and \\"-\\" only."
             - "**The password MUST be the same as the primary admin password.**"
+            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
-        required: true
     protection_mode:
         description:
             - The protection mode to set up between the primary and standby databases. For more information, see
               L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
               in the Oracle Data Guard documentation.
             - "**IMPORTANT** - The only protection mode currently supported by the Database service is MAXIMUM_PERFORMANCE."
+            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "MAXIMUM_AVAILABILITY"
             - "MAXIMUM_PERFORMANCE"
             - "MAXIMUM_PROTECTION"
-        required: true
     transport_type:
         description:
             - "The redo transport type to use for this Data Guard association.  Valid values depend on the specified `protectionMode`:"
@@ -77,24 +79,26 @@ options:
               L(Redo Transport Services,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400)
               in the Oracle Data Guard documentation.
             - "**IMPORTANT** - The only transport type currently supported by the Database service is ASYNC."
+            - Required for create using I(state=present).
+            - This parameter is updatable.
         type: str
         choices:
             - "SYNC"
             - "ASYNC"
             - "FASTSYNC"
-        required: true
     creation_type:
         description:
             - Specifies whether to create the peer database in an existing DB system or in a new DB system.
+            - Required for create using I(state=present).
         type: str
         choices:
             - "NewDbSystem"
             - "ExistingVmCluster"
             - "ExistingDbSystem"
-        required: true
     display_name:
         description:
             - The user-friendly name of the DB system that will contain the the standby database. The display name does not have to be unique.
+            - Required for create, update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Applicable when creation_type is 'NewDbSystem'
         type: str
         aliases: ["name"]
@@ -162,10 +166,16 @@ options:
               You must supply this value if creationType is `ExistingDbSystem`.
             - Applicable when creation_type is 'ExistingDbSystem'
         type: str
+    data_guard_association_id:
+        description:
+            - The Data Guard association's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the DataGuardAssociation.
-            - Use I(state=present) to create a DataGuardAssociation.
+            - Use I(state=present) to create or update a DataGuardAssociation.
         type: str
         required: false
         default: 'present'
@@ -181,6 +191,20 @@ EXAMPLES = """
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
     creation_type: ExistingDbSystem
+
+- name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+  oci_database_data_guard_association:
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    database_admin_password: database_admin_password_example
+    protection_mode: MAXIMUM_AVAILABILITY
+    transport_type: SYNC
+    display_name: display_name_example
+
+- name: Update data_guard_association
+  oci_database_data_guard_association:
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    database_admin_password: database_admin_password_example
+    data_guard_association_id: "ocid1.dataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -323,6 +347,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import CreateDataGuardAssociationDetails
+    from oci.database.models import UpdateDataGuardAssociationDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -330,13 +355,19 @@ except ImportError:
 
 
 class DataGuardAssociationHelperGen(OCIResourceHelperBase):
-    """Supported operations: create, get and list"""
+    """Supported operations: create, update, get and list"""
 
     def __init__(self, *args, **kwargs):
         super(DataGuardAssociationHelperGen, self).__init__(*args, **kwargs)
         self.work_request_client = WorkRequestClient(
             self.client._config, **self.client._kwargs
         )
+
+    def get_module_resource_id_param(self):
+        return "data_guard_association_id"
+
+    def get_module_resource_id(self):
+        return self.module.params.get("data_guard_association_id")
 
     def get_get_fn(self):
         return self.client.get_data_guard_association
@@ -405,6 +436,28 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def get_update_model_class(self):
+        return UpdateDataGuardAssociationDetails
+
+    def update_resource(self):
+        update_details = self.get_update_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.update_data_guard_association,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                data_guard_association_id=self.module.params.get(
+                    "data_guard_association_id"
+                ),
+                update_data_guard_association_details=update_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation=oci_common_utils.UPDATE_OPERATION_KEY,
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 DataGuardAssociationHelperCustom = get_custom_class("DataGuardAssociationHelperCustom")
 
@@ -421,22 +474,18 @@ def main():
         dict(
             database_id=dict(type="str", required=True),
             database_software_image_id=dict(type="str"),
-            database_admin_password=dict(type="str", required=True, no_log=True),
+            database_admin_password=dict(type="str", no_log=True),
             protection_mode=dict(
                 type="str",
-                required=True,
                 choices=[
                     "MAXIMUM_AVAILABILITY",
                     "MAXIMUM_PERFORMANCE",
                     "MAXIMUM_PROTECTION",
                 ],
             ),
-            transport_type=dict(
-                type="str", required=True, choices=["SYNC", "ASYNC", "FASTSYNC"]
-            ),
+            transport_type=dict(type="str", choices=["SYNC", "ASYNC", "FASTSYNC"]),
             creation_type=dict(
                 type="str",
-                required=True,
                 choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
             ),
             display_name=dict(aliases=["name"], type="str"),
@@ -449,6 +498,7 @@ def main():
             peer_vm_cluster_id=dict(type="str"),
             peer_db_home_id=dict(type="str"),
             peer_db_system_id=dict(type="str"),
+            data_guard_association_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )
@@ -467,7 +517,11 @@ def main():
 
     result = dict(changed=False)
 
-    if resource_helper.is_create():
+    if resource_helper.is_update_using_name():
+        result = resource_helper.update_using_name()
+    elif resource_helper.is_update():
+        result = resource_helper.update()
+    elif resource_helper.is_create():
         result = resource_helper.create()
 
     module.exit_json(**result)

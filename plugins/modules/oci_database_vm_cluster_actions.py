@@ -177,6 +177,12 @@ vm_cluster:
             returned: on success
             type: string
             sample: gi_version_example
+        system_version:
+            description:
+                - Operating system version of the image.
+            returned: on success
+            type: string
+            sample: system_version_example
         ssh_public_keys:
             description:
                 - The public key portion of one or more key pairs used for SSH access to the VM cluster.
@@ -223,6 +229,7 @@ vm_cluster:
         "data_storage_size_in_tbs": 1.2,
         "shape": "shape_example",
         "gi_version": "gi_version_example",
+        "system_version": "system_version_example",
         "ssh_public_keys": [ ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz... ],
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},

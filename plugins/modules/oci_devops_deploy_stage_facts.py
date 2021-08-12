@@ -167,12 +167,18 @@ deploy_stages:
             returned: on success
             type: complex
             contains:
-                id:
+                items:
                     description:
-                        - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
+                        - A list of stage predecessors for a stage.
                     returned: on success
-                    type: string
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -195,37 +201,51 @@ deploy_stages:
             returned: on success
             type: dict
             sample: {}
-        blue_backend_ips:
+        compute_instance_group_deploy_environment_id:
             description:
-                - ""
-            returned: on success
-            type: BackendSetIpCollection
-        green_backend_ips:
-            description:
-                - ""
-            returned: on success
-            type: BackendSetIpCollection
-        traffic_shift_target:
-            description:
-                - Specifies the target or destination backend set.
+                - A compute instance group environment OCID for rolling deployment.
             returned: on success
             type: string
-            sample: AUTO_SELECT
+            sample: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_spec_deploy_artifact_id:
+            description:
+                - The OCID of the artifact that contains the deployment specification.
+            returned: on success
+            type: string
+            sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids:
+            description:
+                - Additional file artifact OCIDs.
+            returned: on success
+            type: list
+            sample: []
         rollout_policy:
             description:
                 - ""
             returned: on success
             type: complex
             contains:
-                batch_count:
+                policy_type:
                     description:
-                        - Specifies number of batches for this stage.
+                        - The type of policy used for rolling out a deployment stage.
+                    returned: on success
+                    type: string
+                    sample: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT
+                batch_delay_in_seconds:
+                    description:
+                        - The duration of delay between batch rollout. The default delay is 1 minute.
                     returned: on success
                     type: int
                     sample: 56
-                batch_delay_in_seconds:
+                batch_count:
                     description:
-                        - Specifies delay in seconds between batches. The default delay is 1 minute.
+                        - The number that will be used to determine how many instances will be deployed concurrently.
+                    returned: on success
+                    type: int
+                    sample: 56
+                batch_percentage:
+                    description:
+                        - The percentage that will be used to determine how many instances will be deployed concurrently.
                     returned: on success
                     type: int
                     sample: 56
@@ -235,15 +255,40 @@ deploy_stages:
                     returned: on success
                     type: float
                     sample: 3.4
+        rollback_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
                 policy_type:
                     description:
-                        - The type of policy used for rolling out a deployment stage.
+                        - Specifies type of the deployment stage rollback policy.
                     returned: on success
                     type: string
-                    sample: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT
-                batch_percentage:
+                    sample: AUTOMATED_STAGE_ROLLBACK_POLICY
+        failure_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                policy_type:
                     description:
-                        - The percentage that will be used to determine how many instances will be deployed concurrently.
+                        - Specifies if the failure instance size is given by absolute number or by percentage.
+                    returned: on success
+                    type: string
+                    sample: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT
+                failure_count:
+                    description:
+                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
+                    returned: on success
+                    type: int
+                    sample: 56
+                failure_percentage:
+                    description:
+                        - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value
+                          of the number of failed instances over the total count of the instances in the group.
                     returned: on success
                     type: int
                     sample: 56
@@ -271,140 +316,12 @@ deploy_stages:
                     returned: on success
                     type: int
                     sample: 56
-        rollback_policy:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                policy_type:
-                    description:
-                        - Specifies type of the deployment stage rollback policy.
-                    returned: on success
-                    type: string
-                    sample: AUTOMATED_STAGE_ROLLBACK_POLICY
         function_deploy_environment_id:
             description:
                 - Function environment OCID.
             returned: on success
             type: string
             sample: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_artifact_id:
-            description:
-                - Optional binary artifact OCID user may provide to this stage.
-            returned: on success
-            type: string
-            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-        is_async:
-            description:
-                - A boolean flag specifies whether this stage executes asynchronously.
-            returned: on success
-            type: bool
-            sample: true
-        is_validation_enabled:
-            description:
-                - A boolean flag specifies whether the invoked function must be validated.
-            returned: on success
-            type: bool
-            sample: true
-        wait_criteria:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                wait_type:
-                    description:
-                        - Wait criteria type.
-                    returned: on success
-                    type: string
-                    sample: ABSOLUTE_WAIT
-                wait_duration:
-                    description:
-                        - The absolute wait duration. An ISO 8601 formatted duration string. Minimum waitDuration should be 5 seconds. Maximum waitDuration can
-                          be up to 2 days.
-                    returned: on success
-                    type: string
-                    sample: PT10M5S
-        oke_cluster_deploy_environment_id:
-            description:
-                - Kubernetes cluster environment OCID for deployment.
-            returned: on success
-            type: string
-            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        kubernetes_manifest_deploy_artifact_ids:
-            description:
-                - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
-            returned: on success
-            type: list
-            sample: []
-        namespace:
-            description:
-                - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
-            returned: on success
-            type: string
-            sample: namespace_example
-        approval_policy:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                approval_policy_type:
-                    description:
-                        - Approval policy type.
-                    returned: on success
-                    type: string
-                    sample: COUNT_BASED_APPROVAL
-                number_of_approvals_required:
-                    description:
-                        - A minimum number of approvals required for stage to proceed.
-                    returned: on success
-                    type: int
-                    sample: 56
-        compute_instance_group_deploy_environment_id:
-            description:
-                - A compute instance group environment OCID for rolling deployment.
-            returned: on success
-            type: string
-            sample: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        deployment_spec_deploy_artifact_id:
-            description:
-                - The OCID of the artifact that contains the deployment specification.
-            returned: on success
-            type: string
-            sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_artifact_ids:
-            description:
-                - Additional file artifact OCIDs.
-            returned: on success
-            type: list
-            sample: []
-        failure_policy:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                policy_type:
-                    description:
-                        - Specifies if the failure instance size is given by absolute number or by percentage.
-                    returned: on success
-                    type: string
-                    sample: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT
-                failure_percentage:
-                    description:
-                        - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value
-                          of the number of failed instances over the total count of the instances in the group.
-                    returned: on success
-                    type: int
-                    sample: 56
-                failure_count:
-                    description:
-                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
-                    returned: on success
-                    type: int
-                    sample: 56
         docker_image_deploy_artifact_id:
             description:
                 - A Docker image artifact OCID.
@@ -429,6 +346,109 @@ deploy_stages:
             returned: on success
             type: int
             sample: 56
+        deploy_artifact_id:
+            description:
+                - Optional binary artifact OCID user may provide to this stage.
+            returned: on success
+            type: string
+            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        is_async:
+            description:
+                - A boolean flag specifies whether this stage executes asynchronously.
+            returned: on success
+            type: bool
+            sample: true
+        is_validation_enabled:
+            description:
+                - A boolean flag specifies whether the invoked function must be validated.
+            returned: on success
+            type: bool
+            sample: true
+        blue_backend_ips:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The IP address of the backend server. A server could be a compute instance or a load balancer.
+                    returned: on success
+                    type: list
+                    sample: []
+        green_backend_ips:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - The IP address of the backend server. A server could be a compute instance or a load balancer.
+                    returned: on success
+                    type: list
+                    sample: []
+        traffic_shift_target:
+            description:
+                - Specifies the target or destination backend set.
+            returned: on success
+            type: string
+            sample: AUTO_SELECT
+        approval_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                approval_policy_type:
+                    description:
+                        - Approval policy type.
+                    returned: on success
+                    type: string
+                    sample: COUNT_BASED_APPROVAL
+                number_of_approvals_required:
+                    description:
+                        - A minimum number of approvals required for stage to proceed.
+                    returned: on success
+                    type: int
+                    sample: 56
+        oke_cluster_deploy_environment_id:
+            description:
+                - Kubernetes cluster environment OCID for deployment.
+            returned: on success
+            type: string
+            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        kubernetes_manifest_deploy_artifact_ids:
+            description:
+                - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
+            returned: on success
+            type: list
+            sample: []
+        namespace:
+            description:
+                - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
+            returned: on success
+            type: string
+            sample: namespace_example
+        wait_criteria:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                wait_type:
+                    description:
+                        - Wait criteria type.
+                    returned: on success
+                    type: string
+                    sample: ABSOLUTE_WAIT
+                wait_duration:
+                    description:
+                        - The absolute wait duration. An ISO 8601 formatted duration string. Minimum waitDuration should be 5 seconds. Maximum waitDuration can
+                          be up to 2 days.
+                    returned: on success
+                    type: string
+                    sample: PT10M5S
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
@@ -442,56 +462,62 @@ deploy_stages:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "deploy_stage_predecessor_collection": {
-            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            "items": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "blue_backend_ips": UNKNOWN TYPE - BackendSetIpCollection,
-        "green_backend_ips": UNKNOWN TYPE - BackendSetIpCollection,
-        "traffic_shift_target": "AUTO_SELECT",
+        "compute_instance_group_deploy_environment_id": "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+        "deployment_spec_deploy_artifact_id": "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "deploy_artifact_ids": [],
         "rollout_policy": {
-            "batch_count": 56,
-            "batch_delay_in_seconds": 56,
-            "ramp_limit_percent": 3.4,
             "policy_type": "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
-            "batch_percentage": 56
+            "batch_delay_in_seconds": 56,
+            "batch_count": 56,
+            "batch_percentage": 56,
+            "ramp_limit_percent": 3.4
+        },
+        "rollback_policy": {
+            "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
+        },
+        "failure_policy": {
+            "policy_type": "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
+            "failure_count": 56,
+            "failure_percentage": 56
         },
         "load_balancer_config": {
             "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
             "listener_name": "listener_name_example",
             "backend_port": 56
         },
-        "rollback_policy": {
-            "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
-        },
         "function_deploy_environment_id": "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+        "docker_image_deploy_artifact_id": "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "config": {},
+        "max_memory_in_mbs": 56,
+        "function_timeout_in_seconds": 56,
         "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
         "is_async": true,
         "is_validation_enabled": true,
-        "wait_criteria": {
-            "wait_type": "ABSOLUTE_WAIT",
-            "wait_duration": "PT10M5S"
+        "blue_backend_ips": {
+            "items": []
         },
-        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
-        "kubernetes_manifest_deploy_artifact_ids": [],
-        "namespace": "namespace_example",
+        "green_backend_ips": {
+            "items": []
+        },
+        "traffic_shift_target": "AUTO_SELECT",
         "approval_policy": {
             "approval_policy_type": "COUNT_BASED_APPROVAL",
             "number_of_approvals_required": 56
         },
-        "compute_instance_group_deploy_environment_id": "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
-        "deployment_spec_deploy_artifact_id": "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-        "deploy_artifact_ids": [],
-        "failure_policy": {
-            "policy_type": "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
-            "failure_percentage": 56,
-            "failure_count": 56
-        },
-        "docker_image_deploy_artifact_id": "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-        "config": {},
-        "max_memory_in_mbs": 56,
-        "function_timeout_in_seconds": 56
+        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+        "kubernetes_manifest_deploy_artifact_ids": [],
+        "namespace": "namespace_example",
+        "wait_criteria": {
+            "wait_type": "ABSOLUTE_WAIT",
+            "wait_duration": "PT10M5S"
+        }
     }]
 """
 

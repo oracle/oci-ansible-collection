@@ -20,7 +20,7 @@ oracle.oci.oci_database_autonomous_database_dataguard_association_facts -- Fetch
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -473,7 +473,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.</div>
+                                            <div>The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>
@@ -509,7 +509,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.</div>
+                                            <div>The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIMARY</div>

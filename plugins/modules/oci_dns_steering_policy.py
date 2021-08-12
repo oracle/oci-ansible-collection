@@ -681,6 +681,23 @@ steering_policy:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                value:
+                                    description:
+                                        - The rank assigned to the set of answers that match the expression in `answerCondition`.
+                                          Answers with the lowest values move to the beginning of the list without changing the
+                                          relative order of those with the same value. Answers can be given a value between `0` and `255`.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        count:
+                            description:
+                                - "The number of answers allowed to remain after the limit rule has been processed, keeping only the
+                                  first of the remaining answers in the list. Example: If the `count` property is set to `2` and
+                                  four answers remain before the limit rule is processed, only the first two answers in the list will
+                                  remain after the limit rule has been processed."
+                            returned: on success
+                            type: int
+                            sample: 56
                 default_answer_data:
                     description:
                         - Defines a default set of answer conditions and values that are applied to an answer when
@@ -703,6 +720,14 @@ steering_policy:
                             returned: on success
                             type: bool
                             sample: true
+                        value:
+                            description:
+                                - The rank assigned to the set of answers that match the expression in `answerCondition`.
+                                  Answers with the lowest values move to the beginning of the list without changing the
+                                  relative order of those with the same value. Answers can be given a value between `0` and `255`.
+                            returned: on success
+                            type: int
+                            sample: 56
                 default_count:
                     description:
                         - "Defines a default count if `cases` is not defined for the rule or a matching case does
@@ -759,12 +784,15 @@ steering_policy:
                 "case_condition": "query.client.address in (subnet '198.51.100.0/24')",
                 "answer_data": [{
                     "answer_condition": "answer.pool == 'A'",
-                    "should_keep": true
-                }]
+                    "should_keep": true,
+                    "value": 56
+                }],
+                "count": 56
             }],
             "default_answer_data": [{
                 "answer_condition": "answer.pool == 'A'",
-                "should_keep": true
+                "should_keep": true,
+                "value": 56
             }],
             "default_count": 56
         }],

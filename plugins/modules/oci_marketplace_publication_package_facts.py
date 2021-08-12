@@ -129,6 +129,25 @@ publication_packages:
                     returned: on success
                     type: string
                     sample: name_example
+        app_catalog_listing_id:
+            description:
+                - The ID of the listing resource associated with this publication package. For more information, see
+                  L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
+            returned: on success
+            type: string
+            sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
+        app_catalog_listing_resource_version:
+            description:
+                - The resource version of the listing resource associated with this publication package.
+            returned: on success
+            type: string
+            sample: app_catalog_listing_resource_version_example
+        image_id:
+            description:
+                - The ID of the image that corresponds to the package.
+            returned: on success
+            type: string
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         resource_link:
             description:
                 - A link to the stack resource.
@@ -177,25 +196,6 @@ publication_packages:
                     returned: on success
                     type: string
                     sample: hint_message_example
-        app_catalog_listing_id:
-            description:
-                - The ID of the listing resource associated with this publication package. For more information, see
-                  L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
-            returned: on success
-            type: string
-            sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
-        app_catalog_listing_resource_version:
-            description:
-                - The resource version of the listing resource associated with this publication package.
-            returned: on success
-            type: string
-            sample: app_catalog_listing_resource_version_example
-        image_id:
-            description:
-                - The ID of the image that corresponds to the package.
-            returned: on success
-            type: string
-            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The version of the specified package.
@@ -212,6 +212,9 @@ publication_packages:
         "operating_system": {
             "name": "name_example"
         },
+        "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
+        "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
+        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",
@@ -221,9 +224,6 @@ publication_packages:
             "is_mandatory": true,
             "hint_message": "hint_message_example"
         }],
-        "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
-        "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
-        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "package_version": "package_version_example"
     }]
 """

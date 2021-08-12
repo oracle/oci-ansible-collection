@@ -33,7 +33,8 @@ description:
     - For I(action=deregister_autonomous_database_data_safe), asynchronously deregisters this Autonomous Database with Data Safe.
     - For I(action=disable_autonomous_database_operations_insights), disables Operations Insights for the Autonomous Database resource.
     - For I(action=enable_autonomous_database_operations_insights), enables the specified Autonomous Database with Operations Insights.
-    - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby.
+    - For I(action=fail_over), initiates a failover the specified Autonomous Database to a standby. To perform a failover to a standby located in a remote
+      region, specify the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote standby using the `peerDbId` parameter.
     - For I(action=generate_autonomous_database_wallet), creates and downloads a wallet for the specified Autonomous Database.
     - For I(action=register_autonomous_database_data_safe), asynchronously registers this Autonomous Database with Data Safe.
     - For I(action=restart), restarts the specified Autonomous Database.
@@ -43,7 +44,8 @@ description:
     - For I(action=start), starts the specified Autonomous Database.
     - For I(action=stop), stops the specified Autonomous Database.
     - For I(action=switchover), initiates a switchover of the specified Autonomous Database to the associated standby database. Applicable only to databases
-      with Autonomous Data Guard enabled.
+      with Autonomous Data Guard enabled. To perform a switchover to a standby located in a remote region, specify the
+      L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote standby using the `peerDbId` parameter.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -86,6 +88,12 @@ options:
               uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (\\") or the username \\"admin\\", regardless of
               casing."
             - Required for I(action=deregister_autonomous_database_data_safe), I(action=register_autonomous_database_data_safe).
+        type: str
+    peer_db_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located
+              in a different (remote) region from the source primary Autonomous Database.
+            - Applicable only for I(action=fail_over)I(action=switchover).
         type: str
     generate_type:
         description:
@@ -372,13 +380,28 @@ autonomous_database:
                     sample: 2013-10-20T19:20:30+01:00
         cpu_core_count:
             description:
-                - The number of OCPU cores to be made available to the database.
+                - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum
+                  number of cores is determined by the infrastructure shape. See L(Characteristics of Infrastructure
+                  Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for
+                  shape details.
+                - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             returned: on success
             type: int
             sample: 56
         ocpu_count:
             description:
-                - The number of Fractional OCPU cores to be made available to the database.
+                - The number of OCPU cores to be made available to the database.
+                - "The following points apply:
+                  - For Autonomous Databases on dedicated Exadata infrastructure, to provision less than 1 core, enter a fractional value in an increment of
+                    0.1. For example, you can provision 0.3 or 0.4 cores, but not 0.35 cores. (Note that fractional OCPU values are not supported for Autonomous
+                    Databasese on shared Exadata infrastructure.)
+                  - To provision 1 or more cores, you must enter an integer between 1 and the maximum number of cores available for the infrastructure shape.
+                    For example, you can provision 2 cores or 3 cores, but not 2.5 cores. This applies to Autonomous Databases on both shared and dedicated
+                    Exadata infrastructure."
+                - For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See
+                  L(Characteristics of Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
+                  GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
+                - "**Note:** This parameter cannot be used with the `cpuCoreCount` parameter."
             returned: on success
             type: float
             sample: 3.4
@@ -811,9 +834,15 @@ autonomous_database:
                     returned: on success
                     type: string
                     sample: lifecycle_details_example
+                time_data_guard_role_changed:
+                    description:
+                        - The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.
+                    returned: on success
+                    type: string
+                    sample: 2013-10-20T19:20:30+01:00
         role:
             description:
-                - The Data Guard role of the Autonomous Container Database, if Autonomous Data Guard is enabled.
+                - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: string
             sample: PRIMARY
@@ -835,6 +864,12 @@ autonomous_database:
             returned: on success
             type: string
             sample: key_store_wallet_name_example
+        supported_regions_to_clone_to:
+            description:
+                - The list of regions that support the creation of Autonomous Data Guard standby database.
+            returned: on success
+            type: list
+            sample: []
         customer_contacts:
             description:
                 - Customer Contacts.
@@ -843,10 +878,43 @@ autonomous_database:
             contains:
                 email:
                     description:
-                        - The email address of an Oracle Autonomous Database contact.
+                        - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     returned: on success
                     type: string
                     sample: email_example
+        time_local_data_guard_enabled:
+            description:
+                - The date and time that Autonomous Data Guard was enabled for an Autonomous Database where the standby was provisioned in the same region as
+                  the primary database.
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        dataguard_region_type:
+            description:
+                - "The Autonomous Data Guard region type of the Autonomous Database. For Autonomous Databases on shared Exadata infrastructure, Data Guard
+                  associations have designated primary and standby regions, and these region types do not change when the database changes roles. The standby
+                  regions in Data Guard associations can be the same region designated as the primary region, or they can be remote regions. Certain database
+                  administrative operations may be available only in the primary region of the Data Guard association, and cannot be performed when the database
+                  using the \\"primary\\" role is operating in a remote Data Guard standby region.```"
+            returned: on success
+            type: string
+            sample: PRIMARY_DG_REGION
+        time_data_guard_role_changed:
+            description:
+                - "The date and time the Autonomous Data Guard role was switched for the Autonomous Database. For databases that have standbys in both the
+                  primary Data Guard region and a remote Data Guard standby region, this is the latest timestamp of either the database using the \\"primary\\"
+                  role in the primary Data Guard region, or database located in the remote Data Guard standby region."
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        peer_db_ids:
+            description:
+                - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of standby databases located in Autonomous Data
+                  Guard remote regions that are associated with the source database. Note that for shared Exadata infrastructure, standby databases located in
+                  the same region as the source primary database do not have OCIDs.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -933,15 +1001,21 @@ autonomous_database:
         "standby_db": {
             "lag_time_in_seconds": 56,
             "lifecycle_state": "PROVISIONING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00"
         },
         "role": "PRIMARY",
         "available_upgrade_versions": [],
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
         "key_store_wallet_name": "key_store_wallet_name_example",
+        "supported_regions_to_clone_to": [],
         "customer_contacts": [{
             "email": "email_example"
-        }]
+        }],
+        "time_local_data_guard_enabled": "2013-10-20T19:20:30+01:00",
+        "dataguard_region_type": "PRIMARY_DG_REGION",
+        "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
+        "peer_db_ids": []
     }
 """
 
@@ -1137,6 +1211,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                peer_db_id=self.module.params.get("peer_db_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1287,6 +1362,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 autonomous_database_id=self.module.params.get("autonomous_database_id"),
+                peer_db_id=self.module.params.get("peer_db_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1323,6 +1399,7 @@ def main():
             vault_id=dict(type="str"),
             is_using_oracle_managed_keys=dict(type="bool"),
             pdb_admin_password=dict(type="str", no_log=True),
+            peer_db_id=dict(type="str"),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
             timestamp=dict(type="str"),

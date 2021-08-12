@@ -310,6 +310,12 @@ cluster_networks:
                             returned: on success
                             type: string
                             sample: ATTACHING
+                availability_domains:
+                    description:
+                        - The availability domains for the instance pool.
+                    returned: on success
+                    type: list
+                    sample: []
         placement_configuration:
             description:
                 - ""
@@ -402,7 +408,8 @@ cluster_networks:
                 "port": 56,
                 "vnic_selection": "vnic_selection_example",
                 "lifecycle_state": "ATTACHING"
-            }]
+            }],
+            "availability_domains": []
         }],
         "placement_configuration": {
             "availability_domain": "Uocm:PHX-AD-1",

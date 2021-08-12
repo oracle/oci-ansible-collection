@@ -405,7 +405,7 @@ policy_config:
                           STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
                     returned: on success
                     type: string
-                    sample: ROUND_ROBIN
+                    sample: IP_HASH
                 name:
                     description:
                         - The name of the cookie used to track the persistence.
@@ -535,7 +535,7 @@ policy_config:
         "is_response_buffering_enabled": true,
         "cipher_group": "DEFAULT",
         "load_balancing_method": {
-            "method": "ROUND_ROBIN",
+            "method": "IP_HASH",
             "name": "name_example",
             "domain": "domain_example",
             "expiration_time_in_seconds": 56

@@ -206,12 +206,6 @@ unified_agent_configurations:
                             returned: on success
                             type: string
                             sample: LOG_TAIL
-                        channels:
-                            description:
-                                - ""
-                            returned: on success
-                            type: list
-                            sample: []
                         paths:
                             description:
                                 - ""
@@ -272,6 +266,18 @@ unified_agent_configurations:
                                     returned: on success
                                     type: int
                                     sample: 56
+                                delimiter:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: string
+                                    sample: delimiter_example
+                                keys:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: list
+                                    sample: []
                                 grok_name_key:
                                     description:
                                         - ""
@@ -284,12 +290,6 @@ unified_agent_configurations:
                                     returned: on success
                                     type: string
                                     sample: grok_failure_key_example
-                                multi_line_start_regexp:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: string
-                                    sample: multi_line_start_regexp_example
                                 patterns:
                                     description:
                                         - ""
@@ -338,12 +338,36 @@ unified_agent_configurations:
                                     returned: on success
                                     type: string
                                     sample: time_format_example
+                                format_firstline:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: string
+                                    sample: format_firstline_example
+                                format:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                multi_line_start_regexp:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: string
+                                    sample: multi_line_start_regexp_example
                                 message_key:
                                     description:
                                         - ""
                                     returned: on success
                                     type: string
                                     sample: message_key_example
+                                expression:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: string
+                                    sample: expression_example
                                 rfc5424_time_format:
                                     description:
                                         - ""
@@ -374,36 +398,12 @@ unified_agent_configurations:
                                     returned: on success
                                     type: string
                                     sample: STRING
-                                expression:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: string
-                                    sample: expression_example
-                                format_firstline:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: string
-                                    sample: format_firstline_example
-                                format:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                delimiter:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: string
-                                    sample: delimiter_example
-                                keys:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: list
-                                    sample: []
+                        channels:
+                            description:
+                                - ""
+                            returned: on success
+                            type: list
+                            sample: []
                 destination:
                     description:
                         - ""
@@ -451,7 +451,6 @@ unified_agent_configurations:
             "sources": [{
                 "name": "name_example",
                 "source_type": "LOG_TAIL",
-                "channels": [],
                 "paths": [],
                 "parser": {
                     "parser_type": "AUDITD",
@@ -462,9 +461,10 @@ unified_agent_configurations:
                     "is_estimate_current_event": true,
                     "is_keep_time_key": true,
                     "timeout_in_milliseconds": 56,
+                    "delimiter": "delimiter_example",
+                    "keys": [],
                     "grok_name_key": "grok_name_key_example",
                     "grok_failure_key": "grok_failure_key_example",
-                    "multi_line_start_regexp": "multi_line_start_regexp_example",
                     "patterns": [{
                         "pattern": "pattern_example",
                         "name": "name_example",
@@ -474,18 +474,18 @@ unified_agent_configurations:
                     }],
                     "time_type": "FLOAT",
                     "time_format": "time_format_example",
+                    "format_firstline": "format_firstline_example",
+                    "format": [],
+                    "multi_line_start_regexp": "multi_line_start_regexp_example",
                     "message_key": "message_key_example",
+                    "expression": "expression_example",
                     "rfc5424_time_format": "rfc5424_time_format_example",
                     "message_format": "RFC3164",
                     "is_with_priority": true,
                     "is_support_colonless_ident": true,
-                    "syslog_parser_type": "STRING",
-                    "expression": "expression_example",
-                    "format_firstline": "format_firstline_example",
-                    "format": [],
-                    "delimiter": "delimiter_example",
-                    "keys": []
-                }
+                    "syslog_parser_type": "STRING"
+                },
+                "channels": []
             }],
             "destination": {
                 "log_object_id": "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"

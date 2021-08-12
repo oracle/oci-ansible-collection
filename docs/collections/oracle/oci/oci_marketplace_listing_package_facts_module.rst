@@ -20,7 +20,7 @@ oracle.oci.oci_marketplace_listing_package_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -651,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The regions where you can deploy this listing package. (Some packages have restrictions that limit their deployment to United States regions only.)</div>
+                                            <div>The regions where you can deploy the listing package. (Some packages have restrictions that limit their deployment to United States regions only.)</div>
                                         <br/>
                                     </td>
             </tr>

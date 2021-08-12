@@ -178,6 +178,62 @@ listing_packages:
                     returned: on success
                     type: string
                     sample: name_example
+        app_catalog_listing_id:
+            description:
+                - The ID of the listing resource associated with this listing package. For more information, see
+                  L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
+            returned: on success
+            type: string
+            sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
+        app_catalog_listing_resource_version:
+            description:
+                - The resource version of the listing resource associated with this listing package.
+            returned: on success
+            type: string
+            sample: app_catalog_listing_resource_version_example
+        image_id:
+            description:
+                - The ID of the image corresponding to the package.
+            returned: on success
+            type: string
+            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+        regions:
+            description:
+                - The regions where you can deploy the listing package. (Some packages have restrictions that limit their deployment to United States regions
+                  only.)
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the region.
+                    returned: on success
+                    type: string
+                    sample: name_example
+                code:
+                    description:
+                        - The code of the region.
+                    returned: on success
+                    type: string
+                    sample: code_example
+                countries:
+                    description:
+                        - Countries in the region.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - The name of the item.
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        code:
+                            description:
+                                - A code assigned to the item.
+                            returned: on success
+                            type: string
+                            sample: code_example
         resource_link:
             description:
                 - Link to the orchestration resource.
@@ -226,62 +282,6 @@ listing_packages:
                     returned: on success
                     type: string
                     sample: hint_message_example
-        regions:
-            description:
-                - The regions where you can deploy this listing package. (Some packages have restrictions that limit their deployment to United States regions
-                  only.)
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the region.
-                    returned: on success
-                    type: string
-                    sample: name_example
-                code:
-                    description:
-                        - The code of the region.
-                    returned: on success
-                    type: string
-                    sample: code_example
-                countries:
-                    description:
-                        - Countries in the region.
-                    returned: on success
-                    type: complex
-                    contains:
-                        name:
-                            description:
-                                - The name of the item.
-                            returned: on success
-                            type: string
-                            sample: name_example
-                        code:
-                            description:
-                                - A code assigned to the item.
-                            returned: on success
-                            type: string
-                            sample: code_example
-        app_catalog_listing_id:
-            description:
-                - The ID of the listing resource associated with this listing package. For more information, see
-                  L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
-            returned: on success
-            type: string
-            sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
-        app_catalog_listing_resource_version:
-            description:
-                - The resource version of the listing resource associated with this listing package.
-            returned: on success
-            type: string
-            sample: app_catalog_listing_resource_version_example
-        image_id:
-            description:
-                - The ID of the image corresponding to the package.
-            returned: on success
-            type: string
-            sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The version of the specified package.
@@ -304,6 +304,17 @@ listing_packages:
         "operating_system": {
             "name": "name_example"
         },
+        "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
+        "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
+        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+        "regions": [{
+            "name": "name_example",
+            "code": "code_example",
+            "countries": [{
+                "name": "name_example",
+                "code": "code_example"
+            }]
+        }],
         "resource_link": "resource_link_example",
         "variables": [{
             "name": "name_example",
@@ -313,17 +324,6 @@ listing_packages:
             "is_mandatory": true,
             "hint_message": "hint_message_example"
         }],
-        "regions": [{
-            "name": "name_example",
-            "code": "code_example",
-            "countries": [{
-                "name": "name_example",
-                "code": "code_example"
-            }]
-        }],
-        "app_catalog_listing_id": "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx",
-        "app_catalog_listing_resource_version": "app_catalog_listing_resource_version_example",
-        "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "package_version": "package_version_example"
     }]
 """

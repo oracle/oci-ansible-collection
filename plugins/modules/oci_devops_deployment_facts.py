@@ -116,72 +116,96 @@ deployments:
             returned: on success
             type: complex
             contains:
-                deploy_artifact_id:
+                items:
                     description:
-                        - The OCID of an artifact
-                    returned: on success
-                    type: string
-                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                display_name:
-                    description:
-                        - Display name of the artifact. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                deploy_pipeline_stages:
-                    description:
-                        - ""
+                        - List of all artifacts used in the pipeline.
                     returned: on success
                     type: complex
                     contains:
-                        deploy_stage_id:
+                        deploy_artifact_id:
                             description:
-                                - The OCID of a stage
+                                - The OCID of an artifact
                             returned: on success
                             type: string
-                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - Display name of the stage. Avoid entering confidential information.
+                                - Display name of the artifact. Avoid entering confidential information.
                             returned: on success
                             type: string
                             sample: display_name_example
+                        deploy_pipeline_stages:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - List of stages.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        deploy_stage_id:
+                                            description:
+                                                - The OCID of a stage
+                                            returned: on success
+                                            type: string
+                                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                                        display_name:
+                                            description:
+                                                - Display name of the stage. Avoid entering confidential information.
+                                            returned: on success
+                                            type: string
+                                            sample: display_name_example
         deploy_pipeline_environments:
             description:
                 - ""
             returned: on success
             type: complex
             contains:
-                deploy_environment_id:
+                items:
                     description:
-                        - The OCID of an Environment
-                    returned: on success
-                    type: string
-                    sample: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-                display_name:
-                    description:
-                        - Display name of the environment. Avoid entering confidential information.
-                    returned: on success
-                    type: string
-                    sample: display_name_example
-                deploy_pipeline_stages:
-                    description:
-                        - ""
+                        - List of all environments used in the pipeline.
                     returned: on success
                     type: complex
                     contains:
-                        deploy_stage_id:
+                        deploy_environment_id:
                             description:
-                                - The OCID of a stage
+                                - The OCID of an Environment
                             returned: on success
                             type: string
-                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                            sample: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
-                                - Display name of the stage. Avoid entering confidential information.
+                                - Display name of the environment. Avoid entering confidential information.
                             returned: on success
                             type: string
                             sample: display_name_example
+                        deploy_pipeline_stages:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                items:
+                                    description:
+                                        - List of stages.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        deploy_stage_id:
+                                            description:
+                                                - The OCID of a stage
+                                            returned: on success
+                                            type: string
+                                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                                        display_name:
+                                            description:
+                                                - Display name of the stage. Avoid entering confidential information.
+                                            returned: on success
+                                            type: string
+                                            sample: display_name_example
         deployment_type:
             description:
                 - Specifies type of Deployment
@@ -249,42 +273,54 @@ deployments:
             returned: on success
             type: complex
             contains:
-                name:
+                items:
                     description:
-                        - Name of the parameter (case-sensitive).
+                        - List of arguments provided at the time of deployment.
                     returned: on success
-                    type: string
-                    sample: name_example
-                value:
-                    description:
-                        - value of the argument.
-                    returned: on success
-                    type: string
-                    sample: value_example
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        value:
+                            description:
+                                - value of the argument.
+                            returned: on success
+                            type: string
+                            sample: value_example
         deploy_artifact_override_arguments:
             description:
                 - ""
             returned: on success
             type: complex
             contains:
-                deploy_artifact_id:
+                items:
                     description:
-                        - The OCID of the artifact to which this parameter applies.
+                        - List of artifact override arguments at the time of deployment.
                     returned: on success
-                    type: string
-                    sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-                name:
-                    description:
-                        - Name of the parameter (case-sensitive).
-                    returned: on success
-                    type: string
-                    sample: name_example
-                value:
-                    description:
-                        - Value of the parameter.
-                    returned: on success
-                    type: string
-                    sample: value_example
+                    type: complex
+                    contains:
+                        deploy_artifact_id:
+                            description:
+                                - The OCID of the artifact to which this parameter applies.
+                            returned: on success
+                            type: string
+                            sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: string
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
+                            returned: on success
+                            type: string
+                            sample: value_example
         deployment_execution_progress:
             description:
                 - ""
@@ -320,7 +356,7 @@ deployments:
                                 - Deployment stage type.
                             returned: on success
                             type: string
-                            sample: deploy_stage_type_example
+                            sample: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
                         deploy_stage_id:
                             description:
                                 - The OCID of the stage.
@@ -351,12 +387,19 @@ deployments:
                             returned: on success
                             type: complex
                             contains:
-                                id:
+                                items:
                                     description:
-                                        - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
+                                        - A list of stage predecessors for a stage.
                                     returned: on success
-                                    type: string
-                                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                    type: complex
+                                    contains:
+                                        id:
+                                            description:
+                                                - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the
+                                                  pipeline's OCID.
+                                            returned: on success
+                                            type: string
+                                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         deploy_stage_execution_progress_details:
                             description:
                                 - Details about stage execution for all the target environments.
@@ -489,20 +532,28 @@ deployments:
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "deploy_pipeline_artifacts": {
-            "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "deploy_pipeline_stages": {
-                "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
-                "display_name": "display_name_example"
-            }
+            "items": [{
+                "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                "display_name": "display_name_example",
+                "deploy_pipeline_stages": {
+                    "items": [{
+                        "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
+                        "display_name": "display_name_example"
+                    }]
+                }
+            }]
         },
         "deploy_pipeline_environments": {
-            "deploy_environment_id": "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
-            "display_name": "display_name_example",
-            "deploy_pipeline_stages": {
-                "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
-                "display_name": "display_name_example"
-            }
+            "items": [{
+                "deploy_environment_id": "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+                "display_name": "display_name_example",
+                "deploy_pipeline_stages": {
+                    "items": [{
+                        "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
+                        "display_name": "display_name_example"
+                    }]
+                }
+            }]
         },
         "deployment_type": "PIPELINE_DEPLOYMENT",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -515,26 +566,32 @@ deployments:
         "lifecycle_state": "ACCEPTED",
         "lifecycle_details": "lifecycle_details_example",
         "deployment_arguments": {
-            "name": "name_example",
-            "value": "value_example"
+            "items": [{
+                "name": "name_example",
+                "value": "value_example"
+            }]
         },
         "deploy_artifact_override_arguments": {
-            "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
-            "name": "name_example",
-            "value": "value_example"
+            "items": [{
+                "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
+                "value": "value_example"
+            }]
         },
         "deployment_execution_progress": {
             "time_started": "2013-10-20T19:20:30+01:00",
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
-                "deploy_stage_type": "deploy_stage_type_example",
+                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
                 "time_started": "2013-10-20T19:20:30+01:00",
                 "time_finished": "2013-10-20T19:20:30+01:00",
                 "status": "ACCEPTED",
                 "deploy_stage_predecessors": {
-                    "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                    "items": [{
+                        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                    }]
                 },
                 "deploy_stage_execution_progress_details": [{
                     "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",

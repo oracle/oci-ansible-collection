@@ -171,10 +171,10 @@ boot_volume:
                         - ""
                     returned: on success
                     type: string
-                    sample: bootVolumeBackup
+                    sample: bootVolume
                 id:
                     description:
-                        - The OCID of the boot volume backup.
+                        - The OCID of the boot volume.
                     returned: on success
                     type: string
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -249,7 +249,7 @@ boot_volume:
         "size_in_gbs": 56,
         "size_in_mbs": 56,
         "source_details": {
-            "type": "bootVolumeBackup",
+            "type": "bootVolume",
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "time_created": "2013-10-20T19:20:30+01:00",

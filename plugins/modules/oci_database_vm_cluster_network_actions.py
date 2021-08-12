@@ -23,6 +23,8 @@ module: oci_database_vm_cluster_network_actions
 short_description: Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a VmClusterNetwork resource in Oracle Cloud Infrastructure
+    - For I(action=download_validation_report), downloads the network validation report file for the specified VM cluster network. Applies to Exadata
+      Cloud@Customer instances only.
     - For I(action=download_vm_cluster_network_config_file), downloads the configuration file for the specified VM cluster network. Applies to Exadata
       Cloud@Customer instances only.
     - For I(action=validate), validates the specified VM cluster network. Applies to Exadata Cloud@Customer instances only.
@@ -46,18 +48,32 @@ options:
               not exist. If the file already exists, the content will be overwritten. I(config_file_dest) is required if
               I(action=download_vm_cluster_network_config_file).
         type: str
+    validation_report_dest:
+        description:
+            - The destination file path to write the report to when I(action=download_validation_report). The file will be created if it does not exist. If the
+              file already exists, the content will be overwritten. I(validation_report_dest) is required if I(action=download_validation_report).
+            - Required for I(action=download_validation_report).
+        type: str
     action:
         description:
             - The action to perform on the VmClusterNetwork.
         type: str
         required: true
         choices:
+            - "download_validation_report"
             - "download_vm_cluster_network_config_file"
             - "validate"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action download_validation_report on vm_cluster_network
+  oci_database_vm_cluster_network_actions:
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+    validation_report_dest: /tmp/exadata_validation_report
+    action: download_validation_report
+
 - name: Perform action download_vm_cluster_network_config_file on vm_cluster_network
   oci_database_vm_cluster_network_actions:
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
@@ -123,7 +139,7 @@ vm_cluster_network:
                     sample: hostname_example
                 port:
                     description:
-                        - The SCAN port. Default is 1521.
+                        - The SCAN TCPIP port. Default is 1521.
                     returned: on success
                     type: int
                     sample: 56
@@ -300,6 +316,7 @@ except ImportError:
 class VmClusterNetworkActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        download_validation_report
         download_vm_cluster_network_config_file
         validate
     """
@@ -327,6 +344,28 @@ class VmClusterNetworkActionsHelperGen(OCIActionsHelperBase):
                 "exadata_infrastructure_id"
             ),
             vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
+        )
+
+    def download_validation_report(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.download_validation_report,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                exadata_infrastructure_id=self.module.params.get(
+                    "exadata_infrastructure_id"
+                ),
+                vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
         )
 
     def download_vm_cluster_network_config_file(self):
@@ -392,10 +431,15 @@ def main():
             exadata_infrastructure_id=dict(type="str", required=True),
             vm_cluster_network_id=dict(aliases=["id"], type="str", required=True),
             config_file_dest=dict(type="str"),
+            validation_report_dest=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["download_vm_cluster_network_config_file", "validate"],
+                choices=[
+                    "download_validation_report",
+                    "download_vm_cluster_network_config_file",
+                    "validate",
+                ],
             ),
         )
     )

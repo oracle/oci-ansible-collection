@@ -215,6 +215,38 @@ database_insights:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+            returned: on success
+            type: string
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name:
+            description:
+                - Name of database
+            returned: on success
+            type: string
+            sample: database_name_example
+        database_display_name:
+            description:
+                - Display name of database
+            returned: on success
+            type: string
+            sample: database_display_name_example
+        database_resource_type:
+            description:
+                - OCI database resource type
+            returned: on success
+            type: string
+            sample: autonomousdatabase
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+            returned: on success
+            type: dict
+            sample: {}
         enterprise_manager_identifier:
             description:
                 - Enterprise Manager Unique Identifier
@@ -311,38 +343,6 @@ database_insights:
                     returned: on success
                     type: string
                     sample: CREDENTIALS_BY_SOURCE
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
-            returned: on success
-            type: string
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        database_name:
-            description:
-                - Name of database
-            returned: on success
-            type: string
-            sample: database_name_example
-        database_display_name:
-            description:
-                - Display name of database
-            returned: on success
-            type: string
-            sample: database_display_name_example
-        database_resource_type:
-            description:
-                - OCI database resource type
-            returned: on success
-            type: string
-            sample: externalpluggabledatabase
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-            returned: on success
-            type: dict
-            sample: {}
         database_host_names:
             description:
                 - The hostnames for the database.
@@ -364,6 +364,11 @@ database_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_name": "database_name_example",
+        "database_display_name": "database_display_name_example",
+        "database_resource_type": "autonomousdatabase",
+        "db_additional_details": {},
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
         "enterprise_manager_entity_type": "enterprise_manager_entity_type_example",
@@ -382,11 +387,6 @@ database_insights:
             "credential_source_name": "credential_source_name_example",
             "credential_type": "CREDENTIALS_BY_SOURCE"
         },
-        "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
-        "database_name": "database_name_example",
-        "database_display_name": "database_display_name_example",
-        "database_resource_type": "externalpluggabledatabase",
-        "db_additional_details": {},
         "database_host_names": []
     }]
 """

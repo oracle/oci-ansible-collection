@@ -20,7 +20,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.27.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -366,7 +366,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AutoScalingConfiguration resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;max_resource_count&#x27;: 56, &#x27;min_resource_count&#x27;: 56, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;execution_schedule&#x27;: {&#x27;expression&#x27;: &#x27;0 15 10 ? * *&#x27;, &#x27;timezone&#x27;: &#x27;UTC&#x27;, &#x27;type&#x27;: &#x27;cron&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policy_type&#x27;: &#x27;policy_type_example&#x27;, &#x27;resource_action&#x27;: {&#x27;action&#x27;: &#x27;STOP&#x27;, &#x27;action_type&#x27;: &#x27;action_type_example&#x27;}, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cool_down_in_seconds&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;max_resource_count&#x27;: 56, &#x27;min_resource_count&#x27;: 56, &#x27;policies&#x27;: [{&#x27;capacity&#x27;: {&#x27;initial&#x27;: 56, &#x27;max&#x27;: 56, &#x27;min&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;execution_schedule&#x27;: {&#x27;expression&#x27;: &#x27;0 15 10 ? * *&#x27;, &#x27;timezone&#x27;: &#x27;UTC&#x27;, &#x27;type&#x27;: &#x27;cron&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;policy_type&#x27;: &#x27;scheduled&#x27;, &#x27;resource_action&#x27;: {&#x27;action&#x27;: &#x27;STOP&#x27;, &#x27;action_type&#x27;: &#x27;power&#x27;}, &#x27;rules&#x27;: [{&#x27;action&#x27;: {&#x27;type&#x27;: &#x27;CHANGE_COUNT_BY&#x27;, &#x27;value&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}], &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}], &#x27;resource&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;instancePool&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -786,7 +786,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of autoscaling policy.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">policy_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">scheduled</div>
                                     </td>
             </tr>
                                 <tr>
@@ -843,7 +843,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of resource action.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_type_example</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">power</div>
                                     </td>
             </tr>
                     

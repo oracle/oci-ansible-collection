@@ -124,24 +124,6 @@ data_asset:
                     returned: on success
                     type: string
                     sample: ORACLE_OBJECT_STORAGE
-                namespace:
-                    description:
-                        - Object storage namespace
-                    returned: on success
-                    type: string
-                    sample: namespace_example
-                bucket_name:
-                    description:
-                        - Object storage bucket name
-                    returned: on success
-                    type: string
-                    sample: bucket_name_example
-                object_name:
-                    description:
-                        - File name
-                    returned: on success
-                    type: string
-                    sample: object_name_example
                 version_specific_details:
                     description:
                         - ""
@@ -268,6 +250,24 @@ data_asset:
                     returned: on success
                     type: string
                     sample: table_name_example
+                namespace:
+                    description:
+                        - Object storage namespace
+                    returned: on success
+                    type: string
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - Object storage bucket name
+                    returned: on success
+                    type: string
+                    sample: bucket_name_example
+                object_name:
+                    description:
+                        - File name
+                    returned: on success
+                    type: string
+                    sample: object_name_example
         private_endpoint_id:
             description:
                 - OCID of Private Endpoint.
@@ -306,9 +306,6 @@ data_asset:
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "data_source_details": {
             "data_source_type": "ORACLE_OBJECT_STORAGE",
-            "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example",
-            "object_name": "object_name_example",
             "version_specific_details": {
                 "influx_version": "V_1_8",
                 "database_name": "database_name_example",
@@ -330,7 +327,10 @@ data_asset:
             "tnsnames_file_secret_id": "ocid1.tnsnamesfilesecret.oc1..xxxxxxEXAMPLExxxxxx",
             "truststore_file_secret_id": "ocid1.truststorefilesecret.oc1..xxxxxxEXAMPLExxxxxx",
             "database_name": "database_name_example",
-            "table_name": "table_name_example"
+            "table_name": "table_name_example",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example",
+            "object_name": "object_name_example"
         },
         "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},

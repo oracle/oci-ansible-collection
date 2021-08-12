@@ -196,7 +196,7 @@ auto_scaling_configuration:
                         - The type of autoscaling policy.
                     returned: on success
                     type: string
-                    sample: policy_type_example
+                    sample: scheduled
                 time_created:
                     description:
                         - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
@@ -249,7 +249,7 @@ auto_scaling_configuration:
                                 - The type of resource action.
                             returned: on success
                             type: string
-                            sample: action_type_example
+                            sample: power
                         action:
                             description:
                                 - ""
@@ -363,7 +363,7 @@ auto_scaling_configuration:
             },
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "display_name": "display_name_example",
-            "policy_type": "policy_type_example",
+            "policy_type": "scheduled",
             "time_created": "2016-08-25T21:10:29.600Z",
             "is_enabled": true,
             "execution_schedule": {
@@ -372,7 +372,7 @@ auto_scaling_configuration:
                 "expression": "0 15 10 ? * *"
             },
             "resource_action": {
-                "action_type": "action_type_example",
+                "action_type": "power",
                 "action": "STOP"
             },
             "rules": [{

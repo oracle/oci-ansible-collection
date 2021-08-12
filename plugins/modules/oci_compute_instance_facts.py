@@ -480,7 +480,13 @@ instances:
                           the boot volume OCID.
                     returned: on success
                     type: string
-                    sample: source_type_example
+                    sample: bootVolume
+                boot_volume_id:
+                    description:
+                        - The OCID of the boot volume used to boot the instance.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
                         - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 16384 GB (16TB).
@@ -499,12 +505,6 @@ instances:
                     returned: on success
                     type: string
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-                boot_volume_id:
-                    description:
-                        - The OCID of the boot volume used to boot the instance.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -682,11 +682,11 @@ instances:
             "local_disk_description": "local_disk_description_example"
         },
         "source_details": {
-            "source_type": "source_type_example",
+            "source_type": "bootVolume",
+            "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
-            "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "system_tags": {},
         "time_created": "2016-08-25T21:10:29.600Z",

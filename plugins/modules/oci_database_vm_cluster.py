@@ -150,6 +150,26 @@ options:
                 choices:
                     - "APPLY"
                     - "PRECHECK"
+    update_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            update_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update.
+                    - This parameter is updatable.
+                type: str
+            update_action:
+                description:
+                    - The update action to perform.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ROLLING_APPLY"
+                    - "PRECHECK"
+                    - "ROLLBACK"
     state:
         description:
             - The state of the VmCluster.
@@ -165,20 +185,13 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vm_cluster
   oci_database_vm_cluster:
-    display_name: "vmCluster"
-    compartment_id: "ocid1.tenancy.oc1.unique_ID"
-    exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
-    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
-    cpu_core_count: "4"
-    memory_size_in_gbs: "30"
-    db_node_storage_size_in_gbs: "60"
-    data_storage_size_in_tbs: "84"
-    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
-    license_model: "LICENSE_INCLUDED"
-    is_sparse_diskgroup_enabled: "false"
-    is_local_backup_enabled: "true"
-    time_zone: "PST"
-    gi_version: "19.1.0.0"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    cpu_core_count: 10
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+    gi_version: gi_version_example
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -195,8 +208,8 @@ EXAMPLES = """
 
 - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
-    compartment_id: ocid1.tenancy.oc1.unique_ID
-    display_name: vmCluster
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -319,6 +332,12 @@ vm_cluster:
             returned: on success
             type: string
             sample: gi_version_example
+        system_version:
+            description:
+                - Operating system version of the image.
+            returned: on success
+            type: string
+            sample: system_version_example
         ssh_public_keys:
             description:
                 - The public key portion of one or more key pairs used for SSH access to the VM cluster.
@@ -365,6 +384,7 @@ vm_cluster:
         "data_storage_size_in_tbs": 1.2,
         "shape": "shape_example",
         "gi_version": "gi_version_example",
+        "system_version": "system_version_example",
         "ssh_public_keys": [ ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz... ],
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},
@@ -540,6 +560,15 @@ def main():
                     patch_id=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     action=dict(type="str", choices=["APPLY", "PRECHECK"]),
+                ),
+            ),
+            update_details=dict(
+                type="dict",
+                options=dict(
+                    update_id=dict(type="str"),
+                    update_action=dict(
+                        type="str", choices=["ROLLING_APPLY", "PRECHECK", "ROLLBACK"]
+                    ),
                 ),
             ),
             state=dict(type="str", default="present", choices=["present", "absent"]),

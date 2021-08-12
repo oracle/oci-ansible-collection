@@ -131,25 +131,19 @@ compute_image_capability_schema:
                         - The image capability schema descriptor type for the capability
                     returned: on success
                     type: string
-                    sample: descriptor_type_example
+                    sample: boolean
                 source:
                     description:
                         - ""
                     returned: on success
                     type: string
                     sample: GLOBAL
-                enum_string_values:
-                    description:
-                        - the list of values for the enum
-                    returned: on success
-                    type: list
-                    sample: []
-                enum_string_default_value:
+                boolean_default_value:
                     description:
                         - the default value
                     returned: on success
-                    type: string
-                    sample: default_value_example
+                    type: bool
+                    sample: true
                 enum_integer_values:
                     description:
                         - the list of values for the enum
@@ -162,12 +156,18 @@ compute_image_capability_schema:
                     returned: on success
                     type: int
                     sample: 56
-                boolean_default_value:
+                enum_string_values:
+                    description:
+                        - the list of values for the enum
+                    returned: on success
+                    type: list
+                    sample: []
+                enum_string_default_value:
                     description:
                         - the default value
                     returned: on success
-                    type: bool
-                    sample: true
+                    type: string
+                    sample: default_value_example
         time_created:
             description:
                 - The date and time the compute image capability schema was created, in the format defined by
@@ -186,13 +186,13 @@ compute_image_capability_schema:
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "schema_data": {
-            "descriptor_type": "descriptor_type_example",
+            "descriptor_type": "boolean",
             "source": "GLOBAL",
-            "enum_string_values": [],
-            "enum_string_default_value": "default_value_example",
+            "boolean_default_value": true,
             "enum_integer_values": [],
             "enum_integer_default_value": 56,
-            "boolean_default_value": true
+            "enum_string_values": [],
+            "enum_string_default_value": "default_value_example"
         },
         "time_created": "2016-08-25T21:10:29.600Z"
     }

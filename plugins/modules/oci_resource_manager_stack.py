@@ -296,6 +296,32 @@ stack:
                     returned: on success
                     type: string
                     sample: working_directory_example
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
+                          for creating the stack. The new stack will include definitions for supported
+                          resource types in this compartment.
+                    returned: on success
+                    type: string
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                region:
+                    description:
+                        - The region to use for creating the stack. The new stack will include definitions for
+                          supported resource types in this region.
+                    returned: on success
+                    type: string
+                    sample: region_example
+                services_to_discover:
+                    description:
+                        - "Filter for L(services to use with Resource
+                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
+                          otherwise).
+                          If not specified, then all services at the scope of the given compartment OCID are used."
+                    returned: on success
+                    type: list
+                    sample: []
                 configuration_source_provider_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
@@ -314,13 +340,6 @@ stack:
                     returned: on success
                     type: string
                     sample: branch_name_example
-                region:
-                    description:
-                        - "The name of the bucket's region.
-                          Example: `PHX`"
-                    returned: on success
-                    type: string
-                    sample: PHX
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
@@ -333,25 +352,6 @@ stack:
                     returned: on success
                     type: string
                     sample: bucket_name_example
-                compartment_id:
-                    description:
-                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use
-                          for creating the stack. The new stack will include definitions for supported
-                          resource types in this compartment.
-                    returned: on success
-                    type: string
-                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-                services_to_discover:
-                    description:
-                        - "Filter for L(services to use with Resource
-                          Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
-                          For example, \\"database\\" limits resource discovery to resource types within the Database service.
-                          The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level
-                          otherwise).
-                          If not specified, then all services at the scope of the given compartment OCID are used."
-                    returned: on success
-                    type: list
-                    sample: []
         variables:
             description:
                 - "Terraform variables associated with this resource.
@@ -408,14 +408,14 @@ stack:
         "config_source": {
             "config_source_type": "ZIP_UPLOAD",
             "working_directory": "working_directory_example",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "region": "region_example",
+            "services_to_discover": [],
             "configuration_source_provider_id": "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx",
             "repository_url": "repository_url_example",
             "branch_name": "branch_name_example",
-            "region": "PHX",
             "namespace": "namespace_example",
-            "bucket_name": "bucket_name_example",
-            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-            "services_to_discover": []
+            "bucket_name": "bucket_name_example"
         },
         "variables": {},
         "terraform_version": "0.12.x",

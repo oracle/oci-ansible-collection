@@ -128,7 +128,7 @@ instance_configurations:
                         - The type of instance details. Supported instanceType is compute
                     returned: on success
                     type: string
-                    sample: instance_type_example
+                    sample: compute
                 block_volumes:
                     description:
                         - ""
@@ -275,10 +275,10 @@ instance_configurations:
                                                 - ""
                                             returned: on success
                                             type: string
-                                            sample: volumeBackup
+                                            sample: volume
                                         id:
                                             description:
-                                                - The OCID of the volume backup.
+                                                - The OCID of the volume.
                                             returned: on success
                                             type: string
                                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -571,7 +571,13 @@ instance_configurations:
                                           the boot volume OCID.
                                     returned: on success
                                     type: string
-                                    sample: source_type_example
+                                    sample: bootVolume
+                                boot_volume_id:
+                                    description:
+                                        - The OCID of the boot volume used to boot the instance.
+                                    returned: on success
+                                    type: string
+                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_size_in_gbs:
                                     description:
                                         - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
@@ -585,12 +591,6 @@ instance_configurations:
                                     returned: on success
                                     type: string
                                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-                                boot_volume_id:
-                                    description:
-                                        - The OCID of the boot volume used to boot the instance.
-                                    returned: on success
-                                    type: string
-                                    sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                         fault_domain:
                             description:
                                 - A fault domain is a grouping of hardware and infrastructure within an availability domain.
@@ -966,7 +966,7 @@ instance_configurations:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_details": {
-            "instance_type": "instance_type_example",
+            "instance_type": "compute",
             "block_volumes": [{
                 "attach_details": {
                     "display_name": "display_name_example",
@@ -988,7 +988,7 @@ instance_configurations:
                     "vpus_per_gb": 56,
                     "size_in_gbs": 56,
                     "source_details": {
-                        "type": "volumeBackup",
+                        "type": "volume",
                         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                     }
                 },
@@ -1027,10 +1027,10 @@ instance_configurations:
                     "numa_nodes_per_socket": "NPS0"
                 },
                 "source_details": {
-                    "source_type": "source_type_example",
+                    "source_type": "bootVolume",
+                    "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
                     "boot_volume_size_in_gbs": 56,
-                    "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-                    "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
+                    "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 },
                 "fault_domain": "FAULT-DOMAIN-1",
                 "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",

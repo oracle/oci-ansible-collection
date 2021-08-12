@@ -213,12 +213,6 @@ instance_agent_commands:
                             returned: on success
                             type: string
                             sample: TEXT
-                        output_uri:
-                            description:
-                                - The Object Storage URL or pre-authenticated request (PAR) for the command output.
-                            returned: on success
-                            type: string
-                            sample: output_uri_example
                         bucket_name:
                             description:
                                 - The Object Storage bucket for the command output.
@@ -237,6 +231,12 @@ instance_agent_commands:
                             returned: on success
                             type: string
                             sample: object_name_example
+                        output_uri:
+                            description:
+                                - The Object Storage URL or pre-authenticated request (PAR) for the command output.
+                            returned: on success
+                            type: string
+                            sample: output_uri_example
         instance_agent_command_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the command.
@@ -266,10 +266,10 @@ instance_agent_commands:
             },
             "output": {
                 "output_type": "TEXT",
-                "output_uri": "output_uri_example",
                 "bucket_name": "bucket_name_example",
                 "namespace_name": "namespace_name_example",
-                "object_name": "object_name_example"
+                "object_name": "object_name_example",
+                "output_uri": "output_uri_example"
             }
         },
         "instance_agent_command_id": "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
