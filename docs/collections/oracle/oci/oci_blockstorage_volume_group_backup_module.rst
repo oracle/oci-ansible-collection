@@ -20,7 +20,7 @@ oracle.oci.oci_blockstorage_volume_group_backup -- Manage a VolumeGroupBackup re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a VolumeGroupBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new backup volume group of the specified volume group. For more information, see `Volume Groups <https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm>`_.
-- This resource has the following action operations in the :ref:`oci_volume_group_backup_actions <ansible_collections.oci_volume_group_backup_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oci_volume_group_backup_actions <ansible_collections.oci_volume_group_backup_actions_module>` module: change_compartment, copy.
 
 
 .. Aliases

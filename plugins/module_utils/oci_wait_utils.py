@@ -19,6 +19,7 @@ try:
     from oci.util import to_dict
     from oci.exceptions import ServiceError
     from oci.core import ComputeClient
+    from oci.core import BlockstorageClient
     from oci.retry.retry import RetryStrategyBuilder
 
     HAS_OCI_PY_SDK = True
@@ -325,6 +326,62 @@ class WorkRequestWaiter(BaseWaiter):
 
     def get_resource_from_wait_response(self, wait_response):
         get_response = self.resource_helper.get_resource()
+        return get_response.data
+
+
+class VolumeBackupCopyOperationWorkRequestWaiter(WorkRequestWaiter):
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        if hasattr(wait_response.data, "resources"):
+            identifier = get_resource_identifier_from_wait_response(
+                wait_response.data, entity_type
+            )
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+
+        destination_region_client = BlockstorageClient(
+            dict(
+                self.resource_helper.client._config,
+                region=self.resource_helper.module.params["destination_region"],
+            ),
+            **self.resource_helper.client._kwargs
+        )
+        get_response = destination_region_client.get_volume_backup(
+            volume_backup_id=identifier
+        )
+        return get_response.data
+
+
+class BootVolumeBackupCopyOperationWorkRequestWaiter(WorkRequestWaiter):
+    def get_resource_from_wait_response(self, wait_response):
+        entity_type = self.resource_helper.get_entity_type()
+        identifier = None
+        if hasattr(wait_response.data, "resources"):
+            identifier = get_resource_identifier_from_wait_response(
+                wait_response.data, entity_type
+            )
+        if not identifier:
+            self.resource_helper.module.fail_json(
+                msg="Could not get the resource identifier from work request response {0}".format(
+                    to_dict(wait_response.data)
+                )
+            )
+
+        destination_region_client = BlockstorageClient(
+            dict(
+                self.resource_helper.client._config,
+                region=self.resource_helper.module.params["destination_region"],
+            ),
+            **self.resource_helper.client._kwargs
+        )
+        get_response = destination_region_client.get_boot_volume_backup(
+            boot_volume_backup_id=identifier
+        )
         return get_response.data
 
 
@@ -732,13 +789,18 @@ _WAITER_OVERRIDE_MAP = {
         "core",
         "boot_volume_backup",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
-    ): NoneWaiter,
+    ): BootVolumeBackupCopyOperationWorkRequestWaiter,
     # The generated copy method in volume_backup_actions waits on the source backup lifecycle state. But the source
     # backup remains in AVAILABLE state when the copy is in progress. So override to not wait here and add a
     # customisation to wait until the copy is done.
     (
         "core",
         "volume_backup",
+        "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
+    ): VolumeBackupCopyOperationWorkRequestWaiter,
+    (
+        "core",
+        "volume_group_backup",
         "{0}_{1}".format("COPY", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
     (

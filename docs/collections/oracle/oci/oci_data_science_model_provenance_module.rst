@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_provenance -- Manage a ModelProvenance resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -348,6 +348,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-training_id"></div>
+                    <b>training_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-training_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a training session(Job or NotebookSession) in which the model was trained. It is used for model reproducibility purposes.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-training_script"></div>
                     <b>training_script</b>
                     <a class="ansibleOptionLink" href="#parameter-training_script" title="Permalink to this option"></a>
@@ -428,7 +444,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ModelProvenance resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;git_branch&#x27;: &#x27;master&#x27;, &#x27;git_commit&#x27;: &#x27;0978b63&#x27;, &#x27;repository_url&#x27;: &#x27;http://git-remote.com/my-repo&#x27;, &#x27;script_dir&#x27;: &#x27;script_dir_example&#x27;, &#x27;training_script&#x27;: &#x27;model-dev/model1/model-training.ipynb&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;git_branch&#x27;: &#x27;master&#x27;, &#x27;git_commit&#x27;: &#x27;0978b63&#x27;, &#x27;repository_url&#x27;: &#x27;http://git-remote.com/my-repo&#x27;, &#x27;script_dir&#x27;: &#x27;script_dir_example&#x27;, &#x27;training_id&#x27;: &#x27;ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3...&#x27;, &#x27;training_script&#x27;: &#x27;model-dev/model1/model-training.ipynb&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -501,6 +517,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">script_dir_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-model_provenance/training_id"></div>
+                    <b>training_id</b>
+                    <a class="ansibleOptionLink" href="#return-model_provenance/training_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a training session(Job or NotebookSession) in which the model was trained. It is used for model reproducibility purposes.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3...</div>
                                     </td>
             </tr>
                                 <tr>

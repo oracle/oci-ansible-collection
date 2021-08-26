@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a VolumeGroupBackup resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new backup volume group of the specified volume group.
       For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
-    - "This resource has the following action operations in the M(oci_volume_group_backup_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oci_volume_group_backup_actions) module: change_compartment, copy."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

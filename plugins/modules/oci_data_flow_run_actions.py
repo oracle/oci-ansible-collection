@@ -222,6 +222,12 @@ run:
             returned: on success
             type: string
             sample: logs_bucket_uri_example
+        metastore_id:
+            description:
+                - The OCID of OCI Hive Metastore.
+            returned: on success
+            type: string
+            sample: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors:
             description:
                 - The number of executor VMs requested.
@@ -368,6 +374,7 @@ run:
         "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "ACCEPTED",
         "logs_bucket_uri": "logs_bucket_uri_example",
+        "metastore_id": "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx",
         "num_executors": 56,
         "opc_request_id": "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",

@@ -457,6 +457,12 @@ except ImportError:
 class DeploymentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_default_module_wait_timeout(self):
+        return 3600
+
+    def get_entity_type(self):
+        return "goldengatedeployment"
+
     def get_module_resource_id_param(self):
         return "deployment_id"
 

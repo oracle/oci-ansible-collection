@@ -489,7 +489,7 @@ instances:
                     sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
-                        - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 16384 GB (16TB).
+                        - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).
                     returned: on success
                     type: int
                     sample: 56

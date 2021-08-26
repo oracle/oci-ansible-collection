@@ -120,6 +120,34 @@ db_nodes:
             returned: on success
             type: string
             sample: "ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx"
+        host_ip_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the host IP address associated with the database node.
+                - "**Note:** Applies only to Exadata Cloud Service."
+            returned: on success
+            type: string
+            sample: "ocid1.hostip.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_ip_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup IP address associated with the database node.
+                - "**Note:** Applies only to Exadata Cloud Service."
+            returned: on success
+            type: string
+            sample: "ocid1.backupip.oc1..xxxxxxEXAMPLExxxxxx"
+        vnic2_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second VNIC.
+                - "**Note:** Applies only to Exadata Cloud Service."
+            returned: on success
+            type: string
+            sample: "ocid1.vnic2.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_vnic2_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second backup VNIC.
+                - "**Note:** Applies only to Exadata Cloud Service."
+            returned: on success
+            type: string
+            sample: "ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the database node.
@@ -191,6 +219,10 @@ db_nodes:
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "vnic_id": "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx",
         "backup_vnic_id": "ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx",
+        "host_ip_id": "ocid1.hostip.oc1..xxxxxxEXAMPLExxxxxx",
+        "backup_ip_id": "ocid1.backupip.oc1..xxxxxxEXAMPLExxxxxx",
+        "vnic2_id": "ocid1.vnic2.oc1..xxxxxxEXAMPLExxxxxx",
+        "backup_vnic2_id": "ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "PROVISIONING",
         "hostname": "hostname_example",
         "fault_domain": "fault_domain_example",

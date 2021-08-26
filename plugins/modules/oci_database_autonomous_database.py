@@ -295,6 +295,16 @@ options:
                     - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     - Applicable when source is 'DATABASE'
                 type: str
+    autonomous_maintenance_schedule_type:
+        description:
+            - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
+              Database
+              follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the
+              normal cycle.
+        type: str
+        choices:
+            - "EARLY"
+            - "REGULAR"
     source_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -1080,6 +1090,15 @@ autonomous_database:
             returned: on success
             type: list
             sample: []
+        autonomous_maintenance_schedule_type:
+            description:
+                - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
+                  Database
+                  follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the
+                  normal cycle.
+            returned: on success
+            type: string
+            sample: EARLY
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1180,7 +1199,8 @@ autonomous_database:
         "time_local_data_guard_enabled": "2013-10-20T19:20:30+01:00",
         "dataguard_region_type": "PRIMARY_DG_REGION",
         "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
-        "peer_db_ids": []
+        "peer_db_ids": [],
+        "autonomous_maintenance_schedule_type": "EARLY"
     }
 """
 
@@ -1393,6 +1413,9 @@ def main():
             ),
             customer_contacts=dict(
                 type="list", elements="dict", options=dict(email=dict(type="str"))
+            ),
+            autonomous_maintenance_schedule_type=dict(
+                type="str", choices=["EARLY", "REGULAR"]
             ),
             source_id=dict(type="str"),
             clone_type=dict(type="str", choices=["FULL", "METADATA"]),

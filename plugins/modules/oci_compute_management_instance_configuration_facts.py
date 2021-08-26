@@ -581,7 +581,7 @@ instance_configurations:
                                 boot_volume_size_in_gbs:
                                     description:
                                         - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
-                                          value is 16384 GB (16TB).
+                                          value is 32,768 GB (32 TB).
                                     returned: on success
                                     type: int
                                     sample: 56

@@ -19,10 +19,6 @@ class DeploymentHelperCustom:
             create_model_dict.get("ogg_data").pop("key", None)
         return create_model_dict
 
-    # I have seen the operations getting timedout sometimes. So increasing the timeout to avoid timeout failures.
-    def get_default_module_wait_timeout(self):
-        return 3600
-
 
 class DeploymentActionsHelperCustom:
     def get_action_idempotent_states(self, action):

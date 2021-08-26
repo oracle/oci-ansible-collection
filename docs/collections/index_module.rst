@@ -269,15 +269,12 @@ oracle.oci
 * :ref:`oracle.oci.oci_data_safe_target_database <ansible_collections.oracle.oci.oci_data_safe_target_database_module>` -- Manage a TargetDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_target_database_actions <ansible_collections.oracle.oci.oci_data_safe_target_database_actions_module>` -- Perform actions on a TargetDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_target_database_facts <ansible_collections.oracle.oci.oci_data_safe_target_database_facts_module>` -- Fetches details about one or multiple TargetDatabase resources in Oracle Cloud Infrastructure
-* :ref:`oracle.oci.oci_data_science_model <ansible_collections.oracle.oci.oci_data_science_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
-* :ref:`oracle.oci.oci_data_science_model_actions <ansible_collections.oracle.oci.oci_data_science_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_artifact <ansible_collections.oracle.oci.oci_data_science_model_artifact_module>` -- Manage a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_artifact_facts <ansible_collections.oracle.oci.oci_data_science_model_artifact_facts_module>` -- Fetches details about a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_deployment <ansible_collections.oracle.oci.oci_data_science_model_deployment_module>` -- Manage a ModelDeployment resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_deployment_actions <ansible_collections.oracle.oci.oci_data_science_model_deployment_actions_module>` -- Perform actions on a ModelDeployment resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_deployment_facts <ansible_collections.oracle.oci.oci_data_science_model_deployment_facts_module>` -- Fetches details about one or multiple ModelDeployment resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_deployment_shape_facts <ansible_collections.oracle.oci.oci_data_science_model_deployment_shape_facts_module>` -- Fetches details about one or multiple ModelDeploymentShape resources in Oracle Cloud Infrastructure
-* :ref:`oracle.oci.oci_data_science_model_facts <ansible_collections.oracle.oci.oci_data_science_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_provenance <ansible_collections.oracle.oci.oci_data_science_model_provenance_module>` -- Manage a ModelProvenance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_model_provenance_facts <ansible_collections.oracle.oci.oci_data_science_model_provenance_facts_module>` -- Fetches details about a ModelProvenance resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_science_notebook_session <ansible_collections.oracle.oci.oci_data_science_notebook_session_module>` -- Manage a NotebookSession resource in Oracle Cloud Infrastructure
@@ -707,6 +704,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_mysql_analytics_cluster_memory_estimate_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_actions_module>` -- Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_memory_estimate_facts_module>` -- Fetches details about a AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_backup <ansible_collections.oracle.oci.oci_mysql_backup_module>` -- Manage a Backup resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_mysql_backup_actions <ansible_collections.oracle.oci.oci_mysql_backup_actions_module>` -- Perform actions on a Backup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_backup_facts <ansible_collections.oracle.oci.oci_mysql_backup_facts_module>` -- Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_channel <ansible_collections.oracle.oci.oci_mysql_channel_module>` -- Manage a Channel resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_mysql_channel_actions <ansible_collections.oracle.oci.oci_mysql_channel_actions_module>` -- Perform actions on a Channel resource in Oracle Cloud Infrastructure
