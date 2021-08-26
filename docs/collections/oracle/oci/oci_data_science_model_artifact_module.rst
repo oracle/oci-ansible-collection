@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -195,7 +195,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The content disposition of the body.</div>
+                                            <div>This header allows you to specify a filename during upload. This file name is used to dispose of the file contents while downloading the file. If this optional field is not populated in the request, then the OCID of the model is used for the file name when downloading. Example: `{&quot;Content-Disposition&quot;: &quot;attachment&quot; &quot;filename&quot;=&quot;model.tar.gz&quot; &quot;Content-Length&quot;: &quot;2347&quot; &quot;Content-Type&quot;: &quot;application/gzip&quot;}`</div>
                                                         </td>
             </tr>
                                 <tr>

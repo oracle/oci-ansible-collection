@@ -20,7 +20,7 @@ oracle.oci.oci_waas_captchas -- Manage a Captchas resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

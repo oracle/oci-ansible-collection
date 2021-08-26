@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_backup -- Manage a Backup resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.28.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,6 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Backup resource in Oracle Cloud Infrastructure
 - For *state=present*, create a backup of a DB System.
+- This resource has the following action operations in the :ref:`oci_backup_actions <ansible_collections.oci_backup_actions_module>` module: change_compartment.
 
 
 .. Aliases

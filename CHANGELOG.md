@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.29.0] - 2021-08-26
+
+## Added
+- Support for DBAAS Exacs Network Bonding
+- Support for Autonomous Database Create with Early Patching
+- Support for manually copying volume group backups across regions in the Block Volume service
+- Support for work requests for the copy volume backup and copy boot volume backup operations in the Block Volume service
+- Support MDS Backup Change Compartment
+- `metastoreId` property to specify external hive metastore during Application Creation for Data Flow. Add `metastoreId` property to override metastore during Run.
+- Support for Model Catalog v2.0 features including Provenance, Metadata, Schema, Artifact introspection
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.43.2
+
 ## [2.28.0] - 2021-08-12
 
 ## Added

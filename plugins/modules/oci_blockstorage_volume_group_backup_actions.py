@@ -26,6 +26,8 @@ description:
     - For I(action=change_compartment), moves a volume group backup into a different compartment within the same tenancy.
       For information about moving resources between compartments,
       see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=copy), creates a volume group backup copy in specified region. For general information about volume group backups,
+      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm)
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -38,8 +40,32 @@ options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the volume group backup to.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    destination_region:
+        description:
+            - The name of the destination region.
+            - "Example: `us-ashburn-1`"
+            - Required for I(action=copy).
+        type: str
+    display_name:
+        description:
+            - A user-friendly name for the volume group backup. Does not have to be unique and it's changeable.
+              Avoid entering confidential information.
+            - Applicable only for I(action=copy).
+        type: str
+        aliases: ["name"]
+    kms_key_id:
+        description:
+            - The OCID of the Key Management key in the destination region which will be the master encryption key
+              for the copied volume group backup.
+              If you do not specify this attribute the volume group backup will be encrypted with the Oracle-provided encryption
+              key when it is copied to the destination region.
+            - For more information about the Key Management service and encryption keys, see
+              L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
+              L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+            - Applicable only for I(action=copy).
+        type: str
     action:
         description:
             - The action to perform on the VolumeGroupBackup.
@@ -47,7 +73,8 @@ options:
         required: true
         choices:
             - "change_compartment"
-extends_documentation_fragment: [ oracle.oci.oracle ]
+            - "copy"
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
@@ -56,6 +83,12 @@ EXAMPLES = """
     volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action copy on volume_group_backup
+  oci_blockstorage_volume_group_backup_actions:
+    volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    destination_region: us-ashburn-1
+    action: copy
 
 """
 
@@ -226,6 +259,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.core import BlockstorageClient
     from oci.core.models import ChangeVolumeGroupBackupCompartmentDetails
+    from oci.core.models import CopyVolumeGroupBackupDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -236,6 +270,7 @@ class VolumeGroupBackupActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        copy
     """
 
     @staticmethod
@@ -277,6 +312,29 @@ class VolumeGroupBackupActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def copy(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CopyVolumeGroupBackupDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.copy_volume_group_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                volume_group_backup_id=self.module.params.get("volume_group_backup_id"),
+                copy_volume_group_backup_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 VolumeGroupBackupActionsHelperCustom = get_custom_class(
     "VolumeGroupBackupActionsHelperCustom"
@@ -291,13 +349,18 @@ class ResourceHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=False, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
             volume_group_backup_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            compartment_id=dict(type="str"),
+            destination_region=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            kms_key_id=dict(type="str"),
+            action=dict(
+                type="str", required=True, choices=["change_compartment", "copy"]
+            ),
         )
     )
 

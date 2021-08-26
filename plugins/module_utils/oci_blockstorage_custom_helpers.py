@@ -75,29 +75,6 @@ class BootVolumeBackupActionsHelperCustom:
             action, resource, *args, **kwargs
         )
 
-    def copy(self, *args, **kwargs):
-        # The generated copy waits on the source backup lifecycle state. But the source backup remains in AVAILABLE
-        # state when the copy is in progress. So override to wait until the copy is done by checking the destination
-        # backup lifecycle state instead.
-        destination_backup = super(BootVolumeBackupActionsHelperCustom, self).copy(
-            *args, **kwargs
-        )
-        destination_region_client = BlockstorageClient(
-            dict(
-                self.client._config, region=self.module.params.get("destination_region")
-            ),
-            **self.client._kwargs
-        )
-        return oci.wait_until(
-            destination_region_client,
-            destination_region_client.get_boot_volume_backup(
-                boot_volume_backup_id=destination_backup.id
-            ),
-            evaluate_response=lambda r: r.data.lifecycle_state
-            in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.get_wait_timeout(),
-        ).data
-
 
 class VolumeBackupActionsHelperCustom:
     def is_action_necessary(self, action, resource, *args, **kwargs):
@@ -139,28 +116,11 @@ class VolumeBackupActionsHelperCustom:
             action, resource, *args, **kwargs
         )
 
-    def copy(self, *args, **kwargs):
-        # The generated copy waits on the source backup lifecycle state. But the source backup remains in AVAILABLE
-        # state when the copy is in progress. So override to wait until the copy is done by checking the destination
-        # backup lifecycle state instead.
-        destination_backup = super(VolumeBackupActionsHelperCustom, self).copy(
-            *args, **kwargs
-        )
-        destination_region_client = BlockstorageClient(
-            dict(
-                self.client._config, region=self.module.params.get("destination_region")
-            ),
-            **self.client._kwargs
-        )
-        return oci.wait_until(
-            destination_region_client,
-            destination_region_client.get_volume_backup(
-                volume_backup_id=destination_backup.id
-            ),
-            evaluate_response=lambda r: r.data.lifecycle_state
-            in oci_common_utils.DEFAULT_READY_STATES,
-            max_wait_seconds=self.get_wait_timeout(),
-        ).data
+    # as we are waiting for copy by default.
+    # increasing the default wait timeout to 2 hours
+    # as this operation can be lengthy depending on the volume size
+    def get_wait_timeout(self):
+        return 7200
 
 
 class BootVolumeKmsKeyHelperCustom:
@@ -337,3 +297,76 @@ class VolumeHelperCustom:
             self.client, resource.id
         )
         return resource_dict
+
+
+class VolumeGroupBackupActionsHelperCustom:
+    def is_action_necessary(self, action, resource, *args, **kwargs):
+        if action.upper() == "COPY":
+            # volume_group_backup copied from another backup will have the source backup in source_volume_group_backup_id parameter.
+            # Use it to find if the copy already exists in the destination region.
+            if not self.module.params.get("destination_region"):
+                self.module.fail_json(
+                    msg="destination_required parameter required for copying the backup."
+                )
+            this_backup = resource
+            destination_region_client = BlockstorageClient(
+                dict(
+                    self.client._config, region=self.module.params["destination_region"]
+                ),
+                **self.client._kwargs
+            )
+            for destination_region_backup in [
+                volume_group_backup
+                for volume_group_backup in oci_common_utils.list_all_resources(
+                    destination_region_client.list_volume_group_backups,
+                    compartment_id=this_backup.compartment_id,
+                )
+                if self._is_resource_active(volume_group_backup)
+            ]:
+                if (
+                    destination_region_backup.source_volume_group_backup_id
+                    == this_backup.id
+                ):
+                    # It might not be a very good idea to exit from this method but currently is_action_necessary
+                    # does not provide a way to return a resource.
+                    # TODO: Check and modify is_action_necessary to return a resource
+                    self.module.exit_json(
+                        **self.prepare_result(
+                            changed=False,
+                            resource_type=self.resource_type,
+                            resource=to_dict(destination_region_backup),
+                        )
+                    )
+            return True
+        return super(VolumeGroupBackupActionsHelperCustom, self).is_action_necessary(
+            action, resource, *args, **kwargs
+        )
+
+    def copy(self, *args, **kwargs):
+        # The generated copy waits on the source backup lifecycle state. But the source backup remains in AVAILABLE
+        # state when the copy is in progress. So override to wait until the copy is done by checking the destination
+        # backup lifecycle state instead.
+        destination_backup = super(VolumeGroupBackupActionsHelperCustom, self).copy(
+            *args, **kwargs
+        )
+        destination_region_client = BlockstorageClient(
+            dict(
+                self.client._config, region=self.module.params.get("destination_region")
+            ),
+            **self.client._kwargs
+        )
+        return oci.wait_until(
+            destination_region_client,
+            destination_region_client.get_volume_group_backup(
+                volume_group_backup_id=destination_backup.id
+            ),
+            evaluate_response=lambda r: r.data.lifecycle_state
+            in oci_common_utils.DEFAULT_READY_STATES,
+            max_wait_seconds=self.get_wait_timeout(),
+        ).data
+
+    # as we are waiting for copy by default.
+    # increasing the default wait timeout to 2 hours
+    # as this operation can be lengthy depending on the volume group size
+    def get_wait_timeout(self):
+        return 7200

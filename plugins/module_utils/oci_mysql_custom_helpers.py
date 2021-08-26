@@ -115,6 +115,25 @@ class MysqlDbSystemHelperCustom:
         )
 
 
+class MysqlBackupHelperCustom:
+    # Handling backup creation using lifecycle state waiter due to below Jira-SD.
+    # https://jira-sd.mc1.oracleiaas.com/browse/MYOPS-13837
+    def create_resource(self):
+        create_details = self.get_create_model()
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.create_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(create_backup_details=create_details,),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation=oci_common_utils.CREATE_OPERATION_KEY,
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_wait_for_states_for_operation(
+                oci_common_utils.CREATE_OPERATION_KEY
+            ),
+        )
+
+
 class MysqlAnalyticsClusterActionsHelperCustom:
     ADD_ACTION_KEY = "add"
     STOP_ACTION_KEY = "stop"

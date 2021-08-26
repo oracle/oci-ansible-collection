@@ -58,6 +58,12 @@ options:
             - "For model reproducibility purposes. Path to the python script or notebook in which the model was trained.\\""
             - This parameter is updatable.
         type: str
+    training_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a training session(Job or NotebookSession) in which the
+              model was trained. It is used for model reproducibility purposes.
+            - This parameter is updatable.
+        type: str
     state:
         description:
             - The state of the ModelProvenance.
@@ -118,12 +124,20 @@ model_provenance:
             returned: on success
             type: string
             sample: model-dev/model1/model-training.ipynb
+        training_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a training session(Job or NotebookSession) in which
+                  the model was trained. It is used for model reproducibility purposes.
+            returned: on success
+            type: string
+            sample: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
     sample: {
         "repository_url": "http://git-remote.com/my-repo",
         "git_branch": "master",
         "git_commit": "0978b63",
         "script_dir": "script_dir_example",
-        "training_script": "model-dev/model1/model-training.ipynb"
+        "training_script": "model-dev/model1/model-training.ipynb",
+        "training_id": "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
     }
 """
 
@@ -231,6 +245,7 @@ def main():
             git_commit=dict(type="str"),
             script_dir=dict(type="str"),
             training_script=dict(type="str"),
+            training_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

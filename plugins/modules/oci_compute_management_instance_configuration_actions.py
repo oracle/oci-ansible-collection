@@ -439,7 +439,7 @@ options:
                     boot_volume_size_in_gbs:
                         description:
                             - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
-                              value is 16384 GB (16TB).
+                              value is 32,768 GB (32 TB).
                             - Applicable when source_type is 'image'
                         type: int
                     image_id:
@@ -1181,7 +1181,7 @@ instance:
                     sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
-                        - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 16384 GB (16TB).
+                        - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).
                     returned: on success
                     type: int
                     sample: 56

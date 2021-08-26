@@ -884,12 +884,15 @@ class CloudVmClusterHelperCustom:
     # appending some random string to the value passed for attribute - `hostname`.
     # e.g.If we pass value as `hostname-example` API launches VM Cluster with hostname value as `hostname-example-pixd`
     # API randomizes hostname to avoid duplication.
+    # The gi_version also does not match with what is used when creating. For ex: 19.0.0.0 is used for create but
+    # stored in the resource as 19.9.0.0.0. Tried with the version that is in the resource and that did not work.
     def get_exclude_attributes(self):
         exclude_attributes = super(
             CloudVmClusterHelperCustom, self
         ).get_exclude_attributes()
         return exclude_attributes + [
             "hostname",
+            "gi_version",
         ]
 
 

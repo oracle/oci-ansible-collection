@@ -402,6 +402,9 @@ except ImportError:
 class DatabaseRegistrationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_entity_type(self):
+        return "goldengatedatabaseregistration"
+
     def get_module_resource_id_param(self):
         return "database_registration_id"
 

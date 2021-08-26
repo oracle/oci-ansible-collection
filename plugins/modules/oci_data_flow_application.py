@@ -144,6 +144,11 @@ options:
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             - This parameter is updatable.
         type: str
+    metastore_id:
+        description:
+            - The OCID of OCI Hive Metastore.
+            - This parameter is updatable.
+        type: str
     num_executors:
         description:
             - The number of executor VMs requested.
@@ -238,6 +243,7 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     language: JAVA
     logs_bucket_uri: logs_bucket_uri_example
+    metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     num_executors: 1
     parameters:
     - name: name_example
@@ -399,6 +405,12 @@ application:
             returned: on success
             type: string
             sample: logs_bucket_uri_example
+        metastore_id:
+            description:
+                - The OCID of OCI Hive Metastore.
+            returned: on success
+            type: string
+            sample: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors:
             description:
                 - The number of executor VMs requested.
@@ -495,6 +507,7 @@ application:
         "language": "SCALA",
         "lifecycle_state": "ACTIVE",
         "logs_bucket_uri": "logs_bucket_uri_example",
+        "metastore_id": "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx",
         "num_executors": 56,
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
@@ -670,6 +683,7 @@ def main():
             freeform_tags=dict(type="dict"),
             language=dict(type="str", choices=["SCALA", "JAVA", "PYTHON", "SQL"]),
             logs_bucket_uri=dict(type="str"),
+            metastore_id=dict(type="str"),
             num_executors=dict(type="int"),
             parameters=dict(
                 type="list",

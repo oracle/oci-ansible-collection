@@ -67,6 +67,88 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    custom_metadata_list:
+        description:
+            - An array of custom metadata details for the model.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            key:
+                description:
+                    - "Key of the model Metadata. The key can either be user defined or OCI defined.
+                         List of OCI defined keys:
+                               * useCaseType
+                               * libraryName
+                               * libraryVersion
+                               * estimatorClass
+                               * hyperParameters
+                               * testartifactresults"
+                type: str
+            value:
+                description:
+                    - "Allowed values for useCaseType:
+                                   binary_classification, regression, multinomial_classification, clustering, recommender,
+                                   dimensionality_reduction/representation, time_series_forecasting, anomaly_detection,
+                                   topic_modeling, ner, sentiment_analysis, image_classification, object_localization, other"
+                    - "Allowed values for libraryName:
+                                   scikit-learn, xgboost, tensorflow, pytorch, mxnet, keras, lightGBM, pymc3, pyOD, spacy,
+                                   prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
+                                   bert, gensim, flair, word2vec, ensemble, other"
+                type: str
+            description:
+                description:
+                    - Description of model metadata
+                type: str
+            category:
+                description:
+                    - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
+                      \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
+                type: str
+    defined_metadata_list:
+        description:
+            - An array of defined metadata details for the model.
+            - This parameter is updatable.
+        type: list
+        suboptions:
+            key:
+                description:
+                    - "Key of the model Metadata. The key can either be user defined or OCI defined.
+                         List of OCI defined keys:
+                               * useCaseType
+                               * libraryName
+                               * libraryVersion
+                               * estimatorClass
+                               * hyperParameters
+                               * testartifactresults"
+                type: str
+            value:
+                description:
+                    - "Allowed values for useCaseType:
+                                   binary_classification, regression, multinomial_classification, clustering, recommender,
+                                   dimensionality_reduction/representation, time_series_forecasting, anomaly_detection,
+                                   topic_modeling, ner, sentiment_analysis, image_classification, object_localization, other"
+                    - "Allowed values for libraryName:
+                                   scikit-learn, xgboost, tensorflow, pytorch, mxnet, keras, lightGBM, pymc3, pyOD, spacy,
+                                   prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
+                                   bert, gensim, flair, word2vec, ensemble, other"
+                type: str
+            description:
+                description:
+                    - Description of model metadata
+                type: str
+            category:
+                description:
+                    - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
+                      \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
+                type: str
+    input_schema:
+        description:
+            - Input schema file content in String format
+        type: str
+    output_schema:
+        description:
+            - Output schema file content in String format
+        type: str
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
@@ -191,6 +273,108 @@ model:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        custom_metadata_list:
+            description:
+                - An array of custom metadata details for the model.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - "Key of the model Metadata. The key can either be user defined or OCI defined.
+                             List of OCI defined keys:
+                                   * useCaseType
+                                   * libraryName
+                                   * libraryVersion
+                                   * estimatorClass
+                                   * hyperParameters
+                                   * testartifactresults"
+                    returned: on success
+                    type: string
+                    sample: key_example
+                value:
+                    description:
+                        - "Allowed values for useCaseType:
+                                       binary_classification, regression, multinomial_classification, clustering, recommender,
+                                       dimensionality_reduction/representation, time_series_forecasting, anomaly_detection,
+                                       topic_modeling, ner, sentiment_analysis, image_classification, object_localization, other"
+                        - "Allowed values for libraryName:
+                                       scikit-learn, xgboost, tensorflow, pytorch, mxnet, keras, lightGBM, pymc3, pyOD, spacy,
+                                       prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
+                                       bert, gensim, flair, word2vec, ensemble, other"
+                    returned: on success
+                    type: string
+                    sample: oci.datasciencemodel.aaa12934190b32g9823589
+                description:
+                    description:
+                        - Description of model metadata
+                    returned: on success
+                    type: string
+                    sample: The base model on which the current model was derived
+                category:
+                    description:
+                        - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
+                          \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
+                    returned: on success
+                    type: string
+                    sample: Performance
+        defined_metadata_list:
+            description:
+                - An array of defined metadata details for the model.
+            returned: on success
+            type: complex
+            contains:
+                key:
+                    description:
+                        - "Key of the model Metadata. The key can either be user defined or OCI defined.
+                             List of OCI defined keys:
+                                   * useCaseType
+                                   * libraryName
+                                   * libraryVersion
+                                   * estimatorClass
+                                   * hyperParameters
+                                   * testartifactresults"
+                    returned: on success
+                    type: string
+                    sample: key_example
+                value:
+                    description:
+                        - "Allowed values for useCaseType:
+                                       binary_classification, regression, multinomial_classification, clustering, recommender,
+                                       dimensionality_reduction/representation, time_series_forecasting, anomaly_detection,
+                                       topic_modeling, ner, sentiment_analysis, image_classification, object_localization, other"
+                        - "Allowed values for libraryName:
+                                       scikit-learn, xgboost, tensorflow, pytorch, mxnet, keras, lightGBM, pymc3, pyOD, spacy,
+                                       prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
+                                       bert, gensim, flair, word2vec, ensemble, other"
+                    returned: on success
+                    type: string
+                    sample: oci.datasciencemodel.aaa12934190b32g9823589
+                description:
+                    description:
+                        - Description of model metadata
+                    returned: on success
+                    type: string
+                    sample: The base model on which the current model was derived
+                category:
+                    description:
+                        - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
+                          \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
+                    returned: on success
+                    type: string
+                    sample: Performance
+        input_schema:
+            description:
+                - Input schema file content in String format
+            returned: on success
+            type: string
+            sample: "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c..."
+        output_schema:
+            description:
+                - Output schema file content in String format
+            returned: on success
+            type: string
+            sample: {"class":3,"probabilities":[0.1,0.2,0.7]}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -201,7 +385,21 @@ model:
         "time_created": "2013-10-20T19:20:30+01:00",
         "created_by": "created_by_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "custom_metadata_list": [{
+            "key": "key_example",
+            "value": "oci.datasciencemodel.aaa12934190b32g9823589",
+            "description": "The base model on which the current model was derived",
+            "category": "Performance"
+        }],
+        "defined_metadata_list": [{
+            "key": "key_example",
+            "value": "oci.datasciencemodel.aaa12934190b32g9823589",
+            "description": "The base model on which the current model was derived",
+            "category": "Performance"
+        }],
+        "input_schema": "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c...",
+        "output_schema": "{"class":3,"probabilities":[0.1,0.2,0.7]}"
     }
 """
 
@@ -347,6 +545,28 @@ def main():
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            custom_metadata_list=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    key=dict(type="str"),
+                    value=dict(type="str"),
+                    description=dict(type="str"),
+                    category=dict(type="str"),
+                ),
+            ),
+            defined_metadata_list=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    key=dict(type="str"),
+                    value=dict(type="str"),
+                    description=dict(type="str"),
+                    category=dict(type="str"),
+                ),
+            ),
+            input_schema=dict(type="str"),
+            output_schema=dict(type="str"),
             model_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
