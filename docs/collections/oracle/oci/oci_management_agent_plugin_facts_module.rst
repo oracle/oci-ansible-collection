@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent_plugin_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment from which the Management Agents to be listed.</div>
+                                            <div>The OCID of the compartment to which a request will be scoped.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -251,6 +251,25 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Use <em>name</em> along with the other options to return only resources that match the given name exactly.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-platform_type"></div>
+                    <b>platform_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-platform_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>LINUX</li>
+                                                                                                                                                                                                <li>WINDOWS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Filter to return only results having the particular platform type.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -145,6 +145,16 @@ EXAMPLES = """
     action: "PRECHECK"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
+- name: Perform action upgrade on database
+  oci_database_database_actions:
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: upgrade
+
+- name: Perform action rollback on database
+  oci_database_database_actions:
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: rollback
+
 """
 
 RETURN = """

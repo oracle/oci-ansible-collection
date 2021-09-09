@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     is_agent_auto_upgradable:
         description:
-            - true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
+            - Setting of this flag is no longer supported.
             - This parameter is updatable.
         type: bool
     display_name:
@@ -60,7 +60,7 @@ options:
         type: dict
     compartment_id:
         description:
-            - The ID of the compartment from which the Management Agents to be listed.
+            - The OCID of the compartment to which a request will be scoped.
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
@@ -158,6 +158,12 @@ management_agent:
             returned: on success
             type: string
             sample: host_example
+        host_id:
+            description:
+                - Host resource ocid
+            returned: on success
+            type: string
+            sample: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         install_path:
             description:
                 - Path where Management Agent is installed
@@ -194,6 +200,12 @@ management_agent:
                     returned: on success
                     type: string
                     sample: plugin_version_example
+                is_enabled:
+                    description:
+                        - flag indicating whether the plugin is in enabled mode or disabled mode.
+                    returned: on success
+                    type: bool
+                    sample: true
         compartment_id:
             description:
                 - Compartment Identifier
@@ -202,7 +214,7 @@ management_agent:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
-                - true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
+                - true if the agent can be upgraded automatically; false if it must be upgraded manually.
             returned: on success
             type: bool
             sample: true
@@ -244,6 +256,12 @@ management_agent:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        is_customer_deployed:
+            description:
+                - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -267,12 +285,14 @@ management_agent:
         "platform_version": "platform_version_example",
         "version": "version_example",
         "host": "host_example",
+        "host_id": "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx",
         "install_path": "install_path_example",
         "plugin_list": [{
             "plugin_id": "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx",
             "plugin_name": "plugin_name_example",
             "plugin_display_name": "plugin_display_name_example",
-            "plugin_version": "plugin_version_example"
+            "plugin_version": "plugin_version_example",
+            "is_enabled": true
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "is_agent_auto_upgradable": true,
@@ -282,6 +302,7 @@ management_agent:
         "availability_status": "ACTIVE",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "is_customer_deployed": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

@@ -20,7 +20,7 @@ oracle.oci.oci_mysql_heat_wave_cluster -- Manage a HeatWaveCluster resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

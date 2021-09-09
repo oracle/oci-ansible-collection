@@ -150,6 +150,18 @@ vm_cluster_networks:
                     returned: on success
                     type: int
                     sample: 56
+                scan_listener_port_tcp:
+                    description:
+                        - The SCAN TCPIP port. Default is 1521.
+                    returned: on success
+                    type: int
+                    sample: 56
+                scan_listener_port_tcp_ssl:
+                    description:
+                        - The SCAN TCPIP SSL port. Default is 2484.
+                    returned: on success
+                    type: int
+                    sample: 56
                 ips:
                     description:
                         - The list of SCAN IP addresses. Three addresses should be provided.
@@ -276,6 +288,8 @@ vm_cluster_networks:
         "scans": [{
             "hostname": "hostname_example",
             "port": 56,
+            "scan_listener_port_tcp": 56,
+            "scan_listener_port_tcp_ssl": 56,
             "ips": []
         }],
         "dns": [],

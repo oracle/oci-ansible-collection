@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent -- Manage a ManagementAgent resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -165,7 +165,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment from which the Management Agents to be listed.</div>
+                                            <div>The OCID of the compartment to which a request will be scoped.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
@@ -266,7 +266,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.</div>
+                                            <div>Setting of this flag is no longer supported.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -454,7 +454,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagementAgent resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;host_id&#x27;: &#x27;ocid1.host.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;is_customer_deployed&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -568,6 +568,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/host_id"></div>
+                    <b>host_id</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/host_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Host resource ocid</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.host.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-management_agent/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-management_agent/id" title="Permalink to this return value"></a>
@@ -631,7 +649,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.</div>
+                                            <div>true if the agent can be upgraded automatically; false if it must be upgraded manually.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/is_customer_deployed"></div>
+                    <b>is_customer_deployed</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/is_customer_deployed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -744,6 +780,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/is_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>flag indicating whether the plugin is in enabled mode or disabled mode.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">

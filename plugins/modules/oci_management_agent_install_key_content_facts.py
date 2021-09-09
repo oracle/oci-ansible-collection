@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     management_agent_install_key_id:
         description:
             - Unique Management Agent Install Key identifier
@@ -37,20 +43,14 @@ options:
         description:
             - Filter to return input plugin names uncommented in the output.
         type: list
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific management_agent_install_key_content
   oci_management_agent_install_key_content_facts:
-    management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /usr/local/myfile.txt
+    management_agent_install_key_id: "ocid1.managementagentinstallkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -122,11 +122,11 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             management_agent_install_key_id=dict(
                 aliases=["id"], type="str", required=True
             ),
             plugin_name=dict(type="list"),
-            dest=dict(type="str", required=True),
         )
     )
 

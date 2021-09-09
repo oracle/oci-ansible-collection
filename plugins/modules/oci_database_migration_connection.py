@@ -543,6 +543,9 @@ except ImportError:
 class ConnectionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_entity_type(self):
+        return "odmsconnection"
+
     def get_module_resource_id_param(self):
         return "connection_id"
 

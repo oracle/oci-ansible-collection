@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent_availability_history_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -247,7 +247,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, either &#x27;asc&#x27; or &#x27;desc&#x27;.</div>
+                                            <div>The sort order to use, either &#x27;ASC&#x27; or &#x27;DESC&#x27;.</div>
                                                         </td>
             </tr>
                                 <tr>

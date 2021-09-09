@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment from which the Management Agents to be listed.
+            - The OCID of the compartment to which a request will be scoped.
             - Required to list multiple management_agent_install_keys.
         type: str
     compartment_id_in_subtree:

@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.30.0] - 2021-09-09
+
+## Added
+- Support for Email DKIM feature
+- Support for getting management agent hosts which are eligible to create Operations Insights host resources on, in the Operations Insights service
+- Support to generate recommended vm cluster network and create vm cluster network with given customer listener port
+- Support for getting summarized agent counts and summarized plugin counts in the Management Agent Cloud service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.44.1
+
 ## [2.29.0] - 2021-08-26
 
 ## Added

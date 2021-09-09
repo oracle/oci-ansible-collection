@@ -36,17 +36,18 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment from which the Management Agents to be listed.
+            - The OCID of the compartment to which a request will be scoped.
             - Required to list multiple management_agents.
         type: str
     plugin_name:
         description:
-            - Filter to return only Management Agents having the particular Plugin installed.
-        type: str
+            - Filter to return only Management Agents having the particular Plugin installed. A special pluginName of 'None' can be provided and this will
+              return only Management Agents having no plugin installed.
+        type: list
     version:
         description:
             - Filter to return only Management Agents having the particular agent version.
-        type: str
+        type: list
     display_name:
         description:
             - Filter to return only Management Agents having the particular display name.
@@ -65,13 +66,29 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    availability_status:
+        description:
+            - Filter to return only Management Agents in the particular availability status.
+        type: str
+        choices:
+            - "ACTIVE"
+            - "SILENT"
+            - "NOT_AVAILABLE"
+    host_id:
+        description:
+            - Filter to return only Management Agents having the particular agent host id.
+        type: str
     platform_type:
         description:
-            - Filter to return only Management Agents having the particular platform type.
-        type: str
+            - Filter to return only results having the particular platform type.
+        type: list
         choices:
             - "LINUX"
             - "WINDOWS"
+    is_customer_deployed:
+        description:
+            - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
+        type: bool
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -87,6 +104,11 @@ options:
         choices:
             - "timeCreated"
             - "displayName"
+            - "host"
+            - "availabilityStatus"
+            - "platformType"
+            - "pluginDisplayNames"
+            - "version"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -156,6 +178,12 @@ management_agents:
             returned: on success
             type: string
             sample: host_example
+        host_id:
+            description:
+                - Host resource ocid
+            returned: on success
+            type: string
+            sample: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         install_path:
             description:
                 - Path where Management Agent is installed
@@ -192,6 +220,12 @@ management_agents:
                     returned: on success
                     type: string
                     sample: plugin_version_example
+                is_enabled:
+                    description:
+                        - flag indicating whether the plugin is in enabled mode or disabled mode.
+                    returned: on success
+                    type: bool
+                    sample: true
         compartment_id:
             description:
                 - Compartment Identifier
@@ -200,7 +234,7 @@ management_agents:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
-                - true if the agent can be upgraded automatically; false if it must be upgraded manually. true is currently unsupported.
+                - true if the agent can be upgraded automatically; false if it must be upgraded manually.
             returned: on success
             type: bool
             sample: true
@@ -242,6 +276,12 @@ management_agents:
             returned: on success
             type: string
             sample: lifecycle_details_example
+        is_customer_deployed:
+            description:
+                - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -265,12 +305,14 @@ management_agents:
         "platform_version": "platform_version_example",
         "version": "version_example",
         "host": "host_example",
+        "host_id": "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx",
         "install_path": "install_path_example",
         "plugin_list": [{
             "plugin_id": "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx",
             "plugin_name": "plugin_name_example",
             "plugin_display_name": "plugin_display_name_example",
-            "plugin_version": "plugin_version_example"
+            "plugin_version": "plugin_version_example",
+            "is_enabled": true
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "is_agent_auto_upgradable": true,
@@ -280,6 +322,7 @@ management_agents:
         "availability_status": "ACTIVE",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
+        "is_customer_deployed": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
@@ -325,7 +368,10 @@ class ManagementAgentFactsHelperGen(OCIResourceFactsHelperBase):
             "version",
             "display_name",
             "lifecycle_state",
+            "availability_status",
+            "host_id",
             "platform_type",
+            "is_customer_deployed",
             "sort_order",
             "sort_by",
         ]
@@ -356,8 +402,8 @@ def main():
         dict(
             management_agent_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            plugin_name=dict(type="str"),
-            version=dict(type="str"),
+            plugin_name=dict(type="list"),
+            version=dict(type="list"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -372,9 +418,25 @@ def main():
                     "FAILED",
                 ],
             ),
-            platform_type=dict(type="str", choices=["LINUX", "WINDOWS"]),
+            availability_status=dict(
+                type="str", choices=["ACTIVE", "SILENT", "NOT_AVAILABLE"]
+            ),
+            host_id=dict(type="str"),
+            platform_type=dict(type="list", choices=["LINUX", "WINDOWS"]),
+            is_customer_deployed=dict(type="bool"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
+            sort_by=dict(
+                type="str",
+                choices=[
+                    "timeCreated",
+                    "displayName",
+                    "host",
+                    "availabilityStatus",
+                    "platformType",
+                    "pluginDisplayNames",
+                    "version",
+                ],
+            ),
         )
     )
 
