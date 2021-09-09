@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment from which the Management Agents to be listed.
+            - The OCID of the compartment to which a request will be scoped.
         type: str
         required: true
     sort_order:

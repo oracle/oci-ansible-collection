@@ -20,7 +20,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -523,6 +523,16 @@ Examples
           source: "DB_VERSION"
         action: "PRECHECK"
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Perform action upgrade on database
+      oci_database_database_actions:
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        action: upgrade
+
+    - name: Perform action rollback on database
+      oci_database_database_actions:
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        action: rollback
 
 
 

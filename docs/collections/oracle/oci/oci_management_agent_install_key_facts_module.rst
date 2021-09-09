@@ -20,7 +20,7 @@ oracle.oci.oci_management_agent_install_key_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.29.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -181,7 +181,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the compartment from which the Management Agents to be listed.</div>
+                                            <div>The OCID of the compartment to which a request will be scoped.</div>
                                             <div>Required to list multiple management_agent_install_keys.</div>
                                                         </td>
             </tr>

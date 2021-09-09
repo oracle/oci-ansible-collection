@@ -20,7 +20,7 @@ class ModuleDocFragment(object):
             default: False
             type: bool
         key_by:
-            description: The list of comma-separated attributes of this resource which should be used to uniquely
+            description: The list of attributes of this resource which should be used to uniquely
                          identify an instance of the resource. By default, all the attributes of a resource are
                          used to uniquely identify a resource.
             type: list

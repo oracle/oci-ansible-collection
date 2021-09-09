@@ -1068,6 +1068,9 @@ except ImportError:
 class MigrationHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_entity_type(self):
+        return "odmsmigration"
+
     def get_module_resource_id_param(self):
         return "migration_id"
 

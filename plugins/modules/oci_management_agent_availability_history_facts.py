@@ -46,7 +46,7 @@ options:
         type: str
     sort_order:
         description:
-            - The sort order to use, either 'asc' or 'desc'.
+            - The sort order to use, either 'ASC' or 'DESC'.
         type: str
         choices:
             - "ASC"

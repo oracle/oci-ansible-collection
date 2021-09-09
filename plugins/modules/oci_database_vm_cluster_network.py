@@ -67,6 +67,14 @@ options:
                     - The SCAN TCPIP port. Default is 1521.
                 type: int
                 required: true
+            scan_listener_port_tcp:
+                description:
+                    - The SCAN TCPIP port. Default is 1521.
+                type: int
+            scan_listener_port_tcp_ssl:
+                description:
+                    - The SCAN TCPIP SSL port. Default is 2484.
+                type: int
             ips:
                 description:
                     - The list of SCAN IP addresses. Three addresses should be provided.
@@ -289,6 +297,18 @@ vm_cluster_network:
                     returned: on success
                     type: int
                     sample: 56
+                scan_listener_port_tcp:
+                    description:
+                        - The SCAN TCPIP port. Default is 1521.
+                    returned: on success
+                    type: int
+                    sample: 56
+                scan_listener_port_tcp_ssl:
+                    description:
+                        - The SCAN TCPIP SSL port. Default is 2484.
+                    returned: on success
+                    type: int
+                    sample: 56
                 ips:
                     description:
                         - The list of SCAN IP addresses. Three addresses should be provided.
@@ -415,6 +435,8 @@ vm_cluster_network:
         "scans": [{
             "hostname": "hostname_example",
             "port": 56,
+            "scan_listener_port_tcp": 56,
+            "scan_listener_port_tcp_ssl": 56,
             "ips": []
         }],
         "dns": [],
@@ -606,6 +628,8 @@ def main():
                 options=dict(
                     hostname=dict(type="str", required=True),
                     port=dict(type="int", required=True),
+                    scan_listener_port_tcp=dict(type="int"),
+                    scan_listener_port_tcp_ssl=dict(type="int"),
                     ips=dict(type="list", required=True),
                 ),
             ),

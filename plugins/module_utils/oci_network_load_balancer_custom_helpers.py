@@ -46,16 +46,12 @@ class NetworkLoadBalancerBackendHelperCustom:
         )
 
 
-class NetworkLoadBalancerListenerHelperCustom:
-    # adding this customization as there is an issue with list API of Listener. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        return list_resource_from_network_load_balancer(self, "listeners")
-
-
-class NetworkLoadBalancerListenerFactsHelperCustom:
-    # adding this customization as there is an issue with list API of Listener Facts. respective Jira ticket https://jira-sd.mc1.oracleiaas.com/browse/NLB-681
-    def list_resources(self):
-        return list_resource_from_network_load_balancer(self, "listeners")
+class NetworkLoadBalancerNetworkSecurityGroupsUpdateHelperCustom:
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_network_load_balancer,
+            network_load_balancer_id=self.module.params.get("network_load_balancer_id"),
+        )
 
 
 # This method returns the list of resource data in the network_load_balancer for a given resource

@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the compartment from which the Management Agents to be listed.
+            - The OCID of the compartment to which a request will be scoped.
         type: str
         required: true
     display_name:
@@ -62,6 +62,13 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    platform_type:
+        description:
+            - Filter to return only results having the particular platform type.
+        type: list
+        choices:
+            - "LINUX"
+            - "WINDOWS"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
@@ -168,6 +175,7 @@ class ManagementAgentPluginFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "sort_by",
             "lifecycle_state",
+            "platform_type",
             "name",
         ]
         optional_kwargs = dict(
@@ -214,6 +222,7 @@ def main():
                     "FAILED",
                 ],
             ),
+            platform_type=dict(type="list", choices=["LINUX", "WINDOWS"]),
             name=dict(type="str"),
         )
     )

@@ -90,6 +90,31 @@ EXAMPLES = """
     instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     action: stop
 
+- name: Perform action start on instance
+  oci_compute_instance_actions:
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: start
+
+- name: Perform action softreset on instance
+  oci_compute_instance_actions:
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: softreset
+
+- name: Perform action reset on instance
+  oci_compute_instance_actions:
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: reset
+
+- name: Perform action softstop on instance
+  oci_compute_instance_actions:
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: softstop
+
+- name: Perform action senddiagnosticinterrupt on instance
+  oci_compute_instance_actions:
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: senddiagnosticinterrupt
+
 """
 
 RETURN = """

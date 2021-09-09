@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.29.0
+Collection version 2.30.0
 
 .. toctree::
     :maxdepth: 1
@@ -485,6 +485,8 @@ Modules
 * :ref:`oci_dns_zone_records <ansible_collections.oracle.oci.oci_dns_zone_records_module>` -- Manage a ZoneRecords resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_transfer_server_facts <ansible_collections.oracle.oci.oci_dns_zone_transfer_server_facts_module>` -- Fetches details about one or multiple ZoneTransferServer resources in Oracle Cloud Infrastructure
+* :ref:`oci_email_dkim <ansible_collections.oracle.oci.oci_email_dkim_module>` -- Manage a Dkim resource in Oracle Cloud Infrastructure
+* :ref:`oci_email_dkim_facts <ansible_collections.oracle.oci.oci_email_dkim_facts_module>` -- Fetches details about one or multiple Dkim resources in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain <ansible_collections.oracle.oci.oci_email_domain_module>` -- Manage an EmailDomain resource in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain_actions <ansible_collections.oracle.oci.oci_email_domain_actions_module>` -- Perform actions on an EmailDomain resource in Oracle Cloud Infrastructure
 * :ref:`oci_email_domain_facts <ansible_collections.oracle.oci.oci_email_domain_facts_module>` -- Fetches details about one or multiple EmailDomain resources in Oracle Cloud Infrastructure
@@ -680,12 +682,14 @@ Modules
 * :ref:`oci_logging_unified_agent_configuration_facts <ansible_collections.oracle.oci.oci_logging_unified_agent_configuration_facts_module>` -- Fetches details about one or multiple UnifiedAgentConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent <ansible_collections.oracle.oci.oci_management_agent_module>` -- Manage a ManagementAgent resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_actions <ansible_collections.oracle.oci.oci_management_agent_actions_module>` -- Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_aggregation_facts <ansible_collections.oracle.oci.oci_management_agent_aggregation_facts_module>` -- Fetches details about one or multiple ManagementAgentAggregation resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_availability_history_facts <ansible_collections.oracle.oci.oci_management_agent_availability_history_facts_module>` -- Fetches details about one or multiple AvailabilityHistory resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_facts <ansible_collections.oracle.oci.oci_management_agent_facts_module>` -- Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_image_facts <ansible_collections.oracle.oci.oci_management_agent_image_facts_module>` -- Fetches details about one or multiple ManagementAgentImage resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_install_key <ansible_collections.oracle.oci.oci_management_agent_install_key_module>` -- Manage a ManagementAgentInstallKey resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_install_key_content_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_content_facts_module>` -- Fetches details about a ManagementAgentInstallKeyContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_install_key_facts <ansible_collections.oracle.oci.oci_management_agent_install_key_facts_module>` -- Fetches details about one or multiple ManagementAgentInstallKey resources in Oracle Cloud Infrastructure
+* :ref:`oci_management_agent_plugin_count_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_count_facts_module>` -- Fetches details about one or multiple ManagementAgentPluginCount resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_agent_plugin_facts <ansible_collections.oracle.oci.oci_management_agent_plugin_facts_module>` -- Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
 * :ref:`oci_management_dashboard_actions <ansible_collections.oracle.oci.oci_management_dashboard_actions_module>` -- Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_accepted_agreement <ansible_collections.oracle.oci.oci_marketplace_accepted_agreement_module>` -- Manage an AcceptedAgreement resource in Oracle Cloud Infrastructure
@@ -930,6 +934,7 @@ Modules
 * :ref:`oci_opsi_host_insight_resource_usage_summary_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_usage_summary_facts_module>` -- Fetches details about a HostInsightResourceUsageSummary resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_usage_trend_facts_module>` -- Fetches details about a HostInsightResourceUsageTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_utilization_insight_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts_module>` -- Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_importable_agent_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_agent_entity_facts_module>` -- Fetches details about one or multiple ImportableAgentEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_importable_enterprise_manager_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts_module>` -- Fetches details about one or multiple ImportableEnterpriseManagerEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_resource_capacity_trend_facts <ansible_collections.oracle.oci.oci_opsi_resource_capacity_trend_facts_module>` -- Fetches details about a ResourceCapacityTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_resource_forecast_trend_facts <ansible_collections.oracle.oci.oci_opsi_resource_forecast_trend_facts_module>` -- Fetches details about a ResourceForecastTrend resource in Oracle Cloud Infrastructure
@@ -1106,6 +1111,7 @@ Modules
 * :ref:`oci_waas_waf_traffic_datum_facts <ansible_collections.oracle.oci.oci_waas_waf_traffic_datum_facts_module>` -- Fetches details about one or multiple WafTrafficDatum resources in Oracle Cloud Infrastructure
 * :ref:`oci_waas_whitelists <ansible_collections.oracle.oci.oci_waas_whitelists_module>` -- Manage a Whitelists resource in Oracle Cloud Infrastructure
 * :ref:`oci_waas_whitelists_facts <ansible_collections.oracle.oci.oci_waas_whitelists_facts_module>` -- Fetches details about one or multiple Whitelists resources in Oracle Cloud Infrastructure
+
 
 
 .. seealso::
@@ -1578,6 +1584,8 @@ Modules
     oci_dns_zone_records_module
     oci_dns_zone_records_facts_module
     oci_dns_zone_transfer_server_facts_module
+    oci_email_dkim_module
+    oci_email_dkim_facts_module
     oci_email_domain_module
     oci_email_domain_actions_module
     oci_email_domain_facts_module
@@ -1773,12 +1781,14 @@ Modules
     oci_logging_unified_agent_configuration_facts_module
     oci_management_agent_module
     oci_management_agent_actions_module
+    oci_management_agent_aggregation_facts_module
     oci_management_agent_availability_history_facts_module
     oci_management_agent_facts_module
     oci_management_agent_image_facts_module
     oci_management_agent_install_key_module
     oci_management_agent_install_key_content_facts_module
     oci_management_agent_install_key_facts_module
+    oci_management_agent_plugin_count_facts_module
     oci_management_agent_plugin_facts_module
     oci_management_dashboard_actions_module
     oci_marketplace_accepted_agreement_module
@@ -2023,6 +2033,7 @@ Modules
     oci_opsi_host_insight_resource_usage_summary_facts_module
     oci_opsi_host_insight_resource_usage_trend_facts_module
     oci_opsi_host_insight_resource_utilization_insight_facts_module
+    oci_opsi_importable_agent_entity_facts_module
     oci_opsi_importable_enterprise_manager_entity_facts_module
     oci_opsi_resource_capacity_trend_facts_module
     oci_opsi_resource_forecast_trend_facts_module
