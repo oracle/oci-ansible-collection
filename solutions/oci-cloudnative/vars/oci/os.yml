@@ -1,4 +1,0 @@
-os:
-  mushop_bucket_name: 'mushop-bucket'
-  media_bucket_name: 'mushop-media'
-  media_bucket_public_access_type: 'ObjectRead'
