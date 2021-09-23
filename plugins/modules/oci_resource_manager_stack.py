@@ -29,7 +29,7 @@ description:
       You can also create a stack from an existing compartment.
       You can also upload the Terraform configuration from an Object Storage bucket.
       For more information, see
-      L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack).
+      L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#createstack-all).
     - "This resource has the following action operations in the M(oci_stack_actions) module: change_compartment, detect_stack_drift."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -151,7 +151,7 @@ options:
         description:
             - "Terraform variables associated with this resource.
               Maximum number of variables supported is 250.
-              The maximum size of each variable, including both name and value, is 4096 bytes.
+              The maximum size of each variable, including both name and value, is 8192 bytes.
               Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             - This parameter is updatable.
         type: dict
@@ -272,7 +272,7 @@ stack:
             description:
                 - The current lifecycle state of the stack.
                   For more information about stack lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates).
             returned: on success
             type: string
             sample: CREATING
@@ -348,7 +348,8 @@ stack:
                     sample: namespace_example
                 bucket_name:
                     description:
-                        - The name of the bucket that contains the Terraform configuration files.
+                        - "The name of the bucket that contains the Terraform configuration files.
+                          Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
                     returned: on success
                     type: string
                     sample: bucket_name_example
@@ -356,7 +357,7 @@ stack:
             description:
                 - "Terraform variables associated with this resource.
                   Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 4096 bytes.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict

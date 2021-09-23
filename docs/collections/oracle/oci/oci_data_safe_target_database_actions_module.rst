@@ -20,7 +20,7 @@ oracle.oci.oci_data_safe_target_database_actions -- Perform actions on a TargetD
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -274,6 +274,22 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-dest"></div>
+                    <b>dest</b>
+                    <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
+                                            <div>Required for <em>action=download_privilege_script</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -395,6 +411,7 @@ Examples
 
     - name: Perform action download_privilege_script on target_database
       oci_data_safe_target_database_actions:
+        dest: /tmp/myfile
         action: download_privilege_script
 
 

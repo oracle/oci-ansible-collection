@@ -276,6 +276,9 @@ class UserStateHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("user_id")
 
+    def get_response_field_name(self):
+        return "user"
+
     def get_update_model_class(self):
         return UpdateStateDetails
 

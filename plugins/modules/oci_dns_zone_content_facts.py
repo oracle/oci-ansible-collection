@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     zone_name_or_id:
         description:
             - The name or OCID of the target zone.
@@ -51,20 +57,14 @@ options:
         description:
             - The OCID of the view the resource is associated with.
         type: str
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific zone_content
   oci_dns_zone_content_facts:
-    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /tmp/myfile
+    zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -131,11 +131,11 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             zone_name_or_id=dict(aliases=["id"], type="str", required=True),
             if_modified_since=dict(type="str"),
             scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             view_id=dict(type="str"),
-            dest=dict(type="str", required=True),
         )
     )
 

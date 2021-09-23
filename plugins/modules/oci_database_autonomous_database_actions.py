@@ -1030,6 +1030,7 @@ autonomous_database:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -1237,7 +1238,7 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, GenerateAutonomousDatabaseWalletDetails
         )
-        return oci_wait_utils.call_and_wait(
+        response = oci_wait_utils.call_and_wait(
             call_fn=self.client.generate_autonomous_database_wallet,
             call_fn_args=(),
             call_fn_kwargs=dict(
@@ -1255,6 +1256,12 @@ class AutonomousDatabaseActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action")
             ),
         )
+        dest = self.module.params.get("wallet_file")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
     def register_autonomous_database_data_safe(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(

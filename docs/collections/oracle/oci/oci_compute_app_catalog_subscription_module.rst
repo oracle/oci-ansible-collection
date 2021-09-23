@@ -20,7 +20,7 @@ oracle.oci.oci_compute_app_catalog_subscription -- Manage an AppCatalogSubscript
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

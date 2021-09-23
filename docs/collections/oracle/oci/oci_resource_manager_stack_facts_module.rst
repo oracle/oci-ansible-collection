@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the specified display name.</div>
+                                            <div>A filter to return only resources that match the given display name exactly. Use this filter to list a resource by name. Requires `sortBy` set to `DISPLAYNAME`. Alternatively, when you know the resource OCID, use the related Get operation.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -234,7 +234,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter that returns only those resources that match the specified lifecycle state. The state value is case-insensitive. For more information about stack lifecycle states, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates'>Key Concepts</a>.</div>
+                                            <div>A filter that returns only those resources that match the specified lifecycle state. The state value is case-insensitive. For more information about stack lifecycle states, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates'>Key Concepts</a>.</div>
                                             <div>Allowable values: - CREATING - ACTIVE - DELETING - DELETED - FAILED</div>
                                                         </td>
             </tr>
@@ -457,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                            <div>The name of the bucket that contains the Terraform configuration files. Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -716,7 +716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates'>Key Concepts</a>.</div>
+                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates'>Key Concepts</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -806,7 +806,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 8192 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                         <br/>
                                     </td>
             </tr>

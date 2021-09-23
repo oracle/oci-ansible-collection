@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack -- Manage a Stack resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Stack resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. You can also upload the Terraform configuration from an Object Storage bucket. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateStack>`_.
+- For *state=present*, creates a stack in the specified compartment. You can create a stack from a Terraform configuration. The Terraform configuration can be directly uploaded or referenced from a source code control system. You can also create a stack from an existing compartment. You can also upload the Terraform configuration from an Object Storage bucket. For more information, see `To create a stack <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#createstack-all>`_.
 - This resource has the following action operations in the :ref:`oci_stack_actions <ansible_collections.oci_stack_actions_module>` module: change_compartment, detect_stack_drift.
 
 
@@ -637,7 +637,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 8192 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -833,7 +833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                            <div>The name of the bucket that contains the Terraform configuration files. Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -1092,7 +1092,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates'>Key Concepts</a>.</div>
+                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates'>Key Concepts</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1182,7 +1182,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 8192 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                         <br/>
                                     </td>
             </tr>

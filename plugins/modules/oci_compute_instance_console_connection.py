@@ -129,7 +129,7 @@ instance_console_connection:
             sample: {'Operations': {'CostCenter': 'US'}}
         fingerprint:
             description:
-                - The SSH public key fingerprint for the console connection.
+                - The SSH public key's fingerprint for client authentication to the console connection.
             returned: on success
             type: string
             sample: fingerprint_example
@@ -160,6 +160,12 @@ instance_console_connection:
             returned: on success
             type: string
             sample: ACTIVE
+        service_host_key_fingerprint:
+            description:
+                - The SSH public key's fingerprint for the console connection service host.
+            returned: on success
+            type: string
+            sample: service_host_key_fingerprint_example
         vnc_connection_string:
             description:
                 - The SSH connection string for the SSH tunnel used to
@@ -176,6 +182,7 @@ instance_console_connection:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
+        "service_host_key_fingerprint": "service_host_key_fingerprint_example",
         "vnc_connection_string": "vnc_connection_string_example"
     }
 """

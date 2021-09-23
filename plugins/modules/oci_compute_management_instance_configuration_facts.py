@@ -547,11 +547,28 @@ instance_configurations:
                             contains:
                                 type:
                                     description:
-                                        - The type of platform being configured. The only supported
-                                          `type` is `AMD_MILAN_BM`.
+                                        - The type of platform being configured.
                                     returned: on success
                                     type: string
                                     sample: AMD_MILAN_BM
+                                is_secure_boot_enabled:
+                                    description:
+                                        - Whether Secure Boot is enabled on the instance.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                is_trusted_platform_module_enabled:
+                                    description:
+                                        - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                is_measured_boot_enabled:
+                                    description:
+                                        - Whether the Measured Boot feature is enabled on the instance.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 numa_nodes_per_socket:
                                     description:
                                         - The number of NUMA nodes per socket.
@@ -1024,6 +1041,9 @@ instance_configurations:
                 },
                 "platform_config": {
                     "type": "AMD_MILAN_BM",
+                    "is_secure_boot_enabled": true,
+                    "is_trusted_platform_module_enabled": true,
+                    "is_measured_boot_enabled": true,
                     "numa_nodes_per_socket": "NPS0"
                 },
                 "source_details": {

@@ -24,6 +24,7 @@ short_description: Fetches details about one or multiple Template resources in O
 description:
     - Fetches details about one or multiple Template resources in Oracle Cloud Infrastructure
     - Lists templates according to the specified filter.
+      The attributes `compartmentId` and `templateCategoryId` are required unless `templateId` is specified.
     - If I(template_id) is specified, the details of a single Template will be returned.
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -42,10 +43,14 @@ options:
     template_category_id:
         description:
             - Unique identifier of the template category.
+              Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
         type: str
     display_name:
         description:
-            - A filter to return only resources that match the specified display name.
+            - A filter to return only resources that match the given display name exactly.
+              Use this filter to list a resource by name.
+              Requires `sortBy` set to `DISPLAYNAME`.
+              Alternatively, when you know the resource OCID, use the related Get operation.
         type: str
         aliases: ["name"]
     sort_by:
@@ -100,6 +105,7 @@ templates:
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
+                  Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
             type: string
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
@@ -122,6 +128,12 @@ templates:
             returned: on success
             type: string
             sample: long_description_example
+        is_free_tier:
+            description:
+                - whether the template will work for free tier tenancy.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - "The date and time at which the template was created.
@@ -171,6 +183,7 @@ templates:
         "display_name": "display_name_example",
         "description": "description_example",
         "long_description": "long_description_example",
+        "is_free_tier": true,
         "time_created": "2020-11-25T21:10:29.600Z",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"

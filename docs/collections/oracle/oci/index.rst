@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.30.0
+Collection version 2.31.0
 
 .. toctree::
     :maxdepth: 1
@@ -225,6 +225,8 @@ Modules
 * :ref:`oci_compute_management_instance_pool_instance_actions <ansible_collections.oracle.oci.oci_compute_management_instance_pool_instance_actions_module>` -- Perform actions on an InstancePoolInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_management_instance_pool_instance_facts <ansible_collections.oracle.oci.oci_compute_management_instance_pool_instance_facts_module>` -- Fetches details about one or multiple InstancePoolInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_management_instance_pool_load_balancer_attachment_facts <ansible_collections.oracle.oci.oci_compute_management_instance_pool_load_balancer_attachment_facts_module>` -- Fetches details about a InstancePoolLoadBalancerAttachment resource in Oracle Cloud Infrastructure
+* :ref:`oci_compute_measured_boot_report_actions <ansible_collections.oracle.oci.oci_compute_measured_boot_report_actions_module>` -- Perform actions on a MeasuredBootReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_compute_measured_boot_report_facts <ansible_collections.oracle.oci.oci_compute_measured_boot_report_facts_module>` -- Fetches details about a MeasuredBootReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_shape_facts <ansible_collections.oracle.oci.oci_compute_shape_facts_module>` -- Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_vnic_attachment <ansible_collections.oracle.oci.oci_compute_vnic_attachment_module>` -- Manage a VnicAttachment resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_vnic_attachment_facts <ansible_collections.oracle.oci.oci_compute_vnic_attachment_facts_module>` -- Fetches details about one or multiple VnicAttachment resources in Oracle Cloud Infrastructure
@@ -285,6 +287,12 @@ Modules
 * :ref:`oci_data_safe_target_database <ansible_collections.oracle.oci.oci_data_safe_target_database_module>` -- Manage a TargetDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_target_database_actions <ansible_collections.oracle.oci.oci_data_safe_target_database_actions_module>` -- Perform actions on a TargetDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_safe_target_database_facts <ansible_collections.oracle.oci.oci_data_safe_target_database_facts_module>` -- Fetches details about one or multiple TargetDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job <ansible_collections.oracle.oci.oci_data_science_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_actions <ansible_collections.oracle.oci.oci_data_science_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_artifact <ansible_collections.oracle.oci.oci_data_science_job_artifact_module>` -- Manage a JobArtifact resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_artifact_content_facts <ansible_collections.oracle.oci.oci_data_science_job_artifact_content_facts_module>` -- Fetches details about a JobArtifactContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_facts <ansible_collections.oracle.oci.oci_data_science_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_shape_facts <ansible_collections.oracle.oci.oci_data_science_job_shape_facts_module>` -- Fetches details about one or multiple JobShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact <ansible_collections.oracle.oci.oci_data_science_model_artifact_module>` -- Manage a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact_facts <ansible_collections.oracle.oci.oci_data_science_model_artifact_facts_module>` -- Fetches details about a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_deployment <ansible_collections.oracle.oci.oci_data_science_model_deployment_module>` -- Manage a ModelDeployment resource in Oracle Cloud Infrastructure
@@ -969,15 +977,23 @@ Modules
 * :ref:`oci_os_management_available_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_available_windows_update_facts_module>` -- Fetches details about one or multiple AvailableWindowsUpdate resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_errata_facts <ansible_collections.oracle.oci.oci_os_management_errata_facts_module>` -- Fetches details about one or multiple Errata resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_erratum_facts <ansible_collections.oracle.oci.oci_os_management_erratum_facts_module>` -- Fetches details about a Erratum resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event <ansible_collections.oracle.oci.oci_os_management_event_module>` -- Manage an Event resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event_content <ansible_collections.oracle.oci.oci_os_management_event_content_module>` -- Manage an EventContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event_content_actions <ansible_collections.oracle.oci.oci_os_management_event_content_actions_module>` -- Perform actions on an EventContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event_content_facts <ansible_collections.oracle.oci.oci_os_management_event_content_facts_module>` -- Fetches details about a EventContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event_facts <ansible_collections.oracle.oci.oci_os_management_event_facts_module>` -- Fetches details about one or multiple Event resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_event_report_facts <ansible_collections.oracle.oci.oci_os_management_event_report_facts_module>` -- Fetches details about a EventReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installable_package_facts <ansible_collections.oracle.oci.oci_os_management_installable_package_facts_module>` -- Fetches details about one or multiple InstallablePackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installed_package_facts <ansible_collections.oracle.oci.oci_os_management_installed_package_facts_module>` -- Fetches details about one or multiple InstalledPackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_installed_windows_update_facts <ansible_collections.oracle.oci.oci_os_management_installed_windows_update_facts_module>` -- Fetches details about one or multiple InstalledWindowsUpdate resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_managed_instance <ansible_collections.oracle.oci.oci_os_management_managed_instance_module>` -- Manage a ManagedInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_actions_module>` -- Perform actions on a ManagedInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_erratum_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_erratum_facts_module>` -- Fetches details about one or multiple ManagedInstanceErratum resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_facts_module>` -- Fetches details about one or multiple ManagedInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_module>` -- Manage a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_actions_module>` -- Perform actions on a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_facts_module>` -- Fetches details about one or multiple ManagedInstanceGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_related_event_facts <ansible_collections.oracle.oci.oci_os_management_related_event_facts_module>` -- Fetches details about one or multiple RelatedEvent resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job <ansible_collections.oracle.oci.oci_os_management_scheduled_job_module>` -- Manage a ScheduledJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job_actions <ansible_collections.oracle.oci.oci_os_management_scheduled_job_actions_module>` -- Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job_facts <ansible_collections.oracle.oci.oci_os_management_scheduled_job_facts_module>` -- Fetches details about one or multiple ScheduledJob resources in Oracle Cloud Infrastructure
@@ -991,6 +1007,7 @@ Modules
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job <ansible_collections.oracle.oci.oci_resource_manager_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_job_detailed_log_content_facts <ansible_collections.oracle.oci.oci_resource_manager_job_detailed_log_content_facts_module>` -- Fetches details about a JobDetailedLogContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_facts <ansible_collections.oracle.oci.oci_resource_manager_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_log_facts <ansible_collections.oracle.oci.oci_resource_manager_job_log_facts_module>` -- Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_logs_content_facts <ansible_collections.oracle.oci.oci_resource_manager_job_logs_content_facts_module>` -- Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
@@ -1324,6 +1341,8 @@ Modules
     oci_compute_management_instance_pool_instance_actions_module
     oci_compute_management_instance_pool_instance_facts_module
     oci_compute_management_instance_pool_load_balancer_attachment_facts_module
+    oci_compute_measured_boot_report_actions_module
+    oci_compute_measured_boot_report_facts_module
     oci_compute_shape_facts_module
     oci_compute_vnic_attachment_module
     oci_compute_vnic_attachment_facts_module
@@ -1384,6 +1403,12 @@ Modules
     oci_data_safe_target_database_module
     oci_data_safe_target_database_actions_module
     oci_data_safe_target_database_facts_module
+    oci_data_science_job_module
+    oci_data_science_job_actions_module
+    oci_data_science_job_artifact_module
+    oci_data_science_job_artifact_content_facts_module
+    oci_data_science_job_facts_module
+    oci_data_science_job_shape_facts_module
     oci_data_science_model_artifact_module
     oci_data_science_model_artifact_facts_module
     oci_data_science_model_deployment_module
@@ -2068,15 +2093,23 @@ Modules
     oci_os_management_available_windows_update_facts_module
     oci_os_management_errata_facts_module
     oci_os_management_erratum_facts_module
+    oci_os_management_event_module
+    oci_os_management_event_content_module
+    oci_os_management_event_content_actions_module
+    oci_os_management_event_content_facts_module
+    oci_os_management_event_facts_module
+    oci_os_management_event_report_facts_module
     oci_os_management_installable_package_facts_module
     oci_os_management_installed_package_facts_module
     oci_os_management_installed_windows_update_facts_module
+    oci_os_management_managed_instance_module
     oci_os_management_managed_instance_actions_module
     oci_os_management_managed_instance_erratum_facts_module
     oci_os_management_managed_instance_facts_module
     oci_os_management_managed_instance_group_module
     oci_os_management_managed_instance_group_actions_module
     oci_os_management_managed_instance_group_facts_module
+    oci_os_management_related_event_facts_module
     oci_os_management_scheduled_job_module
     oci_os_management_scheduled_job_actions_module
     oci_os_management_scheduled_job_facts_module
@@ -2090,6 +2123,7 @@ Modules
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module
     oci_resource_manager_job_module
+    oci_resource_manager_job_detailed_log_content_facts_module
     oci_resource_manager_job_facts_module
     oci_resource_manager_job_log_facts_module
     oci_resource_manager_job_logs_content_facts_module

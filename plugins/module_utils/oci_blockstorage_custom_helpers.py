@@ -66,7 +66,7 @@ class BootVolumeBackupActionsHelperCustom:
                     self.module.exit_json(
                         **self.prepare_result(
                             changed=False,
-                            resource_type=self.resource_type,
+                            resource_type=self.get_response_field_name(action),
                             resource=to_dict(destination_region_backup),
                         )
                     )
@@ -107,7 +107,7 @@ class VolumeBackupActionsHelperCustom:
                     self.module.exit_json(
                         **self.prepare_result(
                             changed=False,
-                            resource_type=self.resource_type,
+                            resource_type=self.get_response_field_name(action),
                             resource=to_dict(destination_region_backup),
                         )
                     )
@@ -145,12 +145,14 @@ class BootVolumeKmsKeyHelperCustom:
             if resource.kms_key_id == self.module.params.get("kms_key_id"):
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(resource),
                 )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=dict(),
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=dict(),
             )
         self.update_resource()
         # The super update_resource method has a none waiter. But the boot volume does not come to ready state
@@ -166,7 +168,7 @@ class BootVolumeKmsKeyHelperCustom:
         )
         return self.prepare_result(
             changed=True,
-            resource_type=self.resource_type,
+            resource_type=self.get_response_field_name(),
             resource=to_dict(self.get_resource().data),
         )
 
@@ -208,12 +210,14 @@ class VolumeKmsKeyHelperCustom:
             if resource.kms_key_id == self.module.params.get("kms_key_id"):
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(resource),
                 )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=dict(),
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=dict(),
             )
         self.update_resource()
         # The super update_resource method has a none waiter. But the volume does not come to ready state immediately.
@@ -227,7 +231,7 @@ class VolumeKmsKeyHelperCustom:
         )
         return self.prepare_result(
             changed=True,
-            resource_type=self.resource_type,
+            resource_type=self.get_response_field_name(),
             resource=to_dict(self.get_resource().data),
         )
 
@@ -333,7 +337,7 @@ class VolumeGroupBackupActionsHelperCustom:
                     self.module.exit_json(
                         **self.prepare_result(
                             changed=False,
-                            resource_type=self.resource_type,
+                            resource_type=self.get_response_field_name(action),
                             resource=to_dict(destination_region_backup),
                         )
                     )

@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_job_logs_content_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
-- Returns raw log file for the specified job in text format. Returns a maximum of 100,000 log entries.
+- Returns a raw log file for the specified job. The raw log file contains console log entries in text format. The maximum number of entries in a file is 100,000.
 
 
 .. Aliases

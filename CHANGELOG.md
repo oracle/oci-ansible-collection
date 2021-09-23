@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.31.0] - 2021-09-23
+
+## Added
+- Support for monitoring and management of OCI virtual machine, bare metal, and ExaCS databases in the Database Management service
+- Support for metrics and Performance Hub on virtual machine, bare metal, and ExaCS databases in the Database Management service
+- Support for monitoring critical OS events in OCI Instances
+- Support for Oracle Analytics Cloud, OCI Vault integration for connections in Data Catalog
+- Support for serviceHostKeyFingerprint property for InstanceConsoleConnection in Core service
+- Support for Shielded Instances in Core service
+- Support for Fetching Detailed Job Log Content in Resource Manager Service
+- Support for ML Jobs in the Data Science service
+
+## Fixed
+- Issue with using `lifecycle_state` filter for listing compartments in `oci_identity_compartment_facts` module
+- Issue with ansible-doc when installed using ansible galaxy not showing documentation. Note: Issue is fixed only for core services (core, database, dns, load balancer and object storage). Other services continue to have this issue.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.45.0
+
+### Breaking
+- Parameter `oci_splat_generated_ocids` is removed from the module `oci_resource_manager_template` in the Resource Manager service
+
 ## [2.30.0] - 2021-09-09
 
 ## Added

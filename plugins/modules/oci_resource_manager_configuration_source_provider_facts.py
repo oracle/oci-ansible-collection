@@ -43,7 +43,10 @@ options:
         type: str
     display_name:
         description:
-            - A filter to return only resources that match the specified display name.
+            - A filter to return only resources that match the given display name exactly.
+              Use this filter to list a resource by name.
+              Requires `sortBy` set to `DISPLAYNAME`.
+              Alternatively, when you know the resource OCID, use the related Get operation.
         type: str
         aliases: ["name"]
     sort_by:
@@ -124,7 +127,7 @@ configuration_source_providers:
             description:
                 - The current lifecycle state of the configuration source provider.
                   For more information about configuration source provider lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#CSPStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__CSPStates).
             returned: on success
             type: string
             sample: ACTIVE

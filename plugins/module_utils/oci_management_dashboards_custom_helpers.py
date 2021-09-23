@@ -35,7 +35,9 @@ class ManagementDashboardActionsHelperCustom:
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=None
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=None,
             )
 
         try:
@@ -54,5 +56,7 @@ class ManagementDashboardActionsHelperCustom:
                 resource = to_dict(action_return)
 
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=resource,
             )

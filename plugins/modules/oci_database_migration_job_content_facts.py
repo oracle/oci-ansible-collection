@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     job_id:
         description:
             - The OCID of the job
@@ -39,6 +45,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific job_content
   oci_database_migration_job_content_facts:
+    dest: /tmp/myfile
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
@@ -92,7 +99,12 @@ class ResourceFactsHelper(JobContentFactsHelperCustom, JobContentFactsHelperGen)
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(job_id=dict(aliases=["id"], type="str", required=True),))
+    module_args.update(
+        dict(
+            dest=dict(type="str", required=True),
+            job_id=dict(aliases=["id"], type="str", required=True),
+        )
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 

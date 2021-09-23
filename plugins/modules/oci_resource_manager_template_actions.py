@@ -82,6 +82,7 @@ template:
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
+                  Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
             type: string
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
@@ -104,6 +105,12 @@ template:
             returned: on success
             type: string
             sample: long_description_example
+        is_free_tier:
+            description:
+                - whether the template will work for free tier tenancy.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - "The date and time at which the template was created.
@@ -153,6 +160,7 @@ template:
         "display_name": "display_name_example",
         "description": "description_example",
         "long_description": "long_description_example",
+        "is_free_tier": true,
         "time_created": "2020-11-25T21:10:29.600Z",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"

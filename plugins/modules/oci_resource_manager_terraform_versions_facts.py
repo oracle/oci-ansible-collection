@@ -55,8 +55,16 @@ terraform_versions:
             returned: on success
             type: string
             sample: 0.12.x
+        is_default:
+            description:
+                - Indicates whether this Terraform version is used by default in L(CreateStack,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/resourcemanager/latest/Stack/CreateStack).
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
-        "name": "0.12.x"
+        "name": "0.12.x",
+        "is_default": true
     }]
 """
 

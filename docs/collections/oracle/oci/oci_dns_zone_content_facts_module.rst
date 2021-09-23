@@ -20,7 +20,7 @@ oracle.oci.oci_dns_zone_content_facts -- Fetches details about a ZoneContent res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -317,8 +317,8 @@ Examples
     
     - name: Get a specific zone_content
       oci_dns_zone_content_facts:
-        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
         dest: /tmp/myfile
+        zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

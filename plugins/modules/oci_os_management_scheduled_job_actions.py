@@ -246,6 +246,12 @@ scheduled_job:
             returned: on success
             type: string
             sample: LINUX
+        is_restricted:
+            description:
+                - true, if the schedule job has its update capabilities restricted. (Used to track Autonomous Scheduled Job)
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -277,7 +283,8 @@ scheduled_job:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "update_names": [],
-        "os_family": "LINUX"
+        "os_family": "LINUX",
+        "is_restricted": true
     }
 """
 

@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     run_id:
         description:
             - The unique ID for the run
@@ -37,21 +43,15 @@ options:
             - The name of the log. Avoid entering confidential information.
         type: str
         required: true
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific run_log_content
   oci_data_flow_run_log_content_facts:
+    dest: /tmp/myfile
     run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    dest: /usr/local/myfile.zip
 
 """
 
@@ -113,9 +113,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             run_id=dict(type="str", required=True),
             name=dict(type="str", required=True),
-            dest=dict(type="str", required=True),
         )
     )
 

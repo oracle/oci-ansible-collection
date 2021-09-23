@@ -63,6 +63,40 @@ options:
                     - Base64-encoded state file
                     - Required when operation is 'IMPORT_TF_STATE'
                 type: str
+            terraform_advanced_options:
+                description:
+                    - ""
+                    - Applicable when operation is one of ['DESTROY', 'APPLY', 'PLAN']
+                type: dict
+                suboptions:
+                    is_refresh_required:
+                        description:
+                            - "Specifies whether to refresh the state for each resource before running the job (operation).
+                              Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources.
+                              Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            - Applicable when operation is 'APPLY'
+                        type: bool
+                    parallelism:
+                        description:
+                            - "Limits the number of concurrent Terraform operations when L(walking the
+                              graph,https://www.terraform.io/docs/internals/graph.html#walking-the-graph).
+                              Use this parameter to help debug Terraform issues or to accomplish certain special use cases.
+                              A higher value might cause resources to be throttled.
+                              Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            - Applicable when operation is 'APPLY'
+                        type: int
+                    detailed_log_level:
+                        description:
+                            - "Enables detailed logs at the specified verbosity for running the job (operation).
+                              Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            - Applicable when operation is 'APPLY'
+                        type: str
+                        choices:
+                            - "ERROR"
+                            - "WARN"
+                            - "INFO"
+                            - "DEBUG"
+                            - "TRACE"
             execution_plan_strategy:
                 description:
                     - Specifies the source of the execution plan to apply.
@@ -120,6 +154,12 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_forced:
+        description:
+            - Indicates whether a forced cancellation is requested for the job while it was running.
+              A forced cancellation can result in an incorrect state file.
+              For example, the state file might not reflect the exact state of the provisioned resources.
+        type: bool
     state:
         description:
             - The state of the Job.
@@ -211,6 +251,37 @@ job:
                     returned: on success
                     type: string
                     sample: APPLY
+                terraform_advanced_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_refresh_required:
+                            description:
+                                - "Specifies whether to refresh the state for each resource before running the job (operation).
+                                  Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources.
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: bool
+                            sample: true
+                        parallelism:
+                            description:
+                                - "Limits the number of concurrent Terraform operations when L(walking the
+                                  graph,https://www.terraform.io/docs/internals/graph.html#walking-the-graph).
+                                  Use this parameter to help debug Terraform issues or to accomplish certain special use cases.
+                                  A higher value might cause resources to be throttled.
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: int
+                            sample: 56
+                        detailed_log_level:
+                            description:
+                                - "Enables detailed logs at the specified verbosity for running the job (operation).
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: string
+                            sample: ERROR
                 execution_plan_strategy:
                     description:
                         - Specifies the source of the execution plan to apply.
@@ -284,7 +355,7 @@ job:
             description:
                 - Current state of the specified job.
                   For more information about job lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#JobStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__JobStates).
             returned: on success
             type: string
             sample: ACCEPTED
@@ -306,6 +377,20 @@ job:
                     returned: on success
                     type: string
                     sample: message_example
+        cancellation_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_forced:
+                    description:
+                        - Indicates whether a forced cancellation was requested for the job while it was running.
+                          A forced cancellation can result in an incorrect state file.
+                          For example, the state file might not reflect the exact state of the provisioned resources.
+                    returned: on success
+                    type: bool
+                    sample: true
         working_directory:
             description:
                 - File path to the directory from which Terraform runs.
@@ -318,7 +403,7 @@ job:
             description:
                 - "Terraform variables associated with this resource.
                   Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 4096 bytes.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict
@@ -403,6 +488,11 @@ job:
         "operation": "PLAN",
         "job_operation_details": {
             "operation": "APPLY",
+            "terraform_advanced_options": {
+                "is_refresh_required": true,
+                "parallelism": 56,
+                "detailed_log_level": "ERROR"
+            },
             "execution_plan_strategy": "FROM_PLAN_JOB_ID",
             "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         },
@@ -418,6 +508,9 @@ job:
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
             "message": "message_example"
+        },
+        "cancellation_details": {
+            "is_forced": true
         },
         "working_directory": "working_directory_example",
         "variables": {},
@@ -542,7 +635,10 @@ class JobHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.cancel_job,
             call_fn_args=(),
-            call_fn_kwargs=dict(job_id=self.module.params.get("job_id"),),
+            call_fn_kwargs=dict(
+                job_id=self.module.params.get("job_id"),
+                is_forced=self.module.params.get("is_forced"),
+            ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -578,6 +674,17 @@ def main():
                         choices=["IMPORT_TF_STATE", "APPLY", "PLAN", "DESTROY"],
                     ),
                     tf_state_base64_encoded=dict(type="str"),
+                    terraform_advanced_options=dict(
+                        type="dict",
+                        options=dict(
+                            is_refresh_required=dict(type="bool"),
+                            parallelism=dict(type="int"),
+                            detailed_log_level=dict(
+                                type="str",
+                                choices=["ERROR", "WARN", "INFO", "DEBUG", "TRACE"],
+                            ),
+                        ),
+                    ),
                     execution_plan_strategy=dict(type="str"),
                     execution_plan_job_id=dict(type="str"),
                 ),
@@ -593,6 +700,7 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             job_id=dict(aliases=["id"], type="str"),
+            is_forced=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

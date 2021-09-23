@@ -255,7 +255,7 @@ class AccessRulesHelperCustom:
 
         _debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
             )
         )
@@ -281,7 +281,7 @@ class CaptchasHelperCustom:
 
         _debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
             )
         )

@@ -39,17 +39,16 @@ options:
             - The OCID of the new compartment where you want to move the on-premises connector.
             - Required for I(action=change_compartment).
         type: str
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+            - Required for I(action=generate_on_prem_connector_configuration).
+        type: str
     password:
         description:
             - The password to encrypt the keys inside the wallet included as part of the configuration. The password must be between 12 and 30 characters long
               and must contain atleast 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
-            - Required for I(action=generate_on_prem_connector_configuration).
-        type: str
-    dest:
-        description:
-            - The destination file path to write the configuration file to when I(action=generate_on_prem_connector_configuration). The file will be created if
-              it does not exist. If the file already exists, the content will be overwritten. I(dest) is required if
-              I(action=generate_on_prem_connector_configuration).
             - Required for I(action=generate_on_prem_connector_configuration).
         type: str
     action:
@@ -73,8 +72,8 @@ EXAMPLES = """
 - name: Perform action generate_on_prem_connector_configuration on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
     on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    dest: /tmp/myfile
     password: password_example
-    dest: /tmp/on_prem_connector_config_file.zip
     action: generate_on_prem_connector_configuration
 
 """
@@ -85,11 +84,102 @@ on_prem_connector:
         - Details of the OnPremConnector resource acted upon by the current operation
     returned: on success
     type: complex
-    contains: TODO - No response model found or could be returning binary data.
-    sample: TODO - No response model found or could be returning binary data.
+    contains:
+        id:
+            description:
+                - The OCID of the on-premises connector.
+            returned: on success
+            type: string
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name:
+            description:
+                - The display name of the on-premises connector.
+            returned: on success
+            type: string
+            sample: display_name_example
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains the on-premises connector.
+            returned: on success
+            type: string
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description:
+            description:
+                - The description of the on-premises connector.
+            returned: on success
+            type: string
+            sample: description_example
+        time_created:
+            description:
+                - The date and time the on-premises connector was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+            returned: on success
+            type: string
+            sample: 2013-10-20T19:20:30+01:00
+        lifecycle_state:
+            description:
+                - The current state of the on-premises connector.
+            returned: on success
+            type: string
+            sample: CREATING
+        lifecycle_details:
+            description:
+                - Details about the current state of the on-premises connector.
+            returned: on success
+            type: string
+            sample: lifecycle_details_example
+        freeform_tags:
+            description:
+                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
+                  L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
+                - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm)
+                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
+        system_tags:
+            description:
+                - "System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.
+                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            returned: on success
+            type: dict
+            sample: {}
+        available_version:
+            description:
+                - Latest available version of the on-premises connector.
+            returned: on success
+            type: string
+            sample: available_version_example
+        created_version:
+            description:
+                - Created version of the on-premises connector.
+            returned: on success
+            type: string
+            sample: created_version_example
+    sample: {
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "display_name": "display_name_example",
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "description": "description_example",
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "lifecycle_state": "CREATING",
+        "lifecycle_details": "lifecycle_details_example",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "system_tags": {},
+        "available_version": "available_version_example",
+        "created_version": "created_version_example"
+    }
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -159,7 +249,7 @@ class DataSafeOnPremConnectorActionsHelperGen(OCIActionsHelperBase):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, GenerateOnPremConnectorConfigurationDetails
         )
-        return oci_wait_utils.call_and_wait(
+        response = oci_wait_utils.call_and_wait(
             call_fn=self.client.generate_on_prem_connector_configuration,
             call_fn_args=(),
             call_fn_kwargs=dict(
@@ -177,6 +267,12 @@ class DataSafeOnPremConnectorActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action")
             ),
         )
+        dest = self.module.params.get("dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
 
 DataSafeOnPremConnectorActionsHelperCustom = get_custom_class(
@@ -198,8 +294,8 @@ def main():
         dict(
             on_prem_connector_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
-            password=dict(type="str", no_log=True),
             dest=dict(type="str"),
+            password=dict(type="str", no_log=True),
             action=dict(
                 type="str",
                 required=True,

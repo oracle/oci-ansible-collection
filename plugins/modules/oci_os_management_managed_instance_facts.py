@@ -222,6 +222,36 @@ managed_instances:
             returned: on success
             type: bool
             sample: true
+        notification_topic_id:
+            description:
+                - OCID of the ONS topic used to send notification to users
+            returned: on success
+            type: string
+            sample: "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx"
+        ksplice_effective_kernel_version:
+            description:
+                - The ksplice effective kernel version
+            returned: on success
+            type: string
+            sample: ksplice_effective_kernel_version_example
+        is_data_collection_authorized:
+            description:
+                - True if user allow data collection for this instance
+            returned: on success
+            type: bool
+            sample: true
+        autonomous:
+            description:
+                - if present, indicates the Managed Instance is an autonomous instance. Holds all the Autonomous specific information
+            returned: on success
+            type: complex
+            contains:
+                is_auto_update_enabled:
+                    description:
+                        - True if daily updates are enabled
+                    returned: on success
+                    type: bool
+                    sample: true
         security_updates_available:
             description:
                 - Number of security type updates available to be installed
@@ -284,6 +314,12 @@ managed_instances:
         }],
         "os_family": "LINUX",
         "is_reboot_required": true,
+        "notification_topic_id": "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx",
+        "ksplice_effective_kernel_version": "ksplice_effective_kernel_version_example",
+        "is_data_collection_authorized": true,
+        "autonomous": {
+            "is_auto_update_enabled": true
+        },
         "security_updates_available": 56,
         "bug_updates_available": 56,
         "enhancement_updates_available": 56,

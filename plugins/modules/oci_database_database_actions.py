@@ -23,8 +23,12 @@ module: oci_database_database_actions
 short_description: Perform actions on a Database resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
+    - Disables the Database Management service for the database.
+    - Enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This service allows the database to access tools
+      including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
     - Changes encryption key management from customer-managed, using the L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
+    - Updates one or more attributes of the Database Management service for the database.
     - Restore a Database based on the request parameters you provide.
     - Creates a new version of an existing L(Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
     - Upgrades the specified Oracle Database instance.
@@ -37,6 +41,41 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    credential_details:
+        description:
+            - ""
+            - Required for I(action=enable_database_management).
+        type: dict
+        suboptions:
+            user_name:
+                description:
+                    - The name of the Oracle Database user that will be used to connect to the database.
+                type: str
+                required: true
+            password_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                      L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                type: str
+                required: true
+    private_end_point_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
+            - Required for I(action=enable_database_management).
+        type: str
+    management_type:
+        description:
+            - The Database Management type.
+            - Applicable only for I(action=enable_database_management)I(action=modify_database_management).
+        type: str
+        choices:
+            - "BASIC"
+            - "ADVANCED"
+    service_name:
+        description:
+            - The name of the Oracle Database service that will be used to connect to the database.
+            - Required for I(action=enable_database_management).
+        type: str
     kms_key_id:
         description:
             - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -69,7 +108,10 @@ options:
         type: str
         required: true
         choices:
+            - "disable_database_management"
+            - "enable_database_management"
             - "migrate_vault_key"
+            - "modify_database_management"
             - "restore"
             - "rotate_vault_key"
             - "precheck"
@@ -121,11 +163,38 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action disable_database_management on database
+  oci_database_database_actions:
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_database_management
+
+- name: Perform action enable_database_management on database
+  oci_database_database_actions:
+    credential_details:
+      user_name: "dbUser_1"
+      password_secret_id: "ocid1.vaultsecret.oc1.phx.amaaaaaaqn2gl2iahl4b5q4u6ux3nhvnznyvjkuu6p7vlgpxt2bnmmmmmmmm"
+    private_end_point_id: "ocid1.dbmanagementprivateendpoint.oc1.phx.amaaaaaaet6wzjya46nhydueyc3p3vtvqg4ubsrpfd4q26wvrjsicqunnnnn"
+    management_type: "BASIC"
+    service_name: "DB0510_phx23p.sub04302048065.abcd123.oraclevcn.com"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "enable_database_management"
+
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_vault_key
+
+- name: Perform action modify_database_management on database
+  oci_database_database_actions:
+    credential_details:
+      user_name: "dbUser_2"
+      password_secret_id: "ocid1.vaultsecret.oc1.phx.amaaaaaaqn2gl2iahl4b5q4u6ux3nhvnznyvjkuu6p7vlgpxt2bnmmmmmmmm"
+    private_end_point_id: "ocid1.dbmanagementprivateendpoint.oc1.phx.amaaaaaaet6wzjya46nhydueyc3p3vtvqg4ubsrpfd4q26wvrjsicqunnnnn"
+    management_type: "ADVANCED"
+    service_name: "DB0630_phx23p.sub04302048065.abcd123.oraclevcn.com"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    action: "modify_database_management"
 
 - name: Perform action restore on database
   oci_database_database_actions:
@@ -384,6 +453,24 @@ database:
             returned: on success
             type: string
             sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        database_management_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                management_status:
+                    description:
+                        - The status of the Database Management service.
+                    returned: on success
+                    type: string
+                    sample: ENABLING
+                management_type:
+                    description:
+                        - The Database Management type.
+                    returned: on success
+                    type: string
+                    sample: BASIC
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -421,7 +508,11 @@ database:
         },
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
-        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_management_config": {
+            "management_status": "ENABLING",
+            "management_type": "BASIC"
+        }
     }
 """
 
@@ -438,7 +529,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import EnableDatabaseManagementDetails
     from oci.database.models import MigrateVaultKeyDetails
+    from oci.database.models import ModifyDatabaseManagementDetails
     from oci.database.models import RestoreDatabaseDetails
     from oci.database.models import UpgradeDatabaseDetails
 
@@ -450,7 +543,10 @@ except ImportError:
 class DatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        disable_database_management
+        enable_database_management
         migrate_vault_key
+        modify_database_management
         restore
         rotate_vault_key
         upgrade
@@ -477,6 +573,42 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
             self.client.get_database, database_id=self.module.params.get("database_id"),
         )
 
+    def disable_database_management(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(database_id=self.module.params.get("database_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_database_management(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableDatabaseManagementDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                enable_database_management_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def migrate_vault_key(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, MigrateVaultKeyDetails
@@ -487,6 +619,27 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 database_id=self.module.params.get("database_id"),
                 migrate_vault_key_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def modify_database_management(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ModifyDatabaseManagementDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.modify_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_id=self.module.params.get("database_id"),
+                modify_database_management_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -570,6 +723,16 @@ def main():
     module_args.update(
         dict(
             database_id=dict(aliases=["id"], type="str", required=True),
+            credential_details=dict(
+                type="dict",
+                options=dict(
+                    user_name=dict(type="str", required=True),
+                    password_secret_id=dict(type="str", required=True),
+                ),
+            ),
+            private_end_point_id=dict(type="str"),
+            management_type=dict(type="str", choices=["BASIC", "ADVANCED"]),
+            service_name=dict(type="str"),
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
             database_scn=dict(type="str"),
@@ -579,7 +742,10 @@ def main():
                 type="str",
                 required=True,
                 choices=[
+                    "disable_database_management",
+                    "enable_database_management",
                     "migrate_vault_key",
+                    "modify_database_management",
                     "restore",
                     "rotate_vault_key",
                     "precheck",

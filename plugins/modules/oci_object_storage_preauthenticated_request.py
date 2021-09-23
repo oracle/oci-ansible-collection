@@ -173,13 +173,6 @@ preauthenticated_request:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
-        access_uri:
-            description:
-                - The URI to embed in the URL when using the pre-authenticated request. Only returned on successful creation of
-                  the preauthenticated request.
-            returned: on success
-            type: string
-            sample: /p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -187,8 +180,7 @@ preauthenticated_request:
         "bucket_listing_action": "bucket_listing_action_example",
         "access_type": "ObjectRead",
         "time_expires": "2013-10-20T19:20:30+01:00",
-        "time_created": "2013-10-20T19:20:30+01:00",
-        "access_uri": "/p/x-xxxxxx_Examplexxxxxx/n/{namespace_name}/{bucket_name}/o/"
+        "time_created": "2013-10-20T19:20:30+01:00"
     }
 """
 

@@ -20,7 +20,7 @@ oracle.oci.oci_database_vm_cluster_network_actions -- Perform actions on a VmClu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -188,6 +188,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The destination file path to write the config file to when <em>action=download_vm_cluster_network_config_file</em>. The file will be created if it does not exist. If the file already exists, the content will be overwritten. <em>config_file_dest</em> is required if <em>action=download_vm_cluster_network_config_file</em>.</div>
+                                            <div>Required for <em>action=download_vm_cluster_network_config_file</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -364,6 +365,7 @@ Examples
       oci_database_vm_cluster_network_actions:
         exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
+        config_file_dest: /tmp/exadata_config_file.zip
         action: download_vm_cluster_network_config_file
 
     - name: Perform action validate on vm_cluster_network

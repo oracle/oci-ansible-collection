@@ -1,3 +1,5 @@
+# Authentication Guide
+
 ## OCI Ansible supports the following authentication mechanisms:
 
 - [API Key](#api-key-authentication)

@@ -104,7 +104,7 @@ class DNSRecordsHelperCustom:
         )
         return self.prepare_result(
             changed=changed,
-            resource_type=self.resource_type,
+            resource_type=self.get_response_field_name(),
             resource=to_dict(updated_resource.items),
         )
 
@@ -117,7 +117,7 @@ class DNSRecordsHelperCustom:
         )
         return self.prepare_result(
             changed=changed,
-            resource_type=self.resource_type,
+            resource_type=self.get_response_field_name(),
             resource=to_dict(patched_resource.items),
         )
 

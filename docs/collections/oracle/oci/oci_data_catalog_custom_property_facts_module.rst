@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_custom_property_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -478,6 +478,10 @@ Parameters
                                                                                                                                                                                                 <li>VIEW</li>
                                                                                                                                                                                                 <li>ATTRIBUTE</li>
                                                                                                                                                                                                 <li>FOLDER</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_SUBJECT_AREA_COLUMN</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_LOGICAL_COLUMN</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_PHYSICAL_COLUMN</li>
+                                                                                                                                                                                                <li>ORACLE_ANALYTICS_ANALYSIS_COLUMN</li>
                                                                                                                                                                                                 <li>ORACLE_ANALYTICS_SERVER</li>
                                                                                                                                                                                                 <li>ORACLE_ANALYTICS_CLOUD</li>
                                                                                                                                                                                                 <li>ORACLE_ANALYTICS_SUBJECT_AREA</li>
@@ -588,7 +592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of CustomProperty resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_editable&#x27;: True, &#x27;is_event_enabled&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;is_event_enabled&#x27;: True, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allowed_values&#x27;: [], &#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_type&#x27;: &#x27;TEXT&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;events&#x27;: [{&#x27;created_by_id&#x27;: &#x27;ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;event_config_status&#x27;: &#x27;ENABLED&#x27;, &#x27;property_id&#x27;: &#x27;ocid1.property.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;property_name&#x27;: &#x27;property_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;is_editable&#x27;: True, &#x27;is_event_enabled&#x27;: True, &#x27;is_filterable&#x27;: True, &#x27;is_hidden&#x27;: True, &#x27;is_hidden_in_search&#x27;: True, &#x27;is_list_type&#x27;: True, &#x27;is_multi_valued&#x27;: True, &#x27;is_service_defined&#x27;: True, &#x27;is_shown_in_list&#x27;: True, &#x27;is_sortable&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;properties&#x27;: {}, &#x27;scope&#x27;: [{&#x27;count&#x27;: 56, &#x27;is_event_enabled&#x27;: True, &#x27;type_id&#x27;: &#x27;ocid1.type.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type_name&#x27;: &#x27;type_name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2019-03-25T21:10:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by_id&#x27;: &#x27;ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage_count&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -679,6 +683,194 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events"></div>
+                    <b>events</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Event configuration for this custom property, against the desired subset of object types to which the property applies.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/created_by_id"></div>
+                    <b>created_by_id</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/created_by_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCID of the user who created the configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/event_config_status"></div>
+                    <b>event_config_status</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/event_config_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Status of the configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/property_id"></div>
+                    <b>property_id</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/property_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique property key identifier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.property.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/property_name"></div>
+                    <b>property_name</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/property_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the property.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">property_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time the event was configured, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2019-03-25T21:10:29.600Z`</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-03-25T21:10:29.600000+00:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The last time that any change was made to the configuration. An <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> formatted datetime string.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/type_id"></div>
+                    <b>type_id</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/type_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique type key identifier.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.type.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/type_name"></div>
+                    <b>type_name</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/type_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the type.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-custom_properties/events/updated_by_id"></div>
+                    <b>updated_by_id</b>
+                    <a class="ansibleOptionLink" href="#return-custom_properties/events/updated_by_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCID of the user who last modified the configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -941,7 +1133,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type or scope of the custom property belongs to. This will be an array of type id it will be belongs to</div>
+                                            <div>The set of object types to which the custom property applies.</div>
                                         <br/>
                                     </td>
             </tr>

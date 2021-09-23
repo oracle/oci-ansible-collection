@@ -20,7 +20,7 @@ oracle.oci.oci_compute_shape_facts -- Fetches details about one or multiple Shap
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -302,12 +302,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-shapes"></div>
                     <b>shapes</b>
                     <a class="ansibleOptionLink" href="#return-shapes" title="Permalink to this return value"></a>
@@ -320,12 +320,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Shape resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_live_migration_supported&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_live_migration_supported&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/baseline_ocpu_utilizations"></div>
                     <b>baseline_ocpu_utilizations</b>
                     <a class="ansibleOptionLink" href="#return-shapes/baseline_ocpu_utilizations" title="Permalink to this return value"></a>
@@ -341,7 +341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/gpu_description"></div>
                     <b>gpu_description</b>
                     <a class="ansibleOptionLink" href="#return-shapes/gpu_description" title="Permalink to this return value"></a>
@@ -360,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/gpus"></div>
                     <b>gpus</b>
                     <a class="ansibleOptionLink" href="#return-shapes/gpus" title="Permalink to this return value"></a>
@@ -378,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/is_live_migration_supported"></div>
                     <b>is_live_migration_supported</b>
                     <a class="ansibleOptionLink" href="#return-shapes/is_live_migration_supported" title="Permalink to this return value"></a>
@@ -396,7 +396,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/local_disk_description"></div>
                     <b>local_disk_description</b>
                     <a class="ansibleOptionLink" href="#return-shapes/local_disk_description" title="Permalink to this return value"></a>
@@ -415,7 +415,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/local_disks"></div>
                     <b>local_disks</b>
                     <a class="ansibleOptionLink" href="#return-shapes/local_disks" title="Permalink to this return value"></a>
@@ -433,7 +433,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/local_disks_total_size_in_gbs"></div>
                     <b>local_disks_total_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/local_disks_total_size_in_gbs" title="Permalink to this return value"></a>
@@ -452,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/max_vnic_attachment_options"></div>
                     <b>max_vnic_attachment_options</b>
                     <a class="ansibleOptionLink" href="#return-shapes/max_vnic_attachment_options" title="Permalink to this return value"></a>
@@ -469,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/max_vnic_attachment_options/default_per_ocpu"></div>
                     <b>default_per_ocpu</b>
                     <a class="ansibleOptionLink" href="#return-shapes/max_vnic_attachment_options/default_per_ocpu" title="Permalink to this return value"></a>
@@ -488,7 +488,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/max_vnic_attachment_options/max"></div>
                     <b>max</b>
                     <a class="ansibleOptionLink" href="#return-shapes/max_vnic_attachment_options/max" title="Permalink to this return value"></a>
@@ -507,7 +507,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/max_vnic_attachment_options/min"></div>
                     <b>min</b>
                     <a class="ansibleOptionLink" href="#return-shapes/max_vnic_attachment_options/min" title="Permalink to this return value"></a>
@@ -526,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/max_vnic_attachments"></div>
                     <b>max_vnic_attachments</b>
                     <a class="ansibleOptionLink" href="#return-shapes/max_vnic_attachments" title="Permalink to this return value"></a>
@@ -544,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_in_gbs" title="Permalink to this return value"></a>
@@ -562,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options"></div>
                     <b>memory_options</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options" title="Permalink to this return value"></a>
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/default_per_ocpu_in_g_bs"></div>
                     <b>default_per_ocpu_in_g_bs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/default_per_ocpu_in_g_bs" title="Permalink to this return value"></a>
@@ -598,7 +598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/max_in_g_bs"></div>
                     <b>max_in_g_bs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/max_in_g_bs" title="Permalink to this return value"></a>
@@ -617,7 +617,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/max_per_ocpu_in_gbs"></div>
                     <b>max_per_ocpu_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/max_per_ocpu_in_gbs" title="Permalink to this return value"></a>
@@ -636,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/min_in_g_bs"></div>
                     <b>min_in_g_bs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/min_in_g_bs" title="Permalink to this return value"></a>
@@ -655,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/memory_options/min_per_ocpu_in_gbs"></div>
                     <b>min_per_ocpu_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-shapes/memory_options/min_per_ocpu_in_gbs" title="Permalink to this return value"></a>
@@ -674,7 +674,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/min_total_baseline_ocpus_required"></div>
                     <b>min_total_baseline_ocpus_required</b>
                     <a class="ansibleOptionLink" href="#return-shapes/min_total_baseline_ocpus_required" title="Permalink to this return value"></a>
@@ -692,7 +692,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/networking_bandwidth_in_gbps"></div>
                     <b>networking_bandwidth_in_gbps</b>
                     <a class="ansibleOptionLink" href="#return-shapes/networking_bandwidth_in_gbps" title="Permalink to this return value"></a>
@@ -710,7 +710,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/networking_bandwidth_options"></div>
                     <b>networking_bandwidth_options</b>
                     <a class="ansibleOptionLink" href="#return-shapes/networking_bandwidth_options" title="Permalink to this return value"></a>
@@ -727,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/networking_bandwidth_options/default_per_ocpu_in_gbps"></div>
                     <b>default_per_ocpu_in_gbps</b>
                     <a class="ansibleOptionLink" href="#return-shapes/networking_bandwidth_options/default_per_ocpu_in_gbps" title="Permalink to this return value"></a>
@@ -746,7 +746,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/networking_bandwidth_options/max_in_gbps"></div>
                     <b>max_in_gbps</b>
                     <a class="ansibleOptionLink" href="#return-shapes/networking_bandwidth_options/max_in_gbps" title="Permalink to this return value"></a>
@@ -765,7 +765,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/networking_bandwidth_options/min_in_gbps"></div>
                     <b>min_in_gbps</b>
                     <a class="ansibleOptionLink" href="#return-shapes/networking_bandwidth_options/min_in_gbps" title="Permalink to this return value"></a>
@@ -784,7 +784,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/ocpu_options"></div>
                     <b>ocpu_options</b>
                     <a class="ansibleOptionLink" href="#return-shapes/ocpu_options" title="Permalink to this return value"></a>
@@ -801,7 +801,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/ocpu_options/max"></div>
                     <b>max</b>
                     <a class="ansibleOptionLink" href="#return-shapes/ocpu_options/max" title="Permalink to this return value"></a>
@@ -820,7 +820,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-shapes/ocpu_options/min"></div>
                     <b>min</b>
                     <a class="ansibleOptionLink" href="#return-shapes/ocpu_options/min" title="Permalink to this return value"></a>
@@ -839,7 +839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#return-shapes/ocpus" title="Permalink to this return value"></a>
@@ -857,7 +857,267 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options"></div>
+                    <b>platform_config_options</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/measured_boot_options"></div>
+                    <b>measured_boot_options</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/measured_boot_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/measured_boot_options/allowed_values"></div>
+                    <b>allowed_values</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/measured_boot_options/allowed_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean values that indicate whether the Measured Boot feature can be enabled or disabled.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/measured_boot_options/is_default_enabled"></div>
+                    <b>is_default_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/measured_boot_options/is_default_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the Measured Boot feature is enabled by default.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/numa_nodes_per_socket_platform_options"></div>
+                    <b>numa_nodes_per_socket_platform_options</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/numa_nodes_per_socket_platform_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/numa_nodes_per_socket_platform_options/default_value"></div>
+                    <b>default_value</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/numa_nodes_per_socket_platform_options/default_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The default NUMA nodes per socket configuration.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_value_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/numa_nodes_per_socket_platform_options/service_allowed_values"></div>
+                    <b>service_allowed_values</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/numa_nodes_per_socket_platform_options/service_allowed_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The supported values for this platform configuration property.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/secure_boot_options"></div>
+                    <b>secure_boot_options</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/secure_boot_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/secure_boot_options/allowed_values"></div>
+                    <b>allowed_values</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/secure_boot_options/allowed_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean values that indicate whether Secure Boot can be enabled or disabled.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/secure_boot_options/is_default_enabled"></div>
+                    <b>is_default_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/secure_boot_options/is_default_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether Secure Boot is enabled by default.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/trusted_platform_module_options"></div>
+                    <b>trusted_platform_module_options</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/trusted_platform_module_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/trusted_platform_module_options/allowed_values"></div>
+                    <b>allowed_values</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/trusted_platform_module_options/allowed_values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Boolean values that indicate whether the Trusted Platform Module can be enabled or disabled.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/trusted_platform_module_options/is_default_enabled"></div>
+                    <b>is_default_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/trusted_platform_module_options/is_default_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the Trusted Platform Module is enabled by default.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-shapes/platform_config_options/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/platform_config_options/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of platform being configured.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMD_MILAN_BM</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/processor_description"></div>
                     <b>processor_description</b>
                     <a class="ansibleOptionLink" href="#return-shapes/processor_description" title="Permalink to this return value"></a>
@@ -875,7 +1135,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-shapes/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#return-shapes/shape" title="Permalink to this return value"></a>

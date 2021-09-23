@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_template -- Manage a Template resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a custom template in the specified compartment.
+- For *state=present*, creates a private template in the specified compartment.
 - This resource has the following action operations in the :ref:`oci_template_actions <ansible_collections.oci_template_actions_module>` module: change_compartment.
 
 
@@ -314,7 +314,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Base64-encoded logo for the template.</div>
+                                            <div>Base64-encoded logo to use as the template icon. Template icon file requirements: PNG format, 50 KB maximum, 110 x 110 pixels.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -332,21 +332,6 @@ Parameters
                                                                 <td>
                                             <div>Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded. Avoid entering confidential information.</div>
                                             <div>This parameter is updatable.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="parameter-oci_splat_generated_ocids"></div>
-                    <b>oci_splat_generated_ocids</b>
-                    <a class="ansibleOptionLink" href="#parameter-oci_splat_generated_ocids" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>This is to enable limit/quota support through splat</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -598,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Template resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category_id&#x27;: &#x27;ocid1.category.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;template_config_source&#x27;: {&#x27;template_config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;}, &#x27;time_created&#x27;: &#x27;2020-11-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category_id&#x27;: &#x27;ocid1.category.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_free_tier&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;long_description&#x27;: &#x27;long_description_example&#x27;, &#x27;template_config_source&#x27;: {&#x27;template_config_source_type&#x27;: &#x27;ZIP_UPLOAD&#x27;}, &#x27;time_created&#x27;: &#x27;2020-11-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -613,7 +598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier for the category where the template is located.</div>
+                                            <div>Unique identifier for the category where the template is located. Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.category.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -725,6 +710,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-template/is_free_tier"></div>
+                    <b>is_free_tier</b>
+                    <a class="ansibleOptionLink" href="#return-template/is_free_tier" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>whether the template will work for free tier tenancy.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

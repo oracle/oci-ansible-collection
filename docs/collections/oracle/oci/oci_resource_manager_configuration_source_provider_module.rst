@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider -- Manage a Config
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,7 +43,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a configuration source provider in the specified compartment. For more information, see `To create a configuration source provider <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider>`_.
+- For *state=present*, creates a configuration source provider in the specified compartment. For more information, see `To create a configuration source provider <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingconfigurationsourceproviders.htm#CreateConfigurationSourceProvider>`_.
 - This resource has the following action operations in the :ref:`oci_configuration_source_provider_actions <ansible_collections.oci_configuration_source_provider_actions_module>` module: change_compartment.
 
 
@@ -702,7 +702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current lifecycle state of the configuration source provider. For more information about configuration source provider lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#CSPStates'>Key Concepts</a>.</div>
+                                            <div>The current lifecycle state of the configuration source provider. For more information about configuration source provider lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__CSPStates'>Key Concepts</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>

@@ -35,6 +35,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+            - Required to get a specific object.
+        type: str
     namespace_name:
         description:
             - The Object Storage namespace used for the request.
@@ -141,6 +147,7 @@ EXAMPLES = """
 
 - name: Get a specific object
   oci_object_storage_object_facts:
+    dest: /tmp/myfile
     namespace_name: namespace_name_example
     bucket_name: my-new-bucket1
     object_name: test/object1.log
@@ -203,12 +210,6 @@ objects:
             returned: on success
             type: string
             sample: 2013-10-20T19:20:30+01:00
-        headers:
-            description:
-                - response headers for the object
-            returned: on success
-            type: dict
-            sample: {'Content-Length':'37','opc-meta-key1':'value1'}
     sample: [{
         "name": "name_example",
         "size": 56,
@@ -217,8 +218,7 @@ objects:
         "etag": "etag_example",
         "storage_tier": "Standard",
         "archival_state": "Archived",
-        "time_modified": "2013-10-20T19:20:30+01:00",
-        "headers": {'Content-Length':'37','opc-meta-key1':'value1'}
+        "time_modified": "2013-10-20T19:20:30+01:00"
     }]
 """
 
@@ -312,6 +312,7 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str"),
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str", required=True),
             object_name=dict(type="str"),

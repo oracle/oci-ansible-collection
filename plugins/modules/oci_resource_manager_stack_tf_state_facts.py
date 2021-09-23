@@ -27,17 +27,17 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
-    stack_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
-        type: str
-        aliases: ["id"]
-        required: true
     dest:
         description:
             - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
               overwritten.
         type: str
+        required: true
+    stack_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
+        type: str
+        aliases: ["id"]
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -45,8 +45,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific stack_tf_state
   oci_resource_manager_stack_tf_state_facts:
+    dest: /tmp/myfile
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
-    dest: /tmp/terraformstate.json
 
 """
 
@@ -101,8 +101,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            stack_id=dict(aliases=["id"], type="str", required=True),
             dest=dict(type="str", required=True),
+            stack_id=dict(aliases=["id"], type="str", required=True),
         )
     )
 

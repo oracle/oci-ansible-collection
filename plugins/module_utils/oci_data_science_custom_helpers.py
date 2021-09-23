@@ -95,3 +95,19 @@ class DataScienceModelProvenanceHelperCustom:
             return dict()
         else:
             return to_dict(get_response.data)
+
+
+class DataScienceJobHelperCustom:
+    def get_resource_active_states(self):
+        return ["CREATING"]
+
+
+class DataScienceJobArtifactHelperCustom:
+    def create_resource(self):
+        file_path = self.module.params.get("job_artifact_file")
+        with open(file_path, "rb") as input_file:
+            data = input_file.read()
+        self.module.params["job_artifact"] = data
+        resource = super(DataScienceJobArtifactHelperCustom, self).create_resource()
+        self.module.params.pop("job_artifact", None)
+        return resource

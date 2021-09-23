@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
@@ -38,20 +44,14 @@ options:
             - Optional byte range to fetch, as described in L(RFC 7233,https://tools.ietf.org/html/rfc7232#section-2.1), section 2.1.
               Note that only a single range of bytes is supported.
         type: str
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific model_artifact
   oci_data_science_model_artifact_facts:
+    dest: /tmp/myfile
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
-    dest: /usr/local/myfile.txt
 
 """
 
@@ -120,9 +120,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             model_id=dict(aliases=["id"], type="str", required=True),
             range=dict(type="str"),
-            dest=dict(type="str", required=True),
         )
     )
 

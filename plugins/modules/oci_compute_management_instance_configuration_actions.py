@@ -406,15 +406,31 @@ options:
                 suboptions:
                     type:
                         description:
-                            - The type of platform being configured. The only supported
-                              `type` is `AMD_MILAN_BM`.
+                            - The type of platform being configured.
                         type: str
                         choices:
                             - "AMD_MILAN_BM"
+                            - "INTEL_VM"
+                            - "AMD_ROME_BM"
+                            - "INTEL_SKYLAKE_BM"
+                            - "AMD_VM"
                         required: true
+                    is_secure_boot_enabled:
+                        description:
+                            - Whether Secure Boot is enabled on the instance.
+                        type: bool
+                    is_trusted_platform_module_enabled:
+                        description:
+                            - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                        type: bool
+                    is_measured_boot_enabled:
+                        description:
+                            - Whether the Measured Boot feature is enabled on the instance.
+                        type: bool
                     numa_nodes_per_socket:
                         description:
                             - The number of NUMA nodes per socket.
+                            - Applicable when type is 'AMD_MILAN_BM'
                         type: str
                         choices:
                             - "NPS0"
@@ -1298,11 +1314,28 @@ instance:
             contains:
                 type:
                     description:
-                        - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`.
+                        - The type of platform being configured.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
+                is_secure_boot_enabled:
+                    description:
+                        - Whether Secure Boot is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_trusted_platform_module_enabled:
+                    description:
+                        - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_measured_boot_enabled:
+                    description:
+                        - Whether the Measured Boot feature is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
                 numa_nodes_per_socket:
                     description:
                         - The number of NUMA nodes per socket (NPS).
@@ -1382,6 +1415,9 @@ instance:
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
         "platform_config": {
             "type": "AMD_MILAN_BM",
+            "is_secure_boot_enabled": true,
+            "is_trusted_platform_module_enabled": true,
+            "is_measured_boot_enabled": true,
             "numa_nodes_per_socket": "NPS0"
         }
     }
@@ -1438,6 +1474,9 @@ class InstanceConfigurationActionsHelperGen(OCIActionsHelperBase):
                 "instance_configuration_id"
             ),
         )
+
+    def get_response_field_name(self, action):
+        return "instance"
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
@@ -1603,8 +1642,19 @@ def main():
                         type="dict",
                         options=dict(
                             type=dict(
-                                type="str", required=True, choices=["AMD_MILAN_BM"]
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "AMD_MILAN_BM",
+                                    "INTEL_VM",
+                                    "AMD_ROME_BM",
+                                    "INTEL_SKYLAKE_BM",
+                                    "AMD_VM",
+                                ],
                             ),
+                            is_secure_boot_enabled=dict(type="bool"),
+                            is_trusted_platform_module_enabled=dict(type="bool"),
+                            is_measured_boot_enabled=dict(type="bool"),
                             numa_nodes_per_socket=dict(
                                 type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
                             ),

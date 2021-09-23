@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     function_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this function.
@@ -54,11 +60,6 @@ options:
         choices:
             - "detached"
             - "sync"
-    dest:
-        description:
-            - The destination file path to write the output of I(action=invoke). The file will be created if it does not exist. If the file already exists, the
-              content will be overwritten.
-        type: str
     action:
         description:
             - The action to perform on the Function.
@@ -72,6 +73,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Perform action invoke on function
   oci_functions_function_actions:
+    dest: /tmp/myfile
     function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     action: invoke
 
@@ -227,6 +229,7 @@ function:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -266,7 +269,7 @@ class FunctionActionsHelperGen(OCIActionsHelperBase):
         )
 
     def invoke(self):
-        return oci_wait_utils.call_and_wait(
+        response = oci_wait_utils.call_and_wait(
             call_fn=self.client.invoke_function,
             call_fn_args=(),
             call_fn_kwargs=dict(
@@ -286,6 +289,12 @@ class FunctionActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action")
             ),
         )
+        dest = self.module.params.get("dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
 
 FunctionActionsHelperCustom = get_custom_class("FunctionActionsHelperCustom")
@@ -301,11 +310,11 @@ def main():
     )
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             function_id=dict(aliases=["id"], type="str", required=True),
             invoke_function_body=dict(type="str"),
             fn_intent=dict(type="str", choices=["httprequest", "cloudevent"]),
             fn_invoke_type=dict(type="str", choices=["detached", "sync"]),
-            dest=dict(type="str"),
             action=dict(type="str", required=True, choices=["invoke"]),
         )
     )

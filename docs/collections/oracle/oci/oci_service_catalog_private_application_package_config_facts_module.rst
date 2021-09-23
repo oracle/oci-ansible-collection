@@ -20,7 +20,7 @@ oracle.oci.oci_service_catalog_private_application_package_config_facts -- Fetch
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -268,8 +268,8 @@ Examples
     
     - name: Get a specific private_application_package_config
       oci_service_catalog_private_application_package_config_facts:
+        dest: /tmp/myfile
         private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
-        dest: /tmp/myfile.zip
 
 
 

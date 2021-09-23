@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_stack_actions -- Perform actions on a Stack reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -246,7 +246,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address, which is a case-insensitive string derived from the resource type and name specified in the stack&#x27;s Terraform configuration plus an optional index. For example, the resource address for the fourth Compute instance with the name &quot;test_instance&quot; is oci_core_instance.test_instanceL(3]. For more details and examples of resource addresses, see the Terraform documentation at [Resource spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples).</div>
+                                            <div>The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address, which is a string derived from the resource type and name specified in the stack&#x27;s Terraform configuration plus an optional index. For example, the resource address for the fourth Compute instance with the name &quot;test_instance&quot; is oci_core_instance.test_instanceL(3]. For more details and examples of resource addresses, see the Terraform documentation at [Resource spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples).</div>
                                             <div>Applicable only for <em>action=detect_stack_drift</em>.</div>
                                                         </td>
             </tr>
@@ -452,7 +452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the bucket that contains the Terraform configuration files.</div>
+                                            <div>The name of the bucket that contains the Terraform configuration files. Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -711,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates'>Key Concepts</a>.</div>
+                                            <div>The current lifecycle state of the stack. For more information about stack lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates'>Key Concepts</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -801,7 +801,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 8192 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                         <br/>
                                     </td>
             </tr>
