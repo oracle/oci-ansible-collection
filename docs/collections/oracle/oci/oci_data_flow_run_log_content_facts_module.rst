@@ -20,7 +20,7 @@ oracle.oci.oci_data_flow_run_log_content_facts -- Fetches details about a RunLog
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -282,9 +282,9 @@ Examples
     
     - name: Get a specific run_log_content
       oci_data_flow_run_log_content_facts:
+        dest: /tmp/myfile
         run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
-        dest: /usr/local/myfile.zip
 
 
 

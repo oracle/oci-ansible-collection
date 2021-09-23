@@ -169,13 +169,15 @@ class DatabaseParameterActionsHelperCustom:
 
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(action),
                     resource=to_dict(action_response),
                 )
 
             if self.check_mode:
                 return self.prepare_result(
-                    changed=True, resource_type=self.resource_type, resource=resource
+                    changed=True,
+                    resource_type=self.get_response_field_name(action),
+                    resource=resource,
                 )
 
             try:
@@ -198,7 +200,7 @@ class DatabaseParameterActionsHelperCustom:
                     )
                 return self.prepare_result(
                     changed=True,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(action),
                     resource=to_dict(actioned_resource),
                 )
         else:

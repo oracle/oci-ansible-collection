@@ -23,7 +23,7 @@ module: oci_resource_manager_template
 short_description: Manage a Template resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a custom template in the specified compartment.
+    - For I(state=present), creates a private template in the specified compartment.
     - "This resource has the following action operations in the M(oci_template_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -55,7 +55,8 @@ options:
         type: str
     logo_file_base64_encoded:
         description:
-            - Base64-encoded logo for the template.
+            - "Base64-encoded logo to use as the template icon.
+              Template icon file requirements: PNG format, 50 KB maximum, 110 x 110 pixels."
             - This parameter is updatable.
         type: str
     template_config_source:
@@ -93,10 +94,6 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
-    oci_splat_generated_ocids:
-        description:
-            - This is to enable limit/quota support through splat
-        type: str
     template_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the template.
@@ -174,6 +171,7 @@ template:
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
+                  Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
             type: string
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
@@ -196,6 +194,12 @@ template:
             returned: on success
             type: string
             sample: long_description_example
+        is_free_tier:
+            description:
+                - whether the template will work for free tier tenancy.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - "The date and time at which the template was created.
@@ -245,6 +249,7 @@ template:
         "display_name": "display_name_example",
         "description": "description_example",
         "long_description": "long_description_example",
+        "is_free_tier": true,
         "time_created": "2020-11-25T21:10:29.600Z",
         "template_config_source": {
             "template_config_source_type": "ZIP_UPLOAD"
@@ -329,12 +334,7 @@ class TemplateHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.create_template,
             call_fn_args=(),
-            call_fn_kwargs=dict(
-                create_template_details=create_details,
-                oci_splat_generated_ocids=self.module.params.get(
-                    "oci_splat_generated_ocids"
-                ),
-            ),
+            call_fn_kwargs=dict(create_template_details=create_details,),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -409,7 +409,6 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            oci_splat_generated_ocids=dict(type="str"),
             template_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -20,7 +20,7 @@ oracle.oci.oci_data_catalog_data_asset_actions -- Perform actions on a DataAsset
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -852,6 +852,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-dest"></div>
+                    <b>dest</b>
+                    <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
+                                            <div>Required for <em>action=synchronous_export</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-export_scope"></div>
                     <b>export_scope</b>
                     <a class="ansibleOptionLink" href="#parameter-export_scope" title="Permalink to this option"></a>
@@ -1055,6 +1071,38 @@ Parameters
                                             <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-wallet_secret_id"></div>
+                    <b>wallet_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-wallet_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OCID of the OCI Vault secret holding the Oracle wallet to parse.</div>
+                                            <div>Applicable only for <em>action=parse_connection</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-wallet_secret_name"></div>
+                    <b>wallet_secret_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-wallet_secret_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the OCI Vault secret holding the Oracle wallet to parse.</div>
+                                            <div>Applicable only for <em>action=parse_connection</em>.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -1111,6 +1159,7 @@ Examples
       oci_data_catalog_data_asset_actions:
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
+        dest: /tmp/myfile
         action: synchronous_export
 
     - name: Perform action validate_connection on data_asset

@@ -38,17 +38,16 @@ except ImportError:
 
 class InstanceConfigurationActionsHelperCustom:
 
-    # instance_configuration launch action returns an instance and not instance_configuration. Currently the base
-    # classes do not support custom return field names and use the resource types. Until the feature is added
-    # manually update the return field to instance. Added check for action name, change_compartment action returns instance_configuration
-    # TODO: Update base class to handle custom return field names from generated code.
+    # The generated code now returns "instance" as the default response field name which was earlier returning "instance_configuration"
+    # "instance" response fieldm name is used only for "launch" action
+    # "instance_configuration" is used for change_compartment
     def prepare_result(self, *args, **kwargs):
         super_result = super(
             InstanceConfigurationActionsHelperCustom, self
         ).prepare_result(*args, **kwargs)
         action = self.module.params.get("action")
-        if action == "launch":
-            super_result["instance"] = super_result.pop("instance_configuration", None)
+        if action == "change_compartment":
+            super_result["instance_configuration"] = super_result.pop("instance", None)
         return super_result
 
 

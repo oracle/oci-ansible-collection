@@ -46,7 +46,7 @@ options:
             - A filter that returns only those resources that match the specified
               lifecycle state. The state value is case-insensitive.
               For more information about stack lifecycle states, see
-              L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
+              L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates).
             - "Allowable values:
               - CREATING
               - ACTIVE
@@ -62,7 +62,10 @@ options:
             - "FAILED"
     display_name:
         description:
-            - A filter to return only resources that match the specified display name.
+            - A filter to return only resources that match the given display name exactly.
+              Use this filter to list a resource by name.
+              Requires `sortBy` set to `DISPLAYNAME`.
+              Alternatively, when you know the resource OCID, use the related Get operation.
         type: str
         aliases: ["name"]
     sort_by:
@@ -139,7 +142,7 @@ stacks:
             description:
                 - The current lifecycle state of the stack.
                   For more information about stack lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates).
             returned: on success
             type: string
             sample: CREATING
@@ -215,7 +218,8 @@ stacks:
                     sample: namespace_example
                 bucket_name:
                     description:
-                        - The name of the bucket that contains the Terraform configuration files.
+                        - "The name of the bucket that contains the Terraform configuration files.
+                          Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
                     returned: on success
                     type: string
                     sample: bucket_name_example
@@ -223,7 +227,7 @@ stacks:
             description:
                 - "Terraform variables associated with this resource.
                   Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 4096 bytes.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict

@@ -43,8 +43,7 @@ options:
     resource_addresses:
         description:
             - "The list of resources in the specified stack to detect drift for. Each resource is identified by a resource address,
-              which is a case-insensitive string derived from the resource type and name specified in the stack's Terraform configuration plus an optional
-              index.
+              which is a string derived from the resource type and name specified in the stack's Terraform configuration plus an optional index.
               For example, the resource address for the fourth Compute instance with the name \\"test_instance\\" is oci_core_instance.test_instanceL(3].
               For more details and examples of resource addresses, see the Terraform documentation at [Resource
               spec,https://www.terraform.io/docs/internals/resource-addressing.html#examples)."
@@ -119,7 +118,7 @@ stack:
             description:
                 - The current lifecycle state of the stack.
                   For more information about stack lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#StackStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates).
             returned: on success
             type: string
             sample: CREATING
@@ -195,7 +194,8 @@ stack:
                     sample: namespace_example
                 bucket_name:
                     description:
-                        - The name of the bucket that contains the Terraform configuration files.
+                        - "The name of the bucket that contains the Terraform configuration files.
+                          Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
                     returned: on success
                     type: string
                     sample: bucket_name_example
@@ -203,7 +203,7 @@ stack:
             description:
                 - "Terraform variables associated with this resource.
                   Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 4096 bytes.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict

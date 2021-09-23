@@ -226,14 +226,6 @@ class NetworkSecurityGroupsHelperCustom:
         new_nsg_list = self.module.params.get("network_security_group_ids") or []
         return sorted(existing_nsg_list) != sorted(new_nsg_list)
 
-    # the resource_type to be returned from this module is load_balancer, instead of network_security_groups
-    def prepare_result(self, *args, **kwargs):
-        result = super(NetworkSecurityGroupsHelperCustom, self).prepare_result(
-            *args, **kwargs
-        )
-        result["load_balancer"] = result.pop(self.resource_type, None)
-        return result
-
 
 class LoadBalancerHelperCustom:
     # adding this customization to support the update operation of shape of LoadBalancer

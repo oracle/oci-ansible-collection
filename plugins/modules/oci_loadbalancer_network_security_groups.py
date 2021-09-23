@@ -1504,6 +1504,9 @@ class NetworkSecurityGroupsHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("load_balancer_id")
 
+    def get_response_field_name(self):
+        return "load_balancer"
+
     def get_update_model_class(self):
         return UpdateNetworkSecurityGroupsDetails
 

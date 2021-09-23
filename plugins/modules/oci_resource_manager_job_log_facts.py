@@ -23,7 +23,7 @@ module: oci_resource_manager_job_log_facts
 short_description: Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
-    - Returns log entries for the specified job in JSON format.
+    - Returns console log entries for the specified job in JSON format.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

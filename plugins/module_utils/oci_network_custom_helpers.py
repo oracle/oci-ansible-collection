@@ -72,7 +72,9 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
             )
             return oci_common_utils.get_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    self.ADD_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION
+                ),
                 resource=to_dict(resource),
             )
         else:
@@ -99,7 +101,9 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
             )
             return oci_common_utils.get_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    self.UPDATE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION
+                ),
                 resource=to_dict(resource),
             )
 
@@ -122,7 +126,9 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
             )
             return oci_common_utils.get_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    self.REMOVE_NETWORK_SECURITY_GROUP_SECURITY_RULES_ACTION
+                ),
                 resource=to_dict(resource),
             )
         else:
@@ -174,7 +180,7 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
         if self.check_mode:
             return oci_common_utils.get_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=check_mode_response_resource,
             )
 
@@ -196,7 +202,7 @@ class NetworkSecurityGroupSecurityRuleActionsHelperCustom:
             )
             return oci_common_utils.get_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(resource),
             )
 
@@ -319,7 +325,9 @@ class VirtualCircuitActionsHelperCustom:
         if len(public_prefixes_to_add) == 0:
             return oci_common_utils.get_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    "bulk_add_virtual_circuit_public_prefixes"
+                ),
                 resource=to_dict(
                     BulkAddVirtualCircuitPublicPrefixesDetails(
                         public_prefixes=existing_public_prefixes
@@ -345,7 +353,9 @@ class VirtualCircuitActionsHelperCustom:
         if len(public_prefixes_to_delete) == 0:
             return oci_common_utils.get_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    "bulk_delete_virtual_circuit_public_prefixes"
+                ),
                 resource=to_dict(
                     BulkAddVirtualCircuitPublicPrefixesDetails(
                         public_prefixes=existing_public_prefixes
@@ -387,7 +397,7 @@ class VirtualCircuitActionsHelperCustom:
         if self.check_mode:
             return oci_common_utils.get_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=check_mode_response_resource,
             )
 
@@ -407,7 +417,7 @@ class VirtualCircuitActionsHelperCustom:
             )
             return oci_common_utils.get_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(resource),
             )
 

@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_scheduled_job_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -216,6 +216,25 @@ Parameters
                                             <div>Example: `My new resource`</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_restricted"></div>
+                    <b>is_restricted</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_restricted" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, will only filter out restricted Autonomous Linux Scheduled Job</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -461,7 +480,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ScheduledJob resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;interval_type&#x27;: &#x27;HOUR&#x27;, &#x27;interval_value&#x27;: &#x27;interval_value_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_instance_groups&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;managed_instances&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;operation_type&#x27;: &#x27;INSTALL&#x27;, &#x27;os_family&#x27;: &#x27;LINUX&#x27;, &#x27;package_names&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;schedule_type&#x27;: &#x27;ONETIME&#x27;, &#x27;time_last_execution&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_next_execution&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;update_names&#x27;: [], &#x27;update_type&#x27;: &#x27;SECURITY&#x27;, &#x27;work_requests&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;interval_type&#x27;: &#x27;HOUR&#x27;, &#x27;interval_value&#x27;: &#x27;interval_value_example&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_instance_groups&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;managed_instances&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;operation_type&#x27;: &#x27;INSTALL&#x27;, &#x27;os_family&#x27;: &#x27;LINUX&#x27;, &#x27;package_names&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;schedule_type&#x27;: &#x27;ONETIME&#x27;, &#x27;time_last_execution&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_next_execution&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;update_names&#x27;: [], &#x27;update_type&#x27;: &#x27;SECURITY&#x27;, &#x27;work_requests&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -606,6 +625,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">interval_value_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-scheduled_jobs/is_restricted"></div>
+                    <b>is_restricted</b>
+                    <a class="ansibleOptionLink" href="#return-scheduled_jobs/is_restricted" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>true, if the schedule job has its update capabilities restricted. (Used to track Autonomous Scheduled Job)</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

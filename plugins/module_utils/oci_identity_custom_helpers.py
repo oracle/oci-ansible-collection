@@ -125,6 +125,9 @@ class CompartmentFactsHelperCustom:
             "access_level",
             "compartment_id_in_subtree",
             "name",
+            "sort_by",
+            "sort_order",
+            "lifecycle_state",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -275,19 +278,12 @@ class UserCapabilitiesHelperCustom:
 
         _debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
             )
         )
 
         return update_is_necessary
-
-    def prepare_result(self, *args, **kwargs):
-        result = super(UserCapabilitiesHelperCustom, self).prepare_result(
-            *args, **kwargs
-        )
-        result["user"] = result.pop(self.resource_type, None)
-        return result
 
 
 class UserStateHelperCustom:
@@ -314,11 +310,6 @@ class UserStateHelperCustom:
             existing_resource_dict
         )
 
-    def prepare_result(self, *args, **kwargs):
-        result = super(UserStateHelperCustom, self).prepare_result(*args, **kwargs)
-        result["user"] = result.pop(self.resource_type, None)
-        return result
-
 
 class TagActionsHelperCustom:
     # overriding the perform_action method as bulk_delete tags operation does not support
@@ -330,7 +321,9 @@ class TagActionsHelperCustom:
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=None
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=None,
             )
 
         # if sent list is empty or None, return back without performing the action with
@@ -339,7 +332,9 @@ class TagActionsHelperCustom:
             tag_ids = self.module.params.get("tag_definition_ids")
             if not tag_ids:
                 return self.prepare_result(
-                    changed=False, resource_type=self.resource_type, resource=None
+                    changed=False,
+                    resource_type=self.get_response_field_name(),
+                    resource=None,
                 )
 
         try:
@@ -352,7 +347,9 @@ class TagActionsHelperCustom:
             )
         else:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=None,
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=None,
             )
 
 
@@ -369,7 +366,9 @@ class CompartmentActionsHelperCustom:
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=None
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=None,
             )
 
         # if resource list is empty or None, return back without performing the action with
@@ -377,7 +376,9 @@ class CompartmentActionsHelperCustom:
         resources_list = self.module.params.get("resources")
         if not resources_list:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=None
+                changed=False,
+                resource_type=self.get_response_field_name(action),
+                resource=None,
             )
 
         try:
@@ -390,7 +391,9 @@ class CompartmentActionsHelperCustom:
             )
         else:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=None,
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=None,
             )
 
     # this method is overridden to ensure idempotency for the move and recover actions

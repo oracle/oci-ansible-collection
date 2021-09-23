@@ -27,7 +27,7 @@ description:
       This will not contain any managed instances after it is first created,
       and they must be added later.
     - "This resource has the following action operations in the M(oci_managed_instance_group_actions) module: attach_managed_instance, change_compartment,
-      detach_managed_instance."
+      detach_managed_instance, install_all_updates."
 version_added: "2.9"
 author: Oracle (@oracle)
 options:

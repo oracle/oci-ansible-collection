@@ -391,7 +391,7 @@ class ObjectHelperCustom:
             ):
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(get_response.data),
                 )
             else:
@@ -404,13 +404,13 @@ class ObjectHelperCustom:
                         dest_file.write(chunk)
                 return self.prepare_result(
                     changed=True,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(get_response.data),
                 )
         else:
             return self.prepare_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(get_response.data),
                 msg="Destination %s already exists. Use force option to overwrite."
                 % dest,
@@ -437,7 +437,7 @@ class ObjectHelperCustom:
         if object_exists and force is False:
             return self.prepare_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(response.data),
                 msg="Object %s already present in bucket. Use force option to overwrite."
                 % self.module.params.get("object_name"),
@@ -452,7 +452,7 @@ class ObjectHelperCustom:
         ):
             return self.prepare_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(response.data),
             )
 
@@ -488,7 +488,7 @@ class ObjectHelperCustom:
             uploaded_object_response = self.get_resource()
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(uploaded_object_response.data),
             )
 
@@ -524,12 +524,14 @@ class ObjectHelperCustom:
         object_version = self.get_object_version()
         if not object_version:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=dict(),
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=dict(),
             )
         if self.check_mode:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(object_version),
             )
         try:
@@ -540,7 +542,7 @@ class ObjectHelperCustom:
             if se.status == 404:
                 return self.prepare_result(
                     changed=True,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(object_version),
                 )
             self.module.fail_json(
@@ -549,7 +551,7 @@ class ObjectHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(object_version),
             )
 
@@ -579,11 +581,15 @@ class ObjectActionsHelperCustom:
         is_action_necessary = self.is_action_necessary(self.COPY_ACTION, obj)
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=False,
+                resource_type=self.get_response_field_name(self.COPY_ACTION),
+                resource=to_dict(obj),
             )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=True,
+                resource_type=self.get_response_field_name(self.COPY_ACTION),
+                resource=to_dict(obj),
             )
         try:
             self.copy()
@@ -618,7 +624,7 @@ class ObjectActionsHelperCustom:
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(self.COPY_ACTION),
                 resource=to_dict(copied_obj),
             )
 
@@ -639,11 +645,15 @@ class ObjectActionsHelperCustom:
         is_action_necessary = self.is_action_necessary(self.RENAME_ACTION, obj)
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=False,
+                resource_type=self.get_response_field_name(self.RENAME_ACTION),
+                resource=to_dict(obj),
             )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=True,
+                resource_type=self.get_response_field_name(self.RENAME_ACTION),
+                resource=to_dict(obj),
             )
         try:
             self.rename()
@@ -670,7 +680,7 @@ class ObjectActionsHelperCustom:
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(self.RENAME_ACTION),
                 resource=to_dict(renamed_obj),
             )
 
@@ -691,11 +701,15 @@ class ObjectActionsHelperCustom:
         is_action_necessary = self.is_action_necessary(self.RESTORE_ACTION, obj)
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=False,
+                resource_type=self.get_response_field_name(self.RESTORE_ACTION),
+                resource=to_dict(obj),
             )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=True,
+                resource_type=self.get_response_field_name(self.RESTORE_ACTION),
+                resource=to_dict(obj),
             )
         try:
             self.restore()
@@ -722,7 +736,7 @@ class ObjectActionsHelperCustom:
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(self.RESTORE_ACTION),
                 resource=to_dict(restored_obj),
             )
 
@@ -743,11 +757,15 @@ class ObjectActionsHelperCustom:
         is_action_necessary = self.is_action_necessary(self.REENCRYPT_ACTION, obj)
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=False,
+                resource_type=self.get_response_field_name(self.REENCRYPT_ACTION),
+                resource=to_dict(obj),
             )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=True,
+                resource_type=self.get_response_field_name(self.REENCRYPT_ACTION),
+                resource=to_dict(obj),
             )
         try:
             self.reencrypt()
@@ -774,7 +792,7 @@ class ObjectActionsHelperCustom:
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(self.REENCRYPT_ACTION),
                 resource=to_dict(reencrypted_obj),
             )
 
@@ -797,11 +815,19 @@ class ObjectActionsHelperCustom:
         )
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=False,
+                resource_type=self.get_response_field_name(
+                    self.UPDATE_OBJECT_STORAGE_TIER_ACTION
+                ),
+                resource=to_dict(obj),
             )
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=to_dict(obj)
+                changed=True,
+                resource_type=self.get_response_field_name(
+                    self.UPDATE_OBJECT_STORAGE_TIER_ACTION
+                ),
+                resource=to_dict(obj),
             )
         try:
             self.update_object_storage_tier()
@@ -828,7 +854,9 @@ class ObjectActionsHelperCustom:
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(
+                    self.UPDATE_OBJECT_STORAGE_TIER_ACTION
+                ),
                 resource=to_dict(updated_object_storage_tier_obj),
             )
 

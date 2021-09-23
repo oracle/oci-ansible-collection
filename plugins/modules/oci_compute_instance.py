@@ -633,15 +633,31 @@ options:
         suboptions:
             type:
                 description:
-                    - The type of platform being configured. The only supported
-                      `type` is `AMD_MILAN_BM`
+                    - The type of platform being configured.
                 type: str
                 choices:
+                    - "AMD_ROME_BM"
+                    - "AMD_VM"
+                    - "INTEL_VM"
+                    - "INTEL_SKYLAKE_BM"
                     - "AMD_MILAN_BM"
                 required: true
+            is_secure_boot_enabled:
+                description:
+                    - Whether Secure Boot is enabled on the instance.
+                type: bool
+            is_trusted_platform_module_enabled:
+                description:
+                    - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                type: bool
+            is_measured_boot_enabled:
+                description:
+                    - Whether the Measured Boot feature is enabled on the instance.
+                type: bool
             numa_nodes_per_socket:
                 description:
                     - The number of NUMA nodes per socket (NPS).
+                    - Applicable when type is 'AMD_MILAN_BM'
                 type: str
                 choices:
                     - "NPS0"
@@ -658,7 +674,7 @@ options:
     preserve_boot_volume:
         description:
             - Specifies whether to delete or preserve the boot volume when terminating an instance.
-              The default value is false.
+              When set to `true`, the boot volume is preserved. The default value is `false`.
         type: bool
     state:
         description:
@@ -1249,11 +1265,28 @@ instance:
             contains:
                 type:
                     description:
-                        - The type of platform being configured. The only supported
-                          `type` is `AMD_MILAN_BM`.
+                        - The type of platform being configured.
                     returned: on success
                     type: string
                     sample: AMD_MILAN_BM
+                is_secure_boot_enabled:
+                    description:
+                        - Whether Secure Boot is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_trusted_platform_module_enabled:
+                    description:
+                        - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_measured_boot_enabled:
+                    description:
+                        - Whether the Measured Boot feature is enabled on the instance.
+                    returned: on success
+                    type: bool
+                    sample: true
                 numa_nodes_per_socket:
                     description:
                         - The number of NUMA nodes per socket (NPS).
@@ -1345,6 +1378,9 @@ instance:
         "time_maintenance_reboot_due": "2018-05-25T21:10:29.600Z",
         "platform_config": {
             "type": "AMD_MILAN_BM",
+            "is_secure_boot_enabled": true,
+            "is_trusted_platform_module_enabled": true,
+            "is_measured_boot_enabled": true,
             "numa_nodes_per_socket": "NPS0"
         },
         "primary_private_ip": "10.0.0.10",
@@ -1629,7 +1665,20 @@ def main():
             platform_config=dict(
                 type="dict",
                 options=dict(
-                    type=dict(type="str", required=True, choices=["AMD_MILAN_BM"]),
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "AMD_ROME_BM",
+                            "AMD_VM",
+                            "INTEL_VM",
+                            "INTEL_SKYLAKE_BM",
+                            "AMD_MILAN_BM",
+                        ],
+                    ),
+                    is_secure_boot_enabled=dict(type="bool"),
+                    is_trusted_platform_module_enabled=dict(type="bool"),
+                    is_measured_boot_enabled=dict(type="bool"),
                     numa_nodes_per_socket=dict(
                         type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
                     ),

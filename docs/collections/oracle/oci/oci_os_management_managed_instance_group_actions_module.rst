@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_managed_instance_group_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -46,6 +46,7 @@ Synopsis
 - For *action=attach_managed_instance*, adds a Managed Instance to a Managed Instance Group. After the Managed Instance has been added, then operations can be performed on the Managed Instance Group which will then apply to all Managed Instances in the group.
 - For *action=change_compartment*, moves a resource into a different compartment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=detach_managed_instance*, removes a Managed Instance from a Managed Instance Group.
+- For *action=install_all_updates*, install all of the available updates for the Managed Instance Group.
 
 
 .. Aliases
@@ -88,6 +89,7 @@ Parameters
                                                                                                                                                                 <li>attach_managed_instance</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>detach_managed_instance</li>
+                                                                                                                                                                                                <li>install_all_updates</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -283,6 +285,64 @@ Parameters
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-update_type"></div>
+                    <b>update_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-update_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SECURITY</li>
+                                                                                                                                                                                                <li>BUGFIX</li>
+                                                                                                                                                                                                <li>ENHANCEMENT</li>
+                                                                                                                                                                                                <li>OTHER</li>
+                                                                                                                                                                                                <li>KSPLICE</li>
+                                                                                                                                                                                                <li>ALL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of updates to be applied</div>
+                                            <div>Applicable only for <em>action=install_all_updates</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait"></div>
+                    <b>wait</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                                                                    <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to wait for create or delete operation to complete.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
+                    <b>wait_timeout</b>
+                    <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Time, in seconds, to wait when <em>wait=yes</em>. Defaults to 1200 for most of the services but some services might have a longer wait timeout.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -321,6 +381,11 @@ Examples
         managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_managed_instance
+
+    - name: Perform action install_all_updates on managed_instance_group
+      oci_os_management_managed_instance_group_actions:
+        managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+        action: install_all_updates
 
 
 

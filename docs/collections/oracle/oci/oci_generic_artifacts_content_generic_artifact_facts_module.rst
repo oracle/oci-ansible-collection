@@ -20,7 +20,7 @@ oracle.oci.oci_generic_artifacts_content_generic_artifact_facts -- Fetches detai
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -269,8 +269,8 @@ Examples
     
     - name: Get a specific generic_artifact
       oci_generic_artifacts_content_generic_artifact_facts:
+        dest: /tmp/myfile
         artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
-        dest: /tmp/myfile.png
 
 
 

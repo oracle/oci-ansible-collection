@@ -20,6 +20,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 
 try:
     from oci.core import VirtualNetworkClient
+    from oci.database.models import ModifyDatabaseManagementDetails
     from oci.exceptions import ServiceError
     from oci.util import to_dict
 
@@ -89,16 +90,9 @@ class AutonomousDatabaseActionsHelperCustom:
             if self.module.params.get("force") or not os.path.isfile(
                 to_bytes(wallet_file)
             ):
-                response_data = super(
+                super(
                     AutonomousDatabaseActionsHelperCustom, self
                 ).generate_autonomous_database_wallet()
-
-                if not self.write_stream_to_file(
-                    response_data, self.module.params.get("wallet_file")
-                ):
-                    self.module.fail_json(
-                        msg="Error occurred while writing to wallet file"
-                    )
 
             else:
                 self.module.fail_json(
@@ -107,15 +101,6 @@ class AutonomousDatabaseActionsHelperCustom:
                 )
         except ServiceError as ex:
             self.module.fail_json(msg=ex.message)
-
-    def write_stream_to_file(self, data, file):
-        try:
-            with open(to_bytes(file), "wb") as f:
-                for d in data:
-                    f.write(d)
-        except IOError:
-            return False
-        return True
 
     def is_action_necessary(self, action, resource=None):
         if (
@@ -937,6 +922,11 @@ class DbSystemActionsHelperCustom:
 
 
 class DatabaseActionsHelperCustom:
+    UPGRADE_ACTION_KEY = "upgrade"
+    DISABLE_DATABASE_MANAGEMENT_ACTION_KEY = "disable_database_management"
+    ENABLE_DATABASE_MANAGEMENT_ACTION_KEY = "enable_database_management"
+    MODIFY_DATABASE_MANAGEMENT_ACTION_KEY = "modify_database_management"
+
     # mapping actions - precheck, upgrade, rollback to upgrade method.
     def get_action_fn(self, action):
         if action == "precheck" or action == "upgrade" or action == "rollback":
@@ -947,9 +937,8 @@ class DatabaseActionsHelperCustom:
     # to decide if database upgrade is necessary or not we need to compare database version from DB home or Database
     # software image.
     def is_action_necessary(self, action, resource=None):
-        database_resource = resource or self.get_resource().data
-        if action == "upgrade":
-            database = to_dict(database_resource)
+        if action == self.UPGRADE_ACTION_KEY:
+            database = to_dict(resource)
             db_home_id = database["db_home_id"]
             db_home_resource = oci_common_utils.call_with_backoff(
                 self.client.get_db_home, db_home_id=db_home_id,
@@ -1010,6 +999,43 @@ class DatabaseActionsHelperCustom:
                     ):
                         return False
                     return True
+        elif action == self.ENABLE_DATABASE_MANAGEMENT_ACTION_KEY:
+            database_management_config = getattr(
+                resource, "database_management_config", None
+            )
+            if database_management_config is None:
+                return True
+            if getattr(database_management_config, "management_status", None) in [
+                "ENABLED",
+                "ENABLING",
+            ]:
+                return False
+            return True
+        elif action == self.DISABLE_DATABASE_MANAGEMENT_ACTION_KEY:
+            database_management_config = getattr(
+                resource, "database_management_config", None
+            )
+            if database_management_config is None:
+                return False
+            if getattr(database_management_config, "management_status", None) in [
+                "DISABLED",
+                "DISABLING",
+            ]:
+                return False
+            return True
+        elif action == self.MODIFY_DATABASE_MANAGEMENT_ACTION_KEY:
+            database_management_config = getattr(
+                resource, "database_management_config", None
+            )
+            if database_management_config is None:
+                return True
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, ModifyDatabaseManagementDetails
+            )
+            return not oci_common_utils.compare_dicts(
+                source_dict=to_dict(action_details),
+                target_dict=to_dict(database_management_config),
+            )
         return super(DatabaseActionsHelperCustom, self).is_action_necessary(
             action, resource
         )

@@ -57,6 +57,7 @@ options:
             - The destination file path to write the config file to when I(action=download_exadata_infrastructure_config_file). The file will be created if it
               does not exist. If the file already exists, the content will be overwritten. I(config_file_dest) is required if
               I(action=download_exadata_infrastructure_config_file).
+            - Required for I(action=download_exadata_infrastructure_config_file).
         type: str
     action:
         description:
@@ -91,6 +92,7 @@ EXAMPLES = """
 - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
   oci_database_exadata_infrastructure_actions:
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    config_file_dest: /tmp/exadata_config_file.zip
     action: download_exadata_infrastructure_config_file
 
 """
@@ -476,6 +478,7 @@ exadata_infrastructure:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -595,7 +598,7 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
         )
 
     def download_exadata_infrastructure_config_file(self):
-        return oci_wait_utils.call_and_wait(
+        response = oci_wait_utils.call_and_wait(
             call_fn=self.client.download_exadata_infrastructure_config_file,
             call_fn_args=(),
             call_fn_kwargs=dict(
@@ -614,6 +617,12 @@ class ExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action")
             ),
         )
+        dest = self.module.params.get("config_file_dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
 
 ExadataInfrastructureActionsHelperCustom = get_custom_class(

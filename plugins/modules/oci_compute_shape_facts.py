@@ -250,6 +250,90 @@ shapes:
                     returned: on success
                     type: float
                     sample: 3.4
+        platform_config_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - The type of platform being configured.
+                    returned: on success
+                    type: string
+                    sample: AMD_MILAN_BM
+                secure_boot_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Boolean values that indicate whether Secure Boot can be enabled or disabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether Secure Boot is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                measured_boot_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Boolean values that indicate whether the Measured Boot feature can be enabled or disabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether the Measured Boot feature is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                trusted_platform_module_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Boolean values that indicate whether the Trusted Platform Module can be enabled or disabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether the Trusted Platform Module is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                numa_nodes_per_socket_platform_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        service_allowed_values:
+                            description:
+                                - The supported values for this platform configuration property.
+                            returned: on success
+                            type: list
+                            sample: []
+                        default_value:
+                            description:
+                                - The default NUMA nodes per socket configuration.
+                            returned: on success
+                            type: string
+                            sample: default_value_example
     sample: [{
         "baseline_ocpu_utilizations": [],
         "min_total_baseline_ocpus_required": 10,
@@ -285,6 +369,25 @@ shapes:
             "min": 56,
             "max": 3.4,
             "default_per_ocpu": 3.4
+        },
+        "platform_config_options": {
+            "type": "AMD_MILAN_BM",
+            "secure_boot_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "measured_boot_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "trusted_platform_module_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "numa_nodes_per_socket_platform_options": {
+                "service_allowed_values": [],
+                "default_value": "default_value_example"
+            }
         }
     }]
 """

@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a configuration source provider in the specified compartment.
       For more information, see
       L(To create a configuration source
-      provider,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#CreateConfigurationSourceProvider).
+      provider,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingconfigurationsourceproviders.htm#CreateConfigurationSourceProvider).
     - "This resource has the following action operations in the M(oci_configuration_source_provider_actions) module: change_compartment."
 version_added: "2.9"
 author: Oracle (@oracle)
@@ -181,7 +181,7 @@ configuration_source_provider:
             description:
                 - The current lifecycle state of the configuration source provider.
                   For more information about configuration source provider lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#CSPStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__CSPStates).
             returned: on success
             type: string
             sample: ACTIVE

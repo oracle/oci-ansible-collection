@@ -20,7 +20,7 @@ oracle.oci.oci_management_dashboard_actions -- Perform actions on a ManagementDa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -43,8 +43,8 @@ Synopsis
 .. Description
 
 - Perform actions on a ManagementDashboard resource in Oracle Cloud Infrastructure
-- For *action=export_dashboard*, exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. An example using OCI CLI is $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json $oci management-dashboard dashboard import --from-json file://dashboards.json
-- For *action=import_dashboard*, imports an array of dashboards and their saved searches. Import is designed to work with exportDashboard. An example using OCI CLI is $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json $oci management-dashboard dashboard import --from-json file://dashboards.json
+- For *action=export_dashboard*, exports an array of dashboards and their saved searches. Export is designed to work with importDashboard. Here's an example of how you can use CLI to export a dashboard. $oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > dashboards.json
+- For *action=import_dashboard*, imports an array of dashboards and their saved searches. Here's an example of how you can use CLI to import a dashboard. For information on the details that must be passed to IMPORT, you can use the EXPORT API to obtain the Import.json file: oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > Import.json. Note that import API updates the resource if it already exist, and creates a new resource if it does not exist. To import to a different compartment, edit and change the compartmentId to the desired compartment OCID. Here is an example of how you can use CLI to do import: oci management-dashboard dashboard import --from-json file://Import.json
 
 
 .. Aliases
@@ -1163,7 +1163,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of dashboardIds in plain text. The syntaxt is &#x27;{&quot;dashboardIds&quot;:[&quot;dashboardId1&quot;, &quot;dashboardId2&quot;, ...]}&#x27;. Escaping is needed when using in OCI CLI. For example, &quot;{\&quot;dashboardIds\&quot;:[\&quot;ocid1.managementdashboard.oc1..dashboardId1\&quot;]}&quot; .</div>
+                                            <div>List of dashboardIds in plain text. The syntax is &#x27;{&quot;dashboardIds&quot;:[&quot;dashboardId1&quot;, &quot;dashboardId2&quot;, ...]}&#x27;. Escaping is needed when using in OCI CLI. For example, &quot;{\&quot;dashboardIds\&quot;:[\&quot;ocid1.managementdashboard.oc1..dashboardId1\&quot;]}&quot; .</div>
                                             <div>Required for <em>action=export_dashboard</em>.</div>
                                                         </td>
             </tr>

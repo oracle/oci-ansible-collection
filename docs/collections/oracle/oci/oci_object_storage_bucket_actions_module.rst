@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_bucket_actions -- Perform actions on a Bucket reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -361,7 +361,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
-                <td>on success for actions [ &quot;make_bucket_writable&quot;, ]</td>
+                <td>on success</td>
                 <td>
                                             <div>Details of the Bucket resource acted upon by the current operation</div>
                                         <br/>

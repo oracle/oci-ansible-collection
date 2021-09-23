@@ -67,7 +67,10 @@ options:
             - "CANCELED"
     display_name:
         description:
-            - A filter to return only resources that match the specified display name.
+            - A filter to return only resources that match the given display name exactly.
+              Use this filter to list a resource by name.
+              Requires `sortBy` set to `DISPLAYNAME`.
+              Alternatively, when you know the resource OCID, use the related Get operation.
         type: str
         aliases: ["name"]
     sort_by:
@@ -150,6 +153,37 @@ jobs:
                     returned: on success
                     type: string
                     sample: APPLY
+                terraform_advanced_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_refresh_required:
+                            description:
+                                - "Specifies whether to refresh the state for each resource before running the job (operation).
+                                  Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources.
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: bool
+                            sample: true
+                        parallelism:
+                            description:
+                                - "Limits the number of concurrent Terraform operations when L(walking the
+                                  graph,https://www.terraform.io/docs/internals/graph.html#walking-the-graph).
+                                  Use this parameter to help debug Terraform issues or to accomplish certain special use cases.
+                                  A higher value might cause resources to be throttled.
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: int
+                            sample: 56
+                        detailed_log_level:
+                            description:
+                                - "Enables detailed logs at the specified verbosity for running the job (operation).
+                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                            returned: on success
+                            type: string
+                            sample: ERROR
                 execution_plan_strategy:
                     description:
                         - Specifies the source of the execution plan to apply.
@@ -223,7 +257,7 @@ jobs:
             description:
                 - Current state of the specified job.
                   For more information about job lifecycle states in Resource Manager, see
-                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#JobStates).
+                  L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__JobStates).
             returned: on success
             type: string
             sample: ACCEPTED
@@ -245,6 +279,20 @@ jobs:
                     returned: on success
                     type: string
                     sample: message_example
+        cancellation_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_forced:
+                    description:
+                        - Indicates whether a forced cancellation was requested for the job while it was running.
+                          A forced cancellation can result in an incorrect state file.
+                          For example, the state file might not reflect the exact state of the provisioned resources.
+                    returned: on success
+                    type: bool
+                    sample: true
         working_directory:
             description:
                 - File path to the directory from which Terraform runs.
@@ -257,7 +305,7 @@ jobs:
             description:
                 - "Terraform variables associated with this resource.
                   Maximum number of variables supported is 250.
-                  The maximum size of each variable, including both name and value, is 4096 bytes.
+                  The maximum size of each variable, including both name and value, is 8192 bytes.
                   Example: `{\\"CompartmentId\\": \\"compartment-id-value\\"}`"
             returned: on success
             type: dict
@@ -342,6 +390,11 @@ jobs:
         "operation": "PLAN",
         "job_operation_details": {
             "operation": "APPLY",
+            "terraform_advanced_options": {
+                "is_refresh_required": true,
+                "parallelism": 56,
+                "detailed_log_level": "ERROR"
+            },
             "execution_plan_strategy": "FROM_PLAN_JOB_ID",
             "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         },
@@ -357,6 +410,9 @@ jobs:
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
             "message": "message_example"
+        },
+        "cancellation_details": {
+            "is_forced": true
         },
         "working_directory": "working_directory_example",
         "variables": {},

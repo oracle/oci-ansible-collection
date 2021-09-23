@@ -30,6 +30,7 @@ description:
     - For I(action=change_compartment), moves a resource into a different compartment. When provided, If-Match
       is checked against ETag values of the resource.
     - For I(action=detach_managed_instance), removes a Managed Instance from a Managed Instance Group.
+    - For I(action=install_all_updates), install all of the available updates for the Managed Instance Group.
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
@@ -50,6 +51,18 @@ options:
               compartment into which the resource should be moved.
             - Applicable only for I(action=change_compartment).
         type: str
+    update_type:
+        description:
+            - The type of updates to be applied
+            - Applicable only for I(action=install_all_updates).
+        type: str
+        choices:
+            - "SECURITY"
+            - "BUGFIX"
+            - "ENHANCEMENT"
+            - "OTHER"
+            - "KSPLICE"
+            - "ALL"
     action:
         description:
             - The action to perform on the ManagedInstanceGroup.
@@ -59,7 +72,8 @@ options:
             - "attach_managed_instance"
             - "change_compartment"
             - "detach_managed_instance"
-extends_documentation_fragment: [ oracle.oci.oracle ]
+            - "install_all_updates"
+extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
@@ -79,6 +93,11 @@ EXAMPLES = """
     managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_managed_instance
+
+- name: Perform action install_all_updates on managed_instance_group
+  oci_os_management_managed_instance_group_actions:
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
+    action: install_all_updates
 
 """
 
@@ -198,6 +217,7 @@ class ManagedInstanceGroupActionsHelperGen(OCIActionsHelperBase):
         attach_managed_instance
         change_compartment
         detach_managed_instance
+        install_all_updates
     """
 
     @staticmethod
@@ -287,6 +307,26 @@ class ManagedInstanceGroupActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def install_all_updates(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.install_all_updates_on_managed_instance_group,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                managed_instance_group_id=self.module.params.get(
+                    "managed_instance_group_id"
+                ),
+                update_type=self.module.params.get("update_type"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 ManagedInstanceGroupActionsHelperCustom = get_custom_class(
     "ManagedInstanceGroupActionsHelperCustom"
@@ -301,13 +341,24 @@ class ResourceHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec(
-        supports_create=False, supports_wait=False
+        supports_create=False, supports_wait=True
     )
     module_args.update(
         dict(
             managed_instance_group_id=dict(aliases=["id"], type="str", required=True),
             managed_instance_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            update_type=dict(
+                type="str",
+                choices=[
+                    "SECURITY",
+                    "BUGFIX",
+                    "ENHANCEMENT",
+                    "OTHER",
+                    "KSPLICE",
+                    "ALL",
+                ],
+            ),
             action=dict(
                 type="str",
                 required=True,
@@ -315,6 +366,7 @@ def main():
                     "attach_managed_instance",
                     "change_compartment",
                     "detach_managed_instance",
+                    "install_all_updates",
                 ],
             ),
         )

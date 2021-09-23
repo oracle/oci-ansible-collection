@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_managed_instance_actions -- Perform actions on a Ma
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -299,6 +299,30 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-update_type"></div>
+                    <b>update_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-update_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SECURITY</li>
+                                                                                                                                                                                                <li>BUGFIX</li>
+                                                                                                                                                                                                <li>ENHANCEMENT</li>
+                                                                                                                                                                                                <li>OTHER</li>
+                                                                                                                                                                                                <li>KSPLICE</li>
+                                                                                                                                                                                                <li>ALL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of updates to be applied</div>
+                                            <div>Applicable only for <em>action=install_all_package_updates</em><em>action=install_all_windows_updates</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -462,10 +486,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagedInstance resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bug_updates_available&#x27;: 56, &#x27;child_software_sources&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;enhancement_updates_available&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_reboot_required&#x27;: True, &#x27;last_boot&#x27;: &#x27;last_boot_example&#x27;, &#x27;last_checkin&#x27;: &#x27;last_checkin_example&#x27;, &#x27;managed_instance_groups&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;os_family&#x27;: &#x27;LINUX&#x27;, &#x27;os_kernel_version&#x27;: &#x27;os_kernel_version_example&#x27;, &#x27;os_name&#x27;: &#x27;os_name_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;other_updates_available&#x27;: 56, &#x27;parent_software_source&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;scheduled_job_count&#x27;: 56, &#x27;security_updates_available&#x27;: 56, &#x27;status&#x27;: &#x27;NORMAL&#x27;, &#x27;updates_available&#x27;: 56, &#x27;work_request_count&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;autonomous&#x27;: {&#x27;is_auto_update_enabled&#x27;: True}, &#x27;bug_updates_available&#x27;: 56, &#x27;child_software_sources&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;enhancement_updates_available&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_data_collection_authorized&#x27;: True, &#x27;is_reboot_required&#x27;: True, &#x27;ksplice_effective_kernel_version&#x27;: &#x27;ksplice_effective_kernel_version_example&#x27;, &#x27;last_boot&#x27;: &#x27;last_boot_example&#x27;, &#x27;last_checkin&#x27;: &#x27;last_checkin_example&#x27;, &#x27;managed_instance_groups&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;notification_topic_id&#x27;: &#x27;ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;os_family&#x27;: &#x27;LINUX&#x27;, &#x27;os_kernel_version&#x27;: &#x27;os_kernel_version_example&#x27;, &#x27;os_name&#x27;: &#x27;os_name_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;other_updates_available&#x27;: 56, &#x27;parent_software_source&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;scheduled_job_count&#x27;: 56, &#x27;security_updates_available&#x27;: 56, &#x27;status&#x27;: &#x27;NORMAL&#x27;, &#x27;updates_available&#x27;: 56, &#x27;work_request_count&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance/autonomous"></div>
+                    <b>autonomous</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance/autonomous" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>if present, indicates the Managed Instance is an autonomous instance. Holds all the Autonomous specific information</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance/autonomous/is_auto_update_enabled"></div>
+                    <b>is_auto_update_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance/autonomous/is_auto_update_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if daily updates are enabled</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-managed_instance/bug_updates_available"></div>
@@ -631,6 +691,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance/is_data_collection_authorized"></div>
+                    <b>is_data_collection_authorized</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance/is_data_collection_authorized" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if user allow data collection for this instance</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-managed_instance/is_reboot_required"></div>
                     <b>is_reboot_required</b>
                     <a class="ansibleOptionLink" href="#return-managed_instance/is_reboot_required" title="Permalink to this return value"></a>
@@ -644,6 +722,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance/ksplice_effective_kernel_version"></div>
+                    <b>ksplice_effective_kernel_version</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance/ksplice_effective_kernel_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The ksplice effective kernel version</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ksplice_effective_kernel_version_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -737,6 +833,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_instance/notification_topic_id"></div>
+                    <b>notification_topic_id</b>
+                    <a class="ansibleOptionLink" href="#return-managed_instance/notification_topic_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCID of the ONS topic used to send notification to users</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

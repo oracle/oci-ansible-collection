@@ -27,17 +27,17 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
-    private_application_package_id:
-        description:
-            - The unique identifier for the private application package.
-        type: str
-        aliases: ["id"]
-        required: true
     dest:
         description:
             - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
               overwritten.
         type: str
+        required: true
+    private_application_package_id:
+        description:
+            - The unique identifier for the private application package.
+        type: str
+        aliases: ["id"]
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -45,8 +45,8 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific private_application_package_config
   oci_service_catalog_private_application_package_config_facts:
+    dest: /tmp/myfile
     private_application_package_id: "ocid1.privateapplicationpackage.oc1..xxxxxxEXAMPLExxxxxx"
-    dest: /tmp/myfile.zip
 
 """
 
@@ -109,10 +109,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             private_application_package_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            dest=dict(type="str", required=True),
         )
     )
 

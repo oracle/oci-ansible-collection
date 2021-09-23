@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -214,6 +214,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>When this parameter is set, only objects whose names do not contain the delimiter character (after an optionally specified prefix) are returned in the objects key of the response body. Scanned objects whose names contain the delimiter have the part of their name up to the first occurrence of the delimiter (including the optional prefix) returned as a set of prefixes. Note that only &#x27;/&#x27; is a supported delimiter character at this time.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-dest"></div>
+                    <b>dest</b>
+                    <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
+                                            <div>Required to get a specific object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -531,6 +547,7 @@ Examples
 
     - name: Get a specific object
       oci_object_storage_object_facts:
+        dest: /tmp/myfile
         namespace_name: namespace_name_example
         bucket_name: my-new-bucket1
         object_name: test/object1.log
@@ -570,7 +587,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Object resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;headers&#x27;: {&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -607,24 +624,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
-                                    </td>
-            </tr>
-                                <tr>
-                                    <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-objects/headers"></div>
-                    <b>headers</b>
-                    <a class="ansibleOptionLink" href="#return-objects/headers" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                                          </div>
-                                    </td>
-                <td>on success</td>
-                <td>
-                                            <div>response headers for the object</div>
-                                        <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}</div>
                                     </td>
             </tr>
                                 <tr>

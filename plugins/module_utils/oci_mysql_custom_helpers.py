@@ -160,7 +160,7 @@ class MysqlAnalyticsClusterActionsHelperCustom:
             resource = self.get_resource().data
             return self.prepare_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(resource),
             )
 
@@ -175,7 +175,7 @@ class MysqlAnalyticsClusterActionsHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
 
@@ -240,7 +240,7 @@ class MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
 
@@ -330,7 +330,7 @@ class MysqlHeatWaveClusterActionsHelperCustom:
             resource = self.get_resource().data
             return self.prepare_result(
                 changed=False,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(resource),
             )
 
@@ -345,7 +345,7 @@ class MysqlHeatWaveClusterActionsHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
 
@@ -410,6 +410,6 @@ class MysqlHeatWaveClusterMemoryEstimateActionsHelperCustom:
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )

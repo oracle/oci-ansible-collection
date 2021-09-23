@@ -20,7 +20,7 @@ oracle.oci.oci_data_science_model_artifact_facts -- Fetches details about a Mode
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -283,8 +283,8 @@ Examples
     
     - name: Get a specific model_artifact
       oci_data_science_model_artifact_facts:
+        dest: /tmp/myfile
         model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
-        dest: /usr/local/myfile.txt
 
 
 

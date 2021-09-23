@@ -20,7 +20,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -1677,6 +1677,72 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/platform_config/is_measured_boot_enabled"></div>
+                    <b>is_measured_boot_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/platform_config/is_measured_boot_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the Measured Boot feature is enabled on the instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/platform_config/is_secure_boot_enabled"></div>
+                    <b>is_secure_boot_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/platform_config/is_secure_boot_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether Secure Boot is enabled on the instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/platform_config/is_trusted_platform_module_enabled"></div>
+                    <b>is_trusted_platform_module_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/platform_config/is_trusted_platform_module_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the Trusted Platform Module (TPM) is enabled on the instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-instance_details/launch_details/platform_config/numa_nodes_per_socket"></div>
                     <b>numa_nodes_per_socket</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_details/launch_details/platform_config/numa_nodes_per_socket" title="Permalink to this option"></a>
@@ -1694,6 +1760,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The number of NUMA nodes per socket.</div>
+                                            <div>Applicable when type is &#x27;AMD_MILAN_BM&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1711,10 +1778,14 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>AMD_MILAN_BM</li>
+                                                                                                                                                                                                <li>INTEL_VM</li>
+                                                                                                                                                                                                <li>AMD_ROME_BM</li>
+                                                                                                                                                                                                <li>INTEL_SKYLAKE_BM</li>
+                                                                                                                                                                                                <li>AMD_VM</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of platform being configured. The only supported `type` is `AMD_MILAN_BM`.</div>
+                                            <div>The type of platform being configured.</div>
                                                         </td>
             </tr>
                     
@@ -2476,7 +2547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the InstanceConfiguration resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deferred_fields&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: {&#x27;block_volumes&#x27;: [{&#x27;attach_details&#x27;: {&#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;type&#x27;: &#x27;iscsi&#x27;, &#x27;use_chap&#x27;: True}, &#x27;create_details&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy_id&#x27;: &#x27;ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;volume&#x27;}, &#x27;vpus_per_gb&#x27;: 56}, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;instance_type&#x27;: &#x27;compute&#x27;, &#x27;launch_details&#x27;: {&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;preferred_maintenance_action&#x27;: &#x27;LIVE_MIGRATE&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}}, &#x27;secondary_vnics&#x27;: [{&#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;nic_index&#x27;: 56}]}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deferred_fields&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_details&#x27;: {&#x27;block_volumes&#x27;: [{&#x27;attach_details&#x27;: {&#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;type&#x27;: &#x27;iscsi&#x27;, &#x27;use_chap&#x27;: True}, &#x27;create_details&#x27;: {&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy_id&#x27;: &#x27;ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;volume&#x27;}, &#x27;vpus_per_gb&#x27;: 56}, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;instance_type&#x27;: &#x27;compute&#x27;, &#x27;launch_details&#x27;: {&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My bare metal instance&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;preferred_maintenance_action&#x27;: &#x27;LIVE_MIGRATE&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}}, &#x27;secondary_vnics&#x27;: [{&#x27;create_vnic_details&#x27;: {&#x27;assign_private_dns_record&#x27;: True, &#x27;assign_public_ip&#x27;: True, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;skip_source_dest_check&#x27;: True, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;nic_index&#x27;: 56}]}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -4038,6 +4109,69 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/platform_config/is_measured_boot_enabled"></div>
+                    <b>is_measured_boot_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/platform_config/is_measured_boot_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the Measured Boot feature is enabled on the instance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/platform_config/is_secure_boot_enabled"></div>
+                    <b>is_secure_boot_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/platform_config/is_secure_boot_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether Secure Boot is enabled on the instance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/platform_config/is_trusted_platform_module_enabled"></div>
+                    <b>is_trusted_platform_module_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/platform_config/is_trusted_platform_module_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the Trusted Platform Module (TPM) is enabled on the instance.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-instance_configuration/instance_details/launch_details/platform_config/numa_nodes_per_socket"></div>
                     <b>numa_nodes_per_socket</b>
                     <a class="ansibleOptionLink" href="#return-instance_configuration/instance_details/launch_details/platform_config/numa_nodes_per_socket" title="Permalink to this return value"></a>
@@ -4068,7 +4202,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of platform being configured. The only supported `type` is `AMD_MILAN_BM`.</div>
+                                            <div>The type of platform being configured.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMD_MILAN_BM</div>

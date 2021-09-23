@@ -20,7 +20,7 @@ oracle.oci.oci_os_management_managed_instance_group -- Manage a ManagedInstanceG
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -44,7 +44,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Managed Instance Group on the management system. This will not contain any managed instances after it is first created, and they must be added later.
-- This resource has the following action operations in the :ref:`oci_managed_instance_group_actions <ansible_collections.oci_managed_instance_group_actions_module>` module: attach_managed_instance, change_compartment, detach_managed_instance.
+- This resource has the following action operations in the :ref:`oci_managed_instance_group_actions <ansible_collections.oci_managed_instance_group_actions_module>` module: attach_managed_instance, change_compartment, detach_managed_instance, install_all_updates.
 
 
 .. Aliases

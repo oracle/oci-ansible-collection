@@ -198,6 +198,9 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         )
         self.check_mode = self.module.check_mode
 
+    def get_response_field_name(self, action):
+        return self.resource_type
+
     def get_module_resource_id_param(self):
         """Expected to be generated inside the module."""
         pass
@@ -265,12 +268,16 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         is_action_necessary = self.is_action_necessary(action, get_response.data)
         if not is_action_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=resource
+                changed=False,
+                resource_type=self.get_response_field_name(action),
+                resource=resource,
             )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(action),
+                resource=resource,
             )
 
         try:
@@ -294,7 +301,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
                 )
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
 
@@ -308,6 +315,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             module, resource_type, service_client_class, namespace
         )
         self.check_mode = self.module.check_mode
+
+    def get_response_field_name(self):
+        return self.resource_type
 
     def get_module_resource_id_param(self):
         """Expected to be generated inside the module."""
@@ -741,34 +751,38 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         if self.module.params.get("force_create"):
             if self.check_mode:
                 return self.prepare_result(
-                    changed=True, resource_type=self.resource_type, resource=dict()
+                    changed=True,
+                    resource_type=self.get_response_field_name(),
+                    resource=dict(),
                 )
         else:
             resource_matched = self.get_matching_resource()
             if resource_matched:
                 _debug(
                     "found matching {resource_type} resource: {resource_dict}".format(
-                        resource_type=self.resource_type,
+                        resource_type=self.get_response_field_name(),
                         resource_dict=to_dict(resource_matched),
                     )
                 )
             else:
                 _debug(
                     "no matching {resource_type} resource found".format(
-                        resource_type=self.resource_type
+                        resource_type=self.get_response_field_name()
                     )
                 )
 
             if resource_matched:
                 return self.prepare_result(
                     changed=False,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=to_dict(resource_matched),
                 )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=dict()
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=dict(),
             )
 
         try:
@@ -781,7 +795,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(created_resource),
             )
 
@@ -810,7 +824,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
         _debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
             )
         )
@@ -827,7 +841,8 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
         _debug(
             "is patch necessary for {resource_type}: {patch_is_necessary}".format(
-                resource_type=self.resource_type, patch_is_necessary=patch_is_necessary,
+                resource_type=self.get_response_field_name(),
+                patch_is_necessary=patch_is_necessary,
             )
         )
 
@@ -839,12 +854,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=resource
+                changed=False,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         try:
@@ -858,7 +877,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(updated_resource),
             )
 
@@ -876,12 +895,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         is_update_necessary = self.is_patch_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=resource
+                changed=False,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         try:
@@ -895,7 +918,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(patched_resource),
             )
 
@@ -921,7 +944,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         except ServiceError as se:
             if se.status == 404:
                 return self.prepare_result(
-                    changed=False, resource_type=self.resource_type, resource=dict()
+                    changed=False,
+                    resource_type=self.get_response_field_name(),
+                    resource=dict(),
                 )
             self.module.fail_json(
                 msg="Getting resource failed with exception: {0}".format(se.message)
@@ -930,13 +955,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             resource = to_dict(get_response.data)
             if self.is_resource_dead(get_response.data):
                 return self.prepare_result(
-                    changed=False, resource_type=self.resource_type, resource=resource
+                    changed=False,
+                    resource_type=self.get_response_field_name(),
+                    resource=resource,
                 )
 
         if self.check_mode:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
             )
 
@@ -948,7 +975,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             if se.status == 404:
                 return self.prepare_result(
                     changed=True,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=oci_common_utils.get_resource_with_state(
                         resource, "DELETED"
                     ),
@@ -961,7 +988,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource = to_dict(deleted_resource)
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
             )
 
@@ -980,12 +1007,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=resource
+                changed=False,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         try:
@@ -999,7 +1030,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(updated_resource),
             )
 
@@ -1018,12 +1049,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         is_patch_necessary = self.is_patch_necessary(resource)
         if not is_patch_necessary:
             return self.prepare_result(
-                changed=False, resource_type=self.resource_type, resource=resource
+                changed=False,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         if self.check_mode:
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
         try:
@@ -1037,7 +1072,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=to_dict(patched_resource),
             )
 
@@ -1048,7 +1083,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         except ServiceError as se:
             if se.status == 404:
                 return self.prepare_result(
-                    changed=False, resource_type=self.resource_type, resource=dict()
+                    changed=False,
+                    resource_type=self.get_response_field_name(),
+                    resource=dict(),
                 )
             self.module.fail_json(
                 msg="Getting resource failed with exception: {0}".format(se.message)
@@ -1060,13 +1097,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 and resource["lifecycle_state"] in oci_common_utils.DEAD_STATES
             ):
                 return self.prepare_result(
-                    changed=False, resource_type=self.resource_type, resource=resource
+                    changed=False,
+                    resource_type=self.get_response_field_name(),
+                    resource=resource,
                 )
 
         if self.check_mode:
             return self.prepare_result(
                 changed=True,
-                resource_type=self.resource_type,
+                resource_type=self.get_response_field_name(),
                 resource=oci_common_utils.get_resource_with_state(resource, "DELETED"),
             )
 
@@ -1079,7 +1118,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             if se.status == 404:
                 return self.prepare_result(
                     changed=True,
-                    resource_type=self.resource_type,
+                    resource_type=self.get_response_field_name(),
                     resource=oci_common_utils.get_resource_with_state(
                         resource, "DELETED"
                     ),
@@ -1091,7 +1130,9 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             if deleted_resource:
                 resource = to_dict(deleted_resource)
             return self.prepare_result(
-                changed=True, resource_type=self.resource_type, resource=resource
+                changed=True,
+                resource_type=self.get_response_field_name(),
+                resource=resource,
             )
 
 

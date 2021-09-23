@@ -46,6 +46,7 @@ template_categories:
         id:
             description:
                 - Unique identifier for the template category.
+                  Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
             type: string
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

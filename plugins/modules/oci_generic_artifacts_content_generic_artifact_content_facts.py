@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     repository_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the repository.
@@ -46,22 +52,16 @@ options:
             - "Example: `1.1.2` or `1.2-beta-2`"
         type: str
         required: true
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific generic_artifact_content
   oci_generic_artifacts_content_generic_artifact_content_facts:
+    dest: /tmp/myfile
     repository_id: "ocid1.repository.oc1..exampleuniqueID"
     artifact_path: project01/my-web-app/artifact-abc
     version: 1.1.2
-    dest: /tmp/myfile.png
 
 """
 
@@ -125,10 +125,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            dest=dict(type="str", required=True),
             repository_id=dict(type="str", required=True),
             artifact_path=dict(type="str", required=True),
             version=dict(type="str", required=True),
-            dest=dict(type="str", required=True),
         )
     )
 

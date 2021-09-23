@@ -96,6 +96,10 @@ options:
             - "LINUX"
             - "WINDOWS"
             - "ALL"
+    is_restricted:
+        description:
+            - If true, will only filter out restricted Autonomous Linux Scheduled Job
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -282,6 +286,12 @@ scheduled_jobs:
             returned: on success
             type: string
             sample: LINUX
+        is_restricted:
+            description:
+                - true, if the schedule job has its update capabilities restricted. (Used to track Autonomous Scheduled Job)
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -313,7 +323,8 @@ scheduled_jobs:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "update_names": [],
-        "os_family": "LINUX"
+        "os_family": "LINUX",
+        "is_restricted": true
     }]
 """
 
@@ -361,6 +372,7 @@ class ScheduledJobFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "lifecycle_state",
             "os_family",
+            "is_restricted",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -407,6 +419,7 @@ def main():
                 ],
             ),
             os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
+            is_restricted=dict(type="bool"),
         )
     )
 

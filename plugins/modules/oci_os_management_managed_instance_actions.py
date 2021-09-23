@@ -55,6 +55,18 @@ options:
             - Required for I(action=attach_child_software_source), I(action=attach_parent_software_source), I(action=detach_child_software_source),
               I(action=detach_parent_software_source).
         type: str
+    update_type:
+        description:
+            - The type of updates to be applied
+            - Applicable only for I(action=install_all_package_updates)I(action=install_all_windows_updates).
+        type: str
+        choices:
+            - "SECURITY"
+            - "BUGFIX"
+            - "ENHANCEMENT"
+            - "OTHER"
+            - "KSPLICE"
+            - "ALL"
     software_package_name:
         description:
             - Package name
@@ -287,6 +299,36 @@ managed_instance:
             returned: on success
             type: bool
             sample: true
+        notification_topic_id:
+            description:
+                - OCID of the ONS topic used to send notification to users
+            returned: on success
+            type: string
+            sample: "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx"
+        ksplice_effective_kernel_version:
+            description:
+                - The ksplice effective kernel version
+            returned: on success
+            type: string
+            sample: ksplice_effective_kernel_version_example
+        is_data_collection_authorized:
+            description:
+                - True if user allow data collection for this instance
+            returned: on success
+            type: bool
+            sample: true
+        autonomous:
+            description:
+                - if present, indicates the Managed Instance is an autonomous instance. Holds all the Autonomous specific information
+            returned: on success
+            type: complex
+            contains:
+                is_auto_update_enabled:
+                    description:
+                        - True if daily updates are enabled
+                    returned: on success
+                    type: bool
+                    sample: true
         security_updates_available:
             description:
                 - Number of security type updates available to be installed
@@ -349,6 +391,12 @@ managed_instance:
         }],
         "os_family": "LINUX",
         "is_reboot_required": true,
+        "notification_topic_id": "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx",
+        "ksplice_effective_kernel_version": "ksplice_effective_kernel_version_example",
+        "is_data_collection_authorized": true,
+        "autonomous": {
+            "is_auto_update_enabled": true
+        },
         "security_updates_available": 56,
         "bug_updates_available": 56,
         "enhancement_updates_available": 56,
@@ -517,6 +565,7 @@ class ManagedInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 managed_instance_id=self.module.params.get("managed_instance_id"),
+                update_type=self.module.params.get("update_type"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -534,6 +583,7 @@ class ManagedInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 managed_instance_id=self.module.params.get("managed_instance_id"),
+                update_type=self.module.params.get("update_type"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -637,6 +687,17 @@ def main():
         dict(
             managed_instance_id=dict(aliases=["id"], type="str", required=True),
             software_source_id=dict(type="str"),
+            update_type=dict(
+                type="str",
+                choices=[
+                    "SECURITY",
+                    "BUGFIX",
+                    "ENHANCEMENT",
+                    "OTHER",
+                    "KSPLICE",
+                    "ALL",
+                ],
+            ),
             software_package_name=dict(type="str"),
             windows_update_name=dict(type="str"),
             action=dict(

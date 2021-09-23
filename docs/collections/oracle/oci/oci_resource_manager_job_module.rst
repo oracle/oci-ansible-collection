@@ -20,7 +20,7 @@ oracle.oci.oci_resource_manager_job -- Manage a Job resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -68,12 +68,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Parameter</th>
+            <th colspan="3">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -88,7 +88,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-apply_job_plan_resolution"></div>
                     <b>apply_job_plan_resolution</b>
                     <a class="ansibleOptionLink" href="#parameter-apply_job_plan_resolution" title="Permalink to this option"></a>
@@ -149,7 +149,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-apply_job_plan_resolution/is_auto_approved"></div>
                     <b>is_auto_approved</b>
                     <a class="ansibleOptionLink" href="#parameter-apply_job_plan_resolution/is_auto_approved" title="Permalink to this option"></a>
@@ -169,7 +169,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-apply_job_plan_resolution/is_use_latest_job_id"></div>
                     <b>is_use_latest_job_id</b>
                     <a class="ansibleOptionLink" href="#parameter-apply_job_plan_resolution/is_use_latest_job_id" title="Permalink to this option"></a>
@@ -189,7 +189,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-apply_job_plan_resolution/plan_job_id"></div>
                     <b>plan_job_id</b>
                     <a class="ansibleOptionLink" href="#parameter-apply_job_plan_resolution/plan_job_id" title="Permalink to this option"></a>
@@ -205,7 +205,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -226,7 +226,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -241,7 +241,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -256,7 +256,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -272,7 +272,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -290,7 +290,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -309,7 +309,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -325,7 +325,26 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_forced"></div>
+                    <b>is_forced</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_forced" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether a forced cancellation is requested for the job while it was running. A forced cancellation can result in an incorrect state file. For example, the state file might not reflect the exact state of the provisioned resources.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-job_id"></div>
                     <b>job_id</b>
                     <a class="ansibleOptionLink" href="#parameter-job_id" title="Permalink to this option"></a>
@@ -343,7 +362,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details"></div>
                     <b>job_operation_details</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details" title="Permalink to this option"></a>
@@ -359,7 +378,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/execution_plan_job_id"></div>
                     <b>execution_plan_job_id</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/execution_plan_job_id" title="Permalink to this option"></a>
@@ -376,7 +395,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/execution_plan_strategy"></div>
                     <b>execution_plan_strategy</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/execution_plan_strategy" title="Permalink to this option"></a>
@@ -394,7 +413,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/operation" title="Permalink to this option"></a>
@@ -416,7 +435,90 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/terraform_advanced_options"></div>
+                    <b>terraform_advanced_options</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/terraform_advanced_options" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when operation is one of [&#x27;DESTROY&#x27;, &#x27;APPLY&#x27;, &#x27;PLAN&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/terraform_advanced_options/detailed_log_level"></div>
+                    <b>detailed_log_level</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/terraform_advanced_options/detailed_log_level" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ERROR</li>
+                                                                                                                                                                                                <li>WARN</li>
+                                                                                                                                                                                                <li>INFO</li>
+                                                                                                                                                                                                <li>DEBUG</li>
+                                                                                                                                                                                                <li>TRACE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enables detailed logs at the specified verbosity for running the job (operation). Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/terraform_advanced_options/is_refresh_required"></div>
+                    <b>is_refresh_required</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/terraform_advanced_options/is_refresh_required" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies whether to refresh the state for each resource before running the job (operation). Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/terraform_advanced_options/parallelism"></div>
+                    <b>parallelism</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/terraform_advanced_options/parallelism" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Limits the number of concurrent Terraform operations when <a href='https://www.terraform.io/docs/internals/graph.html#walking-the-graph'>walking the graph</a>. Use this parameter to help debug Terraform issues or to accomplish certain special use cases. A higher value might cause resources to be throttled. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/tf_state_base64_encoded"></div>
                     <b>tf_state_base64_encoded</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/tf_state_base64_encoded" title="Permalink to this option"></a>
@@ -433,7 +535,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -448,7 +550,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#parameter-operation" title="Permalink to this option"></a>
@@ -463,7 +565,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -478,7 +580,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-stack_id"></div>
                     <b>stack_id</b>
                     <a class="ansibleOptionLink" href="#parameter-stack_id" title="Permalink to this option"></a>
@@ -494,7 +596,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -515,7 +617,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -530,7 +632,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -549,7 +651,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -628,12 +730,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job"></div>
                     <b>job</b>
                     <a class="ansibleOptionLink" href="#return-job" title="Permalink to this return value"></a>
@@ -646,12 +748,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Job resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;PHX&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;cancellation_details&#x27;: {&#x27;is_forced&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;PHX&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;, &#x27;terraform_advanced_options&#x27;: {&#x27;detailed_log_level&#x27;: &#x27;ERROR&#x27;, &#x27;is_refresh_required&#x27;: True, &#x27;parallelism&#x27;: 56}}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;time_finished&#x27;: &#x27;2020-01-25T21:10:29.600Z&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/apply_job_plan_resolution"></div>
                     <b>apply_job_plan_resolution</b>
                     <a class="ansibleOptionLink" href="#return-job/apply_job_plan_resolution" title="Permalink to this return value"></a>
@@ -668,7 +770,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/apply_job_plan_resolution/is_auto_approved"></div>
                     <b>is_auto_approved</b>
                     <a class="ansibleOptionLink" href="#return-job/apply_job_plan_resolution/is_auto_approved" title="Permalink to this return value"></a>
@@ -687,7 +789,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/apply_job_plan_resolution/is_use_latest_job_id"></div>
                     <b>is_use_latest_job_id</b>
                     <a class="ansibleOptionLink" href="#return-job/apply_job_plan_resolution/is_use_latest_job_id" title="Permalink to this return value"></a>
@@ -706,7 +808,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/apply_job_plan_resolution/plan_job_id"></div>
                     <b>plan_job_id</b>
                     <a class="ansibleOptionLink" href="#return-job/apply_job_plan_resolution/plan_job_id" title="Permalink to this return value"></a>
@@ -725,7 +827,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-job/cancellation_details"></div>
+                    <b>cancellation_details</b>
+                    <a class="ansibleOptionLink" href="#return-job/cancellation_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/cancellation_details/is_forced"></div>
+                    <b>is_forced</b>
+                    <a class="ansibleOptionLink" href="#return-job/cancellation_details/is_forced" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether a forced cancellation was requested for the job while it was running. A forced cancellation can result in an incorrect state file. For example, the state file might not reflect the exact state of the provisioned resources.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-job/compartment_id" title="Permalink to this return value"></a>
@@ -743,7 +881,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/config_source"></div>
                     <b>config_source</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source" title="Permalink to this return value"></a>
@@ -760,7 +898,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/branch_name"></div>
                     <b>branch_name</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/branch_name" title="Permalink to this return value"></a>
@@ -779,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/bucket_name"></div>
                     <b>bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/bucket_name" title="Permalink to this return value"></a>
@@ -798,7 +936,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/commit_id"></div>
                     <b>commit_id</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/commit_id" title="Permalink to this return value"></a>
@@ -817,7 +955,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/config_source_record_type"></div>
                     <b>config_source_record_type</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/config_source_record_type" title="Permalink to this return value"></a>
@@ -836,7 +974,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/configuration_source_provider_id"></div>
                     <b>configuration_source_provider_id</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/configuration_source_provider_id" title="Permalink to this return value"></a>
@@ -855,7 +993,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/namespace"></div>
                     <b>namespace</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/namespace" title="Permalink to this return value"></a>
@@ -874,7 +1012,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/region" title="Permalink to this return value"></a>
@@ -893,7 +1031,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/config_source/repository_url"></div>
                     <b>repository_url</b>
                     <a class="ansibleOptionLink" href="#return-job/config_source/repository_url" title="Permalink to this return value"></a>
@@ -912,7 +1050,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-job/defined_tags" title="Permalink to this return value"></a>
@@ -930,7 +1068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-job/display_name" title="Permalink to this return value"></a>
@@ -948,7 +1086,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/failure_details"></div>
                     <b>failure_details</b>
                     <a class="ansibleOptionLink" href="#return-job/failure_details" title="Permalink to this return value"></a>
@@ -965,7 +1103,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/failure_details/code"></div>
                     <b>code</b>
                     <a class="ansibleOptionLink" href="#return-job/failure_details/code" title="Permalink to this return value"></a>
@@ -984,7 +1122,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/failure_details/message"></div>
                     <b>message</b>
                     <a class="ansibleOptionLink" href="#return-job/failure_details/message" title="Permalink to this return value"></a>
@@ -1003,7 +1141,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-job/freeform_tags" title="Permalink to this return value"></a>
@@ -1021,7 +1159,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-job/id" title="Permalink to this return value"></a>
@@ -1039,7 +1177,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/job_operation_details"></div>
                     <b>job_operation_details</b>
                     <a class="ansibleOptionLink" href="#return-job/job_operation_details" title="Permalink to this return value"></a>
@@ -1056,7 +1194,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/job_operation_details/execution_plan_job_id"></div>
                     <b>execution_plan_job_id</b>
                     <a class="ansibleOptionLink" href="#return-job/job_operation_details/execution_plan_job_id" title="Permalink to this return value"></a>
@@ -1075,7 +1213,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/job_operation_details/execution_plan_strategy"></div>
                     <b>execution_plan_strategy</b>
                     <a class="ansibleOptionLink" href="#return-job/job_operation_details/execution_plan_strategy" title="Permalink to this return value"></a>
@@ -1094,7 +1232,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/job_operation_details/operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#return-job/job_operation_details/operation" title="Permalink to this return value"></a>
@@ -1110,10 +1248,88 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">APPLY</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/terraform_advanced_options"></div>
+                    <b>terraform_advanced_options</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/terraform_advanced_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/terraform_advanced_options/detailed_log_level"></div>
+                    <b>detailed_log_level</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/terraform_advanced_options/detailed_log_level" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enables detailed logs at the specified verbosity for running the job (operation). Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ERROR</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/terraform_advanced_options/is_refresh_required"></div>
+                    <b>is_refresh_required</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/terraform_advanced_options/is_refresh_required" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether to refresh the state for each resource before running the job (operation). Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/terraform_advanced_options/parallelism"></div>
+                    <b>parallelism</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/terraform_advanced_options/parallelism" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Limits the number of concurrent Terraform operations when <a href='https://www.terraform.io/docs/internals/graph.html#walking-the-graph'>walking the graph</a>. Use this parameter to help debug Terraform issues or to accomplish certain special use cases. A higher value might cause resources to be throttled. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-job/lifecycle_state" title="Permalink to this return value"></a>
@@ -1123,7 +1339,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Current state of the specified job. For more information about job lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#JobStates'>Key Concepts</a>.</div>
+                                            <div>Current state of the specified job. For more information about job lifecycle states in Resource Manager, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__JobStates'>Key Concepts</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACCEPTED</div>
@@ -1131,7 +1347,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#return-job/operation" title="Permalink to this return value"></a>
@@ -1149,7 +1365,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/resolved_plan_job_id"></div>
                     <b>resolved_plan_job_id</b>
                     <a class="ansibleOptionLink" href="#return-job/resolved_plan_job_id" title="Permalink to this return value"></a>
@@ -1167,7 +1383,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/stack_id"></div>
                     <b>stack_id</b>
                     <a class="ansibleOptionLink" href="#return-job/stack_id" title="Permalink to this return value"></a>
@@ -1185,7 +1401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-job/time_created" title="Permalink to this return value"></a>
@@ -1203,7 +1419,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-job/time_finished" title="Permalink to this return value"></a>
@@ -1221,7 +1437,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/variables"></div>
                     <b>variables</b>
                     <a class="ansibleOptionLink" href="#return-job/variables" title="Permalink to this return value"></a>
@@ -1231,13 +1447,13 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 4096 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
+                                            <div>Terraform variables associated with this resource. Maximum number of variables supported is 250. The maximum size of each variable, including both name and value, is 8192 bytes. Example: `{&quot;CompartmentId&quot;: &quot;compartment-id-value&quot;}`</div>
                                         <br/>
                                     </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/working_directory"></div>
                     <b>working_directory</b>
                     <a class="ansibleOptionLink" href="#return-job/working_directory" title="Permalink to this return value"></a>

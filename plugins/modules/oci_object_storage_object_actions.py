@@ -338,7 +338,7 @@ RETURN = """
 object:
     description:
         - Details of the Object resource acted upon by the current operation
-    returned: on success for actions [ "copy", "rename", "restore", "update_object_storage_tier" ]
+    returned: on success
     type: complex
     contains:
         name:

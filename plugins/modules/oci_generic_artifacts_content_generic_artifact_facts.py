@@ -27,6 +27,12 @@ description:
 version_added: "2.9"
 author: Oracle (@oracle)
 options:
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+        type: str
+        required: true
     artifact_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the artifact.
@@ -34,20 +40,14 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-        type: str
-        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific generic_artifact
   oci_generic_artifacts_content_generic_artifact_facts:
+    dest: /tmp/myfile
     artifact_id: "ocid1.genericartifact.oc1..exampleuniqueID"
-    dest: /tmp/myfile.png
 
 """
 
@@ -105,8 +105,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            artifact_id=dict(aliases=["id"], type="str", required=True),
             dest=dict(type="str", required=True),
+            artifact_id=dict(aliases=["id"], type="str", required=True),
         )
     )
 

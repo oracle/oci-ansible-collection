@@ -20,7 +20,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -983,7 +983,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                       <span style="color: purple">complex</span>
                                           </div>
                                     </td>
-                <td>on success for actions [ &quot;copy&quot;, &quot;rename&quot;, &quot;restore&quot;, &quot;update_object_storage_tier&quot; ]</td>
+                <td>on success</td>
                 <td>
                                             <div>Details of the Object resource acted upon by the current operation</div>
                                         <br/>

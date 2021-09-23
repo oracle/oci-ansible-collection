@@ -238,10 +238,26 @@ options:
             - Specify whether to ignore the missing values in the import file.
             - Applicable only for I(action=import_data_asset).
         type: bool
+    wallet_secret_id:
+        description:
+            - OCID of the OCI Vault secret holding the Oracle wallet to parse.
+            - Applicable only for I(action=parse_connection).
+        type: str
+    wallet_secret_name:
+        description:
+            - Name of the OCI Vault secret holding the Oracle wallet to parse.
+            - Applicable only for I(action=parse_connection).
+        type: str
     connection_key:
         description:
             - Unique connection key.
             - Applicable only for I(action=parse_connection).
+        type: str
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+            - Required for I(action=synchronous_export).
         type: str
     export_scope:
         description:
@@ -316,6 +332,7 @@ EXAMPLES = """
   oci_data_catalog_data_asset_actions:
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
+    dest: /tmp/myfile
     action: synchronous_export
 
 - name: Perform action validate_connection on data_asset
@@ -607,6 +624,7 @@ data_asset:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -788,7 +806,7 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ExportDataAssetDetails
         )
-        return oci_wait_utils.call_and_wait(
+        response = oci_wait_utils.call_and_wait(
             call_fn=self.client.synchronous_export_data_asset,
             call_fn_args=(),
             call_fn_kwargs=dict(
@@ -808,6 +826,12 @@ class DataCatalogDataAssetActionsHelperGen(OCIActionsHelperBase):
                 self.module.params.get("action")
             ),
         )
+        dest = self.module.params.get("dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
 
     def validate_connection(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
@@ -920,7 +944,10 @@ def main():
             import_file_contents=dict(type="str"),
             import_type=dict(type="list", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]),
             is_missing_value_ignored=dict(type="bool"),
+            wallet_secret_id=dict(type="str"),
+            wallet_secret_name=dict(type="str"),
             connection_key=dict(type="str"),
+            dest=dict(type="str"),
             export_scope=dict(
                 type="list",
                 elements="dict",

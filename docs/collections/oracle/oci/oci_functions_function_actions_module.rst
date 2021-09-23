@@ -20,7 +20,7 @@ oracle.oci.oci_functions_function_actions -- Perform actions on a Function resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.30.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -208,12 +208,12 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The destination file path to write the output of <em>action=invoke</em>. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
+                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -339,6 +339,7 @@ Examples
     
     - name: Perform action invoke on function
       oci_functions_function_actions:
+        dest: /tmp/myfile
         function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
         action: invoke
 
