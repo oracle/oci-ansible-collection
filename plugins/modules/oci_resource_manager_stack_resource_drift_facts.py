@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       and the expected (defined) state for that resource.
       The drift status details correspond to the specified work request (`workRequestId`).
       If no work request is specified, then the drift status details correspond to the latest completed work request for the stack.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     stack_id:
@@ -49,6 +49,7 @@ options:
                 - IN_SYNC
                 - DELETED"
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -70,25 +71,25 @@ stack_resource_drifts:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where the stack is located.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         resource_name:
             description:
                 - The name of the resource as defined in the stack.
             returned: on success
-            type: string
+            type: str
             sample: resource_name_example
         resource_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the resource provisioned by Terraform.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         resource_type:
             description:
@@ -96,14 +97,14 @@ stack_resource_drifts:
                   Must be supported by the L(Oracle Cloud Infrastructure provider,https://www.terraform.io/docs/providers/oci/index.html).
                   Example: `oci_core_instance`"
             returned: on success
-            type: string
+            type: str
             sample: oci_core_instance
         resource_drift_status:
             description:
                 - The drift status of the resource.
                   A drift status value indicates whether or not the actual state of the resource differs from the expected (defined) state for that resource.
             returned: on success
-            type: string
+            type: str
             sample: NOT_CHECKED
         actual_properties:
             description:
@@ -129,8 +130,8 @@ stack_resource_drifts:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
     sample: [{
         "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -201,7 +202,7 @@ def main():
         dict(
             stack_id=dict(type="str", required=True),
             work_request_id=dict(type="str"),
-            resource_drift_status=dict(type="list"),
+            resource_drift_status=dict(type="list", elements="str"),
         )
     )
 

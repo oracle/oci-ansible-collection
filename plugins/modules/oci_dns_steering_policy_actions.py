@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a SteeringPolicy resource in Oracle Cloud 
 description:
     - Perform actions on a SteeringPolicy resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a steering policy into a different compartment.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     steering_policy_id:
@@ -76,14 +76,14 @@ steering_policy:
             description:
                 - The OCID of the compartment containing the steering policy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the steering policy. Does not have to be unique and can be changed.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         ttl:
             description:
@@ -103,7 +103,7 @@ steering_policy:
                   create a monitor, please see L(Managing Health
                   Checks,https://docs.cloud.oracle.com/iaas/Content/HealthChecks/Tasks/managinghealthchecks.htm)."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
         template:
             description:
@@ -133,7 +133,7 @@ steering_policy:
                 - "* `ROUTE_BY_IP` - Answers DNS queries based on the query's IP address."
                 - "* `CUSTOM` - Allows a customized configuration of rules."
             returned: on success
-            type: string
+            type: str
             sample: FAILOVER
         freeform_tags:
             description:
@@ -176,7 +176,7 @@ steering_policy:
                               }
                             ]"
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 rtype:
                     description:
@@ -184,7 +184,7 @@ steering_policy:
                           information, see L(Supported DNS Resource Record
                           Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: rtype_example
                 rdata:
                     description:
@@ -194,7 +194,7 @@ steering_policy:
                           For more information about RDATA, see L(Supported DNS Resource Record
                           Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: rdata_example
                 pool:
                     description:
@@ -215,7 +215,7 @@ steering_policy:
                               }
                             ]"
                     returned: on success
-                    type: string
+                    type: str
                     sample: pool_example
                 is_disabled:
                     description:
@@ -251,7 +251,7 @@ steering_policy:
                     description:
                         - A user-defined description of the rule's purpose or behavior.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 rule_type:
                     description:
@@ -270,7 +270,7 @@ steering_policy:
                             there are five answers left, when the `LIMIT` rule is processed, only the first two answers
                             will remain in the list."
                     returned: on success
-                    type: string
+                    type: str
                     sample: FILTER
                 cases:
                     description:
@@ -294,7 +294,7 @@ steering_policy:
                                   expression `query.client.subnet in ('192.0.2.0/24')` to define a case that
                                   matches queries from that office."
                             returned: on success
-                            type: string
+                            type: str
                             sample: query.client.address in (subnet '198.51.100.0/24')
                         answer_data:
                             description:
@@ -307,7 +307,7 @@ steering_policy:
                                         - An expression that is used to select a set of answers that match a condition. For example, answers with matching pool
                                           properties.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: answer.pool == 'A'
                                 should_keep:
                                     description:
@@ -346,7 +346,7 @@ steering_policy:
                                 - An expression that is used to select a set of answers that match a condition. For example, answers with matching pool
                                   properties.
                             returned: on success
-                            type: string
+                            type: str
                             sample: answer.pool == 'A'
                         should_keep:
                             description:
@@ -375,26 +375,26 @@ steering_policy:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         id:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

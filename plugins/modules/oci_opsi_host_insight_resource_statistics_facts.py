@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
     - Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered
       by utilization level.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -67,12 +67,14 @@ options:
             - Filter by one or more platform types.
               Possible value is LINUX.
         type: list
+        elements: str
         choices:
             - "LINUX"
     id:
         description:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
+        elements: str
     percentile:
         description:
             - Percentile values of daily usage to be used for computing the aggregate resource usage.
@@ -111,12 +113,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -126,6 +130,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -133,6 +138,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -155,25 +161,25 @@ host_insight_resource_statistics:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
             returned: on success
-            type: string
+            type: str
             sample: CPU
         usage_unit:
             description:
                 - Displays usage unit.
             returned: on success
-            type: string
+            type: str
             sample: CORES
         items:
             description:
@@ -191,31 +197,31 @@ host_insight_resource_statistics:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         host_name:
                             description:
                                 - The host name. The host name is unique amongst the hosts managed by the same management agent.
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_name_example
                         host_display_name:
                             description:
                                 - The user-friendly name for the host. The name does not have to be unique.
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_display_name_example
                         platform_type:
                             description:
                                 - Platform type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: LINUX
                         agent_identifier:
                             description:
                                 - The identifier of the agent.
                             returned: on success
-                            type: string
+                            type: str
                             sample: agent_identifier_example
                 current_statistics:
                     description:
@@ -251,7 +257,7 @@ host_insight_resource_statistics:
                             description:
                                 - Name of resource for host
                             returned: on success
-                            type: string
+                            type: str
                             sample: HOST_CPU_STATISTICS
                         load:
                             description:
@@ -444,8 +450,8 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            platform_type=dict(type="list", choices=["LINUX"]),
-            id=dict(type="list"),
+            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
+            id=dict(type="list", elements="str"),
             percentile=dict(type="int"),
             insight_by=dict(type="str"),
             forecast_days=dict(type="int"),
@@ -460,10 +466,10 @@ def main():
                     "platformType",
                 ],
             ),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

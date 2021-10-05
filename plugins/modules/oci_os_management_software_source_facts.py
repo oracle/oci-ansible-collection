@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple SoftwareSource resources in Oracle Cloud Infrastructure
     - Returns a list of all Software Sources.
     - If I(software_source_id) is specified, the details of a single SoftwareSource will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     software_source_id:
@@ -96,109 +96,109 @@ software_sources:
             description:
                 - OCID for the Software Source
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Information specified by the user about the software source
             returned: on success
-            type: string
+            type: str
             sample: description_example
         repo_type:
             description:
                 - Type of the Software Source
             returned: on success
-            type: string
+            type: str
             sample: repo_type_example
         arch_type:
             description:
                 - The architecture type supported by the Software Source
             returned: on success
-            type: string
+            type: str
             sample: IA_32
         url:
             description:
                 - URL for the repostiory
             returned: on success
-            type: string
+            type: str
             sample: url_example
         parent_id:
             description:
                 - OCID for the parent software source, if there is one
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name the parent software source, if there is one
             returned: on success
-            type: string
+            type: str
             sample: parent_name_example
         checksum_type:
             description:
                 - The yum repository checksum type used by this software source
             returned: on success
-            type: string
+            type: str
             sample: SHA1
         maintainer_name:
             description:
                 - Name of the person maintaining this software source
             returned: on success
-            type: string
+            type: str
             sample: maintainer_name_example
         maintainer_email:
             description:
                 - Email address of the person maintaining this software source
             returned: on success
-            type: string
+            type: str
             sample: maintainer_email_example
         maintainer_phone:
             description:
                 - Phone number of the person maintaining this software source
             returned: on success
-            type: string
+            type: str
             sample: maintainer_phone_example
         gpg_key_url:
             description:
                 - URL of the GPG key for this software source
             returned: on success
-            type: string
+            type: str
             sample: gpg_key_url_example
         gpg_key_id:
             description:
                 - ID of the GPG key for this software source
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.gpgkey.oc1..xxxxxxEXAMPLExxxxxx"
         gpg_key_fingerprint:
             description:
                 - Fingerprint of the GPG key for this software source
             returned: on success
-            type: string
+            type: str
             sample: gpg_key_fingerprint_example
         status:
             description:
                 - status of the software source.
             returned: on success
-            type: string
+            type: str
             sample: NORMAL
         lifecycle_state:
             description:
                 - The current state of the Software Source.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         packages:
             description:
@@ -216,13 +216,13 @@ software_sources:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         freeform_tags:
             description:

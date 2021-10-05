@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -36,7 +36,7 @@ description:
       shapes can be scaled.
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
     - For I(action=restart_node), restarts a single node of a Big Data Service cluster
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bds_instance_id:
@@ -173,31 +173,31 @@ bds_instance:
             description:
                 - The OCID of the Big Data Service resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the cluster.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         lifecycle_state:
             description:
                 - The state of the cluster.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         cluster_version:
             description:
                 - Version of the Hadoop distribution.
             returned: on success
-            type: string
+            type: str
             sample: CDH5
         is_high_availability:
             description:
@@ -233,7 +233,7 @@ bds_instance:
                     description:
                         - The CIDR IP address block of the VCN.
                     returned: on success
-                    type: string
+                    type: str
                     sample: 172.16.0.0/16
         cluster_details:
             description:
@@ -245,79 +245,79 @@ bds_instance:
                     description:
                         - BDA version installed in the cluster
                     returned: on success
-                    type: string
+                    type: str
                     sample: bda_version_example
                 bdm_version:
                     description:
                         - Big Data Manager version installed in the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bdm_version_example
                 bds_version:
                     description:
                         - Big Data Service version installed in the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bds_version_example
                 os_version:
                     description:
                         - Oracle Linux version installed in the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: os_version_example
                 db_version:
                     description:
                         - Cloud SQL query server database version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: db_version_example
                 bd_cell_version:
                     description:
                         - Cloud SQL cell version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bd_cell_version_example
                 csql_cell_version:
                     description:
                         - Big Data SQL version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: csql_cell_version_example
                 time_created:
                     description:
                         - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
-                    type: string
-                    sample: 2019-03-29T09:36:42.000+0000
+                    type: str
+                    sample: "2019-03-29T09:36:42.000+0000"
                 time_refreshed:
                     description:
                         - The time the cluster was automatically or manually refreshed, shown as an RFC 3339 formatted datetime string.
                     returned: on success
-                    type: string
-                    sample: 2019-03-29T09:36:42.000+0000
+                    type: str
+                    sample: "2019-03-29T09:36:42.000+0000"
                 cloudera_manager_url:
                     description:
                         - The URL of Cloudera Manager
                     returned: on success
-                    type: string
+                    type: str
                     sample: cloudera_manager_url_example
                 ambari_url:
                     description:
                         - The URL of Ambari
                     returned: on success
-                    type: string
+                    type: str
                     sample: ambari_url_example
                 big_data_manager_url:
                     description:
                         - The URL of Big Data Manager.
                     returned: on success
-                    type: string
+                    type: str
                     sample: big_data_manager_url_example
                 hue_server_url:
                     description:
                         - The URL of the Hue server.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hue_server_url_example
         nodes:
             description:
@@ -329,31 +329,31 @@ bds_instance:
                     description:
                         - The OCID of the underlying Oracle Cloud Infrastructure Compute instance.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The name of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 lifecycle_state:
                     description:
                         - The state of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
                 node_type:
                     description:
                         - Cluster node type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: MASTER
                 shape:
                     description:
                         - Shape of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_example
                 attached_block_volumes:
                     description:
@@ -365,7 +365,7 @@ bds_instance:
                             description:
                                 - The OCID of the volume attachment.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_size_in_gbs:
                             description:
@@ -377,56 +377,56 @@ bds_instance:
                     description:
                         - The OCID of the subnet in which the node is to be created.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
                         - IP address of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
                 hostname:
                     description:
                         - The fully-qualified hostname (FQDN) of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 image_id:
                     description:
                         - The OCID of the image from which the node was created.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 ssh_fingerprint:
                     description:
                         - The fingerprint of the SSH key used for node access.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ssh_fingerprint_example
                 availability_domain:
                     description:
                         - The name of the availability domain in which the node is running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 fault_domain:
                     description:
                         - The name of the fault domain in which the node is running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: fault_domain_example
                 time_created:
                     description:
                         - The time the node was created, shown as an RFC 3339 formatted datetime string.
                     returned: on success
-                    type: string
-                    sample: 2019-03-29T09:36:42.000+0000
+                    type: str
+                    sample: "2019-03-29T09:36:42.000+0000"
                 time_updated:
                     description:
                         - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
                     returned: on success
-                    type: string
-                    sample: 2019-03-29T09:36:42.000+0000
+                    type: str
+                    sample: "2019-03-29T09:36:42.000+0000"
         cloud_sql_details:
             description:
                 - ""
@@ -437,7 +437,7 @@ bds_instance:
                     description:
                         - Shape of the node
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_example
                 block_volume_size_in_gbs:
                     description:
@@ -457,7 +457,7 @@ bds_instance:
                     description:
                         - IP address of the Cloud SQL node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
                 kerberos_details:
                     description:
@@ -469,32 +469,32 @@ bds_instance:
                             description:
                                 - Name of the Kerberos principal.
                             returned: on success
-                            type: string
+                            type: str
                             sample: principal_name_example
                         keytab_file:
                             description:
                                 - Location of the keytab file
                             returned: on success
-                            type: string
+                            type: str
                             sample: keytab_file_example
         created_by:
             description:
                 - The user who created the cluster.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         time_created:
             description:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2019-03-29T09:36:42.000+0000
+            type: str
+            sample: "2019-03-29T09:36:42.000+0000"
         time_updated:
             description:
                 - The time the cluster was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2019-03-29T09:36:42.000+0000
+            type: str
+            sample: "2019-03-29T09:36:42.000+0000"
         number_of_nodes:
             description:
                 - Number of nodes that forming the cluster

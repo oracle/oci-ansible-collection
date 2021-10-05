@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -37,7 +37,7 @@ description:
     - "You may optionally specify a *display name* for the CPE, otherwise a default is provided. It does not have to
       be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_cpe_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -155,7 +155,7 @@ cpe:
             description:
                 - The OCID of the compartment containing the CPE.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -170,7 +170,7 @@ cpe:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -185,13 +185,13 @@ cpe:
             description:
                 - The CPE's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the on-premises router.
             returned: on success
-            type: string
+            type: str
             sample: ip_address_example
         cpe_device_shape_id:
             description:
@@ -210,15 +210,15 @@ cpe:
                     us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)
                     * L(GetTunnelCpeDeviceConfig,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfig)"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the CPE was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BackupDestination resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a backup destination in an Exadata Cloud@Customer system.
     - "This resource has the following action operations in the M(oci_backup_destination_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -98,6 +98,7 @@ options:
                     - IP addresses for NFS Auto mount.
                     - Required when mount_type is 'AUTOMATED_MOUNT'
                 type: list
+                elements: str
             nfs_server_export:
                 description:
                     - Specifies the directory on which to mount the file system
@@ -115,6 +116,7 @@ options:
             - This parameter is updatable.
             - Required when type is 'RECOVERY_APPLIANCE'
         type: list
+        elements: str
     backup_destination_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
@@ -135,6 +137,7 @@ options:
             - IP addresses for NFS Auto mount.
             - This parameter is updatable.
         type: list
+        elements: str
     nfs_server_export:
         description:
             - Specifies the directory on which to mount the file system
@@ -201,25 +204,25 @@ backup_destination:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - Type of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: NFS
         associated_databases:
             description:
@@ -231,19 +234,19 @@ backup_destination:
                     description:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The display name of the database that is associated with the backup destination.
                     returned: on success
-                    type: string
+                    type: str
                     sample: db_name_example
         connection_string:
             description:
                 - For a RECOVERY_APPLIANCE backup destination, the connection string for connecting to the Recovery Appliance.
             returned: on success
-            type: string
+            type: str
             sample: connection_string_example
         vpc_users:
             description:
@@ -257,13 +260,13 @@ backup_destination:
                   location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM
                   cluster nodes.
             returned: on success
-            type: string
+            type: str
             sample: local_mount_point_path_example
         nfs_mount_type:
             description:
                 - NFS Mount type for backup destination.
             returned: on success
-            type: string
+            type: str
             sample: SELF_MOUNT
         nfs_server:
             description:
@@ -275,26 +278,26 @@ backup_destination:
             description:
                 - Specifies the directory on which to mount the file system
             returned: on success
-            type: string
+            type: str
             sample: nfs_server_export_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - The date and time the backup destination was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - A descriptive text associated with the lifecycleState.
                   Typically contains additional displayable text
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -493,15 +496,15 @@ def main():
                         choices=["SELF_MOUNT", "AUTOMATED_MOUNT"],
                     ),
                     local_mount_point_path=dict(type="str"),
-                    nfs_server=dict(type="list"),
+                    nfs_server=dict(type="list", elements="str"),
                     nfs_server_export=dict(type="str"),
                 ),
             ),
             connection_string=dict(type="str"),
-            vpc_users=dict(type="list"),
+            vpc_users=dict(type="list", elements="str"),
             backup_destination_id=dict(aliases=["id"], type="str"),
             nfs_mount_type=dict(type="str", choices=["SELF_MOUNT", "AUTOMATED_MOUNT"]),
-            nfs_server=dict(type="list"),
+            nfs_server=dict(type="list", elements="str"),
             nfs_server_export=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

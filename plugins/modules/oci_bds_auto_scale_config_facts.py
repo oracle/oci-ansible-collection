@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BdsAutoScaleConfig resources in Oracle Cloud Infrastructure
     - Returns information about the autoscaling configurations for a cluster.
     - If I(auto_scaling_configuration_id) is specified, the details of a single BdsAutoScaleConfig will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bds_instance_id:
@@ -102,38 +102,38 @@ bds_auto_scale_configs:
             description:
                 - The unique identifier for the autoscale configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. The name does not have to be unique, and it may be changed. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         node_type:
             description:
                 - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
             returned: on success
-            type: string
+            type: str
             sample: node_type_example
         lifecycle_state:
             description:
                 - The state of the autoscale configuration.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2020-03-29T09:36:42.000+0000
+            type: str
+            sample: "2020-03-29T09:36:42.000+0000"
         time_updated:
             description:
                 - The time the autoscale configuration was updated, shown as an RFC 3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2020-04-29T09:36:42.000+0000
+            type: str
+            sample: "2020-04-29T09:36:42.000+0000"
         policy:
             description:
                 - ""
@@ -144,7 +144,7 @@ bds_auto_scale_configs:
                     description:
                         - Types of autoscale policies. Options are SCHEDULE-BASED or THRESHOLD-BASED. (Only THRESHOLD-BASED is supported in this release.)
                     returned: on success
-                    type: string
+                    type: str
                     sample: THRESHOLD_BASED
                 rules:
                     description:
@@ -156,7 +156,7 @@ bds_auto_scale_configs:
                             description:
                                 - The valid value are CHANGE_SHAPE_SCALE_UP or CHANGE_SHAPE_SCALE_DOWN.
                             returned: on success
-                            type: string
+                            type: str
                             sample: CHANGE_SHAPE_SCALE_UP
                         metric:
                             description:
@@ -168,7 +168,7 @@ bds_auto_scale_configs:
                                     description:
                                         - Allowed value is CPU_UTILIZATION.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: CPU_UTILIZATION
                                 threshold:
                                     description:
@@ -187,7 +187,7 @@ bds_auto_scale_configs:
                                             description:
                                                 - The comparison operator to use. Options are greater than (GT) or less than (LT).
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: GT
                                         value:
                                             description:

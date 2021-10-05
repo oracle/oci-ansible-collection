@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -46,7 +46,7 @@ description:
       To get the IP address, use the L(GetLoadBalancer,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancer/GetLoadBalancer)
       operation.
     - "This resource has the following action operations in the M(oci_load_balancer_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -122,6 +122,7 @@ options:
         description:
             - An array of reserved Ips.
         type: list
+        elements: dict
         suboptions:
             id:
                 description:
@@ -132,6 +133,7 @@ options:
             - An array of subnet L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for create using I(state=present).
         type: list
+        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -213,34 +215,34 @@ load_balancer:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
                 - "Example: `example_load_balancer`"
             returned: on success
-            type: string
+            type: str
             sample: example_load_balancer
         lifecycle_state:
             description:
                 - The current state of the load balancer.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the load balancer was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         ip_addresses:
             description:
                 - An array of IP addresses.
@@ -252,7 +254,7 @@ load_balancer:
                         - An IP address.
                         - "Example: `192.168.0.3`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 192.168.0.3
                 is_public:
                     description:
@@ -272,7 +274,7 @@ load_balancer:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
@@ -282,7 +284,7 @@ load_balancer:
                   operation.
                 - "Example: `100Mbps`"
             returned: on success
-            type: string
+            type: str
             sample: 100Mbps
         shape_details:
             description:
@@ -351,14 +353,14 @@ load_balancer:
                         - A friendly name for the listener. It must be unique and it cannot be changed.
                         - "Example: `example_listener`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_listener
                 default_backend_set_name:
                     description:
                         - The name of the associated backend set.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
                 port:
                     description:
@@ -375,7 +377,7 @@ load_balancer:
                           operation.
                         - "Example: `HTTP`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 hostname_names:
                     description:
@@ -391,7 +393,7 @@ load_balancer:
                           applied to this listener's traffic.
                         - "Example: `example_path_route_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_path_route_set
                 ssl_configuration:
                     description:
@@ -420,7 +422,7 @@ load_balancer:
                                   Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                                 - "Example: `example_certificate_bundle`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_certificate_bundle
                         server_order_preference:
                             description:
@@ -429,7 +431,7 @@ load_balancer:
                                 - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
                                             field is ignored when the `SSLConfiguration` object is associated with a backend set."
                             returned: on success
-                            type: string
+                            type: str
                             sample: ENABLED
                         cipher_suite_name:
                             description:
@@ -455,7 +457,7 @@ load_balancer:
                                      this field."
                                 - "example: `example_cipher_suite`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: cipher_suite_name_example
                         protocols:
                             description:
@@ -515,7 +517,7 @@ load_balancer:
                         - The name of the routing policy applied to this listener's traffic.
                         - "Example: `example_routing_policy_name`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_routing_policy_name
         hostnames:
             description:
@@ -529,7 +531,7 @@ load_balancer:
                           information.
                         - "Example: `example_hostname_001`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_hostname_001
                 hostname:
                     description:
@@ -537,7 +539,7 @@ load_balancer:
                           L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm#routing).
                         - "Example: `app.example.com`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: app.example.com
         ssl_cipher_suites:
             description:
@@ -557,7 +559,7 @@ load_balancer:
                           * oci-customized-ssl-cipher-suite"
                         - "example: `example_cipher_suite`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 ciphers:
                     description:
@@ -677,7 +679,7 @@ load_balancer:
                           Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                         - "Example: `example_certificate_bundle`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_certificate_bundle
                 public_certificate:
                     description:
@@ -691,7 +693,7 @@ load_balancer:
                               ...
                               -----END CERTIFICATE-----"
                     returned: on success
-                    type: string
+                    type: str
                     sample: public_certificate_example
                 ca_certificate:
                     description:
@@ -705,7 +707,7 @@ load_balancer:
                               ...
                               -----END CERTIFICATE-----"
                     returned: on success
-                    type: string
+                    type: str
                     sample: ca_certificate_example
         backend_sets:
             description:
@@ -720,7 +722,7 @@ load_balancer:
                           contain spaces. Avoid entering confidential information.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
                 policy:
                     description:
@@ -728,7 +730,7 @@ load_balancer:
                           L(ListPolicies,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies) operation.
                         - "Example: `LEAST_CONNECTIONS`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: LEAST_CONNECTIONS
                 backends:
                     description:
@@ -741,14 +743,14 @@ load_balancer:
                                 - A read-only field showing the IP address and port that uniquely identify this backend server in the backend set.
                                 - "Example: `10.0.0.3:8080`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.0.0.3:8080
                         ip_address:
                             description:
                                 - The IP address of the backend server.
                                 - "Example: `10.0.0.3`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.0.0.3
                         port:
                             description:
@@ -804,14 +806,14 @@ load_balancer:
                                 - The protocol the health check must use; either HTTP or TCP.
                                 - "Example: `HTTP`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: HTTP
                         url_path:
                             description:
                                 - The path against which to run the health check.
                                 - "Example: `/healthcheck`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /healthcheck
                         port:
                             description:
@@ -857,7 +859,7 @@ load_balancer:
                                 - A regular expression for parsing the response body from the backend server.
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: "^((?!false).|\\\\s)*$"
                 ssl_configuration:
                     description:
@@ -886,7 +888,7 @@ load_balancer:
                                   Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                                 - "Example: `example_certificate_bundle`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_certificate_bundle
                         server_order_preference:
                             description:
@@ -895,7 +897,7 @@ load_balancer:
                                 - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
                                             field is ignored when the `SSLConfiguration` object is associated with a backend set."
                             returned: on success
-                            type: string
+                            type: str
                             sample: ENABLED
                         cipher_suite_name:
                             description:
@@ -921,7 +923,7 @@ load_balancer:
                                      this field."
                                 - "example: `example_cipher_suite`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: cipher_suite_name_example
                         protocols:
                             description:
@@ -956,7 +958,7 @@ load_balancer:
                                   that any cookie set by the backend causes the session to persist."
                                 - "Example: `example_cookie`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_cookie
                         disable_fallback:
                             description:
@@ -988,7 +990,7 @@ load_balancer:
                                      the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path
                                      names are different, the client or browser treats them as two different cookies."
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_cookie
                         disable_fallback:
                             description:
@@ -1018,7 +1020,7 @@ load_balancer:
                                      `abc.example.com` or `www.abc.example.com` sent from `www.example.com`."
                                 - "Example: `example.com`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example.com
                         path:
                             description:
@@ -1029,7 +1031,7 @@ load_balancer:
                                 - The default value is `/`.
                                 - "Example: `/example`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /example
                         max_age_in_seconds:
                             description:
@@ -1074,7 +1076,7 @@ load_balancer:
                         - The unique name for this set of path route rules. Avoid entering confidential information.
                         - "Example: `example_path_route_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_path_route_set
                 path_routes:
                     description:
@@ -1090,7 +1092,7 @@ load_balancer:
                                 - "*  Regular expressions are not supported."
                                 - "Example: `/example/video/123`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /example/video/123
                         path_match_type:
                             description:
@@ -1111,14 +1113,14 @@ load_balancer:
                                         - For a full description of how the system handles `matchType` in a path route set containing multiple rules, see
                                           L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: EXACT_MATCH
                         backend_set_name:
                             description:
                                 - The name of the target backend set for requests where the incoming URI matches the specified path.
                                 - "Example: `example_backend_set`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_backend_set
         freeform_tags:
             description:
@@ -1157,7 +1159,7 @@ load_balancer:
                           confidential information.
                         - "Example: `example_rule_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_rule_set
                 items:
                     description:
@@ -1169,14 +1171,14 @@ load_balancer:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: ADD_HTTP_REQUEST_HEADER
                         header:
                             description:
                                 - A header name that conforms to RFC 7230.
                                 - "Example: `example_header_name`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_header_name
                         value:
                             description:
@@ -1186,7 +1188,7 @@ load_balancer:
                                   invalid."
                                 - "Example: `example_value`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_value
                         conditions:
                             description:
@@ -1198,14 +1200,14 @@ load_balancer:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: SOURCE_IP_ADDRESS
                                 attribute_value:
                                     description:
                                         - The path string that the redirection rule applies to.
                                         - "Example: `/example`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: /example
                                 operator:
                                     description:
@@ -1219,14 +1221,14 @@ load_balancer:
                                         - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
                                              string."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: EXACT_MATCH
                         description:
                             description:
                                 - A brief description of the access control rule. Avoid entering confidential information.
                                 - "example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                         allowed_methods:
                             description:
@@ -1260,7 +1262,7 @@ load_balancer:
                                   invalid."
                                 - "Example: `example_prefix_value`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_prefix_value
                         suffix:
                             description:
@@ -1271,7 +1273,7 @@ load_balancer:
                                   invalid."
                                 - "Example: `example_suffix_value`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_suffix_value
                         are_invalid_characters_allowed:
                             description:
@@ -1322,7 +1324,7 @@ load_balancer:
                                         - "`{protocol}` is the only valid token for this property. It can appear only once in the value string."
                                         - "Example: `HTTPS`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: HTTPS
                                 host:
                                     description:
@@ -1338,7 +1340,7 @@ load_balancer:
                                         - "*  **{port}{host}** appears as `8081example.com` in the redirect URI if `example.com` is the hostname and
                                              the port is `8081` in the incoming HTTP request URI."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: host_example
                                 port:
                                     description:
@@ -1371,7 +1373,7 @@ load_balancer:
                                         - "*  __/{query}__ appears as `/lang=en` in the redirect URI if the query is `lang=en` in the incoming HTTP
                                              request URI."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: path_example
                                 query:
                                     description:
@@ -1400,7 +1402,7 @@ load_balancer:
                                         - "*  **port={port}&hostname={host}** appears as `port=8080&hostname=example.com` in the redirect URI if the
                                              port is `8080` and the hostname is `example.com` in the incoming HTTP request URI."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: query_example
         routing_policies:
             description:
@@ -1413,13 +1415,13 @@ load_balancer:
                         - The unique name for this list of routing rules. Avoid entering confidential information.
                         - "Example: `example_routing_policy`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_routing_policy
                 condition_language_version:
                     description:
                         - The version of the language in which `condition` of `rules` are composed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: V1
                 rules:
                     description:
@@ -1431,13 +1433,13 @@ load_balancer:
                             description:
                                 - A unique name for the routing policy rule. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         condition:
                             description:
                                 - A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.
                             returned: on success
-                            type: string
+                            type: str
                             sample: condition_example
                         actions:
                             description:
@@ -1449,14 +1451,14 @@ load_balancer:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: FORWARD_TO_BACKENDSET
                                 backend_set_name:
                                     description:
                                         - Name of the backend set the listener will forward the traffic to.
                                         - "Example: `backendSetForImages`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: backendSetForImages
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1767,7 +1769,7 @@ def main():
             reserved_ips=dict(
                 type="list", elements="dict", options=dict(id=dict(type="str"))
             ),
-            subnet_ids=dict(type="list"),
+            subnet_ids=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             load_balancer_id=dict(aliases=["id"], type="str"),

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Gateway resources in Oracle Cloud Infrastructure
     - Returns a list of gateways.
     - If I(gateway_id) is specified, the details of a single Gateway will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     gateway_id:
@@ -103,7 +103,7 @@ gateways:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -111,14 +111,14 @@ gateways:
                   Avoid entering confidential information.
                 - "Example: `My new resource`"
             returned: on success
-            type: string
+            type: str
             sample: My new resource
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
                   resource is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_type:
             description:
@@ -126,32 +126,38 @@ gateways:
                   accessible on a private IP address on the subnet.
                 - "Example: `PUBLIC` or `PRIVATE`"
             returned: on success
-            type: string
+            type: str
             sample: PUBLIC
         subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which
                   related resources are created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        network_security_group_ids:
+            description:
+                - An array of Network Security Groups OCIDs associated with this API Gateway.
+            returned: on success
+            type: list
+            sample: []
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time this resource was last updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the gateway.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
@@ -159,19 +165,19 @@ gateways:
                   For example, can be used to provide actionable information for a
                   resource in a Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         hostname:
             description:
                 - The hostname for APIs deployed on the gateway.
             returned: on success
-            type: string
+            type: str
             sample: hostname_example
         certificate_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         ip_addresses:
             description:
@@ -183,7 +189,7 @@ gateways:
                     description:
                         - An IP address.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
         response_cache_details:
             description:
@@ -195,7 +201,7 @@ gateways:
                     description:
                         - Type of the Response Cache.
                     returned: on success
-                    type: string
+                    type: str
                     sample: EXTERNAL_RESP_CACHE
                 servers:
                     description:
@@ -207,7 +213,7 @@ gateways:
                             description:
                                 - Hostname or IP address (IPv4 only) where the cache store is running.
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_example
                         port:
                             description:
@@ -219,7 +225,7 @@ gateways:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault Service secret resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 authentication_secret_version_number:
                     description:
@@ -281,6 +287,7 @@ gateways:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "endpoint_type": "PUBLIC",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_security_group_ids": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

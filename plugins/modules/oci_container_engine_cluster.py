@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Cluster resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new cluster.
     - "This resource has the following action operations in the M(oci_cluster_actions) module: cluster_migrate_to_native_vcn, update_cluster_endpoint_config."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -56,6 +56,7 @@ options:
                     - A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see
                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
                 type: list
+                elements: str
             is_public_ip_enabled:
                 description:
                     - Whether the cluster should be assigned a public IP address. Defaults to false. If set to true on a private subnet, the cluster
@@ -87,6 +88,7 @@ options:
                 description:
                     - The OCIDs of the subnets used for Kubernetes services load balancers.
                 type: list
+                elements: str
             kubernetes_network_config:
                 description:
                     - Network configuration for Kubernetes.
@@ -140,6 +142,7 @@ options:
                 description:
                     - A list of KMS key details.
                 type: list
+                elements: dict
                 suboptions:
                     kms_key_id:
                         description:
@@ -208,19 +211,19 @@ cluster:
             description:
                 - The OCID of the cluster.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
         name:
             description:
                 - The name of the cluster.
             returned: on success
-            type: string
+            type: str
             sample: My Cluster
         compartment_id:
             description:
                 - The OCID of the compartment in which the cluster exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         endpoint_config:
             description:
@@ -232,7 +235,7 @@ cluster:
                     description:
                         - The OCID of the regional subnet in which to place the Cluster endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 nsg_ids:
                     description:
@@ -252,19 +255,19 @@ cluster:
             description:
                 - The OCID of the virtual cloud network (VCN) in which the cluster exists.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.vcn.oc1.iad.aaaaaaaa5e3hn7hk6y63awlhbvlhsumkn5p3ficbjcevbnoylvptcpkxtsaa
         kubernetes_version:
             description:
                 - The version of Kubernetes running on the cluster masters.
             returned: on success
-            type: string
+            type: str
             sample: v1.9.4
         kms_key_id:
             description:
                 - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         options:
             description:
@@ -288,13 +291,13 @@ cluster:
                             description:
                                 - The CIDR block for Kubernetes pods.
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.244.0.0/16
                         services_cidr:
                             description:
                                 - The CIDR block for Kubernetes services.
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.96.0.0/16
                 add_ons:
                     description:
@@ -336,67 +339,67 @@ cluster:
                     description:
                         - The time the cluster was created.
                     returned: on success
-                    type: string
-                    sample: 2017-07-21T16:11:29Z
+                    type: str
+                    sample: "2017-07-21T16:11:29Z"
                 created_by_user_id:
                     description:
                         - The user who created the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 created_by_work_request_id:
                     description:
                         - The OCID of the work request which created the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
                 time_deleted:
                     description:
                         - The time the cluster was deleted.
                     returned: on success
-                    type: string
-                    sample: 2017-07-21T16:11:29Z
+                    type: str
+                    sample: "2017-07-21T16:11:29Z"
                 deleted_by_user_id:
                     description:
                         - The user who deleted the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 deleted_by_work_request_id:
                     description:
                         - The OCID of the work request which deleted the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
                 time_updated:
                     description:
                         - The time the cluster was updated.
                     returned: on success
-                    type: string
-                    sample: 2017-07-21T16:11:29Z
+                    type: str
+                    sample: "2017-07-21T16:11:29Z"
                 updated_by_user_id:
                     description:
                         - The user who updated the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.user.oc1..aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq"
                 updated_by_work_request_id:
                     description:
                         - The OCID of the work request which updated the cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.clustersworkrequest.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
         lifecycle_state:
             description:
                 - The state of the cluster masters.
             returned: on success
-            type: string
+            type: str
             sample: UPDATING
         lifecycle_details:
             description:
                 - Details about the state of the cluster masters.
             returned: on success
-            type: string
+            type: str
             sample: waiting for node pools
         endpoints:
             description:
@@ -408,19 +411,19 @@ cluster:
                     description:
                         - The non-native networking Kubernetes API server endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: https://yourkubernetes
                 public_endpoint:
                     description:
                         - The public native networking Kubernetes API server endpoint, if one was requested.
                     returned: on success
-                    type: string
+                    type: str
                     sample: https://yourPublicEndpoint
                 private_endpoint:
                     description:
                         - The private native networking Kubernetes API server endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: https://yourPrivateEndpoint
         available_kubernetes_upgrades:
             description:
@@ -451,7 +454,7 @@ cluster:
                             description:
                                 - The OCIDs of the KMS key that will be used to verify whether the images are signed by an approved source.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw",
@@ -643,7 +646,7 @@ def main():
                 type="dict",
                 options=dict(
                     subnet_id=dict(type="str"),
-                    nsg_ids=dict(type="list"),
+                    nsg_ids=dict(type="list", elements="str"),
                     is_public_ip_enabled=dict(type="bool"),
                 ),
             ),
@@ -653,7 +656,7 @@ def main():
             options=dict(
                 type="dict",
                 options=dict(
-                    service_lb_subnet_ids=dict(type="list"),
+                    service_lb_subnet_ids=dict(type="list", elements="str"),
                     kubernetes_network_config=dict(
                         type="dict",
                         options=dict(
@@ -680,6 +683,7 @@ def main():
                     key_details=dict(
                         type="list",
                         elements="dict",
+                        no_log=False,
                         options=dict(kms_key_id=dict(type="str")),
                     ),
                 ),

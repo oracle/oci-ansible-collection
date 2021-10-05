@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DataSafePrivateEndpoint resources in Oracle Cloud Infrastructure
     - Gets a list of Data Safe private endpoints.
     - If I(data_safe_private_endpoint_id) is specified, the details of a single DataSafePrivateEndpoint will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     data_safe_private_endpoint_id:
@@ -117,67 +117,67 @@ data_safe_private_endpoints:
             description:
                 - The OCID of the Data Safe private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
                 - The OCID of the VCN.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_id:
             description:
                 - The OCID of the underlying private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_ip:
             description:
                 - The private IP address of the private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_ip_example
         endpoint_fqdn:
             description:
                 - The three-label fully qualified domain name (FQDN) of the private endpoint. The customer VCN's DNS records are updated with this FQDN.
             returned: on success
-            type: string
+            type: str
             sample: endpoint_fqdn_example
         description:
             description:
                 - The description of the private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - The date and time the private endpoint was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         nsg_ids:
             description:

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_apm_synthetics_monitor_result_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_apm_synthetics_monitor_result_facts -- Fetches details about a Mo
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -306,6 +316,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -515,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time when the data was generated, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2020-02-13T22:47:12.613Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-02-13T22:47:12.613000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-02-13T22:47:12.613Z</div>
                                     </td>
             </tr>
                     

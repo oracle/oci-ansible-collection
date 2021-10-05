@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CustomProperty resources in Oracle Cloud Infrastructure
     - Returns a list of custom properties within a data catalog.
     - If I(custom_property_key) is specified, the details of a single CustomProperty will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     catalog_id:
@@ -47,6 +47,7 @@ options:
         description:
             - Specifies the fields to return in a custom property response.
         type: list
+        elements: str
         choices:
             - "key"
             - "displayName"
@@ -74,6 +75,7 @@ options:
         description:
             - Return the custom properties which has specified data types
         type: list
+        elements: str
         choices:
             - "TEXT"
             - "RICH_TEXT"
@@ -84,6 +86,7 @@ options:
         description:
             - A filter to return only resources that match the entire type name given. The match is not case sensitive
         type: list
+        elements: str
         choices:
             - "DATA_ASSET"
             - "AUTONOMOUS_DATA_WAREHOUSE"
@@ -199,31 +202,31 @@ custom_properties:
             description:
                 - Unique data asset key that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         display_name:
             description:
                 - Display name of the custom property
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         data_type:
             description:
                 - Data type of the custom property
             returned: on success
-            type: string
+            type: str
             sample: TEXT
         description:
             description:
                 - Description for the custom property
             returned: on success
-            type: string
+            type: str
             sample: description_example
         namespace_name:
             description:
                 - Namespace name of the custom property
             returned: on success
-            type: string
+            type: str
             sample: namespace_name_example
         is_list_type:
             description:
@@ -283,32 +286,32 @@ custom_properties:
             description:
                 - The current state of the custom property.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - "The date and time the custom property was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-03-25T21:10:29.600Z
+            type: str
+            sample: "2019-03-25T21:10:29.600Z"
         time_updated:
             description:
                 - The last time that any change was made to the custom property. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the custom property.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the custom property.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         usage_count:
             description:
@@ -332,13 +335,13 @@ custom_properties:
                     description:
                         - Unique type key identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx"
                 type_name:
                     description:
                         - Name of the type associated with
                     returned: on success
-                    type: string
+                    type: str
                     sample: type_name_example
                 count:
                     description:
@@ -368,57 +371,57 @@ custom_properties:
                     description:
                         - Unique type key identifier.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.type.oc1..xxxxxxEXAMPLExxxxxx"
                 type_name:
                     description:
                         - Name of the type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: type_name_example
                 property_id:
                     description:
                         - Unique property key identifier.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.property.oc1..xxxxxxEXAMPLExxxxxx"
                 property_name:
                     description:
                         - Name of the property.
                     returned: on success
-                    type: string
+                    type: str
                     sample: property_name_example
                 event_config_status:
                     description:
                         - Status of the configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLED
                 time_created:
                     description:
                         - "The date and time the event was configured, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-03-25T21:10:29.600Z
+                    type: str
+                    sample: "2019-03-25T21:10:29.600Z"
                 time_updated:
                     description:
                         - The last time that any change was made to the configuration. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime
                           string.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 created_by_id:
                     description:
                         - OCID of the user who created the configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
                 updated_by_id:
                     description:
                         - OCID of the user who last modified the configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         properties:
             description:
@@ -567,9 +570,10 @@ def main():
         dict(
             catalog_id=dict(type="str", required=True),
             namespace_id=dict(type="str", required=True),
-            custom_property_key=dict(type="str"),
+            custom_property_key=dict(type="str", no_log=True),
             fields=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "key",
                     "displayName",
@@ -587,10 +591,13 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
             data_types=dict(
-                type="list", choices=["TEXT", "RICH_TEXT", "BOOLEAN", "NUMBER", "DATE"]
+                type="list",
+                elements="str",
+                choices=["TEXT", "RICH_TEXT", "BOOLEAN", "NUMBER", "DATE"],
             ),
             type_name=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "DATA_ASSET",
                     "AUTONOMOUS_DATA_WAREHOUSE",

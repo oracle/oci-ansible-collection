@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
     - If I(alarm_id) is specified, the details of a single Alarm will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     alarm_id:
@@ -111,29 +111,28 @@ alarms:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the alarm. It does not have to be unique, and it's changeable.
-                  Avoid entering confidential information.
                 - This name is sent as the title for notifications related to this alarm.
                 - "Example: `High CPU Utilization`"
             returned: on success
-            type: string
+            type: str
             sample: High CPU Utilization
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the alarm.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
                   being evaluated by the alarm.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx"
         metric_compartment_id_in_subtree:
             description:
@@ -151,18 +150,17 @@ alarms:
                 - The source service or application emitting the metric that is evaluated by the alarm.
                 - "Example: `oci_computeagent`"
             returned: on success
-            type: string
+            type: str
             sample: oci_computeagent
         resource_group:
             description:
-                - Resource group specified as a filter for metric data retrieved by the alarm. A resource group is a custom string that can be used as a filter.
-                  Only one resource group can be applied per metric.
+                - Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom
+                  metrics. Only one resource group can be applied per metric.
                   A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
                   hyphens (-), and dollar signs ($).
-                  Avoid entering confidential information.
                 - "Example: `frontend-fleet`"
             returned: on success
-            type: string
+            type: str
             sample: frontend-fleet
         query:
             description:
@@ -170,7 +168,8 @@ alarms:
                   the Monitoring service interprets results for each returned time series as Boolean values,
                   where zero represents false and a non-zero value represents true. A true value means that the trigger
                   rule condition has been met. The query must specify a metric, statistic, interval, and trigger
-                  rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally
+                  rule (threshold or absence). Supported values for interval depend on the specified time range. More
+                  interval values are supported for smaller time ranges. You can optionally
                   specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`.
                   For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL)
                   Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm).
@@ -185,13 +184,13 @@ alarms:
                 - "   CpuUtilization[1m]{availabilityDomain=\\"cumS:PHX-AD-1\\"}.absent()"
                 -   -----
             returned: on success
-            type: string
+            type: str
             sample: query_example
         resolution:
             description:
                 - "The time between calculated aggregation windows for the alarm. Supported value: `1m`"
             returned: on success
-            type: string
+            type: str
             sample: resolution_example
         pending_duration:
             description:
@@ -207,24 +206,34 @@ alarms:
                   the most recent minute."
                 - "Example: `PT5M`"
             returned: on success
-            type: string
+            type: str
             sample: PT5M
         severity:
             description:
                 - "The perceived type of response required when the alarm is in the \\"FIRING\\" state."
                 - "Example: `CRITICAL`"
             returned: on success
-            type: string
+            type: str
             sample: CRITICAL
         body:
             description:
                 - The human-readable content of the notification delivered. Oracle recommends providing guidance
                   to operators for resolving the alarm condition. Consider adding links to standard runbook
-                  practices. Avoid entering confidential information.
+                  practices.
                 - "Example: `High CPU usage alert. Follow runbook instructions for resolution.`"
             returned: on success
-            type: string
+            type: str
             sample: High CPU usage alert. Follow runbook instructions for resolution.
+        message_format:
+            description:
+                - "The format to use for notification messages sent from this alarm. The formats are:
+                  * `RAW` - Raw JSON blob. Default value.
+                  * `PRETTY_JSON`: JSON with new lines and indents.
+                  * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following
+                  subscription types: Email."
+            returned: on success
+            type: str
+            sample: RAW
         destinations:
             description:
                 - "A list of destinations to which the notifications for this alarm will be delivered.
@@ -243,7 +252,7 @@ alarms:
                 - "Default value: null (notifications are not re-submitted)."
                 - "Example: `PT2H`"
             returned: on success
-            type: string
+            type: str
             sample: PT2H
         suppression:
             description:
@@ -260,22 +269,22 @@ alarms:
                           such as a ticket number.
                         - "Example: `Planned outage due to change IT-1234.`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: Planned outage due to change IT-1234.
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T01:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T01:02:29.600Z"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T02:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T02:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T02:02:29.600Z"
         is_enabled:
             description:
                 - Whether the alarm is enabled.
@@ -302,22 +311,22 @@ alarms:
                 - The current lifecycle state of the alarm.
                 - "Example: `DELETED`"
             returned: on success
-            type: string
+            type: str
             sample: DELETED
         time_created:
             description:
                 - The date and time the alarm was created. Format defined by RFC3339.
                 - "Example: `2019-02-01T01:02:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-02-01T01:02:29.600Z
+            type: str
+            sample: "2019-02-01T01:02:29.600Z"
         time_updated:
             description:
                 - The date and time the alarm was last updated. Format defined by RFC3339.
                 - "Example: `2019-02-03T01:02:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-02-03T01:02:29.600Z
+            type: str
+            sample: "2019-02-03T01:02:29.600Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "High CPU Utilization",
@@ -331,6 +340,7 @@ alarms:
         "pending_duration": "PT5M",
         "severity": "CRITICAL",
         "body": "High CPU usage alert. Follow runbook instructions for resolution.",
+        "message_format": "RAW",
         "destinations": [],
         "repeat_notification_duration": "PT2H",
         "suppression": {

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple PrivateApplicationPackage resources in Oracle Cloud Infrastructure
     - Lists the packages in the specified private application.
     - If I(private_application_package_id) is specified, the details of a single PrivateApplicationPackage will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     private_application_package_id:
@@ -44,6 +44,7 @@ options:
             - Name of the package type. If multiple package types are provided, then any resource with
               one or more matching package types will be returned.
         type: list
+        elements: str
         choices:
             - "STACK"
     sort_by:
@@ -92,31 +93,31 @@ private_application_packages:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private application package.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         private_application_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private application where the package is hosted.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateapplication.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the package.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         version:
             description:
                 - The package version.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         package_type:
             description:
                 - The specified package's type.
             returned: on success
-            type: string
+            type: str
             sample: STACK
         time_created:
             description:
@@ -124,19 +125,19 @@ private_application_packages:
                   timestamp format.
                 - "Example: `2021-05-27T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2021-05-27T21:10:29.600Z
+            type: str
+            sample: "2021-05-27T21:10:29.600Z"
         content_url:
             description:
                 - The content URL of the terraform configuration.
             returned: on success
-            type: string
+            type: str
             sample: content_url_example
         mime_type:
             description:
                 - The MIME type of the terraform configuration.
             returned: on success
-            type: string
+            type: str
             sample: mime_type_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -223,7 +224,7 @@ def main():
         dict(
             private_application_package_id=dict(aliases=["id"], type="str"),
             private_application_id=dict(type="str"),
-            package_type=dict(type="list", choices=["STACK"]),
+            package_type=dict(type="list", elements="str", choices=["STACK"]),
             sort_by=dict(type="str", choices=["TIMECREATED", "VERSION"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             display_name=dict(aliases=["name"], type="str"),

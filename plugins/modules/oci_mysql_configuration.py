@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Configuration resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create, update and delete a Configuration resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Configuration.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -388,55 +388,55 @@ configuration:
             description:
                 - The OCID of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the Compartment the Configuration exists in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - User-provided data about the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - The display name of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape_name:
             description:
                 - The name of the associated Shape.
             returned: on success
-            type: string
+            type: str
             sample: shape_name_example
         type:
             description:
                 - The Configuration type, DEFAULT or CUSTOM.
             returned: on success
-            type: string
+            type: str
             sample: DEFAULT
         time_created:
             description:
                 - The date and time the Configuration was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the Configuration was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         variables:
             description:
@@ -448,31 +448,31 @@ configuration:
                     description:
                         - "(\\"completion_type\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_CHAIN
                 default_authentication_plugin:
                     description:
                         - "(\\"default_authentication_plugin\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: mysql_native_password
                 transaction_isolation:
                     description:
                         - "(\\"transaction_isolation\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: READ-UNCOMMITTED
                 innodb_ft_server_stopword_table:
                     description:
                         - "(\\"innodb_ft_server_stopword_table\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: innodb_ft_server_stopword_table_example
                 mandatory_roles:
                     description:
                         - "(\\"mandatory_roles\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: mandatory_roles_example
                 autocommit:
                     description:
@@ -521,7 +521,7 @@ configuration:
                               applied on other members. A RO transaction waits for all preceding transactions to complete before execution takes place.
                               This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER."
                     returned: on success
-                    type: string
+                    type: str
                     sample: EVENTUAL
                 innodb_ft_enable_stopword:
                     description:
@@ -737,7 +737,7 @@ configuration:
                     description:
                         - "(\\"sql_mode\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: sql_mode_example
                 mysqlx_deflate_default_compression_level:
                     description:
@@ -787,7 +787,7 @@ configuration:
                   \\"derived\\". This is entirely a metadata relationship. There is no
                   relation between the values in this Configuration and its parent."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -1047,7 +1047,7 @@ def main():
                     innodb_ft_server_stopword_table=dict(type="str"),
                     mandatory_roles=dict(type="str"),
                     autocommit=dict(type="bool"),
-                    foreign_key_checks=dict(type="bool"),
+                    foreign_key_checks=dict(type="bool", no_log=True),
                     group_replication_consistency=dict(
                         type="str",
                         choices=[
@@ -1062,7 +1062,7 @@ def main():
                     local_infile=dict(type="bool"),
                     mysql_firewall_mode=dict(type="bool"),
                     mysqlx_enable_hello_notice=dict(type="bool"),
-                    sql_require_primary_key=dict(type="bool"),
+                    sql_require_primary_key=dict(type="bool", no_log=True),
                     sql_warnings=dict(type="bool"),
                     binlog_expire_logs_seconds=dict(type="int"),
                     innodb_buffer_pool_size=dict(type="int"),
@@ -1071,11 +1071,11 @@ def main():
                     max_prepared_stmt_count=dict(type="int"),
                     connect_timeout=dict(type="int"),
                     cte_max_recursion_depth=dict(type="int"),
-                    generated_random_password_length=dict(type="int"),
+                    generated_random_password_length=dict(type="int", no_log=True),
                     information_schema_stats_expiry=dict(type="int"),
                     innodb_buffer_pool_instances=dict(type="int"),
-                    innodb_ft_max_token_size=dict(type="int"),
-                    innodb_ft_min_token_size=dict(type="int"),
+                    innodb_ft_max_token_size=dict(type="int", no_log=True),
+                    innodb_ft_min_token_size=dict(type="int", no_log=True),
                     innodb_ft_num_word_optimize=dict(type="int"),
                     innodb_lock_wait_timeout=dict(type="int"),
                     innodb_max_purge_lag=dict(type="int"),

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a BackendHealth resource in Oracle Clou
 description:
     - Fetches details about a BackendHealth resource in Oracle Cloud Infrastructure
     - Gets the current health status of the specified backend server.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -73,7 +73,7 @@ backend_health:
                 - "*   **CRITICAL:** Neither health check returned `OK`."
                 - "*   **UNKNOWN:** One or both health checks returned `UNKNOWN`, or the system was unable to retrieve metrics at this time."
             returned: on success
-            type: string
+            type: str
             sample: OK
         health_check_results:
             description:
@@ -86,7 +86,7 @@ backend_health:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet hosting the load balancer that
                           reported this health check status.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 source_ip_address:
                     description:
@@ -94,20 +94,20 @@ backend_health:
                           load balancers that report health check status.
                         - "Example: `10.0.0.7`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.7
                 timestamp:
                     description:
                         - The date and time the data was retrieved, in the format defined by RFC3339.
                         - "Example: `2017-06-02T18:28:11+00:00`"
                     returned: on success
-                    type: string
-                    sample: 2017-06-02T18:28:11+00:00
+                    type: str
+                    sample: "2017-06-02T18:28:11+00:00"
                 health_check_status:
                     description:
                         - The result of the most recent health check.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OK
     sample: {
         "status": "OK",

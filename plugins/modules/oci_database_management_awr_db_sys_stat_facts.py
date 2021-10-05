@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a AwrDbSysStat resource in Oracle Cloud Infrastructure
     - Summarizes the AWR SYSSTAT sample data for the specified database in AWR. The statistical data is summarized based on the Time dimension for each
       statistic.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -37,7 +37,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -45,6 +45,7 @@ options:
         description:
             - The required multiple value query parameter to filter the entity name.
         type: list
+        elements: str
         required: true
     inst_num:
         description:
@@ -81,7 +82,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -108,26 +109,26 @@ awr_db_sys_stat:
             description:
                 - The name of the SYSSTAT.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         category:
             description:
                 - The name of the SYSSTAT category.
             returned: on success
-            type: string
+            type: str
             sample: category_example
         time_begin:
             description:
                 - The start time of the SYSSTAT.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_end:
             description:
                 - The end time of the SYSSTAT.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         avg_value:
             description:
                 - The average value of the SYSSTAT.
@@ -213,7 +214,7 @@ def main():
         dict(
             managed_database_id=dict(type="str", required=True),
             awr_db_id=dict(aliases=["id"], type="str", required=True),
-            name=dict(type="list", required=True),
+            name=dict(type="list", elements="str", required=True),
             inst_num=dict(type="str"),
             begin_sn_id_greater_than_or_equal_to=dict(type="int"),
             end_sn_id_less_than_or_equal_to=dict(type="int"),

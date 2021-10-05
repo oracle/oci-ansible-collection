@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a Content resource in Oracle Cloud Infr
 description:
     - Fetches details about a Content resource in Oracle Cloud Infrastructure
     - Get the raw API content.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     dest:
@@ -39,6 +39,12 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    range:
+        description:
+            - The Range HTTP request header indicates the part of a document that the
+              server should return. L(RFC 7233,https://tools.ietf.org/html/rfc7233#section-3.1).
+              Note that only a single range of bytes is supported.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -76,8 +82,18 @@ class ApigatewayContentFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_resource(self):
+        optional_get_method_params = [
+            "range",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
-            self.client.get_api_content, api_id=self.module.params.get("api_id"),
+            self.client.get_api_content,
+            api_id=self.module.params.get("api_id"),
+            **optional_kwargs
         )
 
     def get(self):
@@ -107,6 +123,7 @@ def main():
         dict(
             dest=dict(type="str", required=True),
             api_id=dict(aliases=["id"], type="str", required=True),
+            range=dict(type="str"),
         )
     )
 

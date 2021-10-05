@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), adds the specified user to the specified group and returns a `UserGroupMembership` object with its own OCID.
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -87,39 +87,39 @@ user_group_membership:
             description:
                 - The OCID of the membership.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user, group, and membership object.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         group_id:
             description:
                 - The OCID of the group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.group.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the membership was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The membership's current state.  After creating a membership object, make sure its `lifecycleState` changes
                   from CREATING to ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:

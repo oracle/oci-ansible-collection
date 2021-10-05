@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a ManagedList resource in Oracle Cloud Inf
 description:
     - Perform actions on a ManagedList resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves the ManagedList from current compartment to another.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_list_id:
@@ -68,37 +68,37 @@ managed_list:
             description:
                 - Unique identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ManagedList display name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - ManagedList description
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - Compartment Identifier where the resource is created
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_managed_list_id:
             description:
                 - OCID of the Source ManagedList
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
         list_type:
             description:
                 - type of the list
             returned: on success
-            type: string
+            type: str
             sample: CIDR_BLOCK
         list_items:
             description:
@@ -110,7 +110,7 @@ managed_list:
             description:
                 - provider of the feed
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER
         is_editable:
             description:
@@ -122,26 +122,26 @@ managed_list:
             description:
                 - The date and time the managed list was created. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the managed list was updated. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecyle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecyle_details_example
         freeform_tags:
             description:

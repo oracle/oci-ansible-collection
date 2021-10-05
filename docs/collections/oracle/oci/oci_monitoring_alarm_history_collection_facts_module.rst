@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_monitoring_alarm_history_collection_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_monitoring_alarm_history_collection_facts -- Fetches details abou
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -285,6 +295,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -393,7 +406,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Description for this alarm history entry. Avoid entering confidential information.</div>
+                                            <div>Description for this alarm history entry.</div>
                                             <div>Example 1 - alarm state history entry: `The alarm state is FIRING`</div>
                                             <div>Example 2 - alarm state transition history entry: `State transitioned from OK to Firing`</div>
                                         <br/>
@@ -418,7 +431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -438,7 +451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T0:59:00.789Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T00:59:00.789000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T0:59:00.789Z</div>
                                     </td>
             </tr>
                     

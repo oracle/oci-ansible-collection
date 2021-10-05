@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Sdk resources in Oracle Cloud Infrastructure
     - Returns list of generated SDKs.
     - If I(sdk_id) is specified, the details of a single Sdk will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sdk_id:
@@ -96,59 +96,59 @@ sdks:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         api_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of API resource
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
                   resource is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time this resource was last updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
                 - "Example: `My new resource`"
             returned: on success
-            type: string
+            type: str
             sample: My new resource
         target_language:
             description:
                 - The string representing the target programming language for generating the SDK.
             returned: on success
-            type: string
+            type: str
             sample: target_language_example
         artifact_url:
             description:
                 - File location for generated SDK.
             returned: on success
-            type: string
+            type: str
             sample: artifact_url_example
         time_artifact_url_expires_at:
             description:
                 - Expiry of artifact url.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - "The current state of the SDK.
@@ -158,7 +158,7 @@ sdks:
                   - The SDK will be in DELETING state if the deletion in in progress.
                   - The SDK will be in DELETED state if the delete is successful."
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
@@ -166,7 +166,7 @@ sdks:
                   For example, can be used to provide actionable information for a
                   resource in a Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

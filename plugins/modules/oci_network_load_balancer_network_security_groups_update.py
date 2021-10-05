@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_network_load_balancer_network_security_groups_update
 short_description: Manage a NetworkSecurityGroupsUpdate resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a NetworkSecurityGroupsUpdate resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -44,6 +44,7 @@ options:
                  to ensure access."
             - This parameter is updatable.
         type: list
+        elements: str
     state:
         description:
             - The state of the NetworkSecurityGroupsUpdate.
@@ -135,7 +136,7 @@ def main():
     module_args.update(
         dict(
             network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
-            network_security_group_ids=dict(type="list"),
+            network_security_group_ids=dict(type="list", elements="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

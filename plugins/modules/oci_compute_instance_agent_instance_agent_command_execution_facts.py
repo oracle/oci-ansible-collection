@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the execution details for Oracle Cloud Agent commands that run on the specified compute
       instance.
     - If I(instance_agent_command_id) is specified, the details of a single InstanceAgentCommandExecution will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_agent_command_id:
@@ -103,13 +103,13 @@ instance_agent_command_executions:
             description:
                 - The OCID of the command
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         delivery_state:
             description:
@@ -120,7 +120,7 @@ instance_agent_command_executions:
                    * `ACKED_CANCELED` - The canceled command has been received and acked by the instance.
                    * `EXPIRED` - The instance has not requested for commands and its delivery has expired."
             returned: on success
-            type: string
+            type: str
             sample: VISIBLE
         lifecycle_state:
             description:
@@ -132,20 +132,20 @@ instance_agent_command_executions:
                   * `TIMED_OUT` - The command execution has timedout.
                   * `CANCELED` - The command execution has canceled."
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         time_created:
             description:
                 - The command creation date
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The command last updated at date.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         sequence_number:
             description:
                 - The large non-consecutive number that Run Command Service assigns to each created command.
@@ -156,7 +156,7 @@ instance_agent_command_executions:
             description:
                 - The user friendly display name of the command.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         content:
             description:
@@ -173,7 +173,7 @@ instance_agent_command_executions:
                         - For background information about Object Storage buckets and URLs, see
                           L(Overview of Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: TEXT
                 exit_code:
                     description:
@@ -185,43 +185,43 @@ instance_agent_command_executions:
                     description:
                         - An optional status message that Oracle Cloud Agent can populate for additional troubleshooting.
                     returned: on success
-                    type: string
+                    type: str
                     sample: message_example
                 bucket_name:
                     description:
                         - The Object Storage bucket for the command output.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
                 namespace_name:
                     description:
                         - The Object Storage namespace for the command output.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_name_example
                 object_name:
                     description:
                         - The Object Storage object name for the command output.
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_example
                 output_uri:
                     description:
                         - The Object Storage URL or pre-authenticated request (PAR) for the command output.
                     returned: on success
-                    type: string
+                    type: str
                     sample: output_uri_example
                 text:
                     description:
                         - The command output.
                     returned: on success
-                    type: string
+                    type: str
                     sample: text_example
                 text_sha256:
                     description:
                         - SHA-256 checksum value of the text content.
                     returned: on success
-                    type: string
+                    type: str
                     sample: text_sha256_example
     sample: [{
         "instance_agent_command_id": "ocid1.instanceagentcommand.oc1..xxxxxxEXAMPLExxxxxx",

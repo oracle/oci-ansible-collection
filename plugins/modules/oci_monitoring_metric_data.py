@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -41,13 +41,14 @@ description:
       in the following example:"
     - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
     - "This resource has the following action operations in the M(oci_metric_data_actions) module: summarize_metrics_data."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     metric_data:
         description:
             - A metric object containing raw metric data points to be posted to the Monitoring service.
         type: list
+        elements: dict
         required: true
         suboptions:
             namespace:
@@ -61,8 +62,8 @@ options:
                 required: true
             resource_group:
                 description:
-                    - Resource group to assign to the metric. A resource group is a custom string that can be used as a filter. Only one resource group can be
-                      applied per metric.
+                    - Resource group to assign to the metric. A resource group is a custom string that you can match when retrieving custom metrics. Only one
+                      resource group can be applied per metric.
                       A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
                       hyphens (-), and dollar signs ($).
                       Avoid entering confidential information.
@@ -103,6 +104,7 @@ options:
                 description:
                     - A list of metric values with timestamps. At least one data point is required per call.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     timestamp:
@@ -183,7 +185,7 @@ metric_data:
                     description:
                         - An error message indicating the reason that the indicated metric object failed input validation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: message_example
                 metric_data:
                     description:
@@ -199,24 +201,24 @@ metric_data:
                                   Avoid entering confidential information."
                                 - "Example: `my_namespace`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: my_namespace
                         resource_group:
                             description:
-                                - Resource group to assign to the metric. A resource group is a custom string that can be used as a filter. Only one resource
-                                  group can be applied per metric.
+                                - Resource group to assign to the metric. A resource group is a custom string that you can match when retrieving custom metrics.
+                                  Only one resource group can be applied per metric.
                                   A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.),
                                   underscores (_), hyphens (-), and dollar signs ($).
                                   Avoid entering confidential information.
                                 - "Example: `frontend-fleet`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: frontend-fleet
                         compartment_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for metrics.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.compartment.oc1..exampleuniqueID"
                         name:
                             description:
@@ -226,7 +228,7 @@ metric_data:
                                   Avoid entering confidential information.
                                 - "Example: `my_app.success_rate`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: my_app.success_rate
                         dimensions:
                             description:
@@ -260,8 +262,8 @@ metric_data:
                                         - Timestamp for this metric value. Format defined by RFC3339.
                                         - "Example: `2019-02-01T01:02:29.600Z`"
                                     returned: on success
-                                    type: string
-                                    sample: 2019-02-01T01:02:29.600Z
+                                    type: str
+                                    sample: "2019-02-01T01:02:29.600Z"
                                 value:
                                     description:
                                         - Numeric value of the metric.

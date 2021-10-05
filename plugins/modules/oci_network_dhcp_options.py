@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
     - "You may optionally specify a *display name* for the set of DHCP options, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_dhcp_options_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -74,6 +74,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             type:
                 description:
@@ -91,6 +92,7 @@ options:
                       IP address of at least one DNS server of your choice (three maximum).
                     - Applicable when type is 'DomainNameServer'
                 type: list
+                elements: str
             server_type:
                 description:
                     - "* **VcnLocal:** Reserved for future use."
@@ -127,6 +129,7 @@ options:
                       domain name.
                     - Required when type is 'SearchDomain'
                 type: list
+                elements: str
     vcn_id:
         description:
             - The OCID of the VCN the set of DHCP options belongs to.
@@ -212,7 +215,7 @@ dhcp_options:
             description:
                 - The OCID of the compartment containing the set of DHCP options.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -227,7 +230,7 @@ dhcp_options:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -242,13 +245,13 @@ dhcp_options:
             description:
                 - Oracle ID (OCID) for the set of DHCP options.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the set of DHCP options.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         options:
             description:
@@ -262,7 +265,7 @@ dhcp_options:
                           (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
                           `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
                     returned: on success
-                    type: string
+                    type: str
                     sample: DomainNameServer
                 custom_dns_servers:
                     description:
@@ -287,7 +290,7 @@ dhcp_options:
                         - "* **CustomDnsServer:** Instances use a DNS server of your choice (three
                           maximum)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: VcnLocal
                 search_domain_names:
                     description:
@@ -310,19 +313,19 @@ dhcp_options:
                 - Date and time the set of DHCP options was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The OCID of the VCN the set of DHCP options belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         domain_name_type:
             description:
                 - The search domain name type of DHCP options
             returned: on success
-            type: string
+            type: str
             sample: SUBNET_DOMAIN
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -494,12 +497,12 @@ def main():
                         required=True,
                         choices=["DomainNameServer", "SearchDomain"],
                     ),
-                    custom_dns_servers=dict(type="list"),
+                    custom_dns_servers=dict(type="list", elements="str"),
                     server_type=dict(
                         type="str",
                         choices=["VcnLocal", "VcnLocalPlusInternet", "CustomDnsServer"],
                     ),
-                    search_domain_names=dict(type="list"),
+                    search_domain_names=dict(type="list", elements="str"),
                 ),
             ),
             vcn_id=dict(type="str"),

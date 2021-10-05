@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
       Console. For more information, see L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
     - "This resource has the following action operations in the M(oci_notification_topic_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -129,49 +129,49 @@ notification_topic:
             description:
                 - The name of the topic.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         short_topic_id:
             description:
                 - A unique short topic Id. This is used only for SMS subscriptions.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.shorttopic.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the topic.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The lifecycle state of the topic.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         description:
             description:
                 - The description of the topic.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - The time the topic was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         etag:
             description:
                 - For optimistic concurrency control. See `if-match`.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         freeform_tags:
             description:
@@ -193,7 +193,7 @@ notification_topic:
             description:
                 - The endpoint for managing subscriptions or publishing messages to the topic.
             returned: on success
-            type: string
+            type: str
             sample: api_endpoint_example
     sample: {
         "name": "name_example",

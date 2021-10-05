@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - List the retention rules for a bucket. The retention rules are sorted based on creation time,
       with the most recently created retention rule returned first.
     - If I(retention_rule_id) is specified, the details of a single RetentionRule will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -74,13 +74,13 @@ retention_rules:
             description:
                 - Unique identifier for the retention rule.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User specified name for the retention rule.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         duration:
             description:
@@ -99,33 +99,33 @@ retention_rules:
                     description:
                         - The unit that should be used to interpret timeAmount.
                     returned: on success
-                    type: string
+                    type: str
                     sample: YEARS
         etag:
             description:
                 - The entity tag (ETag) for the retention rule.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         time_rule_locked:
             description:
                 - The date and time as per L(RFC 3339,https://tools.ietf.org/html/rfc3339) after which this rule becomes locked.
                   and can only be deleted by deleting the bucket.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The date and time that the retention rule was created as per L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_modified:
             description:
                 - The date and time that the retention rule was modified as per L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

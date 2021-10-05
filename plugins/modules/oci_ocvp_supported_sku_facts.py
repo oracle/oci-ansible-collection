@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple SupportedSku resources in Oracle Cloud Infrastructure
     - "Lists supported SKUs. Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
       HOUR, MONTH, ONE_YEAR, and THREE_YEARS."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -54,7 +54,7 @@ supported_skus:
             description:
                 - name of SKU
             returned: on success
-            type: string
+            type: str
             sample: HOUR
     sample: [{
         "name": "HOUR"

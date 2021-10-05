@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -52,7 +52,7 @@ description:
       However, multiple operations cannot apply to one key definition in the same request.
       For example, if one request adds `tag set-1` to a resource and sets a tag value to `tag set-2`,
       `tag set-1` and `tag set-2` cannot have any common tag definitions."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tag_definition_ids:
@@ -60,6 +60,7 @@ options:
             - The OCIDs of the tag definitions to delete
             - Required for I(action=bulk_delete).
         type: list
+        elements: str
     compartment_id:
         description:
             - The OCID of the compartment where the bulk tag edit request is submitted.
@@ -70,6 +71,7 @@ options:
             - The resources to be updated.
             - Required for I(action=bulk_edit).
         type: list
+        elements: dict
         suboptions:
             id:
                 description:
@@ -92,6 +94,7 @@ options:
             - The operations associated with the request to bulk edit tags.
             - Required for I(action=bulk_edit).
         type: list
+        elements: dict
         suboptions:
             operation_type:
                 description:
@@ -236,7 +239,7 @@ def main():
     )
     module_args.update(
         dict(
-            tag_definition_ids=dict(type="list"),
+            tag_definition_ids=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
             resources=dict(
                 type="list",

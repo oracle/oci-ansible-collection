@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple PublicationPackage resources in Oracle Cloud Infrastructure
     - Lists the packages in the specified publication.
     - If I(package_version) is specified, the details of a single PublicationPackage will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     publication_id:
@@ -83,31 +83,31 @@ publication_packages:
             description:
                 - A description of the package.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         listing_id:
             description:
                 - The ID of the listing that the specified package belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The package version.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         package_type:
             description:
                 - The specified package's type.
             returned: on success
-            type: string
+            type: str
             sample: ORCHESTRATION
         resource_id:
             description:
                 - The unique identifier for the package resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -115,8 +115,8 @@ publication_packages:
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         operating_system:
             description:
                 - ""
@@ -127,32 +127,32 @@ publication_packages:
                     description:
                         - The name of the operating system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
         app_catalog_listing_id:
             description:
                 - The ID of the listing resource associated with this publication package. For more information, see
                   L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
         app_catalog_listing_resource_version:
             description:
                 - The resource version of the listing resource associated with this publication package.
             returned: on success
-            type: string
+            type: str
             sample: app_catalog_listing_resource_version_example
         image_id:
             description:
                 - The ID of the image that corresponds to the package.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         resource_link:
             description:
                 - A link to the stack resource.
             returned: on success
-            type: string
+            type: str
             sample: resource_link_example
         variables:
             description:
@@ -164,25 +164,25 @@ publication_packages:
                     description:
                         - The name of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 default_value:
                     description:
                         - The variable's default value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: default_value_example
                 description:
                     description:
                         - A description of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 data_type:
                     description:
                         - The data type of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: STRING
                 is_mandatory:
                     description:
@@ -194,13 +194,13 @@ publication_packages:
                     description:
                         - A brief textual description that helps to explain the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hint_message_example
         package_version:
             description:
                 - The version of the specified package.
             returned: on success
-            type: string
+            type: str
             sample: package_version_example
     sample: [{
         "description": "description_example",

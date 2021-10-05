@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple DedicatedVmHostInstance
 description:
     - Fetches details about one or multiple DedicatedVmHostInstance resources in Oracle Cloud Infrastructure
     - Returns the list of instances on the dedicated virtual machine hosts that match the specified criteria.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -86,33 +86,33 @@ dedicated_vm_host_instances:
                 - The availability domain the virtual machine instance is running in.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the virtual machine instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the virtual machine instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The shape of the VM instance.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         time_created:
             description:
                 - The date and time the virtual machine instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

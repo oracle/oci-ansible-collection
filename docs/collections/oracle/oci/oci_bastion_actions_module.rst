@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_bastion_actions_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_bastion_actions -- Perform actions on a Bastion resource in Oracl
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -264,6 +274,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -643,7 +656,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the bastion was created. Format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -661,7 +674,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time the bastion was updated. Format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. Example: `2020-01-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-01-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                     

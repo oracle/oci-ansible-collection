@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple TargetDatabase resources in Oracle Cloud Infrastructure
     - Returns the list of registered target databases in Data Safe.
     - If I(target_database_id) is specified, the details of a single TargetDatabase will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     target_database_id:
@@ -131,25 +131,25 @@ target_databases:
             description:
                 - The OCID of the compartment which contains the Data Safe target database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca"
         id:
             description:
                 - The OCID of the Data Safe target database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the target database in Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The description of the target database in Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         database_details:
             description:
@@ -161,47 +161,47 @@ target_databases:
                     description:
                         - The database type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DATABASE_CLOUD_SERVICE
                 infrastructure_type:
                     description:
                         - The infrastructure type the database is running on.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ORACLE_CLOUD
                 autonomous_database_id:
                     description:
                         - The OCID of the autonomous database registered as a target database in Data Safe.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.autonomousdatabase.oc1.iad.abuwcljs4hz5fnsyazyoblbm3o24ykw5iiwa44it2jzvhby73r6324522c2q
                 vm_cluster_id:
                     description:
                         - The OCID of the VM cluster in which the database is running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.vmcluster.oc1.iad.abuwc33era5gex4puvmuphzxrfukxaxwqit7ze6egqquxe75ojb3lytlvtkq
                 db_system_id:
                     description:
                         - The OCID of the cloud database system registered as a target database in Data Safe.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.dbsystem.oc1.iad.abuwcljsgz57qgikkkpzenfya3uznj356vwjcgqrcy6x2dzcgierhbsonz7q
                 service_name:
                     description:
                         - The database service name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_name_example
                 instance_id:
                     description:
                         - The OCID of the compute instance on which the database is running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.instance.oc1.iad.anuwcljsgn3s2facu6dvc6uzhykv3uj56l5zevbob7dli4pqntjbq5343f2bq
                 ip_addresses:
                     description:
-                        - A List of either the IP Addresses or FQDN names of the database hosts.
+                        - The list of database host IP Addresses. Fully qualified domain names can be used if connectionType is 'ONPREM_CONNECTOR'.
                     returned: on success
                     type: list
                     sample: []
@@ -221,13 +221,13 @@ target_databases:
                     description:
                         - The database user name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: user_name_example
                 password:
                     description:
                         - The password of the database user.
                     returned: on success
-                    type: string
+                    type: str
                     sample: password_example
         tls_config:
             description:
@@ -239,31 +239,31 @@ target_databases:
                     description:
                         - Status to represent whether the database connection is TLS enabled or not.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLED
                 certificate_store_type:
                     description:
                         - The format of the certificate store.
                     returned: on success
-                    type: string
+                    type: str
                     sample: JKS
                 store_password:
                     description:
                         - The password to read the trust store and key store files, if they are password protected.
                     returned: on success
-                    type: string
+                    type: str
                     sample: store_password_example
                 trust_store_content:
                     description:
                         - Base64 encoded string of trust store file content.
                     returned: on success
-                    type: string
+                    type: str
                     sample: trust_store_content_example
                 key_store_content:
                     description:
                         - Base64 encoded string of key store file content.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_store_content_example
         connection_option:
             description:
@@ -277,44 +277,44 @@ target_databases:
                           - PRIVATE_ENDPOINT - Represents connection through private endpoint in Data Safe.
                           - ONPREM_CONNECTOR - Represents connection through on-premises connector in Data Safe."
                     returned: on success
-                    type: string
+                    type: str
                     sample: PRIVATE_ENDPOINT
                 on_prem_connector_id:
                     description:
                         - The OCID of the on-premises connector.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
                 datasafe_private_endpoint_id:
                     description:
                         - The OCID of the Data Safe private endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the target database in Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Details about the current state of the target database in Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time of target database registration and creation in Data Safe.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time of the target database update in Data Safe.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
@@ -342,13 +342,13 @@ target_databases:
             description:
                 - The infrastructure type the database is running on.
             returned: on success
-            type: string
+            type: str
             sample: ORACLE_CLOUD
         database_type:
             description:
                 - The database type.
             returned: on success
-            type: string
+            type: str
             sample: DATABASE_CLOUD_SERVICE
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..aaaaaaaaqkb3jtub4lnlha7vfvp4f2mj6zxraqfnxernheayom3pljsfppca",

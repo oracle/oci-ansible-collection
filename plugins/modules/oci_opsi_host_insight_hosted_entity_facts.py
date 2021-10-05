@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple HostInsightHostedEntity
 description:
     - Fetches details about one or multiple HostInsightHostedEntity resources in Oracle Cloud Infrastructure
     - Get a list of hosted entities details.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -65,6 +65,7 @@ options:
             - Filter by one or more platform types.
               Possible value is LINUX.
         type: list
+        elements: str
         choices:
             - "LINUX"
     sort_order:
@@ -103,19 +104,19 @@ host_insight_hosted_entities:
             description:
                 - The identifier of the entity.
             returned: on success
-            type: string
+            type: str
             sample: entity_identifier_example
         entity_name:
             description:
                 - The entity name.
             returned: on success
-            type: string
+            type: str
             sample: entity_name_example
         entity_type:
             description:
                 - The entity type.
             returned: on success
-            type: string
+            type: str
             sample: entity_type_example
     sample: [{
         "entity_identifier": "entity_identifier_example",
@@ -190,7 +191,7 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            platform_type=dict(type="list", choices=["LINUX"]),
+            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["entityName", "entityType"]),
         )

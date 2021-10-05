@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DatabaseUpgradeHistoryEntry resources in Oracle Cloud Infrastructure
     - Gets the upgrade history for a specified database in a bare metal or virtual machine DB system.
     - If I(upgrade_history_entry_id) is specified, the details of a single DatabaseUpgradeHistoryEntry will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_id:
@@ -94,13 +94,13 @@ database_upgrade_history_entries:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database upgrade history.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         action:
             description:
                 - The database upgrade action.
             returned: on success
-            type: string
+            type: str
             sample: PRECHECK
         source:
             description:
@@ -111,63 +111,63 @@ database_upgrade_history_entries:
                    - Use `DB_SOFTWARE_IMAGE` to specify a L(database software
                      image,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databasesoftwareimage.htm) to upgrade the database."
             returned: on success
-            type: string
+            type: str
             sample: DB_HOME
         lifecycle_state:
             description:
                 - Status of database upgrade history SUCCEEDED|IN_PROGRESS|FAILED.
             returned: on success
-            type: string
+            type: str
             sample: SUCCEEDED
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         target_db_version:
             description:
                 - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             returned: on success
-            type: string
+            type: str
             sample: target_db_version_example
         target_database_software_image_id:
             description:
                 - the database software image used for upgrading database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetdatabasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         target_db_home_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetdbhome.oc1..xxxxxxEXAMPLExxxxxx"
         source_db_home_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
         time_started:
             description:
                 - The date and time when the database upgrade started.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_ended:
             description:
                 - The date and time when the database upgrade ended.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         options:
             description:
                 - "Additional upgrade options supported by DBUA(Database Upgrade Assistant).
                   Example: \\"-upgradeTimezone false -keepEvents\\""
             returned: on success
-            type: string
+            type: str
             sample: options_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

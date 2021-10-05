@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata Cloud@Customer VM cluster.
     - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -74,6 +74,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     vm_cluster_network_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
@@ -225,51 +226,51 @@ vm_cluster:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         last_patch_history_entry_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
                   a patch operation starts.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         display_name:
             description:
                 - The user-friendly name for the Exadata Cloud@Customer VM cluster. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - The date and time that the VM cluster was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_zone:
             description:
                 - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         is_local_backup_enabled:
             description:
@@ -282,7 +283,7 @@ vm_cluster:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
@@ -294,7 +295,7 @@ vm_cluster:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         cpus_enabled:
             description:
@@ -324,19 +325,19 @@ vm_cluster:
             description:
                 - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         gi_version:
             description:
                 - The Oracle Grid Infrastructure software version for the VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: gi_version_example
         system_version:
             description:
                 - Operating system version of the image.
             returned: on success
-            type: string
+            type: str
             sample: system_version_example
         ssh_public_keys:
             description:
@@ -348,7 +349,7 @@ vm_cluster:
             description:
                 - The Oracle license model that applies to the VM cluster. The default is LICENSE_INCLUDED.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         freeform_tags:
             description:
@@ -542,7 +543,7 @@ def main():
             memory_size_in_gbs=dict(type="int"),
             db_node_storage_size_in_gbs=dict(type="int"),
             data_storage_size_in_tbs=dict(type="float"),
-            ssh_public_keys=dict(type="list"),
+            ssh_public_keys=dict(type="list", elements="str", no_log=True),
             vm_cluster_network_id=dict(type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_vault_secret_actions_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_vault_secret_actions -- Perform actions on a Secret resource in O
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -285,6 +295,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -664,7 +677,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating the absolute time when this secret will expire, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. The minimum number of days from current time is 1 day and the maximum number of days from current time is 365 days. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
                     
@@ -683,7 +696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>A property indicating when the secret was created, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -701,7 +714,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when the current secret version will expire, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -719,7 +732,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>An optional property indicating when to delete the secret, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2019-04-03T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-04-03T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>

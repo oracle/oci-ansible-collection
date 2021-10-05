@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_optimizer_profile_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_optimizer_profile -- Manage a Profile resource in Oracle Cloud In
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -311,7 +321,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-levels_configuration/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -484,7 +494,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-target_tags/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -617,6 +627,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -1076,7 +1089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the profile was created, in the format defined by RFC3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1094,7 +1107,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the profile was last updated, in the format defined by RFC3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                     

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a MonitorResult resource in Oracle Clou
 description:
     - Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
     - Gets the results for a specific execution of a monitor identified by OCID. The results are in a HAR file, Screenshot, or Console Log.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -84,14 +84,14 @@ monitor_result:
                 - "Type of result.
                   Example: HAR, Screenshot or Log."
             returned: on success
-            type: string
+            type: str
             sample: result_type_example
         result_content_type:
             description:
                 - "Type of result content.
                   Example: Zip or Raw file."
             returned: on success
-            type: string
+            type: str
             sample: result_content_type_example
         result_data_set:
             description:
@@ -103,21 +103,21 @@ monitor_result:
                     description:
                         - Name of the data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name.zip
                 byte_content:
                     description:
                         - "Data content in byte format.
                           Example: Zip or Screenshot."
                     returned: on success
-                    type: string
+                    type: str
                     sample: "example_byte_content"
                 string_content:
                     description:
                         - "Data content in string format.
                           Example: HAR."
                     returned: on success
-                    type: string
+                    type: str
                     sample: string_content_example
                 timestamp:
                     description:
@@ -125,25 +125,25 @@ monitor_result:
                           timestamp format.
                           Example: `2020-02-13T22:47:12.613Z`"
                     returned: on success
-                    type: string
-                    sample: 2020-02-13T22:47:12.613Z
+                    type: str
+                    sample: "2020-02-13T22:47:12.613Z"
         monitor_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva
         vantage_point:
             description:
                 - The name of the vantage point.
             returned: on success
-            type: string
+            type: str
             sample: us-phoenix
         execution_time:
             description:
                 - The specific point of time when the result of an execution is collected.
             returned: on success
-            type: string
+            type: str
             sample: 1603790400000
     sample: {
         "result_type": "result_type_example",

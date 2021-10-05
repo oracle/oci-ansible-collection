@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a cross-connect into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cross_connect_id:
@@ -71,13 +71,13 @@ cross_connect:
             description:
                 - The OCID of the compartment containing the cross-connect group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_group_id:
             description:
                 - The OCID of the cross-connect group this cross-connect belongs to (if any).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -92,7 +92,7 @@ cross_connect:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -107,47 +107,47 @@ cross_connect:
             description:
                 - The cross-connect's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The cross-connect's current state.
             returned: on success
-            type: string
+            type: str
             sample: PENDING_CUSTOMER
         location_name:
             description:
                 - The name of the FastConnect location where this cross-connect is installed.
             returned: on success
-            type: string
+            type: str
             sample: location_name_example
         port_name:
             description:
                 - A string identifying the meet-me room port for this cross-connect.
             returned: on success
-            type: string
+            type: str
             sample: port_name_example
         port_speed_shape_name:
             description:
                 - The port speed for this cross-connect.
                 - "Example: `10 Gbps`"
             returned: on success
-            type: string
+            type: str
             sample: 10 Gbps
         customer_reference_name:
             description:
                 - A reference name or identifier for the physical fiber connection that this cross-connect
                   uses.
             returned: on success
-            type: string
+            type: str
             sample: customer_reference_name_example
         time_created:
             description:
                 - The date and time the cross-connect was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cross_connect_group_id": "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx",

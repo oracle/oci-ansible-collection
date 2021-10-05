@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple AvailableUpdate resourc
 description:
     - Fetches details about one or multiple AvailableUpdate resources in Oracle Cloud Infrastructure
     - Returns a list of available updates for a Managed Instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -77,43 +77,43 @@ available_updates:
             description:
                 - Package name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
                 - "Unique identifier for the package available for update. NOTE - This is not an OCID"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         update_type:
             description:
                 - The purpose of this update.
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
         type:
             description:
                 - Type of the package
             returned: on success
-            type: string
+            type: str
             sample: type_example
         installed_version:
             description:
                 - Version of the installed package
             returned: on success
-            type: string
+            type: str
             sample: installed_version_example
         available_version:
             description:
                 - Version of the package available for update
             returned: on success
-            type: string
+            type: str
             sample: available_version_example
         architecture:
             description:
                 - The architecture for which this package was built
             returned: on success
-            type: string
+            type: str
             sample: architecture_example
         errata:
             description:
@@ -125,13 +125,13 @@ available_updates:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         related_cves:
             description:
@@ -149,13 +149,13 @@ available_updates:
                     description:
                         - software source name
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 id:
                     description:
                         - software source identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",

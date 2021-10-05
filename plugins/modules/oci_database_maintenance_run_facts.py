@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
     - Gets a list of the maintenance runs in the specified compartment.
     - If I(maintenance_run_id) is specified, the details of a single MaintenanceRun will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     maintenance_run_id:
@@ -121,74 +121,74 @@ maintenance_runs:
             description:
                 - The OCID of the maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of the maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         lifecycle_state:
             description:
                 - The current state of the maintenance run. For Autonomous Database on shared Exadata infrastructure, valid states are IN_PROGRESS, SUCCEEDED
                   and FAILED.
             returned: on success
-            type: string
+            type: str
             sample: SCHEDULED
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_scheduled:
             description:
                 - The date and time the maintenance run is scheduled to occur.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_started:
             description:
                 - The date and time the maintenance run starts.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_ended:
             description:
                 - The date and time the maintenance run was completed.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         target_resource_type:
             description:
                 - The type of the target resource on which the maintenance run occurs.
             returned: on success
-            type: string
+            type: str
             sample: AUTONOMOUS_EXADATA_INFRASTRUCTURE
         target_resource_id:
             description:
                 - The ID of the target resource on which the maintenance run occurs.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_type:
             description:
                 - Maintenance type.
             returned: on success
-            type: string
+            type: str
             sample: PLANNED
         patch_id:
             description:
@@ -196,20 +196,20 @@ maintenance_runs:
                   (using the format YYMMDD). For example, the identifier `ru_patch_19.9.0.0_201030` is used for an RU patch for Oracle Database 19.9.0.0 that
                   was released October 30, 2020.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_subtype:
             description:
                 - Maintenance sub-type.
             returned: on success
-            type: string
+            type: str
             sample: QUARTERLY
         peer_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance run for the Autonomous Data Guard
                   association's peer container database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         patching_mode:
             description:
@@ -217,7 +217,7 @@ maintenance_runs:
                 - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
                   Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
             returned: on success
-            type: string
+            type: str
             sample: ROLLING
         patch_failure_count:
             description:

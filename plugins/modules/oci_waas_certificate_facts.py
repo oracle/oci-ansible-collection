@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
     - Gets a list of SSL certificates that can be used in a WAAS policy.
     - If I(certificate_id) is specified, the details of a single WaasCertificate will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     certificate_id:
@@ -62,11 +62,13 @@ options:
         description:
             - Filter certificates using a list of display names.
         type: list
+        elements: str
         aliases: ["name"]
     lifecycle_state:
         description:
             - Filter certificates using a list of lifecycle states.
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "ACTIVE"
@@ -107,25 +109,25 @@ waas_certificates:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the certificate's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the certificate.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         issued_by:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: issued_by_example
         subject_name:
             description:
@@ -138,43 +140,43 @@ waas_certificates:
                         - ISO 3166-1 alpha-2 code of the country where the organization is located. For a list of codes, see L(ISO's
                           website,https://www.iso.org/obp/ui/#search/code/).
                     returned: on success
-                    type: string
+                    type: str
                     sample: country_example
                 state_province:
                     description:
                         - The province where the organization is located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: state_province_example
                 locality:
                     description:
                         - The city in which the organization is located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: locality_example
                 organization:
                     description:
                         - The organization name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: organization_example
                 organizational_unit:
                     description:
                         - The field to differentiate between divisions within an organization.
                     returned: on success
-                    type: string
+                    type: str
                     sample: organizational_unit_example
                 common_name:
                     description:
                         - The fully qualified domain name used for DNS lookups of the server.
                     returned: on success
-                    type: string
+                    type: str
                     sample: common_name_example
                 email_address:
                     description:
                         - The email address of the server's administrator.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_address_example
         issuer_name:
             description:
@@ -187,49 +189,49 @@ waas_certificates:
                         - ISO 3166-1 alpha-2 code of the country where the organization is located. For a list of codes, see L(ISO's
                           website,https://www.iso.org/obp/ui/#search/code/).
                     returned: on success
-                    type: string
+                    type: str
                     sample: country_example
                 state_province:
                     description:
                         - The province where the organization is located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: state_province_example
                 locality:
                     description:
                         - The city in which the organization is located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: locality_example
                 organization:
                     description:
                         - The organization name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: organization_example
                 organizational_unit:
                     description:
                         - The field to differentiate between divisions within an organization.
                     returned: on success
-                    type: string
+                    type: str
                     sample: organizational_unit_example
                 common_name:
                     description:
                         - The Certificate Authority (CA) name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: common_name_example
                 email_address:
                     description:
                         - The email address of the server's administrator.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_address_example
         serial_number:
             description:
                 - A unique, positive integer assigned by the Certificate Authority (CA). The issuer name and serial number identify a unique certificate.
             returned: on success
-            type: string
+            type: str
             sample: serial_number_example
         version:
             description:
@@ -241,20 +243,20 @@ waas_certificates:
             description:
                 - The identifier for the cryptographic algorithm used by the Certificate Authority (CA) to sign this certificate.
             returned: on success
-            type: string
+            type: str
             sample: signature_algorithm_example
         time_not_valid_before:
             description:
                 - The date and time the certificate will become valid, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         time_not_valid_after:
             description:
                 - The date and time the certificate will expire, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         public_key_info:
             description:
                 - ""
@@ -265,7 +267,7 @@ waas_certificates:
                     description:
                         - The algorithm identifier and parameters for the public key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: algorithm_example
                 exponent:
                     description:
@@ -289,7 +291,7 @@ waas_certificates:
                     description:
                         - The certificate extension name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 is_critical:
                     description:
@@ -301,7 +303,7 @@ waas_certificates:
                     description:
                         - The certificate extension value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
         freeform_tags:
             description:
@@ -323,14 +325,14 @@ waas_certificates:
             description:
                 - The current lifecycle state of the SSL certificate.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the certificate was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         is_trust_verification_disabled:
             description:
                 - This indicates whether trust verification was disabled during the creation of SSL certificate.
@@ -342,7 +344,7 @@ waas_certificates:
             description:
                 - The data of the SSL certificate.
             returned: on success
-            type: string
+            type: str
             sample: certificate_data_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -472,9 +474,10 @@ def main():
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            display_name=dict(aliases=["name"], type="list"),
+            display_name=dict(aliases=["name"], type="list", elements="str"),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "ACTIVE",

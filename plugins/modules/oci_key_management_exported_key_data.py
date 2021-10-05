@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), exports a specific version of a master encryption key according to the details of the request. For their protection,
       keys that you create and store on a hardware security module (HSM) can never leave the HSM. You can only export keys
       stored on the server. For export, the key version is encrypted by an RSA public key that you provide.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     key_id:
@@ -99,31 +99,31 @@ exported_key_data:
             description:
                 - The OCID of the key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the master encryption key associated with this key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time this key version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         vault_id:
             description:
                 - The OCID of the vault that contains this key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         encrypted_key:
             description:
                 - The base64-encoded exported key material, which is encrypted by using the public RSA wrapping key specified in the export request.
             returned: on success
-            type: string
+            type: str
             sample: encrypted_key_example
         algorithm:
             description:
@@ -135,7 +135,7 @@ exported_key_data:
                   represents them. Specifying RSA_OAEP_SHA256 means that the exportable key material is wrapped by the RSA public wrapping key provided
                   along with the request.
             returned: on success
-            type: string
+            type: str
             sample: RSA_OAEP_AES_SHA256
     sample: {
         "key_version_id": "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx",

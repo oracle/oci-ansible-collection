@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Index resources in Oracle Cloud Infrastructure
     - Get a list of indexes on a table.
     - If I(index_name) is specified, the details of a single Index will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     table_name_or_id:
@@ -104,25 +104,25 @@ indexes:
             description:
                 - Index name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         table_name:
             description:
                 - The name of the table to which this index belongs.
             returned: on success
-            type: string
+            type: str
             sample: table_name_example
         table_id:
             description:
                 - the OCID of the table to which this index belongs.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.table.oc1..xxxxxxEXAMPLExxxxxx"
         keys:
             description:
@@ -134,7 +134,7 @@ indexes:
                     description:
                         - The name of a column to be included as an index key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: column_name_example
                 json_path:
                     description:
@@ -142,26 +142,26 @@ indexes:
                           a dotted path indicating the field within the JSON object
                           that will be the index key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: json_path_example
                 json_field_type:
                     description:
                         - If the specified column is of type JSON, jsonFieldType contains
                           the type of the field indicated by jsonPath.
                     returned: on success
-                    type: string
+                    type: str
                     sample: json_field_type_example
         lifecycle_state:
             description:
                 - The state of an index.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
     sample: [{
         "name": "name_example",

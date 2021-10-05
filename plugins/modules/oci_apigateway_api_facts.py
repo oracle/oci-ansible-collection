@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Api resources in Oracle Cloud Infrastructure
     - Returns a list of APIs.
     - If I(api_id) is specified, the details of a single Api will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     api_id:
@@ -99,7 +99,7 @@ apis:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -107,32 +107,32 @@ apis:
                   Avoid entering confidential information.
                 - "Example: `My new resource`"
             returned: on success
-            type: string
+            type: str
             sample: My new resource
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
                   resource is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time this resource was last updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the API.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
@@ -147,13 +147,13 @@ apis:
                   - 'Canceled' the document validation was canceled"
                 - For other states it may provide more details like actionable information.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         specification_type:
             description:
                 - Type of API Specification file.
             returned: on success
-            type: string
+            type: str
             sample: specification_type_example
         validation_results:
             description:
@@ -165,13 +165,13 @@ apis:
                     description:
                         - Name of the validation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 result:
                     description:
                         - Result of the validation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ERROR
         freeform_tags:
             description:

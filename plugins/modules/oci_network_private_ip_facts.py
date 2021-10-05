@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -37,7 +37,7 @@ description:
     - If you are an Oracle Cloud VMware Solution customer and have VLANs
       in your VCN, you can filter the list by VLAN OCID. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
     - If I(private_ip_id) is specified, the details of a single PrivateIp will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     private_ip_id:
@@ -89,13 +89,13 @@ private_ips:
                   private IP assigned to a VNIC that is in a *regional* subnet."
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment containing the private IP.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -110,7 +110,7 @@ private_ips:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -133,13 +133,13 @@ private_ips:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `bminstance-1`"
             returned: on success
-            type: string
+            type: str
             sample: bminstance-1
         id:
             description:
                 - The private IP's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
@@ -150,7 +150,7 @@ private_ips:
                   `cidrBlock` attribute for the VLAN. See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - "Example: `10.0.3.3`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.3.3
         is_primary:
             description:
@@ -166,7 +166,7 @@ private_ips:
                   the Oracle Cloud VMware Solution. The `vlanId` is the OCID of the VLAN. See
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
@@ -174,15 +174,15 @@ private_ips:
                 - However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the `subnetId` is null.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the private IP was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vnic_id:
             description:
                 - The OCID of the VNIC the private IP is assigned to. The VNIC and private IP
@@ -190,7 +190,7 @@ private_ips:
                   However, if the `PrivateIp` object is being used with a VLAN as part of
                   the Oracle Cloud VMware Solution, the `vnicId` is null.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",

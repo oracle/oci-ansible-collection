@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a BackendSetHealth resource in Oracle C
 description:
     - Fetches details about a BackendSetHealth resource in Oracle Cloud Infrastructure
     - Gets the health status for the specified backend set.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -68,7 +68,7 @@ backend_set_health:
                 - "*  **UNKNOWN:** More than half of the backend set's backend servers return a status of `UNKNOWN`, the system was
                   unable to retrieve metrics, or the backend set does not have a listener attached."
             returned: on success
-            type: string
+            type: str
             sample: OK
         warning_state_backend_names:
             description:

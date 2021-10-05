@@ -99,15 +99,38 @@ class DataScienceModelProvenanceHelperCustom:
 
 class DataScienceJobHelperCustom:
     def get_resource_active_states(self):
-        return ["CREATING"]
+        wait_for_states = super(
+            DataScienceJobHelperCustom, self
+        ).get_resource_active_states()
+        wait_for_states.append("CREATING")
+        return wait_for_states
 
 
 class DataScienceJobArtifactHelperCustom:
     def create_resource(self):
         file_path = self.module.params.get("job_artifact_file")
-        with open(file_path, "rb") as input_file:
-            data = input_file.read()
-        self.module.params["job_artifact"] = data
-        resource = super(DataScienceJobArtifactHelperCustom, self).create_resource()
-        self.module.params.pop("job_artifact", None)
-        return resource
+        try:
+            with open(file_path, "rb") as input_file:
+                self.module.params["job_artifact"] = input_file
+                resource = super(
+                    DataScienceJobArtifactHelperCustom, self
+                ).create_resource()
+                self.module.params.pop("job_artifact", None)
+                return resource
+        finally:
+            self.module.params.pop("job_artifact", None)
+
+
+class DataScienceJobRunActionsHelperCustom:
+    # adding state 'CANCELING' to the list returned by `get_action_idempotent_states(action)` when performing
+    # `cancel` operation.
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            DataScienceJobRunActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == "cancel":
+            return action_idempotent_states + [
+                "CANCELING",
+            ]
+        return action_idempotent_states

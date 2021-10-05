@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple WaasEdgeSubnet resources in Oracle Cloud Infrastructure
     - Return the list of the tenant's edge node subnets. Use these CIDR blocks to restrict incoming traffic to your origin. These subnets are owned by OCI and
       forward traffic to customer origins. They are not associated with specific regions or compartments.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sort_by:
@@ -63,19 +63,19 @@ waas_edge_subnets:
             description:
                 - An edge node subnet. This can include /24 or /8 addresses.
             returned: on success
-            type: string
+            type: str
             sample: 192.0.2.0/24
         time_modified:
             description:
                 - The date and time the last change was made to the indicated edge node subnet, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         region:
             description:
                 - The name of the region containing the indicated subnet.
             returned: on success
-            type: string
+            type: str
             sample: US-Central
     sample: [{
         "cidr": "192.0.2.0/24",

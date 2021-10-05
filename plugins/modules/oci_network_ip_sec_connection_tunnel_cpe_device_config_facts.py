@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       To get the full set of content for the tunnel (any answers merged with the template of other
       information specific to the CPE device type), use
       L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -71,13 +71,13 @@ ip_sec_connection_tunnel_cpe_device_config:
                         - A string that identifies the question to be answered. See the `key` attribute in
                           L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/CpeDeviceConfigQuestion).
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 value:
                     description:
                         - The answer to the question.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
     sample: {
         "tunnel_cpe_device_config_parameter": [{

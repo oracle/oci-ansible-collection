@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -31,7 +31,7 @@ description:
       APIs,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem_topic-resource_model_conversion.htm) for details on converting existing
       Exadata DB systems to the new resource model.
     - If I(db_system_id) is specified, the details of a single DbSystem will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_system_id:
@@ -120,20 +120,20 @@ db_systems:
                     description:
                         - The current state of IORM configuration for the Exadata DB system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: BOOTSTRAPPING
                 lifecycle_details:
                     description:
                         - Additional information about the current `lifecycleState`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
                 objective:
                     description:
                         - The current value for the IORM objective.
                           The default is `AUTO`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: LOW_LATENCY
                 db_plans:
                     description:
@@ -146,7 +146,7 @@ db_systems:
                             description:
                                 - The database name. For the default `DbPlan`, the `dbName` is `default`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: db_name_example
                         share:
                             description:
@@ -159,31 +159,31 @@ db_systems:
                                 - The flash cache limit for this database. This value is internally configured based on the share value assigned to the
                                   database.
                             returned: on success
-                            type: string
+                            type: str
                             sample: flash_cache_limit_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB system. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         availability_domain:
             description:
                 - The name of the availability domain that the DB system is located in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         fault_domains:
             description:
@@ -201,7 +201,7 @@ db_systems:
                   Specifying an overlapping subnet will cause the private interconnect to malfunction.
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
@@ -209,7 +209,7 @@ db_systems:
                   with. Applicable only to Exadata DB systems.
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
@@ -236,7 +236,7 @@ db_systems:
                   - For virtual machine shapes, the number of CPU cores and memory
                   - For bare metal and Exadata shapes, the number of CPU cores, storage, and memory"
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         db_system_options:
             description:
@@ -250,7 +250,7 @@ db_systems:
                           ASM - Automatic storage management
                           LVM - Logical Volume management"
                     returned: on success
-                    type: string
+                    type: str
                     sample: ASM
         ssh_public_keys:
             description:
@@ -263,31 +263,31 @@ db_systems:
                 - The time zone of the DB system. For details, see L(DB System Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         hostname:
             description:
                 - The hostname for the DB system.
             returned: on success
-            type: string
+            type: str
             sample: hostname_example
         domain:
             description:
                 - The domain name for the DB system.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The Oracle Database version of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         cpu_core_count:
             description:
@@ -300,7 +300,7 @@ db_systems:
                 - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may
                   contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
             returned: on success
-            type: string
+            type: str
             sample: cluster_name_example
         data_storage_percentage:
             description:
@@ -314,14 +314,14 @@ db_systems:
             description:
                 - The Oracle Database edition that applies to all the databases on the DB system.
             returned: on success
-            type: string
+            type: str
             sample: STANDARD_EDITION
         last_patch_history_entry_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
                   a patch operation starts.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         listener_port:
             description:
@@ -333,19 +333,19 @@ db_systems:
             description:
                 - The current state of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         time_created:
             description:
                 - The date and time the DB system was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         disk_redundancy:
             description:
@@ -353,7 +353,7 @@ db_systems:
                   NORMAL is 2-way redundancy.
                   HIGH is 3-way redundancy.
             returned: on success
-            type: string
+            type: str
             sample: HIGH
         sparse_diskgroup:
             description:
@@ -386,19 +386,19 @@ db_systems:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DNS record for the SCAN IP addresses that are
                   associated with the DB system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         scan_dns_name:
             description:
                 - The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.
             returned: on success
-            type: string
+            type: str
             sample: scan_dns_name_example
         zone_id:
             description:
                 - The OCID of the zone the DB system is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
@@ -422,7 +422,7 @@ db_systems:
             description:
                 - The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         maintenance_window:
             description:
@@ -434,7 +434,7 @@ db_systems:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -446,7 +446,7 @@ db_systems:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -469,7 +469,7 @@ db_systems:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -491,13 +491,13 @@ db_systems:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -518,15 +518,15 @@ db_systems:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         point_in_time_data_disk_clone_timestamp:
             description:
                 - The point in time for a cloned database system when the data disks were cloned from the source database system, as described in L(RFC
                   3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",

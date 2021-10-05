@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple PrivateEndpoint resources in Oracle Cloud Infrastructure
     - Lists all private endpoints in the specified compartment.
     - If I(private_endpoint_id) is specified, the details of a single PrivateEndpoint will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     private_endpoint_id:
@@ -102,7 +102,7 @@ private_endpoints:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -116,13 +116,13 @@ private_endpoints:
             description:
                 - A user-friendly description. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         dns_zones:
             description:
@@ -143,19 +143,19 @@ private_endpoints:
             description:
                 - The OCID of a private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of this private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         max_host_count:
             description:
@@ -176,35 +176,35 @@ private_endpoints:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
                   `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
             returned: on success
-            type: string
+            type: str
             sample: owner_user_name_example
         subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

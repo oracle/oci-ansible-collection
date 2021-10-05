@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Returns a list of log groups in a compartment. You may limit the number of log groups, provide sorting options, and filter the results by specifying a
       display name.
     - If I(log_analytics_log_group_id) is specified, the details of a single LogAnalyticsLogGroup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -95,7 +95,7 @@ log_analytics_log_groups:
                 - The log analytics entity OCID. This ID is a reference used by log analytics features and it represents
                   a resource that is provisioned and managed by the customer on their premises or on the cloud.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -104,32 +104,32 @@ log_analytics_log_groups:
                   alphanumerics, underscores, spaces, backslashes, or hyphens in any order).
                   No trailing spaces allowed."
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description for this resource.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the resource was last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

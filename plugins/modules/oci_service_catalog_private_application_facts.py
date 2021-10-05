@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple PrivateApplication resources in Oracle Cloud Infrastructure
     - Lists all the private applications in a given compartment.
     - If I(private_application_id) is specified, the details of a single PrivateApplication will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     private_application_id:
@@ -84,37 +84,37 @@ private_applications:
             description:
                 - The lifecycle state of the private application.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the private application resides.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The unique identifier for the private application in Marketplace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the private application.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         short_description:
             description:
                 - A short description of the private application.
             returned: on success
-            type: string
+            type: str
             sample: short_description_example
         long_description:
             description:
                 - A long description of the private application.
             returned: on success
-            type: string
+            type: str
             sample: long_description_example
         logo:
             description:
@@ -126,25 +126,25 @@ private_applications:
                     description:
                         - The name used to refer to the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 content_url:
                     description:
                         - The content URL of the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
         package_type:
             description:
                 - Type of packages within this private application.
             returned: on success
-            type: string
+            type: str
             sample: STACK
         time_created:
             description:
@@ -152,16 +152,16 @@ private_applications:
                   timestamp format.
                 - "Example: `2021-05-26T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2021-05-26T21:10:29.600Z
+            type: str
+            sample: "2021-05-26T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the private application was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2021-12-10T05:10:29.721Z`"
             returned: on success
-            type: string
-            sample: 2021-12-10T05:10:29.721Z
+            type: str
+            sample: "2021-12-10T05:10:29.721Z"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.

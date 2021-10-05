@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a PathRouteSet resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a path route set to a load balancer. For more information, see
       L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -40,6 +40,7 @@ options:
             - The set of path route rules.
             - Required for create using I(state=present), update using I(state=present) with name present.
         type: list
+        elements: dict
         suboptions:
             path:
                 description:
@@ -139,7 +140,7 @@ path_route_set:
                 - The unique name for this set of path route rules. Avoid entering confidential information.
                 - "Example: `example_path_route_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_path_route_set
         path_routes:
             description:
@@ -155,7 +156,7 @@ path_route_set:
                         - "*  Regular expressions are not supported."
                         - "Example: `/example/video/123`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /example/video/123
                 path_match_type:
                     description:
@@ -176,14 +177,14 @@ path_route_set:
                                 - For a full description of how the system handles `matchType` in a path route set containing multiple rules, see
                                   L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXACT_MATCH
                 backend_set_name:
                     description:
                         - The name of the target backend set for requests where the incoming URI matches the specified path.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
     sample: {
         "name": "example_path_route_set",

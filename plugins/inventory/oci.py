@@ -250,8 +250,10 @@ try:
     from oci.auth.signers.resource_principals_signer import (
         get_resource_principals_signer,
     )
+
+    HAS_OCI_PY_SDK = True
 except ImportError:
-    raise AnsibleError("The oci dynamic inventory plugin requires oci python sdk.")
+    HAS_OCI_PY_SDK = False
 
 
 class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
@@ -1596,6 +1598,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return option_value
 
     def parse(self, inventory, loader, path, cache=True):
+
+        if not HAS_OCI_PY_SDK:
+            raise AnsibleError(
+                "The oci dynamic inventory plugin requires oci python sdk."
+            )
         super(InventoryModule, self).parse(inventory, loader, path)
 
         config_data = self._read_config_data(path)

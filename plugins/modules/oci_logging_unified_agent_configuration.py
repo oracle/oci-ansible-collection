@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an UnifiedAgentConfiguration resource in Oracle Cloud Infrastructure
     - For I(state=present), create unified agent configuration registration.
     - "This resource has the following action operations in the M(oci_unified_agent_configuration_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -58,6 +58,7 @@ options:
                 description:
                     - ""
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -77,11 +78,13 @@ options:
                             - ""
                             - Applicable when source_type is 'WINDOWS_EVENT_LOG'
                         type: list
+                        elements: str
                     paths:
                         description:
                             - ""
                             - Applicable when source_type is 'LOG_TAIL'
                         type: list
+                        elements: str
                     parser:
                         description:
                             - ""
@@ -155,6 +158,7 @@ options:
                                     - ""
                                     - Applicable when parser_type is one of ['GROK', 'MULTILINE_GROK']
                                 type: list
+                                elements: dict
                                 suboptions:
                                     pattern:
                                         description:
@@ -248,6 +252,7 @@ options:
                                     - ""
                                     - Applicable when parser_type is 'MULTILINE'
                                 type: list
+                                elements: str
                             delimiter:
                                 description:
                                     - ""
@@ -258,6 +263,7 @@ options:
                                     - ""
                                     - Applicable when parser_type is one of ['TSV', 'CSV']
                                 type: list
+                                elements: str
             destination:
                 description:
                     - ""
@@ -305,6 +311,7 @@ options:
                 description:
                     - list of group/dynamic group ids associated with this configuration.
                 type: list
+                elements: str
     unified_agent_configuration_id:
         description:
             - The OCID of the Unified Agent configuration.
@@ -375,26 +382,26 @@ unified_agent_configuration:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description for this resource.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         defined_tags:
             description:
@@ -417,19 +424,19 @@ unified_agent_configuration:
             description:
                 - Time the resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_modified:
             description:
                 - Time the resource was last modified.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The pipeline state.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         is_enabled:
             description:
@@ -441,7 +448,7 @@ unified_agent_configuration:
             description:
                 - State of unified agent service configuration.
             returned: on success
-            type: string
+            type: str
             sample: VALID
         service_configuration:
             description:
@@ -453,7 +460,7 @@ unified_agent_configuration:
                     description:
                         - Type of Unified Agent service configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: LOGGING
                 sources:
                     description:
@@ -465,13 +472,13 @@ unified_agent_configuration:
                             description:
                                 - unique name for the source
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         source_type:
                             description:
                                 - Unified schema logging source type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: LOG_TAIL
                         paths:
                             description:
@@ -489,13 +496,13 @@ unified_agent_configuration:
                                     description:
                                         - Type of fluent parser.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AUDITD
                                 field_time_key:
                                     description:
                                         - Specify time field for the event time. If the event doesn't have this field, the current time is used.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: field_time_key_example
                                 types:
                                     description:
@@ -507,7 +514,7 @@ unified_agent_configuration:
                                     description:
                                         - Specify the null value pattern.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: null_value_pattern_example
                                 is_null_empty_string:
                                     description:
@@ -537,7 +544,7 @@ unified_agent_configuration:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: delimiter_example
                                 keys:
                                     description:
@@ -549,13 +556,13 @@ unified_agent_configuration:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: grok_name_key_example
                                 grok_failure_key:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: grok_failure_key_example
                                 patterns:
                                     description:
@@ -567,49 +574,49 @@ unified_agent_configuration:
                                             description:
                                                 - The grok pattern.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: pattern_example
                                         name:
                                             description:
                                                 - The name key to tag this grok pattern.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: name_example
                                         field_time_key:
                                             description:
                                                 - Specify the time field for the event time. If the event doesn't have this field, the current time is used.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: field_time_key_example
                                         field_time_format:
                                             description:
                                                 - Process value using the specified format. This is available only when time_type is a string.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: field_time_format_example
                                         field_time_zone:
                                             description:
                                                 - Use the specified time zone. The time value can be parsed or formatted in the specified time zone.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: field_time_zone_example
                                 time_type:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: FLOAT
                                 time_format:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: time_format_example
                                 format_firstline:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: format_firstline_example
                                 format:
                                     description:
@@ -621,31 +628,31 @@ unified_agent_configuration:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: multi_line_start_regexp_example
                                 message_key:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: message_key_example
                                 expression:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: expression_example
                                 rfc5424_time_format:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: rfc5424_time_format_example
                                 message_format:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: RFC3164
                                 is_with_priority:
                                     description:
@@ -663,7 +670,7 @@ unified_agent_configuration:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: STRING
                         channels:
                             description:
@@ -681,7 +688,7 @@ unified_agent_configuration:
                             description:
                                 - The OCID of the resource.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.logobject.oc1..xxxxxxEXAMPLExxxxxx"
         group_association:
             description:
@@ -923,8 +930,8 @@ def main():
                                 required=True,
                                 choices=["WINDOWS_EVENT_LOG", "LOG_TAIL"],
                             ),
-                            channels=dict(type="list"),
-                            paths=dict(type="list"),
+                            channels=dict(type="list", elements="str"),
+                            paths=dict(type="list", elements="str"),
                             parser=dict(
                                 type="dict",
                                 options=dict(
@@ -947,15 +954,15 @@ def main():
                                             "CSV",
                                         ],
                                     ),
-                                    field_time_key=dict(type="str"),
+                                    field_time_key=dict(type="str", no_log=True),
                                     types=dict(type="dict"),
                                     null_value_pattern=dict(type="str"),
                                     is_null_empty_string=dict(type="bool"),
                                     is_estimate_current_event=dict(type="bool"),
-                                    is_keep_time_key=dict(type="bool"),
+                                    is_keep_time_key=dict(type="bool", no_log=True),
                                     timeout_in_milliseconds=dict(type="int"),
-                                    grok_name_key=dict(type="str"),
-                                    grok_failure_key=dict(type="str"),
+                                    grok_name_key=dict(type="str", no_log=True),
+                                    grok_failure_key=dict(type="str", no_log=True),
                                     multi_line_start_regexp=dict(type="str"),
                                     patterns=dict(
                                         type="list",
@@ -963,7 +970,9 @@ def main():
                                         options=dict(
                                             pattern=dict(type="str", required=True),
                                             name=dict(type="str"),
-                                            field_time_key=dict(type="str"),
+                                            field_time_key=dict(
+                                                type="str", no_log=True
+                                            ),
                                             field_time_format=dict(type="str"),
                                             field_time_zone=dict(type="str"),
                                         ),
@@ -973,7 +982,7 @@ def main():
                                         choices=["FLOAT", "UNIXTIME", "STRING"],
                                     ),
                                     time_format=dict(type="str"),
-                                    message_key=dict(type="str"),
+                                    message_key=dict(type="str", no_log=True),
                                     rfc5424_time_format=dict(type="str"),
                                     message_format=dict(
                                         type="str",
@@ -986,9 +995,9 @@ def main():
                                     ),
                                     expression=dict(type="str"),
                                     format_firstline=dict(type="str"),
-                                    format=dict(type="list"),
+                                    format=dict(type="list", elements="str"),
                                     delimiter=dict(type="str"),
-                                    keys=dict(type="list"),
+                                    keys=dict(type="list", elements="str", no_log=True),
                                 ),
                             ),
                         ),
@@ -1004,7 +1013,7 @@ def main():
             compartment_id=dict(type="str"),
             description=dict(type="str"),
             group_association=dict(
-                type="dict", options=dict(group_list=dict(type="list"))
+                type="dict", options=dict(group_list=dict(type="list", elements="str"))
             ),
             unified_agent_configuration_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

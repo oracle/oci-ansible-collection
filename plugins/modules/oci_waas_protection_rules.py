@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_protection_rules
 short_description: Manage a ProtectionRules resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a ProtectionRules resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             key:
@@ -59,6 +60,7 @@ options:
                     - The types of requests excluded from the protection rule action. If the requests matches the criteria in the `exclusions`, the protection
                       rule action will not be executed.
                 type: list
+                elements: dict
                 suboptions:
                     target:
                         description:
@@ -75,6 +77,7 @@ options:
                             - ""
                             - This parameter is updatable.
                         type: list
+                        elements: str
     state:
         description:
             - The state of the ProtectionRules.
@@ -107,7 +110,7 @@ protection_rules:
             description:
                 - The unique key of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         mod_security_rule_ids:
             description:
@@ -120,19 +123,19 @@ protection_rules:
             description:
                 - The name of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         action:
             description:
                 - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
             returned: on success
-            type: string
+            type: str
             sample: OFF
         labels:
             description:
@@ -151,7 +154,7 @@ protection_rules:
                     description:
                         - The target of the exclusion.
                     returned: on success
-                    type: string
+                    type: str
                     sample: REQUEST_COOKIES
                 exclusions:
                     description:
@@ -283,7 +286,7 @@ def main():
                 elements="dict",
                 required=True,
                 options=dict(
-                    key=dict(type="str", required=True),
+                    key=dict(type="str", required=True, no_log=True),
                     action=dict(
                         type="str", required=True, choices=["OFF", "DETECT", "BLOCK"]
                     ),
@@ -300,7 +303,7 @@ def main():
                                     "ARGS_NAMES",
                                 ],
                             ),
-                            exclusions=dict(type="list"),
+                            exclusions=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

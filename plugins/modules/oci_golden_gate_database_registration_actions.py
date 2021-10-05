@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves the DatabaseRegistration into a different compartment within the same tenancy. When provided, If-Match is checked
       against ETag values of the resource.  For information about moving resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_registration_id:
@@ -70,52 +70,52 @@ database_registration:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the databaseRegistration being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - An object's Display Name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Metadata about this specific object.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - Possible lifecycle states.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -135,25 +135,25 @@ database_registration:
             description:
                 - A three-label Fully Qualified Domain Name (FQDN) for a resource.
             returned: on success
-            type: string
+            type: str
             sample: fqdn_example
         ip_address:
             description:
                 - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
             returned: on success
-            type: string
+            type: str
             sample: ip_address_example
         subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         rce_private_ip:
             description:
@@ -161,7 +161,7 @@ database_registration:
                   address and send network traffic to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize this IP
                   address in Security Lists or Network Security Groups (NSG) as needed.
             returned: on success
-            type: string
+            type: str
             sample: rce_private_ip_example
         system_tags:
             description:
@@ -177,19 +177,19 @@ database_registration:
                 - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the
                   database.  It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.
             returned: on success
-            type: string
+            type: str
             sample: username_example
         connection_string:
             description:
                 - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.
             returned: on success
-            type: string
+            type: str
             sample: connection_string_example
         alias_name:
             description:
                 - Credential store alias.
             returned: on success
-            type: string
+            type: str
             sample: alias_name_example
         vault_id:
             description:
@@ -197,7 +197,7 @@ database_registration:
                   will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage
                   secrets contained within this vault.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
@@ -205,7 +205,7 @@ database_registration:
                   provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate
                   Service to utilize this key to manage secrets."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_compartment_id:
             description:
@@ -213,7 +213,7 @@ database_registration:
                   created. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the
                   GoldenGate Service to utilize this Compartment in which to create a Secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret_id:
             description:
@@ -221,7 +221,7 @@ database_registration:
                   this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
                   utilize this Secret
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

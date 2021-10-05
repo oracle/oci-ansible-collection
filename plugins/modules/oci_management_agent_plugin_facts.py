@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ManagementAgentPlugin r
 description:
     - Fetches details about one or multiple ManagementAgentPlugin resources in Oracle Cloud Infrastructure
     - Returns a list of managementAgentPlugins.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -66,6 +66,7 @@ options:
         description:
             - Filter to return only results having the particular platform type.
         type: list
+        elements: str
         choices:
             - "LINUX"
             - "WINDOWS"
@@ -90,13 +91,13 @@ management_agent_plugins:
             description:
                 - Management Agent Plugin Id
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Management Agent Plugin Name
             returned: on success
-            type: string
+            type: str
             sample: name_example
         version:
             description:
@@ -114,13 +115,13 @@ management_agent_plugins:
             description:
                 - Management Agent Plugin Display Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Management Agent Plugin description
             returned: on success
-            type: string
+            type: str
             sample: description_example
         is_console_deployable:
             description:
@@ -132,7 +133,7 @@ management_agent_plugins:
             description:
                 - The current state of Management Agent Plugin
             returned: on success
-            type: string
+            type: str
             sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -222,7 +223,9 @@ def main():
                     "FAILED",
                 ],
             ),
-            platform_type=dict(type="list", choices=["LINUX", "WINDOWS"]),
+            platform_type=dict(
+                type="list", elements="str", choices=["LINUX", "WINDOWS"]
+            ),
             name=dict(type="str"),
         )
     )

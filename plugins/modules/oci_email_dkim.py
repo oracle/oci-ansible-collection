@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       Best security practices indicate to periodically rotate the DKIM that is doing the signing.
       When a second DKIM is applied, all senders will seamlessly pick up the new key
       without interruption in signing.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -133,45 +133,45 @@ dkim:
                 - The DKIM selector.
                   If the same domain is managed in more than one region, each region must use different selectors.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DKIM.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         email_domain_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the email domain
                   that this DKIM belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains this DKIM.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the DKIM.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
                   For example, can be used to provide actionable information for a resource.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         description:
             description:
                 - The description of the DKIM. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
@@ -180,8 +180,8 @@ dkim:
                   timestamp format, \\"YYYY-MM-ddThh:mmZ\\"."
                 - "Example: `2021-02-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2021-02-12T22:47:12.613Z
+            type: str
+            sample: "2021-02-12T22:47:12.613Z"
         time_updated:
             description:
                 - "The time of the last change to the DKIM configuration, due to a state change or
@@ -189,20 +189,20 @@ dkim:
                   Times are expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format, \\"YYYY-MM-ddThh:mmZ\\"."
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         dns_subdomain_name:
             description:
                 - The name of the DNS subdomain that must be provisioned to enable email recipients to verify DKIM signatures.
                   It is usually created with a CNAME record set to the cnameRecordValue
             returned: on success
-            type: string
+            type: str
             sample: dns_subdomain_name_example
         cname_record_value:
             description:
                 - The DNS CNAME record value to provision to the DKIM DNS subdomain, when using the CNAME method for DKIM setup (preferred).
             returned: on success
-            type: string
+            type: str
             sample: cname_record_value_example
         txt_record_value:
             description:
@@ -211,7 +211,7 @@ dkim:
                   This can also be used by customers who have an existing procedure to directly provision TXT records for DKIM.
                   Be aware that many DNS APIs will require you to break this string into segments of less than 255 characters.
             returned: on success
-            type: string
+            type: str
             sample: txt_record_value_example
         freeform_tags:
             description:

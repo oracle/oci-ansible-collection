@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Volume resources in Oracle Cloud Infrastructure
     - Lists the volumes in the specified compartment and availability domain.
     - If I(volume_id) is specified, the details of a single Volume will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     volume_id:
@@ -112,13 +112,13 @@ volumes:
                 - The availability domain of the volume.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -133,7 +133,7 @@ volumes:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -155,7 +155,7 @@ volumes:
             description:
                 - The OCID of the volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
@@ -167,13 +167,13 @@ volumes:
             description:
                 - The OCID of the Key Management key which is the master encryption key for the volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         vpus_per_gb:
             description:
@@ -211,25 +211,25 @@ volumes:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: blockVolumeReplica
                 id:
                     description:
                         - The OCID of the block volume replica.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         volume_group_id:
             description:
                 - The OCID of the source volume group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
@@ -253,20 +253,20 @@ volumes:
                     description:
                         - The display name of the block volume replica
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 block_volume_replica_id:
                     description:
                         - The block volume replica's Oracle ID (OCID).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The availability domain of the block volume replica.
                         - "Example: `Uocm:PHX-AD-1`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",

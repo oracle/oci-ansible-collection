@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ManagedInstanceGroup resources in Oracle Cloud Infrastructure
     - Returns a list of all Managed Instance Groups.
     - If I(managed_instance_group_id) is specified, the details of a single ManagedInstanceGroup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_group_id:
@@ -104,25 +104,25 @@ managed_instance_groups:
             description:
                 - Managed Instance Group identifier
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - OCID for the managed instance group
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Information specified by the user about the managed instance group
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instances:
             description:
@@ -134,19 +134,19 @@ managed_instance_groups:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the Software Source.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:
@@ -166,7 +166,7 @@ managed_instance_groups:
             description:
                 - The Operating System type of the managed instance.
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         managed_instance_count:
             description:

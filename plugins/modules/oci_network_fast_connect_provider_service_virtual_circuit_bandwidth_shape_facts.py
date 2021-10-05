@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets the list of available virtual circuit bandwidth levels for a provider.
       You need this information so you can specify your desired bandwidth level (shape) when you create a virtual circuit.
     - For more information about virtual circuits, see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     provider_service_id:
@@ -64,7 +64,7 @@ fast_connect_provider_service_virtual_circuit_bandwidth_shapes:
                 - The name of the bandwidth shape.
                 - "Example: `10 Gbps`"
             returned: on success
-            type: string
+            type: str
             sample: 10 Gbps
     sample: [{
         "bandwidth_in_mbps": 10000,

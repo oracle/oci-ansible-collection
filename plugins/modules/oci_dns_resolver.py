@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Resolver resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Resolver resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oci_resolver_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     resolver_id:
@@ -59,6 +59,7 @@ options:
             - The attached views. Views are evaluated in order.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             view_id:
                 description:
@@ -71,6 +72,7 @@ options:
             - Rules for the resolver. Rules are evaluated in order.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             client_address_conditions:
                 description:
@@ -78,11 +80,13 @@ options:
                       to apply.
                     - This parameter is updatable.
                 type: list
+                elements: str
             qname_cover_conditions:
                 description:
                     - A list of domain names. The query must be covered by one of the domains in order for the rule action to apply.
                     - This parameter is updatable.
                 type: list
+                elements: str
             action:
                 description:
                     - "The action determines the behavior of the rule. If a query matches a supplied condition, the action will
@@ -98,6 +102,7 @@ options:
                     - IP addresses to which queries should be forwarded. Currently limited to a single address.
                     - This parameter is updatable.
                 type: list
+                elements: str
                 required: true
             source_endpoint_name:
                 description:
@@ -172,19 +177,19 @@ resolver:
             description:
                 - The OCID of the owning compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         attached_vcn_id:
             description:
                 - The OCID of the attached VCN.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.attachedvcn.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the resolver.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -206,7 +211,7 @@ resolver:
             description:
                 - The OCID of the resolver.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -214,33 +219,33 @@ resolver:
                   with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time the resource was last updated in \\"YYYY-MM-ddThh:mm:ssZ\\"
                   format with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         _self:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         default_view_id:
             description:
                 - The OCID of the default view.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultview.oc1..xxxxxxEXAMPLExxxxxx"
         is_protected:
             description:
@@ -258,20 +263,20 @@ resolver:
                     description:
                         - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 endpoint_type:
                     description:
                         - The type of resolver endpoint. VNIC is currently the only supported type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: VNIC
                 forwarding_address:
                     description:
                         - An IP address from which forwarded queries may be sent. For VNIC endpoints, this IP address must be part
                           of the subnet and will be assigned by the system if unspecified when isForwarding is true.
                     returned: on success
-                    type: string
+                    type: str
                     sample: forwarding_address_example
                 is_forwarding:
                     description:
@@ -290,14 +295,14 @@ resolver:
                         - An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the
                           subnet and will be assigned by the system if unspecified when isListening is true.
                     returned: on success
-                    type: string
+                    type: str
                     sample: listening_address_example
                 compartment_id:
                     description:
                         - The OCID of the owning compartment. This will match the resolver that the resolver endpoint is under
                           and will be updated if the resolver's compartment is changed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
@@ -305,33 +310,33 @@ resolver:
                           with a Z offset, as defined by RFC 3339."
                         - "**Example:** `2016-07-22T17:23:59:60Z`"
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - "The date and time the resource was last updated in \\"YYYY-MM-ddThh:mm:ssZ\\"
                           format with a Z offset, as defined by RFC 3339."
                         - "**Example:** `2016-07-22T17:23:59:60Z`"
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ACTIVE
                 _self:
                     description:
                         - The canonical absolute URL of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: _self_example
                 subnet_id:
                     description:
                         - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         attached_views:
             description:
@@ -343,7 +348,7 @@ resolver:
                     description:
                         - The OCID of the view.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         rules:
             description:
@@ -370,7 +375,7 @@ resolver:
                           apply. If there are no conditions on the rule, all queries are subject to the specified action.
                           * `FORWARD` - Matching requests will be forwarded from the source interface to the destination address."
                     returned: on success
-                    type: string
+                    type: str
                     sample: FORWARD
                 destination_addresses:
                     description:
@@ -383,7 +388,7 @@ resolver:
                         - Case-insensitive name of an endpoint, that is a sub-resource of the resolver, to use as the forwarding
                           interface. The endpoint must have isForwarding set to true.
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_endpoint_name_example
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -561,10 +566,12 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    client_address_conditions=dict(type="list"),
-                    qname_cover_conditions=dict(type="list"),
+                    client_address_conditions=dict(type="list", elements="str"),
+                    qname_cover_conditions=dict(type="list", elements="str"),
                     action=dict(type="str", required=True, choices=["FORWARD"]),
-                    destination_addresses=dict(type="list", required=True),
+                    destination_addresses=dict(
+                        type="list", elements="str", required=True
+                    ),
                     source_endpoint_name=dict(type="str", required=True),
                 ),
             ),

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple AutonomousDbVersion res
 description:
     - Fetches details about one or multiple AutonomousDbVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Autonomous Database versions.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -69,7 +69,7 @@ autonomous_db_versions:
             description:
                 - A valid Oracle Database version for Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         db_workload:
             description:
@@ -79,7 +79,7 @@ autonomous_db_versions:
                   - AJD - indicates an Autonomous JSON Database
                   - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
-            type: string
+            type: str
             sample: OLTP
         is_dedicated:
             description:
@@ -91,7 +91,7 @@ autonomous_db_versions:
             description:
                 - A URL that points to a detailed description of the Autonomous Database version.
             returned: on success
-            type: string
+            type: str
             sample: details_example
         is_free_tier_enabled:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ManagementAgentPluginCount resources in Oracle Cloud Infrastructure
     - "Gets count of the inventory of management agent plugins for a given compartment id and group by parameter.
       Supported groupBy parameter: pluginName"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -68,7 +68,7 @@ management_agent_plugin_counts:
                     description:
                         - Management Agent Plugin Name
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_name_example
         count:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple InstancePool resources in Oracle Cloud Infrastructure
     - Lists the instance pools in the specified compartment.
     - If I(instance_pool_id) is specified, the details of a single InstancePool will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_pool_id:
@@ -104,14 +104,14 @@ instance_pools:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the instance
                   pool.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -125,7 +125,7 @@ instance_pools:
             description:
                 - The user-friendly name. Does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -141,13 +141,13 @@ instance_pools:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration associated
                   with the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         placement_configurations:
             description:
@@ -160,13 +160,13 @@ instance_pools:
                         - The availability domain to place instances.
                         - "Example: `Uocm:PHX-AD-1`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 primary_subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the primary subnet to place instances.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.primarysubnet.oc1..xxxxxxEXAMPLExxxxxx"
                 fault_domains:
                     description:
@@ -194,13 +194,13 @@ instance_pools:
                                 - The display name of the VNIC. This is also use to match against the instance configuration defined
                                   secondary VNIC.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         subnet_id:
                             description:
                                 - The subnet L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) for the secondary VNIC.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         size:
             description:
@@ -213,8 +213,8 @@ instance_pools:
                 - "The date and time the instance pool was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         load_balancers:
             description:
                 - The load balancers attached to the instance pool.
@@ -225,27 +225,27 @@ instance_pools:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 instance_pool_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer
                           attachment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
                 load_balancer_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance
                           pool.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backend_set_name_example
                 port:
                     description:
@@ -259,13 +259,13 @@ instance_pools:
                           Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
                           that is associated with the instance pool."
                     returned: on success
-                    type: string
+                    type: str
                     sample: vnic_selection_example
                 lifecycle_state:
                     description:
                         - The status of the interaction between the instance pool and the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ATTACHING
         availability_domains:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple LogAnalyticsEntityType resources in Oracle Cloud Infrastructure
     - Return a list of log analytics entity types.
     - If I(entity_type_name) is specified, the details of a single LogAnalyticsEntityType will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -106,31 +106,31 @@ log_analytics_entity_types:
             description:
                 - Log analytics entity type name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         internal_name:
             description:
                 - Internal name for the log analytics entity type.
             returned: on success
-            type: string
+            type: str
             sample: internal_name_example
         compartment_id:
             description:
                 - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category:
             description:
                 - Log analytics entity type category. Category will be used for grouping and filtering.
             returned: on success
-            type: string
+            type: str
             sample: category_example
         cloud_type:
             description:
                 - Log analytics entity type group. That can be CLOUD (OCI) or NON_CLOUD otherwise.
             returned: on success
-            type: string
+            type: str
             sample: CLOUD
         properties:
             description:
@@ -142,37 +142,37 @@ log_analytics_entity_types:
                     description:
                         - Log analytics entity type property name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 description:
                     description:
                         - Description for the log analytics entity type property.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the log analytics entity.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - Time the log analytics entity type was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the log analytics entity type was updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         management_agent_eligibility_status:
             description:
                 - This field indicates whether logs for entities of this type can be collected using a management agent.
             returned: on success
-            type: string
+            type: str
             sample: ELIGIBLE
     sample: [{
         "name": "name_example",

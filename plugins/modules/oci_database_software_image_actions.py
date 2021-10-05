@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), move the Database Software Image and its dependent resources to the specified compartment.
       For more information about moving Databse Software Images, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -70,62 +70,62 @@ database_software_image:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The database version with which the database software image is to be built.
             returned: on success
-            type: string
+            type: str
             sample: database_version_example
         display_name:
             description:
                 - The user-friendly name for the database software image. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the database software image.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Detailed message for the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the database software image was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         image_type:
             description:
                 - The type of software image. Can be grid or database.
             returned: on success
-            type: string
+            type: str
             sample: GRID_IMAGE
         image_shape_family:
             description:
                 - To what shape the image is meant for.
             returned: on success
-            type: string
+            type: str
             sample: VM_BM_SHAPE
         patch_set:
             description:
                 - The PSU or PBP or Release Updates. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
             returned: on success
-            type: string
+            type: str
             sample: patch_set_example
         freeform_tags:
             description:
@@ -152,7 +152,7 @@ database_software_image:
             description:
                 - The patches included in the image and the version of the image
             returned: on success
-            type: string
+            type: str
             sample: included_patches_summary_example
         database_software_image_one_off_patches:
             description:
@@ -164,7 +164,7 @@ database_software_image:
             description:
                 - output from lsinventory which will get passed as a string
             returned: on success
-            type: string
+            type: str
             sample: ls_inventory_example
         is_upgrade_supported:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ConsoleConnection resources in Oracle Cloud Infrastructure
     - Lists the console connections for the specified database node.
     - If I(console_connection_id) is specified, the details of a single ConsoleConnection will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_node_id:
@@ -65,37 +65,37 @@ console_connections:
             description:
                 - The OCID of the console connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment to contain the console connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         db_node_id:
             description:
                 - The OCID of the database node.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dbnode.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - The SSH connection string for the console connection.
             returned: on success
-            type: string
+            type: str
             sample: connection_string_example
         fingerprint:
             description:
                 - The SSH public key fingerprint for the console connection.
             returned: on success
-            type: string
+            type: str
             sample: fingerprint_example
         lifecycle_state:
             description:
                 - The current state of the console connection.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

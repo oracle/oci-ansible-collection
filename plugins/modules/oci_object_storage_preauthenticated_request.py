@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a PreauthenticatedRequest resource in Oracle Cloud Inf
 description:
     - This module allows the user to create and delete a PreauthenticatedRequest resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a pre-authenticated request specific to the bucket.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -131,20 +131,20 @@ preauthenticated_request:
             description:
                 - The unique identifier to use when directly addressing the pre-authenticated request.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-provided name of the pre-authenticated request.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         object_name:
             description:
                 - The name of object that is being granted access to by the pre-authenticated request. This can be null and if it is,
                   the pre-authenticated request grants access to the entire bucket.
             returned: on success
-            type: string
+            type: str
             sample: object_name_example
         bucket_listing_action:
             description:
@@ -152,27 +152,27 @@ preauthenticated_request:
                   Deny: Prevents the user from performing a list operation.
                   ListObjects: Authorizes the user to perform a list operation."
             returned: on success
-            type: string
+            type: str
             sample: bucket_listing_action_example
         access_type:
             description:
                 - The operation that can be performed on this resource.
             returned: on success
-            type: string
+            type: str
             sample: ObjectRead
         time_expires:
             description:
                 - The expiration date for the pre-authenticated request as per L(RFC 3339,https://tools.ietf.org/html/rfc3339). After this date the pre-
                   authenticated request will no longer be valid.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The date when the pre-authenticated request was created as per L(RFC 3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",

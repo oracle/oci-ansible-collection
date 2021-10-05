@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the available L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) objects that you can enable for a
       service gateway in this region.
     - If I(service_id) is specified, the details of a single Service will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     service_id:
@@ -67,27 +67,27 @@ services:
                   See L(Security List,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityList/).
                 - "Example: `oci-phx-objectstorage`"
             returned: on success
-            type: string
+            type: str
             sample: oci-phx-objectstorage
         description:
             description:
                 - Description of the Oracle service or services covered by this `Service` object.
                 - "Example: `OCI PHX Object Storage`"
             returned: on success
-            type: string
+            type: str
             sample: OCI PHX Object Storage
         id:
             description:
                 - The `Service` object's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Name of the `Service` object. This name can change and is not guaranteed to be unique.
                 - "Example: `OCI PHX Object Storage`"
             returned: on success
-            type: string
+            type: str
             sample: OCI PHX Object Storage
     sample: [{
         "cidr_block": "oci-phx-objectstorage",

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_managed_database_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_managed_database_facts -- Fetches details abo
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ManagedDatabase resources in Oracle Cloud Infrastructure
-- Gets the Managed Database for a specific ID or the list of Managed Databases in a specific compartment. Managed Databases can also be filtered based on the name parameter. Only one of the parameters, ID or name should be provided. If none of these parameters is provided, all the Managed Databases in the compartment are listed.
+- Gets the Managed Database for a specific ID or the list of Managed Databases in a specific compartment. Managed Databases can be filtered based on the name parameter. Only one of the parameters, ID or name should be provided. If neither of these parameters is provided, all the Managed Databases in the compartment are listed. Managed Databases can also be filtered based on the deployment type and management option. If the deployment type is not specified or if it is `ONPREMISE`, then the management option is not considered and Managed Databases with `ADVANCED` management option are listed.
 - If *managed_database_id* is specified, the details of a single ManagedDatabase will be returned.
 
 
@@ -202,6 +212,28 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-deployment_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ONPREMISE</li>
+                                                                                                                                                                                                <li>BM</li>
+                                                                                                                                                                                                <li>VM</li>
+                                                                                                                                                                                                <li>EXADATA</li>
+                                                                                                                                                                                                <li>EXADATA_CC</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return Managed Databases of the specified deployment type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-managed_database_id"></div>
                     <b>managed_database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-managed_database_id" title="Permalink to this option"></a>
@@ -216,6 +248,25 @@ Parameters
                                             <div>Required to get a specific managed_database.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-management_option"></div>
+                    <b>management_option</b>
+                    <a class="ansibleOptionLink" href="#parameter-management_option" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>BASIC</li>
+                                                                                                                                                                                                <li>ADVANCED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return Managed Databases with the specified management option.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -282,7 +333,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Ascending order is the the default order.</div>
+                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Ascending order is the default order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -302,6 +353,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -365,7 +419,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagedDatabase resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_status&#x27;: &#x27;UP&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_count&#x27;: 56, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;is_cluster&#x27;: True, &#x27;managed_database_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parent_container_compartment_id&#x27;: &#x27;ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_id&#x27;: &#x27;ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_name&#x27;: &#x27;parent_container_name_example&#x27;, &#x27;pdb_count&#x27;: 56, &#x27;pdb_status&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_status&#x27;: &#x27;UP&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_count&#x27;: 56, &#x27;instance_details&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;is_cluster&#x27;: True, &#x27;managed_database_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;management_option&#x27;: &#x27;BASIC&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;parent_container_compartment_id&#x27;: &#x27;ocid1.parentcontainercompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_id&#x27;: &#x27;ocid1.parentcontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;parent_container_name&#x27;: &#x27;parent_container_name_example&#x27;, &#x27;pdb_count&#x27;: 56, &#x27;pdb_status&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;UP&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -454,6 +508,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_SIDB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_databases/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-managed_databases/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The infrastructure used to deploy the Oracle Database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONPREMISE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -677,6 +749,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-managed_databases/management_option"></div>
+                    <b>management_option</b>
+                    <a class="ansibleOptionLink" href="#return-managed_databases/management_option" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The management option used when enabling Database Management.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BASIC</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

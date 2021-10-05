@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ApiValidations resource in Oracle Clo
 description:
     - Fetches details about a ApiValidations resource in Oracle Cloud Infrastructure
     - Gets the API validation results.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     api_id:
@@ -66,13 +66,13 @@ api_validations:
                             description:
                                 - Description of the warning/error.
                             returned: on success
-                            type: string
+                            type: str
                             sample: msg_example
                         severity:
                             description:
                                 - Severity of the issue.
                             returned: on success
-                            type: string
+                            type: str
                             sample: INFO
                         src:
                             description:
@@ -84,13 +84,13 @@ api_validations:
                     description:
                         - Name of the validation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 result:
                     description:
                         - Result of the validation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ERROR
     sample: {
         "validations": [{

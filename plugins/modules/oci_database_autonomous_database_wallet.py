@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_database_autonomous_database_wallet
 short_description: Manage an AutonomousDatabaseWallet resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an AutonomousDatabaseWallet resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     autonomous_database_id:
@@ -67,14 +67,14 @@ autonomous_database_wallet:
             description:
                 - The current lifecycle state of the Autonomous Database wallet.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_rotated:
             description:
                 - The date and time the wallet was last rotated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "lifecycle_state": "ACTIVE",
         "time_rotated": "2013-10-20T19:20:30+01:00"

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_waas_policy_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_waas_policy -- Manage a WaasPolicy resource in Oracle Cloud Infra
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -350,7 +360,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-origin_groups/origins" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -418,7 +428,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-origins/custom_headers" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1188,7 +1198,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/access_rules" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1421,7 +1431,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/access_rules/criteria" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1581,7 +1591,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/access_rules/response_header_manipulation" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1750,7 +1760,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/caching_rules" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1823,7 +1833,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/caching_rules/criteria" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1942,7 +1952,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/captchas" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2078,7 +2088,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/custom_protection_rules" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2116,7 +2126,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/custom_protection_rules/exclusions" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2522,7 +2532,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/good_bots" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3280,7 +3290,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/js_challenge/criteria" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3530,7 +3540,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/protection_rules" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3588,7 +3598,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/protection_rules/exclusions" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3986,7 +3996,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/threat_feeds" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -4080,7 +4090,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-waf_config/whitelists" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -4177,6 +4187,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -5233,7 +5246,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the policy was created, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29Z</div>
                                     </td>
             </tr>
                                 <tr>

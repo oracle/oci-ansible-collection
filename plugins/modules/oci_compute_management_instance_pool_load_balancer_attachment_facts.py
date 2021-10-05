@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a InstancePoolLoadBalancerAttachment re
 description:
     - Fetches details about a InstancePoolLoadBalancerAttachment resource in Oracle Cloud Infrastructure
     - Gets information about a load balancer that is attached to the specified instance pool.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_pool_id:
@@ -60,25 +60,25 @@ instance_pool_load_balancer_attachment:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool of the load balancer attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         load_balancer_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer attached to the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name:
             description:
                 - The name of the backend set on the load balancer.
             returned: on success
-            type: string
+            type: str
             sample: backend_set_name_example
         port:
             description:
@@ -92,13 +92,13 @@ instance_pool_load_balancer_attachment:
                   Possible values are \\"PrimaryVnic\\" or the displayName of one of the secondary VNICs on the instance configuration
                   that is associated with the instance pool."
             returned: on success
-            type: string
+            type: str
             sample: vnic_selection_example
         lifecycle_state:
             description:
                 - The status of the interaction between the instance pool and the load balancer.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

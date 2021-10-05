@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,9 +23,11 @@ module: oci_database_migration_job_actions
 short_description: Perform actions on a Job resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Job resource in Oracle Cloud Infrastructure
-    - For I(action=abort), aborts a Migration Job (either Evaluation or Migration).
-    - For I(action=resume), resume a migration Job.
-version_added: "2.9"
+    - "For I(action=abort), note: Deprecated. Use the new resource model APIs instead.
+      Aborts a Migration Job (either Evaluation or Migration)."
+    - "For I(action=resume), note: Deprecated. Use the new resource model APIs instead.
+      Resume a migration Job."
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     job_id:
@@ -92,38 +94,38 @@ job:
             description:
                 - The OCID of the Migration Job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Name of the job.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         migration_id:
             description:
                 - The OCID of the Migration that this job belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - The job type.
             returned: on success
-            type: string
+            type: str
             sample: EVALUATION
         time_created:
             description:
                 - The time the Migration Job was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Migration Job was last updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         progress:
             description:
                 - ""
@@ -134,13 +136,13 @@ job:
                     description:
                         - Current status of the job.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PENDING
                 current_phase:
                     description:
                         - Current phase of the job.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ODMS_VALIDATE_TGT
                 phases:
                     description:
@@ -152,13 +154,13 @@ job:
                             description:
                                 - Phase name
                             returned: on success
-                            type: string
+                            type: str
                             sample: ODMS_VALIDATE_TGT
                         status:
                             description:
                                 - Phase status
                             returned: on success
-                            type: string
+                            type: str
                             sample: PENDING
                         duration_in_ms:
                             description:
@@ -182,32 +184,32 @@ job:
                     description:
                         - Type of unsupported object
                     returned: on success
-                    type: string
+                    type: str
                     sample: GOLDEN_GATE
                 owner:
                     description:
                         - Owner of the object (regular expression is allowed)
                     returned: on success
-                    type: string
+                    type: str
                     sample: owner_example
                 object_name:
                     description:
                         - Name of the object (regular expression is allowed)
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_example
         lifecycle_state:
             description:
                 - The current state of the migration job.
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information
                   for a resource in Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), to move an Autonomous VM cluster and its dependent resources to another compartment, use the
       L(ChangeAutonomousVmClusterCompartment,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/AutonomousVmCluster/ChangeAutonomousVmClusterCompartment) operation.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -70,56 +70,56 @@ autonomous_vm_cluster:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Autonomous VM cluster. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - The date and time that the Autonomous VM cluster was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Autonomous VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_zone:
             description:
                 - The time zone to use for the Autonomous VM cluster. For details, see L(DB System Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         exadata_infrastructure_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_network_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
         is_local_backup_enabled:
             description:
@@ -168,7 +168,7 @@ autonomous_vm_cluster:
             description:
                 - The Oracle license model that applies to the Autonomous VM cluster. The default is LICENSE_INCLUDED.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         freeform_tags:
             description:

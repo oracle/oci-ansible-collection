@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ImportableEnterpriseMan
 description:
     - Fetches details about one or multiple ImportableEnterpriseManagerEntity resources in Oracle Cloud Infrastructure
     - Gets a list of importable entities for an Operations Insights Enterprise Manager bridge that have not been imported before.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     enterprise_manager_bridge_id:
@@ -53,31 +53,31 @@ importable_enterprise_manager_entities:
             description:
                 - Enterprise Manager Unique Identifier
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_identifier_example
         enterprise_manager_entity_name:
             description:
                 - Enterprise Manager Entity Name
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_name_example
         enterprise_manager_entity_type:
             description:
                 - Enterprise Manager Entity Type
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_type_example
         enterprise_manager_entity_identifier:
             description:
                 - Enterprise Manager Entity Unique Identifier
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_identifier_example
         opsi_entity_type:
             description:
                 - Operations Insights internal representation of the resource type.
             returned: on success
-            type: string
+            type: str
             sample: opsi_entity_type_example
     sample: [{
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",

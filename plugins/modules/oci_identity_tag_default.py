@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a TagDefault resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a TagDefault resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new tag default in the specified compartment for the specified tag definition.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -91,51 +91,51 @@ tag_default:
             description:
                 - The OCID of the tag default.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment. The tag default applies to all new resources that get created in the
                   compartment. Resources that existed before the tag default was created are not tagged.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the tag namespace that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_id:
             description:
                 - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
         tag_definition_name:
             description:
                 - The name used in the tag definition. This field is informational in the context of the tag default.
             returned: on success
-            type: string
+            type: str
             sample: tag_definition_name_example
         value:
             description:
                 - The default value for the tag definition. This will be applied to all resources created in the compartment.
             returned: on success
-            type: string
+            type: str
             sample: value_example
         time_created:
             description:
                 - Date and time the `TagDefault` object was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The tag default's current state. After creating a `TagDefault`, make sure its `lifecycleState` is ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

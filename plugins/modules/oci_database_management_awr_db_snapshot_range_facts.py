@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a AwrDbSnapshotRange resource in Oracle
 description:
     - Fetches details about a AwrDbSnapshotRange resource in Oracle Cloud Infrastructure
     - Summarizes the AWR snapshot ranges that contain continuous snapshots, for the specified Managed Database.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -54,7 +54,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -83,13 +83,13 @@ awr_db_snapshot_range:
                   It can be retrieved from the following endpoint:
                   /managedDatabases/{managedDatabaseId}/awrDbs"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx"
         db_name:
             description:
                 - The name of the database.
             returned: on success
-            type: string
+            type: str
             sample: db_name_example
         instance_list:
             description:
@@ -101,20 +101,20 @@ awr_db_snapshot_range:
             description:
                 - The timestamp of the database startup.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_first_snapshot_begin:
             description:
                 - The start time of the earliest snapshot.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_latest_snapshot_end:
             description:
                 - The end time of the latest snapshot.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         first_snapshot_id:
             description:
                 - "The ID of the earliest snapshot. The snapshot ID is not the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -156,13 +156,13 @@ awr_db_snapshot_range:
             description:
                 - The version of the database.
             returned: on success
-            type: string
+            type: str
             sample: db_version_example
         snapshot_timezone:
             description:
                 - The time zone of the snapshot.
             returned: on success
-            type: string
+            type: str
             sample: snapshot_timezone_example
     sample: {
         "awr_db_id": "ocid1.awrdb.oc1..xxxxxxEXAMPLExxxxxx",

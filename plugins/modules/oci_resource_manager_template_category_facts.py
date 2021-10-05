@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple TemplateCategory resour
 description:
     - Fetches details about one or multiple TemplateCategory resources in Oracle Cloud Infrastructure
     - Lists template categories.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options: {}
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
@@ -48,13 +48,13 @@ template_categories:
                 - Unique identifier for the template category.
                   Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the template category.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

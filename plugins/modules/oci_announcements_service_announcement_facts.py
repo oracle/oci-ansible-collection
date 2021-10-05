@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a Announcement resource in Oracle Cloud
 description:
     - Fetches details about a Announcement resource in Oracle Cloud Infrastructure
     - Gets the details of a specific announcement.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     announcement_id:
@@ -54,33 +54,33 @@ announcement:
             description:
                 - The OCID of the announcement.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - The entity type, which is either an announcement or the summary representation of an announcement.
             returned: on success
-            type: string
+            type: str
             sample: type_example
         reference_ticket_number:
             description:
                 - The reference Jira ticket number.
             returned: on success
-            type: string
+            type: str
             sample: reference_ticket_number_example
         summary:
             description:
                 - A summary of the issue. A summary might appear in the console banner view of the announcement or in
                   an email subject line. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: summary_example
         time_one_title:
             description:
                 - "The label associated with an initial time value.
                   Example: `Time Started`"
             returned: on success
-            type: string
+            type: str
             sample: Time Started
         time_one_type:
             description:
@@ -88,21 +88,21 @@ announcement:
                   contains a label of `timeOneType` in English.
                   Example: `START_TIME`"
             returned: on success
-            type: string
+            type: str
             sample: START_TIME
         time_one_value:
             description:
                 - The actual value of the first time value for the event. Typically, this denotes the time an event started, but the meaning
                   can vary, depending on the announcement type. The `timeOneType` attribute describes the meaning.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_two_title:
             description:
                 - "The label associated with a second time value.
                   Example: `Time Ended`"
             returned: on success
-            type: string
+            type: str
             sample: Time Ended
         time_two_type:
             description:
@@ -110,15 +110,15 @@ announcement:
                   a label of `timeTwoType` in English.
                   Example: `END_TIME`"
             returned: on success
-            type: string
+            type: str
             sample: END_TIME
         time_two_value:
             description:
                 - The actual value of the second time value. Typically, this denotes the time an event ended, but the meaning
                   can vary, depending on the announcement type. The `timeTwoType` attribute describes the meaning.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         services:
             description:
                 - Impacted Oracle Cloud Infrastructure services.
@@ -135,13 +135,13 @@ announcement:
             description:
                 - The type of announcement. An announcement's type signals its severity.
             returned: on success
-            type: string
+            type: str
             sample: ACTION_RECOMMENDED
         lifecycle_state:
             description:
                 - The current lifecycle state of the announcement.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         is_banner:
             description:
@@ -154,21 +154,21 @@ announcement:
                 - "The date and time the announcement was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
-            type: string
-            sample: 2019-01-01T17:43:01.389+0000
+            type: str
+            sample: "2019-01-01T17:43:01.389+0000"
         time_updated:
             description:
                 - "The date and time the announcement was last updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
-            type: string
-            sample: 2019-01-01T17:43:01.389+0000
+            type: str
+            sample: "2019-01-01T17:43:01.389+0000"
         description:
             description:
                 - A detailed explanation of the event, expressed by using Markdown language. Avoid entering
                   confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         additional_information:
             description:
@@ -176,7 +176,7 @@ announcement:
                   details view of an announcement. Additional information might include remediation steps or
                   answers to frequently asked questions. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: additional_information_example
         affected_resources:
             description:
@@ -188,19 +188,19 @@ announcement:
                     description:
                         - The OCID of the affected resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 resource_name:
                     description:
                         - The friendly name of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: resource_name_example
                 region:
                     description:
                         - The region where the affected resource exists.
                     returned: on success
-                    type: string
+                    type: str
                     sample: region_example
                 additional_properties:
                     description:
@@ -212,13 +212,13 @@ announcement:
                             description:
                                 - The name of the property.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - The value of the property.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

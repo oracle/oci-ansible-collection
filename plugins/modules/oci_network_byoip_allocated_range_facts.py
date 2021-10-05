@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ByoipAllocatedRange resources in Oracle Cloud Infrastructure
     - Lists the subranges of a BYOIP CIDR block currently allocated to an IP pool.
       Each `ByoipAllocatedRange` object also lists the IP pool where it is allocated.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     byoip_range_id:
@@ -55,13 +55,13 @@ byoip_allocated_ranges:
             description:
                 - The BYOIP CIDR block range or subrange allocated to an IP pool. This could be all or part of a BYOIP CIDR block.
             returned: on success
-            type: string
+            type: str
             sample: cidr_block_example
         public_ip_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IP pool containing the CIDR block.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "cidr_block": "cidr_block_example",

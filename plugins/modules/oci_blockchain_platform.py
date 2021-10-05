@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BlockchainPlatform resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Blockchain Platform.
     - "This resource has the following action operations in the M(oci_blockchain_platform_actions) module: change_compartment, start, stop."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -197,25 +197,25 @@ blockchain_platform:
             description:
                 - unique identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Platform Instance Display name, can be renamed
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Platform Instance Description
             returned: on success
-            type: string
+            type: str
             sample: description_example
         is_byol:
             description:
@@ -227,62 +227,62 @@ blockchain_platform:
             description:
                 - The time the the Platform Instance was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Platform Instance was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         service_version:
             description:
                 - The version of the Platform Instance.
             returned: on success
-            type: string
+            type: str
             sample: service_version_example
         platform_role:
             description:
                 - "Role of platform - FOUNDER or PARTICIPANT"
             returned: on success
-            type: string
+            type: str
             sample: FOUNDER
         compute_shape:
             description:
                 - "Compute shape - STANDARD or ENTERPRISE_SMALL or ENTERPRISE_MEDIUM or ENTERPRISE_LARGE or ENTERPRISE_EXTRA_LARGE or ENTERPRISE_CUSTOM"
             returned: on success
-            type: string
+            type: str
             sample: STANDARD
         platform_shape_type:
             description:
                 - "Type of Platform shape - DEFAULT or CUSTOM"
             returned: on success
-            type: string
+            type: str
             sample: DEFAULT
         load_balancer_shape:
             description:
                 - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
             returned: on success
-            type: string
+            type: str
             sample: LB_100_MBPS
         service_endpoint:
             description:
                 - Service endpoint URL, valid post-provisioning
             returned: on success
-            type: string
+            type: str
             sample: service_endpoint_example
         lifecycle_state:
             description:
                 - The current state of the Platform Instance.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         storage_size_in_tbs:
             description:
@@ -324,13 +324,13 @@ blockchain_platform:
                             description:
                                 - OSN identifier
                             returned: on success
-                            type: string
+                            type: str
                             sample: osn_key_example
                         ad:
                             description:
                                 - Availability Domain of OSN
                             returned: on success
-                            type: string
+                            type: str
                             sample: ad_example
                         ocpu_allocation_param:
                             description:
@@ -348,7 +348,7 @@ blockchain_platform:
                             description:
                                 - The current state of the OSN.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ACTIVE
                 peers:
                     description:
@@ -360,19 +360,19 @@ blockchain_platform:
                             description:
                                 - peer identifier
                             returned: on success
-                            type: string
+                            type: str
                             sample: peer_key_example
                         role:
                             description:
                                 - Peer role
                             returned: on success
-                            type: string
+                            type: str
                             sample: role_example
                         alias:
                             description:
                                 - peer alias
                             returned: on success
-                            type: string
+                            type: str
                             sample: alias_example
                         ocpu_allocation_param:
                             description:
@@ -390,19 +390,19 @@ blockchain_platform:
                             description:
                                 - Host on which the Peer exists
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_example
                         ad:
                             description:
                                 - Availability Domain of peer
                             returned: on success
-                            type: string
+                            type: str
                             sample: ad_example
                         lifecycle_state:
                             description:
                                 - The current state of the peer.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ACTIVE
         replicas:
             description:
@@ -438,7 +438,7 @@ blockchain_platform:
                     description:
                         - Host name of VM
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_example
                 ocpu_utilization_number:
                     description:
@@ -666,7 +666,7 @@ def main():
             platform_role=dict(type="str"),
             compute_shape=dict(type="str"),
             is_byol=dict(type="bool"),
-            idcs_access_token=dict(type="str"),
+            idcs_access_token=dict(type="str", no_log=True),
             federated_user_id=dict(type="str"),
             ca_cert_archive_text=dict(type="str"),
             freeform_tags=dict(type="dict"),

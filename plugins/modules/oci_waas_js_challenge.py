@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_js_challenge
 short_description: Manage a JsChallenge resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a JsChallenge resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -151,6 +151,7 @@ options:
             - When defined, the JavaScript Challenge would be applied only for the requests that matched all the listed conditions.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             condition:
                 description:
@@ -304,7 +305,7 @@ js_challenge:
             description:
                 - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
             returned: on success
-            type: string
+            type: str
             sample: DETECT
         failure_threshold:
             description:
@@ -329,13 +330,13 @@ js_challenge:
                     description:
                         - The name of the header.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 value:
                     description:
                         - The value of the header.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
         challenge_settings:
             description:
@@ -348,7 +349,7 @@ js_challenge:
                         - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                           `SHOW_ERROR_PAGE`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SET_RESPONSE_CODE
                 block_response_code:
                     description:
@@ -364,28 +365,28 @@ js_challenge:
                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the request is
                           blocked. If unspecified, defaults to `Access to the website is blocked`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_message_example
                 block_error_page_description:
                     description:
                         - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                           request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_description_example
                 block_error_page_code:
                     description:
                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the request is
                           blocked. If unspecified, defaults to `403`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_code_example
                 captcha_title:
                     description:
                         - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and the
                           request is blocked. If unspecified, defaults to `Are you human?`
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_title_example
                 captcha_header:
                     description:
@@ -393,7 +394,7 @@ js_challenge:
                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `We have detected an increased number of attempts to access
                           this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from captcha below.`
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_header_example
                 captcha_footer:
                     description:
@@ -401,14 +402,14 @@ js_challenge:
                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in image
                           above`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_footer_example
                 captcha_submit_label:
                     description:
                         - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_submit_label_example
         are_redirects_challenged:
             description:
@@ -482,13 +483,13 @@ js_challenge:
                           - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                           *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: URL_IS
                 value:
                     description:
                         - The criteria value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 is_case_sensitive:
                     description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       the type of identifying information you'll need to provide for each resource-type. Most resource-types just
       require an L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) to identify a specific resource, but some resource-types,
       such as buckets, require you to provide other identifying information.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bulk_action_type:
@@ -64,7 +64,7 @@ bulk_action_resource_type_collections:
             description:
                 - The unique name of the resource-type.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         metadata_keys:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates an instance configuration. An instance configuration is a template that defines the
       settings to use when creating Compute instances.
     - "This resource has the following action operations in the M(oci_instance_configuration_actions) module: change_compartment, launch."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -108,6 +108,7 @@ options:
                 description:
                     - ""
                 type: list
+                elements: dict
                 suboptions:
                     attach_details:
                         description:
@@ -300,6 +301,7 @@ options:
                                       information about NSGs, see
                                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                                 type: list
+                                elements: str
                             private_ip:
                                 description:
                                     - A private IP address of your choice to assign to the VNIC.
@@ -662,6 +664,7 @@ options:
                                 description:
                                     - The configuration of plugins associated with this instance.
                                 type: list
+                                elements: dict
                                 suboptions:
                                     name:
                                         description:
@@ -749,6 +752,7 @@ options:
                 description:
                     - ""
                 type: list
+                elements: dict
                 suboptions:
                     create_vnic_details:
                         description:
@@ -799,6 +803,7 @@ options:
                                       information about NSGs, see
                                       L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
                                 type: list
+                                elements: str
                             private_ip:
                                 description:
                                     - A private IP address of your choice to assign to the VNIC.
@@ -901,7 +906,7 @@ instance_configuration:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
                   containing the instance configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -915,7 +920,7 @@ instance_configuration:
             description:
                 - A user-friendly name for the instance configuration.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -930,7 +935,7 @@ instance_configuration:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_details:
             description:
@@ -942,7 +947,7 @@ instance_configuration:
                     description:
                         - The type of instance details. Supported instanceType is compute
                     returned: on success
-                    type: string
+                    type: str
                     sample: compute
                 block_volumes:
                     description:
@@ -960,7 +965,7 @@ instance_configuration:
                                     description:
                                         - A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: display_name_example
                                 is_read_only:
                                     description:
@@ -972,7 +977,7 @@ instance_configuration:
                                     description:
                                         - The device name.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: device_example
                                 is_shareable:
                                     description:
@@ -987,7 +992,7 @@ instance_configuration:
                                     description:
                                         - "The type of volume. The only supported values are \\"iscsi\\" and \\"paravirtualized\\"."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: iscsi
                                 use_chap:
                                     description:
@@ -1012,20 +1017,20 @@ instance_configuration:
                                         - The availability domain of the volume.
                                         - "Example: `Uocm:PHX-AD-1`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: Uocm:PHX-AD-1
                                 backup_policy_id:
                                     description:
                                         - If provided, specifies the ID of the volume backup policy to assign to the newly
                                           created volume. If omitted, no policy will be assigned.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
                                 compartment_id:
                                     description:
                                         - The OCID of the compartment that contains the volume.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                                 defined_tags:
                                     description:
@@ -1041,7 +1046,7 @@ instance_configuration:
                                         - A user-friendly name. Does not have to be unique, and it's changeable.
                                           Avoid entering confidential information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: display_name_example
                                 freeform_tags:
                                     description:
@@ -1057,7 +1062,7 @@ instance_configuration:
                                         - The OCID of the Key Management key to assign as the master encryption key
                                           for the volume.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                                 vpus_per_gb:
                                     description:
@@ -1089,19 +1094,19 @@ instance_configuration:
                                             description:
                                                 - ""
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: volume
                                         id:
                                             description:
                                                 - The OCID of the volume.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         volume_id:
                             description:
                                 - The OCID of the volume.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
                 launch_details:
                     description:
@@ -1114,19 +1119,19 @@ instance_configuration:
                                 - The availability domain of the instance.
                                 - "Example: `Uocm:PHX-AD-1`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: Uocm:PHX-AD-1
                         capacity_reservation_id:
                             description:
                                 - The OCID of the compute capacity reservation this instance is launched under.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
                         compartment_id:
                             description:
                                 - The OCID of the compartment.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         create_vnic_details:
                             description:
@@ -1164,7 +1169,7 @@ instance_configuration:
                                         - A user-friendly name for the VNIC. Does not have to be unique.
                                           Avoid entering confidential information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: display_name_example
                                 freeform_tags:
                                     description:
@@ -1181,7 +1186,7 @@ instance_configuration:
                                           See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: hostname_label_example
                                 nsg_ids:
                                     description:
@@ -1197,7 +1202,7 @@ instance_configuration:
                                           See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: private_ip_example
                                 skip_source_dest_check:
                                     description:
@@ -1213,7 +1218,7 @@ instance_configuration:
                                           See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         defined_tags:
                             description:
@@ -1230,7 +1235,7 @@ instance_configuration:
                                   Avoid entering confidential information.
                                 - "Example: `My bare metal instance`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: My bare metal instance
                         extended_metadata:
                             description:
@@ -1274,7 +1279,7 @@ instance_configuration:
                                   L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
                                 - For more information about iPXE, see http://ipxe.org.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ipxe_script_example
                         metadata:
                             description:
@@ -1323,7 +1328,7 @@ instance_configuration:
                                 - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
                                   us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
                             returned: on success
-                            type: string
+                            type: str
                             sample: shape_example
                         shape_config:
                             description:
@@ -1352,7 +1357,7 @@ instance_configuration:
                                           - `BASELINE_1_2` - baseline usage is 1/2 of an OCPU.
                                           - `BASELINE_1_1` - baseline usage is an entire OCPU. This represents a non-burstable instance."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: BASELINE_1_8
                         platform_config:
                             description:
@@ -1364,7 +1369,7 @@ instance_configuration:
                                     description:
                                         - The type of platform being configured.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AMD_MILAN_BM
                                 is_secure_boot_enabled:
                                     description:
@@ -1388,7 +1393,7 @@ instance_configuration:
                                     description:
                                         - The number of NUMA nodes per socket.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: NPS0
                         source_details:
                             description:
@@ -1402,13 +1407,13 @@ instance_configuration:
                                           Use `image` when specifying the image OCID. Use `bootVolume` when specifying
                                           the boot volume OCID.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: bootVolume
                                 boot_volume_id:
                                     description:
                                         - The OCID of the boot volume used to boot the instance.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
                                 boot_volume_size_in_gbs:
                                     description:
@@ -1421,7 +1426,7 @@ instance_configuration:
                                     description:
                                         - The OCID of the image used to boot the instance.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                         fault_domain:
                             description:
@@ -1437,7 +1442,7 @@ instance_configuration:
                                   Identity and Access Management Service API.
                                 - "Example: `FAULT-DOMAIN-1`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: FAULT-DOMAIN-1
                         dedicated_vm_host_id:
                             description:
@@ -1445,7 +1450,7 @@ instance_configuration:
                                 - Dedicated VM hosts can be used when launching individual instances from an instance configuration. They
                                   cannot be used to launch instance pools.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
                         launch_mode:
                             description:
@@ -1455,7 +1460,7 @@ instance_configuration:
                                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
                             returned: on success
-                            type: string
+                            type: str
                             sample: NATIVE
                         launch_options:
                             description:
@@ -1474,7 +1479,7 @@ instance_configuration:
                                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                                           storage volumes on platform images."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: ISCSI
                                 firmware:
                                     description:
@@ -1484,7 +1489,7 @@ instance_configuration:
                                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                                           default for platform images."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: BIOS
                                 network_type:
                                     description:
@@ -1494,7 +1499,7 @@ instance_configuration:
                                           when you launch an instance using hardware-assisted (SR-IOV) networking.
                                           * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: E1000
                                 remote_data_volume_type:
                                     description:
@@ -1507,7 +1512,7 @@ instance_configuration:
                                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                                           storage volumes on platform images."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: ISCSI
                                 is_pv_encryption_in_transit_enabled:
                                     description:
@@ -1589,7 +1594,7 @@ instance_configuration:
                                                   L(Managing Plugins with Oracle Cloud Agent,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/manage-
                                                   plugins.htm).
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: name_example
                                         desired_state:
                                             description:
@@ -1597,7 +1602,7 @@ instance_configuration:
                                                 - To enable the monitoring and management plugins, the `isMonitoringDisabled` and
                                                   `isManagementDisabled` attributes must also be set to false.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: ENABLED
                         is_pv_encryption_in_transit_enabled:
                             description:
@@ -1611,7 +1616,7 @@ instance_configuration:
                                   * `LIVE_MIGRATE` - Run maintenance using a live migration.
                                   * `REBOOT` - Run maintenance using a reboot."
                             returned: on success
-                            type: string
+                            type: str
                             sample: LIVE_MIGRATE
                         instance_options:
                             description:
@@ -1640,7 +1645,7 @@ instance_configuration:
                                           If the instance was running, it is automatically rebooted. This is the default action when a value is not set.
                                           * `STOP_INSTANCE` - The instance is recovered in the stopped state."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: RESTORE_INSTANCE
                         preemptible_instance_config:
                             description:
@@ -1658,7 +1663,7 @@ instance_configuration:
                                             description:
                                                 - The type of action to run when the instance is interrupted for eviction.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: TERMINATE
                                         preserve_boot_volume:
                                             description:
@@ -1709,7 +1714,7 @@ instance_configuration:
                                         - A user-friendly name for the VNIC. Does not have to be unique.
                                           Avoid entering confidential information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: display_name_example
                                 freeform_tags:
                                     description:
@@ -1726,7 +1731,7 @@ instance_configuration:
                                           See the `hostnameLabel` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: hostname_label_example
                                 nsg_ids:
                                     description:
@@ -1742,7 +1747,7 @@ instance_configuration:
                                           See the `privateIp` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: private_ip_example
                                 skip_source_dest_check:
                                     description:
@@ -1758,13 +1763,13 @@ instance_configuration:
                                           See the `subnetId` attribute of L(CreateVnicDetails,https://docs.cloud.oracle.com/en-
                                           us/iaas/api/#/en/iaas/latest/CreateVnicDetails/) for more information.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         nic_index:
                             description:
@@ -1789,8 +1794,8 @@ instance_configuration:
                 - The date and time the instance configuration was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -2137,7 +2142,7 @@ def main():
                                     display_name=dict(aliases=["name"], type="str"),
                                     freeform_tags=dict(type="dict"),
                                     hostname_label=dict(type="str"),
-                                    nsg_ids=dict(type="list"),
+                                    nsg_ids=dict(type="list", elements="str"),
                                     private_ip=dict(type="str"),
                                     skip_source_dest_check=dict(type="bool"),
                                     subnet_id=dict(type="str"),
@@ -2323,7 +2328,7 @@ def main():
                                     display_name=dict(aliases=["name"], type="str"),
                                     freeform_tags=dict(type="dict"),
                                     hostname_label=dict(type="str"),
-                                    nsg_ids=dict(type="list"),
+                                    nsg_ids=dict(type="list", elements="str"),
                                     private_ip=dict(type="str"),
                                     skip_source_dest_check=dict(type="bool"),
                                     subnet_id=dict(type="str"),

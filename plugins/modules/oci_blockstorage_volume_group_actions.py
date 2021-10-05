@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a volume group into a different compartment within the same tenancy.
       For information about moving resources between compartments,
       see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     volume_group_id:
@@ -70,13 +70,13 @@ volume_group:
             description:
                 - The availability domain of the volume group.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the volume group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -91,7 +91,7 @@ volume_group:
                 - A user-friendly name for the volume group. Does not have to be
                   unique, and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -106,13 +106,13 @@ volume_group:
             description:
                 - The OCID for the volume group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume group.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         size_in_mbs:
             description:
@@ -136,19 +136,19 @@ volume_group:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: volumeGroupBackupId
                 volume_group_backup_id:
                     description:
                         - The OCID of the volume group backup to restore from.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_group_id:
                     description:
                         - The OCID of the volume group to clone from.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
                 volume_ids:
                     description:
@@ -160,8 +160,8 @@ volume_group:
             description:
                 - The date and time the volume group was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         volume_ids:
             description:
                 - OCIDs for the volumes in this volume group.

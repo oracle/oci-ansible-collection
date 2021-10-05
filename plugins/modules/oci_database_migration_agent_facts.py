@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,9 +23,10 @@ module: oci_database_migration_agent_facts
 short_description: Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
-    - Display the name of all the existing ODMS Agents in the server.
+    - "Note: Deprecated. Use the new resource model APIs instead.
+      Display the name of all the existing ODMS Agents in the server."
     - If I(agent_id) is specified, the details of a single Agent will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     agent_id:
@@ -96,62 +97,62 @@ agents:
             description:
                 - The OCID of the resource
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ODMS Agent name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - OCID of the compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         stream_id:
             description:
                 - The OCID of the Stream
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         public_key:
             description:
                 - ODMS Agent public key.
             returned: on success
-            type: string
+            type: str
             sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         version:
             description:
                 - ODMS Agent version
             returned: on success
-            type: string
+            type: str
             sample: version_example
         time_created:
             description:
                 - The time the Agent was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time of the last Agent details update. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the ODMS on-premises Agent.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

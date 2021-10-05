@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_migration_agent_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_migration_agent_facts -- Fetches details about one or mu
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
-- Display the name of all the existing ODMS Agents in the server.
+- Note: Deprecated. Use the new resource model APIs instead. Display the name of all the existing ODMS Agents in the server.
 - If *agent_id* is specified, the details of a single Agent will be returned.
 
 
@@ -327,6 +337,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

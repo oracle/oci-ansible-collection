@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple VirtualCircuitPublicPrefix resources in Oracle Cloud Infrastructure
     - Lists the public IP prefixes and their details for the specified
       public virtual circuit.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     virtual_circuit_id:
@@ -65,7 +65,7 @@ virtual_circuit_public_prefixes:
             description:
                 - Publix IP prefix (CIDR) that the customer specified.
             returned: on success
-            type: string
+            type: str
             sample: cidr_block_example
         verification_state:
             description:
@@ -75,7 +75,7 @@ virtual_circuit_public_prefixes:
                   means verification succeeded. `FAILED` means verification failed and traffic for
                   this prefix will not flow across the connection.
             returned: on success
-            type: string
+            type: str
             sample: IN_PROGRESS
     sample: [{
         "cidr_block": "cidr_block_example",

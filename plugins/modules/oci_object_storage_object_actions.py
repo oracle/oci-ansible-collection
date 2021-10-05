@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -37,7 +37,7 @@ description:
     - For I(action=restore), restores one or more objects specified by the objectName parameter.
       By default objects will be restored for 24 hours. Duration can be configured using the hours parameter.
     - For I(action=update_object_storage_tier), changes the storage tier of the object specified by the objectName parameter.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -160,6 +160,12 @@ options:
               L(Using Your Own Keys for Server-Side Encryption,https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm).
             - Applicable only for I(action=copy).
         type: str
+    opc_sse_kms_key_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key
+              Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.
+            - Applicable only for I(action=copy).
+        type: str
     object_name:
         description:
             - "The name of the object. Avoid entering confidential information.
@@ -249,7 +255,8 @@ options:
         type: str
     new_obj_if_none_match_e_tag:
         description:
-            - The if-none-match entity tag (ETag) of the new object.
+            - "The if-none-match entity tag (ETag) of the new object. The only valid value is '*', which indicates
+              request should fail if the new object already exists."
             - Applicable only for I(action=rename).
         type: str
     hours:
@@ -346,7 +353,7 @@ object:
                 - "The name of the object. Avoid entering confidential information.
                   Example: test/object1.log"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         size:
             description:
@@ -358,38 +365,38 @@ object:
             description:
                 - Base64-encoded MD5 hash of the object data.
             returned: on success
-            type: string
+            type: str
             sample: md5_example
         time_created:
             description:
                 - The date and time the object was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         etag:
             description:
                 - The current entity tag (ETag) for the object.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         storage_tier:
             description:
                 - The storage tier that the object is stored in.
             returned: on success
-            type: string
+            type: str
             sample: Standard
         archival_state:
             description:
                 - Archival state of an object. This field is set only for objects in Archive tier.
             returned: on success
-            type: string
+            type: str
             sample: Archived
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         headers:
             description:
                 - response headers for the object
@@ -487,6 +494,7 @@ class ObjectActionsHelperGen(OCIActionsHelperBase):
                 opc_source_sse_customer_key_sha256=self.module.params.get(
                     "opc_source_sse_customer_key_sha256"
                 ),
+                opc_sse_kms_key_id=self.module.params.get("opc_sse_kms_key_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -626,27 +634,30 @@ def main():
                 type="str", choices=["Standard", "InfrequentAccess", "Archive"]
             ),
             opc_sse_customer_algorithm=dict(type="str"),
-            opc_sse_customer_key=dict(type="str"),
-            opc_sse_customer_key_sha256=dict(type="str"),
+            opc_sse_customer_key=dict(type="str", no_log=True),
+            opc_sse_customer_key_sha256=dict(type="str", no_log=True),
             opc_source_sse_customer_algorithm=dict(type="str"),
-            opc_source_sse_customer_key=dict(type="str"),
-            opc_source_sse_customer_key_sha256=dict(type="str"),
+            opc_source_sse_customer_key=dict(type="str", no_log=True),
+            opc_source_sse_customer_key_sha256=dict(type="str", no_log=True),
+            opc_sse_kms_key_id=dict(type="str"),
             object_name=dict(type="str"),
             kms_key_id=dict(type="str"),
             sse_customer_key=dict(
                 type="dict",
+                no_log=False,
                 options=dict(
                     algorithm=dict(type="str", required=True, choices=["AES256"]),
-                    key=dict(type="str", required=True),
-                    key_sha256=dict(type="str", required=True),
+                    key=dict(type="str", required=True, no_log=True),
+                    key_sha256=dict(type="str", required=True, no_log=True),
                 ),
             ),
             source_sse_customer_key=dict(
                 type="dict",
+                no_log=False,
                 options=dict(
                     algorithm=dict(type="str", required=True, choices=["AES256"]),
-                    key=dict(type="str", required=True),
-                    key_sha256=dict(type="str", required=True),
+                    key=dict(type="str", required=True, no_log=True),
+                    key_sha256=dict(type="str", required=True, no_log=True),
                 ),
             ),
             version_id=dict(type="str"),

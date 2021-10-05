@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_monitoring_suppression_actions_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_monitoring_suppression_actions -- Perform actions on a Suppressio
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -36,6 +46,11 @@ oracle.oci.oci_monitoring_suppression_actions -- Perform actions on a Suppressio
 
 .. Deprecated
 
+DEPRECATED
+----------
+:Removed in: version 3.0.0
+:Why: The naming and the return value in the module is confusing and not consistent with other modules in the collection.
+:Alternative: Use :ref:`oci_monitoring_alarm_actions <ansible_collections.oci_monitoring_alarm_actions_module>` instead.
 
 Synopsis
 --------
@@ -250,6 +265,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -285,6 +303,15 @@ Examples
 
 
 ..  Status (Presently only deprecated)
+
+Status
+------
+
+.. Deprecated note
+
+- This module will be removed in version 3.0.0.
+  *[deprecated]*
+- For more information see `DEPRECATED`_.
 
 
 .. Authors

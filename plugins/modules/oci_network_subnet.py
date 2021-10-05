@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -49,7 +49,7 @@ description:
       VCN Resolver to resolve hostnames for instances in the subnet. For more information, see
       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
     - "This resource has the following action operations in the M(oci_subnet_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     availability_domain:
@@ -170,6 +170,7 @@ options:
               rules are applied to the individual VNICs in the subnet."
             - This parameter is updatable.
         type: list
+        elements: str
     vcn_id:
         description:
             - The OCID of the VCN to contain the subnet.
@@ -251,20 +252,20 @@ subnet:
                   instead of an AD-specific subnet. Oracle recommends creating regional subnets.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         cidr_block:
             description:
                 - The subnet's CIDR block.
                 - "Example: `10.0.1.0/24`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.1.0/24
         compartment_id:
             description:
                 - The OCID of the compartment containing the subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -278,14 +279,14 @@ subnet:
             description:
                 - The OCID of the set of DHCP options that the subnet uses.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         dns_label:
             description:
@@ -300,7 +301,7 @@ subnet:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123`"
             returned: on success
-            type: string
+            type: str
             sample: subnet123
         freeform_tags:
             description:
@@ -315,7 +316,7 @@ subnet:
             description:
                 - The subnet's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_block:
             description:
@@ -323,20 +324,20 @@ subnet:
                   The subnet size is always /64. See L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                 - "Example: `2001:0db8:0123:1111::/64`"
             returned: on success
-            type: string
+            type: str
             sample: 2001:0db8:0123:1111::/64
         ipv6_virtual_router_ip:
             description:
                 - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
                 - "Example: `2001:0db8:0123:1111:89ab:cdef:1234:5678`"
             returned: on success
-            type: string
+            type: str
             sample: 2001:0db8:0123:1111:89ab:cdef:1234:5678
         lifecycle_state:
             description:
                 - The subnet's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         prohibit_internet_ingress:
             description:
@@ -372,7 +373,7 @@ subnet:
             description:
                 - The OCID of the route table that the subnet uses.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids:
             description:
@@ -390,34 +391,34 @@ subnet:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `subnet123.vcn1.oraclevcn.com`"
             returned: on success
-            type: string
+            type: str
             sample: subnet123.vcn1.oraclevcn.com
         time_created:
             description:
                 - The date and time the subnet was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The OCID of the VCN the subnet is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         virtual_router_ip:
             description:
                 - The IP address of the virtual router.
                 - "Example: `10.0.14.1`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.14.1
         virtual_router_mac:
             description:
                 - The MAC address of the virtual router.
                 - "Example: `00:00:00:00:00:01`"
             returned: on success
-            type: string
+            type: str
             sample: 00:00:00:00:00:01
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
@@ -592,7 +593,7 @@ def main():
             prohibit_internet_ingress=dict(type="bool"),
             prohibit_public_ip_on_vnic=dict(type="bool"),
             route_table_id=dict(type="str"),
-            security_list_ids=dict(type="list"),
+            security_list_ids=dict(type="list", elements="str"),
             vcn_id=dict(type="str"),
             subnet_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

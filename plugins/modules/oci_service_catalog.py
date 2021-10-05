@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a ServiceCatalog resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a brand new service catalog in a given compartment.
     - "This resource has the following action operations in the M(oci_service_catalog_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -116,25 +116,25 @@ service_catalog:
             description:
                 - The unique identifier for the Service catalog.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The Compartment id where the service catalog exists
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the service catalog.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         lifecycle_state:
             description:
                 - The lifecycle state of the service catalog.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
@@ -142,16 +142,16 @@ service_catalog:
                   timestamp format.
                 - "Example: `2021-05-26T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2021-05-26T21:10:29.600Z
+            type: str
+            sample: "2021-05-26T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the service catalog was last modified, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2021-12-10T05:10:29.721Z`"
             returned: on success
-            type: string
-            sample: 2021-12-10T05:10:29.721Z
+            type: str
+            sample: "2021-12-10T05:10:29.721Z"
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.

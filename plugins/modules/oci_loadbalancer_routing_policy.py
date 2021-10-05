@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a RoutingPolicy resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a routing policy to a load balancer. For more information, see
       L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -48,6 +48,7 @@ options:
             - The list of routing rules.
             - Required for create using I(state=present), update using I(state=present) with name present.
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -63,6 +64,7 @@ options:
                 description:
                     - A list of actions to be applied when conditions of the routing rule are met.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     name:
@@ -137,13 +139,13 @@ routing_policy:
                 - The unique name for this list of routing rules. Avoid entering confidential information.
                 - "Example: `example_routing_policy`"
             returned: on success
-            type: string
+            type: str
             sample: example_routing_policy
         condition_language_version:
             description:
                 - The version of the language in which `condition` of `rules` are composed.
             returned: on success
-            type: string
+            type: str
             sample: V1
         rules:
             description:
@@ -155,13 +157,13 @@ routing_policy:
                     description:
                         - A unique name for the routing policy rule. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 condition:
                     description:
                         - A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.
                     returned: on success
-                    type: string
+                    type: str
                     sample: condition_example
                 actions:
                     description:
@@ -173,14 +175,14 @@ routing_policy:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: FORWARD_TO_BACKENDSET
                         backend_set_name:
                             description:
                                 - Name of the backend set the listener will forward the traffic to.
                                 - "Example: `backendSetForImages`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: backendSetForImages
     sample: {
         "name": "example_routing_policy",

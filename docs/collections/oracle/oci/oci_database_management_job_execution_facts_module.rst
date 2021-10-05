@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_job_execution_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_job_execution_facts -- Fetches details about 
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple JobExecution resources in Oracle Cloud Infrastructure
-- Gets the job execution for a specific ID or the list of job executions for a job, Managed Database or Managed Database Group in a specific compartment. Only one of the parameters, ID, jobId, managedDatabaseId or managedDatabaseGroupId should be provided. If none of these parameters is provided, all the job executions in the compartment are listed. Job executions can also be filtered based on the name and status parameters.
+- Gets the job execution for a specific ID or the list of job executions for a job, job run, Managed Database or Managed Database Group in a specific compartment. Only one of the parameters, ID, jobId, jobRunId, managedDatabaseId or managedDatabaseGroupId should be provided. If none of these parameters is provided, all the job executions in the compartment are listed. Job executions can also be filtered based on the name and status parameters.
 - If *job_execution_id* is specified, the details of a single JobExecution will be returned.
 
 
@@ -234,6 +244,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-job_run_id"></div>
+                    <b>job_run_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_run_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The identifier of the job run.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-managed_database_group_id"></div>
                     <b>managed_database_group_id</b>
                     <a class="ansibleOptionLink" href="#parameter-managed_database_group_id" title="Permalink to this option"></a>
@@ -327,7 +352,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Ascending order is the the default order.</div>
+                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Ascending order is the default order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -362,6 +387,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -425,7 +453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of JobExecution resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;error_message&#x27;: &#x27;error_message_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_id&#x27;: &#x27;ocid1.job.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_name&#x27;: &#x27;job_name_example&#x27;, &#x27;job_run_id&#x27;: &#x27;ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_group_id&#x27;: &#x27;ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_id&#x27;: &#x27;ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_name&#x27;: &#x27;managed_database_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;result_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;row_count&#x27;: 56, &#x27;type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;status&#x27;: &#x27;SUCCEEDED&#x27;, &#x27;time_completed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;error_message&#x27;: &#x27;error_message_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cluster&#x27;: True, &#x27;job_id&#x27;: &#x27;ocid1.job.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_name&#x27;: &#x27;job_name_example&#x27;, &#x27;job_run_id&#x27;: &#x27;ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_group_id&#x27;: &#x27;ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_id&#x27;: &#x27;ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;managed_database_name&#x27;: &#x27;managed_database_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;result_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;row_count&#x27;: 56, &#x27;type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;schedule_details&#x27;: {&#x27;end_time&#x27;: &#x27;end_time_example&#x27;, &#x27;interval_type&#x27;: &#x27;DAILY&#x27;, &#x27;interval_value&#x27;: &#x27;interval_value_example&#x27;, &#x27;start_time&#x27;: &#x27;start_time_example&#x27;}, &#x27;sql_text&#x27;: &#x27;sql_text_example&#x27;, &#x27;status&#x27;: &#x27;SUCCEEDED&#x27;, &#x27;time_completed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -444,6 +472,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/database_sub_type"></div>
+                    <b>database_sub_type</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/database_sub_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container Database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CDB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/database_type"></div>
+                    <b>database_type</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/database_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of Oracle Database installation.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_SIDB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of the supported infrastructure that can be used to deploy the database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONPREMISE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -480,6 +562,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/is_cluster"></div>
+                    <b>is_cluster</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/is_cluster" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether the Oracle Database is part of a cluster.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
@@ -723,6 +823,117 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/schedule_details"></div>
+                    <b>schedule_details</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/schedule_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/schedule_details/end_time"></div>
+                    <b>end_time</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/schedule_details/end_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The end time of the scheduled job in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">end_time_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/schedule_details/interval_type"></div>
+                    <b>interval_type</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/schedule_details/interval_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DAILY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/schedule_details/interval_value"></div>
+                    <b>interval_value</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/schedule_details/interval_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value for the interval period for a recurring scheduled job.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">interval_value_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/schedule_details/start_time"></div>
+                    <b>start_time</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/schedule_details/start_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The start time of the scheduled job in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">start_time_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/sql_text"></div>
+                    <b>sql_text</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/sql_text" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The SQL text executed as part of the job.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sql_text_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_executions/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-job_executions/status" title="Permalink to this return value"></a>
@@ -772,6 +983,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_executions/user_name"></div>
+                    <b>user_name</b>
+                    <a class="ansibleOptionLink" href="#return-job_executions/user_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The database user name used to execute the SQL job.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_name_example</div>
                                     </td>
             </tr>
                     

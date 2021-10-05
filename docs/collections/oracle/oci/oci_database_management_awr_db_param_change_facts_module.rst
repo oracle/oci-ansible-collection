@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_awr_db_param_change_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_awr_db_param_change_facts -- Fetches details 
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a AwrDbParamChange resource in Oracle Cloud Infrastructure
-- Summarizes the AWR database parameter change history for one database parameter of the specified Managed Database. One change history record contains the previous value, the changed value, and the corresponding time range. If the database parameter value was changed multiple times within the time range, then multiple change history records are created for the same parameter. Note that this API only returns information on change history details for one database parameter. To get a list of all the database parameters whose values were changed during a specified time range, use the following API endpoint: /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameters
+- Summarizes the database parameter change history for one database parameter of the specified database in AWR. One change history record contains the previous value, the changed value, and the corresponding time range. If the database parameter value was changed multiple times within the time range, then multiple change history records are created for the same parameter. Note that this API only returns information on change history details for one database parameter. To get a list of all the database parameters whose values were changed during a specified time range, use the following API endpoint: /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameters
 
 
 .. Aliases
@@ -165,7 +175,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs:</div>
+                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -339,7 +349,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the the default order.</div>
+                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the default order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -389,6 +399,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

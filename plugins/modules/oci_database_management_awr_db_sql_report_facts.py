@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,8 +23,8 @@ module: oci_database_management_awr_db_sql_report_facts
 short_description: Fetches details about a AwrDbSqlReport resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AwrDbSqlReport resource in Oracle Cloud Infrastructure
-    - Get a AWR SQL report for one SQL.
-version_added: "2.9"
+    - Gets the SQL health check report for one SQL of the specific database.
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -36,7 +36,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -103,19 +103,19 @@ awr_db_sql_report:
             description:
                 - The name of the query result.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         version:
             description:
                 - The version of the query result.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         query_key:
             description:
                 - The ID assigned to the query instance.
             returned: on success
-            type: string
+            type: str
             sample: query_key_example
         db_query_time_in_secs:
             description:
@@ -127,19 +127,19 @@ awr_db_sql_report:
             description:
                 - The result type of AWR query.
             returned: on success
-            type: string
+            type: str
             sample: AWRDB_SET
         content:
             description:
                 - The content of the report.
             returned: on success
-            type: string
+            type: str
             sample: content_example
         format:
             description:
                 - The format of the report.
             returned: on success
-            type: string
+            type: str
             sample: HTML
     sample: {
         "name": "name_example",

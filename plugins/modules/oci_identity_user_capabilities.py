@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_identity_user_capabilities
 short_description: Manage an UserCapabilities resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an UserCapabilities resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -87,33 +87,33 @@ user:
             description:
                 - The OCID of the user.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the user.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the user during creation. This is the user's login for the Console.
                   The name must be unique across all users in the tenancy and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description you assign to the user. Does not have to be unique, and it's changeable.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         email:
             description:
                 - The email address you assign to the user.
                   The email address must be unique across all users in the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: email_example
         email_verified:
             description:
@@ -125,27 +125,27 @@ user:
             description:
                 - The OCID of the `IdentityProvider` this user belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         external_identifier:
             description:
                 - Identifier of the user in the identity provider
             returned: on success
-            type: string
+            type: str
             sample: external_identifier_example
         time_created:
             description:
                 - Date and time the user was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The user's current state. After creating a user, make sure its `lifecycleState` changes from CREATING to
                   ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:
@@ -226,8 +226,8 @@ user:
                 - Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
                 - Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         previous_successful_login_time:
             description:
                 - The date and time of when the user most recently logged in the
@@ -239,8 +239,8 @@ user:
                 - Their previousSuccessfulLoginTime would be `2020-07-01:19:00.000Z`.
                 - Their lastSuccessfulLoginTime would be `2020-07-02:22:00.000Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -336,10 +336,10 @@ def main():
         dict(
             user_id=dict(aliases=["id"], type="str", required=True),
             can_use_console_password=dict(type="bool", no_log=True),
-            can_use_api_keys=dict(type="bool"),
-            can_use_auth_tokens=dict(type="bool"),
+            can_use_api_keys=dict(type="bool", no_log=True),
+            can_use_auth_tokens=dict(type="bool", no_log=True),
             can_use_smtp_credentials=dict(type="bool"),
-            can_use_customer_secret_keys=dict(type="bool"),
+            can_use_customer_secret_keys=dict(type="bool", no_log=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

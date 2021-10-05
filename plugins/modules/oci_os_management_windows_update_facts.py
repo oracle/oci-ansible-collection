@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple WindowsUpdate resources in Oracle Cloud Infrastructure
     - Returns a list of Windows Updates.
     - If I(windows_update) is specified, the details of a single WindowsUpdate will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     windows_update:
@@ -82,7 +82,7 @@ windows_updates:
             description:
                 - Windows Update name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
@@ -90,19 +90,19 @@ windows_updates:
                   but is a unique identifier assigned by Microsoft.
                   Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
             returned: on success
-            type: string
+            type: str
             sample: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
         description:
             description:
                 - Information about the Windows Update.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         update_type:
             description:
                 - The purpose of this update.
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
         size_in_bytes:
             description:
@@ -114,7 +114,7 @@ windows_updates:
             description:
                 - Indicates whether the update can be installed using OSMS.
             returned: on success
-            type: string
+            type: str
             sample: INSTALLABLE
         installation_requirements:
             description:
@@ -138,7 +138,7 @@ windows_updates:
             description:
                 - Indicates whether the update can be installed using OSMS.
             returned: on success
-            type: string
+            type: str
             sample: INSTALLABLE
     sample: [{
         "display_name": "display_name_example",

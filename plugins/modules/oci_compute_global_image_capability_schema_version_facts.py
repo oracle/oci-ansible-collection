@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists Compute Global Image Capability Schema versions in the specified compartment.
     - If I(compute_global_image_capability_schema_version_name) is specified, the details of a single ComputeGlobalImageCapabilitySchemaVersion will be
       returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compute_global_image_capability_schema_id:
@@ -90,19 +90,19 @@ compute_global_image_capability_schema_versions:
             description:
                 - The name of the compute global image capability schema version
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compute_global_image_capability_schema_id:
             description:
                 - The ocid of the compute global image capability schema
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name for the compute global image capability schema
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         schema_data:
             description:
@@ -114,13 +114,13 @@ compute_global_image_capability_schema_versions:
                     description:
                         - The image capability schema descriptor type for the capability
                     returned: on success
-                    type: string
+                    type: str
                     sample: boolean
                 source:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: GLOBAL
                 boolean_default_value:
                     description:
@@ -150,7 +150,7 @@ compute_global_image_capability_schema_versions:
                     description:
                         - the default value
                     returned: on success
-                    type: string
+                    type: str
                     sample: default_value_example
         time_created:
             description:
@@ -158,8 +158,8 @@ compute_global_image_capability_schema_versions:
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: [{
         "name": "name_example",
         "compute_global_image_capability_schema_id": "ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx",

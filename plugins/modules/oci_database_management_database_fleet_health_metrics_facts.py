@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a DatabaseFleetHealthMetrics resource in Oracle Cloud Infrastructure
     - Gets the health metrics for a fleet of databases in a compartment or in a Managed Database Group.
       Either the CompartmentId or the ManagedDatabaseGroupId query parameters must be provided to retrieve the health metrics.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compare_baseline_time:
@@ -66,6 +66,14 @@ options:
         description:
             - The filter used to filter the databases in the fleet by a specific Oracle Database subtype.
         type: str
+    filter_by_database_deployment_type:
+        description:
+            - The filter used to filter the databases in the fleet by a specific Oracle Database deployment type.
+        type: str
+    filter_by_database_version:
+        description:
+            - The filter used to filter the databases in the fleet by a specific Oracle Database version.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -89,7 +97,7 @@ database_fleet_health_metrics:
                 - "The baseline date and time in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\".
                   This is the date and time against which percentage change is calculated."
             returned: on success
-            type: string
+            type: str
             sample: compare_baseline_time_example
         compare_target_time:
             description:
@@ -97,13 +105,13 @@ database_fleet_health_metrics:
                   All the metrics are returned for the target date and time and the percentage change
                   is calculated against the baseline date and time."
             returned: on success
-            type: string
+            type: str
             sample: compare_target_time_example
         compare_type:
             description:
                 - The time window used for metrics comparison.
             returned: on success
-            type: string
+            type: str
             sample: HOUR
         fleet_summary:
             description:
@@ -121,7 +129,7 @@ database_fleet_health_metrics:
                             description:
                                 - The name of the metric.
                             returned: on success
-                            type: string
+                            type: str
                             sample: metric_name_example
                         baseline_value:
                             description:
@@ -139,7 +147,7 @@ database_fleet_health_metrics:
                             description:
                                 - The unit of the value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: unit_example
                         percentage_change:
                             description:
@@ -157,13 +165,13 @@ database_fleet_health_metrics:
                                     description:
                                         - The name of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_name_example
                                 dimension_value:
                                     description:
                                         - The value of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_value_example
                 inventory:
                     description:
@@ -175,14 +183,14 @@ database_fleet_health_metrics:
                             description:
                                 - The type of Oracle Database installation.
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXTERNAL_SIDB
                         database_sub_type:
                             description:
                                 - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-
                                   container Database.
                             returned: on success
-                            type: string
+                            type: str
                             sample: CDB
                         inventory_count:
                             description:
@@ -200,40 +208,52 @@ database_fleet_health_metrics:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the Managed Database
                           resides.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 database_type:
                     description:
                         - The type of Oracle Database installation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
                         - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
                           Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CDB
+                deployment_type:
+                    description:
+                        - The infrastructure used to deploy the Oracle Database.
+                    returned: on success
+                    type: str
+                    sample: ONPREMISE
+                database_version:
+                    description:
+                        - The Oracle Database version.
+                    returned: on success
+                    type: str
+                    sample: database_version_example
                 database_name:
                     description:
                         - The display name of the Managed Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: database_name_example
                 database_container_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent Container Database, in the case of a
                           Pluggable Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx"
                 metrics:
                     description:
@@ -245,7 +265,7 @@ database_fleet_health_metrics:
                             description:
                                 - The name of the metric.
                             returned: on success
-                            type: string
+                            type: str
                             sample: metric_name_example
                         baseline_value:
                             description:
@@ -263,14 +283,14 @@ database_fleet_health_metrics:
                             description:
                                 - The unit of the value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: unit_example
                         timestamp:
                             description:
                                 - "The data point date and time in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         percentage_change:
                             description:
                                 - The percentage change in the metric aggregated value compared to the baseline value.
@@ -287,13 +307,13 @@ database_fleet_health_metrics:
                                     description:
                                         - The name of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_name_example
                                 dimension_value:
                                     description:
                                         - The value of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_value_example
     sample: {
         "compare_baseline_time": "compare_baseline_time_example",
@@ -322,6 +342,8 @@ database_fleet_health_metrics:
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
+            "deployment_type": "ONPREMISE",
+            "database_version": "database_version_example",
             "database_name": "database_name_example",
             "database_container_id": "ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx",
             "metrics": [{
@@ -372,6 +394,8 @@ class DatabaseFleetHealthMetricsFactsHelperGen(OCIResourceFactsHelperBase):
             "filter_by_metric_names",
             "filter_by_database_type",
             "filter_by_database_sub_type",
+            "filter_by_database_deployment_type",
+            "filter_by_database_version",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -410,6 +434,8 @@ def main():
             filter_by_metric_names=dict(type="str"),
             filter_by_database_type=dict(type="str"),
             filter_by_database_sub_type=dict(type="str"),
+            filter_by_database_deployment_type=dict(type="str"),
+            filter_by_database_version=dict(type="str"),
         )
     )
 

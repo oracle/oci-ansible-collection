@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create a DecryptedData resource in Oracle Cloud Infrastructure
     - For I(state=present), decrypts data using the given L(DecryptDataDetails,https://docs.cloud.oracle.com/api/#/en/key/latest/datatypes/DecryptDataDetails)
       resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     associated_data:
@@ -100,25 +100,25 @@ decrypted_data:
             description:
                 - The decrypted data, expressed as a base64-encoded value.
             returned: on success
-            type: string
+            type: str
             sample: plaintext_example
         plaintext_checksum:
             description:
                 - The checksum of the decrypted data.
             returned: on success
-            type: string
+            type: str
             sample: plaintext_checksum_example
         key_id:
             description:
                 - The OCID of the key used to encrypt the ciphertext.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
                 - The OCID of the key version used to encrypt the ciphertext.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         encryption_algorithm:
             description:
@@ -129,7 +129,7 @@ decrypted_data:
                   `RSA_OAEP_SHA_256` indicates that the key is an asymmetric key that uses the RSA encryption algorithm with a SHA-256 hash
                   and uses OAEP.
             returned: on success
-            type: string
+            type: str
             sample: AES_256_GCM
     sample: {
         "plaintext": "plaintext_example",

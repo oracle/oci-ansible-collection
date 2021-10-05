@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -41,7 +41,7 @@ description:
       asynchronous. Poll the public IP's `lifecycleState` to determine if the assignment
       succeeded.
     - "This resource has the following action operations in the M(oci_public_ip_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -183,14 +183,14 @@ public_ip:
                 - The OCID of the entity the public IP is assigned to, or in the process of
                   being assigned to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx"
         assigned_entity_type:
             description:
                 - The type of entity the public IP is assigned to, or in the process of being
                   assigned to.
             returned: on success
-            type: string
+            type: str
             sample: PRIVATE_IP
         availability_domain:
             description:
@@ -199,7 +199,7 @@ public_ip:
                   AVAILABILITY_DOMAIN). The value is the availability domain of the assigned private IP.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
@@ -208,7 +208,7 @@ public_ip:
                   as a NAT gateway). For a reserved public IP that is currently assigned,
                   its compartment can be different from the assigned private IP's.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -223,7 +223,7 @@ public_ip:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -238,20 +238,20 @@ public_ip:
             description:
                 - The public IP's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - The public IP address of the `publicIp` object.
                 - "Example: `203.0.113.2`"
             returned: on success
-            type: string
+            type: str
             sample: 203.0.113.2
         lifecycle_state:
             description:
                 - The public IP's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifetime:
             description:
@@ -267,7 +267,7 @@ public_ip:
                 - For more information and comparison of the two types,
                   see L(Public IP Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingpublicIPs.htm).
             returned: on success
-            type: string
+            type: str
             sample: EPHEMERAL
         private_ip_id:
             description:
@@ -277,7 +277,7 @@ public_ip:
                 - "**Note:** This is `null` if the public IP is not assigned to a private IP, or is
                   in the process of being assigned to one."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateip.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
@@ -290,20 +290,20 @@ public_ip:
                   it's assigned to, which is specified by the `availabilityDomain` property of the public IP object.
                   Ephemeral public IPs that are assigned to private IPs have `scope` = `AVAILABILITY_DOMAIN`."
             returned: on success
-            type: string
+            type: str
             sample: REGION
         time_created:
             description:
                 - The date and time the public IP was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         public_ip_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the pool object created in the current tenancy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "assigned_entity_id": "ocid1.assignedentity.oc1..xxxxxxEXAMPLExxxxxx",

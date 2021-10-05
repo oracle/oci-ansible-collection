@@ -12,7 +12,7 @@ __metaclass__ = type
 
 ANSIBLE_METADATA = {
     "metadata_version": "1.1",
-    "status": ["preview"],
+    "status": ["deprecated"],
     "supported_by": "community",
 }
 
@@ -23,7 +23,11 @@ short_description: Manage a WaasCertificate resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to create, update and delete a WaasCertificate resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Certificate.
-version_added: "2.9"
+version_added: "2.9.0"
+deprecated:
+    removed_in: "3.0.0"
+    why: The naming and the return value in the module is confusing and not consistent with other modules in the collection.
+    alternative: Use M(oci_apigateway_certificate) instead.
 author: Oracle (@oracle)
 options:
     display_name:
@@ -136,7 +140,7 @@ waas_certificate:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -144,14 +148,14 @@ waas_certificate:
                   Avoid entering confidential information.
                 - "Example: `My new resource`"
             returned: on success
-            type: string
+            type: str
             sample: My new resource
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
                   resource is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subject_names:
             description:
@@ -163,37 +167,37 @@ waas_certificate:
             description:
                 - The date and time the certificate will expire.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         certificate:
             description:
                 - The data of the leaf certificate in pem format.
             returned: on success
-            type: string
+            type: str
             sample: certificate_example
         intermediate_certificates:
             description:
                 - The intermediate certificate data associated with the certificate in pem format.
             returned: on success
-            type: string
+            type: str
             sample: intermediate_certificates_example
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time this resource was last updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the certificate.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
@@ -201,7 +205,7 @@ waas_certificate:
                   For example, can be used to provide actionable information for a
                   resource in a Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

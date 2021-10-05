@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DataMaskRule resources in Oracle Cloud Infrastructure
     - Returns a list of all Data Mask Rules in the root 'compartmentId' passed.
     - If I(data_mask_rule_id) is specified, the details of a single DataMaskRule will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     data_mask_rule_id:
@@ -126,31 +126,31 @@ data_mask_rules:
             description:
                 - Unique identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Data Mask Rule Identifier, can be renamed
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - Compartment Identifier where the resource is created
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The data mask rule description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         iam_group_id:
             description:
                 - IAM Group id associated with the data mask rule
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.iamgroup.oc1..xxxxxxEXAMPLExxxxxx"
         target_selected:
             description:
@@ -162,7 +162,7 @@ data_mask_rules:
                     description:
                         - Target selection.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ALL
                 values:
                     description:
@@ -180,32 +180,32 @@ data_mask_rules:
             description:
                 - The date and time the target was created. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the target was updated. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         data_mask_rule_status:
             description:
                 - The status of the dataMaskRule.
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         lifecycle_state:
             description:
                 - The current state of the DataMaskRule.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecyle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecyle_details_example
         freeform_tags:
             description:

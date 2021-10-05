@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets the list of available web application threat intelligence feeds
       and the actions set for each feed. The list is sorted by `key`,
       in ascending order.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -55,25 +55,25 @@ threat_feeds:
             description:
                 - The unique key of the threat intelligence feed.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         name:
             description:
                 - The name of the threat intelligence feed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         action:
             description:
                 - The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to `OFF`.
             returned: on success
-            type: string
+            type: str
             sample: OFF
         description:
             description:
                 - The description of the threat intelligence feed.
             returned: on success
-            type: string
+            type: str
             sample: description_example
     sample: [{
         "key": "key_example",

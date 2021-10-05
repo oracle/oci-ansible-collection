@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -34,7 +34,7 @@ description:
     - "You may optionally specify a *display name* for the DRG, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_drg_actions) module: change_compartment, get_all_drg_attachments, upgrade."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -162,7 +162,7 @@ drg:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -177,7 +177,7 @@ drg:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -192,21 +192,21 @@ drg:
             description:
                 - The DRG's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         time_created:
             description:
                 - The date and time the DRG was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         default_drg_route_tables:
             description:
                 - ""
@@ -219,7 +219,7 @@ drg:
                           DRG attachments
                           of type VCN on creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: vcn_example
                 ipsec_tunnel:
                     description:
@@ -227,14 +227,14 @@ drg:
                           attachments
                           of type IPSEC_TUNNEL on creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ipsec_tunnel_example
                 virtual_circuit:
                     description:
                         - The OCID of the default DRG route table to be assigned to DRG attachments
                           of type VIRTUAL_CIRCUIT on creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: virtual_circuit_example
                 remote_peering_connection:
                     description:
@@ -242,14 +242,14 @@ drg:
                           to DRG attachments
                           of type REMOTE_PEERING_CONNECTION on creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: remote_peering_connection_example
         default_export_drg_route_distribution_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this DRG's default export route distribution for the DRG
                   attachments.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultexportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

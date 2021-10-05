@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a SqlPlanInsights resource in Oracle Cloud Infrastructure
     - Query SQL Warehouse to get the performance insights on the execution plans for a given SQL for a given time period.
       Either databaseId or id must be specified.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -92,32 +92,32 @@ sql_plan_insights:
             description:
                 - Unique SQL_ID for a SQL Statement.
             returned: on success
-            type: string
+            type: str
             sample: sql_identifier_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         time_interval_start:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         insights:
             description:
                 - List of SQL plan insights.
@@ -132,7 +132,7 @@ sql_plan_insights:
                             `Plan With Most IO`,
                             `Plan with Most CPU`
                     returned: on success
-                    type: string
+                    type: str
                     sample: text_example
                 value:
                     description:
@@ -144,7 +144,7 @@ sql_plan_insights:
                     description:
                         - SQL Insight category. For example PLANS_USED, MOST_EXECUTED, BEST_PERFORMER, WORST_PERFORMER, MOST_CPU or MOST_IO.
                     returned: on success
-                    type: string
+                    type: str
                     sample: category_example
         items:
             description:

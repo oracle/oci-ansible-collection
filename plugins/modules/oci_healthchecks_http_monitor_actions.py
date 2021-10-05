@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Perform actions on a HttpMonitor resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a monitor into a different compartment. When provided, `If-Match` is checked
       against ETag values of the resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     monitor_id:
@@ -70,31 +70,31 @@ http_monitor:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         results_url:
             description:
                 - A URL for fetching the probe results.
             returned: on success
-            type: string
+            type: str
             sample: results_url_example
         home_region:
             description:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
-            type: string
+            type: str
             sample: home_region_example
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
@@ -126,19 +126,19 @@ http_monitor:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: HTTP
         method:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: GET
         path:
             description:
                 - The optional URL path to probe, including query parameters.
             returned: on success
-            type: string
+            type: str
             sample: path_example
         headers:
             description:
@@ -151,7 +151,7 @@ http_monitor:
             description:
                 - A user-friendly and mutable name suitable for display in a user interface.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         interval_in_seconds:
             description:

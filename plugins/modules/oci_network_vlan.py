@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Vlan resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a VLAN in the specified VCN and the specified compartment.
     - "This resource has the following action operations in the M(oci_vlan_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     availability_domain:
@@ -86,6 +86,7 @@ options:
               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/).
             - This parameter is updatable.
         type: list
+        elements: str
     route_table_id:
         description:
             - The OCID of the route table the VLAN will use. If you don't provide a value,
@@ -170,7 +171,7 @@ vlan:
                   rather than an AD-specific VLAN.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         cidr_block:
             description:
@@ -178,13 +179,13 @@ vlan:
                   hosts outside the VLAN.
                 - "Example: `192.168.1.0/24`"
             returned: on success
-            type: string
+            type: str
             sample: 192.168.1.0/24
         compartment_id:
             description:
                 - The OCID of the compartment containing the VLAN.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -199,7 +200,7 @@ vlan:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -214,13 +215,13 @@ vlan:
             description:
                 - The VLAN's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The VLAN's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         nsg_ids:
             description:
@@ -242,20 +243,20 @@ vlan:
             description:
                 - The OCID of the route table that the VLAN uses.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VLAN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The OCID of the VCN the VLAN is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
@@ -416,7 +417,7 @@ def main():
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            nsg_ids=dict(type="list"),
+            nsg_ids=dict(type="list", elements="str"),
             route_table_id=dict(type="str"),
             vcn_id=dict(type="str"),
             vlan_tag=dict(type="int"),

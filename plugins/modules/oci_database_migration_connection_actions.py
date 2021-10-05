@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,8 +23,9 @@ module: oci_database_migration_connection_actions
 short_description: Perform actions on a Connection resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Connection resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), used to change the Database Connection compartment.
-version_added: "2.9"
+    - "For I(action=change_compartment), note: Deprecated. Use the new resource model APIs instead.
+      Used to change the Database Connection compartment."
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     connection_id:
@@ -68,31 +69,31 @@ connection:
             description:
                 - The OCID of the resource
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_type:
             description:
                 - Database connection type.
             returned: on success
-            type: string
+            type: str
             sample: MANUAL
         display_name:
             description:
                 - Database Connection display name identifier.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         database_id:
             description:
                 - The OCID of the cloud database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         connect_descriptor:
             description:
@@ -104,7 +105,7 @@ connection:
                     description:
                         - Host of the connect descriptor.
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_example
                 port:
                     description:
@@ -116,25 +117,25 @@ connection:
                     description:
                         - Database service name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: database_service_name_example
                 connect_string:
                     description:
                         - Connect string.
                     returned: on success
-                    type: string
+                    type: str
                     sample: connect_string_example
         credentials_secret_id:
             description:
                 - OCID of the Secret in the OCI vault containing the Database Connection credentials.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_tdn:
             description:
                 - This name is the distinguished name used while creating the certificate on target database.
             returned: on success
-            type: string
+            type: str
             sample: certificate_tdn_example
         ssh_details:
             description:
@@ -146,19 +147,19 @@ connection:
                     description:
                         - Name of the host the SSH key is valid for.
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_example
                 user:
                     description:
                         - SSH user
                     returned: on success
-                    type: string
+                    type: str
                     sample: user_example
                 sudo_location:
                     description:
                         - Sudo location
                     returned: on success
-                    type: string
+                    type: str
                     sample: sudo_location_example
         admin_credentials:
             description:
@@ -170,7 +171,7 @@ connection:
                     description:
                         - Administrator username
                     returned: on success
-                    type: string
+                    type: str
                     sample: username_example
         private_endpoint:
             description:
@@ -183,27 +184,27 @@ connection:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to contain the
                           private endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 vcn_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN where the Private Endpoint will be bound
                           to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer's
                           subnet where the private endpoint VNIC will reside.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 id:
                     description:
                         - L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a previously created Private Endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vault_details:
             description:
@@ -215,45 +216,45 @@ connection:
                     description:
                         - OCID of the compartment where the secret containing the credentials will be created.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 vault_id:
                     description:
                         - OCID of the vault
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 key_id:
                     description:
                         - OCID of the vault encryption key
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Connection resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information
                   for a resource in Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The time the Connection resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time of the last Connection resource details update. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

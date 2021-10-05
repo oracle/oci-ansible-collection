@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a DatabaseHomeMetrics resource in Oracl
 description:
     - Fetches details about a DatabaseHomeMetrics resource in Oracle Cloud Infrastructure
     - Gets a summary of the activity and resource usage metrics like DB Time, CPU, User I/O, Wait, Storage, and Memory for a Managed Database.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -34,13 +34,13 @@ options:
         required: true
     start_time:
         description:
-            - "The start time for the time range to retrieve the health metrics of a Managed Database
+            - "The start time of the time range to retrieve the health metrics of a Managed Database
               in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
         type: str
         required: true
     end_time:
         description:
-            - "The end time for the time range to retrieve the health metrics of a Managed Database
+            - "The end time of the time range to retrieve the health metrics of a Managed Database
               in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
         type: str
         required: true
@@ -79,8 +79,8 @@ database_home_metrics:
                             description:
                                 - The date and time the activity metric was created.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         cpu_time:
                             description:
                                 - ""
@@ -97,7 +97,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -109,13 +109,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         wait_time:
                             description:
@@ -133,7 +133,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -145,13 +145,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         user_io_time:
                             description:
@@ -169,7 +169,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -181,13 +181,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cpu_count:
                             description:
@@ -205,7 +205,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -217,13 +217,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cluster:
                             description:
@@ -241,7 +241,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -253,13 +253,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 db_time_aggregate_metrics:
                     description:
@@ -283,7 +283,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -295,13 +295,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cpu_time:
                             description:
@@ -319,7 +319,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -331,13 +331,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         wait_time:
                             description:
@@ -355,7 +355,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -367,13 +367,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         user_io_time:
                             description:
@@ -391,7 +391,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -403,13 +403,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cluster:
                             description:
@@ -427,7 +427,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -439,13 +439,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 io_aggregate_metrics:
                     description:
@@ -469,7 +469,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -481,13 +481,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         io_throughput:
                             description:
@@ -505,7 +505,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -517,13 +517,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 memory_aggregate_metrics:
                     description:
@@ -547,7 +547,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -559,13 +559,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 db_storage_aggregate_metrics:
                     description:
@@ -589,7 +589,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -601,13 +601,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         storage_used:
                             description:
@@ -625,7 +625,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -637,13 +637,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         storage_used_by_table_space:
                             description:
@@ -661,7 +661,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -673,13 +673,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
         database_instance_home_metrics:
             description:
@@ -692,7 +692,7 @@ database_home_metrics:
                         - The name of the Oracle Real Application Clusters (Oracle RAC)
                           database instance to which the corresponding metrics belong.
                     returned: on success
-                    type: string
+                    type: str
                     sample: instance_name_example
                 instance_number:
                     description:
@@ -713,8 +713,8 @@ database_home_metrics:
                             description:
                                 - The date and time the activity metric was created.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         cpu_time:
                             description:
                                 - ""
@@ -731,7 +731,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -743,13 +743,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         wait_time:
                             description:
@@ -767,7 +767,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -779,13 +779,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         user_io_time:
                             description:
@@ -803,7 +803,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -815,13 +815,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cpu_count:
                             description:
@@ -839,7 +839,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -851,13 +851,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cluster:
                             description:
@@ -875,7 +875,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -887,13 +887,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 db_time_aggregate_metrics:
                     description:
@@ -917,7 +917,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -929,13 +929,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cpu_time:
                             description:
@@ -953,7 +953,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -965,13 +965,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         wait_time:
                             description:
@@ -989,7 +989,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1001,13 +1001,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         user_io_time:
                             description:
@@ -1025,7 +1025,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1037,13 +1037,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         cluster:
                             description:
@@ -1061,7 +1061,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1073,13 +1073,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 io_aggregate_metrics:
                     description:
@@ -1103,7 +1103,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1115,13 +1115,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                         io_throughput:
                             description:
@@ -1139,7 +1139,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1151,13 +1151,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
                 memory_aggregate_metrics:
                     description:
@@ -1181,7 +1181,7 @@ database_home_metrics:
                                     description:
                                         - The unit of the metric value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: unit_example
                                 dimensions:
                                     description:
@@ -1193,13 +1193,13 @@ database_home_metrics:
                                             description:
                                                 - The name of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_name_example
                                         dimension_value:
                                             description:
                                                 - The value of the dimension.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: dimension_value_example
     sample: {
         "database_home_metrics": {

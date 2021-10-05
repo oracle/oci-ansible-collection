@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a PrivateAccessChannel resource in Oracle Cloud Infrastructure
     - For I(state=present), create an Private access Channel for the Analytics instance. The operation is long-running
       and creates a new WorkRequest.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     analytics_instance_id:
@@ -61,6 +61,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             dns_zone:
                 description:
@@ -134,31 +135,31 @@ private_access_channel:
             description:
                 - Private Access Channel unique identifier key.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         display_name:
             description:
                 - Display Name of the Private Access Channel.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         vcn_id:
             description:
                 - OCID of the customer VCN peered with private access channel.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - OCID of the customer subnet connected to private access channel.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
                 - IP Address of the Private Access channel.
             returned: on success
-            type: string
+            type: str
             sample: ip_address_example
         egress_source_ip_addresses:
             description:
@@ -179,13 +180,13 @@ private_access_channel:
                     description:
                         - "Private Source DNS Zone. Ex: example-vcn.oraclevcn.com, corp.example.com."
                     returned: on success
-                    type: string
+                    type: str
                     sample: dns_zone_example
                 description:
                     description:
                         - Description of private source dns zone.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
     sample: {
         "key": "key_example",
@@ -326,7 +327,7 @@ def main():
                     description=dict(type="str"),
                 ),
             ),
-            private_access_channel_key=dict(type="str"),
+            private_access_channel_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple UpdateHistoryEntry resources in Oracle Cloud Infrastructure
     - Gets the history of the maintenance update actions performed on the specified cloud VM cluster. Applies to Exadata Cloud Service instances only.
     - If I(update_history_entry_id) is specified, the details of a single UpdateHistoryEntry will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cloud_vm_cluster_id:
@@ -73,50 +73,50 @@ update_history_entries:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update history entry.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         update_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
         update_action:
             description:
                 - The update action.
             returned: on success
-            type: string
+            type: str
             sample: ROLLING_APPLY
         update_type:
             description:
                 - The type of cloud VM cluster maintenance update.
             returned: on success
-            type: string
+            type: str
             sample: GI_UPGRADE
         lifecycle_state:
             description:
                 - The current lifecycle state of the maintenance update operation.
             returned: on success
-            type: string
+            type: str
             sample: IN_PROGRESS
         lifecycle_details:
             description:
                 - Descriptive text providing additional details about the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_started:
             description:
                 - The date and time when the maintenance update action started.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_completed:
             description:
                 - The date and time when the maintenance update action completed.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "update_id": "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx",

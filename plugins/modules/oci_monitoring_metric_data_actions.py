@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       For important limits information, see L(Limits on
       Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
       Transactions Per Second (TPS) per-tenancy limit for this operation: 10."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -47,18 +47,18 @@ options:
         required: true
     resource_group:
         description:
-            - Resource group that you want to use as a filter. The specified resource group must exist in the definition of the posted metric. Only one resource
-              group can be applied per metric.
+            - Resource group that you want to match. A null value returns only metric data that has no resource groups. The specified resource group must exist
+              in the definition of the posted metric. Only one resource group can be applied per metric.
               A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens
               (-), and dollar signs ($).
-              Avoid entering confidential information.
             - "Example: `frontend-fleet`"
         type: str
     query:
         description:
             - "The Monitoring Query Language (MQL) expression to use when searching for metric data points to
-              aggregate. The query must specify a metric, statistic, and interval. Supported values for
-              interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions and grouping functions.
+              aggregate. The query must specify a metric, statistic, and interval.
+              Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges.
+              You can optionally specify dimensions and grouping functions.
               Supported grouping functions: `grouping()`, `groupBy()`."
             - Construct your query to avoid exceeding limits on returned data. See L(MetricData Reference,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/monitoring/20180401/MetricData).
@@ -89,7 +89,7 @@ options:
               frequency at which aggregated data points are returned. For example, use a query interval of
               5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
               frequency. The resolution must be equal or less than the interval in the query. The default
-              resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`)."
+              resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`."
             - "Example: `5m`"
         type: str
     compartment_id_in_subtree:
@@ -135,32 +135,31 @@ metric_data:
                   application that emitted the metric.
                 - "Example: `oci_computeagent`"
             returned: on success
-            type: string
+            type: str
             sample: oci_computeagent
         resource_group:
             description:
-                - Resource group provided with the posted metric. A resource group is a custom string that can be used as a filter. Only one resource group can
-                  be applied per metric.
+                - Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only
+                  one resource group can be applied per metric.
                   A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
                   hyphens (-), and dollar signs ($).
-                  Avoid entering confidential information.
                 - "Example: `frontend-fleet`"
             returned: on success
-            type: string
+            type: str
             sample: frontend-fleet
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
                   resources from which the aggregated data was returned.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..exampleuniqueID"
         name:
             description:
                 - The name of the metric.
                 - "Example: `CpuUtilization`"
             returned: on success
-            type: string
+            type: str
             sample: CpuUtilization
         dimensions:
             description:
@@ -183,10 +182,10 @@ metric_data:
                   frequency at which aggregated data points are returned. For example, use a query interval of
                   5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute
                   frequency. The resolution must be equal or less than the interval in the query. The default
-                  resolution is 1m (one minute). Supported values: `1m`-`60m` (also `1h`)."
+                  resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`."
                 - "Example: `5m`"
             returned: on success
-            type: string
+            type: str
             sample: 5m
         aggregated_datapoints:
             description:
@@ -200,8 +199,8 @@ metric_data:
                         - The date and time associated with the value of this data point. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T01:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T01:02:29.600Z"
                 value:
                     description:
                         - Numeric value of the metric.

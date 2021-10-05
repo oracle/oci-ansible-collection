@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a container repository into a different compartment within the same tenancy. For information about moving
       resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
@@ -71,26 +71,26 @@ container_repository:
             description:
                 - The OCID of the compartment in which the container repository exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The id of the user or principal that created the resource.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         display_name:
             description:
                 - The container repository name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container repository.
                 - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.containerrepo.oc1..exampleuniqueID"
         image_count:
             description:
@@ -126,7 +126,7 @@ container_repository:
             description:
                 - The current state of the container repository.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         readme:
             description:
@@ -138,26 +138,26 @@ container_repository:
                     description:
                         - Readme content. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_example
                 format:
                     description:
                         - Readme format. Supported formats are text/plain and text/markdown.
                     returned: on success
-                    type: string
+                    type: str
                     sample: TEXT_MARKDOWN
         time_created:
             description:
                 - An RFC 3339 timestamp indicating when the repository was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_pushed:
             description:
                 - An RFC 3339 timestamp indicating when an image was last pushed to the repository.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         billable_size_in_gbs:
             description:
                 - Total storage size in GBs that will be charged.

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=add), adds one or more route distribution statements to the specified route distribution.
     - For I(action=remove), removes one or more route distribution statements from the specified route distribution's map.
     - For I(action=update), updates one or more route distribution statements in the specified route distribution.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     drg_route_distribution_id:
@@ -40,12 +40,14 @@ options:
             - The collection of route distribution statements to insert into the route distribution.
             - Required for I(action=add), I(action=update).
         type: list
+        elements: dict
         suboptions:
             match_criteria:
                 description:
                     - The action is applied only if all of the match criteria is met.
                       If there are no match criteria in a statement, match ALL is implied.
                 type: list
+                elements: dict
                 suboptions:
                     match_type:
                         description:
@@ -94,6 +96,7 @@ options:
             - The Oracle-assigned ID of each route distribution to remove.
             - Applicable only for I(action=remove).
         type: list
+        elements: str
     action:
         description:
             - The action to perform on the DrgRouteDistributionStatements.
@@ -142,26 +145,26 @@ drg_route_distribution_statements:
                     description:
                         - The type of the match criteria for a route distribution statement.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DRG_ATTACHMENT_TYPE
                 drg_attachment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
                 attachment_type:
                     description:
                         - The type of the network resource to be included in this match. A match for a network type implies that all
                           DRG attachments of that type insert routes into the table.
                     returned: on success
-                    type: string
+                    type: str
                     sample: VCN
         action:
             description:
                 - "`ACCEPT` indicates the route should be imported or exported as-is."
             returned: on success
-            type: string
+            type: str
             sample: ACCEPT
         priority:
             description:
@@ -178,7 +181,7 @@ drg_route_distribution_statements:
             description:
                 - The Oracle-assigned ID of the route distribution statement.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "match_criteria": [{
@@ -353,7 +356,7 @@ def main():
                     id=dict(type="str"),
                 ),
             ),
-            statement_ids=dict(type="list"),
+            statement_ids=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )

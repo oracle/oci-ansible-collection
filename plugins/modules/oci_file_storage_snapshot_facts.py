@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Snapshot resources in Oracle Cloud Infrastructure
     - Lists snapshots of the specified file system.
     - If I(snapshot_id) is specified, the details of a single Snapshot will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     snapshot_id:
@@ -85,19 +85,19 @@ snapshots:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system from which the snapshot
                   was created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the snapshot.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         name:
             description:
@@ -105,7 +105,7 @@ snapshots:
                 - Avoid entering confidential information.
                 - "Example: `Sunday`"
             returned: on success
-            type: string
+            type: str
             sample: Sunday
         time_created:
             description:
@@ -113,8 +113,8 @@ snapshots:
                   in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         provenance_id:
             description:
                 - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
@@ -122,7 +122,7 @@ snapshots:
                   If this snapshot was cloned, then the `provenanceId` value is the parent's `provenanceId`.
                   See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_source:
             description:
@@ -135,7 +135,7 @@ snapshots:
             description:
                 - Additional information about the current 'lifecycleState'.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

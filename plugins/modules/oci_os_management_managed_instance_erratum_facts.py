@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ManagedInstanceErratum 
 description:
     - Fetches details about one or multiple ManagedInstanceErratum resources in Oracle Cloud Infrastructure
     - Returns a list of errata relevant to the Managed Instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -77,43 +77,43 @@ managed_instance_errata:
             description:
                 - Advisory name
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - OCID for the Erratum.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         synopsis:
             description:
                 - Summary description of the erratum.
             returned: on success
-            type: string
+            type: str
             sample: synopsis_example
         issued:
             description:
                 - date the erratum was issued
             returned: on success
-            type: string
+            type: str
             sample: issued_example
         updated:
             description:
                 - most recent date the erratum was updated
             returned: on success
-            type: string
+            type: str
             sample: updated_example
         advisory_type:
             description:
                 - Type of the erratum.
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
         related_cves:
             description:

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_database_fleet_health_metrics_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_database_fleet_health_metrics_facts -- Fetche
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -249,6 +259,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter_by_database_deployment_type"></div>
+                    <b>filter_by_database_deployment_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter_by_database_deployment_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The filter used to filter the databases in the fleet by a specific Oracle Database deployment type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-filter_by_database_sub_type"></div>
                     <b>filter_by_database_sub_type</b>
                     <a class="ansibleOptionLink" href="#parameter-filter_by_database_sub_type" title="Permalink to this option"></a>
@@ -275,6 +300,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The filter used to filter the databases in the fleet by a specific Oracle Database type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-filter_by_database_version"></div>
+                    <b>filter_by_database_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-filter_by_database_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The filter used to filter the databases in the fleet by a specific Oracle Database version.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -340,6 +380,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -399,7 +442,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>DatabaseFleetHealthMetrics resource</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compare_baseline_time&#x27;: &#x27;compare_baseline_time_example&#x27;, &#x27;compare_target_time&#x27;: &#x27;compare_target_time_example&#x27;, &#x27;compare_type&#x27;: &#x27;HOUR&#x27;, &#x27;fleet_databases&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_container_id&#x27;: &#x27;ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;}]}], &#x27;fleet_summary&#x27;: {&#x27;aggregated_metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;}], &#x27;inventory&#x27;: [{&#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;inventory_count&#x27;: 56}]}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compare_baseline_time&#x27;: &#x27;compare_baseline_time_example&#x27;, &#x27;compare_target_time&#x27;: &#x27;compare_target_time_example&#x27;, &#x27;compare_type&#x27;: &#x27;HOUR&#x27;, &#x27;fleet_databases&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_container_id&#x27;: &#x27;ocid1.databasecontainer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;ONPREMISE&#x27;, &#x27;metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;}]}], &#x27;fleet_summary&#x27;: {&#x27;aggregated_metrics&#x27;: [{&#x27;baseline_value&#x27;: 1.2, &#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;metric_name&#x27;: &#x27;metric_name_example&#x27;, &#x27;percentage_change&#x27;: 1.2, &#x27;target_value&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;}], &#x27;inventory&#x27;: [{&#x27;database_sub_type&#x27;: &#x27;CDB&#x27;, &#x27;database_type&#x27;: &#x27;EXTERNAL_SIDB&#x27;, &#x27;inventory_count&#x27;: 56}]}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -571,6 +614,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_fleet_health_metrics/fleet_databases/database_version"></div>
+                    <b>database_version</b>
+                    <a class="ansibleOptionLink" href="#return-database_fleet_health_metrics/fleet_databases/database_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Oracle Database version.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_fleet_health_metrics/fleet_databases/db_id"></div>
                     <b>db_id</b>
                     <a class="ansibleOptionLink" href="#return-database_fleet_health_metrics/fleet_databases/db_id" title="Permalink to this return value"></a>
@@ -584,6 +646,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.db.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_fleet_health_metrics/fleet_databases/deployment_type"></div>
+                    <b>deployment_type</b>
+                    <a class="ansibleOptionLink" href="#return-database_fleet_health_metrics/fleet_databases/deployment_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The infrastructure used to deploy the Oracle Database.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ONPREMISE</div>
                                     </td>
             </tr>
                                 <tr>

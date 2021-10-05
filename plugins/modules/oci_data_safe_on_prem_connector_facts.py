@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple OnPremConnector resources in Oracle Cloud Infrastructure
     - Gets a list of on-premises connectors.
     - If I(on_prem_connector_id) is specified, the details of a single OnPremConnector will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     on_prem_connector_id:
@@ -113,43 +113,43 @@ on_prem_connectors:
             description:
                 - The OCID of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The OCID of the compartment that contains the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The description of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - The date and time the on-premises connector was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Details about the current state of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -178,13 +178,13 @@ on_prem_connectors:
             description:
                 - Latest available version of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: available_version_example
         created_version:
             description:
                 - Created version of the on-premises connector.
             returned: on success
-            type: string
+            type: str
             sample: created_version_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

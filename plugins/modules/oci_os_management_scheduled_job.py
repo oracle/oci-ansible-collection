@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       that repeats on a defined interval.
     - "This resource has the following action operations in the M(oci_scheduled_job_actions) module: change_compartment, run_scheduled_job_now,
       skip_next_scheduled_job_execution."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -88,6 +88,7 @@ options:
               (mutually exclusive with managedInstanceGroups). Either this or the
               managedInstanceGroups must be supplied.
         type: list
+        elements: dict
         suboptions:
             id:
                 description:
@@ -106,6 +107,7 @@ options:
               (mutually exclusive with managedInstances). Either this or
               managedInstances must be supplied.
         type: list
+        elements: dict
         suboptions:
             id:
                 description:
@@ -146,6 +148,7 @@ options:
             - the id of the package (only if operation type is INSTALL/UPDATE/REMOVE)
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -170,6 +173,7 @@ options:
               This is only applicable when the osFamily is for Windows managed instances.
             - This parameter is updatable.
         type: list
+        elements: str
     os_family:
         description:
             - The Operating System type of the managed instance(s) on which this scheduled job will operate.
@@ -253,55 +257,55 @@ scheduled_job:
             description:
                 - OCID for the Scheduled Job
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Scheduled Job name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Details describing the Scheduled Job.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         schedule_type:
             description:
                 - the type of scheduling this Scheduled Job follows
             returned: on success
-            type: string
+            type: str
             sample: ONETIME
         time_next_execution:
             description:
                 - the time of the next execution of this Scheduled Job
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_execution:
             description:
                 - the time of the last execution of this Scheduled Job
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         interval_type:
             description:
                 - the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
             returned: on success
-            type: string
+            type: str
             sample: HOUR
         interval_value:
             description:
                 - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
             returned: on success
-            type: string
+            type: str
             sample: interval_value_example
         managed_instances:
             description:
@@ -313,13 +317,13 @@ scheduled_job:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         managed_instance_groups:
             description:
@@ -331,25 +335,25 @@ scheduled_job:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         operation_type:
             description:
                 - the type of operation this Scheduled Job performs
             returned: on success
-            type: string
+            type: str
             sample: INSTALL
         update_type:
             description:
                 - Type of the update (only if operation type is UPDATEALL)
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
         package_names:
             description:
@@ -361,7 +365,7 @@ scheduled_job:
                     description:
                         - package identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
         work_requests:
             description:
@@ -373,19 +377,19 @@ scheduled_job:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the Scheduled Job.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:
@@ -412,7 +416,7 @@ scheduled_job:
             description:
                 - The Operating System type of the managed instance.
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         is_restricted:
             description:
@@ -645,7 +649,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            update_names=dict(type="list"),
+            update_names=dict(type="list", elements="str"),
             os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
             scheduled_job_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

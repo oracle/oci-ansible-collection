@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_awr_db_param_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_awr_db_param_facts -- Fetches details about a
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,9 @@ Synopsis
 .. Description
 
 - Fetches details about a AwrDbParam resource in Oracle Cloud Infrastructure
-- Summarizes the AWR database parameter history for the specified Managed Database. This includes the list of database parameters, with information on whether the parameter values were modified within the query time range. Note that each database parameter is only listed once. The returned summary gets all the database parameters, which include: -Each parameter whose value was changed during the time range: AwrDbParameterValueOptionalQueryParam (valueChanged ="Y") -Each parameter whose value was unchanged during the time range: AwrDbParameterValueOptionalQueryParam (valueChanged ="N") -Each parameter whose value was changed at the system level during the time range: (valueChanged ="Y"  and valueModified = "SYSTEM_MOD"). -Each parameter whose value was unchanged during the time range, however, the value is not the default value: (valueChanged ="N" and  valueDefault = "FALSE") Note that this API does not return information on the number of times each database parameter has been changed within the time range. To get the database parameter value change history for a specific parameter, use the following API endpoint: /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameterChanges
+- Summarizes the database parameter history for the specified database in AWR. This includes the list of database parameters, with information on whether the parameter values were modified within the query time range. Note that each database parameter is only listed once. Depending on the optional query parameters, the returned summary gets all the database parameters, which include:
+- - Each parameter whose value was changed during the time range:  (valueChanged ="Y") - Each parameter whose value was unchanged during the time range:  (valueChanged ="N") - Each parameter whose value was changed at the system level during the time range: (valueChanged ="Y"  and valueModified = "SYSTEM_MOD") - Each parameter whose value was unchanged during the time range, however, the value is not the default value: (valueChanged ="N" and  valueDefault = "FALSE")
+- Note that this API does not return information on the number of times each database parameter has been changed within the time range. To get the database parameter value change history for a specific parameter, use the following API endpoint: /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameterChanges
 
 
 .. Aliases
@@ -165,7 +177,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs:</div>
+                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -354,7 +366,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the the default order.</div>
+                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the default order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -462,6 +474,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a AwrDbWaitEvent resource in Oracle Clo
 description:
     - Fetches details about a AwrDbWaitEvent resource in Oracle Cloud Infrastructure
     - Summarizes the AWR wait event sample data for the specified database in the AWR. The event data is summarized based on the Time dimension for each event.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -36,7 +36,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -64,6 +64,7 @@ options:
         description:
             - The optional multiple value query parameter to filter the entity name.
         type: list
+        elements: str
     session_type:
         description:
             - The optional query parameter to filter ASH activities by FOREGROUND or BACKGROUND.
@@ -87,7 +88,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -114,20 +115,20 @@ awr_db_wait_event:
             description:
                 - The name of the event.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         time_begin:
             description:
                 - The begin time of the wait event.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_end:
             description:
                 - The end time of the wait event.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         waits_per_sec:
             description:
                 - The wait count per second.
@@ -228,7 +229,7 @@ def main():
             end_sn_id_less_than_or_equal_to=dict(type="int"),
             time_greater_than_or_equal_to=dict(type="str"),
             time_less_than_or_equal_to=dict(type="str"),
-            name=dict(type="list"),
+            name=dict(type="list", elements="str"),
             session_type=dict(type="str", choices=["FOREGROUND", "BACKGROUND", "ALL"]),
             container_id=dict(type="int"),
             sort_by=dict(type="str", choices=["TIME_BEGIN", "NAME"]),

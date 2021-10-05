@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DataAsset resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new DataAsset.
     - "This resource has the following action operations in the M(oci_data_asset_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -272,49 +272,49 @@ data_asset:
             description:
                 - The Unique Oracle ID (OCID) that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the DataAsset.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - A short description of the data asset.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - The time the the DataAsset was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the the DataAsset was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The lifecycle state of the Data Asset.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         project_id:
             description:
                 - The Unique project id which is created at project creation that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         data_source_details:
             description:
@@ -326,7 +326,7 @@ data_asset:
                     description:
                         - Data source type where actually data asset is being stored
                     returned: on success
-                    type: string
+                    type: str
                     sample: ORACLE_OBJECT_STORAGE
                 version_specific_details:
                     description:
@@ -338,145 +338,145 @@ data_asset:
                             description:
                                 - Data source type where actually data asset is being stored
                             returned: on success
-                            type: string
+                            type: str
                             sample: V_1_8
                         database_name:
                             description:
                                 - DB Name for influx connection
                             returned: on success
-                            type: string
+                            type: str
                             sample: database_name_example
                         retention_policy_name:
                             description:
                                 - retention policy is how long the bucket would last
                             returned: on success
-                            type: string
+                            type: str
                             sample: retention_policy_name_example
                         bucket_name:
                             description:
                                 - Bucket Name for influx connection
                             returned: on success
-                            type: string
+                            type: str
                             sample: bucket_name_example
                         organization_name:
                             description:
                                 - Org name for the influx db
                             returned: on success
-                            type: string
+                            type: str
                             sample: organization_name_example
                 user_name:
                     description:
                         - Username for connection to Influx
                     returned: on success
-                    type: string
+                    type: str
                     sample: user_name_example
                 password_secret_id:
                     description:
                         - Password Secret Id for the influx connection
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 measurement_name:
                     description:
                         - Measurement name for influx
                     returned: on success
-                    type: string
+                    type: str
                     sample: measurement_name_example
                 url:
                     description:
                         - public IP address and port to influx DB
                     returned: on success
-                    type: string
+                    type: str
                     sample: url_example
                 wallet_password_secret_id:
                     description:
                         - wallet password Secret ID in String format
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.walletpasswordsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 atp_user_name:
                     description:
                         - atp db user name
                     returned: on success
-                    type: string
+                    type: str
                     sample: atp_user_name_example
                 atp_password_secret_id:
                     description:
                         - atp db password Secret Id
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.atppasswordsecret.oc1..xxxxxxEXAMPLExxxxxx"
                 cwallet_file_secret_id:
                     description:
                         - OCID of the secret containing the containers certificates of ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.cwalletfilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 ewallet_file_secret_id:
                     description:
                         - OCID of the secret containing the PDB'S certificates of ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.ewalletfilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 key_store_file_secret_id:
                     description:
                         - OCID of the secret containing Keystore.jks file of the ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.keystorefilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 ojdbc_file_secret_id:
                     description:
                         - OCID of the secret that contains jdbc properties file of ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.ojdbcfilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 tnsnames_file_secret_id:
                     description:
                         - OCID of the secret that contains the tnsnames file of ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.tnsnamesfilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 truststore_file_secret_id:
                     description:
                         - OCID of the secret containing truststore.jks file of the ATP wallet
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.truststorefilesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 database_name:
                     description:
                         - atp database name
                     returned: on success
-                    type: string
+                    type: str
                     sample: database_name_example
                 table_name:
                     description:
                         - atp database table name
                     returned: on success
-                    type: string
+                    type: str
                     sample: table_name_example
                 namespace:
                     description:
                         - Object storage namespace
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_example
                 bucket_name:
                     description:
                         - Object storage bucket name
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
                 object_name:
                     description:
                         - File name
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_example
         private_endpoint_id:
             description:
                 - OCID of Private Endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple WafBlockedRequest resources in Oracle Cloud Infrastructure
     - Gets the number of blocked requests by a Web Application Firewall feature in five minute blocks, sorted by `timeObserved` in ascending order (starting
       from oldest data).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -46,6 +46,7 @@ options:
         description:
             - Filter stats by the Web Application Firewall feature that triggered the block action. If unspecified, data for all WAF features will be returned.
         type: list
+        elements: str
         choices:
             - "PROTECTION_RULES"
             - "JS_CHALLENGE"
@@ -76,8 +77,8 @@ waf_blocked_requests:
             description:
                 - The date and time the blocked requests were observed, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         time_range_in_seconds:
             description:
                 - The number of seconds the data covers.
@@ -88,7 +89,7 @@ waf_blocked_requests:
             description:
                 - The specific Web Application Firewall feature that blocked the requests, such as JavaScript Challenge or Access Control.
             returned: on success
-            type: string
+            type: str
             sample: PROTECTION_RULES
         count:
             description:
@@ -165,6 +166,7 @@ def main():
             time_observed_less_than=dict(type="str"),
             waf_feature=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "PROTECTION_RULES",
                     "JS_CHALLENGE",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BlockchainPlatformOsn resources in Oracle Cloud Infrastructure
     - List Blockchain Platform OSNs
     - If I(osn_id) is specified, the details of a single BlockchainPlatformOsn will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     blockchain_platform_id:
@@ -86,13 +86,13 @@ blockchain_platform_osns:
             description:
                 - OSN identifier
             returned: on success
-            type: string
+            type: str
             sample: osn_key_example
         ad:
             description:
                 - Availability Domain of OSN
             returned: on success
-            type: string
+            type: str
             sample: ad_example
         ocpu_allocation_param:
             description:
@@ -110,7 +110,7 @@ blockchain_platform_osns:
             description:
                 - The current state of the OSN.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
     sample: [{
         "osn_key": "osn_key_example",

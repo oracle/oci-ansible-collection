@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_object_storage_object_lifecycle_policy
 short_description: Manage an ObjectLifecyclePolicy resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an ObjectLifecyclePolicy resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -42,6 +42,7 @@ options:
             - The bucket's set of lifecycle policy rules.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -107,6 +108,7 @@ options:
                             - An array of object name prefixes that the rule will apply to. An empty array means to include all objects.
                             - This parameter is updatable.
                         type: list
+                        elements: str
                     inclusion_patterns:
                         description:
                             - An array of glob patterns to match the object names to include. An empty array includes all objects in the
@@ -129,6 +131,7 @@ options:
                                                       To include a '-' in the range, make it the first or last character."
                             - This parameter is updatable.
                         type: list
+                        elements: str
                     exclusion_patterns:
                         description:
                             - An array of glob patterns to match the object names to exclude. An empty array is ignored. Exclusion
@@ -151,6 +154,7 @@ options:
                                                       To include a '-' in the range, make it the first or last character."
                             - This parameter is updatable.
                         type: list
+                        elements: str
     state:
         description:
             - The state of the ObjectLifecyclePolicy.
@@ -189,8 +193,8 @@ object_lifecycle_policy:
                 - The date and time the object lifecycle policy was created, as described in
                   L(RFC 3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         items:
             description:
                 - The live lifecycle policy on the bucket.
@@ -204,7 +208,7 @@ object_lifecycle_policy:
                     description:
                         - The name of the lifecycle rule to be applied.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 target:
                     description:
@@ -217,7 +221,7 @@ object_lifecycle_policy:
                           This field when declared as \\"multipart-uploads\\" is used to specify the ABORT (only) rule for
                           uncommitted multipart-uploads."
                     returned: on success
-                    type: string
+                    type: str
                     sample: target_example
                 action:
                     description:
@@ -230,7 +234,7 @@ object_lifecycle_policy:
                           Rules using the action 'DELETE' permanently delete objects from buckets.
                           Rules using 'ABORT' abort the uncommitted multipart-uploads and permanently delete their parts from buckets.
                     returned: on success
-                    type: string
+                    type: str
                     sample: action_example
                 time_amount:
                     description:
@@ -244,7 +248,7 @@ object_lifecycle_policy:
                         - The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC.
                           Years are defined as 365.2425 days long and likewise round up to the next midnight UTC.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DAYS
                 is_enabled:
                     description:
@@ -438,9 +442,9 @@ def main():
                     object_name_filter=dict(
                         type="dict",
                         options=dict(
-                            inclusion_prefixes=dict(type="list"),
-                            inclusion_patterns=dict(type="list"),
-                            exclusion_patterns=dict(type="list"),
+                            inclusion_prefixes=dict(type="list", elements="str"),
+                            inclusion_patterns=dict(type="list", elements="str"),
+                            exclusion_patterns=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

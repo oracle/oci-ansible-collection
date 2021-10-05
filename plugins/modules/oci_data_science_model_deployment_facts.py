@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists all model deployments in the specified compartment. Only one parameter other than compartmentId may also be included in a query. The query must
       include compartmentId. If the query does not include compartmentId, or includes compartmentId but two or more other parameters an error is returned.
     - If I(model_deployment_id) is specified, the details of a single ModelDeployment will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     model_deployment_id:
@@ -110,45 +110,45 @@ model_deployments:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         display_name:
             description:
                 - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
                   Example: `My ModelDeployment`"
             returned: on success
-            type: string
+            type: str
             sample: My ModelDeployment
         description:
             description:
                 - A short description of the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model deployment's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         model_deployment_configuration_details:
             description:
@@ -160,7 +160,7 @@ model_deployments:
                     description:
                         - The type of the model deployment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SINGLE_MODEL
                 model_configuration_details:
                     description:
@@ -172,7 +172,7 @@ model_deployments:
                             description:
                                 - The OCID of the model you want to deploy.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
                         instance_configuration:
                             description:
@@ -184,7 +184,7 @@ model_deployments:
                                     description:
                                         - The shape used to launch the model deployment instances.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: instance_shape_name_example
                         scaling_policy:
                             description:
@@ -196,7 +196,7 @@ model_deployments:
                                     description:
                                         - The type of scaling policy.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: FIXED_SIZE
                                 instance_count:
                                     description:
@@ -226,13 +226,13 @@ model_deployments:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a log to work with.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
                         log_group_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a log group to work with.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 predict:
                     description:
@@ -244,31 +244,31 @@ model_deployments:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a log to work with.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
                         log_group_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a log group to work with.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         model_deployment_url:
             description:
                 - The URL to interact with the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: model_deployment_url_example
         lifecycle_state:
             description:
                 - The state of the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Details about the state of the model deployment.
             returned: on success
-            type: string
+            type: str
             sample: waiting for SSH
         freeform_tags:
             description:

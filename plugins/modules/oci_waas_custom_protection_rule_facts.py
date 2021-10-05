@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CustomProtectionRule resources in Oracle Cloud Infrastructure
     - Gets a list of custom protection rules for the specified Web Application Firewall.
     - If I(custom_protection_rule_id) is specified, the details of a single CustomProtectionRule will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     custom_protection_rule_id:
@@ -62,11 +62,13 @@ options:
         description:
             - Filter custom protection rules using a list of display names.
         type: list
+        elements: str
         aliases: ["name"]
     lifecycle_state:
         description:
             - Filter Custom Protection rules using a list of lifecycle states.
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "ACTIVE"
@@ -107,25 +109,25 @@ custom_protection_rules:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The description of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         mod_security_rule_ids:
             description:
@@ -167,20 +169,20 @@ custom_protection_rules:
                 - For more information about ModSecurity's open source WAF rules, see L(Mod Security's OWASP Core Rule Set
                   documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
             returned: on success
-            type: string
+            type: str
             sample: template_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the protection rule was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -296,9 +298,10 @@ def main():
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            display_name=dict(aliases=["name"], type="list"),
+            display_name=dict(aliases=["name"], type="list", elements="str"),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "ACTIVE",

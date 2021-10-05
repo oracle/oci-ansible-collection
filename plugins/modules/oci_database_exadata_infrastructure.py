@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) operation.
     - "This resource has the following action operations in the M(oci_exadata_infrastructure_actions) module: activate, add_storage_capacity,
       change_compartment, download_exadata_infrastructure_config_file."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -104,6 +104,7 @@ options:
             - The list of contacts for the Exadata infrastructure.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -147,6 +148,7 @@ options:
                 description:
                     - Months during the year when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -175,10 +177,12 @@ options:
                       Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the
                       week and hours that maintenance will be performed.
                 type: list
+                elements: int
             days_of_week:
                 description:
                     - Days during the week when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -199,6 +203,7 @@ options:
                       - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
                         represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
                 type: list
+                elements: int
             lead_time_in_weeks:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
@@ -217,12 +222,14 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     ntp_server:
         description:
             - The list of NTP server IP addresses. Maximum of 3 allowed.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -312,38 +319,38 @@ exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         display_name:
             description:
                 - The user-friendly name for the Exadata Cloud@Customer infrastructure. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape:
             description:
                 - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         time_zone:
             description:
                 - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         cpus_enabled:
             description:
@@ -421,43 +428,43 @@ exadata_infrastructure:
             description:
                 - The IP address for the first control plane server.
             returned: on success
-            type: string
+            type: str
             sample: cloud_control_plane_server1_example
         cloud_control_plane_server2:
             description:
                 - The IP address for the second control plane server.
             returned: on success
-            type: string
+            type: str
             sample: cloud_control_plane_server2_example
         netmask:
             description:
                 - The netmask for the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: netmask_example
         gateway:
             description:
                 - The gateway for the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: gateway_example
         admin_network_cidr:
             description:
                 - The CIDR block for the Exadata administration network.
             returned: on success
-            type: string
+            type: str
             sample: admin_network_cidr_example
         infini_band_network_cidr:
             description:
                 - The CIDR block for the Exadata InfiniBand interconnect.
             returned: on success
-            type: string
+            type: str
             sample: infini_band_network_cidr_example
         corporate_proxy:
             description:
                 - The corporate network proxy for access to the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: corporate_proxy_example
         dns_server:
             description:
@@ -475,19 +482,19 @@ exadata_infrastructure:
             description:
                 - The date and time the Exadata infrastructure was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         csi_number:
             description:
                 - The CSI Number of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: csi_number_example
         contacts:
             description:
@@ -499,19 +506,19 @@ exadata_infrastructure:
                     description:
                         - The name of the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 phone_number:
                     description:
                         - The phone number for the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: phone_number_example
                 email:
                     description:
                         - The email for the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
                 is_primary:
                     description:
@@ -531,7 +538,7 @@ exadata_infrastructure:
                 - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
                   infrastructure is provisioned.
             returned: on success
-            type: string
+            type: str
             sample: OK
         maintenance_window:
             description:
@@ -543,7 +550,7 @@ exadata_infrastructure:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -555,7 +562,7 @@ exadata_infrastructure:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -578,7 +585,7 @@ exadata_infrastructure:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -600,13 +607,13 @@ exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -885,7 +892,7 @@ def main():
                             )
                         ),
                     ),
-                    weeks_of_month=dict(type="list"),
+                    weeks_of_month=dict(type="list", elements="int"),
                     days_of_week=dict(
                         type="list",
                         elements="dict",
@@ -905,14 +912,14 @@ def main():
                             )
                         ),
                     ),
-                    hours_of_day=dict(type="list"),
+                    hours_of_day=dict(type="list", elements="int"),
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
             storage_count=dict(type="int"),
             compute_count=dict(type="int"),
-            dns_server=dict(type="list"),
-            ntp_server=dict(type="list"),
+            dns_server=dict(type="list", elements="str"),
+            ntp_server=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             exadata_infrastructure_id=dict(aliases=["id"], type="str"),

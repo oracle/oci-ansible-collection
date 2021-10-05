@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AutonomousExadataInfrastructureShape resources in Oracle Cloud Infrastructure
     - Gets a list of the shapes that can be used to launch a new Autonomous Exadata Infrastructure resource. The shape determines resources to allocate (CPU
       cores, memory and storage).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     availability_domain:
@@ -60,7 +60,7 @@ autonomous_exadata_infrastructure_shapes:
             description:
                 - The name of the shape used for the Autonomous Exadata Infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         available_core_count:
             description:

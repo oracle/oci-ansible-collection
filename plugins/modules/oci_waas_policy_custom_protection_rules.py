@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_policy_custom_protection_rules
 short_description: Manage a WaasPolicyCustomProtectionRules resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a WaasPolicyCustomProtectionRules resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             id:
@@ -57,6 +58,7 @@ options:
                 description:
                     - ""
                 type: list
+                elements: dict
                 suboptions:
                     target:
                         description:
@@ -73,6 +75,7 @@ options:
                             - ""
                             - This parameter is updatable.
                         type: list
+                        elements: str
     state:
         description:
             - The state of the WaasPolicyCustomProtectionRules.
@@ -102,13 +105,13 @@ waas_policy_custom_protection_rules:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the custom protection rule.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         action:
             description:
@@ -116,7 +119,7 @@ waas_policy_custom_protection_rules:
                   `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the criteria of the
                   custom protection rule are met."
             returned: on success
-            type: string
+            type: str
             sample: DETECT
         mod_security_rule_ids:
             description:
@@ -135,7 +138,7 @@ waas_policy_custom_protection_rules:
                     description:
                         - The target of the exclusion.
                     returned: on success
-                    type: string
+                    type: str
                     sample: REQUEST_COOKIES
                 exclusions:
                     description:
@@ -283,7 +286,7 @@ def main():
                                     "ARGS_NAMES",
                                 ],
                             ),
-                            exclusions=dict(type="list"),
+                            exclusions=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

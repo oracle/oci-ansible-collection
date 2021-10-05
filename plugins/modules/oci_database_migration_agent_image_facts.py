@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,8 +23,9 @@ module: oci_database_migration_agent_image_facts
 short_description: Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
-    - Get details of the ODMS Agent Images available to install on-premises.
-version_added: "2.9"
+    - "Note: Deprecated. Use the new resource model APIs instead.
+      Get details of the ODMS Agent Images available to install on-premises."
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sort_order:
@@ -54,13 +55,13 @@ agent_images:
             description:
                 - ODMS Agent Image version.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         download_url:
             description:
                 - URL to download Agent Image of the ODMS Agent.
             returned: on success
-            type: string
+            type: str
             sample: download_url_example
     sample: [{
         "version": "version_example",

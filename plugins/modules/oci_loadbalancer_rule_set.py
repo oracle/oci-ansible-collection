@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a RuleSet resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new rule set associated with the specified load balancer. For more information, see
       L(Managing Rule Sets,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrulesets.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -45,6 +45,7 @@ options:
             - An array of rules that compose the rule set.
             - Required for create using I(state=present), update using I(state=present) with name present.
         type: list
+        elements: dict
         suboptions:
             action:
                 description:
@@ -96,6 +97,7 @@ options:
                     - ""
                     - Required when action is one of ['REDIRECT', 'ALLOW']
                 type: list
+                elements: dict
                 suboptions:
                     attribute_name:
                         description:
@@ -257,6 +259,7 @@ options:
                     - "Example: [\\"GET\\", \\"PUT\\", \\"POST\\", \\"PROPFIND\\"]"
                     - Required when action is 'CONTROL_ACCESS_USING_HTTP_METHODS'
                 type: list
+                elements: str
             status_code:
                 description:
                     - The HTTP status code to return when the requested HTTP method is not in the list of allowed methods.
@@ -345,7 +348,7 @@ rule_set:
                   confidential information.
                 - "Example: `example_rule_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_rule_set
         items:
             description:
@@ -357,14 +360,14 @@ rule_set:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: ADD_HTTP_REQUEST_HEADER
                 header:
                     description:
                         - A header name that conforms to RFC 7230.
                         - "Example: `example_header_name`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_header_name
                 value:
                     description:
@@ -373,7 +376,7 @@ rule_set:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_value
                 conditions:
                     description:
@@ -385,14 +388,14 @@ rule_set:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: SOURCE_IP_ADDRESS
                         attribute_value:
                             description:
                                 - The path string that the redirection rule applies to.
                                 - "Example: `/example`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /example
                         operator:
                             description:
@@ -406,14 +409,14 @@ rule_set:
                                 - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
                                      string."
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXACT_MATCH
                 description:
                     description:
                         - A brief description of the access control rule. Avoid entering confidential information.
                         - "example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 allowed_methods:
                     description:
@@ -446,7 +449,7 @@ rule_set:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_prefix_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_prefix_value
                 suffix:
                     description:
@@ -456,7 +459,7 @@ rule_set:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_suffix_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_suffix_value
                 are_invalid_characters_allowed:
                     description:
@@ -507,7 +510,7 @@ rule_set:
                                 - "`{protocol}` is the only valid token for this property. It can appear only once in the value string."
                                 - "Example: `HTTPS`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: HTTPS
                         host:
                             description:
@@ -523,7 +526,7 @@ rule_set:
                                 - "*  **{port}{host}** appears as `8081example.com` in the redirect URI if `example.com` is the hostname and
                                      the port is `8081` in the incoming HTTP request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_example
                         port:
                             description:
@@ -556,7 +559,7 @@ rule_set:
                                 - "*  __/{query}__ appears as `/lang=en` in the redirect URI if the query is `lang=en` in the incoming HTTP
                                      request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: path_example
                         query:
                             description:
@@ -585,7 +588,7 @@ rule_set:
                                 - "*  **port={port}&hostname={host}** appears as `port=8080&hostname=example.com` in the redirect URI if the
                                      port is `8080` and the hostname is `example.com` in the incoming HTTP request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: query_example
     sample: {
         "name": "example_rule_set",
@@ -818,7 +821,7 @@ def main():
                     ),
                     prefix=dict(type="str"),
                     suffix=dict(type="str"),
-                    allowed_methods=dict(type="list"),
+                    allowed_methods=dict(type="list", elements="str"),
                     status_code=dict(type="int"),
                     description=dict(type="str"),
                     are_invalid_characters_allowed=dict(type="bool"),

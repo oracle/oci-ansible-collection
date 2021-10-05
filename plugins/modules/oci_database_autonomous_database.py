@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       change_compartment, configure_autonomous_database_vault_key, deregister_autonomous_database_data_safe, disable_autonomous_database_operations_insights,
       enable_autonomous_database_operations_insights, fail_over, generate_autonomous_database_wallet, register_autonomous_database_data_safe, restart, restore,
       rotate_autonomous_database_encryption_key, start, stop, switchover."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -194,6 +194,7 @@ options:
             - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
             - This parameter is updatable.
         type: list
+        elements: str
     are_primary_whitelisted_ips_used:
         description:
             - This field will be null if the Autonomous Database is not Data Guard enabled or Access Control is disabled.
@@ -217,6 +218,7 @@ options:
             - For an update operation, if you want to delete all the IPs in the ACL, use an array with a single empty string entry.
             - This parameter is updatable.
         type: list
+        elements: str
     is_data_guard_enabled:
         description:
             - Indicates whether the Autonomous Database has Data Guard enabled.
@@ -243,6 +245,7 @@ options:
               - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
             - This parameter is updatable.
         type: list
+        elements: str
     private_endpoint_label:
         description:
             - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change the
@@ -289,12 +292,18 @@ options:
             - Customer Contacts.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             email:
                 description:
                     - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     - Applicable when source is 'DATABASE'
                 type: str
+    is_mtls_connection_required:
+        description:
+            - Indicates whether the Autonomous Database requires mTLS connections.
+            - This parameter is updatable.
+        type: bool
     autonomous_maintenance_schedule_type:
         description:
             - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
@@ -435,50 +444,50 @@ autonomous_database:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                   L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_lifecycle_details:
             description:
                 - KMS key lifecycle details.
             returned: on success
-            type: string
+            type: str
             sample: kms_key_lifecycle_details_example
         db_name:
             description:
                 - The database name.
             returned: on success
-            type: string
+            type: str
             sample: db_name_example
         is_free_tier:
             description:
@@ -499,15 +508,15 @@ autonomous_database:
                 - The date and time the Always Free database will be stopped because of inactivity. If this time is reached without any database activity, the
                   database will automatically be put into the STOPPED state.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_deletion_of_free_autonomous_database:
             description:
                 - The date and time the Always Free database will be automatically deleted because of inactivity. If the database is in the STOPPED state and
                   without activity until this time, it will be deleted.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         backup_config:
             description:
                 - ""
@@ -519,13 +528,13 @@ autonomous_database:
                         - Name of L(Object Storage,https://docs.cloud.oracle.com/Content/Object/Concepts/objectstorageoverview.htm) bucket to use for storing
                           manual backups.
                     returned: on success
-                    type: string
+                    type: str
                     sample: manual_backup_bucket_name_example
                 manual_backup_type:
                     description:
                         - The manual backup destination type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NONE
         key_history_entry:
             description:
@@ -538,21 +547,21 @@ autonomous_database:
                         - The id of the Autonomous Database L(Vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts)
                           service key management history entry.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 vault_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                           L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 time_activated:
                     description:
                         - The date and time the kms key activated.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         cpu_core_count:
             description:
                 - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum
@@ -596,7 +605,7 @@ autonomous_database:
             description:
                 - The infrastructure type this resource belongs to.
             returned: on success
-            type: string
+            type: str
             sample: CLOUD
         is_dedicated:
             description:
@@ -608,25 +617,25 @@ autonomous_database:
             description:
                 - The Autonomous Container Database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the Autonomous Database was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         display_name:
             description:
                 - The user-friendly name for the Autonomous Database. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         service_console_url:
             description:
                 - The URL of the Service Console for the Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: service_console_url_example
         connection_strings:
             description:
@@ -640,28 +649,28 @@ autonomous_database:
                         - The High database service provides the highest level of resources to each SQL statement resulting in the highest performance, but
                           supports the fewest number of concurrent SQL statements.
                     returned: on success
-                    type: string
+                    type: str
                     sample: high_example
                 medium:
                     description:
                         - The Medium database service provides a lower level of resources to each SQL statement potentially resulting a lower level of
                           performance, but supports more concurrent SQL statements.
                     returned: on success
-                    type: string
+                    type: str
                     sample: medium_example
                 low:
                     description:
                         - The Low database service provides the least level of resources to each SQL statement, but supports the most number of concurrent SQL
                           statements.
                     returned: on success
-                    type: string
+                    type: str
                     sample: low_example
                 dedicated:
                     description:
                         - The database service provides the least level of resources to each SQL statement, but supports the most number of concurrent SQL
                           statements.
                     returned: on success
-                    type: string
+                    type: str
                     sample: dedicated_example
                 all_connection_strings:
                     description:
@@ -671,6 +680,65 @@ autonomous_database:
                     returned: on success
                     type: dict
                     sample: {}
+                profiles:
+                    description:
+                        - A list of connection string profiles to allow clients to group, filter and select connection string values based on structured
+                          metadata.
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - A user-friendly name for the connection.
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        value:
+                            description:
+                                - Connection string value.
+                            returned: on success
+                            type: str
+                            sample: value_example
+                        consumer_group:
+                            description:
+                                - Consumer group used by the connection.
+                            returned: on success
+                            type: str
+                            sample: HIGH
+                        protocol:
+                            description:
+                                - Protocol used by the connection.
+                            returned: on success
+                            type: str
+                            sample: TCP
+                        tls_authentication:
+                            description:
+                                - Specifies whether the TLS handshake is using one-way (`SERVER`) or mutual (`MUTUAL`) authentication.
+                            returned: on success
+                            type: str
+                            sample: SERVER
+                        host_format:
+                            description:
+                                - Host format used in connection string.
+                            returned: on success
+                            type: str
+                            sample: FQDN
+                        session_mode:
+                            description:
+                                - Specifies whether the listener performs a direct hand-off of the session, or redirects the session. In RAC deployments where
+                                  SCAN is used, sessions are redirected to a Node VIP. Use `DIRECT` for direct hand-offs. Use `REDIRECT` to redirect the
+                                  session.
+                            returned: on success
+                            type: str
+                            sample: DIRECT
+                        syntax_format:
+                            description:
+                                - Specifies whether the connection string is using the long (`LONG`), Easy Connect (`EZCONNECT`), or Easy Connect Plus
+                                  (`EZCONNECTPLUS`) format.
+                                  Autonomous Databases on shared Exadata infrastructure always use the long format.
+                            returned: on success
+                            type: str
+                            sample: LONG
         connection_urls:
             description:
                 - ""
@@ -681,25 +749,25 @@ autonomous_database:
                     description:
                         - Oracle SQL Developer Web URL.
                     returned: on success
-                    type: string
+                    type: str
                     sample: sql_dev_web_url_example
                 apex_url:
                     description:
                         - Oracle Application Express (APEX) URL.
                     returned: on success
-                    type: string
+                    type: str
                     sample: apex_url_example
                 machine_learning_user_management_url:
                     description:
                         - Oracle Machine Learning user management URL.
                     returned: on success
-                    type: string
+                    type: str
                     sample: machine_learning_user_management_url_example
                 graph_studio_url:
                     description:
                         - The URL of the Graph Studio for the Autonomous Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: graph_studio_url_example
         license_model:
             description:
@@ -713,7 +781,7 @@ autonomous_database:
                   infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will
                   supply the value of `BRING_YOUR_OWN_LICENSE`.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         used_data_storage_size_in_tbs:
             description:
@@ -747,7 +815,7 @@ autonomous_database:
                   Specifying an overlapping subnet will cause the private interconnect to malfunction.
                   This restriction applies to both the client subnet and the backup subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
@@ -763,26 +831,26 @@ autonomous_database:
             description:
                 - The private endpoint for the resource.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_example
         private_endpoint_label:
             description:
                 - The private endpoint label for the resource. Setting this to an empty string, after the private endpoint database gets created, will change
                   the same private endpoint database to the public endpoint database.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_label_example
         private_endpoint_ip:
             description:
                 - The private endpoint Ip address for the resource.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_ip_example
         db_version:
             description:
                 - A valid Oracle Database version for Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: db_version_example
         is_preview:
             description:
@@ -798,7 +866,7 @@ autonomous_database:
                   - AJD - indicates an Autonomous JSON Database
                   - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
-            type: string
+            type: str
             sample: OLTP
         is_access_control_enabled:
             description:
@@ -864,13 +932,13 @@ autonomous_database:
                     description:
                         - The Oracle APEX Application Development version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: apex_version_example
                 ords_version:
                     description:
                         - The Oracle REST Data Services (ORDS) version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ords_version_example
         is_auto_scaling_enabled:
             description:
@@ -882,26 +950,26 @@ autonomous_database:
             description:
                 - Status of the Data Safe registration for this Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: REGISTERING
         operations_insights_status:
             description:
                 - Status of Operations Insights for this Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: ENABLING
         time_maintenance_begin:
             description:
                 - The date and time when maintenance will begin.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_maintenance_end:
             description:
                 - The date and time when maintenance will end.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         is_refreshable_clone:
             description:
                 - Indicates whether the Autonomous Database is a refreshable clone.
@@ -912,66 +980,66 @@ autonomous_database:
             description:
                 - The date and time when last refresh happened.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_last_refresh_point:
             description:
                 - The refresh point timestamp (UTC). The refresh point is the time to which the database was most recently refreshed. Data created after the
                   refresh point is not included in the refresh.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_next_refresh:
             description:
                 - The date and time of next refresh.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         open_mode:
             description:
                 - The `DATABASE OPEN` mode. You can open the database in `READ_ONLY` or `READ_WRITE` mode.
             returned: on success
-            type: string
+            type: str
             sample: READ_ONLY
         refreshable_status:
             description:
                 - The refresh status of the clone. REFRESHING indicates that the clone is currently being refreshed with data from the source Autonomous
                   Database.
             returned: on success
-            type: string
+            type: str
             sample: REFRESHING
         refreshable_mode:
             description:
                 - The refresh mode of the clone. AUTOMATIC indicates that the clone is automatically being refreshed with data from the source Autonomous
                   Database.
             returned: on success
-            type: string
+            type: str
             sample: AUTOMATIC
         source_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that was cloned to create
                   the current Autonomous Database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         permission_level:
             description:
                 - The Autonomous Database permission level. Restricted mode allows access only to admin users.
             returned: on success
-            type: string
+            type: str
             sample: RESTRICTED
         time_of_last_switchover:
             description:
                 - The timestamp of the last switchover operation for the Autonomous Database.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_last_failover:
             description:
                 - The timestamp of the last failover operation.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         is_data_guard_enabled:
             description:
                 - Indicates whether the Autonomous Database has Data Guard enabled.
@@ -1001,25 +1069,25 @@ autonomous_database:
                     description:
                         - The current state of the Autonomous Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PROVISIONING
                 lifecycle_details:
                     description:
                         - Additional information about the current lifecycle state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
                 time_data_guard_role_changed:
                     description:
                         - The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         role:
             description:
                 - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         available_upgrade_versions:
             description:
@@ -1031,13 +1099,13 @@ autonomous_database:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.
             returned: on success
-            type: string
+            type: str
             sample: key_store_wallet_name_example
         supported_regions_to_clone_to:
             description:
@@ -1055,15 +1123,15 @@ autonomous_database:
                     description:
                         - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
         time_local_data_guard_enabled:
             description:
                 - The date and time that Autonomous Data Guard was enabled for an Autonomous Database where the standby was provisioned in the same region as
                   the primary database.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         dataguard_region_type:
             description:
                 - "The Autonomous Data Guard region type of the Autonomous Database. For Autonomous Databases on shared Exadata infrastructure, Data Guard
@@ -1072,7 +1140,7 @@ autonomous_database:
                   administrative operations may be available only in the primary region of the Data Guard association, and cannot be performed when the database
                   using the \\"primary\\" role is operating in a remote Data Guard standby region.```"
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY_DG_REGION
         time_data_guard_role_changed:
             description:
@@ -1080,8 +1148,8 @@ autonomous_database:
                   primary Data Guard region and a remote Data Guard standby region, this is the latest timestamp of either the database using the \\"primary\\"
                   role in the primary Data Guard region, or database located in the remote Data Guard standby region."
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         peer_db_ids:
             description:
                 - The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of standby databases located in Autonomous Data
@@ -1090,6 +1158,12 @@ autonomous_database:
             returned: on success
             type: list
             sample: []
+        is_mtls_connection_required:
+            description:
+                - Indicates whether the Autonomous Database requires mTLS connections.
+            returned: on success
+            type: bool
+            sample: true
         autonomous_maintenance_schedule_type:
             description:
                 - The maintenance schedule type of the Autonomous Database on shared Exadata infrastructure. The EARLY maintenance schedule of this Autonomous
@@ -1097,7 +1171,7 @@ autonomous_database:
                   follows a schedule that applies patches prior to the REGULAR schedule.The REGULAR maintenance schedule of this Autonomous Database follows the
                   normal cycle.
             returned: on success
-            type: string
+            type: str
             sample: EARLY
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1136,7 +1210,17 @@ autonomous_database:
             "medium": "medium_example",
             "low": "low_example",
             "dedicated": "dedicated_example",
-            "all_connection_strings": {}
+            "all_connection_strings": {},
+            "profiles": [{
+                "display_name": "display_name_example",
+                "value": "value_example",
+                "consumer_group": "HIGH",
+                "protocol": "TCP",
+                "tls_authentication": "SERVER",
+                "host_format": "FQDN",
+                "session_mode": "DIRECT",
+                "syntax_format": "LONG"
+            }]
         },
         "connection_urls": {
             "sql_dev_web_url": "sql_dev_web_url_example",
@@ -1200,6 +1284,7 @@ autonomous_database:
         "dataguard_region_type": "PRIMARY_DG_REGION",
         "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00",
         "peer_db_ids": [],
+        "is_mtls_connection_required": true,
         "autonomous_maintenance_schedule_type": "EARLY"
     }
 """
@@ -1389,12 +1474,12 @@ def main():
             is_dedicated=dict(type="bool"),
             autonomous_container_database_id=dict(type="str"),
             is_access_control_enabled=dict(type="bool"),
-            whitelisted_ips=dict(type="list"),
+            whitelisted_ips=dict(type="list", elements="str"),
             are_primary_whitelisted_ips_used=dict(type="bool"),
-            standby_whitelisted_ips=dict(type="list"),
+            standby_whitelisted_ips=dict(type="list", elements="str"),
             is_data_guard_enabled=dict(type="bool"),
             subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list"),
+            nsg_ids=dict(type="list", elements="str"),
             private_endpoint_label=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
@@ -1414,6 +1499,7 @@ def main():
             customer_contacts=dict(
                 type="list", elements="dict", options=dict(email=dict(type="str"))
             ),
+            is_mtls_connection_required=dict(type="bool"),
             autonomous_maintenance_schedule_type=dict(
                 type="str", choices=["EARLY", "REGULAR"]
             ),

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_apigateway_gateway_actions_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_apigateway_gateway_actions -- Perform actions on a Gateway resour
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -299,6 +309,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -359,7 +372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Gateway resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My new resource&#x27;, &#x27;endpoint_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;response_cache_details&#x27;: {&#x27;authentication_secret_id&#x27;: &#x27;ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;authentication_secret_version_number&#x27;: 56, &#x27;connect_timeout_in_ms&#x27;: 56, &#x27;is_ssl_enabled&#x27;: True, &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_ms&#x27;: 56, &#x27;send_timeout_in_ms&#x27;: 56, &#x27;servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56}], &#x27;type&#x27;: &#x27;EXTERNAL_RESP_CACHE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;certificate_id&#x27;: &#x27;ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;My new resource&#x27;, &#x27;endpoint_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_addresses&#x27;: [{&#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_security_group_ids&#x27;: [], &#x27;response_cache_details&#x27;: {&#x27;authentication_secret_id&#x27;: &#x27;ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;authentication_secret_version_number&#x27;: 56, &#x27;connect_timeout_in_ms&#x27;: 56, &#x27;is_ssl_enabled&#x27;: True, &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_ms&#x27;: 56, &#x27;send_timeout_in_ms&#x27;: 56, &#x27;servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56}], &#x27;type&#x27;: &#x27;EXTERNAL_RESP_CACHE&#x27;}, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -580,6 +593,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-gateway/network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#return-gateway/network_security_group_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An array of Network Security Groups OCIDs associated with this API Gateway.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

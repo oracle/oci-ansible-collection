@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), move the key store resource to the specified compartment.
       For more information about moving key stores, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -70,37 +70,37 @@ key_store:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the key store. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - The date and time that the key store was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the key store.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         type_details:
             description:
@@ -112,7 +112,7 @@ key_store:
                     description:
                         - The type of key store.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ORACLE_KEY_VAULT
                 connection_ips:
                     description:
@@ -124,21 +124,21 @@ key_store:
                     description:
                         - The administrator username to connect to Oracle Key Vault
                     returned: on success
-                    type: string
+                    type: str
                     sample: admin_username_example
                 vault_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                           L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 secret_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                           L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         associated_databases:
             description:
@@ -150,13 +150,13 @@ key_store:
                     description:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The name of the database that is associated with the key store.
                     returned: on success
-                    type: string
+                    type: str
                     sample: db_name_example
         freeform_tags:
             description:

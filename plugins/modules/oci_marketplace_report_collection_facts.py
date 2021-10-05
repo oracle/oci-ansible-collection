@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ReportCollection resour
 description:
     - Fetches details about one or multiple ReportCollection resources in Oracle Cloud Infrastructure
     - Lists reports in the compartment that match the specified report type and date.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     report_type:
@@ -65,14 +65,14 @@ report_collections:
             description:
                 - The type of report.
             returned: on success
-            type: string
+            type: str
             sample: report_type_example
         date:
             description:
                 - The date of the report.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         columns:
             description:
                 - The columns in the report.
@@ -83,7 +83,7 @@ report_collections:
             description:
                 - The contents of the report in comma-separated values (CSV) file format.
             returned: on success
-            type: string
+            type: str
             sample: content_example
     sample: [{
         "report_type": "report_type_example",

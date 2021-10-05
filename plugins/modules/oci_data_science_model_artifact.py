@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,9 +24,14 @@ short_description: Manage a ModelArtifact resource in Oracle Cloud Infrastructur
 description:
     - This module allows the user to create a ModelArtifact resource in Oracle Cloud Infrastructure
     - For I(state=present), creates model artifact for specified model.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    model_artifact_file:
+        description:
+            - The model artifact file path to upload
+        type: str
+        required: true
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
@@ -39,7 +44,6 @@ options:
     model_artifact:
         description:
             - The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.
-            - Required for create using I(state=present).
         type: str
     content_disposition:
         description:
@@ -51,11 +55,6 @@ options:
                          \\"Content-Length\\": \\"2347\\"
                          \\"Content-Type\\": \\"application/gzip\\"}`"
         type: str
-    model_artifact_file:
-        description:
-            - The model artifact file path to upload
-        type: str
-        required: true
     state:
         description:
             - The state of the ModelArtifact.
@@ -70,9 +69,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create model_artifact
   oci_data_science_model_artifact:
-    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
-    model_artifact: B
     model_artifact_file: model.zip
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -144,11 +142,11 @@ def main():
     )
     module_args.update(
         dict(
+            model_artifact_file=dict(type="str", required=True),
             model_id=dict(type="str", required=True),
             content_length=dict(type="int"),
             model_artifact=dict(type="str"),
             content_disposition=dict(type="str"),
-            model_artifact_file=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

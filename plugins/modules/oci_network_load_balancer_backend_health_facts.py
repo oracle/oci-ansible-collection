@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a BackendHealth resource in Oracle Clou
 description:
     - Fetches details about a BackendHealth resource in Oracle Cloud Infrastructure
     - Retrieves the current health status of the specified backend server.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -74,7 +74,7 @@ backend_health:
                   *   **UNKNOWN:** One of the health checks probes return `UNKNOWN`,
                   *   or the system is unable to retrieve metrics at this time."
             returned: on success
-            type: string
+            type: str
             sample: OK
         health_check_results:
             description:
@@ -87,13 +87,13 @@ backend_health:
                         - The date and time the data was retrieved, in the format defined by RFC3339.
                         - "Example: `2020-05-01T18:28:11+00:00`"
                     returned: on success
-                    type: string
-                    sample: 2020-05-01T18:28:11+00:00
+                    type: str
+                    sample: "2020-05-01T18:28:11+00:00"
                 health_check_status:
                     description:
                         - The result of the most recent health check.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OK
     sample: {
         "status": "OK",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
     - Gets the list of all the categories for listings published to Oracle Cloud Infrastructure Marketplace. Categories apply
       to the software product provided by the listing.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -53,7 +53,7 @@ categories:
             description:
                 - Name of the product category.
             returned: on success
-            type: string
+            type: str
             sample: name_example
     sample: [{
         "name": "name_example"

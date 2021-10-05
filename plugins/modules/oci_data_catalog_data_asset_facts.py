@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DataAsset resources in Oracle Cloud Infrastructure
     - Returns a list of data assets within a data catalog.
     - If I(data_asset_key) is specified, the details of a single DataAsset will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     catalog_id:
@@ -42,6 +42,7 @@ options:
         description:
             - Specifies the fields to return in a data asset response.
         type: list
+        elements: str
         choices:
             - "key"
             - "displayName"
@@ -145,81 +146,81 @@ data_assets:
             description:
                 - Unique data asset key that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         display_name:
             description:
                 - A user-friendly display name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Detailed description of the data asset.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         catalog_id:
             description:
                 - The data catalog's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         external_key:
             description:
                 - External URI that can be used to reference the object. Format will differ based on the type of object.
             returned: on success
-            type: string
+            type: str
             sample: external_key_example
         type_key:
             description:
                 - The key of the object type. Type key's can be found via the '/types' endpoint.
             returned: on success
-            type: string
+            type: str
             sample: type_key_example
         lifecycle_state:
             description:
                 - The current state of the data asset.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-03-25T21:10:29.600Z
+            type: str
+            sample: "2019-03-25T21:10:29.600Z"
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_harvested:
             description:
                 - The last time that a harvest was performed on the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the data asset.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         uri:
             description:
                 - URI to the data asset instance in the API.
             returned: on success
-            type: string
+            type: str
             sample: uri_example
         custom_property_members:
             description:
@@ -231,43 +232,43 @@ data_assets:
                     description:
                         - Unique Identifier of the attribute which is ID
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - Display name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 value:
                     description:
                         - The custom property value
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 data_type:
                     description:
                         - The data type of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: TEXT
                 namespace_name:
                     description:
                         - Namespace name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_name_example
                 namespace_key:
                     description:
                         - Unique namespace key that is immutable
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_key_example
                 is_multi_valued:
                     description:
@@ -321,45 +322,45 @@ data_assets:
                     description:
                         - Unique pattern key that is immutable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - A user-friendly display name. Does not have to be unique, and it's changeable.
                           Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Detailed description of the pattern.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 catalog_id:
                     description:
                         - The data catalog's OCID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-03-25T21:10:29.600Z
+                    type: str
+                    sample: "2019-03-25T21:10:29.600Z"
                 expression:
                     description:
                         - The expression used in the pattern that may include qualifiers.
                     returned: on success
-                    type: string
+                    type: str
                     sample: expression_example
                 lifecycle_state:
                     description:
                         - State of the pattern.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
         properties:
             description:
@@ -502,9 +503,10 @@ def main():
     module_args.update(
         dict(
             catalog_id=dict(type="str", required=True),
-            data_asset_key=dict(type="str"),
+            data_asset_key=dict(type="str", no_log=True),
             fields=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "key",
                     "displayName",
@@ -540,8 +542,8 @@ def main():
             time_updated=dict(type="str"),
             created_by_id=dict(type="str"),
             updated_by_id=dict(type="str"),
-            external_key=dict(type="str"),
-            type_key=dict(type="str"),
+            external_key=dict(type="str", no_log=True),
+            type_key=dict(type="str", no_log=True),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

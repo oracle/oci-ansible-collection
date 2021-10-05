@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ContainerImageSignature resources in Oracle Cloud Infrastructure
     - List container image signatures in an image.
     - If I(image_signature_id) is specified, the details of a single ContainerImageSignature will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     image_signature_id:
@@ -137,13 +137,13 @@ container_image_signatures:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the container repository
                   exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The id of the user or principal that created the resource.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         display_name:
             description:
@@ -151,60 +151,60 @@ container_image_signatures:
                   signatureId.
                 - "Example: `wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva`"
             returned: on success
-            type: string
+            type: str
             sample: wrmz22sixa::qdwyc2ptun::SHA_256_RSA_PKCS_PSS::2vwmobasva
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image signature.
                 - "Example: `ocid1.containerimagesignature.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.containerimagesignature.oc1..exampleuniqueID"
         image_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.containerimage.oc1..exampleuniqueID"
         kms_key_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyId used to sign the container image.
                 - "Example: `ocid1.key.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..exampleuniqueID"
         kms_key_version_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the kmsKeyVersionId used to sign the container image.
                 - "Example: `ocid1.keyversion.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keyversion.oc1..exampleuniqueID"
         message:
             description:
                 - The base64 encoded signature payload that was signed.
             returned: on success
-            type: string
+            type: str
             sample: message_example
         signature:
             description:
                 - The signature of the message field using the kmsKeyId, the kmsKeyVersionId, and the signingAlgorithm.
             returned: on success
-            type: string
+            type: str
             sample: signature_example
         signing_algorithm:
             description:
                 - The algorithm to be used for signing. These are the only supported signing algorithms for container images.
             returned: on success
-            type: string
+            type: str
             sample: SHA_224_RSA_PKCS_PSS
         time_created:
             description:
                 - An RFC 3339 timestamp indicating when the image was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "created_by": "created_by_example",

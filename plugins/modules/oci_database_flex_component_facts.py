@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple FlexComponentCollection resources in Oracle Cloud Infrastructure
     - "Gets a list of the flex components that can be used to launch a new DB system. The flex component determines resources to allocate to the DB system -
       Database Servers and Storage Servers."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -71,7 +71,7 @@ flex_component_collections:
             description:
                 - The name of the Flex Component used for the DB system.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         minimum_core_count:
             description:

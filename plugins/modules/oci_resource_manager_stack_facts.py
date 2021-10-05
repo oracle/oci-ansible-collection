@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       - If called using the compartment ID, returns all stacks in the specified compartment.
       - If called using the stack ID, returns the specified stack."
     - If I(stack_id) is specified, the details of a single Stack will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     stack_id:
@@ -109,26 +109,26 @@ stacks:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the stack.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the compartment where the stack is
                   located.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the stack.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of the stack.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
@@ -136,15 +136,15 @@ stacks:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current lifecycle state of the stack.
                   For more information about stack lifecycle states in Resource Manager, see
                   L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__StackStates).
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         config_source:
             description:
@@ -156,7 +156,7 @@ stacks:
                     description:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ZIP_UPLOAD
                 working_directory:
                     description:
@@ -164,7 +164,7 @@ stacks:
                           If not specified, the root directory is used.
                           This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: working_directory_example
                 compartment_id:
                     description:
@@ -172,14 +172,14 @@ stacks:
                           for creating the stack. The new stack will include definitions for supported
                           resource types in this compartment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 region:
                     description:
                         - The region to use for creating the stack. The new stack will include definitions for
                           supported resource types in this region.
                     returned: on success
-                    type: string
+                    type: str
                     sample: region_example
                 services_to_discover:
                     description:
@@ -196,32 +196,32 @@ stacks:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Git configuration source.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository for the configuration source.
                     returned: on success
-                    type: string
+                    type: str
                     sample: repository_url_example
                 branch_name:
                     description:
                         - The name of the branch in the Git repository for the configuration source.
                     returned: on success
-                    type: string
+                    type: str
                     sample: branch_name_example
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_example
                 bucket_name:
                     description:
                         - "The name of the bucket that contains the Terraform configuration files.
                           Maximum file size (applies to each file in the bucket): 100 MB. (In a bucket, a file is an object.)"
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
         variables:
             description:
@@ -236,14 +236,14 @@ stacks:
             description:
                 - "The version of Terraform specified for the stack. Example: `0.12.x`"
             returned: on success
-            type: string
+            type: str
             sample: 0.12.x
         stack_drift_status:
             description:
                 - Drift status of the stack.
                   Drift refers to differences between the actual (current) state of the stack and the expected (defined) state of the stack.
             returned: on success
-            type: string
+            type: str
             sample: NOT_CHECKED
         time_drift_last_checked:
             description:
@@ -251,8 +251,8 @@ stacks:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         freeform_tags:
             description:
                 - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.

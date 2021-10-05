@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_compute_image_shape_compatibility_entry
 short_description: Manage an ImageShapeCompatibilityEntry resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update and delete an ImageShapeCompatibilityEntry resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     image_id:
@@ -105,13 +105,13 @@ image_shape_compatibility_entry:
             description:
                 - The image OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The shape name.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         memory_constraints:
             description:

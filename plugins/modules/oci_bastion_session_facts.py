@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Retrieves a list of SessionSummary objects for an existing bastion. Bastion sessions let authorized users connect to a target resource for a predetermined
       amount of time.
     - If I(session_id) is specified, the details of a single Session will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     session_id:
@@ -95,31 +95,31 @@ sessions:
             description:
                 - The unique identifier (OCID) of the session, which can't be changed after creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the session.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         bastion_id:
             description:
                 - The unique identifier (OCID) of the bastion that is hosting this session.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
         bastion_name:
             description:
                 - The name of the bastion that is hosting this session.
             returned: on success
-            type: string
+            type: str
             sample: bastion_name_example
         bastion_user_name:
             description:
                 - The username that the session uses to connect to the target resource.
             returned: on success
-            type: string
+            type: str
             sample: bastion_user_name_example
         target_resource_details:
             description:
@@ -132,7 +132,7 @@ sessions:
                         - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
                           require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: MANAGED_SSH
                 target_resource_port:
                     description:
@@ -144,25 +144,25 @@ sessions:
                     description:
                         - The name of the user on the target resource operating system that the session uses for the connection.
                     returned: on success
-                    type: string
+                    type: str
                     sample: target_resource_operating_system_user_name_example
                 target_resource_id:
                     description:
                         - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
                 target_resource_private_ip_address:
                     description:
                         - The private IP address of the target resource that the session connects to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: target_resource_private_ip_address_example
                 target_resource_display_name:
                     description:
                         - The display name of the target Compute instance that the session connects to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: target_resource_display_name_example
         ssh_metadata:
             description:
@@ -174,7 +174,7 @@ sessions:
             description:
                 - The type of the key used to connect to the session. PUB is a standard public key in OpenSSH format.
             returned: on success
-            type: string
+            type: str
             sample: PUB
         key_details:
             description:
@@ -187,39 +187,39 @@ sessions:
                         - The public key in OpenSSH format of the SSH key pair for the session. When you connect to the session, you must provide the private
                           key of the same SSH key pair.
                     returned: on success
-                    type: string
+                    type: str
                     sample: public_key_content_example
         bastion_public_host_key_info:
             description:
                 - The public key of the bastion host. You can use this to verify that you're connecting to the correct bastion.
             returned: on success
-            type: string
+            type: str
             sample: bastion_public_host_key_info_example
         time_created:
             description:
                 - "The time the session was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         time_updated:
             description:
                 - "The time the session was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current state of the session.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current session state in more detail.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         session_ttl_in_seconds:
             description:

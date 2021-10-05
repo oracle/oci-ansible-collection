@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
     - Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period.
       Either databaseId or id must be specified.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -92,7 +92,7 @@ sql_response_time_distributions:
             description:
                 - Response time bucket id
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx"
         executions_count:
             description:

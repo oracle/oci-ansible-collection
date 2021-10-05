@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       against ETag values of the resource.  For information about moving resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=restore_deployment), restores a Deployment from a Deployment Backup created from the same Deployment.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deployment_backup_id:
@@ -85,25 +85,25 @@ deployment_backup:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - An object's Display Name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         is_automatic:
             description:
@@ -115,65 +115,65 @@ deployment_backup:
             description:
                 - Possible lifecycle states.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_of_backup:
             description:
                 - The time of the resource backup. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         backup_type:
             description:
                 - Possible Deployment backup types.
             returned: on success
-            type: string
+            type: str
             sample: INCREMENTAL
         ogg_version:
             description:
                 - Version of OGG
             returned: on success
-            type: string
+            type: str
             sample: ogg_version_example
         namespace_name:
             description:
                 - Name of namespace that serves as a container for all of your buckets
             returned: on success
-            type: string
+            type: str
             sample: namespace_name_example
         bucket_name:
             description:
                 - Name of the bucket where the object is to be uploaded in the object storage
             returned: on success
-            type: string
+            type: str
             sample: bucket_name_example
         object_name:
             description:
                 - Name of the object to be uploaded to object storage
             returned: on success
-            type: string
+            type: str
             sample: object_name_example
         time_created:
             description:
                 - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.

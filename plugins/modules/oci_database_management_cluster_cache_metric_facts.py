@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets the metrics related to cluster cache for the Oracle
       Real Application Clusters (Oracle RAC) database specified
       by managedDatabaseId.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -37,13 +37,13 @@ options:
         required: true
     start_time:
         description:
-            - "The start time for the time range to retrieve the health metrics of a Managed Database
+            - "The start time of the time range to retrieve the health metrics of a Managed Database
               in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
         type: str
         required: true
     end_time:
         description:
-            - "The end time for the time range to retrieve the health metrics of a Managed Database
+            - "The end time of the time range to retrieve the health metrics of a Managed Database
               in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
         type: str
         required: true
@@ -76,7 +76,7 @@ cluster_cache_metric:
                     description:
                         - The name of the metric the time series data corresponds to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: metric_name_example
                 datapoints:
                     description:
@@ -88,8 +88,8 @@ cluster_cache_metric:
                             description:
                                 - The date and time the metric was created.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         value:
                             description:
                                 - The value of the metric.
@@ -100,7 +100,7 @@ cluster_cache_metric:
                             description:
                                 - The unit of the metric value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: unit_example
                         dimensions:
                             description:
@@ -112,13 +112,13 @@ cluster_cache_metric:
                                     description:
                                         - The name of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_name_example
                                 dimension_value:
                                     description:
                                         - The value of the dimension.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: dimension_value_example
     sample: {
         "cluster_cache_metrics": [{

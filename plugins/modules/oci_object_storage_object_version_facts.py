@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
     - To use this and other API operations, you must be authorized in an IAM policy. If you are not authorized,
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -94,7 +94,7 @@ object_versions:
                 - "The name of the object. Avoid entering confidential information.
                   Example: test/object1.log"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         size:
             description:
@@ -106,43 +106,43 @@ object_versions:
             description:
                 - Base64-encoded MD5 hash of the object data.
             returned: on success
-            type: string
+            type: str
             sample: md5_example
         time_created:
             description:
                 - The date and time the object was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616#section-14.29).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         etag:
             description:
                 - The current entity tag (ETag) for the object.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         storage_tier:
             description:
                 - The storage tier that the object is stored in.
             returned: on success
-            type: string
+            type: str
             sample: Standard
         archival_state:
             description:
                 - Archival state of an object. This field is set only for objects in Archive tier.
             returned: on success
-            type: string
+            type: str
             sample: Archived
         version_id:
             description:
                 - VersionId of the object.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
         is_delete_marker:
             description:

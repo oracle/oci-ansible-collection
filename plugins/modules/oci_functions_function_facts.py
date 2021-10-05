@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Function resources in Oracle Cloud Infrastructure
     - Lists functions for an application.
     - If I(function_id) is specified, the details of a single Function will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     function_id:
@@ -103,31 +103,31 @@ functions:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the function. The display name is unique within the application containing the function.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the function.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         application_id:
             description:
                 - The OCID of the application the function belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the function.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         image:
             description:
@@ -135,7 +135,7 @@ functions:
                   The image should be in the OCI Registry that is in the same region as the function itself.
                   Example: `phx.ocir.io/ten/functions/function:0.0.1`"
             returned: on success
-            type: string
+            type: str
             sample: phx.ocir.io/ten/functions/function:0.0.1
         image_digest:
             description:
@@ -143,7 +143,7 @@ functions:
                   If no value is specified, the digest currently associated with the image in the OCI Registry will be used.
                   Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`"
             returned: on success
-            type: string
+            type: str
             sample: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
         memory_in_mbs:
             description:
@@ -193,7 +193,7 @@ functions:
                 - The base https invoke URL to set on a client in order to invoke a function. This URL will never change over the lifetime of the function and
                   can be cached.
             returned: on success
-            type: string
+            type: str
             sample: invoke_endpoint_example
         defined_tags:
             description:
@@ -209,16 +209,16 @@ functions:
                   timestamp format.
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
+            type: str
+            sample: "2018-09-12T22:47:12.613Z"
         time_updated:
             description:
                 - The time the function was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
+            type: str
+            sample: "2018-09-12T22:47:12.613Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

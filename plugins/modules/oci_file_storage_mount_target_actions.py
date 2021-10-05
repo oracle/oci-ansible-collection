@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a mount target and its associated export set into a different compartment within the same tenancy. For information
       about moving resources between compartments, see L(Moving Resources to a Different
       Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes)
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     mount_target_id:
@@ -72,13 +72,13 @@ mount_target:
                   as a blank or NULL value.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that contains the mount target.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -86,7 +86,7 @@ mount_target:
                   Avoid entering confidential information.
                 - "Example: `My mount target`"
             returned: on success
-            type: string
+            type: str
             sample: My mount target
         export_set_id:
             description:
@@ -94,25 +94,25 @@ mount_target:
                   systems will be exported through Network File System (NFS) protocol on this
                   mount target.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current 'lifecycleState'.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the mount target.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         private_ip_ids:
             description:
@@ -124,7 +124,7 @@ mount_target:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet the mount target is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
@@ -142,8 +142,8 @@ mount_target:
                   in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair

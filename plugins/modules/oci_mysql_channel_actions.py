@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
     - For I(action=resume), resumes an enabled Channel that has become Inactive due to an error. The resume operation
       requires that the error that cause the Channel to become Inactive has already been fixed,
       otherwise the operation may fail.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     channel_id:
@@ -72,19 +72,19 @@ channel:
             description:
                 - The OCID of the Channel.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the Channel. It does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         is_enabled:
             description:
@@ -102,13 +102,13 @@ channel:
                     description:
                         - The specific source identifier.
                     returned: on success
-                    type: string
+                    type: str
                     sample: MYSQL
                 hostname:
                     description:
                         - The network address of the MySQL instance.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 port:
                     description:
@@ -122,13 +122,13 @@ channel:
                           The username has a maximum length of 96 characters. For more information,
                           please see the L(MySQL documentation,https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html)
                     returned: on success
-                    type: string
+                    type: str
                     sample: username_example
                 ssl_mode:
                     description:
                         - The SSL mode of the Channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: VERIFY_IDENTITY
                 ssl_ca_certificate:
                     description:
@@ -140,13 +140,13 @@ channel:
                             description:
                                 - The type of CA certificate.
                             returned: on success
-                            type: string
+                            type: str
                             sample: PEM
                         contents:
                             description:
                                 - The string containing the CA certificate in PEM format.
                             returned: on success
-                            type: string
+                            type: str
                             sample: contents_example
         target:
             description:
@@ -158,13 +158,13 @@ channel:
                     description:
                         - The specific target identifier.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DBSYSTEM
                 db_system_id:
                     description:
                         - The OCID of the source DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                 channel_name:
                     description:
@@ -172,44 +172,44 @@ channel:
                           must follow the rules defined for L(MySQL identifiers,https://dev.mysql.com/doc/refman/8.0/en/identifiers.html).
                           The names of non-Deleted Channels must be unique for each DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: channel_name_example
                 applier_username:
                     description:
                         - The username for the replication applier of the target MySQL DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: applier_username_example
         description:
             description:
                 - User provided description of the Channel.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         lifecycle_state:
             description:
                 - The state of the Channel.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the state of the Channel.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the Channel was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Channel was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.

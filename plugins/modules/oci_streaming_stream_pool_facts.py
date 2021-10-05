@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple StreamPool resources in Oracle Cloud Infrastructure
     - List the stream pools for a given compartment ID.
     - If I(stream_pool_id) is specified, the details of a single StreamPool will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     stream_pool_id:
@@ -94,39 +94,39 @@ stream_pools:
             description:
                 - The OCID of the stream pool.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.streampool.realm.region.mnopqr789
         compartment_id:
             description:
                 - Compartment OCID that the pool belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..aaaaaaaa2byuam5ewxzrcs2iqzh7okx84jae6j4uhkih5wdbrkkwuxv3qgpa"
         name:
             description:
                 - The name of the stream pool.
             returned: on success
-            type: string
+            type: str
             sample: MyStreamPool
         lifecycle_state:
             description:
                 - The current state of the stream pool.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_state_details:
             description:
                 - Any additional details about the current state of the stream.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_state_details_example
         time_created:
             description:
                 - The date and time the stream pool was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
-            type: string
-            sample: 2018-04-20T00:00:07.405Z
+            type: str
+            sample: "2018-04-20T00:00:07.405Z"
         kafka_settings:
             description:
                 - ""
@@ -137,7 +137,7 @@ stream_pools:
                     description:
                         - Bootstrap servers.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bootstrap_servers_example
                 auto_create_topics_enable:
                     description:
@@ -167,13 +167,13 @@ stream_pools:
                     description:
                         - Custom Encryption Key (Master Key) ocid.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
                 key_state:
                     description:
                         - Life cycle State of the custom key
                     returned: on success
-                    type: string
+                    type: str
                     sample: ACTIVE
         is_private:
             description:
@@ -190,7 +190,7 @@ stream_pools:
                   publicly resolvable.
                   Depending on which protocol you attempt to use, you need to either prepend https or append the Kafka port.
             returned: on success
-            type: string
+            type: str
             sample: endpoint_fqdn_example
         private_endpoint_settings:
             description:
@@ -203,14 +203,14 @@ stream_pools:
                         - The subnet id from which the private stream pool can be accessed.
                           Trying to access the streams from another network location will result in an error.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.subnet.realm.region.zxcvbn432765
                 private_endpoint_ip:
                     description:
                         - "The private IP associated with the stream pool in the associated subnetId.
                           The stream pool's FQDN resolves to that IP and should be used - instead of the private IP - in order to not trigger any TLS issues."
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.5
                 nsg_ids:
                     description:

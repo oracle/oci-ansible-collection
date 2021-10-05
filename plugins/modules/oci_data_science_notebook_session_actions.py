@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=activate), activates the notebook session.
     - For I(action=change_compartment), moves a notebook session resource into a different compartment.
     - For I(action=deactivate), deactivates the notebook session.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     notebook_session_id:
@@ -82,39 +82,39 @@ notebook_session:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         display_name:
             description:
                 - "A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
                   Example: `My NotebookSession`"
             returned: on success
-            type: string
+            type: str
             sample: My NotebookSession
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notebook_session_configuration_details:
             description:
@@ -127,7 +127,7 @@ notebook_session:
                         - The shape used to launch the notebook session compute instance.  The list of available shapes in a given compartment can be retrieved
                           using the `ListNotebookSessionShapes` endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: VM.Standard.E3.Flex
                 block_storage_size_in_gbs:
                     description:
@@ -141,7 +141,7 @@ notebook_session:
                           L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet to create a VNIC in.  The subnet
                           should be in a VCN with a NAT gateway for egress to the internet.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 notebook_session_shape_config_details:
                     description:
@@ -166,19 +166,19 @@ notebook_session:
             description:
                 - The URL to interact with the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: notebook_session_url_example
         lifecycle_state:
             description:
                 - The state of the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Details about the state of the notebook session.
             returned: on success
-            type: string
+            type: str
             sample: waiting for SSH
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
     - For the compartment ID, provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of your tenancy (the root compartment).
     - For more information, see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
     - If I(provider_service_id) is specified, the details of a single FastConnectProviderService will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     provider_service_id:
@@ -71,37 +71,37 @@ fast_connect_provider_services:
                   Cloud Infrastructure, and retrieve your provider service key for that virtual circuit connection.
                 - "Example: `https://example.com`"
             returned: on success
-            type: string
+            type: str
             sample: https://example.com
         id:
             description:
                 - The OCID of the service offered by the provider.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         private_peering_bgp_management:
             description:
                 - Who is responsible for managing the private peering BGP information.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         provider_name:
             description:
                 - The name of the provider.
             returned: on success
-            type: string
+            type: str
             sample: provider_name_example
         provider_service_name:
             description:
                 - The name of the service offered by the provider.
             returned: on success
-            type: string
+            type: str
             sample: provider_service_name_example
         public_peering_bgp_management:
             description:
                 - Who is responsible for managing the public peering BGP information.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         supported_virtual_circuit_types:
             description:
@@ -114,19 +114,19 @@ fast_connect_provider_services:
                 - Who is responsible for managing the ASN information for the network at the other end
                   of the connection from Oracle.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         provider_service_key_management:
             description:
                 - Who is responsible for managing the provider service key.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         bandwith_shape_management:
             description:
                 - Who is responsible for managing the virtual circuit bandwidth.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         required_total_cross_connects:
             description:
@@ -138,7 +138,7 @@ fast_connect_provider_services:
             description:
                 - Provider service type.
             returned: on success
-            type: string
+            type: str
             sample: LAYER2
     sample: [{
         "description": "https://example.com",

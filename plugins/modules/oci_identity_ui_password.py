@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       user.
     - "**Note:** The user's Console login is the unique name you specified when you created the user
       (see L(CreateUser,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/User/CreateUser))."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -69,27 +69,27 @@ ui_password:
             description:
                 - The user's password for the Console.
             returned: on success
-            type: string
+            type: str
             sample: password_example
         user_id:
             description:
                 - The OCID of the user.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the password was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The password's current state. After creating a password, make sure its `lifecycleState` changes from
                   CREATING to ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:

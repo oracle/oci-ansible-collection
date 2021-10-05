@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_apigateway_deployment_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_apigateway_deployment -- Manage a Deployment resource in Oracle C
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -679,7 +689,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1040,7 +1050,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/verify_claims" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1312,7 +1322,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -1404,7 +1414,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/headers" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2132,7 +2142,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/filter_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2218,7 +2228,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/rename_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2301,7 +2311,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2409,7 +2419,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations/headers" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2539,7 +2549,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2625,7 +2635,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2708,7 +2718,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -2816,7 +2826,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations/parameters" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3072,7 +3082,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/filter_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3158,7 +3168,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/rename_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3241,7 +3251,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers/items" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -3455,6 +3465,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

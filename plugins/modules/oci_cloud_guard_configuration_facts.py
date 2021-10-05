@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a Configuration resource in Oracle Clou
 description:
     - Fetches details about a Configuration resource in Oracle Cloud Infrastructure
     - GET Cloud Guard Configuration Details for a Tenancy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -53,13 +53,13 @@ configuration:
             description:
                 - The reporting region value
             returned: on success
-            type: string
+            type: str
             sample: reporting_region_example
         status:
             description:
                 - Status of Cloud Guard Tenant
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         self_manage_resources:
             description:

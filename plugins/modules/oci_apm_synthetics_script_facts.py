@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Script resources in Oracle Cloud Infrastructure
     - Returns a list of scripts.
     - If I(script_id) is specified, the details of a single Script will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -94,19 +94,19 @@ scripts:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
                   scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
         display_name:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
-            type: string
+            type: str
             sample: exampleName
         content_type:
             description:
                 - Content type of the script.
             returned: on success
-            type: string
+            type: str
             sample: SIDE
         content:
             description:
@@ -119,14 +119,14 @@ scripts:
                   Note that the content is valid if it matches the given content type. For example, if the content type is SIDE, then the content should be in
                   Side script format. If the content type is JS, then the content should be in JavaScript format."
             returned: on success
-            type: string
+            type: str
             sample: sample_content
         time_uploaded:
             description:
                 - The time when the script was uploaded.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         content_size_in_bytes:
             description:
                 - Size of the script content.
@@ -137,7 +137,7 @@ scripts:
             description:
                 - File name of the uploaded script content.
             returned: on success
-            type: string
+            type: str
             sample: content_file_name_example
         parameters:
             description:
@@ -156,13 +156,13 @@ scripts:
                             description:
                                 - Name of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: testName
                         param_value:
                             description:
                                 - Value of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: openPage
                         is_secret:
                             description:
@@ -212,16 +212,16 @@ scripts:
                   timestamp format.
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-12T22:47:12.613Z
+            type: str
+            sample: "2020-02-12T22:47:12.613Z"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-13T22:47:12.613Z
+            type: str
+            sample: "2020-02-13T22:47:12.613Z"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

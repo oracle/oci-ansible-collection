@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple CapacityReservationInst
 description:
     - Fetches details about one or multiple CapacityReservationInstance resources in Oracle Cloud Infrastructure
     - Lists the instances launched under a capacity reservation. You can filter results by specifying criteria.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     capacity_reservation_id:
@@ -83,25 +83,25 @@ capacity_reservation_instances:
             description:
                 - The OCID of the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         fault_domain:
             description:
                 - The fault domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: fault_domain_example
         shape_config:
             description:
@@ -128,7 +128,7 @@ capacity_reservation_instances:
                 - You can enumerate all available shapes by calling L(ListComputeCapacityReservationInstanceShapes,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/latest/computeCapacityReservationInstanceShapes/ListComputeCapacityReservationInstanceShapes).
             returned: on success
-            type: string
+            type: str
             sample: shape_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

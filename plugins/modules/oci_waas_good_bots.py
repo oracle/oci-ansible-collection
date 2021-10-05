@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_good_bots
 short_description: Manage a GoodBots resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a GoodBots resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             key:
@@ -92,13 +93,13 @@ good_bots:
             description:
                 - The unique key for the bot.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         name:
             description:
                 - The bot name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         is_enabled:
             description:
@@ -110,7 +111,7 @@ good_bots:
             description:
                 - The description of the bot.
             returned: on success
-            type: string
+            type: str
             sample: description_example
     sample: {
         "key": "key_example",
@@ -224,7 +225,7 @@ def main():
                 elements="dict",
                 required=True,
                 options=dict(
-                    key=dict(type="str", required=True),
+                    key=dict(type="str", required=True, no_log=True),
                     name=dict(type="str"),
                     is_enabled=dict(type="bool", required=True),
                     description=dict(type="str"),

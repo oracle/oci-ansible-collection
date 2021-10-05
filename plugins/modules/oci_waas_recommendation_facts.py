@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
     - Use the `POST /waasPolicies/{waasPolicyId}/actions/acceptWafConfigRecommendations` method to accept recommended Web Application Firewall protection rules.
       For more information, see L(WAF Protection Rules,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/wafprotectionrules.htm).
       The list is sorted by `key`, in ascending order.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -63,7 +63,7 @@ waas_recommendations:
             description:
                 - The unique key for the recommended protection rule.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         mod_security_rule_ids:
             description:
@@ -77,13 +77,13 @@ waas_recommendations:
             description:
                 - The name of the recommended protection rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description of the recommended protection rule.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         labels:
             description:
@@ -95,7 +95,7 @@ waas_recommendations:
             description:
                 - The recommended action to apply to the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: recommended_action_example
     sample: [{
         "key": "key_example",

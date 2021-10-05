@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_identity_tag_actions_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_identity_tag_actions -- Perform actions on a Tag resource in Orac
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -180,7 +190,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-bulk_edit_operations" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -297,7 +307,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-resources" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -422,6 +432,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

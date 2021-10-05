@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a VcnTopology resource in Oracle Cloud 
 description:
     - Fetches details about a VcnTopology resource in Oracle Cloud Infrastructure
     - Gets a virtual network topology for a given VCN.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -83,7 +83,7 @@ vcn_topology:
             description:
                 - Type of the topology object.
             returned: on success
-            type: string
+            type: str
             sample: NETWORKING
         entities:
             description:
@@ -101,19 +101,19 @@ vcn_topology:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the first entity in the relationship.
                     returned: on success
-                    type: string
+                    type: str
                     sample: id1_example
                 id2:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the second entity in the relationship.
                     returned: on success
-                    type: string
+                    type: str
                     sample: id2_example
                 type:
                     description:
                         - The type of relationship between the entities.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CONTAINS
                 route_rule_details:
                     description:
@@ -128,33 +128,33 @@ vcn_topology:
                                 - "* Use `SERVICE_CIDR_BLOCK` if the rule's `destination` is the `cidrBlock` value for a
                                   L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/)."
                             returned: on success
-                            type: string
+                            type: str
                             sample: destination_type_example
                         destination:
                             description:
                                 - An IP address range in CIDR notation or the `cidrBlock` value for a L(Service,https://docs.cloud.oracle.com/en-
                                   us/iaas/api/#/en/iaas/latest/Service/).
                             returned: on success
-                            type: string
+                            type: str
                             sample: destination_example
                         route_table_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the routing table that contains the
                                   route rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Records when the virtual network topology was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format for date and time.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN for which the topology is generated.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "type": "NETWORKING",

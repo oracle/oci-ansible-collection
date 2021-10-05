@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a PrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a private endpoint to be used by applications.
     - "This resource has the following action operations in the M(oci_private_endpoint_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -61,6 +61,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -81,6 +82,7 @@ options:
             - An array of network security group OCIDs.
             - This parameter is updatable.
         type: list
+        elements: str
     subnet_id:
         description:
             - The OCID of a subnet.
@@ -156,7 +158,7 @@ private_endpoint:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -170,13 +172,13 @@ private_endpoint:
             description:
                 - A user-friendly description. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         dns_zones:
             description:
@@ -197,19 +199,19 @@ private_endpoint:
             description:
                 - The OCID of a private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of this private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         max_host_count:
             description:
@@ -230,35 +232,35 @@ private_endpoint:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
                   `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
             returned: on success
-            type: string
+            type: str
             sample: owner_user_name_example
         subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -422,10 +424,10 @@ def main():
             defined_tags=dict(type="dict"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            dns_zones=dict(type="list"),
+            dns_zones=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             max_host_count=dict(type="int"),
-            nsg_ids=dict(type="list"),
+            nsg_ids=dict(type="list", elements="str"),
             subnet_id=dict(type="str"),
             private_endpoint_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

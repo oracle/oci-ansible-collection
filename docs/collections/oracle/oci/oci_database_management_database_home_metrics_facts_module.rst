@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_database_home_metrics_facts_module:
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_database_home_metrics_facts -- Fetches detail
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -195,7 +205,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The end time for the time range to retrieve the health metrics of a Managed Database in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
+                                            <div>The end time of the time range to retrieve the health metrics of a Managed Database in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -240,7 +250,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The start time for the time range to retrieve the health metrics of a Managed Database in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
+                                            <div>The start time of the time range to retrieve the health metrics of a Managed Database in UTC in ISO-8601 format, which is &quot;yyyy-MM-dd&#x27;T&#x27;hh:mm:ss.sss&#x27;Z&#x27;&quot;.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -260,6 +270,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

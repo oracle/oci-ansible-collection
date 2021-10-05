@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AuditEvent resources in Oracle Cloud Infrastructure
     - Returns all the audit events processed for the specified compartment within the specified
       time range.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -81,7 +81,7 @@ audit_events:
                   revise the `eventTypeVersion` field.
                 - "Example: `com.oraclecloud.ComputeApi.GetInstance`"
             returned: on success
-            type: string
+            type: str
             sample: com.oraclecloud.ComputeApi.GetInstance
         cloud_events_version:
             description:
@@ -91,7 +91,7 @@ audit_events:
                 - Audit uses version 0.1 specification of the CloudEvents event envelope.
                 - "Example: `0.1`"
             returned: on success
-            type: string
+            type: str
             sample: 0.1
         event_type_version:
             description:
@@ -99,34 +99,34 @@ audit_events:
                   Use `cloudEventsVersion` to determine the version of the envelope.
                 - "Example: `2.0`"
             returned: on success
-            type: string
+            type: str
             sample: 2.0
         source:
             description:
                 - The source of the event.
                 - "Example: `ComputeApi`"
             returned: on success
-            type: string
+            type: str
             sample: ComputeApi
         event_id:
             description:
                 - The GUID of the event.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.event.oc1..xxxxxxEXAMPLExxxxxx"
         event_time:
             description:
                 - The time the event occurred, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: `2019-09-18T00:10:59.252Z`"
             returned: on success
-            type: string
-            sample: 2019-09-18T00:10:59.252Z
+            type: str
+            sample: "2019-09-18T00:10:59.252Z"
         content_type:
             description:
                 - The content type of the data contained in `data`.
                 - "Example: `application/json`"
             returned: on success
-            type: string
+            type: str
             sample: application/json
         data:
             description:
@@ -140,21 +140,21 @@ audit_events:
                           a long running API operations that emit an event at the start and the end of an operation
                           would use the same value in this field for both events.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.eventgrouping.oc1..xxxxxxEXAMPLExxxxxx"
                 event_name:
                     description:
                         - Name of the API operation that generated this event.
                         - "Example: `GetInstance`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: GetInstance
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the resource
                           emitting the event.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_name:
                     description:
@@ -163,26 +163,26 @@ audit_events:
                           event.
                         - "Example: `CompartmentA`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: CompartmentA
                 resource_name:
                     description:
                         - The name of the resource emitting the event.
                     returned: on success
-                    type: string
+                    type: str
                     sample: resource_name_example
                 resource_id:
                     description:
                         - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) or some other ID for the resource
                           emitting the event.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The availability domain where the resource resides.
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 freeform_tags:
                     description:
@@ -212,66 +212,66 @@ audit_events:
                                 - The name of the user or service. This value is the friendly name associated with `principalId`.
                                 - "Example: `ExampleName`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: ExampleName
                         principal_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the principal.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.principal.oc1..xxxxxxEXAMPLExxxxxx"
                         auth_type:
                             description:
                                 - The type of authentication used.
                                 - "Example: `natv`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: natv
                         caller_name:
                             description:
                                 - The name of the user or service. This value is the friendly name associated with `callerId`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: caller_name_example
                         caller_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the caller. The caller that made a
                                   request on behalf of the prinicpal.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.caller.oc1..xxxxxxEXAMPLExxxxxx"
                         tenant_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the tenant.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
                         ip_address:
                             description:
                                 - The IP address of the source of the request.
                                 - "Example: `172.24.80.88`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 172.24.80.88
                         credentials:
                             description:
                                 - The credential ID of the user. This value is extracted from the HTTP 'Authorization' request
                                   header. It consists of the tenantId, userId, and user fingerprint, all delimited by a slash (/).
                             returned: on success
-                            type: string
+                            type: str
                             sample: credentials_example
                         user_agent:
                             description:
                                 - The user agent of the client that made the request.
                                 - "Example: `Jersey/2.23 (HttpUrlConnection 1.8.0_212)`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: Jersey/2.23 (HttpUrlConnection 1.8.0_212)
                         console_session_id:
                             description:
                                 - This value identifies any Console session associated with this request.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.consolesession.oc1..xxxxxxEXAMPLExxxxxx"
                 request:
                     description:
@@ -283,21 +283,21 @@ audit_events:
                             description:
                                 - The opc-request-id of the request.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         path:
                             description:
                                 - The full path of the API request.
                                 - "Example: `/20160918/instances/ocid1.instance.oc1.phx.<unique_ID>`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /20160918/instances/ocid1.instance.oc1.phx.<unique_ID>
                         action:
                             description:
                                 - The HTTP method of the request.
                                 - "Example: `GET`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: GET
                         parameters:
                             description:
@@ -375,7 +375,7 @@ audit_events:
                                 - The status code of the response.
                                 - "Example: `200`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 200
                         response_time:
                             description:
@@ -383,8 +383,8 @@ audit_events:
                                   L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                                 - "Example: `2019-09-18T00:10:59.278Z`"
                             returned: on success
-                            type: string
-                            sample: 2019-09-18T00:10:59.278Z
+                            type: str
+                            sample: "2019-09-18T00:10:59.278Z"
                         headers:
                             description:
                                 - The headers of the response.
@@ -434,7 +434,7 @@ audit_events:
                             description:
                                 - A friendly description of what happened during the operation. Use this for troubleshooting.
                             returned: on success
-                            type: string
+                            type: str
                             sample: message_example
                 state_change:
                     description:
