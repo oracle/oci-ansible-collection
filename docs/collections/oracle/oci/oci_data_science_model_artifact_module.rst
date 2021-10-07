@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_data_science_model_artifact_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_data_science_model_artifact -- Manage a ModelArtifact resource in
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -260,7 +270,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The model artifact to upload. We will soon deprecate this param, so please start using model_artifact_file.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -345,6 +354,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -366,9 +378,8 @@ Examples
     
     - name: Create model_artifact
       oci_data_science_model_artifact:
-        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
-        model_artifact: B
         model_artifact_file: model.zip
+        model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_protection_settings
 short_description: Manage a ProtectionSettings resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a ProtectionSettings resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -115,6 +115,7 @@ options:
               protection rule is enabled, such as the \\"Restrict HTTP Request Methods\\" rule (key: 911100)."
             - This parameter is updatable.
         type: list
+        elements: str
         choices:
             - "OPTIONS"
             - "GET"
@@ -151,6 +152,7 @@ options:
                   - text/xml"
             - This parameter is updatable.
         type: list
+        elements: str
     state:
         description:
             - The state of the ProtectionSettings.
@@ -200,7 +202,7 @@ protection_settings:
                 - If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If unspecified,
                   defaults to `SET_RESPONSE_CODE`.
             returned: on success
-            type: string
+            type: str
             sample: SHOW_ERROR_PAGE
         block_response_code:
             description:
@@ -215,21 +217,21 @@ protection_settings:
                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected
                   as malicious by a protection rule. If unspecified, defaults to 'Access to the website is blocked.'
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_message_example
         block_error_page_code:
             description:
                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                   detected as malicious by a protection rule. If unspecified, defaults to `403`.
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_code_example
         block_error_page_description:
             description:
                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                   detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_description_example
         max_argument_count:
             description:
@@ -416,6 +418,7 @@ def main():
             max_response_size_in_ki_b=dict(type="int"),
             allowed_http_methods=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "OPTIONS",
                     "GET",
@@ -429,7 +432,7 @@ def main():
                     "PROPFIND",
                 ],
             ),
-            media_types=dict(type="list"),
+            media_types=dict(type="list", elements="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

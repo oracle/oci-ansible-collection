@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -40,7 +40,7 @@ description:
       Lastly, to launch the instance, use the image ID of the listing resource version to issue a L(LaunchInstance,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance) API call.
     - If I(package_version) is specified, the details of a single ListingPackage will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -102,25 +102,25 @@ listing_packages:
             description:
                 - Description of this package.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         listing_id:
             description:
                 - The ID of the listing this package belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         version:
             description:
                 - The package version.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         package_type:
             description:
                 - The specified package's type.
             returned: on success
-            type: string
+            type: str
             sample: ORCHESTRATION
         pricing:
             description:
@@ -132,19 +132,19 @@ listing_packages:
                     description:
                         - The type of the pricing model.
                     returned: on success
-                    type: string
+                    type: str
                     sample: FREE
                 pay_go_strategy:
                     description:
                         - The type of pricing for a PAYGO model, eg PER_OCPU_LINEAR, PER_OCPU_MIN_BILLING, PER_INSTANCE.  Null if type is not PAYGO.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PER_OCPU_LINEAR
                 currency:
                     description:
                         - The currency of the pricing model.
                     returned: on success
-                    type: string
+                    type: str
                     sample: USD
                 rate:
                     description:
@@ -156,7 +156,7 @@ listing_packages:
             description:
                 - The unique identifier for the package resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -164,8 +164,8 @@ listing_packages:
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         operating_system:
             description:
                 - ""
@@ -176,26 +176,26 @@ listing_packages:
                     description:
                         - The name of the operating system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
         app_catalog_listing_id:
             description:
                 - The ID of the listing resource associated with this listing package. For more information, see
                   L(AppCatalogListing,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/AppCatalogListing/) in the Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.appcataloglisting.oc1..xxxxxxEXAMPLExxxxxx"
         app_catalog_listing_resource_version:
             description:
                 - The resource version of the listing resource associated with this listing package.
             returned: on success
-            type: string
+            type: str
             sample: app_catalog_listing_resource_version_example
         image_id:
             description:
                 - The ID of the image corresponding to the package.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         regions:
             description:
@@ -208,13 +208,13 @@ listing_packages:
                     description:
                         - The name of the region.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 code:
                     description:
                         - The code of the region.
                     returned: on success
-                    type: string
+                    type: str
                     sample: code_example
                 countries:
                     description:
@@ -226,19 +226,19 @@ listing_packages:
                             description:
                                 - The name of the item.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         code:
                             description:
                                 - A code assigned to the item.
                             returned: on success
-                            type: string
+                            type: str
                             sample: code_example
         resource_link:
             description:
                 - Link to the orchestration resource.
             returned: on success
-            type: string
+            type: str
             sample: resource_link_example
         variables:
             description:
@@ -250,25 +250,25 @@ listing_packages:
                     description:
                         - The name of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 default_value:
                     description:
                         - The variable's default value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: default_value_example
                 description:
                     description:
                         - A description of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 data_type:
                     description:
                         - The data type of the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: STRING
                 is_mandatory:
                     description:
@@ -280,13 +280,13 @@ listing_packages:
                     description:
                         - A brief textual description that helps to explain the variable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hint_message_example
         package_version:
             description:
                 - The version of the specified package.
             returned: on success
-            type: string
+            type: str
             sample: package_version_example
     sample: [{
         "description": "description_example",

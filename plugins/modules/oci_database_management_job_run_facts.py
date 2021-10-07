@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       should be provided. If none of these parameters is provided, all the job runs in the compartment are listed.
       Job runs can also be filtered based on name and runStatus parameters.
     - If I(job_run_id) is specified, the details of a single JobRun will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     job_run_id:
@@ -73,7 +73,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -103,64 +103,64 @@ job_runs:
             description:
                 - The identifier of the job run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the job run.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the parent job resides.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         job_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
         job_name:
             description:
                 - The name of the parent job.
             returned: on success
-            type: string
+            type: str
             sample: job_name_example
         managed_database_group_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the parent job has to
                   be executed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
         managed_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of Managed Database where the parent job has to be
                   executed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         run_status:
             description:
                 - The status of the job run.
             returned: on success
-            type: string
+            type: str
             sample: COMPLETED
         time_submitted:
             description:
                 - The date and time when the job run was submitted.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time when the job run was last updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",

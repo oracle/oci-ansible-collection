@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       L(ChangeCloudExadataInfrastructureCompartment,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/ChangeCloudExadataInfrastructureCompartment) operation.
     - For I(action=download_exadata_infrastructure_config_file), downloads the configuration file for the specified Exadata Cloud@Customer infrastructure.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     exadata_infrastructure_id:
@@ -108,38 +108,38 @@ exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         display_name:
             description:
                 - The user-friendly name for the Exadata Cloud@Customer infrastructure. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape:
             description:
                 - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         time_zone:
             description:
                 - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         cpus_enabled:
             description:
@@ -217,43 +217,43 @@ exadata_infrastructure:
             description:
                 - The IP address for the first control plane server.
             returned: on success
-            type: string
+            type: str
             sample: cloud_control_plane_server1_example
         cloud_control_plane_server2:
             description:
                 - The IP address for the second control plane server.
             returned: on success
-            type: string
+            type: str
             sample: cloud_control_plane_server2_example
         netmask:
             description:
                 - The netmask for the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: netmask_example
         gateway:
             description:
                 - The gateway for the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: gateway_example
         admin_network_cidr:
             description:
                 - The CIDR block for the Exadata administration network.
             returned: on success
-            type: string
+            type: str
             sample: admin_network_cidr_example
         infini_band_network_cidr:
             description:
                 - The CIDR block for the Exadata InfiniBand interconnect.
             returned: on success
-            type: string
+            type: str
             sample: infini_band_network_cidr_example
         corporate_proxy:
             description:
                 - The corporate network proxy for access to the control plane network.
             returned: on success
-            type: string
+            type: str
             sample: corporate_proxy_example
         dns_server:
             description:
@@ -271,19 +271,19 @@ exadata_infrastructure:
             description:
                 - The date and time the Exadata infrastructure was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         csi_number:
             description:
                 - The CSI Number of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: csi_number_example
         contacts:
             description:
@@ -295,19 +295,19 @@ exadata_infrastructure:
                     description:
                         - The name of the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 phone_number:
                     description:
                         - The phone number for the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: phone_number_example
                 email:
                     description:
                         - The email for the Exadata Infrastructure contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
                 is_primary:
                     description:
@@ -327,7 +327,7 @@ exadata_infrastructure:
                 - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
                   infrastructure is provisioned.
             returned: on success
-            type: string
+            type: str
             sample: OK
         maintenance_window:
             description:
@@ -339,7 +339,7 @@ exadata_infrastructure:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -351,7 +351,7 @@ exadata_infrastructure:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -374,7 +374,7 @@ exadata_infrastructure:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -396,13 +396,13 @@ exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:

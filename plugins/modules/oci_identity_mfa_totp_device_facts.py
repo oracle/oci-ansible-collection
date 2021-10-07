@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the MFA TOTP devices for the specified user. The returned object contains the device's OCID, but not
       the seed. The seed is returned only upon creation or when the IAM service regenerates the MFA seed for the device.
     - If I(mfa_totp_device_id) is specified, the details of a single MfaTotpDevice will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -87,34 +87,34 @@ mfa_totp_devices:
             description:
                 - The OCID of the MFA TOTP Device.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the MFA TOTP device belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the `MfaTotpDevice` object was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_expires:
             description:
                 - Date and time when this MFA TOTP device will expire, in the format defined by RFC3339.
                   Null if it never expires.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The MFA TOTP device's current state.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:

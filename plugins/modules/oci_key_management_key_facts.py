@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       otherwise valid request when the total rate of management read operations exceeds 10 requests per second
       for a given tenancy.
     - If I(key_id) is specified, the details of a single Key will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     key_id:
@@ -122,7 +122,7 @@ keys:
             description:
                 - The OCID of the compartment that contains this master encryption key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_key_version:
             description:
@@ -130,7 +130,7 @@ keys:
                   in a transitional state where this or a newer key version are used intermittently. The `currentKeyVersion`
                   property is updated when the service is guaranteed to use the new key version for all subsequent encryption operations.
             returned: on success
-            type: string
+            type: str
             sample: current_key_version_example
         defined_tags:
             description:
@@ -145,7 +145,7 @@ keys:
                 - A user-friendly name for the key. It does not have to be unique, and it is changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -159,7 +159,7 @@ keys:
             description:
                 - The OCID of the key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_shape:
             description:
@@ -171,7 +171,7 @@ keys:
                     description:
                         - The algorithm used by a key's key versions to encrypt or decrypt.
                     returned: on success
-                    type: string
+                    type: str
                     sample: AES
                 length:
                     description:
@@ -186,7 +186,7 @@ keys:
                     description:
                         - Supported curve IDs for ECDSA keys.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.curve.oc1..xxxxxxEXAMPLExxxxxx"
         protection_mode:
             description:
@@ -197,34 +197,34 @@ keys:
                   on the HSM. All cryptographic operations that use a key with a protection mode of `SOFTWARE` are performed on the server. By default,
                   a key's protection mode is set to `HSM`. You can't change a key's protection mode after the key is created or imported.
             returned: on success
-            type: string
+            type: str
             sample: HSM
         lifecycle_state:
             description:
                 - The key's current lifecycle state.
                 - "Example: `ENABLED`"
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         time_created:
             description:
                 - The date and time the key was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the key, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         vault_id:
             description:
                 - The OCID of the vault that contains this key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         replica_details:
             description:
@@ -236,7 +236,7 @@ keys:
                     description:
                         - ReplicationId associated with a key operation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         is_primary:
             description:
@@ -248,7 +248,7 @@ keys:
             description:
                 - The algorithm used by a key's key versions to encrypt or decrypt data.
             returned: on success
-            type: string
+            type: str
             sample: AES
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

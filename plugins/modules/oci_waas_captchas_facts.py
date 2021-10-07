@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       Application Firewall configuration of a WAAS policy.
     - The order of the CAPTCHA challenges is important. The URL for each
       CAPTCHA will be checked in the order they are created.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -56,7 +56,7 @@ captchas:
             description:
                 - The unique URL path at which to show the CAPTCHA challenge.
             returned: on success
-            type: string
+            type: str
             sample: url_example
         session_expiration_in_seconds:
             description:
@@ -68,7 +68,7 @@ captchas:
             description:
                 - The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`
             returned: on success
-            type: string
+            type: str
             sample: title_example
         header_text:
             description:
@@ -76,26 +76,26 @@ captchas:
                   to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text from the image
                   below.'
             returned: on success
-            type: string
+            type: str
             sample: header_text_example
         footer_text:
             description:
                 - The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to 'Enter the letters and numbers as they are shown
                   in the image above.'
             returned: on success
-            type: string
+            type: str
             sample: footer_text_example
         failure_message:
             description:
                 - The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`
             returned: on success
-            type: string
+            type: str
             sample: failure_message_example
         submit_label:
             description:
                 - The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.
             returned: on success
-            type: string
+            type: str
             sample: submit_label_example
     sample: [{
         "url": "url_example",

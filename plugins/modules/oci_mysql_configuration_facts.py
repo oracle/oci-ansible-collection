@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
         - DEFAULT-before-CUSTOM
         - displayName ascending"
     - If I(configuration_id) is specified, the details of a single Configuration will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     configuration_id:
@@ -55,6 +55,7 @@ options:
         description:
             - The requested Configuration types.
         type: list
+        elements: str
         choices:
             - "DEFAULT"
             - "CUSTOM"
@@ -109,55 +110,55 @@ configurations:
             description:
                 - The OCID of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID of the Compartment the Configuration exists in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - User-provided data about the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - The display name of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape_name:
             description:
                 - The name of the associated Shape.
             returned: on success
-            type: string
+            type: str
             sample: shape_name_example
         type:
             description:
                 - The Configuration type, DEFAULT or CUSTOM.
             returned: on success
-            type: string
+            type: str
             sample: DEFAULT
         time_created:
             description:
                 - The date and time the Configuration was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the Configuration was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Configuration.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         variables:
             description:
@@ -169,31 +170,31 @@ configurations:
                     description:
                         - "(\\"completion_type\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_CHAIN
                 default_authentication_plugin:
                     description:
                         - "(\\"default_authentication_plugin\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: mysql_native_password
                 transaction_isolation:
                     description:
                         - "(\\"transaction_isolation\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: READ-UNCOMMITTED
                 innodb_ft_server_stopword_table:
                     description:
                         - "(\\"innodb_ft_server_stopword_table\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: innodb_ft_server_stopword_table_example
                 mandatory_roles:
                     description:
                         - "(\\"mandatory_roles\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: mandatory_roles_example
                 autocommit:
                     description:
@@ -242,7 +243,7 @@ configurations:
                               applied on other members. A RO transaction waits for all preceding transactions to complete before execution takes place.
                               This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER."
                     returned: on success
-                    type: string
+                    type: str
                     sample: EVENTUAL
                 innodb_ft_enable_stopword:
                     description:
@@ -458,7 +459,7 @@ configurations:
                     description:
                         - "(\\"sql_mode\\")"
                     returned: on success
-                    type: string
+                    type: str
                     sample: sql_mode_example
                 mysqlx_deflate_default_compression_level:
                     description:
@@ -508,7 +509,7 @@ configurations:
                   \\"derived\\". This is entirely a metadata relationship. There is no
                   relation between the values in this Configuration and its parent."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -667,7 +668,7 @@ def main():
             configuration_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "DELETED"]),
-            type=dict(type="list", choices=["DEFAULT", "CUSTOM"]),
+            type=dict(type="list", elements="str", choices=["DEFAULT", "CUSTOM"]),
             display_name=dict(aliases=["name"], type="str"),
             shape_name=dict(type="str"),
             sort_by=dict(

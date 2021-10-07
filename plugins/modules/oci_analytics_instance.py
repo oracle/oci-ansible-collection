@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       and creates a new WorkRequest.
     - "This resource has the following action operations in the M(oci_analytics_instance_actions) module: change_compartment,
       change_analytics_instance_network_endpoint, scale, start, stop."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -118,11 +118,13 @@ options:
                     - Source IP addresses or IP address ranges igress rules.
                     - Applicable when network_endpoint_type is 'PUBLIC'
                 type: list
+                elements: str
             whitelisted_vcns:
                 description:
                     - Virtual Cloud Networks allowed to access this network endpoint.
                     - Applicable when network_endpoint_type is 'PUBLIC'
                 type: list
+                elements: dict
                 suboptions:
                     id:
                         description:
@@ -135,6 +137,7 @@ options:
                             - Source IP addresses or IP address ranges igress rules.
                             - Applicable when network_endpoint_type is 'PUBLIC'
                         type: list
+                        elements: str
     idcs_access_token:
         description:
             - IDCS access token identifying a stripe and service administrator user.
@@ -224,37 +227,37 @@ analytics_instance:
             description:
                 - The resource OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - Optional description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of an instance.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         feature_set:
             description:
                 - Analytics feature set.
             returned: on success
-            type: string
+            type: str
             sample: SELF_SERVICE_ANALYTICS
         capacity:
             description:
@@ -266,7 +269,7 @@ analytics_instance:
                     description:
                         - The capacity model to use.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OLPU_COUNT
                 capacity_value:
                     description:
@@ -279,13 +282,13 @@ analytics_instance:
             description:
                 - The license used for the service.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         email_notification:
             description:
                 - Email address receiving notifications.
             returned: on success
-            type: string
+            type: str
             sample: email_notification_example
         network_endpoint_details:
             description:
@@ -297,19 +300,19 @@ analytics_instance:
                     description:
                         - The type of network endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PUBLIC
                 vcn_id:
                     description:
                         - The VCN OCID for the private endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The subnet OCID for the private endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 whitelisted_ips:
                     description:
@@ -327,7 +330,7 @@ analytics_instance:
                             description:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
@@ -345,31 +348,31 @@ analytics_instance:
                     description:
                         - Private Access Channel unique identifier key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - Display Name of the Private Access Channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 vcn_id:
                     description:
                         - OCID of the customer VCN peered with private access channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - OCID of the customer subnet connected to private access channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_address:
                     description:
                         - IP Address of the Private Access channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
                 egress_source_ip_addresses:
                     description:
@@ -390,13 +393,13 @@ analytics_instance:
                             description:
                                 - "Private Source DNS Zone. Ex: example-vcn.oraclevcn.com, corp.example.com."
                             returned: on success
-                            type: string
+                            type: str
                             sample: dns_zone_example
                         description:
                             description:
                                 - Description of private source dns zone.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
         vanity_url_details:
             description:
@@ -408,13 +411,13 @@ analytics_instance:
                     description:
                         - The vanity url unique identifier key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 description:
                     description:
                         - Description of the vanity url.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 urls:
                     description:
@@ -432,13 +435,13 @@ analytics_instance:
                     description:
                         - PEM certificate for HTTPS connections.
                     returned: on success
-                    type: string
+                    type: str
                     sample: public_certificate_example
         service_url:
             description:
                 - URL of the Analytics service.
             returned: on success
-            type: string
+            type: str
             sample: service_url_example
         defined_tags:
             description:
@@ -462,16 +465,16 @@ analytics_instance:
                 - The date and time the instance was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the instance was last updated (in the format defined by RFC3339).
                   This timestamp represents updates made through this API. External events do not
                   influence it.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -689,18 +692,18 @@ def main():
                     ),
                     vcn_id=dict(type="str"),
                     subnet_id=dict(type="str"),
-                    whitelisted_ips=dict(type="list"),
+                    whitelisted_ips=dict(type="list", elements="str"),
                     whitelisted_vcns=dict(
                         type="list",
                         elements="dict",
                         options=dict(
                             id=dict(type="str", required=True),
-                            whitelisted_ips=dict(type="list"),
+                            whitelisted_ips=dict(type="list", elements="str"),
                         ),
                     ),
                 ),
             ),
-            idcs_access_token=dict(type="str"),
+            idcs_access_token=dict(type="str", no_log=True),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             analytics_instance_id=dict(aliases=["id"], type="str"),

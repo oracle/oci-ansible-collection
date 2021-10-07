@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Fleet resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new Fleet using the information provided.
     - "This resource has the following action operations in the M(oci_fleet_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -121,25 +121,25 @@ fleet:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The name of the Fleet.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The Fleet's description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the Fleet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         approximate_jre_count:
             description:
@@ -171,15 +171,15 @@ fleet:
             sample: 56
         time_created:
             description:
-                - The creation date and time of the Fleet (formatted according to RFC3339).
+                - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The lifecycle state of the Fleet.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         defined_tags:
             description:

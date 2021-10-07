@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       by the ESXi host.
     - Use the L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/WorkRequest/) operations to track the
       creation of the ESXi host.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sddc_id:
@@ -150,28 +150,28 @@ esxi_host:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A descriptive name for the ESXi host. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         sddc_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC that the
                   ESXi host belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
                   contains the SDDC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_id:
             description:
@@ -179,7 +179,7 @@ esxi_host:
                   is configured with the chosen bundle of VMware software. The `computeInstanceId`
                   is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of that Compute instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -187,20 +187,20 @@ esxi_host:
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the ESXi host was updated, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the ESXi host.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         current_sku:
             description:
@@ -209,14 +209,14 @@ esxi_host:
                   HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
                   L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
-            type: string
+            type: str
             sample: HOUR
         next_sku:
             description:
                 - Billing option to switch to once existing billing cycle ends.
                   L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             returned: on success
-            type: string
+            type: str
             sample: HOUR
         billing_contract_end_date:
             description:
@@ -224,8 +224,8 @@ esxi_host:
                   after this contractEndDate
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no

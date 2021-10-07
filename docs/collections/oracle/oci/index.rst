@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.31.0
+Collection version 2.32.0
 
 .. toctree::
     :maxdepth: 1
@@ -292,6 +292,9 @@ Modules
 * :ref:`oci_data_science_job_artifact <ansible_collections.oracle.oci.oci_data_science_job_artifact_module>` -- Manage a JobArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_job_artifact_content_facts <ansible_collections.oracle.oci.oci_data_science_job_artifact_content_facts_module>` -- Fetches details about a JobArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_job_facts <ansible_collections.oracle.oci.oci_data_science_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_run <ansible_collections.oracle.oci.oci_data_science_job_run_module>` -- Manage a JobRun resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_run_actions <ansible_collections.oracle.oci.oci_data_science_job_run_actions_module>` -- Perform actions on a JobRun resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_job_run_facts <ansible_collections.oracle.oci.oci_data_science_job_run_facts_module>` -- Fetches details about one or multiple JobRun resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_job_shape_facts <ansible_collections.oracle.oci.oci_data_science_job_shape_facts_module>` -- Fetches details about one or multiple JobShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact <ansible_collections.oracle.oci.oci_data_science_model_artifact_module>` -- Manage a ModelArtifact resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_artifact_facts <ansible_collections.oracle.oci.oci_data_science_model_artifact_facts_module>` -- Fetches details about a ModelArtifact resource in Oracle Cloud Infrastructure
@@ -392,6 +395,7 @@ Modules
 * :ref:`oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run <ansible_collections.oracle.oci.oci_database_maintenance_run_module>` -- Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_facts_module>` -- Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_associated_database_facts <ansible_collections.oracle.oci.oci_database_management_associated_database_facts_module>` -- Fetches details about one or multiple AssociatedDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_cpu_usage_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_cpu_usage_facts_module>` -- Fetches details about a AwrDbCpuUsage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_facts_module>` -- Fetches details about one or multiple AwrDb resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_awr_db_metric_facts <ansible_collections.oracle.oci.oci_database_management_awr_db_metric_facts_module>` -- Fetches details about a AwrDbMetric resource in Oracle Cloud Infrastructure
@@ -410,15 +414,20 @@ Modules
 * :ref:`oci_database_management_database_home_metrics_facts <ansible_collections.oracle.oci.oci_database_management_database_home_metrics_facts_module>` -- Fetches details about a DatabaseHomeMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_parameter_actions <ansible_collections.oracle.oci.oci_database_management_database_parameter_actions_module>` -- Perform actions on a DatabaseParameter resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_database_parameter_facts <ansible_collections.oracle.oci.oci_database_management_database_parameter_facts_module>` -- Fetches details about one or multiple DatabaseParameter resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_db_management_private_endpoint <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_module>` -- Manage a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_db_management_private_endpoint_actions <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_actions_module>` -- Perform actions on a DbManagementPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_db_management_private_endpoint_facts <ansible_collections.oracle.oci.oci_database_management_db_management_private_endpoint_facts_module>` -- Fetches details about one or multiple DbManagementPrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job <ansible_collections.oracle.oci.oci_database_management_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_actions <ansible_collections.oracle.oci.oci_database_management_job_actions_module>` -- Perform actions on a Job resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_execution_facts <ansible_collections.oracle.oci.oci_database_management_job_execution_facts_module>` -- Fetches details about one or multiple JobExecution resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_job_executions_status_summary_facts <ansible_collections.oracle.oci.oci_database_management_job_executions_status_summary_facts_module>` -- Fetches details about one or multiple JobExecutionsStatusSummary resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_facts <ansible_collections.oracle.oci.oci_database_management_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_job_run_facts <ansible_collections.oracle.oci.oci_database_management_job_run_facts_module>` -- Fetches details about one or multiple JobRun resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_facts_module>` -- Fetches details about one or multiple ManagedDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group <ansible_collections.oracle.oci.oci_database_management_managed_database_group_module>` -- Manage a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_group_actions_module>` -- Perform actions on a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_pdb_metrics_facts <ansible_collections.oracle.oci.oci_database_management_pdb_metrics_facts_module>` -- Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent <ansible_collections.oracle.oci.oci_database_migration_agent_module>` -- Manage an Agent resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_migration_agent_actions <ansible_collections.oracle.oci.oci_database_migration_agent_actions_module>` -- Perform actions on an Agent resource in Oracle Cloud Infrastructure
@@ -675,6 +684,10 @@ Modules
 * :ref:`oci_log_analytics_log_group_facts <ansible_collections.oracle.oci.oci_log_analytics_log_group_facts_module>` -- Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_namespace_actions <ansible_collections.oracle.oci.oci_log_analytics_namespace_actions_module>` -- Perform actions on a Namespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_namespace_facts <ansible_collections.oracle.oci.oci_log_analytics_namespace_facts_module>` -- Fetches details about one or multiple Namespace resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_recalled_data_facts <ansible_collections.oracle.oci.oci_log_analytics_recalled_data_facts_module>` -- Fetches details about one or multiple RecalledData resources in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_storage <ansible_collections.oracle.oci.oci_log_analytics_storage_module>` -- Manage a Storage resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_storage_facts <ansible_collections.oracle.oci.oci_log_analytics_storage_facts_module>` -- Fetches details about a Storage resource in Oracle Cloud Infrastructure
+* :ref:`oci_log_analytics_storage_usage_facts <ansible_collections.oracle.oci.oci_log_analytics_storage_usage_facts_module>` -- Fetches details about a StorageUsage resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log <ansible_collections.oracle.oci.oci_logging_log_module>` -- Manage a Log resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_actions <ansible_collections.oracle.oci.oci_logging_log_actions_module>` -- Perform actions on a Log resource in Oracle Cloud Infrastructure
 * :ref:`oci_logging_log_facts <ansible_collections.oracle.oci.oci_logging_log_facts_module>` -- Fetches details about one or multiple Log resources in Oracle Cloud Infrastructure
@@ -998,6 +1011,7 @@ Modules
 * :ref:`oci_os_management_scheduled_job_actions <ansible_collections.oracle.oci.oci_os_management_scheduled_job_actions_module>` -- Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job_facts <ansible_collections.oracle.oci.oci_os_management_scheduled_job_facts_module>` -- Fetches details about one or multiple ScheduledJob resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_software_package_facts <ansible_collections.oracle.oci.oci_os_management_software_package_facts_module>` -- Fetches details about one or multiple SoftwarePackage resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_software_package_search_facts <ansible_collections.oracle.oci.oci_os_management_software_package_search_facts_module>` -- Fetches details about one or multiple SoftwarePackageSearch resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_software_source <ansible_collections.oracle.oci.oci_os_management_software_source_module>` -- Manage a SoftwareSource resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_software_source_actions <ansible_collections.oracle.oci.oci_os_management_software_source_actions_module>` -- Perform actions on a SoftwareSource resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_software_source_facts <ansible_collections.oracle.oci.oci_os_management_software_source_facts_module>` -- Fetches details about one or multiple SoftwareSource resources in Oracle Cloud Infrastructure
@@ -1408,6 +1422,9 @@ Modules
     oci_data_science_job_artifact_module
     oci_data_science_job_artifact_content_facts_module
     oci_data_science_job_facts_module
+    oci_data_science_job_run_module
+    oci_data_science_job_run_actions_module
+    oci_data_science_job_run_facts_module
     oci_data_science_job_shape_facts_module
     oci_data_science_model_artifact_module
     oci_data_science_model_artifact_facts_module
@@ -1508,6 +1525,7 @@ Modules
     oci_database_key_store_facts_module
     oci_database_maintenance_run_module
     oci_database_maintenance_run_facts_module
+    oci_database_management_associated_database_facts_module
     oci_database_management_awr_db_cpu_usage_facts_module
     oci_database_management_awr_db_facts_module
     oci_database_management_awr_db_metric_facts_module
@@ -1526,15 +1544,20 @@ Modules
     oci_database_management_database_home_metrics_facts_module
     oci_database_management_database_parameter_actions_module
     oci_database_management_database_parameter_facts_module
+    oci_database_management_db_management_private_endpoint_module
+    oci_database_management_db_management_private_endpoint_actions_module
+    oci_database_management_db_management_private_endpoint_facts_module
     oci_database_management_job_module
     oci_database_management_job_actions_module
     oci_database_management_job_execution_facts_module
+    oci_database_management_job_executions_status_summary_facts_module
     oci_database_management_job_facts_module
     oci_database_management_job_run_facts_module
     oci_database_management_managed_database_facts_module
     oci_database_management_managed_database_group_module
     oci_database_management_managed_database_group_actions_module
     oci_database_management_managed_database_group_facts_module
+    oci_database_management_pdb_metrics_facts_module
     oci_database_management_tablespace_facts_module
     oci_database_migration_agent_module
     oci_database_migration_agent_actions_module
@@ -1791,6 +1814,10 @@ Modules
     oci_log_analytics_log_group_facts_module
     oci_log_analytics_namespace_actions_module
     oci_log_analytics_namespace_facts_module
+    oci_log_analytics_recalled_data_facts_module
+    oci_log_analytics_storage_module
+    oci_log_analytics_storage_facts_module
+    oci_log_analytics_storage_usage_facts_module
     oci_logging_log_module
     oci_logging_log_actions_module
     oci_logging_log_facts_module
@@ -2114,6 +2141,7 @@ Modules
     oci_os_management_scheduled_job_actions_module
     oci_os_management_scheduled_job_facts_module
     oci_os_management_software_package_facts_module
+    oci_os_management_software_package_search_facts_module
     oci_os_management_software_source_module
     oci_os_management_software_source_actions_module
     oci_os_management_software_source_facts_module

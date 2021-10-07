@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
     - Lists all Data Keys for the specified APM Domain. The caller may filter the list by specifying the 'dataKeyType'
       query parameter.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -61,19 +61,19 @@ data_keys:
             description:
                 - Value of the Data Key.
             returned: on success
-            type: string
+            type: str
             sample: value_example
         name:
             description:
                 - Name of the Data Key. The name uniquely identifies a Data Key within an APM domain.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         type:
             description:
                 - Type of the Data Key.
             returned: on success
-            type: string
+            type: str
             sample: PRIVATE
     sample: [{
         "value": "value_example",

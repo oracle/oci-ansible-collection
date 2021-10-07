@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_object_storage_namespace_metadata
 short_description: Manage a NamespaceMetadata resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a NamespaceMetadata resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -72,19 +72,19 @@ namespace_metadata:
             description:
                 - The Object Storage namespace to which the metadata belongs.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
         default_s3_compartment_id:
             description:
                 - If the field is set, specifies the default compartment assignment for the Amazon S3 Compatibility API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaults3compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_swift_compartment_id:
             description:
                 - If the field is set, specifies the default compartment assignment for the Swift API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultswiftcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "namespace": "namespace_example",

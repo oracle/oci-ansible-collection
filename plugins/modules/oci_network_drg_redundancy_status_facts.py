@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a DrgRedundancyStatus resource in Oracle Cloud Infrastructure
     - Gets the redundancy status for the specified DRG. For more information, see
       L(Redundancy Remedies,https://docs.cloud.oracle.com/iaas/Content/Network/Troubleshoot/drgredundancy.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     drg_id:
@@ -55,13 +55,13 @@ drg_redundancy_status:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - The redundancy status of the DRG.
             returned: on success
-            type: string
+            type: str
             sample: NOT_AVAILABLE
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

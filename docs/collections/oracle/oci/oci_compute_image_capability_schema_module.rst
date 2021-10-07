@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_compute_image_capability_schema_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_compute_image_capability_schema -- Manage a ComputeImageCapabilit
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -435,7 +445,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-schema_data/enum_integer_values" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=integer</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -537,6 +547,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -940,7 +953,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                     

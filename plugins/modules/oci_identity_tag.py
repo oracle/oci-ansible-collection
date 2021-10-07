@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -42,7 +42,7 @@ description:
       of values that you supply with L(EnumTagDefinitionValidator,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/latest/datatypes/EnumTagDefinitionValidator)."
     - "This resource has the following action operations in the M(oci_tag_actions) module: bulk_delete, bulk_edit."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tag_namespace_id:
@@ -100,6 +100,7 @@ options:
                     - The list of allowed values for a definedTag value.
                     - Applicable when validator_type is 'ENUM'
                 type: list
+                elements: str
     is_retired:
         description:
             - Whether the tag is retired.
@@ -149,38 +150,38 @@ tag:
             description:
                 - The OCID of the compartment that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_name:
             description:
                 - The name of the tag namespace that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: tag_namespace_name_example
         id:
             description:
                 - The OCID of the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the tag during creation. This is the tag key definition.
                   The name must be unique within the tag namespace and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description you assign to the tag.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         freeform_tags:
             description:
@@ -212,15 +213,15 @@ tag:
                   `lifecycleState` is INACTIVE before using it. If you delete a tag, you cannot delete another tag until the deleted tag's `lifecycleState`
                   changes from DELETING to DELETED.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - Date and time the tag was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         is_cost_tracking:
             description:
                 - Indicates whether the tag is enabled for cost tracking.
@@ -237,7 +238,7 @@ tag:
                     description:
                         - "Specifies the type of validation: a static value (no validation) or a list."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENUM
                 values:
                     description:
@@ -419,7 +420,7 @@ def main():
                     validator_type=dict(
                         type="str", required=True, choices=["DEFAULT", "ENUM"]
                     ),
-                    values=dict(type="list"),
+                    values=dict(type="list", elements="str"),
                 ),
             ),
             is_retired=dict(type="bool"),

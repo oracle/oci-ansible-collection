@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
     - Lists the shapes that can be used to launch an instance within the specified compartment. You can
       filter the list by compatibility with a specific image.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -77,13 +77,13 @@ shapes:
                 - The name of the shape. You can enumerate all available shapes by calling
                   L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         processor_description:
             description:
                 - A short description of the shape's processor (CPU).
             returned: on success
-            type: string
+            type: str
             sample: processor_description_example
         ocpus:
             description:
@@ -120,7 +120,7 @@ shapes:
                 - A short description of the graphics processing unit (GPU) available for this shape.
                 - If the shape does not have any GPUs, this field is `null`.
             returned: on success
-            type: string
+            type: str
             sample: gpu_description_example
         local_disks:
             description:
@@ -140,7 +140,7 @@ shapes:
                 - A short description of the local disks available for this shape.
                 - If the shape does not have any local disks, this field is `null`.
             returned: on success
-            type: string
+            type: str
             sample: local_disk_description_example
         is_live_migration_supported:
             description:
@@ -260,7 +260,7 @@ shapes:
                     description:
                         - The type of platform being configured.
                     returned: on success
-                    type: string
+                    type: str
                     sample: AMD_MILAN_BM
                 secure_boot_options:
                     description:
@@ -332,7 +332,7 @@ shapes:
                             description:
                                 - The default NUMA nodes per socket configuration.
                             returned: on success
-                            type: string
+                            type: str
                             sample: default_value_example
     sample: [{
         "baseline_ocpu_utilizations": [],

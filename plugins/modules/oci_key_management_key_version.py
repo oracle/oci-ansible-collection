@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
       otherwise valid request when the total rate of management write operations exceeds 10 requests per second
       for a given tenancy.
     - "This resource has the following action operations in the M(oci_key_version_actions) module: cancel_key_version_deletion, schedule_key_version_deletion."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     key_id:
@@ -73,32 +73,32 @@ key_version:
             description:
                 - The OCID of the compartment that contains this key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the key associated with this key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         public_key:
             description:
                 - The public key in PEM format. (This value pertains only to RSA and ECDSA keys.)
             returned: on success
-            type: string
+            type: str
             sample: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         lifecycle_state:
             description:
                 - The key version's current lifecycle state.
                 - "Example: `ENABLED`"
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         origin:
             description:
@@ -106,28 +106,28 @@ key_version:
                   created the key material. When this value is `EXTERNAL`, the key material
                   was imported from an external source.
             returned: on success
-            type: string
+            type: str
             sample: INTERNAL
         time_created:
             description:
                 - The date and time this key version was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: \\"2018-04-03T21:10:29.600Z\\""
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the key version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
                   format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         vault_id:
             description:
                 - The OCID of the vault that contains this key version.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         replica_details:
             description:
@@ -139,7 +139,7 @@ key_version:
                     description:
                         - ReplicationId associated with a key version operation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         is_primary:
             description:

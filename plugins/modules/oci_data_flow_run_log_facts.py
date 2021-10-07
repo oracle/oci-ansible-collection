@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple RunLog resources in Ora
 description:
     - Fetches details about one or multiple RunLog resources in Oracle Cloud Infrastructure
     - Retrieves summaries of the run's logs.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     run_id:
@@ -54,13 +54,13 @@ run_logs:
                 - "The name of the log.
                   Example: spark_driver_stderr_20190917T114000Z.log.gz"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         run_id:
             description:
                 - The runId associated with the log.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
         size_in_bytes:
             description:
@@ -72,19 +72,19 @@ run_logs:
             description:
                 - The source of the log such as driver and executor.
             returned: on success
-            type: string
+            type: str
             sample: APPLICATION
         time_created:
             description:
                 - The date and time the object was created, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         type:
             description:
                 - The type of log such as stdout and stderr.
             returned: on success
-            type: string
+            type: str
             sample: STDERR
     sample: [{
         "name": "name_example",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
       current instance. You must update them manually to be passed to
       a future instance."
     - For I(action=reset), resets database parameter values to their default or startup values.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -57,6 +57,10 @@ options:
             password:
                 description:
                     - The password for the database user name.
+                type: str
+            secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the secret containing the user password.
                 type: str
             role:
                 description:
@@ -85,6 +89,7 @@ options:
             - A list of database parameters and their values.
             - Required for I(action=change).
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -106,6 +111,7 @@ options:
             - A list of database parameter names.
             - Required for I(action=reset).
         type: list
+        elements: str
     action:
         description:
             - The action to perform on the DatabaseParameter.
@@ -136,7 +142,7 @@ EXAMPLES = """
 """
 
 RETURN = """
-database_parameter:
+update_database_parameters_result:
     description:
         - Details of the DatabaseParameter resource acted upon by the current operation
     returned: on success
@@ -152,21 +158,21 @@ database_parameter:
                     description:
                         - The status of the parameter update.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SUCCEEDED
                 error_code:
                     description:
                         - An error code that defines the failure or `null` if the parameter
                           was updated successfully.
                     returned: on success
-                    type: string
+                    type: str
                     sample: error_code_example
                 error_message:
                     description:
                         - The error message indicating the reason for failure or `null` if
                           the parameter was updated successfully.
                     returned: on success
-                    type: string
+                    type: str
                     sample: error_message_example
     sample: {
         "status": {
@@ -282,6 +288,7 @@ def main():
                 options=dict(
                     user_name=dict(type="str"),
                     password=dict(type="str", no_log=True),
+                    secret_id=dict(type="str"),
                     role=dict(type="str", choices=["NORMAL", "SYSDBA"]),
                 ),
             ),
@@ -295,7 +302,7 @@ def main():
                     update_comment=dict(type="str"),
                 ),
             ),
-            reset_parameters=dict(type="list"),
+            reset_parameters=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["change", "reset"]),
         )
     )

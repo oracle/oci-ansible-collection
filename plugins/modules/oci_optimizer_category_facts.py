@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
     - Lists the supported Cloud Advisor categories.
     - If I(category_id) is specified, the details of a single Category will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     category_id:
@@ -105,25 +105,25 @@ categories:
             description:
                 - The unique OCID of the category.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the category. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - Text describing the category. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         recommendation_counts:
             description:
@@ -135,7 +135,7 @@ categories:
                     description:
                         - The level of importance assigned to the recommendation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CRITICAL
                 count:
                     description:
@@ -153,7 +153,7 @@ categories:
                     description:
                         - The recommendation status of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PENDING
                 count:
                     description:
@@ -165,7 +165,7 @@ categories:
             description:
                 - The category's current state.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         estimated_cost_saving:
             description:
@@ -177,14 +177,14 @@ categories:
             description:
                 - The date and time the category details were created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the category details were last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_network_ip_sec_connection_tunnel
 short_description: Manage an IpSecConnectionTunnel resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an IpSecConnectionTunnel resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -142,11 +142,13 @@ options:
                     - Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.
                     - This parameter is updatable.
                 type: list
+                elements: str
             cpe_traffic_selector:
                 description:
                     - Lists IPv4 or IPv6-enabled subnets in your on-premises network.
                     - This parameter is updatable.
                 type: list
+                elements: str
     state:
         description:
             - The state of the IpSecConnectionTunnel.
@@ -184,52 +186,52 @@ ip_sec_connection_tunnel:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the tunnel.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the tunnel.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         vpn_ip:
             description:
                 - The IP address of Oracle's VPN headend.
                 - "Example: `203.0.113.21`"
             returned: on success
-            type: string
+            type: str
             sample: 203.0.113.21
         cpe_ip:
             description:
                 - The IP address of the CPE's VPN headend.
                 - "Example: `203.0.113.22`"
             returned: on success
-            type: string
+            type: str
             sample: 203.0.113.22
         status:
             description:
                 - The status of the tunnel based on IPSec protocol characteristics.
             returned: on success
-            type: string
+            type: str
             sample: UP
         ike_version:
             description:
                 - Internet Key Exchange protocol version.
             returned: on success
-            type: string
+            type: str
             sample: V1
         lifecycle_state:
             description:
                 - The tunnel's lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         bgp_session_info:
             description:
@@ -248,7 +250,7 @@ ip_sec_connection_tunnel:
                         - The value must be a /30 or /31.
                         - "Example: `10.0.0.4/31`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.4/31
                 customer_interface_ip:
                     description:
@@ -261,7 +263,7 @@ ip_sec_connection_tunnel:
                         - The value must be a /30 or /31.
                         - "Example: `10.0.0.5/31`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.5/31
                 oracle_interface_ipv6:
                     description:
@@ -274,7 +276,7 @@ ip_sec_connection_tunnel:
                         - Only subnet masks from /64 up to /127 are allowed.
                         - "Example: `2001:db8::1/64`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 2001:db8::1/64
                 customer_interface_ipv6:
                     description:
@@ -287,13 +289,13 @@ ip_sec_connection_tunnel:
                         - Only subnet masks from /64 up to /127 are allowed.
                         - "Example: `2001:db8::1/64`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 2001:db8::1/64
                 oracle_bgp_asn:
                     description:
                         - The Oracle BGP ASN.
                     returned: on success
-                    type: string
+                    type: str
                     sample: oracle_bgp_asn_example
                 customer_bgp_asn:
                     description:
@@ -304,19 +306,19 @@ ip_sec_connection_tunnel:
                         - If the tunnel uses static routing, the `customerBgpAsn` must be null.
                         - "Example: `12345` (2-byte) or `1587232876` (4-byte)"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 12345
                 bgp_state:
                     description:
                         - The state of the BGP session.
                     returned: on success
-                    type: string
+                    type: str
                     sample: UP
                 bgp_ipv6_state:
                     description:
                         - The state of the BGP IPv6 session.
                     returned: on success
-                    type: string
+                    type: str
                     sample: UP
         encryption_domain_config:
             description:
@@ -340,22 +342,22 @@ ip_sec_connection_tunnel:
             description:
                 - The type of routing used for this tunnel (either BGP dynamic routing or static routing).
             returned: on success
-            type: string
+            type: str
             sample: BGP
         time_created:
             description:
                 - The date and time the IPSec connection tunnel was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_status_updated:
             description:
                 - When the status of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -500,8 +502,8 @@ def main():
             encryption_domain_config=dict(
                 type="dict",
                 options=dict(
-                    oracle_traffic_selector=dict(type="list"),
-                    cpe_traffic_selector=dict(type="list"),
+                    oracle_traffic_selector=dict(type="list", elements="str"),
+                    cpe_traffic_selector=dict(type="list", elements="str"),
                 ),
             ),
             state=dict(type="str", default="present", choices=["present"]),

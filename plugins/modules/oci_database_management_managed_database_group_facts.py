@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       Only one of the parameters, ID or name should be provided. If none of these parameters is provided,
       all the Managed Database Groups in the compartment are listed.
     - If I(managed_database_group_id) is specified, the details of a single ManagedDatabaseGroup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_group_id:
@@ -68,7 +68,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -98,25 +98,25 @@ managed_database_groups:
             description:
                 - The name of the Managed Database Group.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The information specified by the user about the Managed Database Group.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         managed_databases:
             description:
@@ -128,58 +128,64 @@ managed_database_groups:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
                         - The name of the Managed Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the Managed Database
                           resides.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                deployment_type:
+                    description:
+                        - The infrastructure used to deploy the Oracle Database.
+                    returned: on success
+                    type: str
+                    sample: ONPREMISE
                 database_type:
                     description:
                         - The type of Oracle Database installation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: EXTERNAL_SIDB
                 database_sub_type:
                     description:
                         - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container
                           Database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CDB
                 time_added:
                     description:
                         - The date and time the Managed Database was added to the group.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current lifecycle state of the Managed Database Group.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the Managed Database Group was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the Managed Database Group was last updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         managed_database_count:
             description:
                 - The number of Managed Databases in the Managed Database Group.
@@ -195,6 +201,7 @@ managed_database_groups:
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
             "name": "name_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "deployment_type": "ONPREMISE",
             "database_type": "EXTERNAL_SIDB",
             "database_sub_type": "CDB",
             "time_added": "2013-10-20T19:20:30+01:00"

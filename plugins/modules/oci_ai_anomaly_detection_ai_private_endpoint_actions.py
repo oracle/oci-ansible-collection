@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Perform actions on an AiPrivateEndpoint resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a resource into a different compartment. When provided, 'If-Match' is checked against 'ETag' values of the
       resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ai_private_endpoint_id:
@@ -69,25 +69,25 @@ ai_private_endpoint:
             description:
                 - Unique identifier that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - Subnet Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Private Reverse Connection Endpoint display name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         dns_zones:
             description:
@@ -100,14 +100,14 @@ ai_private_endpoint:
             description:
                 - The time the private endpoint was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the private endpoint was updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -133,14 +133,14 @@ ai_private_endpoint:
             description:
                 - The current state of the private endpoint resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in 'Failed'
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         attached_data_assets:
             description:

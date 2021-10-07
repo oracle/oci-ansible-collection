@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
     - "This resource has the following action operations in the M(oci_external_non_container_database_actions) module: change_compartment,
       disable_external_non_container_database_database_management, disable_external_non_container_database_operations_insights,
       enable_external_non_container_database_database_management, enable_external_non_container_database_operations_insights."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -121,7 +121,7 @@ external_non_container_database:
                     description:
                         - The status of Operations Insights
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLING
                 operations_insights_connector_id:
                     description:
@@ -129,13 +129,13 @@ external_non_container_database:
                           L(external database connector,https://docs.cloud.oracle.com/en-
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -156,56 +156,56 @@ external_non_container_database:
             description:
                 - The user-friendly name for the external database. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure external database
                   resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the Oracle Cloud Infrastructure external database resource.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         time_created:
             description:
                 - The date and time the database was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         db_unique_name:
             description:
                 - The `DB_UNIQUE_NAME` of the external database.
             returned: on success
-            type: string
+            type: str
             sample: db_unique_name_example
         db_id:
             description:
                 - The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
         database_version:
             description:
                 - The Oracle Database version.
             returned: on success
-            type: string
+            type: str
             sample: database_version_example
         database_edition:
             description:
                 - The Oracle Database edition.
             returned: on success
-            type: string
+            type: str
             sample: STANDARD_EDITION
         time_zone:
             description:
@@ -213,31 +213,31 @@ external_non_container_database:
                   It is a time zone offset (a character type in the format '[+|-]TZH:TZM') or a time zone region name,
                   depending on how the time zone value was specified when the database was created / last altered.
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         character_set:
             description:
                 - The character set of the external database.
             returned: on success
-            type: string
+            type: str
             sample: character_set_example
         ncharacter_set:
             description:
                 - The national character of the external database.
             returned: on success
-            type: string
+            type: str
             sample: ncharacter_set_example
         db_packs:
             description:
                 - The database packs licensed for the external Oracle Database.
             returned: on success
-            type: string
+            type: str
             sample: db_packs_example
         database_configuration:
             description:
                 - The Oracle Database configuration
             returned: on success
-            type: string
+            type: str
             sample: RAC
         database_management_config:
             description:
@@ -249,7 +249,7 @@ external_non_container_database:
                     description:
                         - The status of the Database Management service.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLING
                 database_management_connection_id:
                     description:
@@ -257,13 +257,13 @@ external_non_container_database:
                           L(external database connector,https://docs.cloud.oracle.com/en-
                           us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 license_model:
                     description:
                         - The Oracle license model that applies to the external database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: LICENSE_INCLUDED
     sample: {
         "operations_insights_config": {

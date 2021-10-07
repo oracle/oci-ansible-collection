@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CloudVmClusterUpdate resources in Oracle Cloud Infrastructure
     - Lists the maintenance updates that can be applied to the specified cloud VM cluster. Applies to Exadata Cloud Service instances only.
     - If I(update_id) is specified, the details of a single CloudVmClusterUpdate will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cloud_vm_cluster_id:
@@ -73,19 +73,19 @@ cloud_vm_cluster_updates:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the maintenance update.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Details of the maintenance update package.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         last_action:
             description:
                 - The update action.
             returned: on success
-            type: string
+            type: str
             sample: ROLLING_APPLY
         available_actions:
             description:
@@ -97,31 +97,31 @@ cloud_vm_cluster_updates:
             description:
                 - The type of cloud VM cluster maintenance update.
             returned: on success
-            type: string
+            type: str
             sample: GI_UPGRADE
         lifecycle_details:
             description:
                 - Descriptive text providing additional details about the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the maintenance update. Dependent on value of `lastAction`.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         time_released:
             description:
                 - The date and time the maintenance update was released.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         version:
             description:
                 - The version of the maintenance update package.
             returned: on success
-            type: string
+            type: str
             sample: version_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

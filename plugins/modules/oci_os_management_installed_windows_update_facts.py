@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple InstalledWindowsUpdate 
 description:
     - Fetches details about one or multiple InstalledWindowsUpdate resources in Oracle Cloud Infrastructure
     - Returns a list of installed Windows updates for a Managed Instance. This is only applicable to Windows instances.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -77,7 +77,7 @@ installed_windows_updates:
             description:
                 - Windows Update name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
@@ -85,13 +85,13 @@ installed_windows_updates:
                   but is a unique identifier assigned by Microsoft.
                   Example: `6981d463-cd91-4a26-b7c4-ea4ded9183ed`"
             returned: on success
-            type: string
+            type: str
             sample: 6981d463-cd91-4a26-b7c4-ea4ded9183ed
         update_type:
             description:
                 - The purpose of this update.
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
     sample: [{
         "display_name": "display_name_example",

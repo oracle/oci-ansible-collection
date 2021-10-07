@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple DatabaseParameter resou
 description:
     - Fetches details about one or multiple DatabaseParameter resources in Oracle Cloud Infrastructure
     - Gets the list of database parameters for the specified Managed Database. The parameters are listed in alphabetical order, along with their current values.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -59,7 +59,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -85,26 +85,26 @@ database_parameters:
             description:
                 - The parameter name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         type:
             description:
                 - The parameter type.
             returned: on success
-            type: string
+            type: str
             sample: BOOLEAN
         value:
             description:
                 - The parameter value.
             returned: on success
-            type: string
+            type: str
             sample: value_example
         display_value:
             description:
                 - The parameter value in a user-friendly format. For example, if the `value` property shows the value 262144 for a big integer parameter, then
                   the `displayValue` property will show the value 256K.
             returned: on success
-            type: string
+            type: str
             sample: display_value_example
         number:
             description:
@@ -134,7 +134,7 @@ database_parameters:
                   - FALSE: Parameter cannot be changed with `ALTER SYSTEM` unless a server parameter file was used to start the instance. The change takes
                     effect in subsequent instances."
             returned: on success
-            type: string
+            type: str
             sample: IMMEDIATE
         is_pdb_modifiable:
             description:
@@ -155,7 +155,7 @@ database_parameters:
             description:
                 - Indicates how the parameter was modified. If an `ALTER SYSTEM` was performed, the value will be `MODIFIED`.
             returned: on success
-            type: string
+            type: str
             sample: MODIFIED
         is_adjusted:
             description:
@@ -179,7 +179,7 @@ database_parameters:
             description:
                 - The description of the parameter.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         ordinal:
             description:
@@ -191,7 +191,7 @@ database_parameters:
             description:
                 - The comments associated with the most recent update.
             returned: on success
-            type: string
+            type: str
             sample: update_comment_example
         container_id:
             description:
@@ -207,7 +207,7 @@ database_parameters:
             description:
                 - The parameter category.
             returned: on success
-            type: string
+            type: str
             sample: category_example
         constraint:
             description:
@@ -218,13 +218,13 @@ database_parameters:
                   have the same value for every instance. For example, the parameter
                   `DB_BLOCK_SIZE` must have the same value in all instances.
             returned: on success
-            type: string
+            type: str
             sample: UNIQUE
         sid:
             description:
                 - The database instance SID for which the parameter is defined.
             returned: on success
-            type: string
+            type: str
             sample: sid_example
         is_specified:
             description:
@@ -249,7 +249,7 @@ database_parameters:
                     description:
                         - The parameter value at ordinal.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 is_default:
                     description:

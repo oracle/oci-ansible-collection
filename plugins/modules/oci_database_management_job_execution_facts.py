@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,12 +23,12 @@ module: oci_database_management_job_execution_facts
 short_description: Fetches details about one or multiple JobExecution resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple JobExecution resources in Oracle Cloud Infrastructure
-    - Gets the job execution for a specific ID or the list of job executions for a job, Managed Database or Managed Database Group
-      in a specific compartment. Only one of the parameters, ID, jobId, managedDatabaseId or managedDatabaseGroupId should be provided.
+    - Gets the job execution for a specific ID or the list of job executions for a job, job run, Managed Database or Managed Database Group
+      in a specific compartment. Only one of the parameters, ID, jobId, jobRunId, managedDatabaseId or managedDatabaseGroupId should be provided.
       If none of these parameters is provided, all the job executions in the compartment are listed. Job executions can also be filtered
       based on the name and status parameters.
     - If I(job_execution_id) is specified, the details of a single JobExecution will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     job_execution_id:
@@ -73,11 +73,15 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"
             - "DESC"
+    job_run_id:
+        description:
+            - The identifier of the job run.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -103,69 +107,93 @@ job_executions:
             description:
                 - The identifier of the job execution.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the job execution.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the parent job resides.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         managed_database_group_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group where the parent job has to
                   be executed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
         managed_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database associated with the job execution.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         managed_database_name:
             description:
                 - The name of the Managed Database associated with the job execution.
             returned: on success
-            type: string
+            type: str
             sample: managed_database_name_example
+        database_type:
+            description:
+                - The type of Oracle Database installation.
+            returned: on success
+            type: str
+            sample: EXTERNAL_SIDB
+        database_sub_type:
+            description:
+                - The subtype of the Oracle Database. Indicates whether the database is a Container Database, Pluggable Database, or a Non-container Database.
+            returned: on success
+            type: str
+            sample: CDB
+        deployment_type:
+            description:
+                - A list of the supported infrastructure that can be used to deploy the database.
+            returned: on success
+            type: str
+            sample: ONPREMISE
+        is_cluster:
+            description:
+                - Indicates whether the Oracle Database is part of a cluster.
+            returned: on success
+            type: bool
+            sample: true
         job_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the parent job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
         job_name:
             description:
                 - The name of the parent job.
             returned: on success
-            type: string
+            type: str
             sample: job_name_example
         job_run_id:
             description:
                 - The identifier of the associated job run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - The status of the job execution.
             returned: on success
-            type: string
+            type: str
             sample: SUCCEEDED
         error_message:
             description:
                 - The error message that is returned if the job execution fails. Null is returned if the job is
                   still running or if the job execution is successful.
             returned: on success
-            type: string
+            type: str
             sample: error_message_example
         result_details:
             description:
@@ -177,25 +205,25 @@ job_executions:
                     description:
                         - The type of job execution result.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OBJECT_STORAGE
                 namespace_name:
                     description:
                         - The Object Storage namespace used for job execution result storage.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_name_example
                 bucket_name:
                     description:
                         - The name of the bucket used for job execution result storage.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
                 object_name:
                     description:
                         - The name of the object containing the job execution result.
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_example
                 row_count:
                     description:
@@ -207,14 +235,56 @@ job_executions:
             description:
                 - The date and time when the job execution was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_completed:
             description:
                 - The date and time when the job execution completed.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        user_name:
+            description:
+                - The database user name used to execute the SQL job.
+            returned: on success
+            type: str
+            sample: user_name_example
+        sql_text:
+            description:
+                - The SQL text executed as part of the job.
+            returned: on success
+            type: str
+            sample: sql_text_example
+        schedule_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                start_time:
+                    description:
+                        - "The start time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: start_time_example
+                end_time:
+                    description:
+                        - "The end time of the scheduled job in UTC in ISO-8601 format, which is \\"yyyy-MM-dd'T'hh:mm:ss.sss'Z'\\"."
+                    returned: on success
+                    type: str
+                    sample: end_time_example
+                interval_type:
+                    description:
+                        - The interval type for a recurring scheduled job. For a non-recurring (one time) job, NEVER must be specified as the interval type.
+                    returned: on success
+                    type: str
+                    sample: DAILY
+                interval_value:
+                    description:
+                        - The value for the interval period for a recurring scheduled job.
+                    returned: on success
+                    type: str
+                    sample: interval_value_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -222,6 +292,10 @@ job_executions:
         "managed_database_group_id": "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_database_id": "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "managed_database_name": "managed_database_name_example",
+        "database_type": "EXTERNAL_SIDB",
+        "database_sub_type": "CDB",
+        "deployment_type": "ONPREMISE",
+        "is_cluster": true,
         "job_id": "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx",
         "job_name": "job_name_example",
         "job_run_id": "ocid1.jobrun.oc1..xxxxxxEXAMPLExxxxxx",
@@ -235,7 +309,15 @@ job_executions:
             "row_count": 56
         },
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_completed": "2013-10-20T19:20:30+01:00"
+        "time_completed": "2013-10-20T19:20:30+01:00",
+        "user_name": "user_name_example",
+        "sql_text": "sql_text_example",
+        "schedule_details": {
+            "start_time": "start_time_example",
+            "end_time": "end_time_example",
+            "interval_type": "DAILY",
+            "interval_value": "interval_value_example"
+        }
     }]
 """
 
@@ -282,6 +364,7 @@ class JobExecutionFactsHelperGen(OCIResourceFactsHelperBase):
             "name",
             "sort_by",
             "sort_order",
+            "job_run_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -315,6 +398,7 @@ def main():
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            job_run_id=dict(type="str"),
         )
     )
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the `ByoipRange` resources in the specified compartment.
       You can filter the list using query parameters.
     - If I(byoip_range_id) is specified, the details of a single ByoipRange will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     byoip_range_id:
@@ -96,13 +96,13 @@ byoip_ranges:
             description:
                 - The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.
             returned: on success
-            type: string
+            type: str
             sample: cidr_block_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the BYOIP CIDR block.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -117,7 +117,7 @@ byoip_ranges:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -132,56 +132,56 @@ byoip_ranges:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - The `ByoipRange` resource's current status.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_state:
             description:
                 - The `ByoipRange` resource's current state.
             returned: on success
-            type: string
+            type: str
             sample: INACTIVE
         time_created:
             description:
                 - The date and time the `ByoipRange` resource was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_validated:
             description:
                 - The date and time the `ByoipRange` resource was validated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_advertised:
             description:
                 - The date and time the `ByoipRange` resource was advertised to the internet by BGP, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_withdrawn:
             description:
                 - The date and time the `ByoipRange` resource was withdrawn from advertisement by BGP to the internet, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         validation_token:
             description:
                 - The validation token is an internally-generated ASCII string used in the validation process. See L(Importing a CIDR
                   block,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/BYOIP.htm#import_cidr) for details.
             returned: on success
-            type: string
+            type: str
             sample: validation_token_example
     sample: [{
         "cidr_block": "cidr_block_example",

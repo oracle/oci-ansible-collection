@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       - For `compartmentId`, lists all configuration source providers in the matching compartment.
       - For `configurationSourceProviderId`, lists the matching configuration source provider."
     - If I(configuration_source_provider_id) is specified, the details of a single ConfigurationSourceProvider will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     configuration_source_provider_id:
@@ -94,26 +94,26 @@ configuration_source_providers:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the configuration source provider.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where the configuration source
                   provider is located.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable display name for the configuration source provider.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of the configuration source provider.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
@@ -121,15 +121,15 @@ configuration_source_providers:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current lifecycle state of the configuration source provider.
                   For more information about configuration source provider lifecycle states in Resource Manager, see
                   L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__CSPStates).
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         config_source_provider_type:
             description:
@@ -137,7 +137,7 @@ configuration_source_providers:
                   The `GITLAB_ACCESS_TOKEN` type corresponds to GitLab.
                   The `GITHUB_ACCESS_TOKEN` type corresponds to GitHub.
             returned: on success
-            type: string
+            type: str
             sample: GITLAB_ACCESS_TOKEN
         freeform_tags:
             description:
@@ -160,7 +160,7 @@ configuration_source_providers:
                 - "The GitHub service endpoint.
                   Example: `https://github.com/`"
             returned: on success
-            type: string
+            type: str
             sample: https://github.com/
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

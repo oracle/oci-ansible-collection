@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -31,7 +31,7 @@ description:
     - Additional targetTypes would be available in future releases. Clients should ignore new targetType
       or upgrade to latest version of client SDK to handle new targetType.
     - If I(budget_id) is specified, the details of a single Budget will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     budget_id:
@@ -110,13 +110,13 @@ budgets:
             description:
                 - The OCID of the budget
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
@@ -124,19 +124,19 @@ budgets:
                   targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
                   For all other scenarios, this property will be left empty."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the budget.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The description of the budget.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         amount:
             description:
@@ -148,7 +148,7 @@ budgets:
             description:
                 - The reset period for the budget.
             returned: on success
-            type: string
+            type: str
             sample: MONTHLY
         budget_processing_period_start_offset:
             description:
@@ -162,7 +162,7 @@ budgets:
             description:
                 - The type of target on which the budget is applied.
             returned: on success
-            type: string
+            type: str
             sample: COMPARTMENT
         targets:
             description:
@@ -176,7 +176,7 @@ budgets:
             description:
                 - The current state of the budget.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         alert_rule_count:
             description:
@@ -206,20 +206,20 @@ budgets:
             description:
                 - The time that the budget spend was last computed
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - Time that budget was created
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time that budget was updated
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

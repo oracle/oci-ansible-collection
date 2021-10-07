@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DeployEnvironment resources in Oracle Cloud Infrastructure
     - Returns a list of deployment environments.
     - If I(deploy_environment_id) is specified, the details of a single DeployEnvironment will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deploy_environment_id:
@@ -98,62 +98,62 @@ deploy_environments:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Optional description about the deployment environment.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - Deployment environment display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         project_id:
             description:
                 - The OCID of a project.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_environment_type:
             description:
                 - Deployment environment type.
             returned: on success
-            type: string
+            type: str
             sample: OKE_CLUSTER
         time_created:
             description:
                 - Time the deployment environment was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the deployment environment was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the deployment environment.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -193,7 +193,7 @@ deploy_environments:
                             description:
                                 - Defines the type of the instance selector for the group.
                             returned: on success
-                            type: string
+                            type: str
                             sample: INSTANCE_IDS
                         compute_instance_ids:
                             description:
@@ -206,26 +206,26 @@ deploy_environments:
                                 - Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en-
                                   us/iaas/Content/General/Concepts/regions.htm
                             returned: on success
-                            type: string
+                            type: str
                             sample: region_example
                         query:
                             description:
                                 - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
                                   documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm
                             returned: on success
-                            type: string
+                            type: str
                             sample: query_example
         function_id:
             description:
                 - The OCID of the Function.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
         cluster_id:
             description:
                 - The OCID of the Kubernetes cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

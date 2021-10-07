@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_awr_db_snapshot_facts_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_database_management_awr_db_snapshot_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_awr_db_snapshot_facts -- Fetches details abou
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -165,7 +175,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs:</div>
+                                            <div>The parameter to filter the database by internal ID. Note that the internal ID of the database can be retrieved from the following endpoint: /managedDatabases/{managedDatabaseId}/awrDbs</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -323,7 +333,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the the default order.</div>
+                                            <div>The option to sort information in ascending (&#x27;ASC&#x27;) or descending (&#x27;DESC&#x27;) order. Descending order is the default order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -373,6 +383,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

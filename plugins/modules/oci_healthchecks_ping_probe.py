@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates an on-demand ping probe. The location response header contains the URL for
       fetching probe results.
     - "*Note:* The on-demand probe configuration is not saved."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -38,11 +38,13 @@ options:
         description:
             - A list of targets (hostnames or IP addresses) of the probe.
         type: list
+        elements: str
         required: true
     vantage_point_names:
         description:
             - A list of names of vantage points from which to execute the probe.
         type: list
+        elements: str
     port:
         description:
             - The port on which to probe endpoints. If unspecified, probes will use the
@@ -93,31 +95,31 @@ ping_probe:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         results_url:
             description:
                 - A URL for fetching the probe results.
             returned: on success
-            type: string
+            type: str
             sample: results_url_example
         home_region:
             description:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
-            type: string
+            type: str
             sample: home_region_example
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
@@ -149,7 +151,7 @@ ping_probe:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: ICMP
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -227,8 +229,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str", required=True),
-            targets=dict(type="list", required=True),
-            vantage_point_names=dict(type="list"),
+            targets=dict(type="list", elements="str", required=True),
+            vantage_point_names=dict(type="list", elements="str"),
             port=dict(type="int"),
             timeout_in_seconds=dict(type="int"),
             protocol=dict(type="str", required=True, choices=["ICMP", "TCP"]),

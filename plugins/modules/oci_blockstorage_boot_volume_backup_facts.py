@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BootVolumeBackup resources in Oracle Cloud Infrastructure
     - Lists the boot volume backups in the specified compartment. You can filter the results by boot volume.
     - If I(boot_volume_backup_id) is specified, the details of a single BootVolumeBackup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     boot_volume_backup_id:
@@ -110,13 +110,13 @@ boot_volume_backups:
             description:
                 - The OCID of the boot volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the boot volume backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -138,7 +138,7 @@ boot_volume_backups:
                 - A user-friendly name for the boot volume backup. Does not have to be unique and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         expiration_time:
             description:
@@ -148,8 +148,8 @@ boot_volume_backups:
                   it will be absent, signifying that there is no expiration time and the backup will
                   last forever until manually deleted.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -163,13 +163,13 @@ boot_volume_backups:
             description:
                 - The OCID of the boot volume backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume the backup is taken from.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
@@ -178,13 +178,13 @@ boot_volume_backups:
                   L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
                   L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a boot volume backup.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         size_in_gbs:
             description:
@@ -196,32 +196,32 @@ boot_volume_backups:
             description:
                 - The OCID of the source boot volume backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcebootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
         source_type:
             description:
                 - Specifies whether the backup was created manually, or via scheduled backup policy.
             returned: on success
-            type: string
+            type: str
             sample: MANUAL
         time_created:
             description:
                 - The date and time the boot volume backup was created. This is the time the actual point-in-time image
                   of the volume data was taken. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_request_received:
             description:
                 - The date and time the request to create the boot volume backup was received. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         type:
             description:
                 - The type of a volume backup.
             returned: on success
-            type: string
+            type: str
             sample: FULL
         unique_size_in_gbs:
             description:

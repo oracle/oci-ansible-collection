@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       *  Allow method rules
       *  Request header rules
       *  Response header rules"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -70,14 +70,14 @@ listener_rules:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: ADD_HTTP_REQUEST_HEADER
                 header:
                     description:
                         - A header name that conforms to RFC 7230.
                         - "Example: `example_header_name`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_header_name
                 value:
                     description:
@@ -86,7 +86,7 @@ listener_rules:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_value
                 conditions:
                     description:
@@ -98,14 +98,14 @@ listener_rules:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: SOURCE_IP_ADDRESS
                         attribute_value:
                             description:
                                 - The path string that the redirection rule applies to.
                                 - "Example: `/example`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /example
                         operator:
                             description:
@@ -119,14 +119,14 @@ listener_rules:
                                 - "*  **SUFFIX_MATCH** - The ending portion of the incoming URI path must exactly match the `attributeValue`
                                      string."
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXACT_MATCH
                 description:
                     description:
                         - A brief description of the access control rule. Avoid entering confidential information.
                         - "example: `192.168.0.0/16 and 2001:db8::/32 are trusted clients. Whitelist them.`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 allowed_methods:
                     description:
@@ -159,7 +159,7 @@ listener_rules:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_prefix_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_prefix_value
                 suffix:
                     description:
@@ -169,7 +169,7 @@ listener_rules:
                           *  value cannot contain patterns like `{variable_name}`. They are reserved for future extensions. Currently, such values are invalid."
                         - "Example: `example_suffix_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_suffix_value
                 are_invalid_characters_allowed:
                     description:
@@ -220,7 +220,7 @@ listener_rules:
                                 - "`{protocol}` is the only valid token for this property. It can appear only once in the value string."
                                 - "Example: `HTTPS`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: HTTPS
                         host:
                             description:
@@ -236,7 +236,7 @@ listener_rules:
                                 - "*  **{port}{host}** appears as `8081example.com` in the redirect URI if `example.com` is the hostname and
                                      the port is `8081` in the incoming HTTP request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: host_example
                         port:
                             description:
@@ -269,7 +269,7 @@ listener_rules:
                                 - "*  __/{query}__ appears as `/lang=en` in the redirect URI if the query is `lang=en` in the incoming HTTP
                                      request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: path_example
                         query:
                             description:
@@ -298,13 +298,13 @@ listener_rules:
                                 - "*  **port={port}&hostname={host}** appears as `port=8080&hostname=example.com` in the redirect URI if the
                                      port is `8080` and the hostname is `example.com` in the incoming HTTP request URI."
                             returned: on success
-                            type: string
+                            type: str
                             sample: query_example
         rule_set_name:
             description:
                 - The name of the rule set that the rule belongs to.
             returned: on success
-            type: string
+            type: str
             sample: example_rule_set
     sample: [{
         "rule": {

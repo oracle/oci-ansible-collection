@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple JobLog resources in Ora
 description:
     - Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
     - Returns console log entries for the specified job in JSON format.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     job_id:
@@ -36,6 +36,7 @@ options:
         description:
             - A filter that returns only logs of a specified type.
         type: list
+        elements: str
     level_greater_than_or_equal_to:
         description:
             - A filter that returns only log entries that match a given severity level or greater.
@@ -87,13 +88,13 @@ job_logs:
             description:
                 - Specifies the log type for the log entry.
             returned: on success
-            type: string
+            type: str
             sample: TERRAFORM_CONSOLE
         level:
             description:
                 - Specifies the severity level of the log entry.
             returned: on success
-            type: string
+            type: str
             sample: TRACE
         timestamp:
             description:
@@ -101,13 +102,13 @@ job_logs:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         message:
             description:
                 - The log entry value.
             returned: on success
-            type: string
+            type: str
             sample: message_example
     sample: [{
         "type": "TERRAFORM_CONSOLE",
@@ -172,7 +173,7 @@ def main():
     module_args.update(
         dict(
             job_id=dict(type="str", required=True),
-            type=dict(type="list"),
+            type=dict(type="list", elements="str"),
             level_greater_than_or_equal_to=dict(
                 type="str", choices=["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"]
             ),

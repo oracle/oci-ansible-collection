@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       read operations exceeds 10 requests per second for a given tenancy.
     - If I(vault_id) is specified, the details of a single Vault will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     vault_id:
@@ -84,7 +84,7 @@ vaults:
             description:
                 - The OCID of the compartment that contains this vault.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         crypto_endpoint:
             description:
@@ -93,7 +93,7 @@ vaults:
                   L(Decrypt,https://docs.cloud.oracle.com/api/#/en/key/latest/DecryptedData/Decrypt),
                   and L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey) operations.
             returned: on success
-            type: string
+            type: str
             sample: crypto_endpoint_example
         defined_tags:
             description:
@@ -108,7 +108,7 @@ vaults:
                 - A user-friendly name for the vault. It does not have to be unique, and it is changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -122,48 +122,48 @@ vaults:
             description:
                 - The OCID of the vault.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The vault's current lifecycle state.
                 - "Example: `DELETED`"
             returned: on success
-            type: string
+            type: str
             sample: DELETED
         management_endpoint:
             description:
                 - "The service endpoint to perform management operations against. Management operations include \\"Create,\\" \\"Update,\\" \\"List,\\"
                   \\"Get,\\" and \\"Delete\\" operations."
             returned: on success
-            type: string
+            type: str
             sample: management_endpoint_example
         time_created:
             description:
                 - The date and time this vault was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                 - "Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         time_of_deletion:
             description:
                 - "An optional property to indicate when to delete the vault, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         vault_type:
             description:
                 - The type of vault. Each type of vault stores the key with different
                   degrees of isolation and has different options and pricing.
             returned: on success
-            type: string
+            type: str
             sample: VIRTUAL_PRIVATE
         wrappingkey_id:
             description:
                 - The OCID of the vault's wrapping key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.wrappingkey.oc1..xxxxxxEXAMPLExxxxxx"
         replica_details:
             description:
@@ -175,7 +175,7 @@ vaults:
                     description:
                         - ReplicationId associated with a vault operation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
         is_primary:
             description:

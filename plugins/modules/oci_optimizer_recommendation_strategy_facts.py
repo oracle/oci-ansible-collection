@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple RecommendationStrategy 
 description:
     - Fetches details about one or multiple RecommendationStrategy resources in Oracle Cloud Infrastructure
     - Lists the existing strategies.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -84,7 +84,7 @@ recommendation_strategies:
             description:
                 - The display name of the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         strategies:
             description:
@@ -96,7 +96,7 @@ recommendation_strategies:
                     description:
                         - The name of the strategy.
                     returned: on success
-                    type: string
+                    type: str
                     sample: strategy_name_example
                 is_default:
                     description:
@@ -114,19 +114,19 @@ recommendation_strategies:
                             description:
                                 - The name of the strategy parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         type:
                             description:
                                 - The type of strategy parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: STRING
                         description:
                             description:
                                 - Text describing the strategy parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                         is_required:
                             description:

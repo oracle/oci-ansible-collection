@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a AwrDbWaitEventBucket resource in Orac
 description:
     - Fetches details about a AwrDbWaitEventBucket resource in Oracle Cloud Infrastructure
     - Summarizes AWR wait event data into value buckets and frequency, for the specified database in the AWR.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -36,7 +36,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -92,7 +92,7 @@ options:
             - "PERCENTAGE"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Ascending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -120,7 +120,7 @@ awr_db_wait_event_bucket:
             description:
                 - The name of the wait event frequency category. Normally, it is the upper range of the waits within the AWR wait event bucket.
             returned: on success
-            type: string
+            type: str
             sample: category_example
         percentage:
             description:

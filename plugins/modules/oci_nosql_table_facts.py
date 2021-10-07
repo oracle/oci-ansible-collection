@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Table resources in Oracle Cloud Infrastructure
     - Get a list of tables in a compartment.
     - If I(table_name_or_id) is specified, the details of a single Table will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     table_name_or_id:
@@ -100,34 +100,34 @@ tables:
             description:
                 - Unique identifier that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Human-friendly table name, immutable.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the the table was created. An RFC3339 formatted
                   datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the the table's metadata was last updated. An
                   RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         table_limits:
             description:
                 - ""
@@ -156,7 +156,7 @@ tables:
             description:
                 - The state of a table.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         is_auto_reclaimable:
             description:
@@ -170,13 +170,13 @@ tables:
                   this table will be automatically removed.
                   An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         schema:
             description:
@@ -194,13 +194,13 @@ tables:
                             description:
                                 - The column name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         type:
                             description:
                                 - The column type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: type_example
                         is_nullable:
                             description:
@@ -212,7 +212,7 @@ tables:
                             description:
                                 - The column default value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: default_value_example
                 primary_key:
                     description:
@@ -236,7 +236,7 @@ tables:
             description:
                 - A DDL statement representing the schema.
             returned: on success
-            type: string
+            type: str
             sample: ddl_statement_example
         freeform_tags:
             description:

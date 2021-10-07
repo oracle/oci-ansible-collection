@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple SdkLanguageType resourc
 description:
     - Fetches details about one or multiple SdkLanguageType resources in Oracle Cloud Infrastructure
     - Lists programming languages in which SDK can be generated.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -75,25 +75,25 @@ sdk_language_types:
             description:
                 - Name of the programming language.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         display_name:
             description:
                 - Display name of the target programming language.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         version:
             description:
                 - Version string of the programming language defined in name.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         description:
             description:
                 - Additional details.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         parameters:
             description:
@@ -105,19 +105,19 @@ sdk_language_types:
                     description:
                         - Name of the parameter.
                     returned: on success
-                    type: string
+                    type: str
                     sample: param_name_example
                 display_name:
                     description:
                         - Display name of the parameter.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description for the parameter.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 is_required:
                     description:
@@ -139,7 +139,7 @@ sdk_language_types:
                           - Input type is URI when input type is an URI.
                           - Input type is STRING in all other cases."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENUM
                 allowed_values:
                     description:
@@ -152,13 +152,13 @@ sdk_language_types:
                             description:
                                 - Name of the allowed value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         description:
                             description:
                                 - Description for the allowed value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
     sample: [{
         "name": "name_example",

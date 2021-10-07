@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
     - Returns a list of Management Agent.
     - If I(management_agent_id) is specified, the details of a single ManagementAgent will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     management_agent_id:
@@ -44,10 +44,12 @@ options:
             - Filter to return only Management Agents having the particular Plugin installed. A special pluginName of 'None' can be provided and this will
               return only Management Agents having no plugin installed.
         type: list
+        elements: str
     version:
         description:
             - Filter to return only Management Agents having the particular agent version.
         type: list
+        elements: str
     display_name:
         description:
             - Filter to return only Management Agents having the particular display name.
@@ -82,6 +84,7 @@ options:
         description:
             - Filter to return only results having the particular platform type.
         type: list
+        elements: str
         choices:
             - "LINUX"
             - "WINDOWS"
@@ -134,61 +137,61 @@ management_agents:
             description:
                 - agent identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         install_key_id:
             description:
                 - agent install key identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         platform_type:
             description:
                 - Platform Type
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         platform_name:
             description:
                 - Platform Name
             returned: on success
-            type: string
+            type: str
             sample: platform_name_example
         platform_version:
             description:
                 - Platform Version
             returned: on success
-            type: string
+            type: str
             sample: platform_version_example
         version:
             description:
                 - Management Agent Version
             returned: on success
-            type: string
+            type: str
             sample: version_example
         host:
             description:
                 - Management Agent host machine name
             returned: on success
-            type: string
+            type: str
             sample: host_example
         host_id:
             description:
                 - Host resource ocid
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         install_path:
             description:
                 - Path where Management Agent is installed
             returned: on success
-            type: string
+            type: str
             sample: install_path_example
         plugin_list:
             description:
@@ -200,25 +203,25 @@ management_agents:
                     description:
                         - Plugin Id
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx"
                 plugin_name:
                     description:
                         - Management Agent Plugin Name
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_name_example
                 plugin_display_name:
                     description:
                         - Management Agent Plugin Identifier, can be renamed
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_display_name_example
                 plugin_version:
                     description:
                         - Plugin Version
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_version_example
                 is_enabled:
                     description:
@@ -230,7 +233,7 @@ management_agents:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
@@ -242,39 +245,39 @@ management_agents:
             description:
                 - The time the Management Agent was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Management Agent was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_heartbeat:
             description:
                 - The time the Management Agent has last recorded its health status in telemetry. This value will be null if the agent has not recorded its
                   health status in last 7 days. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         availability_status:
             description:
                 - The current availability status of managementAgent
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_state:
             description:
                 - The current state of managementAgent
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         is_customer_deployed:
             description:
@@ -402,8 +405,8 @@ def main():
         dict(
             management_agent_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            plugin_name=dict(type="list"),
-            version=dict(type="list"),
+            plugin_name=dict(type="list", elements="str"),
+            version=dict(type="list", elements="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -422,7 +425,9 @@ def main():
                 type="str", choices=["ACTIVE", "SILENT", "NOT_AVAILABLE"]
             ),
             host_id=dict(type="str"),
-            platform_type=dict(type="list", choices=["LINUX", "WINDOWS"]),
+            platform_type=dict(
+                type="list", elements="str", choices=["LINUX", "WINDOWS"]
+            ),
             is_customer_deployed=dict(type="bool"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(

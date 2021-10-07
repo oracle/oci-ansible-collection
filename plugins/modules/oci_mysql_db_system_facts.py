@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Get a list of DB Systems in the specified compartment.
       The default sort order is by timeUpdated, descending.
     - If I(db_system_id) is specified, the details of a single DbSystem will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_system_id:
@@ -119,31 +119,31 @@ db_systems:
             description:
                 - The OCID of the DB System.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the DB System. It does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - User-provided data about the DB System.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment the DB System belongs in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet the DB System is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_highly_available:
             description:
@@ -162,13 +162,13 @@ db_systems:
                     description:
                         - The availability domain in which the DB System is placed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 fault_domain:
                     description:
                         - The fault domain in which the DB System is placed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: fault_domain_example
         is_analytics_cluster_attached:
             description:
@@ -188,7 +188,7 @@ db_systems:
                         - "The shape determines resources to allocate to the Analytics
                           Cluster nodes - CPU cores, memory."
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_name_example
                 cluster_size:
                     description:
@@ -201,20 +201,20 @@ db_systems:
                     description:
                         - The current state of the MySQL Analytics Cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_state_example
                 time_created:
                     description:
                         - The date and time the Analytics Cluster was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The time the Analytics Cluster was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         is_heat_wave_cluster_attached:
             description:
                 - If the DB System has a HeatWave Cluster attached.
@@ -232,7 +232,7 @@ db_systems:
                         - "The shape determines resources to allocate to the HeatWave
                           nodes - CPU cores, memory."
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_name_example
                 cluster_size:
                     description:
@@ -245,22 +245,22 @@ db_systems:
                     description:
                         - The current state of the MySQL HeatWave cluster.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_state_example
                 time_created:
                     description:
                         - The date and time the HeatWave cluster was created,
                           as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The time the HeatWave cluster was last updated,
                           as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         availability_domain:
             description:
                 - The availability domain on which to deploy the Read/Write endpoint. This defines the preferred primary instance.
@@ -269,7 +269,7 @@ db_systems:
                   This redirection does not affect the IP address of the DB System in any way.
                 - For a standalone DB System, this defines the availability domain in which the DB System is placed.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         fault_domain:
             description:
@@ -279,7 +279,7 @@ db_systems:
                   This redirection does not affect the IP address of the DB System in any way.
                 - For a standalone DB System, this defines the fault domain in which the DB System is placed.
             returned: on success
-            type: string
+            type: str
             sample: fault_domain_example
         shape_name:
             description:
@@ -289,13 +289,13 @@ db_systems:
                   (or bare metal) shapes. To get a list of shapes, use (the
                   L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20181021/ShapeSummary/ListShapes) operation."
             returned: on success
-            type: string
+            type: str
             sample: shape_name_example
         mysql_version:
             description:
                 - Name of the MySQL Version in use for the DB System.
             returned: on success
-            type: string
+            type: str
             sample: mysql_version_example
         backup_policy:
             description:
@@ -322,7 +322,7 @@ db_systems:
                           - ap-tokyo-1: 13:00 - 21:00
                           - us-phoenix-1: 06:00 - 14:00"
                     returned: on success
-                    type: string
+                    type: str
                     sample: window_start_time_example
                 retention_in_days:
                     description:
@@ -356,19 +356,19 @@ db_systems:
                     description:
                         - The specific source identifier.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NONE
                 backup_id:
                     description:
                         - The OCID of the backup to be used as the source for the new DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
         data_storage_size_in_gbs:
             description:
@@ -383,7 +383,7 @@ db_systems:
                   (for example, \\"dbsystem-1\\" in FQDN \\"dbsystem-1.subnet123.vcn1.oraclevcn.com\\").
                   Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123."
             returned: on success
-            type: string
+            type: str
             sample: hostname_label_example
         ip_address:
             description:
@@ -392,7 +392,7 @@ db_systems:
                   available IP address within the subnet's CIDR. This will be a
                   \\"dotted-quad\\" style IPv4 address."
             returned: on success
-            type: string
+            type: str
             sample: ip_address_example
         port:
             description:
@@ -416,13 +416,13 @@ db_systems:
                     description:
                         - The network address of the DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 ip_address:
                     description:
                         - The IP address the DB System is configured to listen on.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
                 port:
                     description:
@@ -447,13 +447,13 @@ db_systems:
                         - The state of the endpoints, as far as it can seen from the DB System.
                           There may be some inconsistency with the actual state of the MySQL service.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ACTIVE
                 status_details:
                     description:
                         - Additional information about the current endpoint status.
                     returned: on success
-                    type: string
+                    type: str
                     sample: status_details_example
         channels:
             description:
@@ -465,13 +465,13 @@ db_systems:
                     description:
                         - The OCID of the Channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The OCID of the compartment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_enabled:
                     description:
@@ -489,13 +489,13 @@ db_systems:
                             description:
                                 - The specific source identifier.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MYSQL
                         hostname:
                             description:
                                 - The network address of the MySQL instance.
                             returned: on success
-                            type: string
+                            type: str
                             sample: hostname_example
                         port:
                             description:
@@ -509,13 +509,13 @@ db_systems:
                                   The username has a maximum length of 96 characters. For more information,
                                   please see the L(MySQL documentation,https://dev.mysql.com/doc/refman/8.0/en/change-master-to.html)
                             returned: on success
-                            type: string
+                            type: str
                             sample: username_example
                         ssl_mode:
                             description:
                                 - The SSL mode of the Channel.
                             returned: on success
-                            type: string
+                            type: str
                             sample: VERIFY_IDENTITY
                         ssl_ca_certificate:
                             description:
@@ -527,13 +527,13 @@ db_systems:
                                     description:
                                         - The type of CA certificate.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: PEM
                                 contents:
                                     description:
                                         - The string containing the CA certificate in PEM format.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: contents_example
                 target:
                     description:
@@ -545,13 +545,13 @@ db_systems:
                             description:
                                 - The specific target identifier.
                             returned: on success
-                            type: string
+                            type: str
                             sample: DBSYSTEM
                         db_system_id:
                             description:
                                 - The OCID of the source DB System.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
                         channel_name:
                             description:
@@ -559,44 +559,44 @@ db_systems:
                                   must follow the rules defined for L(MySQL identifiers,https://dev.mysql.com/doc/refman/8.0/en/identifiers.html).
                                   The names of non-Deleted Channels must be unique for each DB System.
                             returned: on success
-                            type: string
+                            type: str
                             sample: channel_name_example
                         applier_username:
                             description:
                                 - The username for the replication applier of the target MySQL DB System.
                             returned: on success
-                            type: string
+                            type: str
                             sample: applier_username_example
                 lifecycle_state:
                     description:
                         - The state of the Channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_state_example
                 lifecycle_details:
                     description:
                         - A message describing the state of the Channel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
                 display_name:
                     description:
                         - The user-friendly name for the Channel. It does not have to be unique.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 time_created:
                     description:
                         - The date and time the Channel was created, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The time the Channel was last updated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 freeform_tags:
                     description:
                         - "Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -615,13 +615,13 @@ db_systems:
             description:
                 - The current state of the DB System.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         maintenance:
             description:
@@ -637,20 +637,20 @@ db_systems:
                         - "\\"{time-of-day}\\" is the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be truncated
                           to zero."
                     returned: on success
-                    type: string
+                    type: str
                     sample: window_start_time_example
         time_created:
             description:
                 - The date and time the DB System was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the DB System was last updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       resides in the same compartment as the attached instance. The list can be
       filtered by instance, VNIC, or availability domain.
     - If I(vnic_attachment_id) is specified, the details of a single VnicAttachment will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     vnic_attachment_id:
@@ -80,39 +80,39 @@ vnic_attachments:
                 - The availability domain of the instance.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment the VNIC attachment is in, which is the same
                   compartment the instance is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - The OCID of the VNIC attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the VNIC attachment.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
         nic_index:
             description:
@@ -128,7 +128,7 @@ vnic_attachments:
             description:
                 - The OCID of the subnet to create the VNIC in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         vlan_id:
             description:
@@ -137,15 +137,15 @@ vnic_attachments:
                   See L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan).
                 - An error is returned if the instance already has a VNIC attached to it from this VLAN.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VNIC attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vlan_tag:
             description:
                 - The Oracle-assigned VLAN tag of the attached VNIC. Available after the
@@ -161,7 +161,7 @@ vnic_attachments:
             description:
                 - The OCID of the VNIC. Available after the attachment process is complete.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a bucket in the given namespace with a bucket name and optional user-defined metadata. Avoid entering
       confidential information in bucket names.
     - "This resource has the following action operations in the M(oci_bucket_actions) module: make_bucket_writable, reencrypt."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -169,20 +169,20 @@ bucket:
             description:
                 - The Object Storage namespace in which the bucket resides.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
         name:
             description:
                 - "The name of the bucket. Avoid entering confidential information.
                   Example: my-new-bucket1"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The compartment ID in which the bucket is authorized.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         metadata:
             description:
@@ -194,19 +194,19 @@ bucket:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user who created the bucket.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         time_created:
             description:
                 - The date and time the bucket was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         etag:
             description:
                 - The entity tag (ETag) for the bucket.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         public_access_type:
             description:
@@ -216,7 +216,7 @@ bucket:
                   `GetObject`, `HeadObject`, and `ListObjects` operations. When `ObjectReadWithoutList` is enabled on the
                   bucket, public access is allowed for the `GetObject` and `HeadObject` operations.
             returned: on success
-            type: string
+            type: str
             sample: NoPublicAccess
         storage_tier:
             description:
@@ -225,7 +225,7 @@ bucket:
                   is set explicitly for a bucket, objects uploaded or copied to the bucket will be stored in archive storage.
                   The `storageTier` property is immutable after bucket is created.
             returned: on success
-            type: string
+            type: str
             sample: Standard
         object_events_enabled:
             description:
@@ -256,13 +256,13 @@ bucket:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a master encryption key used to call the Key Management
                   service to generate a data encryption key or to encrypt or decrypt a data encryption key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         object_lifecycle_policy_etag:
             description:
                 - The entity tag (ETag) for the live object lifecycle policy on the bucket.
             returned: on success
-            type: string
+            type: str
             sample: object_lifecycle_policy_etag_example
         approximate_count:
             description:
@@ -296,7 +296,7 @@ bucket:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the bucket.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         versioning:
             description:
@@ -304,7 +304,7 @@ bucket:
                   For versioning `Enabled`, objects are protected from overwrites and deletes, by maintaining their version history. When versioning is
                   `Suspended`, the previous versions will still remain but new versions will no longer be created when overwitten or deleted.
             returned: on success
-            type: string
+            type: str
             sample: Enabled
         auto_tiering:
             description:
@@ -312,7 +312,7 @@ bucket:
                   For auto tiering `InfrequentAccess`, objects are transitioned automatically between the 'Standard'
                   and 'InfrequentAccess' tiers based on the access pattern of the objects.
             returned: on success
-            type: string
+            type: str
             sample: Disabled
     sample: {
         "namespace": "namespace_example",

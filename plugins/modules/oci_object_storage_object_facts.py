@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       talk to an administrator. If you are an administrator who needs to write policies to give users access, see
       L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
     - If I(object_name) is specified, the details of a single Object will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     dest:
@@ -166,7 +166,7 @@ objects:
                 - "The name of the object. Avoid entering confidential information.
                   Example: test/object1.log"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         size:
             description:
@@ -178,38 +178,38 @@ objects:
             description:
                 - Base64-encoded MD5 hash of the object data.
             returned: on success
-            type: string
+            type: str
             sample: md5_example
         time_created:
             description:
                 - The date and time the object was created, as described in L(RFC 2616,https://tools.ietf.org/html/rfc2616#section-14.29).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         etag:
             description:
                 - The current entity tag (ETag) for the object.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         storage_tier:
             description:
                 - The storage tier that the object is stored in.
             returned: on success
-            type: string
+            type: str
             sample: Standard
         archival_state:
             description:
                 - Archival state of an object. This field is set only for objects in Archive tier.
             returned: on success
-            type: string
+            type: str
             sample: Archived
         time_modified:
             description:
                 - The date and time the object was modified, as described in L(RFC 2616,https://tools.ietf.org/rfc/rfc2616), section 14.29.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "name": "name_example",
         "size": 56,
@@ -319,8 +319,8 @@ def main():
             version_id=dict(type="str"),
             range=dict(type="str"),
             opc_sse_customer_algorithm=dict(type="str"),
-            opc_sse_customer_key=dict(type="str"),
-            opc_sse_customer_key_sha256=dict(type="str"),
+            opc_sse_customer_key=dict(type="str", no_log=True),
+            opc_sse_customer_key_sha256=dict(type="str", no_log=True),
             http_response_content_disposition=dict(type="str"),
             http_response_cache_control=dict(type="str"),
             http_response_content_type=dict(type="str"),

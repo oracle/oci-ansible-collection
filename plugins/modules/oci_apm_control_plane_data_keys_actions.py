@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       types. These will be added to the existing set of Data Keys for the specified APM domain.
     - For I(action=remove), removes the set of specified Data Keys from the specified APM domain. Agents would no longer
       be able to use these data keys to upload to the APM domain once this operation is completed.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     generate_data_keys_list_details:
@@ -35,6 +35,7 @@ options:
             - List of new Data Keys to be generated.
             - Required for I(action=generate).
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -60,6 +61,7 @@ options:
             - List of Data Keys to be removed.
             - Required for I(action=remove).
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -106,19 +108,19 @@ data_keys:
             description:
                 - Value of the Data Key.
             returned: on success
-            type: string
+            type: str
             sample: value_example
         name:
             description:
                 - Name of the Data Key. The name uniquely identifies a Data Key within an APM domain.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         type:
             description:
                 - Type of the Data Key.
             returned: on success
-            type: string
+            type: str
             sample: PRIVATE
     sample: {
         "value": "value_example",
@@ -234,6 +236,7 @@ def main():
             generate_data_keys_list_details=dict(
                 type="list",
                 elements="dict",
+                no_log=False,
                 options=dict(
                     name=dict(type="str", required=True),
                     type=dict(type="str", required=True, choices=["PRIVATE", "PUBLIC"]),
@@ -243,6 +246,7 @@ def main():
             remove_data_keys_list_details=dict(
                 type="list",
                 elements="dict",
+                no_log=False,
                 options=dict(name=dict(type="str", required=True)),
             ),
             action=dict(type="str", required=True, choices=["generate", "remove"]),

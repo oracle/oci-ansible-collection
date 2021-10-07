@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a BackendSet resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BackendSet resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a backend set to a network load balancer.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -65,6 +65,7 @@ options:
             - An array of backends to be associated with the backend set.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -228,14 +229,14 @@ backend_set:
                   contain spaces. Avoid entering confidential information.
                 - "Example: `example_backend_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_backend_set
         policy:
             description:
                 - The network load balancer policy for the backend set.
                 - "Example: `FIVE_TUPLE`"
             returned: on success
-            type: string
+            type: str
             sample: FIVE_TUPLE
         is_preserve_source:
             description:
@@ -257,21 +258,21 @@ backend_set:
                         - A read-only field showing the IP address/IP OCID and port that uniquely identify this backend server in the backend set.
                         - "Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:443` or `10.0.0.3:0`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3:8080
                 ip_address:
                     description:
                         - "The IP address of the backend server.
                           Example: `10.0.0.3`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3
                 target_id:
                     description:
                         - "The IP OCID/Instance OCID associated with the backend server.
                           Example: `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.privateip..oc1.unique_ID"
                 port:
                     description:
@@ -327,7 +328,7 @@ backend_set:
                         - The protocol the health check must use; either HTTP or HTTPS, or UDP or TCP.
                         - "Example: `HTTP`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 port:
                     description:
@@ -365,14 +366,14 @@ backend_set:
                         - The path against which to run the health check.
                         - "Example: `/healthcheck`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /healthcheck
                 response_body_regex:
                     description:
                         - A regular expression for parsing the response body from the backend server.
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: "^((?!false).|\\\\s)*$"
                 return_code:
                     description:
@@ -386,13 +387,13 @@ backend_set:
                     description:
                         - Base64 encoded pattern to be sent as UDP or TCP health check probe.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "example_request_data"
                 response_data:
                     description:
                         - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "example_response_data"
     sample: {
         "name": "example_backend_set",

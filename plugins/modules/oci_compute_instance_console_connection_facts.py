@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
     - For more information about instance console connections, see L(Troubleshooting Instances Using Instance Console
       Connections,https://docs.cloud.oracle.com/iaas/Content/Compute/References/serialconsole.htm).
     - If I(instance_console_connection_id) is specified, the details of a single InstanceConsoleConnection will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_console_connection_id:
@@ -70,13 +70,13 @@ instance_console_connections:
             description:
                 - The OCID of the compartment to contain the console connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         connection_string:
             description:
                 - The SSH connection string for the console connection.
             returned: on success
-            type: string
+            type: str
             sample: connection_string_example
         defined_tags:
             description:
@@ -90,7 +90,7 @@ instance_console_connections:
             description:
                 - The SSH public key's fingerprint for client authentication to the console connection.
             returned: on success
-            type: string
+            type: str
             sample: fingerprint_example
         freeform_tags:
             description:
@@ -105,32 +105,32 @@ instance_console_connections:
             description:
                 - The OCID of the console connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the console connection connects to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the console connection.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         service_host_key_fingerprint:
             description:
                 - The SSH public key's fingerprint for the console connection service host.
             returned: on success
-            type: string
+            type: str
             sample: service_host_key_fingerprint_example
         vnc_connection_string:
             description:
                 - The SSH connection string for the SSH tunnel used to
                   connect to the console connection over VNC.
             returned: on success
-            type: string
+            type: str
             sample: vnc_connection_string_example
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

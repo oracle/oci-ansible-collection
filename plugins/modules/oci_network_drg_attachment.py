@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -33,7 +33,7 @@ description:
       For more information about compartments and access control, see
       L(Overview of the IAM Service,https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm).
     - "This resource has the following action operations in the M(oci_drg_attachment_actions) module: remove_export_drg_route_distribution."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -201,47 +201,47 @@ drg_attachment:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         drg_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The DRG attachment's current state.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
         time_created:
             description:
                 - The date and time the DRG attachment was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         drg_route_table_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this
                   attachment.
                 - The DRG route table manages traffic inside the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         network_details:
             description:
@@ -253,19 +253,19 @@ drg_attachment:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: VCN
                 id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 ipsec_connection_id:
                     description:
                         - The IPSec connection that contains the attached IPSec tunnel.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 route_table_id:
                     description:
@@ -276,7 +276,7 @@ drg_attachment:
                             * L(Transit Routing: Private Access to Oracle
                             Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -305,7 +305,7 @@ drg_attachment:
                 - This field is deprecated. Instead, use the `networkDetails` field to view the
                   L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
@@ -313,7 +313,7 @@ drg_attachment:
                   This field is deprecated. Instead, use the `networkDetails` field to view the
                   L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         export_drg_route_distribution_id:
             description:
@@ -322,7 +322,7 @@ drg_attachment:
                   are advertised to the attachment.
                   If this value is null, no routes are advertised through this attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy:
             description:

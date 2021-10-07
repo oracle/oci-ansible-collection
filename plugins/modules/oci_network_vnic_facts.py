@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       You can get the VNIC OCID from the
       L(ListVnicAttachments,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments)
       operation.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     vnic_id:
@@ -58,13 +58,13 @@ vnic:
                 - The VNIC's availability domain.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment containing the VNIC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -79,7 +79,7 @@ vnic:
                 - A user-friendly name. Does not have to be unique.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -102,13 +102,13 @@ vnic:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `bminstance-1`"
             returned: on success
-            type: string
+            type: str
             sample: bminstance-1
         id:
             description:
                 - The OCID of the VNIC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_primary:
             description:
@@ -121,7 +121,7 @@ vnic:
             description:
                 - The current state of the VNIC.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         mac_address:
             description:
@@ -131,7 +131,7 @@ vnic:
                   MAC address is a static, Oracle-provided value.
                 - "Example: `00:00:00:00:00:01`"
             returned: on success
-            type: string
+            type: str
             sample: 00:00:00:00:00:01
         nsg_ids:
             description:
@@ -151,7 +151,7 @@ vnic:
                   belonging to a subnet), the `vlanId` is the OCID of the VLAN the VNIC is in. See
                   L(Vlan,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vlan). If the VNIC is instead in a subnet, `subnetId` has a value.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         private_ip:
             description:
@@ -159,13 +159,13 @@ vnic:
                   The address is within the CIDR of the VNIC's subnet.
                 - "Example: `10.0.3.3`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.3.3
         public_ip:
             description:
                 - The public IP address of the VNIC, if one is assigned.
             returned: on success
-            type: string
+            type: str
             sample: public_ip_example
         skip_source_dest_check:
             description:
@@ -184,15 +184,15 @@ vnic:
             description:
                 - The OCID of the subnet the VNIC is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the VNIC was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

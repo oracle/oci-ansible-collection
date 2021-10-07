@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_monitoring_metric_actions_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -249,7 +259,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Qualifiers that you want to use when searching for metric definitions. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
-                                            <div>Example: { &quot;resourceId&quot;: &quot;&lt;var&gt;&amp;lt;instance_OCID&amp;gt;&lt;/var&gt;&quot; }</div>
+                                            <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -327,7 +337,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Resource group that you want to use as a filter. The specified resource group must exist in the definition of the posted metric. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($). Avoid entering confidential information.</div>
+                                            <div>Resource group that you want to match. A null value returns only metric data that has no resource groups. The specified resource group must exist in the definition of the posted metric. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
                                                         </td>
             </tr>
@@ -389,6 +399,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
@@ -556,7 +569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Resource group provided with the posted metric. A resource group is a custom string that can be used as a filter. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($). Avoid entering confidential information.</div>
+                                            <div>Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Job resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Job resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a job.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     stack_id:
@@ -212,32 +212,32 @@ job:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         stack_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack that is associated with the job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which the job's associated stack
                   resides.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The job's display name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         operation:
             description:
                 - The type of job executing.
             returned: on success
-            type: string
+            type: str
             sample: PLAN
         job_operation_details:
             description:
@@ -249,7 +249,7 @@ job:
                     description:
                         - Terraform-specific operation to execute.
                     returned: on success
-                    type: string
+                    type: str
                     sample: APPLY
                 terraform_advanced_options:
                     description:
@@ -280,14 +280,14 @@ job:
                                 - "Enables detailed logs at the specified verbosity for running the job (operation).
                                   Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
                             returned: on success
-                            type: string
+                            type: str
                             sample: ERROR
                 execution_plan_strategy:
                     description:
                         - Specifies the source of the execution plan to apply.
                           Use `AUTO_APPROVED` to run the job without an execution plan.
                     returned: on success
-                    type: string
+                    type: str
                     sample: FROM_PLAN_JOB_ID
                 execution_plan_job_id:
                     description:
@@ -295,7 +295,7 @@ job:
                           plan used for this job,
                           or `null` if no execution plan was used.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         apply_job_plan_resolution:
             description:
@@ -308,7 +308,7 @@ job:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) that specifies the most recently executed plan
                           job.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
                 is_use_latest_job_id:
                     description:
@@ -333,7 +333,7 @@ job:
                   The plan job L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) that was used (if this was an apply job and
                   was not auto-approved).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -341,23 +341,23 @@ job:
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         time_finished:
             description:
                 - "The date and time when the job stopped running, irrespective of whether the job ran successfully.
                   Format is defined by RFC3339.
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - Current state of the specified job.
                   For more information about job lifecycle states in Resource Manager, see
                   L(Key Concepts,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm#concepts__JobStates).
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         failure_details:
             description:
@@ -369,13 +369,13 @@ job:
                     description:
                         - Job failure reason.
                     returned: on success
-                    type: string
+                    type: str
                     sample: INTERNAL_SERVICE_ERROR
                 message:
                     description:
                         - A human-readable error string.
                     returned: on success
-                    type: string
+                    type: str
                     sample: message_example
         cancellation_details:
             description:
@@ -397,7 +397,7 @@ job:
                   If not specified, the root directory is used.
                   This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
             returned: on success
-            type: string
+            type: str
             sample: working_directory_example
         variables:
             description:
@@ -418,51 +418,51 @@ job:
                     description:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ZIP_UPLOAD
                 configuration_source_provider_id:
                     description:
                         - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm))
                           for the Git configuration source.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
                 repository_url:
                     description:
                         - The URL of the Git repository.
                     returned: on success
-                    type: string
+                    type: str
                     sample: repository_url_example
                 branch_name:
                     description:
                         - The name of the branch within the Git repository.
                     returned: on success
-                    type: string
+                    type: str
                     sample: branch_name_example
                 commit_id:
                     description:
                         - The unique identifier (SHA-1 hash) of the individual change to the Git repository.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
                 region:
                     description:
                         - "The name of the bucket's region.
                           Example: `PHX`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: PHX
                 namespace:
                     description:
                         - The Object Storage namespace that contains the bucket.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_example
                 bucket_name:
                     description:
                         - The name of the bucket that contains the Terraform configuration files.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
         freeform_tags:
             description:

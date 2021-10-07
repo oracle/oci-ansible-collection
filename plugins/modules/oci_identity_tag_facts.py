@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Tag resources in Oracle Cloud Infrastructure
     - Lists the tag definitions in the specified tag namespace.
     - If I(tag_name) is specified, the details of a single Tag will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tag_namespace_id:
@@ -73,38 +73,38 @@ tags:
             description:
                 - The OCID of the compartment that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_id:
             description:
                 - The OCID of the namespace that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         tag_namespace_name:
             description:
                 - The name of the tag namespace that contains the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: tag_namespace_name_example
         id:
             description:
                 - The OCID of the tag definition.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the tag during creation. This is the tag key definition.
                   The name must be unique within the tag namespace and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description you assign to the tag.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         freeform_tags:
             description:
@@ -136,15 +136,15 @@ tags:
                   `lifecycleState` is INACTIVE before using it. If you delete a tag, you cannot delete another tag until the deleted tag's `lifecycleState`
                   changes from DELETING to DELETED.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - Date and time the tag was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         is_cost_tracking:
             description:
                 - Indicates whether the tag is enabled for cost tracking.
@@ -161,7 +161,7 @@ tags:
                     description:
                         - "Specifies the type of validation: a static value (no validation) or a list."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENUM
                 values:
                     description:

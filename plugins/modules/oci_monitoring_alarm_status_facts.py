@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -91,35 +91,36 @@ alarm_statuses:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The configured name of the alarm.
                 - "Example: `High CPU Utilization`"
             returned: on success
-            type: string
+            type: str
             sample: High CPU Utilization
         severity:
             description:
                 - The configured severity of the alarm.
                 - "Example: `CRITICAL`"
             returned: on success
-            type: string
+            type: str
             sample: CRITICAL
         timestamp_triggered:
             description:
-                - Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
+                - "Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
+                  Note: A three-minute lag for this value accounts for any late-arriving metrics."
                 - "Example: `2019-02-01T01:02:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-02-01T01:02:29.600Z
+            type: str
+            sample: "2019-02-01T01:02:29.600Z"
         status:
             description:
                 - The status of this alarm.
                 - "Example: `FIRING`"
             returned: on success
-            type: string
+            type: str
             sample: FIRING
         suppression:
             description:
@@ -136,22 +137,22 @@ alarm_statuses:
                           such as a ticket number.
                         - "Example: `Planned outage due to change IT-1234.`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: Planned outage due to change IT-1234.
                 time_suppress_from:
                     description:
                         - The start date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T01:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T01:02:29.600Z"
                 time_suppress_until:
                     description:
                         - The end date and time for the suppression to take place, inclusive. Format defined by RFC3339.
                         - "Example: `2019-02-01T02:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T02:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T02:02:29.600Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "High CPU Utilization",

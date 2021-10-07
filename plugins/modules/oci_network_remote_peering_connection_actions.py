@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -33,7 +33,7 @@ description:
       to connect to RPCs in the acceptor's compartment. Without that permission, this
       operation will fail. For more information, see
       L(VCN Peering,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm)."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     remote_peering_connection_id:
@@ -97,7 +97,7 @@ remote_peering_connection:
             description:
                 - The OCID of the compartment that contains the RPC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -112,13 +112,13 @@ remote_peering_connection:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         drg_id:
             description:
                 - The OCID of the DRG that this RPC belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -133,7 +133,7 @@ remote_peering_connection:
             description:
                 - The OCID of the RPC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
@@ -146,26 +146,26 @@ remote_peering_connection:
             description:
                 - The RPC's current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         peer_id:
             description:
                 - If this RPC is peered, this value is the OCID of the other RPC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         peer_region_name:
             description:
                 - If this RPC is peered, this value is the region that contains the other RPC.
                 - "Example: `us-ashburn-1`"
             returned: on success
-            type: string
+            type: str
             sample: us-ashburn-1
         peer_tenancy_id:
             description:
                 - If this RPC is peered, this value is the OCID of the other RPC's tenancy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peertenancy.oc1..xxxxxxEXAMPLExxxxxx"
         peering_status:
             description:
@@ -173,15 +173,15 @@ remote_peering_connection:
                   peered. `PENDING` means the peering is being established. `REVOKED` means the
                   RPC at the other end of the peering has been deleted.
             returned: on success
-            type: string
+            type: str
             sample: INVALID
         time_created:
             description:
                 - The date and time the RPC was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ClusterMigrateToNativeVcnStatus resou
 description:
     - Fetches details about a ClusterMigrateToNativeVcnStatus resource in Oracle Cloud Infrastructure
     - Get details on a cluster's migration to native VCN.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cluster_id:
@@ -54,13 +54,13 @@ cluster_migrate_to_native_vcn_status:
             description:
                 - The date and time the non-native VCN is due to be decommissioned.
             returned: on success
-            type: string
-            sample: 2017-07-21T16:11:29Z
+            type: str
+            sample: "2017-07-21T16:11:29Z"
         state:
             description:
                 - The current migration status of the cluster.
             returned: on success
-            type: string
+            type: str
             sample: IN_PROGRESS
     sample: {
         "time_decommission_scheduled": "2017-07-21T16:11:29Z",

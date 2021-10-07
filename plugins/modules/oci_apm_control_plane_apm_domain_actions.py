@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on an ApmDomain resource in Oracle Cloud Infr
 description:
     - Perform actions on an ApmDomain resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a APM Domain into a different compartment. When provided, If-Match is checked against ETag values of the resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -68,37 +68,37 @@ apm_domain:
             description:
                 - Where APM Agents upload their observations and metrics.
             returned: on success
-            type: string
+            type: str
             sample: data_upload_endpoint_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - APM Domain display name, can be updated.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of the APM Domain.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment corresponding to the APM Domain.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the APM Domain.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         is_free_tier:
             description:
@@ -110,14 +110,14 @@ apm_domain:
             description:
                 - The time the the APM Domain was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the APM Domain was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

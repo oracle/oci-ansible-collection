@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
     - Get a list of DB System backups.
     - If I(backup_id) is specified, the details of a single Backup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     backup_id:
@@ -107,67 +107,67 @@ backups:
             description:
                 - OCID of the backup itself
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-supplied display name for the backup.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - A user-supplied description for the backup.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the backup record was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time at which the backup was updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the backup.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         backup_type:
             description:
                 - The type of backup.
             returned: on success
-            type: string
+            type: str
             sample: FULL
         creation_type:
             description:
                 - If the backup was created automatically, or by a manual request.
             returned: on success
-            type: string
+            type: str
             sample: MANUAL
         db_system_id:
             description:
                 - The OCID of the DB System the backup is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_snapshot:
             description:
@@ -179,43 +179,43 @@ backups:
                     description:
                         - The OCID of the DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The user-friendly name for the DB System. It does not have to be unique.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - User-provided data about the DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 compartment_id:
                     description:
                         - The OCID of the compartment the DB System belongs in.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 subnet_id:
                     description:
                         - The OCID of the subnet the DB System is associated with.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The Availability Domain where the primary DB System should be located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 fault_domain:
                     description:
                         - The name of the Fault Domain the DB System is located in.
                     returned: on success
-                    type: string
+                    type: str
                     sample: fault_domain_example
                 shape_name:
                     description:
@@ -225,19 +225,19 @@ backups:
                           (or bare metal) shapes. To get a list of shapes, use (the
                           L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20181021/ShapeSummary/ListShapes) operation."
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_name_example
                 mysql_version:
                     description:
                         - Name of the MySQL Version in use for the DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mysql_version_example
                 admin_username:
                     description:
                         - The username for the administrative user.
                     returned: on success
-                    type: string
+                    type: str
                     sample: admin_username_example
                 backup_policy:
                     description:
@@ -264,7 +264,7 @@ backups:
                                   - ap-tokyo-1: 13:00 - 21:00
                                   - us-phoenix-1: 06:00 - 14:00"
                             returned: on success
-                            type: string
+                            type: str
                             sample: window_start_time_example
                         retention_in_days:
                             description:
@@ -292,7 +292,7 @@ backups:
                     description:
                         - The OCID of the Configuration to be used for Instances in this DB System.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
                 data_storage_size_in_gbs:
                     description:
@@ -307,7 +307,7 @@ backups:
                           (for example, \\"dbsystem-1\\" in FQDN \\"dbsystem-1.subnet123.vcn1.oraclevcn.com\\").
                           Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123."
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_label_example
                 ip_address:
                     description:
@@ -316,7 +316,7 @@ backups:
                           available IP address within the subnet's CIDR. This will be a
                           \\"dotted-quad\\" style IPv4 address."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ip_address_example
                 port:
                     description:
@@ -347,13 +347,13 @@ backups:
                             description:
                                 - The network address of the DB System.
                             returned: on success
-                            type: string
+                            type: str
                             sample: hostname_example
                         ip_address:
                             description:
                                 - The IP address the DB System is configured to listen on.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ip_address_example
                         port:
                             description:
@@ -378,13 +378,13 @@ backups:
                                 - The state of the endpoints, as far as it can seen from the DB System.
                                   There may be some inconsistency with the actual state of the MySQL service.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ACTIVE
                         status_details:
                             description:
                                 - Additional information about the current endpoint status.
                             returned: on success
-                            type: string
+                            type: str
                             sample: status_details_example
                 maintenance:
                     description:
@@ -400,7 +400,7 @@ backups:
                                 - "\\"{time-of-day}\\" is the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be
                                   truncated to zero."
                             returned: on success
-                            type: string
+                            type: str
                             sample: window_start_time_example
                 freeform_tags:
                     description:
@@ -438,13 +438,13 @@ backups:
             description:
                 - The MySQL server version of the DB System used for backup.
             returned: on success
-            type: string
+            type: str
             sample: mysql_version_example
         shape_name:
             description:
                 - The shape of the DB System used for backup.
             returned: on success
-            type: string
+            type: str
             sample: shape_name_example
         freeform_tags:
             description:

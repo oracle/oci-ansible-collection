@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Application resources in Oracle Cloud Infrastructure
     - Lists applications for a compartment.
     - If I(application_id) is specified, the details of a single Application will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     application_id:
@@ -103,25 +103,25 @@ applications:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the application.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the application. The display name is unique within the compartment containing the application.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         lifecycle_state:
             description:
                 - The current state of the application.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         config:
             description:
@@ -141,6 +141,13 @@ applications:
             returned: on success
             type: list
             sample: []
+        network_security_group_ids:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the Network Security Groups to add the application
+                  to.
+            returned: on success
+            type: list
+            sample: []
         syslog_url:
             description:
                 - "A syslog URL to which to send all function logs. Supports tcp, udp, and tcp+tls.
@@ -149,7 +156,7 @@ applications:
                   service, and not to the syslog URL."
                 - "Example: `tcp://logserver.myserver:1234`"
             returned: on success
-            type: string
+            type: str
             sample: tcp://logserver.myserver:1234
         trace_config:
             description:
@@ -167,7 +174,7 @@ applications:
                     description:
                         - The OCID of the collector (e.g. an APM Domain) trace events will be sent to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -191,16 +198,41 @@ applications:
                   timestamp format.
                 - "Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
+            type: str
+            sample: "2018-09-12T22:47:12.613Z"
         time_updated:
             description:
                 - "The time the application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2018-09-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
+            type: str
+            sample: "2018-09-12T22:47:12.613Z"
+        image_policy_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_policy_enabled:
+                    description:
+                        - Define if image signature verification policy is enabled for the application.
+                    returned: on success
+                    type: bool
+                    sample: true
+                key_details:
+                    description:
+                        - A list of KMS key details.
+                    returned: on success
+                    type: complex
+                    contains:
+                        kms_key_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the KMS key that will be used to
+                                  verify the image signature.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -208,6 +240,7 @@ applications:
         "lifecycle_state": "CREATING",
         "config": {},
         "subnet_ids": [],
+        "network_security_group_ids": [],
         "syslog_url": "tcp://logserver.myserver:1234",
         "trace_config": {
             "is_enabled": true,
@@ -216,7 +249,13 @@ applications:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z"
+        "time_updated": "2018-09-12T22:47:12.613Z",
+        "image_policy_config": {
+            "is_policy_enabled": true,
+            "key_details": [{
+                "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            }]
+        }
     }]
 """
 

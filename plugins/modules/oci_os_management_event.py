@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_os_management_event
 short_description: Manage an Event resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an Event resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -85,44 +85,44 @@ event:
             description:
                 - OCID identifier of the event
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - OCI identifier of the instance where the event occurred
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCI identifier of the compartement where the instance is
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - OCID identifier of the instance tenancy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         summary:
             description:
                 - human readable description of the event
             returned: on success
-            type: string
+            type: str
             sample: summary_example
         timestamp:
             description:
                 - Time of the occurrence of the event
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         event_fingerprint:
             description:
                 - Unique ID used to group event with the same characteristics together.
                   The list of such groups of event can be retrieved via /recurringEvents/{EventFingerprint}
             returned: on success
-            type: string
+            type: str
             sample: event_fingerprint_example
         count:
             description:
@@ -134,7 +134,7 @@ event:
             description:
                 - Type of the Event.
             returned: on success
-            type: string
+            type: str
             sample: KERNEL_OOPS
         freeform_tags:
             description:
@@ -161,14 +161,14 @@ event:
             description:
                 - reason of the crash
             returned: on success
-            type: string
+            type: str
             sample: reason_example
         time_first_occurred:
             description:
                 - First occurrence time of the event
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         vmcore:
             description:
                 - ""
@@ -179,13 +179,13 @@ event:
                     description:
                         - Kernel module responsible of the crash.
                     returned: on success
-                    type: string
+                    type: str
                     sample: component_example
                 backtrace:
                     description:
                         - Crash backtrace.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backtrace_example
         content:
             description:
@@ -197,13 +197,13 @@ event:
                     description:
                         - Status of the event content
                     returned: on success
-                    type: string
+                    type: str
                     sample: NOT_AVAILABLE
                 instance_path:
                     description:
                         - Path to the event content on the instance
                     returned: on success
-                    type: string
+                    type: str
                     sample: instance_path_example
                 size:
                     description:
@@ -221,43 +221,43 @@ event:
                     description:
                         - system architecture
                     returned: on success
-                    type: string
+                    type: str
                     sample: IA_32
                 ksplice_effective_kernel_version:
                     description:
                         - Active ksplice kernel version (uptrack-uname -r)
                     returned: on success
-                    type: string
+                    type: str
                     sample: ksplice_effective_kernel_version_example
                 os_family:
                     description:
                         - The Operating System type of the managed instance.
                     returned: on success
-                    type: string
+                    type: str
                     sample: LINUX
                 os_name:
                     description:
                         - Operating System Name (OCA value)
                     returned: on success
-                    type: string
+                    type: str
                     sample: os_name_example
                 os_kernel_release:
                     description:
                         - Operating System Kernel Release (uname -v)
                     returned: on success
-                    type: string
+                    type: str
                     sample: os_kernel_release_example
                 os_kernel_version:
                     description:
                         - Operating System Kernel Version (uname -r)
                     returned: on success
-                    type: string
+                    type: str
                     sample: os_kernel_version_example
                 os_system_version:
                     description:
                         - Version of the OS (VERSION from /etc/os-release)
                     returned: on success
-                    type: string
+                    type: str
                     sample: os_system_version_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

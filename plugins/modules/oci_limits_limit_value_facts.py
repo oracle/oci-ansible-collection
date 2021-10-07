@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple LimitValue resources in
 description:
     - Fetches details about one or multiple LimitValue resources in Oracle Cloud Infrastructure
     - Includes a full list of resource limits belonging to a given service.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -88,19 +88,19 @@ limit_values:
             description:
                 - The resource limit name. To be used for writing policies (in case of quotas) or other programmatic calls.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         scope_type:
             description:
                 - The scope type of the limit.
             returned: on success
-            type: string
+            type: str
             sample: GLOBAL
         availability_domain:
             description:
                 - If present, the returned value is only specific to this availability domain.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         value:
             description:

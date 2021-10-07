@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a Bastion resource in Oracle Cloud Infrast
 description:
     - Perform actions on a Bastion resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a bastion into a different compartment.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bastion_id:
@@ -68,43 +68,43 @@ bastion:
             description:
                 - The type of bastion.
             returned: on success
-            type: string
+            type: str
             sample: bastion_type_example
         id:
             description:
                 - The unique identifier (OCID) of the bastion, which can't be changed after creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the bastion, which can't be changed after creation.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The unique identifier (OCID) of the compartment where the bastion is located.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_vcn_id:
             description:
                 - The unique identifier (OCID) of the virtual cloud network (VCN) that the bastion connects to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx"
         target_subnet_id:
             description:
                 - The unique identifier (OCID) of the subnet that the bastion connects to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         phone_book_entry:
             description:
                 - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
             returned: on success
-            type: string
+            type: str
             sample: phone_book_entry_example
         client_cidr_block_allow_list:
             description:
@@ -122,7 +122,7 @@ bastion:
             description:
                 - The private IP address of the created private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_ip_address_example
         max_session_ttl_in_seconds:
             description:
@@ -141,26 +141,26 @@ bastion:
                 - "The time the bastion was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         time_updated:
             description:
                 - "The time the bastion was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current state of the bastion.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BootVolume resources in Oracle Cloud Infrastructure
     - Lists the boot volumes in the specified compartment and availability domain.
     - If I(boot_volume_id) is specified, the details of a single BootVolume will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     boot_volume_id:
@@ -76,13 +76,13 @@ boot_volumes:
                 - The availability domain of the boot volume.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the boot volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -104,7 +104,7 @@ boot_volumes:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -119,13 +119,13 @@ boot_volumes:
             description:
                 - The boot volume's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         image_id:
             description:
                 - The image OCID used to create the boot volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         is_hydrated:
             description:
@@ -150,7 +150,7 @@ boot_volumes:
             description:
                 - The current state of a boot volume.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         size_in_gbs:
             description:
@@ -175,32 +175,32 @@ boot_volumes:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: bootVolume
                 id:
                     description:
                         - The OCID of the boot volume.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the boot volume was created. Format defined
                   by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         volume_group_id:
             description:
                 - The OCID of the source volume group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id:
             description:
                 - The OCID of the Key Management master encryption key assigned to the boot volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
@@ -224,20 +224,20 @@ boot_volumes:
                     description:
                         - The display name of the boot volume replica
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 boot_volume_replica_id:
                     description:
                         - The boot volume replica's Oracle ID (OCID).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx"
                 availability_domain:
                     description:
                         - The availability domain of the boot volume replica.
                         - "Example: `Uocm:PHX-AD-1`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",

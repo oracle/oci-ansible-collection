@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -41,7 +41,7 @@ description:
     - After your network resource is created, you can use it in policy to restrict access to only requests made from an allowed
       IP address specified in your network source. For more information, see L(Managing Network
       Sources,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingnetworksources.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -63,12 +63,14 @@ options:
             - A list of allowed public IP addresses and CIDR ranges.
             - This parameter is updatable.
         type: list
+        elements: str
     virtual_source_list:
         description:
             - "A list of allowed VCN OCID and IP range pairs.
               Example:`\\"vcnId\\": \\"ocid1.vcn.oc1.iad.aaaaaaaaexampleuniqueID\\", \\"ipRanges\\": [ \\"129.213.39.0/24\\" ]`"
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             vcn_id:
                 description:
@@ -78,6 +80,7 @@ options:
                 description:
                     - ""
                 type: list
+                elements: str
     services:
         description:
             - A list of services allowed to make on-behalf-of requests. These requests can have different source IP addresses
@@ -85,6 +88,7 @@ options:
               Currently, only `all` and `none` are supported. The default is `all`.
             - This parameter is updatable.
         type: list
+        elements: str
     description:
         description:
             - The description you assign to the network source during creation. Does not have to be unique, and it's changeable.
@@ -168,26 +172,26 @@ network_sources:
             description:
                 - The OCID of the network source.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy containing the network source. The tenancy is the root compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the network source during creation. The name must be unique across
                   the tenancy and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description you assign to the network source. Does not have to be unique, and it's changeable.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         public_source_list:
             description:
@@ -206,7 +210,7 @@ network_sources:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
                 ip_ranges:
                     description:
@@ -227,14 +231,14 @@ network_sources:
                 - Date and time the group was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The network source object's current state. After creating a network source, make sure its `lifecycleState` changes from CREATING to
                   ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:
@@ -420,13 +424,15 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
-            public_source_list=dict(type="list"),
+            public_source_list=dict(type="list", elements="str"),
             virtual_source_list=dict(
                 type="list",
                 elements="dict",
-                options=dict(vcn_id=dict(type="str"), ip_ranges=dict(type="list")),
+                options=dict(
+                    vcn_id=dict(type="str"), ip_ranges=dict(type="list", elements="str")
+                ),
             ),
-            services=dict(type="list"),
+            services=dict(type="list", elements="str"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

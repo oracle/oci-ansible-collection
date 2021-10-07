@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       private zone. Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under
       `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
     - "This resource has the following action operations in the M(oci_zone_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     migration_source:
@@ -100,6 +100,7 @@ options:
             - This parameter is updatable.
             - Applicable when migration_source is 'NONE'
         type: list
+        elements: dict
         suboptions:
             address:
                 description:
@@ -214,19 +215,19 @@ zone:
             description:
                 - The name of the zone.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         zone_type:
             description:
                 - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL zones.
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         compartment_id:
             description:
                 - The OCID of the compartment containing the zone.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         view_id:
             description:
@@ -234,13 +235,13 @@ zone:
                   be null for zones in the global DNS, which are publicly resolvable and
                   not part of a private view.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         scope:
             description:
                 - The scope of the zone.
             returned: on success
-            type: string
+            type: str
             sample: GLOBAL
         freeform_tags:
             description:
@@ -269,7 +270,7 @@ zone:
                     description:
                         - The server's IP address (IPv4 or IPv6).
                     returned: on success
-                    type: string
+                    type: str
                     sample: address_example
                 port:
                     description:
@@ -282,19 +283,19 @@ zone:
                     description:
                         - The OCID of the TSIG key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
         self_uri:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         id:
             description:
                 - The OCID of the zone.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -302,15 +303,15 @@ zone:
                   with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         version:
             description:
                 - Version is the never-repeating, totally-orderable, version of the
                   zone, from which the serial field of the zone's SOA record is
                   derived.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         serial:
             description:
@@ -322,7 +323,7 @@ zone:
             description:
                 - The current state of the zone resource.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         is_protected:
             description:
@@ -340,7 +341,7 @@ zone:
                     description:
                         - The hostname of the nameserver.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
         zone_transfer_servers:
             description:
@@ -352,7 +353,7 @@ zone:
                     description:
                         - The server's IP address (IPv4 or IPv6).
                     returned: on success
-                    type: string
+                    type: str
                     sample: address_example
                 port:
                     description:

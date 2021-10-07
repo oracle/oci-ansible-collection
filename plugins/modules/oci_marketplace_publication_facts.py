@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Publication resources in Oracle Cloud Infrastructure
     - Lists the publications in the specified compartment.
     - If I(publication_id) is specified, the details of a single Publication will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     publication_id:
@@ -52,10 +52,12 @@ options:
         description:
             - The name of the publication.
         type: list
+        elements: str
     operating_systems:
         description:
             - The operating system of the listing.
         type: list
+        elements: str
     sort_by:
         description:
             - The field to use to sort listed results. You can only specify one field to sort by.
@@ -97,37 +99,37 @@ publications:
             description:
                 - The lifecycle state of the publication.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the publication exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The unique identifier for the publication in Marketplace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the publication, which is also used in the listing.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         short_description:
             description:
                 - A short description of the publication to use in the listing.
             returned: on success
-            type: string
+            type: str
             sample: short_description_example
         long_description:
             description:
                 - A long description of the publication to use in the listing.
             returned: on success
-            type: string
+            type: str
             sample: long_description_example
         support_contacts:
             description:
@@ -139,25 +141,25 @@ publications:
                     description:
                         - The name of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 phone:
                     description:
                         - The phone number of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: phone_example
                 email:
                     description:
                         - The email of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
                 subject:
                     description:
                         - The email subject line to use when contacting support.
                     returned: on success
-                    type: string
+                    type: str
                     sample: subject_example
         icon:
             description:
@@ -169,37 +171,37 @@ publications:
                     description:
                         - The name used to refer to the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 content_url:
                     description:
                         - The content URL of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
                 file_extension:
                     description:
                         - The file extension of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: file_extension_example
         package_type:
             description:
                 - The listing's package type.
             returned: on success
-            type: string
+            type: str
             sample: ORCHESTRATION
         listing_type:
             description:
                 - The publisher category to which the publication belongs. The publisher category informs where the listing appears for use.
             returned: on success
-            type: string
+            type: str
             sample: COMMUNITY
         supported_operating_systems:
             description:
@@ -211,7 +213,7 @@ publications:
                     description:
                         - The name of the operating system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
         time_created:
             description:
@@ -219,8 +221,8 @@ publications:
                   timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         defined_tags:
             description:
                 - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
@@ -338,8 +340,8 @@ def main():
             publication_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             listing_type=dict(type="str", choices=["COMMUNITY", "PARTNER", "PRIVATE"]),
-            name=dict(type="list"),
-            operating_systems=dict(type="list"),
+            name=dict(type="list", elements="str"),
+            operating_systems=dict(type="list", elements="str"),
             sort_by=dict(type="str", choices=["TIMERELEASED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

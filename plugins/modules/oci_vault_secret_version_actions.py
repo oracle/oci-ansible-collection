@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
     - For I(action=schedule_secret_version_deletion), schedules the deletion of the specified secret version. This deletes it after the specified retention
       period ends. You can only
       delete a secret version if the secret version rotation state is marked as `DEPRECATED`.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     secret_id:
@@ -84,19 +84,19 @@ secret_version:
             description:
                 - The content type of the secret version's secret contents.
             returned: on success
-            type: string
+            type: str
             sample: BASE64
         name:
             description:
                 - The name of the secret version. A name is unique across versions of a secret.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         secret_id:
             description:
                 - The OCID of the secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         stages:
             description:
@@ -115,24 +115,24 @@ secret_version:
                   format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the secret version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
                   format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         time_of_current_version_expiry:
             description:
                 - "An optional property indicating when the current secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         version_number:
             description:
                 - The version number of the secret.
@@ -253,7 +253,7 @@ def main():
     module_args.update(
         dict(
             secret_id=dict(type="str", required=True),
-            secret_version_number=dict(type="int", required=True),
+            secret_version_number=dict(type="int", required=True, no_log=True),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",

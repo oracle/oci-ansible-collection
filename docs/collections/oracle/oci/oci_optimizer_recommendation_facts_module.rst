@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_optimizer_recommendation_facts_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_optimizer_recommendation_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_optimizer_recommendation_facts -- Fetches details about one or mu
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -387,6 +397,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -741,7 +754,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the recommendation details were created, in the format defined by RFC3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -797,7 +810,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the recommendation details were last updated, in the format defined by RFC3339.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>
                     

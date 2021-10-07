@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new DRG route table for the specified DRG. Assign the DRG route table to a DRG attachment
       using the `UpdateDrgAttachment` or `CreateDrgAttachment` operations.
     - "This resource has the following action operations in the M(oci_drg_route_table_actions) module: remove_import_drg_route_distribution."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     defined_tags:
@@ -136,20 +136,20 @@ drg_route_table:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
                   DRG route table.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment the DRG is in. The DRG route table
                   is always in the same compartment as the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         drg_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG the DRG that contains this route table.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -164,7 +164,7 @@ drg_route_table:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -180,13 +180,13 @@ drg_route_table:
                 - The date and time the DRG route table was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The DRG route table's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         import_drg_route_distribution_id:
             description:
@@ -194,7 +194,7 @@ drg_route_table:
                   incoming route advertisements from
                   referenced attachments are inserted into the DRG route table.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.importdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
         is_ecmp_enabled:
             description:

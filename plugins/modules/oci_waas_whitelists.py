@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_whitelists
 short_description: Manage a Whitelists resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Whitelists resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             name:
@@ -49,11 +50,13 @@ options:
                     - A set of IP addresses or CIDR notations to include in the whitelist.
                     - This parameter is updatable.
                 type: list
+                elements: str
             address_lists:
                 description:
                     - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of IP address lists to include in the whitelist.
                     - This parameter is updatable.
                 type: list
+                elements: str
     state:
         description:
             - The state of the Whitelists.
@@ -85,7 +88,7 @@ whitelists:
             description:
                 - The unique name of the whitelist.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         addresses:
             description:
@@ -213,8 +216,8 @@ def main():
                 required=True,
                 options=dict(
                     name=dict(type="str", required=True),
-                    addresses=dict(type="list"),
-                    address_lists=dict(type="list"),
+                    addresses=dict(type="list", elements="str"),
+                    address_lists=dict(type="list", elements="str"),
                 ),
             ),
             state=dict(type="str", default="present", choices=["present"]),

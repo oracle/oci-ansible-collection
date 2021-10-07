@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=activate), activates the model.
     - For I(action=change_compartment), moves a model resource into a different compartment.
     - For I(action=deactivate), deactivates the model.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     model_id:
@@ -82,50 +82,50 @@ model:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project associated with the model.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - A short description of the model.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         lifecycle_state:
             description:
                 - The state of the model.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2019-08-25T21:10:29.41Z"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the model.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         freeform_tags:
             description:
@@ -160,7 +160,7 @@ model:
                                    * hyperParameters
                                    * testartifactresults"
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 value:
                     description:
@@ -173,20 +173,20 @@ model:
                                        prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
                                        bert, gensim, flair, word2vec, ensemble, other"
                     returned: on success
-                    type: string
+                    type: str
                     sample: oci.datasciencemodel.aaa12934190b32g9823589
                 description:
                     description:
                         - Description of model metadata
                     returned: on success
-                    type: string
+                    type: str
                     sample: The base model on which the current model was derived
                 category:
                     description:
                         - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                           \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                     returned: on success
-                    type: string
+                    type: str
                     sample: Performance
         defined_metadata_list:
             description:
@@ -205,7 +205,7 @@ model:
                                    * hyperParameters
                                    * testartifactresults"
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 value:
                     description:
@@ -218,32 +218,32 @@ model:
                                        prophet, sktime, statsmodels, cuml, oracle_automl, h2o, transformers, nltk, emcee, pystan,
                                        bert, gensim, flair, word2vec, ensemble, other"
                     returned: on success
-                    type: string
+                    type: str
                     sample: oci.datasciencemodel.aaa12934190b32g9823589
                 description:
                     description:
                         - Description of model metadata
                     returned: on success
-                    type: string
+                    type: str
                     sample: The base model on which the current model was derived
                 category:
                     description:
                         - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                           \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                     returned: on success
-                    type: string
+                    type: str
                     sample: Performance
         input_schema:
             description:
                 - Input schema file content in String format
             returned: on success
-            type: string
+            type: str
             sample: "{"predict_arguments":{"sepal_length_(cm)":{"type":"continuous","dtype":"float64"},"sepal_width_(c..."
         output_schema:
             description:
                 - Output schema file content in String format
             returned: on success
-            type: string
+            type: str
             sample: {"class":3,"probabilities":[0.1,0.2,0.7]}
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

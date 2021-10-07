@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Profile resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Profile resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new profile.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -73,6 +73,7 @@ options:
                 description:
                     - The array of configuration levels.
                 type: list
+                elements: dict
                 suboptions:
                     recommendation_id:
                         description:
@@ -92,6 +93,7 @@ options:
                 description:
                     - The list of target compartment OCIDs attached to the current profile override.
                 type: list
+                elements: str
                 required: true
     target_tags:
         description:
@@ -103,6 +105,7 @@ options:
                 description:
                     - The list of target tags attached to the current profile override.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     tag_namespace_name:
@@ -127,6 +130,7 @@ options:
                         description:
                             - The list of tag values.
                         type: list
+                        elements: str
     profile_id:
         description:
             - The unique OCID of the profile.
@@ -196,25 +200,25 @@ profile:
             description:
                 - The unique OCID of the profile.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the profile. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - Text describing the profile. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         defined_tags:
             description:
@@ -249,13 +253,13 @@ profile:
                             description:
                                 - The unique OCID of the recommendation.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
                         level:
                             description:
                                 - The pre-defined profile level.
                             returned: on success
-                            type: string
+                            type: str
                             sample: level_example
         target_compartments:
             description:
@@ -285,19 +289,19 @@ profile:
                             description:
                                 - The name of the tag namespace.
                             returned: on success
-                            type: string
+                            type: str
                             sample: tag_namespace_name_example
                         tag_definition_name:
                             description:
                                 - The name of the tag definition.
                             returned: on success
-                            type: string
+                            type: str
                             sample: tag_definition_name_example
                         tag_value_type:
                             description:
                                 - The tag value type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: VALUE
                         tag_values:
                             description:
@@ -309,20 +313,20 @@ profile:
             description:
                 - The profile's current state.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - The date and time the profile was created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the profile was last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -507,7 +511,8 @@ def main():
                 ),
             ),
             target_compartments=dict(
-                type="dict", options=dict(items=dict(type="list", required=True))
+                type="dict",
+                options=dict(items=dict(type="list", elements="str", required=True)),
             ),
             target_tags=dict(
                 type="dict",
@@ -522,7 +527,7 @@ def main():
                             tag_value_type=dict(
                                 type="str", required=True, choices=["VALUE", "ANY"]
                             ),
-                            tag_values=dict(type="list"),
+                            tag_values=dict(type="list", elements="str"),
                         ),
                     )
                 ),

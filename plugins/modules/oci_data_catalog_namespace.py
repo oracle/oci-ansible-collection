@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Namespace resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Namespace resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new Namespace to be used by a custom property
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     catalog_id:
@@ -114,19 +114,19 @@ namespace:
             description:
                 - Unique namespace key that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         display_name:
             description:
                 - Name of the Namespace
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description for the namespace
             returned: on success
-            type: string
+            type: str
             sample: description_example
         is_service_defined:
             description:
@@ -138,32 +138,32 @@ namespace:
             description:
                 - The current state of the namespace.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - "The date and time the namespace was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-03-25T21:10:29.600Z
+            type: str
+            sample: "2019-03-25T21:10:29.600Z"
         time_updated:
             description:
                 - The last time that any change was made to the namespace. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the namespace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the namespace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "key": "key_example",

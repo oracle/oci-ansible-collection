@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a ResolverEndpoint resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete a ResolverEndpoint resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new resolver endpoint. Requires a `PRIVATE` scope query parameter.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     resolver_id:
@@ -76,6 +76,7 @@ options:
               resolver endpoint is a part of.
             - This parameter is updatable.
         type: list
+        elements: str
     scope:
         description:
             - Specifies to operate only on resources that have a matching DNS scope.
@@ -138,20 +139,20 @@ resolver_endpoint:
             description:
                 - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         endpoint_type:
             description:
                 - The type of resolver endpoint. VNIC is currently the only supported type.
             returned: on success
-            type: string
+            type: str
             sample: VNIC
         forwarding_address:
             description:
                 - An IP address from which forwarded queries may be sent. For VNIC endpoints, this IP address must be part
                   of the subnet and will be assigned by the system if unspecified when isForwarding is true.
             returned: on success
-            type: string
+            type: str
             sample: forwarding_address_example
         is_forwarding:
             description:
@@ -170,14 +171,14 @@ resolver_endpoint:
                 - An IP address to listen to queries on. For VNIC endpoints this IP address must be part of the
                   subnet and will be assigned by the system if unspecified when isListening is true.
             returned: on success
-            type: string
+            type: str
             sample: listening_address_example
         compartment_id:
             description:
                 - The OCID of the owning compartment. This will match the resolver that the resolver endpoint is under
                   and will be updated if the resolver's compartment is changed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -185,33 +186,33 @@ resolver_endpoint:
                   with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - "The date and time the resource was last updated in \\"YYYY-MM-ddThh:mm:ssZ\\"
                   format with a Z offset, as defined by RFC 3339."
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         _self:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         subnet_id:
             description:
                 - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
@@ -442,7 +443,7 @@ def main():
             is_listening=dict(type="bool"),
             listening_address=dict(type="str"),
             subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list"),
+            nsg_ids=dict(type="list", elements="str"),
             scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             if_unmodified_since=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the Fault Domains in your tenancy. Specify the OCID of either the tenancy or another
       of your compartments as the value for the compartment ID (remember that the tenancy is simply the root compartment).
       See L(Where to Get the Tenancy's OCID and User's OCID,https://docs.cloud.oracle.com/Content/API/Concepts/apisigningkey.htm#five).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -61,25 +61,25 @@ fault_domains:
             description:
                 - The name of the Fault Domain.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - The OCID of the Fault Domain.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment. Currently only tenancy (root) compartment can be provided.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The name of the availabilityDomain where the Fault Domain belongs.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
     sample: [{
         "name": "name_example",

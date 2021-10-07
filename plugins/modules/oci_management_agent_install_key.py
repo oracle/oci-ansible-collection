@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a ManagementAgentInstallKey resource in Oracle Cloud I
 description:
     - This module allows the user to create, update and delete a ManagementAgentInstallKey resource in Oracle Cloud Infrastructure
     - For I(state=present), user creates a new install key as part of this API.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -115,31 +115,31 @@ management_agent_install_key:
             description:
                 - Agent install Key identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Install Key Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         key:
             description:
                 - Management Agent Install Key
             returned: on success
-            type: string
+            type: str
             sample: key_example
         created_by_principal_id:
             description:
                 - Principal id of user who created the Agent Install key
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdbyprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         allowed_key_install_count:
             description:
@@ -157,33 +157,33 @@ management_agent_install_key:
             description:
                 - Status of Key
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_expires:
             description:
                 - date after which key would expire after creation
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The time when Management Agent install Key was created. An RFC3339 formatted date time string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time when Management Agent install Key was updated. An RFC3339 formatted date time string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -358,7 +358,7 @@ def main():
             time_expires=dict(type="str"),
             compartment_id=dict(type="str"),
             management_agent_install_key_id=dict(aliases=["id"], type="str"),
-            is_key_active=dict(type="bool"),
+            is_key_active=dict(type="bool", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

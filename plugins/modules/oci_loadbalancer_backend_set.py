@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a BackendSet resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a BackendSet resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a backend set to a load balancer.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -47,6 +47,7 @@ options:
             - ""
             - Required for update using I(state=present) with name present.
         type: list
+        elements: dict
         suboptions:
             ip_address:
                 description:
@@ -180,6 +181,7 @@ options:
                          displays a list of SSL protocols currently used by those resources."
                     - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
                 type: list
+                elements: str
             cipher_suite_name:
                 description:
                     - The name of the cipher suite to use for HTTPS or SSL connections.
@@ -376,7 +378,7 @@ backend_set:
                   contain spaces. Avoid entering confidential information.
                 - "Example: `example_backend_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_backend_set
         policy:
             description:
@@ -384,7 +386,7 @@ backend_set:
                   L(ListPolicies,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies) operation.
                 - "Example: `LEAST_CONNECTIONS`"
             returned: on success
-            type: string
+            type: str
             sample: LEAST_CONNECTIONS
         backends:
             description:
@@ -397,14 +399,14 @@ backend_set:
                         - A read-only field showing the IP address and port that uniquely identify this backend server in the backend set.
                         - "Example: `10.0.0.3:8080`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3:8080
                 ip_address:
                     description:
                         - The IP address of the backend server.
                         - "Example: `10.0.0.3`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3
                 port:
                     description:
@@ -460,14 +462,14 @@ backend_set:
                         - The protocol the health check must use; either HTTP or TCP.
                         - "Example: `HTTP`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 url_path:
                     description:
                         - The path against which to run the health check.
                         - "Example: `/healthcheck`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /healthcheck
                 port:
                     description:
@@ -513,7 +515,7 @@ backend_set:
                         - A regular expression for parsing the response body from the backend server.
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: "^((?!false).|\\\\s)*$"
         ssl_configuration:
             description:
@@ -542,7 +544,7 @@ backend_set:
                           Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                         - "Example: `example_certificate_bundle`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_certificate_bundle
                 server_order_preference:
                     description:
@@ -551,7 +553,7 @@ backend_set:
                         - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
                                     field is ignored when the `SSLConfiguration` object is associated with a backend set."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLED
                 cipher_suite_name:
                     description:
@@ -577,7 +579,7 @@ backend_set:
                              this field."
                         - "example: `example_cipher_suite`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: cipher_suite_name_example
                 protocols:
                     description:
@@ -612,7 +614,7 @@ backend_set:
                           that any cookie set by the backend causes the session to persist."
                         - "Example: `example_cookie`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_cookie
                 disable_fallback:
                     description:
@@ -644,7 +646,7 @@ backend_set:
                              the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path
                              names are different, the client or browser treats them as two different cookies."
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_cookie
                 disable_fallback:
                     description:
@@ -674,7 +676,7 @@ backend_set:
                              `abc.example.com` or `www.abc.example.com` sent from `www.example.com`."
                         - "Example: `example.com`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example.com
                 path:
                     description:
@@ -685,7 +687,7 @@ backend_set:
                         - The default value is `/`.
                         - "Example: `/example`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /example
                 max_age_in_seconds:
                     description:
@@ -938,7 +940,7 @@ def main():
                     verify_depth=dict(type="int"),
                     verify_peer_certificate=dict(type="bool"),
                     certificate_name=dict(type="str"),
-                    protocols=dict(type="list"),
+                    protocols=dict(type="list", elements="str"),
                     cipher_suite_name=dict(type="str"),
                     server_order_preference=dict(
                         type="str", choices=["ENABLED", "DISABLED"]

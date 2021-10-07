@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple SqlSearches resources i
 description:
     - Fetches details about one or multiple SqlSearches resources in Oracle Cloud Infrastructure
     - Search SQL by SQL Identifier across databases and get the SQL Text and the details of the databases executing the SQL for a given time period.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -68,12 +68,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -83,6 +85,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -90,6 +93,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -112,43 +116,43 @@ sql_searches:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_name:
             description:
                 - The database name. The database name is unique within the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: database_name_example
         database_display_name:
             description:
                 - The user-friendly name for the database. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: database_display_name_example
         database_type:
             description:
                 - Operations Insights internal representation of the database type.
             returned: on success
-            type: string
+            type: str
             sample: database_type_example
         database_version:
             description:
                 - The version of the database.
             returned: on success
-            type: string
+            type: str
             sample: database_version_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -224,10 +228,10 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

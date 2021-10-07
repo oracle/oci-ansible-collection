@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       set. You must specify an export set ID, a file system ID, and
       / or a compartment ID.
     - If I(export_id) is specified, the details of a single Export will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     export_id:
@@ -133,7 +133,7 @@ exports:
                           security rules and the ability to route IP packets to the
                           mount target. Mount targets do not have Internet-routable IP addresses."
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_example
                 require_privileged_source_port:
                     description:
@@ -148,7 +148,7 @@ exports:
                         - Type of access to grant clients using the file system
                           through this export. If unspecified defaults to `READ_ONLY`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: READ_WRITE
                 identity_squash:
                     description:
@@ -159,7 +159,7 @@ exports:
                           remapped; if `NONE`, no remapping is done. If unspecified,
                           defaults to `ROOT`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NONE
                 anonymous_uid:
                     description:
@@ -181,25 +181,25 @@ exports:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exportset.oc1..xxxxxxEXAMPLExxxxxx"
         file_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of this export.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         path:
             description:
@@ -207,7 +207,7 @@ exports:
                 - Avoid entering confidential information.
                 - "Example: `/accounting`"
             returned: on success
-            type: string
+            type: str
             sample: /accounting
         time_created:
             description:
@@ -215,8 +215,8 @@ exports:
                   in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: [{
         "export_options": [{
             "source": "source_example",

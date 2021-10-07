@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_network_ip_sec_connection_tunnel_cpe_device_config
 short_description: Manage an IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an IpSecConnectionTunnelCpeDeviceConfig resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -42,6 +42,7 @@ options:
             - The set of configuration answers for a CPE device.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             key:
                 description:
@@ -91,13 +92,13 @@ ip_sec_connection_tunnel_cpe_device_config:
                         - A string that identifies the question to be answered. See the `key` attribute in
                           L(CpeDeviceConfigQuestion,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/CpeDeviceConfigQuestion).
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 value:
                     description:
                         - The answer to the question.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
     sample: {
         "tunnel_cpe_device_config_parameter": [{
@@ -191,7 +192,7 @@ def main():
             tunnel_cpe_device_config=dict(
                 type="list",
                 elements="dict",
-                options=dict(key=dict(type="str"), value=dict(type="str")),
+                options=dict(key=dict(type="str", no_log=True), value=dict(type="str")),
             ),
             state=dict(type="str", default="present", choices=["present"]),
         )

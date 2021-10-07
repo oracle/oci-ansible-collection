@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_policy_config
 short_description: Manage a PolicyConfig resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a PolicyConfig resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -59,6 +59,7 @@ options:
             - Enabled TLS protocols must go in a row. For example if `TLS_v1_1` and `TLS_V1_3` are enabled, `TLS_V1_2` must be enabled too.
             - This parameter is updatable.
         type: list
+        elements: str
         choices:
             - "TLS_V1"
             - "TLS_V1_1"
@@ -180,6 +181,7 @@ options:
               challenges, like JSC, HIC and etc., remain active.
             - This parameter is updatable.
         type: list
+        elements: str
     is_sni_enabled:
         description:
             - SNI stands for Server Name Indication and is an extension of the TLS protocol. It indicates which hostname is being contacted by the browser at
@@ -229,6 +231,7 @@ options:
                       - **5XX:** Server errors response code group."
                     - This parameter is updatable.
                 type: list
+                elements: str
                 choices:
                     - "2XX"
                     - "3XX"
@@ -296,7 +299,7 @@ policy_config:
             description:
                 - The OCID of the SSL certificate to use if HTTPS is supported.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         is_https_enabled:
             description:
@@ -351,7 +354,7 @@ policy_config:
                 - "- **CLIENT_IP:** Corresponds to `Client-Ip` header name."
                 - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
             returned: on success
-            type: string
+            type: str
             sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
         is_cache_control_respected:
             description:
@@ -380,7 +383,7 @@ policy_config:
                     SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:!DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-
                     DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA`"
             returned: on success
-            type: string
+            type: str
             sample: DEFAULT
         load_balancing_method:
             description:
@@ -404,20 +407,20 @@ policy_config:
                           request contains the cookie value, and nginx routes the request to the origin server that responded to the first request.
                           STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
                     returned: on success
-                    type: string
+                    type: str
                     sample: IP_HASH
                 name:
                     description:
                         - The name of the cookie used to track the persistence.
                           Can contain any US-ASCII character except separator or control character.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 domain:
                     description:
                         - The domain for which the cookie is set, defaults to WAAS policy domain.
                     returned: on success
-                    type: string
+                    type: str
                     sample: domain_example
                 expiration_time_in_seconds:
                     description:
@@ -458,13 +461,13 @@ policy_config:
                     description:
                         - An HTTP verb (i.e. HEAD, GET, or POST) to use when performing the health check.
                     returned: on success
-                    type: string
+                    type: str
                     sample: GET
                 path:
                     description:
                         - Path to visit on your origins when performing the health check.
                     returned: on success
-                    type: string
+                    type: str
                     sample: path_example
                 headers:
                     description:
@@ -497,7 +500,7 @@ policy_config:
                         - Health check will search for the given text in a case-sensitive manner within the response body and will fail if the text is not
                           found.
                     returned: on success
-                    type: string
+                    type: str
                     sample: expected_response_text_example
                 interval_in_seconds:
                     description:
@@ -633,7 +636,9 @@ def main():
             is_https_enabled=dict(type="bool"),
             is_https_forced=dict(type="bool"),
             tls_protocols=dict(
-                type="list", choices=["TLS_V1", "TLS_V1_1", "TLS_V1_2", "TLS_V1_3"]
+                type="list",
+                elements="str",
+                choices=["TLS_V1", "TLS_V1_1", "TLS_V1_2", "TLS_V1_3"],
             ),
             is_origin_compression_enabled=dict(type="bool"),
             is_behind_cdn=dict(type="bool"),
@@ -663,7 +668,7 @@ def main():
                     expiration_time_in_seconds=dict(type="int"),
                 ),
             ),
-            websocket_path_prefixes=dict(type="list"),
+            websocket_path_prefixes=dict(type="list", elements="str"),
             is_sni_enabled=dict(type="bool"),
             health_checks=dict(
                 type="dict",
@@ -673,7 +678,9 @@ def main():
                     path=dict(type="str"),
                     headers=dict(type="dict"),
                     expected_response_code_group=dict(
-                        type="list", choices=["2XX", "3XX", "4XX", "5XX"]
+                        type="list",
+                        elements="str",
+                        choices=["2XX", "3XX", "4XX", "5XX"],
                     ),
                     is_response_text_check_enabled=dict(type="bool"),
                     expected_response_text=dict(type="str"),

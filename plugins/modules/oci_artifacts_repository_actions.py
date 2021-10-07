@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a repository into a different compartment within the same tenancy. For information about moving
       resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     repository_id:
@@ -72,31 +72,31 @@ repository:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the repository.
                 - "Example: `ocid1.artifactrepository.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.artifactrepository.oc1..exampleuniqueID"
         display_name:
             description:
                 - The repository name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The OCID of the repository's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         repository_type:
             description:
                 - The repository's supported artifact type.
             returned: on success
-            type: string
+            type: str
             sample: GENERIC
         description:
             description:
                 - The repository description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         is_immutable:
             description:
@@ -108,7 +108,7 @@ repository:
             description:
                 - The current state of the repository.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         freeform_tags:
             description:
@@ -131,8 +131,8 @@ repository:
             description:
                 - An RFC 3339 timestamp indicating when the repository was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.artifactrepository.oc1..exampleuniqueID",
         "display_name": "display_name_example",

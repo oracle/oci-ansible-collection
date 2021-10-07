@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a ResponderRecipe resource in Oracle Cloud
 description:
     - Perform actions on a ResponderRecipe resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves the ResponderRecipe from current compartment to another.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     responder_recipe_id:
@@ -68,25 +68,25 @@ responder_recipe:
             description:
                 - Identifier for ResponderRecipe.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - ResponderRecipe Display Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - ResponderRecipe Description
             returned: on success
-            type: string
+            type: str
             sample: description_example
         owner:
             description:
                 - Owner of ResponderRecipe
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER
         responder_rules:
             description:
@@ -98,25 +98,25 @@ responder_recipe:
                     description:
                         - Identifier for ResponderRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - ResponderRule Display Name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - ResponderRule Description
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 type:
                     description:
                         - Type of Responder
                     returned: on success
-                    type: string
+                    type: str
                     sample: REMEDIATION
                 policies:
                     description:
@@ -146,7 +146,7 @@ responder_recipe:
                                     description:
                                         - Type of condition object
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: COMPOSITE
                                 left_operand:
                                     description:
@@ -158,13 +158,13 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 right_operand:
                                     description:
@@ -176,31 +176,31 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: parameter_example
                                 operator:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: IN
                                 value:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 value_type:
                                     description:
                                         - type of value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: MANAGED
                         configurations:
                             description:
@@ -212,19 +212,19 @@ responder_recipe:
                                     description:
                                         - Unique name of the configuration
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: config_key_example
                                 name:
                                     description:
                                         - configuration name
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - configuration value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         is_enabled:
                             description:
@@ -236,38 +236,38 @@ responder_recipe:
                             description:
                                 - Execution Mode for ResponderRule
                             returned: on success
-                            type: string
+                            type: str
                             sample: AUTOACTION
                 compartment_id:
                     description:
                         - Compartment Identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - The date and time the responder recipe rule was created. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The date and time the responder recipe rule was updated. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the ResponderRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
                 lifecycle_details:
                     description:
                         - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
                           Failed state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
         effective_responder_rules:
             description:
@@ -279,25 +279,25 @@ responder_recipe:
                     description:
                         - Identifier for ResponderRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - ResponderRule Display Name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - ResponderRule Description
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 type:
                     description:
                         - Type of Responder
                     returned: on success
-                    type: string
+                    type: str
                     sample: REMEDIATION
                 policies:
                     description:
@@ -327,7 +327,7 @@ responder_recipe:
                                     description:
                                         - Type of condition object
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: COMPOSITE
                                 left_operand:
                                     description:
@@ -339,13 +339,13 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 right_operand:
                                     description:
@@ -357,31 +357,31 @@ responder_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: parameter_example
                                 operator:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: IN
                                 value:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 value_type:
                                     description:
                                         - type of value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: MANAGED
                         configurations:
                             description:
@@ -393,19 +393,19 @@ responder_recipe:
                                     description:
                                         - Unique name of the configuration
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: config_key_example
                                 name:
                                     description:
                                         - configuration name
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - configuration value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         is_enabled:
                             description:
@@ -417,75 +417,75 @@ responder_recipe:
                             description:
                                 - Execution Mode for ResponderRule
                             returned: on success
-                            type: string
+                            type: str
                             sample: AUTOACTION
                 compartment_id:
                     description:
                         - Compartment Identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - The date and time the responder recipe rule was created. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The date and time the responder recipe rule was updated. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the ResponderRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
                 lifecycle_details:
                     description:
                         - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
                           Failed state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
         source_responder_recipe_id:
             description:
                 - The id of the source responder recipe.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the responder recipe was created. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the responder recipe was updated. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Example.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

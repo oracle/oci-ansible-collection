@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CustomerSecretKey resources in Oracle Cloud Infrastructure
     - Lists the secret keys for the specified user. The returned object contains the secret key's OCID, but not
       the secret key itself. The actual secret key is returned only upon creation.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -54,41 +54,41 @@ customer_secret_keys:
             description:
                 - The OCID of the secret key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user the password belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The displayName you assign to the secret key. Does not have to be unique, and it's changeable.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - Date and time the `CustomerSecretKey` object was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_expires:
             description:
                 - Date and time when this password will expire, in the format defined by RFC3339.
                   Null if it never expires.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The secret key's current state. After creating a secret key, make sure its `lifecycleState` changes from
                   CREATING to ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AddressList resources in Oracle Cloud Infrastructure
     - Gets a list of address lists that can be used in a WAAS policy.
     - If I(address_list_id) is specified, the details of a single AddressList will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     address_list_id:
@@ -60,10 +60,12 @@ options:
         description:
             - Filter address lists using a list of names.
         type: list
+        elements: str
     lifecycle_state:
         description:
             - Filter address lists using a list of lifecycle states.
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "ACTIVE"
@@ -104,19 +106,19 @@ address_lists:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the address list.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the address list's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the address list.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         address_count:
             description:
@@ -150,14 +152,14 @@ address_lists:
             description:
                 - The current lifecycle state of the address list.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the address list was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -242,9 +244,10 @@ def main():
             compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["id", "name", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            name=dict(type="list"),
+            name=dict(type="list", elements="str"),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "ACTIVE",

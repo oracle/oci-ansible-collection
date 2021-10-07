@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a HostInsightResourceUtilizationInsight
 description:
     - Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
     - Gets resources with current utilization (high and low) and projected utilization (high and low) for a resource type over specified time period.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -66,12 +66,14 @@ options:
             - Filter by one or more platform types.
               Possible value is LINUX.
         type: list
+        elements: str
         choices:
             - "LINUX"
     id:
         description:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
+        elements: str
     forecast_days:
         description:
             - Number of days used for utilization forecast analysis.
@@ -83,12 +85,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -98,6 +102,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -105,6 +110,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -127,19 +133,19 @@ host_insight_resource_utilization_insight:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         resource_metric:
             description:
                 - Defines the type of resource metric (CPU, Physical Memory, Logical Memory)
             returned: on success
-            type: string
+            type: str
             sample: CPU
         projected_utilization:
             description:
@@ -157,7 +163,7 @@ host_insight_resource_utilization_insight:
                             description:
                                 - Db id
                             returned: on success
-                            type: string
+                            type: str
                             sample: id1
                         days_to_reach:
                             description:
@@ -175,7 +181,7 @@ host_insight_resource_utilization_insight:
                             description:
                                 - Db id
                             returned: on success
-                            type: string
+                            type: str
                             sample: id1
                         days_to_reach:
                             description:
@@ -293,13 +299,13 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            platform_type=dict(type="list", choices=["LINUX"]),
-            id=dict(type="list"),
+            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
+            id=dict(type="list", elements="str"),
             forecast_days=dict(type="int"),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

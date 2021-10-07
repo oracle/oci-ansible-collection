@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BackendSet resources in Oracle Cloud Infrastructure
     - Lists all backend sets associated with a given load balancer.
     - If I(backend_set_name) is specified, the details of a single BackendSet will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -70,7 +70,7 @@ backend_sets:
                   contain spaces. Avoid entering confidential information.
                 - "Example: `example_backend_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_backend_set
         policy:
             description:
@@ -78,7 +78,7 @@ backend_sets:
                   L(ListPolicies,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerPolicy/ListPolicies) operation.
                 - "Example: `LEAST_CONNECTIONS`"
             returned: on success
-            type: string
+            type: str
             sample: LEAST_CONNECTIONS
         backends:
             description:
@@ -91,14 +91,14 @@ backend_sets:
                         - A read-only field showing the IP address and port that uniquely identify this backend server in the backend set.
                         - "Example: `10.0.0.3:8080`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3:8080
                 ip_address:
                     description:
                         - The IP address of the backend server.
                         - "Example: `10.0.0.3`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.3
                 port:
                     description:
@@ -154,14 +154,14 @@ backend_sets:
                         - The protocol the health check must use; either HTTP or TCP.
                         - "Example: `HTTP`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 url_path:
                     description:
                         - The path against which to run the health check.
                         - "Example: `/healthcheck`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /healthcheck
                 port:
                     description:
@@ -207,7 +207,7 @@ backend_sets:
                         - A regular expression for parsing the response body from the backend server.
                         - "Example: `^((?!false).|\\\\s)*$`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: "^((?!false).|\\\\s)*$"
         ssl_configuration:
             description:
@@ -236,7 +236,7 @@ backend_sets:
                           Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                         - "Example: `example_certificate_bundle`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_certificate_bundle
                 server_order_preference:
                     description:
@@ -245,7 +245,7 @@ backend_sets:
                         - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
                                     field is ignored when the `SSLConfiguration` object is associated with a backend set."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLED
                 cipher_suite_name:
                     description:
@@ -271,7 +271,7 @@ backend_sets:
                              this field."
                         - "example: `example_cipher_suite`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: cipher_suite_name_example
                 protocols:
                     description:
@@ -306,7 +306,7 @@ backend_sets:
                           that any cookie set by the backend causes the session to persist."
                         - "Example: `example_cookie`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_cookie
                 disable_fallback:
                     description:
@@ -338,7 +338,7 @@ backend_sets:
                              the cookie values in subsequent requests. If both `Set-cookie` names are the same, but the domain and path
                              names are different, the client or browser treats them as two different cookies."
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_cookie
                 disable_fallback:
                     description:
@@ -368,7 +368,7 @@ backend_sets:
                              `abc.example.com` or `www.abc.example.com` sent from `www.example.com`."
                         - "Example: `example.com`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example.com
                 path:
                     description:
@@ -379,7 +379,7 @@ backend_sets:
                         - The default value is `/`.
                         - "Example: `/example`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /example
                 max_age_in_seconds:
                     description:

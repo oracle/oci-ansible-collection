@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage an Ipv6 resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Ipv6 resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an IPv6 for the specified VNIC.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     defined_tags:
@@ -126,7 +126,7 @@ ipv6:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the IPv6.
                   This is the same as the VNIC's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -141,7 +141,7 @@ ipv6:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -156,7 +156,7 @@ ipv6:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IPv6.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ip_address:
             description:
@@ -164,33 +164,33 @@ ipv6:
                   (see the `ipv6CidrBlock` attribute for the L(Subnet,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Subnet/) object.
                 - "Example: `2001:0db8:0123:1111:abcd:ef01:2345:6789`"
             returned: on success
-            type: string
+            type: str
             sample: 2001:0db8:0123:1111:abcd:ef01:2345:6789
         lifecycle_state:
             description:
                 - The IPv6's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the VNIC is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the IPv6 was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC the IPv6 is assigned to.
                   The VNIC and IPv6 must be in the same subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

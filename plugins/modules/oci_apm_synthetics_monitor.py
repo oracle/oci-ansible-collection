@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Monitor resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Monitor resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new monitor.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -57,6 +57,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     script_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
@@ -102,6 +103,7 @@ options:
               Example: `[{\\"paramName\\": \\"userid\\", \\"paramValue\\":\\"testuser\\"}]`"
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             param_name:
                 description:
@@ -200,6 +202,7 @@ options:
                             - "List of authentication headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
                             - Applicable when config_type is 'REST_CONFIG'
                         type: list
+                        elements: dict
                         suboptions:
                             header_name:
                                 description:
@@ -230,6 +233,7 @@ options:
                     - "List of request headers. Example: `[{\\"headerName\\": \\"content-type\\", \\"headerValue\\":\\"json\\"}]`"
                     - Applicable when config_type is 'REST_CONFIG'
                 type: list
+                elements: dict
                 suboptions:
                     header_name:
                         description:
@@ -247,6 +251,7 @@ options:
                     - "List of request query params. Example: `[{\\"paramName\\": \\"sortOrder\\", \\"paramValue\\": \\"asc\\"}]`"
                     - Applicable when config_type is 'REST_CONFIG'
                 type: list
+                elements: dict
                 suboptions:
                     param_name:
                         description:
@@ -275,12 +280,14 @@ options:
                     - Expected HTTP response codes. For status code range, set values such as 2xx, 3xx.
                     - Applicable when config_type is 'REST_CONFIG'
                 type: list
+                elements: str
             verify_texts:
                 description:
                     - Verify all the search strings present in response.
                       If any search string is not present in the response, then it will be considered as a failure.
                     - Applicable when config_type is 'BROWSER_CONFIG'
                 type: list
+                elements: dict
                 suboptions:
                     text:
                         description:
@@ -374,19 +381,19 @@ monitor:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva
         display_name:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
-            type: string
+            type: str
             sample: exampleName
         monitor_type:
             description:
                 - Type of the monitor.
             returned: on success
-            type: string
+            type: str
             sample: SCRIPTED_BROWSER
         vantage_points:
             description:
@@ -398,13 +405,13 @@ monitor:
                     description:
                         - Name of the vantage point.
                     returned: on success
-                    type: string
+                    type: str
                     sample: us_phoenix
                 display_name:
                     description:
                         - Unique name that can be edited. The name should not contain any confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: exampleName
         vantage_point_count:
             description:
@@ -417,19 +424,19 @@ monitor:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
                   scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
         script_name:
             description:
                 - Name of the script.
             returned: on success
-            type: string
+            type: str
             sample: testScript
         status:
             description:
                 - Enables or disables the monitor.
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         repeat_interval_in_seconds:
             description:
@@ -454,7 +461,7 @@ monitor:
                   against the specified target endpoint.
                   If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
             returned: on success
-            type: string
+            type: str
             sample: https://www.oracle.com/index.html
         script_parameters:
             description:
@@ -473,13 +480,13 @@ monitor:
                             description:
                                 - Name of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: testName
                         param_value:
                             description:
                                 - Value of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: openPageMonitor
                 is_secret:
                     description:
@@ -504,7 +511,7 @@ monitor:
                     description:
                         - Type of configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: BROWSER_CONFIG
                 is_failure_retried:
                     description:
@@ -529,7 +536,7 @@ monitor:
                             description:
                                 - Verification text in the response.
                             returned: on success
-                            type: string
+                            type: str
                             sample: searchString
                 is_redirection_enabled:
                     description:
@@ -541,13 +548,13 @@ monitor:
                     description:
                         - Request HTTP method.
                     returned: on success
-                    type: string
+                    type: str
                     sample: GET
                 req_authentication_scheme:
                     description:
                         - Request http authentication scheme.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NONE
                 req_authentication_details:
                     description:
@@ -559,31 +566,31 @@ monitor:
                             description:
                                 - Request http oauth scheme.
                             returned: on success
-                            type: string
+                            type: str
                             sample: NONE
                         auth_user_name:
                             description:
                                 - Username for authentication.
                             returned: on success
-                            type: string
+                            type: str
                             sample: user
                         auth_user_password:
                             description:
                                 - User password for authentication.
                             returned: on success
-                            type: string
+                            type: str
                             sample: password
                         auth_token:
                             description:
                                 - Authentication token.
                             returned: on success
-                            type: string
+                            type: str
                             sample: token
                         auth_url:
                             description:
                                 - URL to get authetication token.
                             returned: on success
-                            type: string
+                            type: str
                             sample: https://www.example.com/token
                         auth_headers:
                             description:
@@ -595,25 +602,25 @@ monitor:
                                     description:
                                         - Name of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: content-type
                                 header_value:
                                     description:
                                         - Value of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: json
                         auth_request_method:
                             description:
                                 - Request method.
                             returned: on success
-                            type: string
+                            type: str
                             sample: GET
                         auth_request_post_body:
                             description:
                                 - Request post body.
                             returned: on success
-                            type: string
+                            type: str
                             sample: openPageMonitor
                 request_headers:
                     description:
@@ -625,13 +632,13 @@ monitor:
                             description:
                                 - Name of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: content-type
                         header_value:
                             description:
                                 - Value of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: json
                 request_query_params:
                     description:
@@ -643,26 +650,26 @@ monitor:
                             description:
                                 - Name of request query parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: sortOrder
                         param_value:
                             description:
                                 - Value of request query parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: asc
                 request_post_body:
                     description:
                         - Request post body content.
                     returned: on success
-                    type: string
+                    type: str
                     sample: openPageMonitor
                 verify_response_content:
                     description:
                         - Verify response content against regular expression based string.
                           If response content does not match the verifyResponseContent value, then it will be considered a failure.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "^searchText*"
                 verify_response_codes:
                     description:
@@ -676,16 +683,16 @@ monitor:
                   timestamp format.
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-12T22:47:12.613Z
+            type: str
+            sample: "2020-02-12T22:47:12.613Z"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-13T22:47:12.613Z
+            type: str
+            sample: "2020-02-13T22:47:12.613Z"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -920,7 +927,7 @@ def main():
                 type="str",
                 choices=["SCRIPTED_BROWSER", "BROWSER", "SCRIPTED_REST", "REST"],
             ),
-            vantage_points=dict(type="list"),
+            vantage_points=dict(type="list", elements="str"),
             script_id=dict(type="str"),
             status=dict(type="str", choices=["ENABLED", "DISABLED", "INVALID"]),
             repeat_interval_in_seconds=dict(type="int"),
@@ -960,7 +967,7 @@ def main():
                             oauth_scheme=dict(type="str", choices=["NONE", "BASIC"]),
                             auth_user_name=dict(type="str"),
                             auth_user_password=dict(type="str", no_log=True),
-                            auth_token=dict(type="str"),
+                            auth_token=dict(type="str", no_log=True),
                             auth_url=dict(type="str"),
                             auth_headers=dict(
                                 type="list",
@@ -994,7 +1001,7 @@ def main():
                     ),
                     request_post_body=dict(type="str"),
                     verify_response_content=dict(type="str"),
-                    verify_response_codes=dict(type="list"),
+                    verify_response_codes=dict(type="list", elements="str"),
                     verify_texts=dict(
                         type="list",
                         elements="dict",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ClusterNetworkInstance 
 description:
     - Fetches details about one or multiple ClusterNetworkInstance resources in Oracle Cloud Infrastructure
     - Lists the instances in the specified cluster network.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -85,43 +85,43 @@ cluster_network_instances:
             description:
                 - The OCID of the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name. Does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         fault_domain:
             description:
                 - The fault domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: fault_domain_example
         instance_configuration_id:
             description:
                 - The OCID of the instance confgiuration used to create the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region that contains the availability domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: region_example
         shape:
             description:
@@ -130,21 +130,21 @@ cluster_network_instances:
                 - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         state:
             description:
                 - The current state of the instance pool instance.
             returned: on success
-            type: string
+            type: str
             sample: state_example
         time_created:
             description:
                 - "The date and time the instance pool instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         load_balancer_backends:
             description:
                 - The load balancer backends that are configured for the instance pool instance.
@@ -155,25 +155,25 @@ cluster_network_instances:
                     description:
                         - The OCID of the load balancer attached to the instance pool.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backend_set_name_example
                 backend_name:
                     description:
                         - The name of the backend in the backend set.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backend_name_example
                 backend_health_status:
                     description:
                         - The health of the backend as observed by the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OK
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

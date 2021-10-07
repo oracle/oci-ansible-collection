@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple IntegrationInstance resources in Oracle Cloud Infrastructure
     - Returns a list of Integration Instances.
     - If I(integration_instance_id) is specified, the details of a single IntegrationInstance will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     integration_instance_id:
@@ -98,50 +98,50 @@ integration_instances:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Integration Instance Identifier, can be renamed.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - Compartment Identifier.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
                 - Standard or Enterprise type
             returned: on success
-            type: string
+            type: str
             sample: STANDARD
         time_created:
             description:
                 - The time the the IntegrationInstance was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the IntegrationInstance was updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the integration instance.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         state_message:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: state_message_example
         freeform_tags:
             description:
@@ -169,7 +169,7 @@ integration_instances:
             description:
                 - The Integration Instance URL.
             returned: on success
-            type: string
+            type: str
             sample: instance_url_example
         message_packs:
             description:
@@ -199,13 +199,13 @@ integration_instances:
                     description:
                         - A custom hostname to be used for the integration instance URL, in FQDN format.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 certificate_secret_id:
                     description:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
@@ -223,13 +223,13 @@ integration_instances:
                     description:
                         - A custom hostname to be used for the integration instance URL, in FQDN format.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 certificate_secret_id:
                     description:
                         - Optional OCID of a vault/secret containing a private SSL certificate bundle to be used for the custom hostname.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
                 certificate_secret_version:
                     description:
@@ -241,7 +241,7 @@ integration_instances:
             description:
                 - The entitlement used for billing purposes.
             returned: on success
-            type: string
+            type: str
             sample: UCM
         network_endpoint_details:
             description:
@@ -253,7 +253,7 @@ integration_instances:
                     description:
                         - The type of network endpoint.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PUBLIC
                 allowlisted_http_ips:
                     description:
@@ -271,7 +271,7 @@ integration_instances:
                             description:
                                 - The Virtual Cloud Network OCID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         allowlisted_ips:
                             description:

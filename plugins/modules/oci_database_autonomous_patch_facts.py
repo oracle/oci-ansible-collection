@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AutonomousPatch resources in Oracle Cloud Infrastructure
     - Lists the patches applicable to the requested container database.
     - If I(autonomous_patch_id) is specified, the details of a single AutonomousPatch will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     autonomous_patch_id:
@@ -70,63 +70,63 @@ autonomous_patches:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - The text describing this patch package.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         type:
             description:
                 - The type of patch. BUNDLE is one example.
             returned: on success
-            type: string
+            type: str
             sample: type_example
         lifecycle_details:
             description:
                 - A descriptive text associated with the lifecycleState.
                   Typically can contain additional displayable text.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the patch as a result of lastAction.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         time_released:
             description:
                 - The date and time that the patch was released.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         version:
             description:
                 - The version of this patch package.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         patch_model:
             description:
                 - Database patching model preference. See L(My Oracle Support note 2285040.1,https://support.oracle.com/rs?type=doc&id=2285040.1) for
                   information on the Release Update (RU) and Release Update Revision (RUR) patching models.
             returned: on success
-            type: string
+            type: str
             sample: RELEASE_UPDATES
         quarter:
             description:
                 - First month of the quarter in which the patch was released.
             returned: on success
-            type: string
+            type: str
             sample: quarter_example
         year:
             description:
                 - Year in which the patch was released.
             returned: on success
-            type: string
+            type: str
             sample: year_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple RelatedEvent resources 
 description:
     - Fetches details about one or multiple RelatedEvent resources in Oracle Cloud Infrastructure
     - Returns a list of related events. For now pagination is not implemented.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     event_fingerprint:
@@ -84,20 +84,20 @@ related_events:
             description:
                 - OCID identifier of the event
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - OCID identifier of the instance
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         timestamp:
             description:
                 - time occurence
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -36,7 +36,7 @@ description:
     - "You may optionally specify a *display name* for the security list, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_security_list_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -67,6 +67,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             destination:
                 description:
@@ -215,6 +216,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             icmp_options:
                 description:
@@ -464,7 +466,7 @@ security_list:
             description:
                 - The OCID of the compartment containing the security list.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -479,7 +481,7 @@ security_list:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         egress_security_rules:
             description:
@@ -499,7 +501,7 @@ security_list:
                               setting up a security list rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
-                    type: string
+                    type: str
                     sample: destination_example
                 destination_type:
                     description:
@@ -510,7 +512,7 @@ security_list:
                               L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CIDR_BLOCK
                 icmp_options:
                     description:
@@ -547,7 +549,7 @@ security_list:
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
                           Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
-                    type: string
+                    type: str
                     sample: protocol_example
                 tcp_options:
                     description:
@@ -641,7 +643,7 @@ security_list:
                     description:
                         - An optional description of your choice for the rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         freeform_tags:
             description:
@@ -656,7 +658,7 @@ security_list:
             description:
                 - The security list's Oracle Cloud ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ingress_security_rules:
             description:
@@ -699,7 +701,7 @@ security_list:
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
                           Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
-                    type: string
+                    type: str
                     sample: protocol_example
                 source:
                     description:
@@ -713,7 +715,7 @@ security_list:
                               setting up a security list rule for traffic coming from a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_example
                 source_type:
                     description:
@@ -723,7 +725,7 @@ security_list:
                               L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic coming from a
                               particular `Service` through a service gateway)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CIDR_BLOCK
                 tcp_options:
                     description:
@@ -817,26 +819,26 @@ security_list:
                     description:
                         - An optional description of your choice for the rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         lifecycle_state:
             description:
                 - The security list's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         time_created:
             description:
                 - The date and time the security list was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The OCID of the VCN the security list belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

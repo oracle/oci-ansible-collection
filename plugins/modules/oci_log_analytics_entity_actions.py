@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=add_entity_association), adds association between input source log analytics entity and one or more existing destination entities.
     - For I(action=change_compartment), update the compartment of the log analytics entity with the given id.
     - For I(action=remove_entity_associations), delete association between input source log analytics entity and destination entities.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -45,6 +45,7 @@ options:
             - Destination entities OCIDs with which associations are to be added.
             - Required for I(action=add_entity_association), I(action=remove_entity_associations).
         type: list
+        elements: str
     compartment_id:
         description:
             - The OCID of the compartment where the log analytics entity should be moved.
@@ -96,67 +97,67 @@ log_analytics_entity:
                 - The log analytics entity OCID. This ID is a reference used by log analytics features and it represents
                   a resource that is provisioned and managed by the customer on their premises or on the cloud.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Log analytics entity name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         entity_type_name:
             description:
                 - Log analytics entity type name.
             returned: on success
-            type: string
+            type: str
             sample: entity_type_name_example
         entity_type_internal_name:
             description:
                 - Internal name for the log analytics entity type.
             returned: on success
-            type: string
+            type: str
             sample: entity_type_internal_name_example
         lifecycle_state:
             description:
                 - The current state of the log analytics entity.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_details:
             description:
                 - lifecycleDetails has additional information regarding substeps such as management agent plugin deployment.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         management_agent_id:
             description:
                 - The OCID of the Management Agent.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_display_name:
             description:
                 - Management agent (management-agents resource kind) display name
             returned: on success
-            type: string
+            type: str
             sample: management_agent_display_name_example
         management_agent_compartment_id:
             description:
                 - Management agent (management-agents resource kind) compartment OCID
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagentcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         timezone_region:
             description:
                 - The timezone region of the log analytics entity.
             returned: on success
-            type: string
+            type: str
             sample: timezone_region_example
         properties:
             description:
@@ -174,7 +175,7 @@ log_analytics_entity:
                     description:
                         - Source that auto-created the entity.
                     returned: on success
-                    type: string
+                    type: str
                     sample: EM_BRIDGE
                 details:
                     description:
@@ -182,20 +183,20 @@ log_analytics_entity:
                           by enterprise manager bridge, this field provides additional detail on enterprise manager that contributed
                           to the entity auto-creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: details_example
         time_created:
             description:
                 - The date and time the resource was created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the resource was last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         are_logs_collected:
             description:
                 - The Boolean flag to indicate if logs are collected for an entity for log analytics usage.
@@ -207,7 +208,7 @@ log_analytics_entity:
                 - The OCID of the Cloud resource which this entity is a representation of. This may be blank when the entity
                   represents a non-cloud resource that the customer may have on their premises.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
         hostname:
             description:
@@ -215,13 +216,13 @@ log_analytics_entity:
                   they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from
                   management agents host since logs may be collected remotely.
             returned: on success
-            type: string
+            type: str
             sample: hostname_example
         source_id:
             description:
                 - This indicates the type of source. It is primarily for Enterprise Manager Repository ID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -409,7 +410,7 @@ def main():
         dict(
             namespace_name=dict(type="str", required=True),
             log_analytics_entity_id=dict(aliases=["id"], type="str", required=True),
-            association_entities=dict(type="list"),
+            association_entities=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
             action=dict(
                 type="str",

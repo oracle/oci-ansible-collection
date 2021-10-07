@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DeployArtifact resources in Oracle Cloud Infrastructure
     - Returns a list of deployment artifacts.
     - If I(deploy_artifact_id) is specified, the details of a single DeployArtifact will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deploy_artifact_id:
@@ -98,43 +98,43 @@ deploy_artifacts:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Optional description about the artifact to be deployed.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - Deployment artifact identifier, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         project_id:
             description:
                 - The OCID of a project.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_type:
             description:
                 - Type of the deployment artifact.
             returned: on success
-            type: string
+            type: str
             sample: DEPLOYMENT_SPEC
         argument_substitution_mode:
             description:
                 - Mode for artifact parameter substitution.
             returned: on success
-            type: string
+            type: str
             sample: NONE
         deploy_artifact_source:
             description:
@@ -146,67 +146,67 @@ deploy_artifacts:
                     description:
                         - Specifies types of artifact sources.
                     returned: on success
-                    type: string
+                    type: str
                     sample: INLINE
                 repository_id:
                     description:
                         - The OCID of a repository
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
                 deploy_artifact_path:
                     description:
                         - Specifies the artifact path in the repository.
                     returned: on success
-                    type: string
+                    type: str
                     sample: deploy_artifact_path_example
                 deploy_artifact_version:
                     description:
                         - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ${appVersion}
                 base64_encoded_content:
                     description:
                         - base64 Encoded String
                     returned: on success
-                    type: string
+                    type: str
                     sample: "example_base64_encoded_content"
                 image_uri:
                     description:
                         - "Specifies OCIR Image Path - optionally include tag."
                     returned: on success
-                    type: string
+                    type: str
                     sample: image_uri_example
                 image_digest:
                     description:
                         - Specifies image digest for the version of the image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: image_digest_example
         time_created:
             description:
                 - Time the deployment artifact was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the deployment artifact was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - Current state of the deployment artifact.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A detailed message describing the current state. For example, can be used to provide actionable information for a resource in Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

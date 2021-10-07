@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple HttpRedirect resources in Oracle Cloud Infrastructure
     - Gets a list of HTTP Redirects.
     - If I(http_redirect_id) is specified, the details of a single HttpRedirect will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     http_redirect_id:
@@ -60,11 +60,13 @@ options:
         description:
             - Filter redirects using a display name.
         type: list
+        elements: str
         aliases: ["name"]
     lifecycle_state:
         description:
             - Filter redirects using a list of lifecycle states.
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "ACTIVE"
@@ -105,25 +107,25 @@ http_redirects:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the HTTP Redirect. The name can be changed and does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         domain:
             description:
                 - The domain from which traffic will be redirected.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         target:
             description:
@@ -135,13 +137,13 @@ http_redirects:
                     description:
                         - The protocol used for the target, http or https.
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 host:
                     description:
                         - The host portion of the redirect.
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_example
                 port:
                     description:
@@ -159,7 +161,7 @@ http_redirects:
                           \\"{path}\\", which will be replaced with the path component of the request URL (including its initial \\"/\\"). Only one such
                           replacement token is allowed."
                     returned: on success
-                    type: string
+                    type: str
                     sample: path_example
                 query:
                     description:
@@ -169,7 +171,7 @@ http_redirects:
                           followed by other query characters. A request-copying value must exactly match \\"{query}\\", and will be replaced with the query
                           component of the request URL (including a leading \\"?\\" if and only if the request URL includes a query component)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: query_example
         response_code:
             description:
@@ -182,13 +184,13 @@ http_redirects:
             description:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         lifecycle_state:
             description:
                 - The current lifecycle state of the HTTP Redirect.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:
@@ -296,9 +298,10 @@ def main():
             compartment_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["id", "domain", "target", "displayName"]),
-            display_name=dict(aliases=["name"], type="list"),
+            display_name=dict(aliases=["name"], type="list", elements="str"),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "ACTIVE",

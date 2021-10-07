@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       resource in the Console. For more information, see
       L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "This resource has the following action operations in the M(oci_data_guard_association_actions) module: failover, reinstate, switchover."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_id:
@@ -135,6 +135,7 @@ options:
               - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
             - Applicable when creation_type is 'NewDbSystem'
         type: list
+        elements: str
     backup_network_nsg_ids:
         description:
             - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
@@ -143,6 +144,7 @@ options:
               systems.
             - Applicable when creation_type is 'NewDbSystem'
         type: list
+        elements: str
     hostname:
         description:
             - The hostname for the DB node.
@@ -219,63 +221,63 @@ data_guard_association:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Data Guard association.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the reporting database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         role:
             description:
                 - The role of the reporting database in this Data Guard association.
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         lifecycle_state:
             description:
                 - The current state of the Data Guard association.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycleState, if available.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         peer_db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system containing the associated
                   peer database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         peer_db_home_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home containing the associated peer
                   database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
         peer_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated peer database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         peer_data_guard_association_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the peer database's Data Guard association.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peerdataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
         peer_role:
             description:
                 - The role of the peer database in this Data Guard association.
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         apply_lag:
             description:
@@ -283,14 +285,14 @@ data_guard_association:
                   as computed by the reporting database.
                 - "Example: `9 seconds`"
             returned: on success
-            type: string
+            type: str
             sample: 9 seconds
         apply_rate:
             description:
                 - The rate at which redo logs are synced between the associated databases.
                 - "Example: `180 Mb per second`"
             returned: on success
-            type: string
+            type: str
             sample: 180 Mb per second
         protection_mode:
             description:
@@ -298,7 +300,7 @@ data_guard_association:
                   L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
                   in the Oracle Data Guard documentation.
             returned: on success
-            type: string
+            type: str
             sample: MAXIMUM_AVAILABILITY
         transport_type:
             description:
@@ -306,14 +308,14 @@ data_guard_association:
                   L(Redo Transport Services,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400)
                   in the Oracle Data Guard documentation.
             returned: on success
-            type: string
+            type: str
             sample: SYNC
         time_created:
             description:
                 - The date and time the Data Guard association was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
@@ -492,8 +494,8 @@ def main():
             availability_domain=dict(type="str"),
             shape=dict(type="str"),
             subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list"),
-            backup_network_nsg_ids=dict(type="list"),
+            nsg_ids=dict(type="list", elements="str"),
+            backup_network_nsg_ids=dict(type="list", elements="str"),
             hostname=dict(type="str"),
             peer_vm_cluster_id=dict(type="str"),
             peer_db_home_id=dict(type="str"),

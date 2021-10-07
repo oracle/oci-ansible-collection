@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Includes a list of resource limits that are currently supported.
       If the 'areQuotasSupported' property is true, you can create quota policies on top of this limit at the
       compartment level.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -77,25 +77,25 @@ limit_definitions:
             description:
                 - The resource limit name. To be used for writing policies (in case of quotas) or other programmatic calls.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         service_name:
             description:
                 - The service name of the limit.
             returned: on success
-            type: string
+            type: str
             sample: service_name_example
         description:
             description:
                 - The limit description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         scope_type:
             description:
                 - Reflects the scope of the resource limit, whether Global (across all regions), regional, or availability domain-specific.
             returned: on success
-            type: string
+            type: str
             sample: GLOBAL
         are_quotas_supported:
             description:

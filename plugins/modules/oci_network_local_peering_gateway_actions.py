@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -33,7 +33,7 @@ description:
       to connect to LPGs in the acceptor's compartment. Without that permission, this
       operation will fail. For more information, see
       L(VCN Peering,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/VCNpeering.htm)."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     local_peering_gateway_id:
@@ -90,7 +90,7 @@ local_peering_gateway:
             description:
                 - The OCID of the compartment containing the LPG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -105,7 +105,7 @@ local_peering_gateway:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -120,7 +120,7 @@ local_peering_gateway:
             description:
                 - The LPG's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_cross_tenancy_peering:
             description:
@@ -133,7 +133,7 @@ local_peering_gateway:
             description:
                 - The LPG's current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         peer_advertised_cidr:
             description:
@@ -142,7 +142,7 @@ local_peering_gateway:
                   the individual CIDRs. The value is `null` if the LPG is not peered.
                 - "Example: `192.168.0.0/16`, or if aggregated with `172.16.0.0/24` then `128.0.0.0/1`"
             returned: on success
-            type: string
+            type: str
             sample: 192.168.0.0/16
         peer_advertised_cidr_details:
             description:
@@ -160,19 +160,19 @@ local_peering_gateway:
                   peered. `PENDING` means the peering is being established. `REVOKED` means the
                   LPG at the other end of the peering has been deleted.
             returned: on success
-            type: string
+            type: str
             sample: INVALID
         peering_status_details:
             description:
                 - Additional information regarding the peering status, if applicable.
             returned: on success
-            type: string
+            type: str
             sample: peering_status_details_example
         peer_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the peered LPG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
         route_table_id:
             description:
@@ -180,20 +180,20 @@ local_peering_gateway:
                 - "For information about why you would associate a route table with an LPG, see
                   L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the LPG was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN that uses the LPG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

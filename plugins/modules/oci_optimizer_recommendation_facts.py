@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Recommendation resources in Oracle Cloud Infrastructure
     - Lists the Cloud Advisor recommendations that are currently supported in the specified category.
     - If I(recommendation_id) is specified, the details of a single Recommendation will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     recommendation_id:
@@ -120,37 +120,37 @@ recommendations:
             description:
                 - The unique OCID associated with the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the tenancy. The tenancy is the root compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - The unique OCID associated with the category.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name assigned to the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - Text describing the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         importance:
             description:
                 - The level of importance assigned to the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: CRITICAL
         resource_counts:
             description:
@@ -162,7 +162,7 @@ recommendations:
                     description:
                         - The recommendation status of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PENDING
                 count:
                     description:
@@ -174,7 +174,7 @@ recommendations:
             description:
                 - The recommendation's current state.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         estimated_cost_saving:
             description:
@@ -186,35 +186,35 @@ recommendations:
             description:
                 - The current status of the recommendation.
             returned: on success
-            type: string
+            type: str
             sample: PENDING
         time_status_begin:
             description:
                 - The date and time that the recommendation entered its current status. The format is defined by RFC3339.
                 - "For example, \\"The status of the recommendation changed from `pending` to `current(ignored)` on this date and time.\\""
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_status_end:
             description:
                 - The date and time the current status will change. The format is defined by RFC3339.
                 - "For example, \\"The current `postponed` status of the recommendation will end and change to `pending` on this
                   date and time.\\""
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - The date and time the recommendation details were created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the recommendation details were last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
         supported_levels:
             description:
                 - ""
@@ -231,7 +231,7 @@ recommendations:
                             description:
                                 - The name of the profile level.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

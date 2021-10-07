@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets structured Web Application Firewall event logs for a WAAS
       policy. Sorted by the `timeObserved` in ascending order (starting from the
       oldest recorded event).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -51,10 +51,12 @@ options:
         description:
             - Filters logs by access rule key.
         type: list
+        elements: str
     action:
         description:
             - Filters logs by Web Application Firewall action.
         type: list
+        elements: str
         choices:
             - "BLOCK"
             - "DETECT"
@@ -65,23 +67,28 @@ options:
         description:
             - Filters logs by client IP address.
         type: list
+        elements: str
     country_code:
         description:
             - Filters logs by country code. Country codes are in ISO 3166-1 alpha-2 format. For a list of codes, see L(ISO's
               website,https://www.iso.org/obp/ui/#search/code/).
         type: list
+        elements: str
     country_name:
         description:
             - Filter logs by country name.
         type: list
+        elements: str
     fingerprint:
         description:
             - Filter logs by device fingerprint.
         type: list
+        elements: str
     http_method:
         description:
             - Filter logs by HTTP method.
         type: list
+        elements: str
         choices:
             - "OPTIONS"
             - "GET"
@@ -95,10 +102,12 @@ options:
         description:
             - Filter logs by incident key.
         type: list
+        elements: str
     log_type:
         description:
             - Filter by log type. For more information about WAF logs, see L(Logs,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/logs.htm).
         type: list
+        elements: str
         choices:
             - "ACCESS"
             - "PROTECTION_RULES"
@@ -113,30 +122,37 @@ options:
         description:
             - Filter by origin IP address.
         type: list
+        elements: str
     referrer:
         description:
             - Filter by referrer.
         type: list
+        elements: str
     request_url:
         description:
             - Filter by request URL.
         type: list
+        elements: str
     response_code:
         description:
             - Filter by response code.
         type: list
+        elements: int
     threat_feed_key:
         description:
             - Filter by threat feed key.
         type: list
+        elements: str
     user_agent:
         description:
             - Filter by user agent.
         type: list
+        elements: str
     protection_rule_key:
         description:
             - Filter by protection rule key.
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -158,56 +174,56 @@ waf_logs:
             description:
                 - The action taken on the request, either `ALLOW`, `DETECT`, or `BLOCK`.
             returned: on success
-            type: string
+            type: str
             sample: action_example
         captcha_action:
             description:
                 - The CAPTCHA action taken on the request, `ALLOW` or `BLOCK`. For more information about
                   CAPTCHAs, see `UpdateCaptchas`.
             returned: on success
-            type: string
+            type: str
             sample: captcha_action_example
         captcha_expected:
             description:
                 - The CAPTCHA challenge answer that was expected.
             returned: on success
-            type: string
+            type: str
             sample: captcha_expected_example
         captcha_received:
             description:
                 - The CAPTCHA challenge answer that was received.
             returned: on success
-            type: string
+            type: str
             sample: captcha_received_example
         captcha_fail_count:
             description:
                 - The number of times the CAPTCHA challenge was failed.
             returned: on success
-            type: string
+            type: str
             sample: captcha_fail_count_example
         client_address:
             description:
                 - The IPv4 address of the requesting client.
             returned: on success
-            type: string
+            type: str
             sample: client_address_example
         country_name:
             description:
                 - The name of the country where the request originated.
             returned: on success
-            type: string
+            type: str
             sample: country_name_example
         user_agent:
             description:
                 - The value of the request's `User-Agent` header field.
             returned: on success
-            type: string
+            type: str
             sample: user_agent_example
         domain:
             description:
                 - The `Host` header data of the request.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         protection_rule_detections:
             description:
@@ -221,13 +237,13 @@ waf_logs:
             description:
                 - The HTTP method of the request.
             returned: on success
-            type: string
+            type: str
             sample: http_method_example
         request_url:
             description:
                 - The path and query string of the request.
             returned: on success
-            type: string
+            type: str
             sample: request_url_example
         http_headers:
             description:
@@ -239,7 +255,7 @@ waf_logs:
             description:
                 - The `Referrer` header value of the request.
             returned: on success
-            type: string
+            type: str
             sample: referrer_example
         response_code:
             description:
@@ -259,27 +275,27 @@ waf_logs:
                   each request processed by the Web Application Firewall and is used to
                   idenitfy blocked requests in applicable logs.
             returned: on success
-            type: string
+            type: str
             sample: incident_key_example
         fingerprint:
             description:
                 - The hashed signature of the device's fingerprint. For more information,
                   see `DeviceFingerPrintChallenge`.
             returned: on success
-            type: string
+            type: str
             sample: fingerprint_example
         device:
             description:
                 - The type of device that the request was made from.
             returned: on success
-            type: string
+            type: str
             sample: device_example
         country_code:
             description:
                 - ISO 3166-1 alpha-2 code of the country from which the request originated.
                   For a list of codes, see L(ISO's website,https://www.iso.org/obp/ui/#search/code/).
             returned: on success
-            type: string
+            type: str
             sample: country_code_example
         request_headers:
             description:
@@ -293,45 +309,45 @@ waf_logs:
                 - The `ThreatFeed` key that matched the request. For more information about
                   threat feeds, see `UpdateThreatFeeds`.
             returned: on success
-            type: string
+            type: str
             sample: threat_feed_key_example
         access_rule_key:
             description:
                 - The `AccessRule` key that matched the request. For more information about
                   access rules, see `UpdateAccessRules`.
             returned: on success
-            type: string
+            type: str
             sample: access_rule_key_example
         address_rate_limiting_key:
             description:
                 - The `AddressRateLimiting` key that matched the request. For more information
                   about address rate limiting, see `UpdateWafAddressRateLimiting`.
             returned: on success
-            type: string
+            type: str
             sample: address_rate_limiting_key_example
         timestamp:
             description:
                 - The date and time the Web Application Firewall processed the request and logged it.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         log_type:
             description:
                 - The type of log of the request. For more about log types, see L(Logs,https://docs.cloud.oracle.com/iaas/Content/WAF/Tasks/logs.htm).
             returned: on success
-            type: string
+            type: str
             sample: log_type_example
         origin_address:
             description:
                 - The address of the origin server where the request was sent.
             returned: on success
-            type: string
+            type: str
             sample: origin_address_example
         origin_response_time:
             description:
                 - The amount of time it took the origin server to respond to the request, in seconds.
             returned: on success
-            type: string
+            type: str
             sample: origin_response_time_example
     sample: [{
         "action": "action_example",
@@ -437,16 +453,19 @@ def main():
             time_observed_greater_than_or_equal_to=dict(type="str"),
             time_observed_less_than=dict(type="str"),
             text_contains=dict(type="str"),
-            access_rule_key=dict(type="list"),
+            access_rule_key=dict(type="list", elements="str", no_log=True),
             action=dict(
-                type="list", choices=["BLOCK", "DETECT", "BYPASS", "LOG", "REDIRECTED"]
+                type="list",
+                elements="str",
+                choices=["BLOCK", "DETECT", "BYPASS", "LOG", "REDIRECTED"],
             ),
-            client_address=dict(type="list"),
-            country_code=dict(type="list"),
-            country_name=dict(type="list"),
-            fingerprint=dict(type="list"),
+            client_address=dict(type="list", elements="str"),
+            country_code=dict(type="list", elements="str"),
+            country_name=dict(type="list", elements="str"),
+            fingerprint=dict(type="list", elements="str"),
             http_method=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "OPTIONS",
                     "GET",
@@ -458,9 +477,10 @@ def main():
                     "CONNECT",
                 ],
             ),
-            incident_key=dict(type="list"),
+            incident_key=dict(type="list", elements="str", no_log=True),
             log_type=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ACCESS",
                     "PROTECTION_RULES",
@@ -473,13 +493,13 @@ def main():
                     "ADDRESS_RATE_LIMITING",
                 ],
             ),
-            origin_address=dict(type="list"),
-            referrer=dict(type="list"),
-            request_url=dict(type="list"),
-            response_code=dict(type="list"),
-            threat_feed_key=dict(type="list"),
-            user_agent=dict(type="list"),
-            protection_rule_key=dict(type="list"),
+            origin_address=dict(type="list", elements="str"),
+            referrer=dict(type="list", elements="str"),
+            request_url=dict(type="list", elements="str"),
+            response_code=dict(type="list", elements="int"),
+            threat_feed_key=dict(type="list", elements="str", no_log=True),
+            user_agent=dict(type="list", elements="str"),
+            protection_rule_key=dict(type="list", elements="str", no_log=True),
         )
     )
 

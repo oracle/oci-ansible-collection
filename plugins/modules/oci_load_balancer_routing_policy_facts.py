@@ -12,7 +12,7 @@ __metaclass__ = type
 
 ANSIBLE_METADATA = {
     "metadata_version": "1.1",
-    "status": ["preview"],
+    "status": ["deprecated"],
     "supported_by": "community",
 }
 
@@ -24,7 +24,11 @@ description:
     - Fetches details about one or multiple RoutingPolicy resources in Oracle Cloud Infrastructure
     - Lists all routing policies associated with the specified load balancer.
     - If I(routing_policy_name) is specified, the details of a single RoutingPolicy will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
+deprecated:
+    removed_in: "3.0.0"
+    why: The naming and the return value in the module is confusing and not consistent with other modules in the collection.
+    alternative: Use M(oci_loadbalancer_routing_policy_facts) instead.
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -65,50 +69,52 @@ routing_policies:
                 - The unique name for this list of routing rules. Avoid entering confidential information.
                 - "Example: `example_routing_policy`"
             returned: on success
-            type: string
+            type: str
             sample: example_routing_policy
         condition_language_version:
             description:
                 - The version of the language in which `condition` of `rules` are composed.
             returned: on success
-            type: string
+            type: str
             sample: V1
         rules:
             description:
                 - The ordered list of routing rules.
             returned: on success
             type: complex
+            elements: dict
             contains:
                 name:
                     description:
                         - A unique name for the routing policy rule. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 condition:
                     description:
                         - A routing rule to evaluate defined conditions against the incoming HTTP request and perform an action.
                     returned: on success
-                    type: string
+                    type: str
                     sample: condition_example
                 actions:
                     description:
                         - A list of actions to be applied when conditions of the routing rule are met.
                     returned: on success
                     type: complex
+                    elements: dict
                     contains:
                         name:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: FORWARD_TO_BACKENDSET
                         backend_set_name:
                             description:
                                 - Name of the backend set the listener will forward the traffic to.
                                 - "Example: `backendSetForImages`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: backendSetForImages
     sample: [{
         "name": "example_routing_policy",

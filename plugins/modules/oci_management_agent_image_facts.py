@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ManagementAgentImage re
 description:
     - Fetches details about one or multiple ManagementAgentImage resources in Oracle Cloud Infrastructure
     - Get supported agent image information
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -85,25 +85,25 @@ management_agent_images:
             description:
                 - Agent image resource id
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         platform_type:
             description:
                 - Agent image platform type
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         platform_name:
             description:
                 - Agent image platform display name
             returned: on success
-            type: string
+            type: str
             sample: platform_name_example
         version:
             description:
                 - Agent image version
             returned: on success
-            type: string
+            type: str
             sample: version_example
         size:
             description:
@@ -115,19 +115,19 @@ management_agent_images:
             description:
                 - Agent image content SHA256 Hash
             returned: on success
-            type: string
+            type: str
             sample: checksum_example
         object_url:
             description:
                 - Object storage URL for download
             returned: on success
-            type: string
+            type: str
             sample: object_url_example
         lifecycle_state:
             description:
                 - The current state of Management Agent Image
             returned: on success
-            type: string
+            type: str
             sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

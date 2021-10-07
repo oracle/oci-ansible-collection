@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_optimizer_enrollment_status
 short_description: Manage an EnrollmentStatus resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an EnrollmentStatus resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     enrollment_status_id:
@@ -70,44 +70,44 @@ enrollment_status:
             description:
                 - The OCID of the enrollment status.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The enrollment status' current state.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         status:
             description:
                 - The current Cloud Advisor enrollment status.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         status_reason:
             description:
                 - The reason for the enrollment status of the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: status_reason_example
         time_created:
             description:
                 - The date and time the enrollment status was created, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the enrollment status was last updated, in the format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2020-08-25T21:10:29.600Z
+            type: str
+            sample: "2020-08-25T21:10:29.600Z"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

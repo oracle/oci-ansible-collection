@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Monitor resources in Oracle Cloud Infrastructure
     - Returns a list of monitors.
     - If I(monitor_id) is specified, the details of a single Monitor will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -107,19 +107,19 @@ monitors:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva
         display_name:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
-            type: string
+            type: str
             sample: exampleName
         monitor_type:
             description:
                 - Type of the monitor.
             returned: on success
-            type: string
+            type: str
             sample: SCRIPTED_BROWSER
         vantage_points:
             description:
@@ -131,13 +131,13 @@ monitors:
                     description:
                         - Name of the vantage point.
                     returned: on success
-                    type: string
+                    type: str
                     sample: us_phoenix
                 display_name:
                     description:
                         - Unique name that can be edited. The name should not contain any confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: exampleName
         vantage_point_count:
             description:
@@ -150,19 +150,19 @@ monitors:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the script.
                   scriptId is mandatory for creation of SCRIPTED_BROWSER and SCRIPTED_REST monitor types. For other monitor types, it should be set to null.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq
         script_name:
             description:
                 - Name of the script.
             returned: on success
-            type: string
+            type: str
             sample: testScript
         status:
             description:
                 - Enables or disables the monitor.
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         repeat_interval_in_seconds:
             description:
@@ -187,7 +187,7 @@ monitors:
                   against the specified target endpoint.
                   If target is not specified in the SCRIPTED_BROWSER monitor type, then the monitor will run the selected script as it is.
             returned: on success
-            type: string
+            type: str
             sample: https://www.oracle.com/index.html
         script_parameters:
             description:
@@ -206,13 +206,13 @@ monitors:
                             description:
                                 - Name of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: testName
                         param_value:
                             description:
                                 - Value of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: openPageMonitor
                 is_secret:
                     description:
@@ -237,7 +237,7 @@ monitors:
                     description:
                         - Type of configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: BROWSER_CONFIG
                 is_failure_retried:
                     description:
@@ -262,7 +262,7 @@ monitors:
                             description:
                                 - Verification text in the response.
                             returned: on success
-                            type: string
+                            type: str
                             sample: searchString
                 is_redirection_enabled:
                     description:
@@ -274,13 +274,13 @@ monitors:
                     description:
                         - Request HTTP method.
                     returned: on success
-                    type: string
+                    type: str
                     sample: GET
                 req_authentication_scheme:
                     description:
                         - Request http authentication scheme.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NONE
                 req_authentication_details:
                     description:
@@ -292,31 +292,31 @@ monitors:
                             description:
                                 - Request http oauth scheme.
                             returned: on success
-                            type: string
+                            type: str
                             sample: NONE
                         auth_user_name:
                             description:
                                 - Username for authentication.
                             returned: on success
-                            type: string
+                            type: str
                             sample: user
                         auth_user_password:
                             description:
                                 - User password for authentication.
                             returned: on success
-                            type: string
+                            type: str
                             sample: password
                         auth_token:
                             description:
                                 - Authentication token.
                             returned: on success
-                            type: string
+                            type: str
                             sample: token
                         auth_url:
                             description:
                                 - URL to get authetication token.
                             returned: on success
-                            type: string
+                            type: str
                             sample: https://www.example.com/token
                         auth_headers:
                             description:
@@ -328,25 +328,25 @@ monitors:
                                     description:
                                         - Name of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: content-type
                                 header_value:
                                     description:
                                         - Value of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: json
                         auth_request_method:
                             description:
                                 - Request method.
                             returned: on success
-                            type: string
+                            type: str
                             sample: GET
                         auth_request_post_body:
                             description:
                                 - Request post body.
                             returned: on success
-                            type: string
+                            type: str
                             sample: openPageMonitor
                 request_headers:
                     description:
@@ -358,13 +358,13 @@ monitors:
                             description:
                                 - Name of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: content-type
                         header_value:
                             description:
                                 - Value of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: json
                 request_query_params:
                     description:
@@ -376,26 +376,26 @@ monitors:
                             description:
                                 - Name of request query parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: sortOrder
                         param_value:
                             description:
                                 - Value of request query parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: asc
                 request_post_body:
                     description:
                         - Request post body content.
                     returned: on success
-                    type: string
+                    type: str
                     sample: openPageMonitor
                 verify_response_content:
                     description:
                         - Verify response content against regular expression based string.
                           If response content does not match the verifyResponseContent value, then it will be considered a failure.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "^searchText*"
                 verify_response_codes:
                     description:
@@ -409,16 +409,16 @@ monitors:
                   timestamp format.
                   Example: `2020-02-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-12T22:47:12.613Z
+            type: str
+            sample: "2020-02-12T22:47:12.613Z"
         time_updated:
             description:
                 - "The time the resource was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2020-02-13T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2020-02-13T22:47:12.613Z
+            type: str
+            sample: "2020-02-13T22:47:12.613Z"
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.

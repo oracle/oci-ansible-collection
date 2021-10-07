@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a ReplicationPolicy resource in Oracle Cloud Infrastru
 description:
     - This module allows the user to create and delete a ReplicationPolicy resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a replication policy for the specified bucket.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -109,51 +109,51 @@ replication_policy:
             description:
                 - The id of the replication policy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the policy.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         destination_region_name:
             description:
                 - "The destination region to replicate to, for example \\"us-ashburn-1\\"."
             returned: on success
-            type: string
+            type: str
             sample: destination_region_name_example
         destination_bucket_name:
             description:
                 - The bucket to replicate to in the destination region. Replication policy creation does not automatically
                   create a destination bucket. Create the destination bucket before creating the policy.
             returned: on success
-            type: string
+            type: str
             sample: destination_bucket_name_example
         time_created:
             description:
                 - The date when the replication policy was created as per L(RFC 3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_sync:
             description:
                 - Changes made to the source bucket before this time has been replicated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         status:
             description:
                 - The replication status of the policy. If the status is CLIENT_ERROR, once the user fixes the issue
                   described in the status message, the status will become ACTIVE.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         status_message:
             description:
                 - A human-readable description of the status.
             returned: on success
-            type: string
+            type: str
             sample: status_message_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

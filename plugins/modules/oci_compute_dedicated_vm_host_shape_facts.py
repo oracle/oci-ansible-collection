@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple DedicatedVmHostShape re
 description:
     - Fetches details about one or multiple DedicatedVmHostShape resources in Oracle Cloud Infrastructure
     - Lists the shapes that can be used to launch a dedicated virtual machine host within the specified compartment.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -62,14 +62,14 @@ dedicated_vm_host_shapes:
             description:
                 - The shape's availability domain.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         dedicated_vm_host_shape:
             description:
                 - The name of the dedicated VM host shape. You can enumerate all available shapes by calling
                   L(ListDedicatedVmHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/dedicatedVmHostShapes).
             returned: on success
-            type: string
+            type: str
             sample: dedicated_vm_host_shape_example
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",

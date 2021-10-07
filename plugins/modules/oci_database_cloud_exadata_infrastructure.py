@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a cloud Exadata infrastructure resource. This resource is used to create an L(Exadata Cloud
       Service,https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm) instance.
     - "This resource has the following action operations in the M(oci_cloud_exadata_infrastructure_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     availability_domain:
@@ -82,6 +82,7 @@ options:
                 description:
                     - Months during the year when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -110,10 +111,12 @@ options:
                       Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the
                       week and hours that maintenance will be performed.
                 type: list
+                elements: int
             days_of_week:
                 description:
                     - Days during the week when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -134,6 +137,7 @@ options:
                       - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
                         represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
                 type: list
+                elements: int
             lead_time_in_weeks:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
@@ -156,6 +160,7 @@ options:
             - Customer contacts.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             email:
                 description:
@@ -228,37 +233,37 @@ cloud_exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         display_name:
             description:
                 - The user-friendly name for the cloud Exadata infrastructure resource. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape:
             description:
                 - The model name of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         availability_domain:
             description:
                 - The name of the availability domain that the cloud Exadata infrastructure resource is located in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compute_count:
             description:
@@ -288,13 +293,13 @@ cloud_exadata_infrastructure:
             description:
                 - The date and time the cloud Exadata infrastructure resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         maintenance_window:
             description:
@@ -306,7 +311,7 @@ cloud_exadata_infrastructure:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -318,7 +323,7 @@ cloud_exadata_infrastructure:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -341,7 +346,7 @@ cloud_exadata_infrastructure:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -363,13 +368,13 @@ cloud_exadata_infrastructure:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -399,7 +404,7 @@ cloud_exadata_infrastructure:
                     description:
                         - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -629,7 +634,7 @@ def main():
                             )
                         ),
                     ),
-                    weeks_of_month=dict(type="list"),
+                    weeks_of_month=dict(type="list", elements="int"),
                     days_of_week=dict(
                         type="list",
                         elements="dict",
@@ -649,7 +654,7 @@ def main():
                             )
                         ),
                     ),
-                    hours_of_day=dict(type="list"),
+                    hours_of_day=dict(type="list", elements="int"),
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),

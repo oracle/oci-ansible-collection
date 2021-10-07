@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists all the applications in a service catalog or a tenancy.
       If no parameter is specified, all catalogs from all compartments in
       the tenancy will be scanned for any type of content.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -54,11 +54,13 @@ options:
         description:
             - Limit results to just this publisher.
         type: list
+        elements: str
     package_type:
         description:
             - Name of the package type. If multiple package types are provided, then any resource with
               one or more matching package types will be returned.
         type: list
+        elements: str
         choices:
             - "STACK"
     pricing:
@@ -66,6 +68,7 @@ options:
             - Name of the pricing type. If multiple pricing types are provided, then any resource with
               one or more matching pricing models will be returned.
         type: list
+        elements: str
         choices:
             - "FREE"
             - "BYOL"
@@ -102,19 +105,19 @@ applications:
             description:
                 - Identifier of the application from a service catalog.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
         entity_type:
             description:
                 - The type of an application in the service catalog.
             returned: on success
-            type: string
+            type: str
             sample: entity_type_example
         display_name:
             description:
                 - The name that service catalog should use to display this application.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         is_featured:
             description:
@@ -132,19 +135,19 @@ applications:
                     description:
                         - The unique identifier for the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - The name of the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         short_description:
             description:
                 - A short description of the application.
             returned: on success
-            type: string
+            type: str
             sample: short_description_example
         logo:
             description:
@@ -156,31 +159,31 @@ applications:
                     description:
                         - The name used to refer to the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 content_url:
                     description:
                         - The content URL of the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the uploaded data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
         pricing_type:
             description:
                 - Summary of the pricing types available across all packages in the application.
             returned: on success
-            type: string
+            type: str
             sample: FREE
         package_type:
             description:
                 - The type of the packages withing the application.
             returned: on success
-            type: string
+            type: str
             sample: STACK
     sample: [{
         "entity_id": "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx",
@@ -262,9 +265,11 @@ def main():
             entity_type=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             entity_id=dict(type="str"),
-            publisher_id=dict(type="list"),
-            package_type=dict(type="list", choices=["STACK"]),
-            pricing=dict(type="list", choices=["FREE", "BYOL", "PAYGO"]),
+            publisher_id=dict(type="list", elements="str"),
+            package_type=dict(type="list", elements="str", choices=["STACK"]),
+            pricing=dict(
+                type="list", elements="str", choices=["FREE", "BYOL", "PAYGO"]
+            ),
             is_featured=dict(type="bool"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

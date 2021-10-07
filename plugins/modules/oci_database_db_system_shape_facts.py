@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DbSystemShape resources in Oracle Cloud Infrastructure
     - "Gets a list of the shapes that can be used to launch a new DB system. The shape determines resources to allocate to the DB system - CPU cores and memory
       for VM shapes; CPU cores, memory and storage for non-VM (or bare metal) shapes."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -58,19 +58,19 @@ db_system_shapes:
             description:
                 - The name of the shape used for the DB system.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         shape_family:
             description:
                 - The family of the shape used for the DB system.
             returned: on success
-            type: string
+            type: str
             sample: shape_family_example
         shape:
             description:
                 - Deprecated. Use `name` instead of `shape`.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         available_core_count:
             description:

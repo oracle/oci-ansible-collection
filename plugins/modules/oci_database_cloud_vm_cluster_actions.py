@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a cloud VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud Service instances
       only.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -75,20 +75,20 @@ cloud_vm_cluster:
                     description:
                         - The current state of IORM configuration for the Exadata DB system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: BOOTSTRAPPING
                 lifecycle_details:
                     description:
                         - Additional information about the current `lifecycleState`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
                 objective:
                     description:
                         - The current value for the IORM objective.
                           The default is `AUTO`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: LOW_LATENCY
                 db_plans:
                     description:
@@ -101,7 +101,7 @@ cloud_vm_cluster:
                             description:
                                 - The database name. For the default `DbPlan`, the `dbName` is `default`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: db_name_example
                         share:
                             description:
@@ -114,25 +114,25 @@ cloud_vm_cluster:
                                 - The flash cache limit for this database. This value is internally configured based on the share value assigned to the
                                   database.
                             returned: on success
-                            type: string
+                            type: str
                             sample: flash_cache_limit_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The name of the availability domain that the cloud Exadata infrastructure resource is located in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         subnet_id:
             description:
@@ -143,7 +143,7 @@ cloud_vm_cluster:
                   Specifying an overlapping subnet will cause the private interconnect to malfunction.
                   This restriction applies to both the client subnet and backup subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         backup_subnet_id:
             description:
@@ -151,7 +151,7 @@ cloud_vm_cluster:
                   cluster.
                 - "**Subnet Restriction:** See the subnet restrictions information for **subnetId**."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
@@ -177,13 +177,13 @@ cloud_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance update history entry. This value is
                   updated when a maintenance update starts.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         shape:
             description:
                 - The model name of the Exadata hardware running the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         listener_port:
             description:
@@ -195,7 +195,7 @@ cloud_vm_cluster:
             description:
                 - The current state of the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         node_count:
             description:
@@ -213,38 +213,38 @@ cloud_vm_cluster:
             description:
                 - The user-friendly name for the cloud VM cluster. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - The date and time that the cloud VM cluster was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_zone:
             description:
                 - The time zone of the cloud VM cluster. For details, see L(Exadata Infrastructure Time
                   Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
             returned: on success
-            type: string
+            type: str
             sample: time_zone_example
         hostname:
             description:
                 - The hostname for the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: hostname_example
         domain:
             description:
                 - The domain name for the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         cpu_core_count:
             description:
@@ -257,7 +257,7 @@ cloud_vm_cluster:
                 - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_)
                   are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.
             returned: on success
-            type: string
+            type: str
             sample: cluster_name_example
         data_storage_percentage:
             description:
@@ -280,7 +280,7 @@ cloud_vm_cluster:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         is_sparse_diskgroup_enabled:
             description:
@@ -292,13 +292,13 @@ cloud_vm_cluster:
             description:
                 - A valid Oracle Grid Infrastructure (GI) software version.
             returned: on success
-            type: string
+            type: str
             sample: gi_version_example
         system_version:
             description:
                 - Operating system version of the image.
             returned: on success
-            type: string
+            type: str
             sample: system_version_example
         ssh_public_keys:
             description:
@@ -310,7 +310,7 @@ cloud_vm_cluster:
             description:
                 - The Oracle license model that applies to the cloud VM cluster. The default is LICENSE_INCLUDED.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         disk_redundancy:
             description:
@@ -318,7 +318,7 @@ cloud_vm_cluster:
                   NORMAL is 2-way redundancy.
                   HIGH is 3-way redundancy.
             returned: on success
-            type: string
+            type: str
             sample: HIGH
         scan_ip_ids:
             description:
@@ -345,7 +345,7 @@ cloud_vm_cluster:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DNS record for the SCAN IP addresses that are
                   associated with the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -366,13 +366,13 @@ cloud_vm_cluster:
             description:
                 - The FQDN of the DNS record for the SCAN IP addresses that are associated with the cloud VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: scan_dns_name_example
         zone_id:
             description:
                 - The OCID of the zone the cloud VM cluster is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "iorm_config_cache": {

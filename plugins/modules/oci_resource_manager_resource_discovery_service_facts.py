@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
     - Returns a list of supported services for Resource Discovery. For reference on service names, see the L(Terraform provider
       documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -56,7 +56,7 @@ resource_discovery_services:
                   For reference on service names, see the L(Terraform provider
                   documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services)."
             returned: on success
-            type: string
+            type: str
             sample: core
         discovery_scope:
             description:
@@ -64,7 +64,7 @@ resource_discovery_services:
                   This property determines the type of compartment OCID required: root compartment (`TENANCY`) or not (`COMPARTMENT`).
                   For example, `identity` is at the root compartment scope while `database` is at the compartment scope."
             returned: on success
-            type: string
+            type: str
             sample: TENANCY
     sample: [{
         "name": "core",

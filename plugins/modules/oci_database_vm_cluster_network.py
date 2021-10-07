@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster) operation.
     - "This resource has the following action operations in the M(oci_vm_cluster_network_actions) module: download_validation_report,
       download_vm_cluster_network_config_file, validate."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     exadata_infrastructure_id:
@@ -56,6 +56,7 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             hostname:
                 description:
@@ -79,23 +80,27 @@ options:
                 description:
                     - The list of SCAN IP addresses. Three addresses should be provided.
                 type: list
+                elements: str
                 required: true
     dns:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
             - This parameter is updatable.
         type: list
+        elements: str
     ntp:
         description:
             - The list of NTP server IP addresses. Maximum of 3 allowed.
             - This parameter is updatable.
         type: list
+        elements: str
     vm_networks:
         description:
             - Details of the client and backup networks.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             vlan_id:
                 description:
@@ -129,6 +134,7 @@ options:
                 description:
                     - The list of node details.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     hostname:
@@ -253,31 +259,31 @@ vm_cluster_network:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         exadata_infrastructure_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated VM Cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the VM cluster network. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         scans:
             description:
@@ -289,7 +295,7 @@ vm_cluster_network:
                     description:
                         - The SCAN hostname.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 port:
                     description:
@@ -337,31 +343,31 @@ vm_cluster_network:
                     description:
                         - The network VLAN ID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
                 network_type:
                     description:
                         - The network type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CLIENT
                 netmask:
                     description:
                         - The network netmask.
                     returned: on success
-                    type: string
+                    type: str
                     sample: netmask_example
                 gateway:
                     description:
                         - The network gateway.
                     returned: on success
-                    type: string
+                    type: str
                     sample: gateway_example
                 domain_name:
                     description:
                         - The network domain name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: domain_name_example
                 nodes:
                     description:
@@ -373,43 +379,43 @@ vm_cluster_network:
                             description:
                                 - The node host name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: hostname_example
                         ip:
                             description:
                                 - The node IP address.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ip_example
                         vip_hostname:
                             description:
                                 - The node virtual IP (VIP) host name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: vip_hostname_example
                         vip:
                             description:
                                 - The node virtual IP (VIP) address.
                             returned: on success
-                            type: string
+                            type: str
                             sample: vip_example
         lifecycle_state:
             description:
                 - The current state of the VM cluster network.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time when the VM cluster network was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -630,11 +636,11 @@ def main():
                     port=dict(type="int", required=True),
                     scan_listener_port_tcp=dict(type="int"),
                     scan_listener_port_tcp_ssl=dict(type="int"),
-                    ips=dict(type="list", required=True),
+                    ips=dict(type="list", elements="str", required=True),
                 ),
             ),
-            dns=dict(type="list"),
-            ntp=dict(type="list"),
+            dns=dict(type="list", elements="str"),
+            ntp=dict(type="list", elements="str"),
             vm_networks=dict(
                 type="list",
                 elements="dict",

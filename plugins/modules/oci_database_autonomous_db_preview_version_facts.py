@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AutonomousDbPreviewVersion resources in Oracle Cloud Infrastructure
     - Gets a list of supported Autonomous Database versions. Note that preview version software is only available for
       databases with L(shared Exadata infrastructure,https://docs.cloud.oracle.com/Content/Database/Concepts/adboverview.htm#AEI).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -68,20 +68,20 @@ autonomous_db_preview_versions:
             description:
                 - A valid Autonomous Database preview version.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         time_preview_begin:
             description:
                 - The date and time when the preview version availability begins.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_preview_end:
             description:
                 - The date and time when the preview version availability ends.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         db_workload:
             description:
                 - "The Autonomous Database workload type. The following values are valid:"
@@ -90,13 +90,13 @@ autonomous_db_preview_versions:
                   - AJD - indicates an Autonomous JSON Database
                   - APEX - indicates an Autonomous Database with the Oracle APEX Application Development workload type."
             returned: on success
-            type: string
+            type: str
             sample: OLTP
         details:
             description:
                 - A URL that points to a detailed description of the preview version.
             returned: on success
-            type: string
+            type: str
             sample: details_example
     sample: [{
         "version": "version_example",

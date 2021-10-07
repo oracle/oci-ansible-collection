@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the terms of use agreements that have been accepted in the specified compartment.
       You can filter results by specifying query parameters.
     - If I(accepted_agreement_id) is specified, the details of a single AcceptedAgreement will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     accepted_agreement_id:
@@ -93,44 +93,44 @@ accepted_agreements:
             description:
                 - The unique identifier for the acceptance of the agreement within a specific compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A display name for the accepted agreement.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The unique identifier for the compartment where the agreement was accepted.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         listing_id:
             description:
                 - The unique identifier for the listing associated with the agreement.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         package_version:
             description:
                 - The package version associated with the agreement.
             returned: on success
-            type: string
+            type: str
             sample: package_version_example
         agreement_id:
             description:
                 - The unique identifier for the terms of use agreement itself.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.agreement.oc1..xxxxxxEXAMPLExxxxxx"
         time_accepted:
             description:
                 - The time the agreement was accepted.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         defined_tags:
             description:
                 - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.

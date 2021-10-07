@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Queries any and all compartments in the specified tenancy to find resources that match the specified criteria.
       Results include resources that you have permission to view and can span different resource types.
       You can also sort results based on a specified resource attribute.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     type:
@@ -83,43 +83,43 @@ resources:
             description:
                 - The resource type name.
             returned: on success
-            type: string
+            type: str
             sample: resource_type_example
         identifier:
             description:
                 - The unique identifier for this particular resource, usually an OCID.
             returned: on success
-            type: string
+            type: str
             sample: identifier_example
         compartment_id:
             description:
                 - The OCID of the compartment that contains this resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time that this resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         display_name:
             description:
                 - The display name (or name) of this resource, if one exists.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         availability_domain:
             description:
                 - The availability domain where this resource exists, if applicable.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The lifecycle state of this resource, if applicable.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_state_example
         freeform_tags:
             description:

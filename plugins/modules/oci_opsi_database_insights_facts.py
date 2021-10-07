@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DatabaseInsights resources in Oracle Cloud Infrastructure
     - Gets a list of database insights based on the query parameters specified. Either compartmentId or id query parameter must be specified.
     - If I(database_insight_id) is specified, the details of a single DatabaseInsights will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_insight_id:
@@ -46,6 +46,7 @@ options:
         description:
             - Resource Status
         type: list
+        elements: str
         choices:
             - "DISABLED"
             - "ENABLED"
@@ -54,6 +55,7 @@ options:
         description:
             - Lifecycle states
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "UPDATING"
@@ -67,6 +69,7 @@ options:
             - Filter by one or more database type.
               Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
+        elements: str
         choices:
             - "ADW-S"
             - "ATP-S"
@@ -78,10 +81,12 @@ options:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
         type: list
+        elements: str
     fields:
         description:
             - Specifies the fields to return in a database summary response. By default all fields are returned if omitted.
         type: list
+        elements: str
         choices:
             - "compartmentId"
             - "databaseName"
@@ -131,37 +136,37 @@ database_insights:
             description:
                 - Source of the database entity.
             returned: on success
-            type: string
+            type: str
             sample: AUTONOMOUS_DATABASE
         id:
             description:
                 - Database insight identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment identifier of the database
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - Indicates the status of a database insight in Operations Insights
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         database_type:
             description:
                 - Operations Insights internal representation of the database type.
             returned: on success
-            type: string
+            type: str
             sample: database_type_example
         database_version:
             description:
                 - The version of the database.
             returned: on success
-            type: string
+            type: str
             sample: database_version_example
         processor_count:
             description:
@@ -194,50 +199,50 @@ database_insights:
             description:
                 - The time the the database insight was first enabled. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the database insight was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the database.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         database_name:
             description:
                 - Name of database
             returned: on success
-            type: string
+            type: str
             sample: database_name_example
         database_display_name:
             description:
                 - Display name of database
             returned: on success
-            type: string
+            type: str
             sample: database_display_name_example
         database_resource_type:
             description:
                 - OCI database resource type
             returned: on success
-            type: string
+            type: str
             sample: autonomousdatabase
         db_additional_details:
             description:
@@ -251,49 +256,49 @@ database_insights:
             description:
                 - Enterprise Manager Unique Identifier
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_identifier_example
         enterprise_manager_entity_name:
             description:
                 - Enterprise Manager Entity Name
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_name_example
         enterprise_manager_entity_type:
             description:
                 - Enterprise Manager Entity Type
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_type_example
         enterprise_manager_entity_identifier:
             description:
                 - Enterprise Manager Entity Unique Identifier
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_identifier_example
         enterprise_manager_entity_display_name:
             description:
                 - Enterprise Manager Entity Display Name
             returned: on success
-            type: string
+            type: str
             sample: enterprise_manager_entity_display_name_example
         enterprise_manager_bridge_id:
             description:
                 - OPSI Enterprise Manager Bridge OCID
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         connector_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
         connection_details:
             description:
@@ -305,13 +310,13 @@ database_insights:
                     description:
                         - Name of the listener host that will be used to create the connect string to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_name_example
                 protocol:
                     description:
                         - Protocol used for connection requests.
                     returned: on success
-                    type: string
+                    type: str
                     sample: TCP
                 port:
                     description:
@@ -323,7 +328,7 @@ database_insights:
                     description:
                         - Service name used for connection requests.
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_name_example
         connection_credential_details:
             description:
@@ -335,13 +340,13 @@ database_insights:
                     description:
                         - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
                     returned: on success
-                    type: string
+                    type: str
                     sample: credential_source_name_example
                 credential_type:
                     description:
                         - Credential type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREDENTIALS_BY_SOURCE
         database_host_names:
             description:
@@ -463,9 +468,14 @@ def main():
             database_insight_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
-            status=dict(type="list", choices=["DISABLED", "ENABLED", "TERMINATED"]),
+            status=dict(
+                type="list",
+                elements="str",
+                choices=["DISABLED", "ENABLED", "TERMINATED"],
+            ),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "UPDATING",
@@ -478,6 +488,7 @@ def main():
             ),
             database_type=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ADW-S",
                     "ATP-S",
@@ -487,9 +498,10 @@ def main():
                     "EXTERNAL-NONCDB",
                 ],
             ),
-            database_id=dict(type="list"),
+            database_id=dict(type="list", elements="str"),
             fields=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "compartmentId",
                     "databaseName",

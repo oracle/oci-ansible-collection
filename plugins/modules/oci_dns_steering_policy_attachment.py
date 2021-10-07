@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       be attached to a domain for the policy to answer DNS queries for that domain.
     - For the purposes of access control, the attachment is automatically placed
       into the same compartment as the domain's zone.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     steering_policy_id:
@@ -138,19 +138,19 @@ steering_policy_attachment:
             description:
                 - The OCID of the attached steering policy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         zone_id:
             description:
                 - The OCID of the attached zone.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
         domain_name:
             description:
                 - The attached domain within the attached zone.
             returned: on success
-            type: string
+            type: str
             sample: domain_name_example
         display_name:
             description:
@@ -158,7 +158,7 @@ steering_policy_attachment:
                   Does not have to be unique and can be changed.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         rtypes:
             description:
@@ -172,32 +172,32 @@ steering_policy_attachment:
             description:
                 - The OCID of the compartment containing the steering policy attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         id:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
     sample: {
         "steering_policy_id": "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx",

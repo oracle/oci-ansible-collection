@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Backup resources in Oracle Cloud Infrastructure
     - Gets a list of backups based on the `databaseId` or `compartmentId` specified. Either one of these query parameters must be provided.
     - If I(backup_id) is specified, the details of a single Backup will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     backup_id:
@@ -67,67 +67,67 @@ backups:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name for the backup. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         type:
             description:
                 - The type of backup.
             returned: on success
-            type: string
+            type: str
             sample: INCREMENTAL
         time_started:
             description:
                 - The date and time the backup started.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_ended:
             description:
                 - The date and time the backup was completed.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         availability_domain:
             description:
                 - The name of the availability domain where the database backup is stored.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The current state of the backup.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         database_edition:
             description:
                 - The Oracle Database edition of the DB system from which the database backup was taken.
             returned: on success
-            type: string
+            type: str
             sample: STANDARD_EDITION
         database_size_in_gbs:
             description:
@@ -139,19 +139,19 @@ backups:
             description:
                 - Shape of the backup's source database.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         version:
             description:
                 - Version of the backup's source database
             returned: on success
-            type: string
+            type: str
             sample: version_example
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

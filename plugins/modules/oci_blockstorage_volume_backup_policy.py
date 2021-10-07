@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new user defined backup policy.
     - For more information about Oracle defined backup policies and user defined backup policies,
       see L(Policy-Based Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -58,6 +58,7 @@ options:
               L(Policy-Based Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm) for more information.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             backup_type:
                 description:
@@ -237,13 +238,13 @@ volume_backup_policy:
                 - A user-friendly name for the volume backup policy. Does not have to be unique and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - The OCID of the volume backup policy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         schedules:
             description:
@@ -255,7 +256,7 @@ volume_backup_policy:
                     description:
                         - The type of volume backup to create.
                     returned: on success
-                    type: string
+                    type: str
                     sample: FULL
                 offset_seconds:
                     description:
@@ -269,7 +270,7 @@ volume_backup_policy:
                     description:
                         - The volume backup frequency.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ONE_HOUR
                 offset_type:
                     description:
@@ -290,7 +291,7 @@ volume_backup_policy:
                         - For clients using older versions of Apis and not sending `offsetType` in their
                           requests, the behaviour is just like `NUMERIC_SECONDS`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: STRUCTURED
                 hour_of_day:
                     description:
@@ -302,7 +303,7 @@ volume_backup_policy:
                     description:
                         - The day of the week to schedule the volume backup.
                     returned: on success
-                    type: string
+                    type: str
                     sample: MONDAY
                 day_of_month:
                     description:
@@ -314,7 +315,7 @@ volume_backup_policy:
                     description:
                         - The month of the year to schedule the volume backup.
                     returned: on success
-                    type: string
+                    type: str
                     sample: JANUARY
                 retention_seconds:
                     description:
@@ -326,7 +327,7 @@ volume_backup_policy:
                     description:
                         - Specifies what time zone is the schedule in
                     returned: on success
-                    type: string
+                    type: str
                     sample: UTC
         destination_region:
             description:
@@ -334,19 +335,19 @@ volume_backup_policy:
                   See L(Region Pairs,https://docs.cloud.oracle.com/iaas/Content/Block/Tasks/schedulingvolumebackups.htm#RegionPairs) for details about paired
                   regions.
             returned: on success
-            type: string
+            type: str
             sample: destination_region_example
         time_created:
             description:
                 - The date and time the volume backup policy was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the volume backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:

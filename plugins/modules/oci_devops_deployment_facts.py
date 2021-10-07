@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
     - Returns a list of deployments.
     - If I(deployment_id) is specified, the details of a single Deployment will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deployment_id:
@@ -126,13 +126,13 @@ deployments:
                             description:
                                 - The OCID of an artifact
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the artifact. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         deploy_pipeline_stages:
                             description:
@@ -150,13 +150,13 @@ deployments:
                                             description:
                                                 - The OCID of a stage
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
                                         display_name:
                                             description:
                                                 - Display name of the stage. Avoid entering confidential information.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: display_name_example
         deploy_pipeline_environments:
             description:
@@ -174,13 +174,13 @@ deployments:
                             description:
                                 - The OCID of an Environment
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the environment. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         deploy_pipeline_stages:
                             description:
@@ -198,74 +198,74 @@ deployments:
                                             description:
                                                 - The OCID of a stage
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
                                         display_name:
                                             description:
                                                 - Display name of the stage. Avoid entering confidential information.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: display_name_example
         deployment_type:
             description:
                 - Specifies type of Deployment
             returned: on success
-            type: string
+            type: str
             sample: PIPELINE_DEPLOYMENT
         id:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Deployment identifier which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         project_id:
             description:
                 - The OCID of a project.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_id:
             description:
                 - The OCID of a pipeline.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Time the deployment was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the deployment was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the deployment.
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         deployment_arguments:
             description:
@@ -283,13 +283,13 @@ deployments:
                             description:
                                 - Name of the parameter (case-sensitive).
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - value of the argument.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
         deploy_artifact_override_arguments:
             description:
@@ -307,19 +307,19 @@ deployments:
                             description:
                                 - The OCID of the artifact to which this parameter applies.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                         name:
                             description:
                                 - Name of the parameter (case-sensitive).
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - Value of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
         deployment_execution_progress:
             description:
@@ -331,14 +331,14 @@ deployments:
                     description:
                         - Time the deployment is started. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_finished:
                     description:
                         - Time the deployment is finished. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 deploy_stage_execution_progress:
                     description:
                         - Map of stage OCIDs to deploy stage execution progress model.
@@ -349,37 +349,37 @@ deployments:
                             description:
                                 - Stage display name. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: deploy_stage_display_name_example
                         deploy_stage_type:
                             description:
                                 - Deployment stage type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
                         deploy_stage_id:
                             description:
                                 - The OCID of the stage.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
                         time_started:
                             description:
                                 - Time the stage started executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         time_finished:
                             description:
                                 - Time the stage finished executing. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         status:
                             description:
                                 - The current state of the stage.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ACCEPTED
                         deploy_stage_predecessors:
                             description:
@@ -398,7 +398,7 @@ deployments:
                                                 - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the
                                                   pipeline's OCID.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         deploy_stage_execution_progress_details:
                             description:
@@ -410,13 +410,13 @@ deployments:
                                     description:
                                         - The function ID, instance ID or the cluster ID. For Wait stage it will be the stage ID.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
                                 target_group:
                                     description:
                                         - Group for the target environment for example, the batch number for an Instance Group deployment.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: target_group_example
                                 steps:
                                     description:
@@ -428,26 +428,26 @@ deployments:
                                             description:
                                                 - Name of the step.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: name_example
                                         state:
                                             description:
                                                 - State of the step.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: WAITING
                                         time_started:
                                             description:
                                                 - Time when the step started.
                                             returned: on success
-                                            type: string
-                                            sample: 2013-10-20T19:20:30+01:00
+                                            type: str
+                                            sample: "2013-10-20T19:20:30+01:00"
                                         time_finished:
                                             description:
                                                 - Time when the step finished.
                                             returned: on success
-                                            type: string
-                                            sample: 2013-10-20T19:20:30+01:00
+                                            type: str
+                                            sample: "2013-10-20T19:20:30+01:00"
                                 rollback_steps:
                                     description:
                                         - Details about all the rollback steps for one target environment.
@@ -458,26 +458,26 @@ deployments:
                                             description:
                                                 - Name of the step.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: name_example
                                         state:
                                             description:
                                                 - State of the step.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: WAITING
                                         time_started:
                                             description:
                                                 - Time when the step started.
                                             returned: on success
-                                            type: string
-                                            sample: 2013-10-20T19:20:30+01:00
+                                            type: str
+                                            sample: "2013-10-20T19:20:30+01:00"
                                         time_finished:
                                             description:
                                                 - Time when the step finished.
                                             returned: on success
-                                            type: string
-                                            sample: 2013-10-20T19:20:30+01:00
+                                            type: str
+                                            sample: "2013-10-20T19:20:30+01:00"
                         approval_actions:
                             description:
                                 - ""
@@ -488,13 +488,13 @@ deployments:
                                     description:
                                         - The subject ID of the user who approves or disapproves a DevOps deployment stage.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx"
                                 action:
                                     description:
                                         - The action of the user on the DevOps deployment stage.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: APPROVE
         freeform_tags:
             description:
@@ -522,13 +522,13 @@ deployments:
             description:
                 - Specifies the OCID of the previous deployment to be redeployed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_id:
             description:
                 - Specifies the OCID of the stage to be deployed.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "deploy_pipeline_artifacts": {

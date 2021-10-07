@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
         * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
         us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
     - If I(cpe_device_shape_id) is specified, the details of a single CpeDeviceShape will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cpe_device_shape_id:
@@ -69,7 +69,7 @@ cpe_device_shapes:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device shape.
                   This value uniquely identifies the type of CPE device.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_device_info:
             description:
@@ -81,13 +81,13 @@ cpe_device_shapes:
                     description:
                         - The vendor that makes the CPE device.
                     returned: on success
-                    type: string
+                    type: str
                     sample: vendor_example
                 platform_software_version:
                     description:
                         - The platform or software version of the CPE device.
                     returned: on success
-                    type: string
+                    type: str
                     sample: platform_software_version_example
         parameters:
             description:
@@ -105,20 +105,20 @@ cpe_device_shapes:
                     description:
                         - A string that identifies the question.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - A descriptive label for the question (for example, to display in a form in a graphical interface).
                           Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 explanation:
                     description:
                         - A description or explanation of the question, to help the customer answer accurately.
                     returned: on success
-                    type: string
+                    type: str
                     sample: explanation_example
         template:
             description:
@@ -130,14 +130,14 @@ cpe_device_shapes:
                     * L(GetTunnelCpeDeviceConfigContent,https://docs.cloud.oracle.com/en-
                     us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent)"
             returned: on success
-            type: string
+            type: str
             sample: template_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device shape.
                   This value uniquely identifies the type of CPE device.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "cpe_device_shape_id": "ocid1.cpedeviceshape.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
     - For I(action=start), starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=stop), stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=upgrade), upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deployment_id:
@@ -102,58 +102,58 @@ deployment:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - An object's Display Name.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Metadata about this specific object.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_backup_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
                   `2016-08-25T21:10:29.600Z`.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - Possible lifecycle states.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -179,19 +179,19 @@ deployment:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         fqdn:
             description:
                 - A three-label Fully Qualified Domain Name (FQDN) for a resource.
             returned: on success
-            type: string
+            type: str
             sample: fqdn_example
         license_model:
             description:
                 - The Oracle license model that applies to a Deployment.
             returned: on success
-            type: string
+            type: str
             sample: LICENSE_INCLUDED
         cpu_core_count:
             description:
@@ -222,19 +222,19 @@ deployment:
             description:
                 - The public IP address representing the access point for the Deployment.
             returned: on success
-            type: string
+            type: str
             sample: public_ip_address_example
         private_ip_address:
             description:
                 - The private IP address in the customer's VCN representing the access point for the associated endpoint service in the GoldenGate service VCN.
             returned: on success
-            type: string
+            type: str
             sample: private_ip_address_example
         deployment_url:
             description:
                 - The URL of a resource.
             returned: on success
-            type: string
+            type: str
             sample: deployment_url_example
         system_tags:
             description:
@@ -255,7 +255,7 @@ deployment:
             description:
                 - The deployment type.
             returned: on success
-            type: string
+            type: str
             sample: OGG
         ogg_data:
             description:
@@ -268,19 +268,19 @@ deployment:
                         - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
                           characters and must start with a letter.
                     returned: on success
-                    type: string
+                    type: str
                     sample: deployment_name_example
                 admin_username:
                     description:
                         - The GoldenGate deployment console username.
                     returned: on success
-                    type: string
+                    type: str
                     sample: oggadmin
                 certificate:
                     description:
                         - A PEM-encoded SSL certificate.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AppCatalogListingResourceVersion resources in Oracle Cloud Infrastructure
     - Gets all resource versions for a particular listing.
     - If I(resource_version) is specified, the details of a single AppCatalogListingResourceVersion will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -73,26 +73,26 @@ app_catalog_listing_resource_versions:
             description:
                 - The OCID of the listing this resource version belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         time_published:
             description:
                 - "Date and time the listing resource version was published, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
-            type: string
-            sample: 2018-03-20T12:32:53.532Z
+            type: str
+            sample: "2018-03-20T12:32:53.532Z"
         listing_resource_id:
             description:
                 - OCID of the listing resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Resource Version.
             returned: on success
-            type: string
+            type: str
             sample: listing_resource_version_example
         available_regions:
             description:

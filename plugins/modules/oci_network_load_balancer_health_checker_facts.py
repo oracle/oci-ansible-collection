@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a HealthChecker resource in Oracle Clou
 description:
     - Fetches details about a HealthChecker resource in Oracle Cloud Infrastructure
     - Retrieves the health check policy information for a given network load balancer and backend set.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -62,7 +62,7 @@ health_checker:
                 - The protocol the health check must use; either HTTP or HTTPS, or UDP or TCP.
                 - "Example: `HTTP`"
             returned: on success
-            type: string
+            type: str
             sample: HTTP
         port:
             description:
@@ -100,14 +100,14 @@ health_checker:
                 - The path against which to run the health check.
                 - "Example: `/healthcheck`"
             returned: on success
-            type: string
+            type: str
             sample: /healthcheck
         response_body_regex:
             description:
                 - A regular expression for parsing the response body from the backend server.
                 - "Example: `^((?!false).|\\\\s)*$`"
             returned: on success
-            type: string
+            type: str
             sample: "^((?!false).|\\\\s)*$"
         return_code:
             description:
@@ -121,13 +121,13 @@ health_checker:
             description:
                 - Base64 encoded pattern to be sent as UDP or TCP health check probe.
             returned: on success
-            type: string
+            type: str
             sample: "example_request_data"
         response_data:
             description:
                 - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
             returned: on success
-            type: string
+            type: str
             sample: "example_response_data"
     sample: {
         "protocol": "HTTP",

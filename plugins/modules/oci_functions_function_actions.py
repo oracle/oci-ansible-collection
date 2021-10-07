@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a Function resource in Oracle Cloud Infras
 description:
     - Perform actions on a Function resource in Oracle Cloud Infrastructure
     - For I(action=invoke), invokes a function
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     dest:
@@ -79,154 +79,6 @@ EXAMPLES = """
 
 """
 
-RETURN = """
-function:
-    description:
-        - Details of the Function resource acted upon by the current operation
-    returned: on success
-    type: complex
-    contains:
-        id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
-            returned: on success
-            type: string
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name:
-            description:
-                - The display name of the function. The display name is unique within the application containing the function.
-            returned: on success
-            type: string
-            sample: display_name_example
-        lifecycle_state:
-            description:
-                - The current state of the function.
-            returned: on success
-            type: string
-            sample: CREATING
-        application_id:
-            description:
-                - The OCID of the application the function belongs to.
-            returned: on success
-            type: string
-            sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id:
-            description:
-                - The OCID of the compartment that contains the function.
-            returned: on success
-            type: string
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        image:
-            description:
-                - "The qualified name of the Docker image to use in the function, including the image tag.
-                  The image should be in the OCI Registry that is in the same region as the function itself.
-                  Example: `phx.ocir.io/ten/functions/function:0.0.1`"
-            returned: on success
-            type: string
-            sample: phx.ocir.io/ten/functions/function:0.0.1
-        image_digest:
-            description:
-                - "The image digest for the version of the image that will be pulled when invoking this function.
-                  If no value is specified, the digest currently associated with the image in the OCI Registry will be used.
-                  Example: `sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7`"
-            returned: on success
-            type: string
-            sample: sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7
-        memory_in_mbs:
-            description:
-                - Maximum usable memory for the function (MiB).
-            returned: on success
-            type: int
-            sample: 56
-        config:
-            description:
-                - Function configuration. Overrides application configuration.
-                  Keys must be ASCII strings consisting solely of letters, digits, and the '_' (underscore) character, and must not begin with a digit. Values
-                  should be limited to printable unicode characters.
-                - "Example: `{\\"MY_FUNCTION_CONFIG\\": \\"ConfVal\\"}`"
-                - The maximum size for all configuration keys and values is limited to 4KB. This is measured as the sum of octets necessary to represent each
-                  key and value in UTF-8.
-            returned: on success
-            type: dict
-            sample: {}
-        timeout_in_seconds:
-            description:
-                - Timeout for executions of the function. Value in seconds.
-            returned: on success
-            type: int
-            sample: 56
-        trace_config:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                is_enabled:
-                    description:
-                        - Define if tracing is enabled for the resource.
-                    returned: on success
-                    type: bool
-                    sample: true
-        freeform_tags:
-            description:
-                - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            returned: on success
-            type: dict
-            sample: {'Department': 'Finance'}
-        invoke_endpoint:
-            description:
-                - The base https invoke URL to set on a client in order to invoke a function. This URL will never change over the lifetime of the function and
-                  can be cached.
-            returned: on success
-            type: string
-            sample: invoke_endpoint_example
-        defined_tags:
-            description:
-                - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            returned: on success
-            type: dict
-            sample: {'Operations': {'CostCenter': 'US'}}
-        time_created:
-            description:
-                - The time the function was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2018-09-12T22:47:12.613Z`"
-            returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
-        time_updated:
-            description:
-                - The time the function was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
-                  timestamp format.
-                - "Example: `2018-09-12T22:47:12.613Z`"
-            returned: on success
-            type: string
-            sample: 2018-09-12T22:47:12.613Z
-    sample: {
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
-        "display_name": "display_name_example",
-        "lifecycle_state": "CREATING",
-        "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
-        "image": "phx.ocir.io/ten/functions/function:0.0.1",
-        "image_digest": "sha256:ca0eeb6fb05351dfc8759c20733c91def84cb8007aa89a5bf606bc8b315b9fc7",
-        "memory_in_mbs": 56,
-        "config": {},
-        "timeout_in_seconds": 56,
-        "trace_config": {
-            "is_enabled": true
-        },
-        "freeform_tags": {'Department': 'Finance'},
-        "invoke_endpoint": "invoke_endpoint_example",
-        "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "time_created": "2018-09-12T22:47:12.613Z",
-        "time_updated": "2018-09-12T22:47:12.613Z"
-    }
-"""
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_bytes

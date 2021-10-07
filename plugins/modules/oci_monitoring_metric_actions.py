@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       For important limits information, see L(Limits on
       Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
       Transactions Per Second (TPS) per-tenancy limit for this operation: 10."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -52,18 +52,17 @@ options:
         type: str
     resource_group:
         description:
-            - Resource group that you want to use as a filter. The specified resource group must exist in the definition of the posted metric. Only one resource
-              group can be applied per metric.
+            - Resource group that you want to match. A null value returns only metric data that has no resource groups. The specified resource group must exist
+              in the definition of the posted metric. Only one resource group can be applied per metric.
               A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens
               (-), and dollar signs ($).
-              Avoid entering confidential information.
             - "Example: `frontend-fleet`"
         type: str
     dimension_filters:
         description:
             - Qualifiers that you want to use when searching for metric definitions.
               Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.
-            - "Example: { \\"resourceId\\": \\"<var>&lt;instance_OCID&gt;</var>\\" }"
+            - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
         type: dict
     group_by:
         description:
@@ -72,6 +71,7 @@ options:
             - "Example - group by namespace:
               `[ \\"namespace\\" ]`"
         type: list
+        elements: str
     sort_by:
         description:
             - The field to use when sorting returned metric definitions. Only one sorting level is provided.
@@ -147,32 +147,31 @@ metric:
                 - The name of the metric.
                 - "Example: `CpuUtilization`"
             returned: on success
-            type: string
+            type: str
             sample: CpuUtilization
         namespace:
             description:
                 - The source service or application emitting the metric.
                 - "Example: `oci_computeagent`"
             returned: on success
-            type: string
+            type: str
             sample: oci_computeagent
         resource_group:
             description:
-                - Resource group provided with the posted metric. A resource group is a custom string that can be used as a filter. Only one resource group can
-                  be applied per metric.
+                - Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only
+                  one resource group can be applied per metric.
                   A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_),
                   hyphens (-), and dollar signs ($).
-                  Avoid entering confidential information.
                 - "Example: `frontend-fleet`"
             returned: on success
-            type: string
+            type: str
             sample: frontend-fleet
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing
                   the resources monitored by the metric.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..exampleuniqueID"
         dimensions:
             description:
@@ -261,7 +260,7 @@ def main():
             namespace=dict(type="str"),
             resource_group=dict(type="str"),
             dimension_filters=dict(type="dict"),
-            group_by=dict(type="list"),
+            group_by=dict(type="list", elements="str"),
             sort_by=dict(type="str", choices=["NAMESPACE", "NAME", "RESOURCEGROUP"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             compartment_id_in_subtree=dict(type="bool"),

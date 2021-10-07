@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -32,7 +32,7 @@ description:
       When provided, if-match is checked against the ETag values of the secret.
     - For I(action=schedule_secret_deletion), schedules the deletion of the specified secret. This sets the lifecycle state of the secret
       to `PENDING_DELETION` and then deletes it after the specified retention period ends.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     secret_id:
@@ -95,7 +95,7 @@ secret:
             description:
                 - The OCID of the compartment where you want to create the secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         current_version_number:
             description:
@@ -115,7 +115,7 @@ secret:
             description:
                 - A brief description of the secret. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         freeform_tags:
             description:
@@ -129,25 +129,25 @@ secret:
             description:
                 - The OCID of the secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
                 - The OCID of the master encryption key that is used to encrypt the secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state of the secret.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the secret.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         metadata:
             description:
@@ -161,7 +161,7 @@ secret:
             description:
                 - The user-friendly name of the secret. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: secret_name_example
         secret_rules:
             description:
@@ -173,7 +173,7 @@ secret:
                     description:
                         - The type of rule, which either controls when the secret contents expire or whether they can be reused.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SECRET_EXPIRY_RULE
                 secret_version_expiry_interval:
                     description:
@@ -186,7 +186,7 @@ secret:
                           supported.
                           For example, pass `P3D` to have the secret version expire every 3 days.
                     returned: on success
-                    type: string
+                    type: str
                     sample: secret_version_expiry_interval_example
                 time_of_absolute_expiry:
                     description:
@@ -195,8 +195,8 @@ secret:
                           The minimum number of days from current time is 1 day and the maximum number of days from current time is 365 days.
                           Example: `2019-04-03T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-04-03T21:10:29.600Z
+                    type: str
+                    sample: "2019-04-03T21:10:29.600Z"
                 is_secret_content_retrieval_blocked_on_expiry:
                     description:
                         - A property indicating whether to block retrieval of the secret content, on expiry. The default is false.
@@ -216,28 +216,28 @@ secret:
                 - "A property indicating when the secret was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         time_of_current_version_expiry:
             description:
                 - "An optional property indicating when the current secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
                   timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         time_of_deletion:
             description:
                 - "An optional property indicating when to delete the secret, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         vault_id:
             description:
                 - The OCID of the vault where the secret exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

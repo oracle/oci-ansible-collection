@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
     - For I(action=stop), stops an active Digital Assistant instance. Once inactive, the instance will not be accessible and metering
       of requests will be stopped until the instance is started again. Data associated with the instance
       is not affected.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     oda_instance_id:
@@ -86,77 +86,77 @@ oda_instance:
             description:
                 - Unique immutable identifier that was assigned when the instance was created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User-defined name for the Digital Assistant instance. Avoid entering confidential information.
                   You can change this value.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of the Digital Assistant instance.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - Identifier of the compartment that the instance belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         shape_name:
             description:
                 - Shape or size of the instance.
             returned: on success
-            type: string
+            type: str
             sample: DEVELOPMENT
         web_app_url:
             description:
                 - URL for the Digital Assistant web application that's associated with the instance.
             returned: on success
-            type: string
+            type: str
             sample: web_app_url_example
         connector_url:
             description:
                 - URL for the connector's endpoint.
             returned: on success
-            type: string
+            type: str
             sample: connector_url_example
         time_created:
             description:
                 - When the Digital Assistant instance was created. A date-time string as described in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339), section
                   14.29.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - When the Digital Assistance instance was last updated. A date-time string as described in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339),
                   section 14.29.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Digital Assistant instance.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_sub_state:
             description:
                 - The current sub-state of the Digital Assistant instance.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         state_message:
             description:
                 - A message that describes the current state in more detail.
                   For example, actionable information about an instance that's in the `FAILED` state.
             returned: on success
-            type: string
+            type: str
             sample: state_message_example
         freeform_tags:
             description:

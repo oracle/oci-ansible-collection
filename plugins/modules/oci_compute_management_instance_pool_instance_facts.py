@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple InstancePoolInstance resources in Oracle Cloud Infrastructure
     - List the instances in the specified instance pool.
     - If I(instance_id) is specified, the details of a single InstancePoolInstance will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_pool_id:
@@ -97,79 +97,79 @@ instance_pool_instances:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_pool_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         lifecycle_state:
             description:
                 - The attachment state of the instance in relation to the instance pool.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the
                   instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name. Does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         fault_domain:
             description:
                 - The fault domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: fault_domain_example
         instance_configuration_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance configuration
                   used to create the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region that contains the availability domain the instance is running in.
             returned: on success
-            type: string
+            type: str
             sample: region_example
         shape:
             description:
                 - The shape of the instance. The shape determines the number of CPUs, amount of memory,
                   and other resources allocated to the instance.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         state:
             description:
                 - The lifecycle state of the instance. Refer to `lifecycleState` in the L(Instance,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/latest/Instance) resource.
             returned: on success
-            type: string
+            type: str
             sample: state_example
         time_created:
             description:
                 - "The date and time the instance pool instance was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         load_balancer_backends:
             description:
                 - The load balancer backends that are configured for the instance.
@@ -180,25 +180,25 @@ instance_pool_instances:
                     description:
                         - The OCID of the load balancer attached to the instance pool.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 backend_set_name:
                     description:
                         - The name of the backend set on the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backend_set_name_example
                 backend_name:
                     description:
                         - The name of the backend in the backend set.
                     returned: on success
-                    type: string
+                    type: str
                     sample: backend_name_example
                 backend_health_status:
                     description:
                         - The health of the backend as observed by the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OK
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Hostname resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a hostname resource to the specified load balancer. For more information, see
       L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -94,7 +94,7 @@ hostname:
                   information.
                 - "Example: `example_hostname_001`"
             returned: on success
-            type: string
+            type: str
             sample: example_hostname_001
         hostname:
             description:
@@ -102,7 +102,7 @@ hostname:
                   L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm#routing).
                 - "Example: `app.example.com`"
             returned: on success
-            type: string
+            type: str
             sample: app.example.com
     sample: {
         "name": "example_hostname_001",

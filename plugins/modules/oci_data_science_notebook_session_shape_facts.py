@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple NotebookSessionShape re
 description:
     - Fetches details about one or multiple NotebookSessionShape resources in Oracle Cloud Infrastructure
     - Lists the valid notebook session shapes.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -53,7 +53,7 @@ notebook_session_shapes:
             description:
                 - The name of the notebook session shape.
             returned: on success
-            type: string
+            type: str
             sample: VM.STANDARD2.1
         core_count:
             description:
@@ -71,7 +71,7 @@ notebook_session_shapes:
             description:
                 - The family that the compute shape belongs to.
             returned: on success
-            type: string
+            type: str
             sample: AMD_ROME
     sample: [{
         "name": "VM.STANDARD2.1",

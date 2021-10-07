@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Job resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a job.
     - "This resource has the following action operations in the M(oci_job_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     project_id:
@@ -220,44 +220,44 @@ job:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "The date and time the resource was created in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: 2020-08-06T21:10:29.41Z"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the job.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate the job with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the job.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly display name for the resource.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - A short description of the job.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         job_configuration_details:
             description:
@@ -269,7 +269,7 @@ job:
                     description:
                         - The type of job.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DEFAULT
                 environment_variables:
                     description:
@@ -281,7 +281,7 @@ job:
                     description:
                         - The arguments to pass to the job.
                     returned: on success
-                    type: string
+                    type: str
                     sample: command_line_arguments_example
                 maximum_runtime_in_minutes:
                     description:
@@ -299,19 +299,19 @@ job:
                     description:
                         - The infrastructure type used for job run.
                     returned: on success
-                    type: string
+                    type: str
                     sample: STANDALONE
                 shape_name:
                     description:
                         - The shape used to launch the job run instances.
                     returned: on success
-                    type: string
+                    type: str
                     sample: shape_name_example
                 subnet_id:
                     description:
                         - The subnet to create a secondary vnic in to attach to the instance running the job
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
                 block_storage_size_in_gbs:
                     description:
@@ -341,25 +341,25 @@ job:
                     description:
                         - The log group id for where log objects are for job runs.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 log_id:
                     description:
                         - The log id the job run will push logs too.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The state of the job.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_details:
             description:
                 - The state of the job.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

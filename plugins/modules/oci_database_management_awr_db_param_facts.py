@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,18 +23,19 @@ module: oci_database_management_awr_db_param_facts
 short_description: Fetches details about a AwrDbParam resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AwrDbParam resource in Oracle Cloud Infrastructure
-    - "Summarizes the AWR database parameter history for the specified Managed Database. This includes the list of database
+    - "Summarizes the database parameter history for the specified database in AWR. This includes the list of database
       parameters, with information on whether the parameter values were modified within the query time range. Note that
-      each database parameter is only listed once. The returned summary gets all the database parameters, which include:
-       -Each parameter whose value was changed during the time range: AwrDbParameterValueOptionalQueryParam (valueChanged =\\"Y\\")
-       -Each parameter whose value was unchanged during the time range: AwrDbParameterValueOptionalQueryParam (valueChanged =\\"N\\")
-       -Each parameter whose value was changed at the system level during the time range: (valueChanged =\\"Y\\"  and valueModified = \\"SYSTEM_MOD\\").
-       -Each parameter whose value was unchanged during the time range, however, the value is not the default value: (valueChanged =\\"N\\" and  valueDefault =
-       \\"FALSE\\")
-      Note that this API does not return information on the number of times each database parameter has been changed within the time range. To get the database
+      each database parameter is only listed once. Depending on the optional query parameters, the returned summary gets all the database parameters, which
+      include:"
+    - "- Each parameter whose value was changed during the time range:  (valueChanged =\\"Y\\")
+      - Each parameter whose value was unchanged during the time range:  (valueChanged =\\"N\\")
+      - Each parameter whose value was changed at the system level during the time range: (valueChanged =\\"Y\\"  and valueModified = \\"SYSTEM_MOD\\")
+      - Each parameter whose value was unchanged during the time range, however, the value is not the default value: (valueChanged =\\"N\\" and  valueDefault =
+        \\"FALSE\\")"
+    - "Note that this API does not return information on the number of times each database parameter has been changed within the time range. To get the database
       parameter value change history for a specific parameter, use the following API endpoint:
       /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameterChanges"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -46,7 +47,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -80,6 +81,7 @@ options:
         description:
             - The optional multiple value query parameter to filter the entity name.
         type: list
+        elements: str
     name_contains:
         description:
             - The optional contains query parameter to filter the entity name by any part of the name.
@@ -115,7 +117,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -142,7 +144,7 @@ awr_db_param:
             description:
                 - The name of the parameter.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         instance_number:
             description:
@@ -154,13 +156,13 @@ awr_db_param:
             description:
                 - The parameter value when the period began.
             returned: on success
-            type: string
+            type: str
             sample: begin_value_example
         end_value:
             description:
                 - The parameter value when the period ended.
             returned: on success
-            type: string
+            type: str
             sample: end_value_example
         is_changed:
             description:
@@ -175,7 +177,7 @@ awr_db_param:
                    - SYSTEM_MOD - Parameter has been modified with ALTER SYSTEM (which causes all the currently logged in sessions' values to be modified)
                    - FALSE - Parameter has not been modified after instance startup"
             returned: on success
-            type: string
+            type: str
             sample: value_modified_example
         is_default:
             description:
@@ -266,7 +268,7 @@ def main():
             time_greater_than_or_equal_to=dict(type="str"),
             time_less_than_or_equal_to=dict(type="str"),
             container_id=dict(type="int"),
-            name=dict(type="list"),
+            name=dict(type="list", elements="str"),
             name_contains=dict(type="str"),
             value_changed=dict(type="str", choices=["Y", "N"]),
             value_default=dict(type="str", choices=["TRUE", "FALSE"]),

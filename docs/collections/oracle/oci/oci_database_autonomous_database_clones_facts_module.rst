@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_autonomous_database_clones_facts_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_clones_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_database_autonomous_database_clones_facts -- Fetches details abou
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -357,6 +367,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -398,12 +411,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones"></div>
                     <b>autonomous_database_clones</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones" title="Permalink to this return value"></a>
@@ -416,12 +429,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AutonomousDatabaseClones resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;apex_details&#x27;: {&#x27;apex_version&#x27;: &#x27;apex_version_example&#x27;, &#x27;ords_version&#x27;: &#x27;ords_version_example&#x27;}, &#x27;are_primary_whitelisted_ips_used&#x27;: True, &#x27;autonomous_container_database_id&#x27;: &#x27;ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;autonomous_maintenance_schedule_type&#x27;: &#x27;EARLY&#x27;, &#x27;available_upgrade_versions&#x27;: [], &#x27;backup_config&#x27;: {&#x27;manual_backup_bucket_name&#x27;: &#x27;manual_backup_bucket_name_example&#x27;, &#x27;manual_backup_type&#x27;: &#x27;NONE&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;dedicated&#x27;: &#x27;dedicated_example&#x27;, &#x27;high&#x27;: &#x27;high_example&#x27;, &#x27;low&#x27;: &#x27;low_example&#x27;, &#x27;medium&#x27;: &#x27;medium_example&#x27;, &#x27;profiles&#x27;: [{&#x27;consumer_group&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;host_format&#x27;: &#x27;FQDN&#x27;, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;syntax_format&#x27;: &#x27;LONG&#x27;, &#x27;tls_authentication&#x27;: &#x27;SERVER&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;connection_urls&#x27;: {&#x27;apex_url&#x27;: &#x27;apex_url_example&#x27;, &#x27;graph_studio_url&#x27;: &#x27;graph_studio_url_example&#x27;, &#x27;machine_learning_user_management_url&#x27;: &#x27;machine_learning_user_management_url_example&#x27;, &#x27;sql_dev_web_url&#x27;: &#x27;sql_dev_web_url_example&#x27;}, &#x27;cpu_core_count&#x27;: 56, &#x27;customer_contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;}], &#x27;data_safe_status&#x27;: &#x27;REGISTERING&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 56, &#x27;dataguard_region_type&#x27;: &#x27;PRIMARY_DG_REGION&#x27;, &#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;db_workload&#x27;: &#x27;OLTP&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_data_recovery_in_seconds&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infrastructure_type&#x27;: &#x27;CLOUD&#x27;, &#x27;is_access_control_enabled&#x27;: True, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_data_guard_enabled&#x27;: True, &#x27;is_dedicated&#x27;: True, &#x27;is_free_tier&#x27;: True, &#x27;is_mtls_connection_required&#x27;: True, &#x27;is_preview&#x27;: True, &#x27;is_refreshable_clone&#x27;: True, &#x27;key_history_entry&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_activated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;key_store_id&#x27;: &#x27;ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_store_wallet_name&#x27;: &#x27;key_store_wallet_name_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_lifecycle_details&#x27;: &#x27;kms_key_lifecycle_details_example&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;, &#x27;peer_db_ids&#x27;: [], &#x27;permission_level&#x27;: &#x27;RESTRICTED&#x27;, &#x27;private_endpoint&#x27;: &#x27;private_endpoint_example&#x27;, &#x27;private_endpoint_ip&#x27;: &#x27;private_endpoint_ip_example&#x27;, &#x27;private_endpoint_label&#x27;: &#x27;private_endpoint_label_example&#x27;, &#x27;refreshable_mode&#x27;: &#x27;AUTOMATIC&#x27;, &#x27;refreshable_status&#x27;: &#x27;REFRESHING&#x27;, &#x27;role&#x27;: &#x27;PRIMARY&#x27;, &#x27;service_console_url&#x27;: &#x27;service_console_url_example&#x27;, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;standby_db&#x27;: {&#x27;lag_time_in_seconds&#x27;: 56, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;standby_whitelisted_ips&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_regions_to_clone_to&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_data_guard_role_changed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deletion_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_local_data_guard_enabled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_begin&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_failover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_refresh_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_last_switchover&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_next_refresh&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_reclamation_of_free_autonomous_database&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;used_data_storage_size_in_tbs&#x27;: 56, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/apex_details"></div>
                     <b>apex_details</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/apex_details" title="Permalink to this return value"></a>
@@ -438,7 +451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/apex_details/apex_version"></div>
                     <b>apex_version</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/apex_details/apex_version" title="Permalink to this return value"></a>
@@ -457,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/apex_details/ords_version"></div>
                     <b>ords_version</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/apex_details/ords_version" title="Permalink to this return value"></a>
@@ -476,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/are_primary_whitelisted_ips_used"></div>
                     <b>are_primary_whitelisted_ips_used</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/are_primary_whitelisted_ips_used" title="Permalink to this return value"></a>
@@ -494,7 +507,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/autonomous_container_database_id"></div>
                     <b>autonomous_container_database_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/autonomous_container_database_id" title="Permalink to this return value"></a>
@@ -512,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/autonomous_maintenance_schedule_type"></div>
                     <b>autonomous_maintenance_schedule_type</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/autonomous_maintenance_schedule_type" title="Permalink to this return value"></a>
@@ -530,7 +543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/available_upgrade_versions"></div>
                     <b>available_upgrade_versions</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/available_upgrade_versions" title="Permalink to this return value"></a>
@@ -546,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/backup_config"></div>
                     <b>backup_config</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/backup_config" title="Permalink to this return value"></a>
@@ -563,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/backup_config/manual_backup_bucket_name"></div>
                     <b>manual_backup_bucket_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/backup_config/manual_backup_bucket_name" title="Permalink to this return value"></a>
@@ -582,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/backup_config/manual_backup_type"></div>
                     <b>manual_backup_type</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/backup_config/manual_backup_type" title="Permalink to this return value"></a>
@@ -601,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/compartment_id" title="Permalink to this return value"></a>
@@ -619,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings"></div>
                     <b>connection_strings</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings" title="Permalink to this return value"></a>
@@ -636,7 +649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/all_connection_strings"></div>
                     <b>all_connection_strings</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/all_connection_strings" title="Permalink to this return value"></a>
@@ -653,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/dedicated"></div>
                     <b>dedicated</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/dedicated" title="Permalink to this return value"></a>
@@ -672,7 +685,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/high"></div>
                     <b>high</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/high" title="Permalink to this return value"></a>
@@ -691,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/low"></div>
                     <b>low</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/low" title="Permalink to this return value"></a>
@@ -710,7 +723,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/medium"></div>
                     <b>medium</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/medium" title="Permalink to this return value"></a>
@@ -726,10 +739,188 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">medium_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles"></div>
+                    <b>profiles</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of connection string profiles to allow clients to group, filter and select connection string values based on structured metadata.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/consumer_group"></div>
+                    <b>consumer_group</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/consumer_group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Consumer group used by the connection.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HIGH</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A user-friendly name for the connection.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/host_format"></div>
+                    <b>host_format</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/host_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Host format used in connection string.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FQDN</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/protocol" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Protocol used by the connection.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TCP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/session_mode"></div>
+                    <b>session_mode</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/session_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether the listener performs a direct hand-off of the session, or redirects the session. In RAC deployments where SCAN is used, sessions are redirected to a Node VIP. Use `DIRECT` for direct hand-offs. Use `REDIRECT` to redirect the session.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DIRECT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/syntax_format"></div>
+                    <b>syntax_format</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/syntax_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether the connection string is using the long (`LONG`), Easy Connect (`EZCONNECT`), or Easy Connect Plus (`EZCONNECTPLUS`) format. Autonomous Databases on shared Exadata infrastructure always use the long format.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LONG</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/tls_authentication"></div>
+                    <b>tls_authentication</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/tls_authentication" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether the TLS handshake is using one-way (`SERVER`) or mutual (`MUTUAL`) authentication.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SERVER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_strings/profiles/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_strings/profiles/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Connection string value.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_urls"></div>
                     <b>connection_urls</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_urls" title="Permalink to this return value"></a>
@@ -746,7 +937,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_urls/apex_url"></div>
                     <b>apex_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_urls/apex_url" title="Permalink to this return value"></a>
@@ -765,7 +956,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_urls/graph_studio_url"></div>
                     <b>graph_studio_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_urls/graph_studio_url" title="Permalink to this return value"></a>
@@ -784,7 +975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_urls/machine_learning_user_management_url"></div>
                     <b>machine_learning_user_management_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_urls/machine_learning_user_management_url" title="Permalink to this return value"></a>
@@ -803,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/connection_urls/sql_dev_web_url"></div>
                     <b>sql_dev_web_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/connection_urls/sql_dev_web_url" title="Permalink to this return value"></a>
@@ -822,7 +1013,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/cpu_core_count"></div>
                     <b>cpu_core_count</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/cpu_core_count" title="Permalink to this return value"></a>
@@ -841,7 +1032,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/customer_contacts"></div>
                     <b>customer_contacts</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/customer_contacts" title="Permalink to this return value"></a>
@@ -858,7 +1049,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/customer_contacts/email"></div>
                     <b>email</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/customer_contacts/email" title="Permalink to this return value"></a>
@@ -877,7 +1068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/data_safe_status"></div>
                     <b>data_safe_status</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/data_safe_status" title="Permalink to this return value"></a>
@@ -895,7 +1086,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -913,7 +1104,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/data_storage_size_in_tbs"></div>
                     <b>data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -931,7 +1122,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/dataguard_region_type"></div>
                     <b>dataguard_region_type</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/dataguard_region_type" title="Permalink to this return value"></a>
@@ -949,7 +1140,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/db_name"></div>
                     <b>db_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/db_name" title="Permalink to this return value"></a>
@@ -967,7 +1158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/db_version"></div>
                     <b>db_version</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/db_version" title="Permalink to this return value"></a>
@@ -985,7 +1176,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/db_workload"></div>
                     <b>db_workload</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/db_workload" title="Permalink to this return value"></a>
@@ -1004,7 +1195,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/defined_tags" title="Permalink to this return value"></a>
@@ -1022,7 +1213,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/display_name" title="Permalink to this return value"></a>
@@ -1040,7 +1231,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/failed_data_recovery_in_seconds"></div>
                     <b>failed_data_recovery_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/failed_data_recovery_in_seconds" title="Permalink to this return value"></a>
@@ -1058,7 +1249,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/freeform_tags" title="Permalink to this return value"></a>
@@ -1077,7 +1268,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/id" title="Permalink to this return value"></a>
@@ -1095,7 +1286,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/infrastructure_type"></div>
                     <b>infrastructure_type</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/infrastructure_type" title="Permalink to this return value"></a>
@@ -1113,7 +1304,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_access_control_enabled"></div>
                     <b>is_access_control_enabled</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_access_control_enabled" title="Permalink to this return value"></a>
@@ -1132,7 +1323,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_auto_scaling_enabled"></div>
                     <b>is_auto_scaling_enabled</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_auto_scaling_enabled" title="Permalink to this return value"></a>
@@ -1150,7 +1341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_data_guard_enabled"></div>
                     <b>is_data_guard_enabled</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_data_guard_enabled" title="Permalink to this return value"></a>
@@ -1168,7 +1359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_dedicated"></div>
                     <b>is_dedicated</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_dedicated" title="Permalink to this return value"></a>
@@ -1186,7 +1377,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_free_tier"></div>
                     <b>is_free_tier</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_free_tier" title="Permalink to this return value"></a>
@@ -1204,7 +1395,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_mtls_connection_required"></div>
+                    <b>is_mtls_connection_required</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_mtls_connection_required" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether the Autonomous Database requires mTLS connections.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_preview"></div>
                     <b>is_preview</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_preview" title="Permalink to this return value"></a>
@@ -1222,7 +1431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/is_refreshable_clone"></div>
                     <b>is_refreshable_clone</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/is_refreshable_clone" title="Permalink to this return value"></a>
@@ -1240,7 +1449,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_history_entry"></div>
                     <b>key_history_entry</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_history_entry" title="Permalink to this return value"></a>
@@ -1257,7 +1466,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_history_entry/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_history_entry/id" title="Permalink to this return value"></a>
@@ -1276,7 +1485,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_history_entry/time_activated"></div>
                     <b>time_activated</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_history_entry/time_activated" title="Permalink to this return value"></a>
@@ -1295,7 +1504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_history_entry/vault_id"></div>
                     <b>vault_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_history_entry/vault_id" title="Permalink to this return value"></a>
@@ -1314,7 +1523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_store_id"></div>
                     <b>key_store_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_store_id" title="Permalink to this return value"></a>
@@ -1332,7 +1541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/key_store_wallet_name"></div>
                     <b>key_store_wallet_name</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/key_store_wallet_name" title="Permalink to this return value"></a>
@@ -1350,7 +1559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/kms_key_id"></div>
                     <b>kms_key_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/kms_key_id" title="Permalink to this return value"></a>
@@ -1368,7 +1577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/kms_key_lifecycle_details"></div>
                     <b>kms_key_lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/kms_key_lifecycle_details" title="Permalink to this return value"></a>
@@ -1386,7 +1595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/license_model"></div>
                     <b>license_model</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/license_model" title="Permalink to this return value"></a>
@@ -1404,7 +1613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/lifecycle_details" title="Permalink to this return value"></a>
@@ -1422,7 +1631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/lifecycle_state" title="Permalink to this return value"></a>
@@ -1440,7 +1649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/nsg_ids" title="Permalink to this return value"></a>
@@ -1456,7 +1665,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/ocpu_count"></div>
                     <b>ocpu_count</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/ocpu_count" title="Permalink to this return value"></a>
@@ -1477,7 +1686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/open_mode"></div>
                     <b>open_mode</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/open_mode" title="Permalink to this return value"></a>
@@ -1495,7 +1704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/operations_insights_status"></div>
                     <b>operations_insights_status</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/operations_insights_status" title="Permalink to this return value"></a>
@@ -1513,7 +1722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/peer_db_ids"></div>
                     <b>peer_db_ids</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/peer_db_ids" title="Permalink to this return value"></a>
@@ -1529,7 +1738,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/permission_level"></div>
                     <b>permission_level</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/permission_level" title="Permalink to this return value"></a>
@@ -1547,7 +1756,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/private_endpoint"></div>
                     <b>private_endpoint</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/private_endpoint" title="Permalink to this return value"></a>
@@ -1565,7 +1774,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/private_endpoint_ip"></div>
                     <b>private_endpoint_ip</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/private_endpoint_ip" title="Permalink to this return value"></a>
@@ -1583,7 +1792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/private_endpoint_label"></div>
                     <b>private_endpoint_label</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/private_endpoint_label" title="Permalink to this return value"></a>
@@ -1601,7 +1810,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/refreshable_mode"></div>
                     <b>refreshable_mode</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/refreshable_mode" title="Permalink to this return value"></a>
@@ -1619,7 +1828,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/refreshable_status"></div>
                     <b>refreshable_status</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/refreshable_status" title="Permalink to this return value"></a>
@@ -1637,7 +1846,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/role"></div>
                     <b>role</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/role" title="Permalink to this return value"></a>
@@ -1655,7 +1864,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/service_console_url"></div>
                     <b>service_console_url</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/service_console_url" title="Permalink to this return value"></a>
@@ -1673,7 +1882,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/source_id"></div>
                     <b>source_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/source_id" title="Permalink to this return value"></a>
@@ -1691,7 +1900,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_db"></div>
                     <b>standby_db</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_db" title="Permalink to this return value"></a>
@@ -1708,7 +1917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_db/lag_time_in_seconds"></div>
                     <b>lag_time_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_db/lag_time_in_seconds" title="Permalink to this return value"></a>
@@ -1727,7 +1936,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_db/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_db/lifecycle_details" title="Permalink to this return value"></a>
@@ -1746,7 +1955,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_db/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_db/lifecycle_state" title="Permalink to this return value"></a>
@@ -1765,7 +1974,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_db/time_data_guard_role_changed"></div>
                     <b>time_data_guard_role_changed</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_db/time_data_guard_role_changed" title="Permalink to this return value"></a>
@@ -1784,7 +1993,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/standby_whitelisted_ips"></div>
                     <b>standby_whitelisted_ips</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/standby_whitelisted_ips" title="Permalink to this return value"></a>
@@ -1802,7 +2011,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/subnet_id" title="Permalink to this return value"></a>
@@ -1822,7 +2031,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/supported_regions_to_clone_to"></div>
                     <b>supported_regions_to_clone_to</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/supported_regions_to_clone_to" title="Permalink to this return value"></a>
@@ -1838,7 +2047,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/system_tags" title="Permalink to this return value"></a>
@@ -1854,7 +2063,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_created" title="Permalink to this return value"></a>
@@ -1872,7 +2081,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_data_guard_role_changed"></div>
                     <b>time_data_guard_role_changed</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_data_guard_role_changed" title="Permalink to this return value"></a>
@@ -1890,7 +2099,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_deletion_of_free_autonomous_database"></div>
                     <b>time_deletion_of_free_autonomous_database</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_deletion_of_free_autonomous_database" title="Permalink to this return value"></a>
@@ -1908,7 +2117,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_local_data_guard_enabled"></div>
                     <b>time_local_data_guard_enabled</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_local_data_guard_enabled" title="Permalink to this return value"></a>
@@ -1926,7 +2135,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_maintenance_begin"></div>
                     <b>time_maintenance_begin</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_maintenance_begin" title="Permalink to this return value"></a>
@@ -1944,7 +2153,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_maintenance_end"></div>
                     <b>time_maintenance_end</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_maintenance_end" title="Permalink to this return value"></a>
@@ -1962,7 +2171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_of_last_failover"></div>
                     <b>time_of_last_failover</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_of_last_failover" title="Permalink to this return value"></a>
@@ -1980,7 +2189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_of_last_refresh"></div>
                     <b>time_of_last_refresh</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_of_last_refresh" title="Permalink to this return value"></a>
@@ -1998,7 +2207,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_of_last_refresh_point"></div>
                     <b>time_of_last_refresh_point</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_of_last_refresh_point" title="Permalink to this return value"></a>
@@ -2016,7 +2225,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_of_last_switchover"></div>
                     <b>time_of_last_switchover</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_of_last_switchover" title="Permalink to this return value"></a>
@@ -2034,7 +2243,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_of_next_refresh"></div>
                     <b>time_of_next_refresh</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_of_next_refresh" title="Permalink to this return value"></a>
@@ -2052,7 +2261,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/time_reclamation_of_free_autonomous_database"></div>
                     <b>time_reclamation_of_free_autonomous_database</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/time_reclamation_of_free_autonomous_database" title="Permalink to this return value"></a>
@@ -2070,7 +2279,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/used_data_storage_size_in_tbs"></div>
                     <b>used_data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/used_data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -2088,7 +2297,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/vault_id"></div>
                     <b>vault_id</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/vault_id" title="Permalink to this return value"></a>
@@ -2106,7 +2315,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-autonomous_database_clones/whitelisted_ips"></div>
                     <b>whitelisted_ips</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_database_clones/whitelisted_ips" title="Permalink to this return value"></a>

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Query resources in Oracle Cloud Infrastructure
     - Returns the saved query list.
     - If I(query_id) is specified, the details of a single Query will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     query_id:
@@ -77,13 +77,13 @@ queries:
             description:
                 - The query OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         query_definition:
             description:
@@ -95,7 +95,7 @@ queries:
                     description:
                         - The query display name. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 report_query:
                     description:
@@ -107,20 +107,20 @@ queries:
                             description:
                                 - Tenant ID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
                         time_usage_started:
                             description:
                                 - The usage start time.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         time_usage_ended:
                             description:
                                 - The usage end time.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         granularity:
                             description:
                                 - "The usage granularity.
@@ -129,7 +129,7 @@ queries:
                                   MONTHLY - Monthly data aggregation.
                                   TOTAL - Not yet supported."
                             returned: on success
-                            type: string
+                            type: str
                             sample: HOURLY
                         is_aggregate_by_time:
                             description:
@@ -148,20 +148,20 @@ queries:
                                         - BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for
                                           projections is a periodic set of equivalent historical days for which the projection is being made.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: BASIC
                                 time_forecast_started:
                                     description:
                                         - The forecast start time. Defaults to UTC-1 if not specified.
                                     returned: on success
-                                    type: string
-                                    sample: 2013-10-20T19:20:30+01:00
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
                                 time_forecast_ended:
                                     description:
                                         - The forecast end time.
                                     returned: on success
-                                    type: string
-                                    sample: 2013-10-20T19:20:30+01:00
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
                         query_type:
                             description:
                                 - "The query usage type. COST by default if it is missing.
@@ -171,7 +171,7 @@ queries:
                                   ExpiredCredit - Query the expired credits data
                                   AllCredit - Query the credit adjustments and expired credit"
                             returned: on success
-                            type: string
+                            type: str
                             sample: USAGE
                         group_by:
                             description:
@@ -195,19 +195,19 @@ queries:
                                     description:
                                         - The tag namespace.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: namespace_example
                                 key:
                                     description:
                                         - The tag key.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: key_example
                                 value:
                                     description:
                                         - The tag value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         compartment_depth:
                             description:
@@ -225,7 +225,7 @@ queries:
                                     description:
                                         - "The filter operator. Example: 'AND', 'OR', 'NOT'."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 dimensions:
                                     description:
@@ -237,13 +237,13 @@ queries:
                                             description:
                                                 - The dimension key.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: key_example
                                         value:
                                             description:
                                                 - The dimension value.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                                 tags:
                                     description:
@@ -255,19 +255,19 @@ queries:
                                             description:
                                                 - The tag namespace.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: namespace_example
                                         key:
                                             description:
                                                 - The tag key.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: key_example
                                         value:
                                             description:
                                                 - The tag value.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                                 filters:
                                     description:
@@ -279,7 +279,7 @@ queries:
                                             description:
                                                 - "The filter operator. Example: 'AND', 'OR', 'NOT'."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: AND
                                         dimensions:
                                             description:
@@ -303,7 +303,7 @@ queries:
                             description:
                                 - The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.
                             returned: on success
-                            type: string
+                            type: str
                             sample: LAST_SEVEN_DAYS
                 cost_analysis_ui:
                     description:
@@ -315,7 +315,7 @@ queries:
                             description:
                                 - The graph type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: BARS
                         is_cumulative_graph:
                             description:

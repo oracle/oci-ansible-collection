@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a BlockchainPlatformPeer resource in Oracle Cloud Infr
 description:
     - This module allows the user to create, update and delete a BlockchainPlatformPeer resource in Oracle Cloud Infrastructure
     - For I(state=present), create Blockchain Platform Peer
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     blockchain_platform_id:
@@ -111,19 +111,19 @@ blockchain_platform_peer:
             description:
                 - peer identifier
             returned: on success
-            type: string
+            type: str
             sample: peer_key_example
         role:
             description:
                 - Peer role
             returned: on success
-            type: string
+            type: str
             sample: role_example
         alias:
             description:
                 - peer alias
             returned: on success
-            type: string
+            type: str
             sample: alias_example
         ocpu_allocation_param:
             description:
@@ -141,19 +141,19 @@ blockchain_platform_peer:
             description:
                 - Host on which the Peer exists
             returned: on success
-            type: string
+            type: str
             sample: host_example
         ad:
             description:
                 - Availability Domain of peer
             returned: on success
-            type: string
+            type: str
             sample: ad_example
         lifecycle_state:
             description:
                 - The current state of the peer.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
     sample: {
         "peer_key": "peer_key_example",

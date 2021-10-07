@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CachingRules resources in Oracle Cloud Infrastructure
     - Gets the currently configured caching rules for the Web Application Firewall configuration of a specified WAAS policy.
       The rules are processed in the order they are specified in and the first matching rule will be used when processing a request.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -54,13 +54,13 @@ caching_rules:
             description:
                 - The unique key for the caching rule.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         name:
             description:
                 - The name of the caching rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         action:
             description:
@@ -68,7 +68,7 @@ caching_rules:
                   - **CACHE:** Caches requested content when the criteria of the rule are met."
                 - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
             returned: on success
-            type: string
+            type: str
             sample: CACHE
         caching_duration:
             description:
@@ -77,7 +77,7 @@ caching_rules:
                   `action` is set to `CACHE`.
                   Example: `PT1H`"
             returned: on success
-            type: string
+            type: str
             sample: PT1H
         is_client_caching_enabled:
             description:
@@ -94,7 +94,7 @@ caching_rules:
                   `action` is set to `CACHE`.
                   Example: `PT1H`"
             returned: on success
-            type: string
+            type: str
             sample: PT1H
         criteria:
             description:
@@ -113,13 +113,13 @@ caching_rules:
                         - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'` `&` `?` symbols.
                           Resources to cache can only be specified by a URL, any query parameters are ignored.
                     returned: on success
-                    type: string
+                    type: str
                     sample: URL_IS
                 value:
                     description:
                         - The value of the caching rule criteria.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
     sample: [{
         "key": "key_example",

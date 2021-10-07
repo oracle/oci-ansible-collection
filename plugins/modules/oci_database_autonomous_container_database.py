@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates an Autonomous Container Database in the specified Autonomous Exadata Infrastructure.
     - "This resource has the following action operations in the M(oci_autonomous_container_database_actions) module: change_compartment, restart,
       rotate_autonomous_container_database_encryption_key."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -39,7 +39,8 @@ options:
         aliases: ["name"]
     db_unique_name:
         description:
-            - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+            - "**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a value
+              for this field will cause Terraform operations to fail."
         type: str
     service_level_agreement_type:
         description:
@@ -90,6 +91,7 @@ options:
                 description:
                     - Backup destination details.
                 type: list
+                elements: dict
                 suboptions:
                     type:
                         description:
@@ -126,7 +128,8 @@ options:
                 type: int
     peer_db_unique_name:
         description:
-            - The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association.
+            - "**Deprecated.** The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association is set by Oracle Cloud Infrastructure.
+              Do not specify a value for this parameter. Specifying a value for this field will cause Terraform operations to fail."
         type: str
     autonomous_vm_cluster_id:
         description:
@@ -167,6 +170,7 @@ options:
                 description:
                     - Months during the year when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -195,10 +199,12 @@ options:
                       Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the
                       week and hours that maintenance will be performed.
                 type: list
+                elements: int
             days_of_week:
                 description:
                     - Days during the week when maintenance should be performed.
                 type: list
+                elements: dict
                 suboptions:
                     name:
                         description:
@@ -219,6 +225,7 @@ options:
                       - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
                         represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
                 type: list
+                elements: int
             lead_time_in_weeks:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
@@ -252,6 +259,7 @@ options:
                 description:
                     - Backup destination details.
                 type: list
+                elements: dict
                 suboptions:
                     type:
                         description:
@@ -326,8 +334,8 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create autonomous_container_database
   oci_database_autonomous_container_database:
-    display_name: containerdatabases2
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    display_name: containerDatabase2
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     patch_model: RELEASE_UPDATES
 
 - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -345,8 +353,8 @@ EXAMPLES = """
 
 - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_container_database:
-    display_name: containerdatabases2
-    compartment_id: "ocid.compartment.oc1..unique_ID"
+    display_name: containerDatabase2
+    compartment_id: "ocid1.tenancy.oc1..unique_ID"
     state: absent
 
 """
@@ -362,104 +370,105 @@ autonomous_container_database:
             description:
                 - The OCID of the Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         db_unique_name:
             description:
-                - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+                - "**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a
+                  value for this field will cause Terraform operations to fail."
             returned: on success
-            type: string
+            type: str
             sample: db_unique_name_example
         service_level_agreement_type:
             description:
                 - The service level agreement type of the container database. The default is STANDARD.
             returned: on success
-            type: string
+            type: str
             sample: STANDARD
         autonomous_exadata_infrastructure_id:
             description:
                 - The OCID of the Autonomous Exadata Infrastructure.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_vm_cluster_id:
             description:
                 - The OCID of the Autonomous VM Cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         infrastructure_type:
             description:
                 - The infrastructure type this resource belongs to.
             returned: on success
-            type: string
+            type: str
             sample: CLOUD
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
                   L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the Autonomous Container Database was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         patch_model:
             description:
                 - Database patch model preference.
             returned: on success
-            type: string
+            type: str
             sample: RELEASE_UPDATES
         patch_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch applied on the system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_window:
             description:
@@ -471,7 +480,7 @@ autonomous_container_database:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -483,7 +492,7 @@ autonomous_container_database:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -506,7 +515,7 @@ autonomous_container_database:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -550,19 +559,19 @@ autonomous_container_database:
             description:
                 - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         availability_domain:
             description:
                 - The availability domain of the Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         db_version:
             description:
                 - Oracle Database version of the Autonomous Container Database.
             returned: on success
-            type: string
+            type: str
             sample: db_version_example
         backup_config:
             description:
@@ -580,32 +589,32 @@ autonomous_container_database:
                             description:
                                 - Type of the database backup destination.
                             returned: on success
-                            type: string
+                            type: str
                             sample: NFS
                         id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         vpc_user:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery
                                   Appliance.
                             returned: on success
-                            type: string
+                            type: str
                             sample: vpc_user_example
                         vpc_password:
                             description:
                                 - For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.
                             returned: on success
-                            type: string
+                            type: str
                             sample: vpc_password_example
                         internet_proxy:
                             description:
                                 - Proxy URL to connect to object store.
                             returned: on success
-                            type: string
+                            type: str
                             sample: internet_proxy_example
                 recovery_window_in_days:
                     description:
@@ -620,13 +629,13 @@ autonomous_container_database:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the key store.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_wallet_name:
             description:
                 - The wallet name for Oracle Key Vault.
             returned: on success
-            type: string
+            type: str
             sample: key_store_wallet_name_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -928,7 +937,7 @@ def main():
                             )
                         ),
                     ),
-                    weeks_of_month=dict(type="list"),
+                    weeks_of_month=dict(type="list", elements="int"),
                     days_of_week=dict(
                         type="list",
                         elements="dict",
@@ -948,7 +957,7 @@ def main():
                             )
                         ),
                     ),
-                    hours_of_day=dict(type="list"),
+                    hours_of_day=dict(type="list", elements="int"),
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),

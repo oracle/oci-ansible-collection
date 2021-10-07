@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_database_cloud_vm_cluster_iorm_config
 short_description: Manage a CloudVmClusterIormConfig resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a CloudVmClusterIormConfig resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cloud_vm_cluster_id:
@@ -50,6 +50,7 @@ options:
               this Exadata DB System
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             db_name:
                 description:
@@ -91,20 +92,20 @@ cloud_vm_cluster_iorm_config:
             description:
                 - The current state of IORM configuration for the Exadata DB system.
             returned: on success
-            type: string
+            type: str
             sample: BOOTSTRAPPING
         lifecycle_details:
             description:
                 - Additional information about the current `lifecycleState`.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         objective:
             description:
                 - The current value for the IORM objective.
                   The default is `AUTO`.
             returned: on success
-            type: string
+            type: str
             sample: LOW_LATENCY
         db_plans:
             description:
@@ -117,7 +118,7 @@ cloud_vm_cluster_iorm_config:
                     description:
                         - The database name. For the default `DbPlan`, the `dbName` is `default`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: db_name_example
                 share:
                     description:
@@ -129,7 +130,7 @@ cloud_vm_cluster_iorm_config:
                     description:
                         - The flash cache limit for this database. This value is internally configured based on the share value assigned to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: flash_cache_limit_example
     sample: {
         "lifecycle_state": "BOOTSTRAPPING",

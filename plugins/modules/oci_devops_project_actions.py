@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a Project resource in Oracle Cloud Infrast
 description:
     - Perform actions on a Project resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a project resource from one compartment OCID to another.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     project_id:
@@ -68,31 +68,31 @@ project:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - Project name (case-sensitive).
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - Project description.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The OCID of the compartment where the project is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
                 - Namespace associated with the project.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
         notification_config:
             description:
@@ -104,32 +104,32 @@ project:
                     description:
                         - The topic ID for notifications.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Time the project was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the project was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the project.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

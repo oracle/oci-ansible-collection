@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Listener resources in Oracle Cloud Infrastructure
     - Lists all listeners associated with a given network load balancer.
     - If I(listener_name) is specified, the details of a single Listener will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -73,14 +73,14 @@ listeners:
                 - A friendly name for the listener. It must be unique and it cannot be changed.
                 - "Example: `example_listener`"
             returned: on success
-            type: string
+            type: str
             sample: example_listener
         default_backend_set_name:
             description:
                 - The name of the associated backend set.
                 - "Example: `example_backend_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_backend_set
         port:
             description:
@@ -100,7 +100,7 @@ listeners:
                   operation.
                 - "Example: `TCP`"
             returned: on success
-            type: string
+            type: str
             sample: TCP
     sample: [{
         "name": "example_listener",

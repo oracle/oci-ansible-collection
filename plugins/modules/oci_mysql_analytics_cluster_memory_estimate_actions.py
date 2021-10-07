@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Perform actions on an AnalyticsClusterMemoryEstimate resource in Oracle Cloud Infrastructure
     - "For I(action=generate), dEPRECATED -- please use HeatWave API instead.
       Sends a request to estimate the memory footprints of user tables when loaded to Analytics Cluster memory."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_system_id:
@@ -63,27 +63,27 @@ analytics_cluster_memory_estimate:
             description:
                 - The OCID of the DB System the Analytics Cluster memory estimate is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - Current status of the Work Request generating the Analytics Cluster memory estimate.
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         time_created:
             description:
                 - The date and time that the Work Request to generate the Analytics Cluster memory estimate was issued, as described by L(RFC
                   3339,https://tools.ietf.org/rfc/rfc333).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time that the Analytics Cluster memory estimate was generated, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc333).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         table_schemas:
             description:
                 - Collection of schemas with estimated memory footprints for MySQL user tables of each schema
@@ -95,7 +95,7 @@ analytics_cluster_memory_estimate:
                     description:
                         - The name of the schema.
                     returned: on success
-                    type: string
+                    type: str
                     sample: schema_name_example
                 per_table_estimates:
                     description:
@@ -108,7 +108,7 @@ analytics_cluster_memory_estimate:
                             description:
                                 - The table name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: table_name_example
                         to_load_column_count:
                             description:
@@ -143,7 +143,7 @@ analytics_cluster_memory_estimate:
                             description:
                                 - Error comment (empty string if no errors occured).
                             returned: on success
-                            type: string
+                            type: str
                             sample: error_comment_example
     sample: {
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
