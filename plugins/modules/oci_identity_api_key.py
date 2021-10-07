@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
       you have. Also confirm you're working in the correct compartment."
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using
       the object, first make sure its `lifecycleState` has changed to ACTIVE.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     user_id:
@@ -91,39 +91,39 @@ api_key:
                 - "An Oracle-assigned identifier for the key, in this format:
                   TENANCY_OCID/USER_OCID/KEY_FINGERPRINT."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_value:
             description:
                 - The key's value.
             returned: on success
-            type: string
+            type: str
             sample: key_value_example
         fingerprint:
             description:
                 - The key's fingerprint (e.g., 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef).
             returned: on success
-            type: string
+            type: str
             sample: fingerprint_example
         user_id:
             description:
                 - The OCID of the user the key belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - Date and time the `ApiKey` object was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The API key's current state. After creating an `ApiKey` object, make sure its `lifecycleState` changes from
                   CREATING to ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         inactive_status:
             description:
@@ -253,7 +253,7 @@ def main():
     module_args.update(
         dict(
             user_id=dict(type="str", required=True),
-            key=dict(type="str"),
+            key=dict(type="str", no_log=True),
             fingerprint=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

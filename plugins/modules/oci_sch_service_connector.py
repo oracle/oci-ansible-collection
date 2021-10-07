@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -40,7 +40,7 @@ description:
       activating service connectors, see
       L(To activate or deactivate a service connector,https://docs.cloud.oracle.com/iaas/Content/service-connector-hub/overview.htm).
     - "This resource has the following action operations in the M(oci_service_connector_actions) module: activate, change_compartment, deactivate."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -85,6 +85,7 @@ options:
                     - The resources affected by this work request.
                     - Required when kind is 'logging'
                 type: list
+                elements: dict
                 suboptions:
                     compartment_id:
                         description:
@@ -127,6 +128,7 @@ options:
             - The list of tasks.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             kind:
                 description:
@@ -329,26 +331,26 @@ service_connector:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name. It does not have to be unique, and it is changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The description of the resource. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the service connector.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
@@ -356,21 +358,21 @@ service_connector:
                   Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         time_updated:
             description:
                 - "The date and time when the service connector was updated.
                   Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current state of the service connector.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecyle_details:
             description:
@@ -378,7 +380,7 @@ service_connector:
                   For example, the message might provide actionable
                   information for a resource in a `FAILED` state.
             returned: on success
-            type: string
+            type: str
             sample: lifecyle_details_example
         source:
             description:
@@ -390,7 +392,7 @@ service_connector:
                     description:
                         - The type descriminator.
                     returned: on success
-                    type: string
+                    type: str
                     sample: logging
                 log_sources:
                     description:
@@ -403,25 +405,25 @@ service_connector:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the log
                                   source.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         log_group_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log group.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                         log_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
                 stream_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
                 cursor:
                     description:
@@ -433,7 +435,7 @@ service_connector:
                             description:
                                 - The type descriminator.
                             returned: on success
-                            type: string
+                            type: str
                             sample: LATEST
         tasks:
             description:
@@ -445,13 +447,13 @@ service_connector:
                     description:
                         - The type descriminator.
                     returned: on success
-                    type: string
+                    type: str
                     sample: function
                 function_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 batch_size_in_kbs:
                     description:
@@ -469,7 +471,7 @@ service_connector:
                     description:
                         - A filter or mask to limit the source used in the flow defined by the service connector.
                     returned: on success
-                    type: string
+                    type: str
                     sample: condition_example
         target:
             description:
@@ -481,45 +483,45 @@ service_connector:
                     description:
                         - The type descriminator.
                     returned: on success
-                    type: string
+                    type: str
                     sample: functions
                 function_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                 log_group_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 metric_namespace:
                     description:
                         - The namespace of the metric.
                         - "Example: `oci_computeagent`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: oci_computeagent
                 metric:
                     description:
                         - The name of the metric.
                         - "Example: `CpuUtilization`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: CpuUtilization
                 topic_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
                 enable_formatted_messaging:
                     description:
@@ -533,19 +535,19 @@ service_connector:
                     description:
                         - The namespace.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_example
                 bucket_name:
                     description:
                         - The name of the bucket. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bucket_name_example
                 object_name_prefix:
                     description:
                         - The prefix of the objects. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_prefix_example
                 batch_rollover_size_in_mbs:
                     description:
@@ -563,7 +565,7 @@ service_connector:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:

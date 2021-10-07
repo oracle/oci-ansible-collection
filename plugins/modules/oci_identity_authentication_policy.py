@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_identity_authentication_policy
 short_description: Manage an AuthenticationPolicy resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an AuthenticationPolicy resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -79,6 +79,7 @@ options:
                     - Network Source ids
                     - This parameter is updatable.
                 type: list
+                elements: str
     state:
         description:
             - The state of the AuthenticationPolicy.
@@ -150,7 +151,7 @@ authentication_policy:
             description:
                 - Compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         network_policy:
             description:
@@ -255,8 +256,9 @@ def main():
             compartment_id=dict(aliases=["id"], type="str", required=True),
             password_policy=dict(
                 type="dict",
+                no_log=False,
                 options=dict(
-                    minimum_password_length=dict(type="int"),
+                    minimum_password_length=dict(type="int", no_log=True),
                     is_uppercase_characters_required=dict(type="bool"),
                     is_lowercase_characters_required=dict(type="bool"),
                     is_numeric_characters_required=dict(type="bool"),
@@ -265,7 +267,8 @@ def main():
                 ),
             ),
             network_policy=dict(
-                type="dict", options=dict(network_source_ids=dict(type="list"))
+                type="dict",
+                options=dict(network_source_ids=dict(type="list", elements="str")),
             ),
             state=dict(type="str", default="present", choices=["present"]),
         )

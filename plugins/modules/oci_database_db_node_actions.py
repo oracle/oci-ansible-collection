@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -35,7 +35,7 @@ description:
       (L(TerminateDbSystem,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/DbSystem/TerminateDbSystem))
       to remove its resources from billing and quotas.
       *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_node_id:
@@ -91,78 +91,78 @@ db_node:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database node.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VNIC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
         backup_vnic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup VNIC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx"
         host_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the host IP address associated with the database node.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.hostip.oc1..xxxxxxEXAMPLExxxxxx"
         backup_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup IP address associated with the database node.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.backupip.oc1..xxxxxxEXAMPLExxxxxx"
         vnic2_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second VNIC.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vnic2.oc1..xxxxxxEXAMPLExxxxxx"
         backup_vnic2_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the second backup VNIC.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the database node.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         hostname:
             description:
                 - The host name for the database node.
             returned: on success
-            type: string
+            type: str
             sample: hostname_example
         fault_domain:
             description:
                 - The name of the Fault Domain the instance is contained in.
             returned: on success
-            type: string
+            type: str
             sample: fault_domain_example
         time_created:
             description:
                 - The date and time that the database node was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         software_storage_size_in_gb:
             description:
                 - The size (in GB) of the block storage volume allocation for the DB system. This attribute applies only for virtual machine DB systems.
@@ -173,25 +173,25 @@ db_node:
             description:
                 - The type of database node maintenance.
             returned: on success
-            type: string
+            type: str
             sample: VMDB_REBOOT_MIGRATION
         time_maintenance_window_start:
             description:
                 - Start date and time of maintenance window.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_maintenance_window_end:
             description:
                 - End date and time of maintenance window.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         additional_details:
             description:
                 - Additional information about the planned maintenance.
             returned: on success
-            type: string
+            type: str
             sample: additional_details_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

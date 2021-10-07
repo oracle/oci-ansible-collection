@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple DrgRouteRules resources
 description:
     - Fetches details about one or multiple DrgRouteRules resources in Oracle Cloud Infrastructure
     - Lists the route rules in the specified DRG route table.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     drg_route_table_id:
@@ -67,7 +67,7 @@ drg_route_rules:
                     a service gateway, this is the `cidrBlock` value associated with that L(Service,https://docs.cloud.oracle.com/en-
                     us/iaas/api/#/en/iaas/20160918/Service/). For example: `oci-phx-objectstorage`."
             returned: on success
-            type: string
+            type: str
             sample: destination_example
         destination_type:
             description:
@@ -78,7 +78,7 @@ drg_route_rules:
                       L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                       particular `Service` through a service gateway)."
             returned: on success
-            type: string
+            type: str
             sample: CIDR_BLOCK
         next_hop_drg_attachment_id:
             description:
@@ -86,14 +86,14 @@ drg_route_rules:
                   for reaching the network destination.
                 - A value of `BLACKHOLE` means traffic for this route is discarded without notification.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
         route_type:
             description:
                 - You can specify static routes for the DRG route table using the API.
                   The DRG learns dynamic routes from the DRG attachments using various routing protocols.
             returned: on success
-            type: string
+            type: str
             sample: STATIC
         is_conflict:
             description:
@@ -111,7 +111,7 @@ drg_route_rules:
             description:
                 - The Oracle-assigned ID of the DRG route rule.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         route_provenance:
             description:
@@ -121,7 +121,7 @@ drg_route_rules:
                 - No routes with a provenance `IPSEC_TUNNEL` or `VIRTUAL_CIRCUIT` will be exported to IPsec tunnel or virtual circuit attachments,
                   regardless of the attachment's export distribution.
             returned: on success
-            type: string
+            type: str
             sample: STATIC
     sample: [{
         "destination": "destination_example",

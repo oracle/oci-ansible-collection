@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CrossConnectMapping resources in Oracle Cloud Infrastructure
     - Lists the Cross Connect mapping Details for the specified
       virtual circuit.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     virtual_circuit_id:
@@ -56,7 +56,7 @@ cross_connect_mappings:
                   requires MD5 authentication. If empty or not set (null), that
                   means you don't use BGP MD5 authentication.
             returned: on success
-            type: string
+            type: str
             sample: bgp_md5_auth_key_example
         cross_connect_or_cross_connect_group_id:
             description:
@@ -65,7 +65,7 @@ cross_connect_mappings:
                   customer if the customer is colocated with Oracle, or the provider if the
                   customer is connecting via provider).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
         customer_bgp_peering_ip:
             description:
@@ -77,7 +77,7 @@ cross_connect_mappings:
                 - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                 - "Example: `10.0.0.18/31`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.0.18/31
         oracle_bgp_peering_ip:
             description:
@@ -88,7 +88,7 @@ cross_connect_mappings:
                 - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                 - "Example: `10.0.0.19/31`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.0.19/31
         customer_bgp_peering_ipv6:
             description:
@@ -100,7 +100,7 @@ cross_connect_mappings:
                 - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
                 - "Example: `2001:db8::1/64`"
             returned: on success
-            type: string
+            type: str
             sample: 2001:db8::1/64
         oracle_bgp_peering_ipv6:
             description:
@@ -111,7 +111,7 @@ cross_connect_mappings:
                 - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses."
                 - "Example: `2001:db8::2/64`"
             returned: on success
-            type: string
+            type: str
             sample: 2001:db8::2/64
         vlan:
             description:
@@ -127,13 +127,13 @@ cross_connect_mappings:
             description:
                 - The state of the Ipv4 BGP session.
             returned: on success
-            type: string
+            type: str
             sample: UP
         ipv6_bgp_status:
             description:
                 - The state of the Ipv6 BGP session.
             returned: on success
-            type: string
+            type: str
             sample: UP
     sample: [{
         "bgp_md5_auth_key": "bgp_md5_auth_key_example",

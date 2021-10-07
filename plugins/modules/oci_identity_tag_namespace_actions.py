@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -42,7 +42,7 @@ description:
       To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
       For more information about IAM policies, see L(Details for IAM,https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm).
       Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tag_namespace_id:
@@ -92,25 +92,25 @@ tag_namespace:
             description:
                 - The OCID of the tag namespace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that contains the tag namespace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the tag namespace. It must be unique across all tag namespaces in the tenancy and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description you assign to the tag namespace.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         freeform_tags:
             description:
@@ -141,15 +141,15 @@ tag_namespace:
                 - The tagnamespace's current state. After creating a tagnamespace, make sure its `lifecycleState` is ACTIVE before using it. After retiring a
                   tagnamespace, make sure its `lifecycleState` is INACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - "Date and time the tagNamespace was created, in the format defined by RFC3339.
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

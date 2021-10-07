@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -44,7 +44,7 @@ description:
       It does not have to be unique, and you can change it. See L(UpdateImage,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Image/UpdateImage).
       Avoid entering confidential information."
     - "This resource has the following action operations in the M(oci_image_actions) module: change_compartment, export."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -233,13 +233,13 @@ image:
             description:
                 - The OCID of the image originally used to launch the instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the instance you want to use as the basis for the image.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         create_image_allowed:
             description:
@@ -264,7 +264,7 @@ image:
                 - You cannot use a platform image name as a custom image name.
                 - "Example: `My custom Oracle Linux image`"
             returned: on success
-            type: string
+            type: str
             sample: My custom Oracle Linux image
         freeform_tags:
             description:
@@ -279,7 +279,7 @@ image:
             description:
                 - The OCID of the image.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode:
             description:
@@ -289,7 +289,7 @@ image:
                   * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers.
                   * `CUSTOM` - VM instances launch with custom configuration settings specified in the `LaunchOptions` parameter."
             returned: on success
-            type: string
+            type: str
             sample: NATIVE
         launch_options:
             description:
@@ -308,7 +308,7 @@ image:
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on platform images."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ISCSI
                 firmware:
                     description:
@@ -318,7 +318,7 @@ image:
                           * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
                           default for platform images."
                     returned: on success
-                    type: string
+                    type: str
                     sample: BIOS
                 network_type:
                     description:
@@ -328,7 +328,7 @@ image:
                           when you launch an instance using hardware-assisted (SR-IOV) networking.
                           * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
                     returned: on success
-                    type: string
+                    type: str
                     sample: E1000
                 remote_data_volume_type:
                     description:
@@ -341,7 +341,7 @@ image:
                           * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
                           storage volumes on platform images."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ISCSI
                 is_pv_encryption_in_transit_enabled:
                     description:
@@ -360,21 +360,21 @@ image:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         operating_system:
             description:
                 - The image's operating system.
                 - "Example: `Oracle Linux`"
             returned: on success
-            type: string
+            type: str
             sample: Oracle Linux
         operating_system_version:
             description:
                 - The image's operating system version.
                 - "Example: `7.2`"
             returned: on success
-            type: string
+            type: str
             sample: 7.2
         agent_features:
             description:
@@ -398,7 +398,7 @@ image:
             description:
                 - "The listing type of the image. The default value is \\"NONE\\"."
             returned: on success
-            type: string
+            type: str
             sample: COMMUNITY
         size_in_mbs:
             description:
@@ -420,8 +420,8 @@ image:
                 - The date and time the image was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "base_image_id": "ocid1.baseimage.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

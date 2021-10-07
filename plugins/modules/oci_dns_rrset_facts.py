@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is
       provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query
       parameter is required.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     zone_name_or_id:
@@ -101,13 +101,13 @@ rrset:
                     description:
                         - The fully qualified domain name where the record can be located.
                     returned: on success
-                    type: string
+                    type: str
                     sample: domain_example
                 record_hash:
                     description:
                         - A unique identifier for the record within its zone.
                     returned: on success
-                    type: string
+                    type: str
                     sample: record_hash_example
                 is_protected:
                     description:
@@ -124,21 +124,21 @@ rrset:
                           For more information about RDATA, see L(Supported DNS Resource Record
                           Types,https://docs.cloud.oracle.com/iaas/Content/DNS/Reference/supporteddnsresource.htm)
                     returned: on success
-                    type: string
+                    type: str
                     sample: rdata_example
                 rrset_version:
                     description:
                         - The latest version of the record's zone in which its RRSet differs
                           from the preceding version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: rrset_version_example
                 rtype:
                     description:
                         - The type of DNS record, such as A or CNAME. For more information, see L(Resource Record (RR)
                           TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
                     returned: on success
-                    type: string
+                    type: str
                     sample: rtype_example
                 ttl:
                     description:

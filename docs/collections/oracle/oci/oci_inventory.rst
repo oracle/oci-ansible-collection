@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_inventory:
@@ -20,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -80,7 +90,7 @@ Parameters
                                                                             <div>
                                 env:OCI_USER_KEY_FILE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Full path and filename of the private key (in PEM format). If the key is encrypted with a pass-phrase, the pass_phrase option must also be provided. Preference order is .oci.yml &gt; OCI_USER_KEY_FILE environment variable &gt; settings from config file This option is required if the private key is not specified through a configuration file (See config_file)</div>
                                                         </td>
@@ -100,7 +110,7 @@ Parameters
                                                                             <div>
                                 env:OCI_USER_KEY_PASS_PHRASE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Passphrase used by the key referenced in api_user_key_file, if it is encrypted. Preference order is .oci.yml &gt; OCI_USER_KEY_PASS_PHRASE environment variable &gt; settings from config file This option is required if the passphrase is not specified through a configuration file (See config_file)</div>
                                                         </td>
@@ -126,7 +136,7 @@ Parameters
                                                                             <div>
                                 env:OCI_ANSIBLE_AUTH_TYPE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
                                                         </td>
@@ -155,7 +165,7 @@ Parameters
                                                                             <div>
                                 env:ANSIBLE_INVENTORY_CACHE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Toggle to enable/disable the caching of the inventory&#x27;s source data, requires a cache plugin setup to work.</div>
                                                         </td>
@@ -186,7 +196,7 @@ Parameters
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_CONNECTION
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache connection data or path, read cache plugin documentation for specifics.</div>
                                                         </td>
@@ -218,7 +228,7 @@ Parameters
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache plugin to use for the inventory&#x27;s source data.</div>
                                                         </td>
@@ -250,7 +260,7 @@ Parameters
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_PLUGIN_PREFIX
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Prefix to use for cache plugin files/tables</div>
                                                         </td>
@@ -282,7 +292,7 @@ Parameters
                                                     <div>
                                 env:ANSIBLE_INVENTORY_CACHE_TIMEOUT
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Cache duration in seconds</div>
                                                         </td>
@@ -299,7 +309,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A dictionary of compartment identifier to obtain list of hosts. This config parameter is optional. If compartment is not specified, the plugin fetches all compartments from the tenancy.</div>
                                                         </td>
@@ -317,7 +327,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Name of the compartment. If None and `compartment_ocid` is not set, all the compartments including the root compartment are returned.</div>
                                                         </td>
@@ -335,7 +345,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>OCID of the compartment. If None, root compartment is assumed to be the default value.</div>
                                                         </td>
@@ -357,7 +367,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Flag used to fetch hosts from subcompartments. Default value is set to True</div>
                                                         </td>
@@ -375,7 +385,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>This option is not needed when the compartment_ocid option is used, it is needed when compartment_name is used. OCID of the parent compartment. If None, root compartment is assumed to be parent.</div>
                                                         </td>
@@ -394,7 +404,7 @@ Parameters
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Create vars from jinja2 expressions.</div>
                                                         </td>
@@ -414,7 +424,7 @@ Parameters
                                                                             <div>
                                 env:OCI_CONFIG_FILE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>The oci config path.</div>
                                                         </td>
@@ -434,7 +444,7 @@ Parameters
                                                                             <div>
                                 env:OCI_CONFIG_PROFILE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>The config profile to use.</div>
                                                         </td>
@@ -455,7 +465,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Parameter to enable logs while running the inventory plugin. Default value is set to False</div>
                                                         </td>
@@ -475,7 +485,7 @@ Parameters
                                                                             <div>
                                 env:OCI_DELEGATION_TOKEN_FILE
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Path to delegation_token file. If not set then the value of the OCI_DELEGATION_TOKEN_FILE environment variable, if any, is used. Otherwise, defaults to config_file.</div>
                                             <div>This parameter is only applicable when <code>auth_type=instance_obo_user</code> is set.</div>
@@ -493,7 +503,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Use multiple threads to speedup lookup. Default is set to True</div>
                                                         </td>
@@ -510,7 +520,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host; when any of the expressions is evaluated to Truthy value, the host is excluded from the inventory. exclude_host_filters take priority over the include_host_filters and filters.</div>
                                                         </td>
@@ -531,7 +541,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>When set, the compute nodes are fetched. Default value set to True.</div>
                                                         </td>
@@ -552,7 +562,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>When set, the db nodes are also fetched. Default value set to False.</div>
                                                         </td>
@@ -569,7 +579,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A dictionary of filter value pairs.</div>
                                             <div>Available filters are display_name, lifecycle_state, availability_domain, defined_tags, freeform_tags.</div>
@@ -589,7 +599,7 @@ Parameters
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">{}</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Add hosts to group based on Jinja2 conditionals.</div>
                                                         </td>
@@ -609,7 +619,7 @@ Parameters
                                                                             <div>
                                 env:OCI_HOSTNAME_FORMAT
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Host naming format to use. Use &#x27;fqdn&#x27; to list hosts using the instance&#x27;s Fully Qualified Domain Name (FQDN). These FQDNs are resolvable within the VCN using the VCN resolver specified through the subnet&#x27;s DHCP options. Please see https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/dns.htm for more details. Use &#x27;public_ip&#x27; to list hosts using public IP address. Use &#x27;private_ip&#x27; to list hosts using private IP address. Use &#x27;display_name&#x27; to list hosts using display_name of the Instances. &#x27;display_name&#x27; cannot be used when fetch_db_hosts is True. By default, hosts are listed using public IP address. hostname_format_preferences and hostname_format cannot be used together</div>
                                                         </td>
@@ -626,7 +636,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of Jinja2 expressions in order of precedence to compose inventory_hostname. Ignores expression if result is an empty string or None value. hostname_format_preferences and hostname_format cannot be used together. The instance is ignored if none of the hostname_format_preferences resulted in a non-empty value</div>
                                                         </td>
@@ -643,7 +653,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of hostnames to search for.</div>
                                                         </td>
@@ -660,7 +670,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of Jinja2 conditional expressions. Each expression in the list is evaluated for each host; when any of the expressions is evaluated to Truthy value, the host is included in the inventory. include_host_filters and filters options cannot be used together.</div>
                                                         </td>
@@ -677,7 +687,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>This parameter is DEPRECATED. Please use auth_type instead.</div>
                                             <div>Use instance principal based authentication. If not set, the API key in your config will be used.</div>
@@ -696,7 +706,7 @@ Parameters
                                                                                                                                                                     <b>Default:</b><br/><div style="color: blue">[]</div>
                                     </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Add hosts to group based on the values of a variable.</div>
                                                         </td>
@@ -720,7 +730,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>Use in conjunction with keyed_groups.</div>
                                             <div>By default, a keyed group that does not have a prefix or a separator provided will have a name that starts with an underscore.</div>
@@ -745,7 +755,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>token that ensures this is a source file for the &#x27;oci&#x27; plugin.</div>
                                                         </td>
@@ -769,7 +779,7 @@ Parameters
                                                                             <div>
                                 env:OCI_PRIMARY_VNIC_ONLY
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>The default behavior of the plugin is to process all VNIC&#x27;s attached to a compute instance. This might result in instance having multiple entries. When this parameter is set to True, the plugin will only process the primary VNIC and thus having only a single entry for each compute instance.</div>
                                                         </td>
@@ -786,7 +796,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>A list of regions to search. If not specified, the region is read from config file. Use &#x27;all&#x27; to generate inventory from all subscribed regions.</div>
                                                         </td>
@@ -807,7 +817,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                     <td>
-                                                                                            </td>
+                                                                                                                    </td>
                                                 <td>
                                             <div>If <code>yes</code> make invalid entries a fatal error, otherwise skip and continue.</div>
                                             <div>Since it is possible to use facts in the expressions they might not always be available and we ignore those errors by default.</div>
@@ -840,13 +850,16 @@ Parameters
                                                                             <div>
                                 env:ANSIBLE_INVENTORY_USE_EXTRA_VARS
                                                                                             </div>
-                                                                    </td>
+                                                                                            </td>
                                                 <td>
                                             <div>Merge extra vars into the available variables for composition (highest precedence).</div>
                                                         </td>
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -31,7 +31,7 @@ description:
       In the response, the `lifecycleState` parameter of the L(Stream,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/streaming/20180418/Stream/) object tells
       you its current state.
     - "This resource has the following action operations in the M(oci_stream_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -136,13 +136,13 @@ stream:
                 - The name of the stream. Avoid entering confidential information.
                 - "Example: `TelemetryEvents`"
             returned: on success
-            type: string
+            type: str
             sample: TelemetryEvents
         id:
             description:
                 - The OCID of the stream.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.stream.realm.region.mnopqr789
         partitions:
             description:
@@ -160,40 +160,40 @@ stream:
             description:
                 - The OCID of the stream.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.compinstance.realm.region.zxcvbn432765
         stream_pool_id:
             description:
                 - The OCID of the stream pool that contains the stream.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.streampool.realm.region.zxcvbn432765
         lifecycle_state:
             description:
                 - The current state of the stream.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_state_details:
             description:
                 - Any additional details about the current state of the stream.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_state_details_example
         time_created:
             description:
                 - The date and time the stream was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
-            type: string
-            sample: 2018-04-20T00:00:07.405Z
+            type: str
+            sample: "2018-04-20T00:00:07.405Z"
         messages_endpoint:
             description:
                 - The endpoint to use when creating the StreamClient to consume or publish messages in the stream.
                   If the associated stream pool is private, the endpoint is also private and can only be accessed from inside the stream pool's associated
                   subnet.
             returned: on success
-            type: string
+            type: str
             sample: messages_endpoint_example
         freeform_tags:
             description:

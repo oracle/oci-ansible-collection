@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Service resources in Or
 description:
     - Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
     - Lists all services that support logging.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options: {}
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
@@ -47,37 +47,37 @@ services:
             description:
                 - Tenant OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         namespace:
             description:
                 - Apollo project namespace, if any.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
         service_principal_name:
             description:
                 - Service ID as set in Service Principal.
             returned: on success
-            type: string
+            type: str
             sample: service_principal_name_example
         endpoint:
             description:
                 - Service endpoint.
             returned: on success
-            type: string
+            type: str
             sample: endpoint_example
         name:
             description:
                 - User-friendly service name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - Service ID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         resource_types:
             description:
@@ -89,7 +89,7 @@ services:
                     description:
                         - Resource type name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 categories:
                     description:
@@ -101,13 +101,13 @@ services:
                             description:
                                 - Category name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         display_name:
                             description:
                                 - Category display name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         parameters:
                             description:
@@ -119,19 +119,19 @@ services:
                                     description:
                                         - Parameter name.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 type:
                                     description:
                                         - Parameter type. One of integer, string, boolean.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: integer
                                 pattern:
                                     description:
                                         - Java regex pattern to validate a parameter value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: pattern_example
     sample: [{
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",

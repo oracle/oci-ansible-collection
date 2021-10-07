@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_migration_connection_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_database_migration_connection -- Manage a Connection resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_database_migration_connection -- Manage a Connection resource in 
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -43,7 +53,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
-- For *state=present*, create a Database Connection resource that contains the details to connect to either a Source or Target Database in the migration.
+- For *state=present*, note: Deprecated. Use the new resource model APIs instead. Create a Database Connection resource that contains the details to connect to either a Source or Target Database in the migration.
 - This resource has the following action operations in the :ref:`oci_connection_actions <ansible_collections.oci_connection_actions_module>` module: change_compartment.
 
 
@@ -835,6 +845,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 

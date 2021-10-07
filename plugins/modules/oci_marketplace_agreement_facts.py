@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Agreement resources in Oracle Cloud Infrastructure
     - Returns the terms of use agreements that must be accepted before you can deploy the specified version of a package.
     - If I(agreement_id) is specified, the details of a single Agreement will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -76,38 +76,38 @@ agreements:
             description:
                 - The unique identifier for the agreement.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         content_url:
             description:
                 - The content URL of the agreement.
             returned: on success
-            type: string
+            type: str
             sample: content_url_example
         signature:
             description:
                 - A time-based signature that can be used to accept an agreement or remove a
                   previously accepted agreement from the list that Marketplace checks before a deployment.
             returned: on success
-            type: string
+            type: str
             sample: signature_example
         compartment_id:
             description:
                 - The unique identifier for the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         author:
             description:
                 - Who authored the agreement.
             returned: on success
-            type: string
+            type: str
             sample: ORACLE
         prompt:
             description:
                 - Textual prompt to read and accept the agreement.
             returned: on success
-            type: string
+            type: str
             sample: prompt_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

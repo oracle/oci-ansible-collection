@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       from the internet. A bastion resides in a public subnet and establishes the network infrastructure needed to connect a user to a target resource in a
       private subnet.
     - "This resource has the following action operations in the M(oci_bastion_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bastion_type:
@@ -61,11 +61,13 @@ options:
             - A list of IP addresses of the hosts that the bastion has access to. Not applicable to `standard` bastions.
             - This parameter is updatable.
         type: list
+        elements: str
     client_cidr_block_allow_list:
         description:
             - A list of address ranges in CIDR notation that you want to allow to connect to sessions hosted by this bastion.
             - This parameter is updatable.
         type: list
+        elements: str
     max_session_ttl_in_seconds:
         description:
             - The maximum amount of time that any session on the bastion can remain active.
@@ -147,43 +149,43 @@ bastion:
             description:
                 - The type of bastion.
             returned: on success
-            type: string
+            type: str
             sample: bastion_type_example
         id:
             description:
                 - The unique identifier (OCID) of the bastion, which can't be changed after creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the bastion, which can't be changed after creation.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The unique identifier (OCID) of the compartment where the bastion is located.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_vcn_id:
             description:
                 - The unique identifier (OCID) of the virtual cloud network (VCN) that the bastion connects to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx"
         target_subnet_id:
             description:
                 - The unique identifier (OCID) of the subnet that the bastion connects to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         phone_book_entry:
             description:
                 - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
             returned: on success
-            type: string
+            type: str
             sample: phone_book_entry_example
         client_cidr_block_allow_list:
             description:
@@ -201,7 +203,7 @@ bastion:
             description:
                 - The private IP address of the created private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: private_endpoint_ip_address_example
         max_session_ttl_in_seconds:
             description:
@@ -220,26 +222,26 @@ bastion:
                 - "The time the bastion was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         time_updated:
             description:
                 - "The time the bastion was updated. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2020-01-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-01-25T21:10:29.600Z
+            type: str
+            sample: "2020-01-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The current state of the bastion.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
@@ -420,8 +422,8 @@ def main():
             compartment_id=dict(type="str"),
             target_subnet_id=dict(type="str"),
             phone_book_entry=dict(type="str"),
-            static_jump_host_ip_addresses=dict(type="list"),
-            client_cidr_block_allow_list=dict(type="list"),
+            static_jump_host_ip_addresses=dict(type="list", elements="str"),
+            client_cidr_block_allow_list=dict(type="list", elements="str"),
             max_session_ttl_in_seconds=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

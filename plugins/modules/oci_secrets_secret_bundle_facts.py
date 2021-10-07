@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a SecretBundle resource in Oracle Cloud Infrastructure
     - Gets a secret bundle that matches either the specified `stage`, `secretVersionName`, or `versionNumber` parameter.
       If none of these parameters are provided, the bundle for the secret version marked as `CURRENT` will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     secret_id:
@@ -85,14 +85,14 @@ secret_bundle:
             description:
                 - The OCID of the secret.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time when the secret bundle was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         version_number:
             description:
                 - The version number of the secret.
@@ -103,7 +103,7 @@ secret_bundle:
             description:
                 - The name of the secret version. Labels are unique across the different versions of a particular secret.
             returned: on success
-            type: string
+            type: str
             sample: version_name_example
         secret_bundle_content:
             description:
@@ -115,13 +115,13 @@ secret_bundle:
                     description:
                         - The formatting type of the secret contents.
                     returned: on success
-                    type: string
+                    type: str
                     sample: BASE64
                 content:
                     description:
                         - The base64-encoded content of the secret.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_example
         time_of_deletion:
             description:
@@ -129,16 +129,16 @@ secret_bundle:
                   format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         time_of_expiry:
             description:
                 - "An optional property indicating when the secret version will expire, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
                   format.
                   Example: `2019-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-04-03T21:10:29.600Z
+            type: str
+            sample: "2019-04-03T21:10:29.600Z"
         stages:
             description:
                 - A list of possible rotation states for the secret version.

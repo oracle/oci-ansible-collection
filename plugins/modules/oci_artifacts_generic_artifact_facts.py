@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple GenericArtifact resources in Oracle Cloud Infrastructure
     - Lists artifacts in the specified repository.
     - If I(artifact_id) is specified, the details of a single GenericArtifact will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     artifact_id:
@@ -114,26 +114,26 @@ generic_artifacts:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the artifact.
                 - "Example: `ocid1.genericartifact.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.genericartifact.oc1..exampleuniqueID"
         display_name:
             description:
                 - The artifact name with the format of `<artifact-path>:<artifact-version>`. The artifact name is truncated to a maximum length of 255.
                 - "Example: `project01/my-web-app/artifact-abc:1.0.0`"
             returned: on success
-            type: string
+            type: str
             sample: project01/my-web-app/artifact-abc:1.0.0
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the repository's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         repository_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the repository.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         artifact_path:
             description:
@@ -141,21 +141,21 @@ generic_artifacts:
                   the repository. An artifact path does not include an artifact version.
                 - "Example: `project01/my-web-app/artifact-abc`"
             returned: on success
-            type: string
+            type: str
             sample: project01/my-web-app/artifact-abc
         version:
             description:
                 - A user-defined string to describe the artifact version.
                 - "Example: `1.1.0` or `1.2-beta-2`"
             returned: on success
-            type: string
+            type: str
             sample: 1.1.0
         sha256:
             description:
                 - The SHA256 digest for the artifact. When you upload an artifact to the repository, a SHA256 digest is calculated and added to the artifact
                   properties.
             returned: on success
-            type: string
+            type: str
             sample: sha256_example
         size_in_bytes:
             description:
@@ -167,7 +167,7 @@ generic_artifacts:
             description:
                 - The current state of the artifact.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         freeform_tags:
             description:
@@ -190,8 +190,8 @@ generic_artifacts:
             description:
                 - An RFC 3339 timestamp indicating when the repository was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.genericartifact.oc1..exampleuniqueID",
         "display_name": "project01/my-web-app/artifact-abc:1.0.0",

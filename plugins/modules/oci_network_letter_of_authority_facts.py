@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a LetterOfAuthority resource in Oracle 
 description:
     - Fetches details about a LetterOfAuthority resource in Oracle Cloud Infrastructure
     - Gets the Letter of Authority for the specified cross-connect.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cross_connect_id:
@@ -54,45 +54,45 @@ letter_of_authority:
             description:
                 - The name of the entity authorized by this Letter of Authority.
             returned: on success
-            type: string
+            type: str
             sample: authorized_entity_name_example
         circuit_type:
             description:
                 - The type of cross-connect fiber, termination, and optical specification.
             returned: on success
-            type: string
+            type: str
             sample: Single_mode_LC
         cross_connect_id:
             description:
                 - The OCID of the cross-connect.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         facility_location:
             description:
                 - The address of the FastConnect location.
             returned: on success
-            type: string
+            type: str
             sample: facility_location_example
         port_name:
             description:
                 - The meet-me room port for this cross-connect.
             returned: on success
-            type: string
+            type: str
             sample: port_name_example
         time_expires:
             description:
                 - The date and time when the Letter of Authority expires, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_issued:
             description:
                 - The date and time the Letter of Authority was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "authorized_entity_name": "authorized_entity_name_example",
         "circuit_type": "Single_mode_LC",

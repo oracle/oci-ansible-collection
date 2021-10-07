@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new connection.
     - "This resource has the following action operations in the M(oci_connection_actions) module: test."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     catalog_id:
@@ -62,6 +62,7 @@ options:
             - The list of customized properties along with the values for this object
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             key:
                 description:
@@ -180,45 +181,45 @@ connection:
             description:
                 - Unique connection key that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         description:
             description:
                 - A description of the connection.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - A user-friendly display name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         time_created:
             description:
                 - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-03-25T21:10:29.600Z
+            type: str
+            sample: "2019-03-25T21:10:29.600Z"
         time_updated:
             description:
                 - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who modified the connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         custom_property_members:
             description:
@@ -230,43 +231,43 @@ connection:
                     description:
                         - Unique Identifier of the attribute which is ID
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - Display name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 value:
                     description:
                         - The custom property value
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 data_type:
                     description:
                         - The data type of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: TEXT
                 namespace_name:
                     description:
                         - Namespace name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_name_example
                 namespace_key:
                     description:
                         - Unique namespace key that is immutable
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_key_example
                 is_multi_valued:
                     description:
@@ -324,19 +325,19 @@ connection:
             description:
                 - Unique external key of this object from the source system.
             returned: on success
-            type: string
+            type: str
             sample: external_key_example
         time_status_updated:
             description:
                 - Time that the connections status was last updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the connection.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         is_default:
             description:
@@ -348,19 +349,19 @@ connection:
             description:
                 - Unique key of the parent data asset.
             returned: on success
-            type: string
+            type: str
             sample: data_asset_key_example
         type_key:
             description:
                 - The key of the object type. Type key's can be found via the '/types' endpoint.
             returned: on success
-            type: string
+            type: str
             sample: type_key_example
         uri:
             description:
                 - URI to the connection instance in the API.
             returned: on success
-            type: string
+            type: str
             sample: uri_example
     sample: {
         "key": "key_example",
@@ -559,15 +560,15 @@ def main():
     module_args.update(
         dict(
             catalog_id=dict(type="str", required=True),
-            data_asset_key=dict(type="str", required=True),
+            data_asset_key=dict(type="str", required=True, no_log=True),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            type_key=dict(type="str"),
+            type_key=dict(type="str", no_log=True),
             custom_property_members=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    key=dict(type="str"),
+                    key=dict(type="str", no_log=True),
                     display_name=dict(aliases=["name"], type="str"),
                     value=dict(type="str"),
                     namespace_name=dict(type="str"),
@@ -576,7 +577,7 @@ def main():
             properties=dict(type="dict"),
             enc_properties=dict(type="dict"),
             is_default=dict(type="bool"),
-            connection_key=dict(type="str"),
+            connection_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

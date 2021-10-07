@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a WafConfig resource in Oracle Cloud In
 description:
     - Fetches details about a WafConfig resource in Oracle Cloud Infrastructure
     - Gets the Web Application Firewall configuration details for a WAAS policy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -61,7 +61,7 @@ waf_config:
                     description:
                         - The unique name of the access rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 criteria:
                     description:
@@ -131,13 +131,13 @@ waf_config:
                                   - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                                   *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: URL_IS
                         value:
                             description:
                                 - The criteria value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                         is_case_sensitive:
                             description:
@@ -157,14 +157,14 @@ waf_config:
                         - "- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page."
                         - Regardless of action, no further rules are processed once a rule is matched.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ALLOW
                 block_action:
                     description:
                         - The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to
                           `SET_RESPONSE_CODE`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SET_RESPONSE_CODE
                 block_response_code:
                     description:
@@ -180,21 +180,21 @@ waf_config:
                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                           criteria are met. If unspecified, defaults to 'Access to the website is blocked.'
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_message_example
                 block_error_page_code:
                     description:
                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                           criteria are met. If unspecified, defaults to 'Access rules'.
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_code_example
                 block_error_page_description:
                     description:
                         - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                           access criteria are met. If unspecified, defaults to 'Access blocked by website owner. Please contact support.'
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_description_example
                 bypass_challenges:
                     description:
@@ -210,7 +210,7 @@ waf_config:
                     description:
                         - The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: redirect_url_example
                 redirect_response_code:
                     description:
@@ -218,32 +218,32 @@ waf_config:
                         - "- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301)."
                         - "- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: MOVED_PERMANENTLY
                 captcha_title:
                     description:
                         - The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_title_example
                 captcha_header:
                     description:
                         - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_header_example
                 captcha_footer:
                     description:
                         - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_footer_example
                 captcha_submit_label:
                     description:
                         - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is
                           challenged.
                     returned: on success
-                    type: string
+                    type: str
                     sample: captcha_submit_label_example
                 response_header_manipulation:
                     description:
@@ -256,21 +256,21 @@ waf_config:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXTEND_HTTP_RESPONSE_HEADER
                         header:
                             description:
                                 - A header field name that conforms to RFC 7230.
                                 - "Example: `example_header_name`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_header_name
                         value:
                             description:
                                 - A header field value that conforms to RFC 7230.
                                 - "Example: `example_value`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: example_value
         address_rate_limiting:
             description:
@@ -314,7 +314,7 @@ waf_config:
                     description:
                         - The unique URL path at which to show the CAPTCHA challenge.
                     returned: on success
-                    type: string
+                    type: str
                     sample: url_example
                 session_expiration_in_seconds:
                     description:
@@ -326,7 +326,7 @@ waf_config:
                     description:
                         - The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`
                     returned: on success
-                    type: string
+                    type: str
                     sample: title_example
                 header_text:
                     description:
@@ -334,26 +334,26 @@ waf_config:
                           attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by entering the text
                           from the image below.'
                     returned: on success
-                    type: string
+                    type: str
                     sample: header_text_example
                 footer_text:
                     description:
                         - The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to 'Enter the letters and numbers as they
                           are shown in the image above.'
                     returned: on success
-                    type: string
+                    type: str
                     sample: footer_text_example
                 failure_message:
                     description:
                         - The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`
                     returned: on success
-                    type: string
+                    type: str
                     sample: failure_message_example
                 submit_label:
                     description:
                         - The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: submit_label_example
         device_fingerprint_challenge:
             description:
@@ -372,7 +372,7 @@ waf_config:
                     description:
                         - The action to take on requests from detected bots. If unspecified, defaults to `DETECT`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DETECT
                 failure_threshold:
                     description:
@@ -415,7 +415,7 @@ waf_config:
                                 - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                   `SHOW_ERROR_PAGE`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SET_RESPONSE_CODE
                         block_response_code:
                             description:
@@ -431,28 +431,28 @@ waf_config:
                                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_message_example
                         block_error_page_description:
                             description:
                                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                   the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_description_example
                         block_error_page_code:
                             description:
                                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                                   request is blocked. If unspecified, defaults to `403`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_code_example
                         captcha_title:
                             description:
                                 - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and
                                   the request is blocked. If unspecified, defaults to `Are you human?`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_title_example
                         captcha_header:
                             description:
@@ -461,7 +461,7 @@ waf_config:
                                   access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                                   captcha below.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_header_example
                         captcha_footer:
                             description:
@@ -469,14 +469,14 @@ waf_config:
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in
                                   image above`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_footer_example
                         captcha_submit_label:
                             description:
                                 - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_submit_label_example
         good_bots:
             description:
@@ -488,13 +488,13 @@ waf_config:
                     description:
                         - The unique key for the bot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 name:
                     description:
                         - The bot name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 is_enabled:
                     description:
@@ -506,7 +506,7 @@ waf_config:
                     description:
                         - The description of the bot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         human_interaction_challenge:
             description:
@@ -525,7 +525,7 @@ waf_config:
                     description:
                         - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DETECT
                 failure_threshold:
                     description:
@@ -568,13 +568,13 @@ waf_config:
                             description:
                                 - The name of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - The value of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                 challenge_settings:
                     description:
@@ -587,7 +587,7 @@ waf_config:
                                 - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                   `SHOW_ERROR_PAGE`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SET_RESPONSE_CODE
                         block_response_code:
                             description:
@@ -603,28 +603,28 @@ waf_config:
                                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_message_example
                         block_error_page_description:
                             description:
                                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                   the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_description_example
                         block_error_page_code:
                             description:
                                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                                   request is blocked. If unspecified, defaults to `403`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_code_example
                         captcha_title:
                             description:
                                 - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and
                                   the request is blocked. If unspecified, defaults to `Are you human?`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_title_example
                         captcha_header:
                             description:
@@ -633,7 +633,7 @@ waf_config:
                                   access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                                   captcha below.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_header_example
                         captcha_footer:
                             description:
@@ -641,14 +641,14 @@ waf_config:
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in
                                   image above`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_footer_example
                         captcha_submit_label:
                             description:
                                 - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_submit_label_example
                 is_nat_enabled:
                     description:
@@ -674,7 +674,7 @@ waf_config:
                     description:
                         - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DETECT
                 failure_threshold:
                     description:
@@ -699,13 +699,13 @@ waf_config:
                             description:
                                 - The name of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - The value of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                 challenge_settings:
                     description:
@@ -718,7 +718,7 @@ waf_config:
                                 - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                   `SHOW_ERROR_PAGE`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SET_RESPONSE_CODE
                         block_response_code:
                             description:
@@ -734,28 +734,28 @@ waf_config:
                                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_message_example
                         block_error_page_description:
                             description:
                                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                   the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_description_example
                         block_error_page_code:
                             description:
                                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE` and the
                                   request is blocked. If unspecified, defaults to `403`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_code_example
                         captcha_title:
                             description:
                                 - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_CAPTCHA`, and
                                   the request is blocked. If unspecified, defaults to `Are you human?`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_title_example
                         captcha_header:
                             description:
@@ -764,7 +764,7 @@ waf_config:
                                   access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by entering the text from
                                   captcha below.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_header_example
                         captcha_footer:
                             description:
@@ -772,14 +772,14 @@ waf_config:
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are shown in
                                   image above`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_footer_example
                         captcha_submit_label:
                             description:
                                 - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set to
                                   `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_submit_label_example
                 are_redirects_challenged:
                     description:
@@ -856,13 +856,13 @@ waf_config:
                                   - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                                   *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: URL_IS
                         value:
                             description:
                                 - The criteria value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                         is_case_sensitive:
                             description:
@@ -882,7 +882,7 @@ waf_config:
                 - The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in `Origins`.
                   Required when creating the `WafConfig` resource, but not on update.
             returned: on success
-            type: string
+            type: str
             sample: origin_example
         caching_rules:
             description:
@@ -894,13 +894,13 @@ waf_config:
                     description:
                         - The unique key for the caching rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 name:
                     description:
                         - The name of the caching rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 action:
                     description:
@@ -908,7 +908,7 @@ waf_config:
                           - **CACHE:** Caches requested content when the criteria of the rule are met."
                         - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CACHE
                 caching_duration:
                     description:
@@ -917,7 +917,7 @@ waf_config:
                           when the `action` is set to `CACHE`.
                           Example: `PT1H`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: PT1H
                 is_client_caching_enabled:
                     description:
@@ -934,7 +934,7 @@ waf_config:
                           when the `action` is set to `CACHE`.
                           Example: `PT1H`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: PT1H
                 criteria:
                     description:
@@ -956,13 +956,13 @@ waf_config:
                                 - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'` `&` `?`
                                   symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.
                             returned: on success
-                            type: string
+                            type: str
                             sample: URL_IS
                         value:
                             description:
                                 - The value of the caching rule criteria.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
         custom_protection_rules:
             description:
@@ -974,7 +974,7 @@ waf_config:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 action:
                     description:
@@ -982,7 +982,7 @@ waf_config:
                           `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the criteria of
                           the custom protection rule are met."
                     returned: on success
-                    type: string
+                    type: str
                     sample: DETECT
                 exclusions:
                     description:
@@ -994,7 +994,7 @@ waf_config:
                             description:
                                 - The target of the exclusion.
                             returned: on success
-                            type: string
+                            type: str
                             sample: REQUEST_COOKIES
                         exclusions:
                             description:
@@ -1020,7 +1020,7 @@ waf_config:
                     description:
                         - The unique key of the protection rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 mod_security_rule_ids:
                     description:
@@ -1033,19 +1033,19 @@ waf_config:
                     description:
                         - The name of the protection rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 description:
                     description:
                         - The description of the protection rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 action:
                     description:
                         - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OFF
                 labels:
                     description:
@@ -1064,7 +1064,7 @@ waf_config:
                             description:
                                 - The target of the exclusion.
                             returned: on success
-                            type: string
+                            type: str
                             sample: REQUEST_COOKIES
                         exclusions:
                             description:
@@ -1083,7 +1083,7 @@ waf_config:
                         - If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If
                           unspecified, defaults to `SET_RESPONSE_CODE`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SHOW_ERROR_PAGE
                 block_response_code:
                     description:
@@ -1098,14 +1098,14 @@ waf_config:
                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                           detected as malicious by a protection rule. If unspecified, defaults to 'Access to the website is blocked.'
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_message_example
                 block_error_page_code:
                     description:
                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic
                           is detected as malicious by a protection rule. If unspecified, defaults to `403`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_code_example
                 block_error_page_description:
                     description:
@@ -1113,7 +1113,7 @@ waf_config:
                           traffic is detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact
                           support.`
                     returned: on success
-                    type: string
+                    type: str
                     sample: block_error_page_description_example
                 max_argument_count:
                     description:
@@ -1208,25 +1208,25 @@ waf_config:
                     description:
                         - The unique key of the threat intelligence feed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 name:
                     description:
                         - The name of the threat intelligence feed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 action:
                     description:
                         - The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to `OFF`.
                     returned: on success
-                    type: string
+                    type: str
                     sample: OFF
                 description:
                     description:
                         - The description of the threat intelligence feed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         whitelists:
             description:
@@ -1238,7 +1238,7 @@ waf_config:
                     description:
                         - The unique name of the whitelist.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 addresses:
                     description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       For more information, please see the documentation.
     - "This resource has the following action operations in the M(oci_catalog_actions) module: attach_catalog_private_endpoint, change_compartment,
       detach_catalog_private_endpoint, object_stats, users."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -117,43 +117,43 @@ catalog:
             description:
                 - OCID of the data catalog instance.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Data catalog identifier, which can be renamed.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - Compartment identifier.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the data catalog was created. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the data catalog was updated. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         service_api_url:
             description:
                 - The REST front endpoint URL to the data catalog instance.
             returned: on success
-            type: string
+            type: str
             sample: service_api_url_example
         service_console_url:
             description:
                 - The console front endpoint URL to the data catalog instance.
             returned: on success
-            type: string
+            type: str
             sample: service_console_url_example
         number_of_objects:
             description:
@@ -166,14 +166,14 @@ catalog:
             description:
                 - The current state of the data catalog resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - An message describing the current state in more detail.
                   For example, it can be used to provide actionable information for a resource in 'Failed' state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_access_rules
 short_description: Manage an AccessRules resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an AccessRules resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             name:
@@ -48,6 +49,7 @@ options:
                 description:
                     - The list of access rule criteria. The rule would be applied only for the requests that matched all the listed conditions.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     condition:
@@ -210,6 +212,7 @@ options:
                     - "- **CAPTCHA:** Bypasses CAPTCHA Challenge."
                     - This parameter is updatable.
                 type: list
+                elements: str
                 choices:
                     - "JS_CHALLENGE"
                     - "DEVICE_FINGERPRINT_CHALLENGE"
@@ -255,6 +258,7 @@ options:
                     - An object that represents an action to apply to an HTTP response headers if all rule criteria will be matched regardless of `action`
                       value.
                 type: list
+                elements: dict
                 suboptions:
                     action:
                         description:
@@ -315,7 +319,7 @@ access_rules:
             description:
                 - The unique name of the access rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         criteria:
             description:
@@ -382,13 +386,13 @@ access_rules:
                           - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                           *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: URL_IS
                 value:
                     description:
                         - The criteria value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 is_case_sensitive:
                     description:
@@ -408,14 +412,14 @@ access_rules:
                 - "- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page."
                 - Regardless of action, no further rules are processed once a rule is matched.
             returned: on success
-            type: string
+            type: str
             sample: ALLOW
         block_action:
             description:
                 - The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to
                   `SET_RESPONSE_CODE`.
             returned: on success
-            type: string
+            type: str
             sample: SET_RESPONSE_CODE
         block_response_code:
             description:
@@ -431,21 +435,21 @@ access_rules:
                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria are
                   met. If unspecified, defaults to 'Access to the website is blocked.'
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_message_example
         block_error_page_code:
             description:
                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access criteria
                   are met. If unspecified, defaults to 'Access rules'.
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_code_example
         block_error_page_description:
             description:
                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the access
                   criteria are met. If unspecified, defaults to 'Access blocked by website owner. Please contact support.'
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_description_example
         bypass_challenges:
             description:
@@ -461,7 +465,7 @@ access_rules:
             description:
                 - The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
             returned: on success
-            type: string
+            type: str
             sample: redirect_url_example
         redirect_response_code:
             description:
@@ -469,31 +473,31 @@ access_rules:
                 - "- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301)."
                 - "- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302)."
             returned: on success
-            type: string
+            type: str
             sample: MOVED_PERMANENTLY
         captcha_title:
             description:
                 - The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
             returned: on success
-            type: string
+            type: str
             sample: captcha_title_example
         captcha_header:
             description:
                 - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
             returned: on success
-            type: string
+            type: str
             sample: captcha_header_example
         captcha_footer:
             description:
                 - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
             returned: on success
-            type: string
+            type: str
             sample: captcha_footer_example
         captcha_submit_label:
             description:
                 - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
             returned: on success
-            type: string
+            type: str
             sample: captcha_submit_label_example
         response_header_manipulation:
             description:
@@ -505,21 +509,21 @@ access_rules:
                     description:
                         - ""
                     returned: on success
-                    type: string
+                    type: str
                     sample: EXTEND_HTTP_RESPONSE_HEADER
                 header:
                     description:
                         - A header field name that conforms to RFC 7230.
                         - "Example: `example_header_name`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_header_name
                 value:
                     description:
                         - A header field value that conforms to RFC 7230.
                         - "Example: `example_value`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_value
     sample: {
         "name": "name_example",
@@ -713,12 +717,14 @@ def main():
                     block_error_page_description=dict(type="str"),
                     bypass_challenges=dict(
                         type="list",
+                        elements="str",
                         choices=[
                             "JS_CHALLENGE",
                             "DEVICE_FINGERPRINT_CHALLENGE",
                             "HUMAN_INTERACTION_CHALLENGE",
                             "CAPTCHA",
                         ],
+                        no_log=True,
                     ),
                     redirect_url=dict(type="str"),
                     redirect_response_code=dict(

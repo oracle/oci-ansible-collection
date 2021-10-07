@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       also known as an asymmetric key. To verify the generated signature, you can use the
       L(Verify,https://docs.cloud.oracle.com/api/#/en/key/latest/VerifiedData/Verify)
       operation. Or, if you want to validate the signature outside of the service, you can do so by using the public key of the same asymmetric key.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     message:
@@ -112,19 +112,19 @@ signed_data:
             description:
                 - The OCID of the key used to sign the message.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id:
             description:
                 - The OCID of the key version used to sign the message.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
         signature:
             description:
                 - The base64-encoded binary data object denoting the cryptographic signature generated for the message or message digest.
             returned: on success
-            type: string
+            type: str
             sample: signature_example
         signing_algorithm:
             description:
@@ -135,7 +135,7 @@ signed_data:
                   When you pass a message digest for signing, ensure that you specify the same hashing algorithm
                   as used when creating the message digest."
             returned: on success
-            type: string
+            type: str
             sample: SHA_224_RSA_PKCS_PSS
     sample: {
         "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",

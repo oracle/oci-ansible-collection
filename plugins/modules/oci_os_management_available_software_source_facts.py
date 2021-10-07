@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple AvailableSoftwareSource
 description:
     - Fetches details about one or multiple AvailableSoftwareSource resources in Oracle Cloud Infrastructure
     - Returns a list of available software sources for a Managed Instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -78,31 +78,31 @@ available_software_sources:
             description:
                 - unique identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User friendly name for the software source
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         parent_id:
             description:
                 - OCID for the parent software source, if there is one
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
         parent_name:
             description:
                 - Display name of the parent software source, if there is one
             returned: on success
-            type: string
+            type: str
             sample: parent_name_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

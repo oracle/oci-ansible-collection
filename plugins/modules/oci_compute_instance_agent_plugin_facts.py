@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Plugin resources in Oracle Cloud Infrastructure
     - The API to get one or more plugin information.
     - If I(plugin_name) is specified, the details of a single Plugin will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instanceagent_id:
@@ -104,7 +104,7 @@ plugins:
             description:
                 - The plugin name
             returned: on success
-            type: string
+            type: str
             sample: name_example
         status:
             description:
@@ -112,19 +112,19 @@ plugins:
                   stopped state * `NOT_SUPPORTED` - The plugin is not supported on this platform * `INVALID` - The plugin state is not recognizable by the
                   service"
             returned: on success
-            type: string
+            type: str
             sample: RUNNING
         time_last_updated_utc:
             description:
                 - The last update time of the plugin in UTC
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         message:
             description:
                 - The optional message from the agent plugin
             returned: on success
-            type: string
+            type: str
             sample: message_example
     sample: [{
         "name": "name_example",

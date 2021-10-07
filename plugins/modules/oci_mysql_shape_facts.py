@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       The shape determines the resources allocated to the DB System:
       CPU cores and memory for VM shapes; CPU cores, memory and
       storage for non-VM (or bare metal) shapes."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -39,6 +39,7 @@ options:
         description:
             - Return shapes that are supported by the service feature.
         type: list
+        elements: str
         choices:
             - "DBSYSTEM"
             - "ANALYTICSCLUSTER"
@@ -72,7 +73,7 @@ shapes:
             description:
                 - The name of the shape used for the DB System.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         cpu_core_count:
             description:
@@ -154,7 +155,9 @@ def main():
         dict(
             compartment_id=dict(type="str", required=True),
             is_supported_for=dict(
-                type="list", choices=["DBSYSTEM", "ANALYTICSCLUSTER", "HEATWAVECLUSTER"]
+                type="list",
+                elements="str",
+                choices=["DBSYSTEM", "ANALYTICSCLUSTER", "HEATWAVECLUSTER"],
             ),
             availability_domain=dict(type="str"),
             name=dict(type="str"),

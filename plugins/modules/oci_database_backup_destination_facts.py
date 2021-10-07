@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple BackupDestination resources in Oracle Cloud Infrastructure
     - Gets a list of backup destinations in the specified compartment.
     - If I(backup_destination_id) is specified, the details of a single BackupDestination will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     backup_destination_id:
@@ -68,25 +68,25 @@ backup_destinations:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - Type of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: NFS
         associated_databases:
             description:
@@ -98,19 +98,19 @@ backup_destinations:
                     description:
                         - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 db_name:
                     description:
                         - The display name of the database that is associated with the backup destination.
                     returned: on success
-                    type: string
+                    type: str
                     sample: db_name_example
         connection_string:
             description:
                 - For a RECOVERY_APPLIANCE backup destination, the connection string for connecting to the Recovery Appliance.
             returned: on success
-            type: string
+            type: str
             sample: connection_string_example
         vpc_users:
             description:
@@ -124,13 +124,13 @@ backup_destinations:
                   location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM
                   cluster nodes.
             returned: on success
-            type: string
+            type: str
             sample: local_mount_point_path_example
         nfs_mount_type:
             description:
                 - NFS Mount type for backup destination.
             returned: on success
-            type: string
+            type: str
             sample: SELF_MOUNT
         nfs_server:
             description:
@@ -142,26 +142,26 @@ backup_destinations:
             description:
                 - Specifies the directory on which to mount the file system
             returned: on success
-            type: string
+            type: str
             sample: nfs_server_export_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the backup destination.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_created:
             description:
                 - The date and time the backup destination was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - A descriptive text associated with the lifecycleState.
                   Typically contains additional displayable text
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

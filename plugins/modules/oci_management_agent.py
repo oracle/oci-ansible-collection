@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a ManagementAgent resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to update and delete a ManagementAgent resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oci_management_agent_actions) module: deploy_plugins."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     management_agent_id:
@@ -114,61 +114,61 @@ management_agent:
             description:
                 - agent identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         install_key_id:
             description:
                 - agent install key identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Management Agent Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         platform_type:
             description:
                 - Platform Type
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         platform_name:
             description:
                 - Platform Name
             returned: on success
-            type: string
+            type: str
             sample: platform_name_example
         platform_version:
             description:
                 - Platform Version
             returned: on success
-            type: string
+            type: str
             sample: platform_version_example
         version:
             description:
                 - Management Agent Version
             returned: on success
-            type: string
+            type: str
             sample: version_example
         host:
             description:
                 - Management Agent host machine name
             returned: on success
-            type: string
+            type: str
             sample: host_example
         host_id:
             description:
                 - Host resource ocid
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
         install_path:
             description:
                 - Path where Management Agent is installed
             returned: on success
-            type: string
+            type: str
             sample: install_path_example
         plugin_list:
             description:
@@ -180,25 +180,25 @@ management_agent:
                     description:
                         - Plugin Id
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx"
                 plugin_name:
                     description:
                         - Management Agent Plugin Name
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_name_example
                 plugin_display_name:
                     description:
                         - Management Agent Plugin Identifier, can be renamed
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_display_name_example
                 plugin_version:
                     description:
                         - Plugin Version
                     returned: on success
-                    type: string
+                    type: str
                     sample: plugin_version_example
                 is_enabled:
                     description:
@@ -210,7 +210,7 @@ management_agent:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
@@ -222,39 +222,39 @@ management_agent:
             description:
                 - The time the Management Agent was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Management Agent was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_heartbeat:
             description:
                 - The time the Management Agent has last recorded its health status in telemetry. This value will be null if the agent has not recorded its
                   health status in last 7 days. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         availability_status:
             description:
                 - The current availability status of managementAgent
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         lifecycle_state:
             description:
                 - The current state of managementAgent
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         is_customer_deployed:
             description:

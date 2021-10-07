@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ConnectHarness resources in Oracle Cloud Infrastructure
     - Lists the connectharness.
     - If I(connect_harness_id) is specified, the details of a single ConnectHarness will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     connect_harness_id:
@@ -95,39 +95,39 @@ connect_harness:
                 - The name of the connect harness. Avoid entering confidential information.
                 - "Example: `JDBCConnector`"
             returned: on success
-            type: string
+            type: str
             sample: TelemetryEvents
         id:
             description:
                 - The OCID of the connect harness.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.connectharness.realm.region.mnopqr789
         compartment_id:
             description:
                 - The OCID of the compartment that contains the connect harness.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.compartment.realm.region.zxcvbn432765
         lifecycle_state:
             description:
                 - The current state of the connect harness.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_state_details:
             description:
                 - Any additional details about the current state of the connect harness.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_state_details_example
         time_created:
             description:
                 - The date and time the connect harness was created, expressed in in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
                 - "Example: `2018-04-20T00:00:07.405Z`"
             returned: on success
-            type: string
-            sample: 2018-04-20T00:00:07.405Z
+            type: str
+            sample: "2018-04-20T00:00:07.405Z"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. Exists for cross-

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple ObjectLifecyclePolicy r
 description:
     - Fetches details about one or multiple ObjectLifecyclePolicy resources in Oracle Cloud Infrastructure
     - Gets the object lifecycle policy for the bucket.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     namespace_name:
@@ -61,8 +61,8 @@ object_lifecycle_policies:
                 - The date and time the object lifecycle policy was created, as described in
                   L(RFC 3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         items:
             description:
                 - The live lifecycle policy on the bucket.
@@ -76,7 +76,7 @@ object_lifecycle_policies:
                     description:
                         - The name of the lifecycle rule to be applied.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 target:
                     description:
@@ -89,7 +89,7 @@ object_lifecycle_policies:
                           This field when declared as \\"multipart-uploads\\" is used to specify the ABORT (only) rule for
                           uncommitted multipart-uploads."
                     returned: on success
-                    type: string
+                    type: str
                     sample: target_example
                 action:
                     description:
@@ -102,7 +102,7 @@ object_lifecycle_policies:
                           Rules using the action 'DELETE' permanently delete objects from buckets.
                           Rules using 'ABORT' abort the uncommitted multipart-uploads and permanently delete their parts from buckets.
                     returned: on success
-                    type: string
+                    type: str
                     sample: action_example
                 time_amount:
                     description:
@@ -116,7 +116,7 @@ object_lifecycle_policies:
                         - The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC.
                           Years are defined as 365.2425 days long and likewise round up to the next midnight UTC.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DAYS
                 is_enabled:
                     description:

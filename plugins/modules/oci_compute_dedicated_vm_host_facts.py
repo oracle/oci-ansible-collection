@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
     - You can limit the list by specifying a dedicated virtual machine host display name. The list will include all the identically-named
       dedicated virtual machine hosts in the compartment.
     - If I(dedicated_vm_host_id) is specified, the details of a single DedicatedVmHost will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     dedicated_vm_host_id:
@@ -121,20 +121,20 @@ dedicated_vm_hosts:
                 - The availability domain the dedicated virtual machine host is running in.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment that contains the dedicated virtual machine host.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         dedicated_vm_host_shape:
             description:
                 - The dedicated virtual machine host shape. The shape determines the number of CPUs and
                   other resources available for VMs.
             returned: on success
-            type: string
+            type: str
             sample: dedicated_vm_host_shape_example
         defined_tags:
             description:
@@ -150,7 +150,7 @@ dedicated_vm_hosts:
                   Avoid entering confidential information.
                 - "Example: `My Dedicated Vm Host`"
             returned: on success
-            type: string
+            type: str
             sample: My Dedicated Vm Host
         fault_domain:
             description:
@@ -162,7 +162,7 @@ dedicated_vm_hosts:
                   API,https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/).
                 - "Example: `FAULT-DOMAIN-1`"
             returned: on success
-            type: string
+            type: str
             sample: FAULT-DOMAIN-1
         freeform_tags:
             description:
@@ -177,21 +177,21 @@ dedicated_vm_hosts:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dedicated VM host.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the dedicated VM host.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the dedicated VM host was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         total_ocpus:
             description:
                 - The total OCPUs of the dedicated VM host.

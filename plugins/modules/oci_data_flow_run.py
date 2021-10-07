@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create and update a Run resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a run for an application.
     - "This resource has the following action operations in the M(oci_run_actions) module: change_compartment, cancel."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     application_id:
@@ -50,6 +50,7 @@ options:
               If \\"input_file\\" has a value of \\"mydata.xml\\", then the value above will be translated to
               `--input mydata.xml --name \\"John Doe\\"`"
         type: list
+        elements: str
     compartment_id:
         description:
             - The OCID of a compartment.
@@ -126,6 +127,7 @@ options:
               Example:  [ { name: \\"iterations\\", value: \\"10\\"}, { name: \\"input_file\\", value: \\"mydata.xml\\" }, { name: \\"variable_x\\", value:
               \\"${x}\\"} ]"
         type: list
+        elements: dict
         suboptions:
             name:
                 description:
@@ -205,7 +207,7 @@ run:
                   Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
-            type: string
+            type: str
             sample: archive_uri_example
         arguments:
             description:
@@ -224,19 +226,19 @@ run:
             description:
                 - The application ID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
             returned: on success
-            type: string
+            type: str
             sample: class_name_example
         compartment_id:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         configuration:
             description:
@@ -272,13 +274,13 @@ run:
             description:
                 - A user-friendly name. This name is not necessarily unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         driver_shape:
             description:
                 - The VM shape for the driver. Sets the driver cores and memory.
             returned: on success
-            type: string
+            type: str
             sample: driver_shape_example
         execute:
             description:
@@ -292,20 +294,20 @@ run:
                   application create/update, or run create/submit,
                   Data Flow service will use derived information from execute input only."
             returned: on success
-            type: string
+            type: str
             sample: "`--jars oci://path/to/a.jar,oci://path/to/b.jar --files oci://path/to/a.json,oci://path/to/b.csv..."
         executor_shape:
             description:
                 - The VM shape for the executors. Sets the executor cores and memory.
             returned: on success
-            type: string
+            type: str
             sample: executor_shape_example
         file_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
-            type: string
+            type: str
             sample: file_uri_example
         freeform_tags:
             description:
@@ -319,38 +321,38 @@ run:
             description:
                 - The ID of a run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         language:
             description:
                 - The Spark language.
             returned: on success
-            type: string
+            type: str
             sample: SCALA
         lifecycle_details:
             description:
                 - The detailed messages about the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of this run.
             returned: on success
-            type: string
+            type: str
             sample: ACCEPTED
         logs_bucket_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
-            type: string
+            type: str
             sample: logs_bucket_uri_example
         metastore_id:
             description:
                 - The OCID of OCI Hive Metastore.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors:
             description:
@@ -363,20 +365,20 @@ run:
                 - Unique Oracle assigned identifier for the request.
                   If you need to contact Oracle about a particular request, please provide the request ID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx"
         owner_principal_id:
             description:
                 - The OCID of the user who created the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx"
         owner_user_name:
             description:
                 - The username of the user who created the resource.  If the username of the owner does not exist,
                   `null` will be returned and the caller should refer to the ownerPrincipalId value instead.
             returned: on success
-            type: string
+            type: str
             sample: owner_user_name_example
         parameters:
             description:
@@ -394,14 +396,14 @@ run:
                           (a-z, A-Z, 0-9, _).
                           Examples: \\"iterations\\", \\"input_file\\""
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 value:
                     description:
                         - "The value of the parameter. It must be a string of 0 or more characters of any kind.
                           Examples: \\"\\" (empty string), \\"10\\", \\"mydata.xml\\", \\"${x}\\""
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
         private_endpoint_dns_zones:
             description:
@@ -429,13 +431,13 @@ run:
             description:
                 - The OCID of a private endpoint.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_subnet_id:
             description:
                 - The OCID of a subnet.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         run_duration_in_milliseconds:
             description:
@@ -447,22 +449,22 @@ run:
             description:
                 - The Spark version utilized to run the application.
             returned: on success
-            type: string
+            type: str
             sample: spark_version_example
         time_created:
             description:
                 - "The date and time a application was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         time_updated:
             description:
                 - "The date and time a application was updated, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2018-04-03T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2018-04-03T21:10:29.600Z
+            type: str
+            sample: "2018-04-03T21:10:29.600Z"
         total_o_cpu:
             description:
                 - The total number of oCPU requested by the run.
@@ -475,7 +477,7 @@ run:
                   for BATCH SQL runs.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
-            type: string
+            type: str
             sample: warehouse_bucket_uri_example
     sample: {
         "archive_uri": "archive_uri_example",
@@ -645,7 +647,7 @@ def main():
         dict(
             application_id=dict(type="str"),
             archive_uri=dict(type="str"),
-            arguments=dict(type="list"),
+            arguments=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
             configuration=dict(type="dict"),
             defined_tags=dict(type="dict"),

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets the specified tunnel's shared secret (pre-shared key). To get other information
       about the tunnel, use L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -62,7 +62,7 @@ ip_sec_connection_tunnel_shared_secret:
             description:
                 - The tunnel's shared secret (pre-shared key).
             returned: on success
-            type: string
+            type: str
             sample: shared_secret_example
     sample: {
         "shared_secret": "shared_secret_example"

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       Addresses added to the suppression list via the API are denoted as
       \\"MANUAL\\" in the `reason` field. *Note:* All email addresses added to the
       suppression list are normalized to include only lowercase letters."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -86,49 +86,49 @@ suppression:
                   suppressions are at the customer level, this must be the tenancy
                   OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address:
             description:
                 - Email address of the suppression.
             returned: on success
-            type: string
+            type: str
             sample: email_address_example
         id:
             description:
                 - The unique ID of the suppression.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         reason:
             description:
                 - The reason that the email address was suppressed. For more information on the types of bounces, see L(Suppression List,https://docs.us-
                   phoenix-1.oraclecloud.com/Content/Email/Concepts/overview.htm#components).
             returned: on success
-            type: string
+            type: str
             sample: UNKNOWN
         time_created:
             description:
                 - "The date and time the suppression was added in \\"YYYY-MM-ddThh:mmZ\\"
                   format with a Z offset, as defined by RFC 3339."
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_suppressed:
             description:
                 - "The last date and time the suppression prevented submission
                   in \\"YYYY-MM-ddThh:mmZ\\"
                   format with a Z offset, as defined by RFC 3339."
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         message_id:
             description:
                 - The value of the Message-ID header from the email that triggered a suppression.
                   This value is as defined in RFC 5322 section 3.6.4, excluding angle-brackets.
                   Not provided for all types of suppressions.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.message.oc1..xxxxxxEXAMPLExxxxxx"
         error_detail:
             description:
@@ -136,7 +136,7 @@ suppression:
                   This message is usually an SMTP error code with additional descriptive text.
                   Not provided for all types of suppressions.
             returned: on success
-            type: string
+            type: str
             sample: error_detail_example
         error_source:
             description:
@@ -145,7 +145,7 @@ suppression:
                   Not provided for all types of suppressions, and not always known.
                 - "Note: Most SMTP errors that cause suppressions come from software run by email receiving systems rather than from OCI email delivery itself."
             returned: on success
-            type: string
+            type: str
             sample: error_source_example
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

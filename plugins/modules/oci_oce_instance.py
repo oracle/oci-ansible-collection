@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an OceInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new OceInstance.
     - "This resource has the following action operations in the M(oci_oce_instance_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     description:
@@ -206,56 +206,56 @@ oce_instance:
             description:
                 - Unique identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         guid:
             description:
                 - Unique GUID identifier that is immutable on creation
             returned: on success
-            type: string
+            type: str
             sample: guid_example
         description:
             description:
                 - OceInstance description, can be updated
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - Compartment Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - OceInstance Name
             returned: on success
-            type: string
+            type: str
             sample: name_example
         tenancy_id:
             description:
                 - Tenancy Identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         idcs_tenancy:
             description:
                 - IDCS Tenancy Identifier
             returned: on success
-            type: string
+            type: str
             sample: idcs_tenancy_example
         tenancy_name:
             description:
                 - Tenancy Name
             returned: on success
-            type: string
+            type: str
             sample: tenancy_name_example
         upgrade_schedule:
             description:
                 - Upgrade schedule type representing service to be upgraded immediately whenever latest version is released
                   or delay upgrade of the service to previous released version
             returned: on success
-            type: string
+            type: str
             sample: UPGRADE_IMMEDIATELY
         identity_stripe:
             description:
@@ -268,75 +268,75 @@ oce_instance:
                         - "Name of the Identity Cloud Service instance in My Services to be used.
                           Example: `secondstripe`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: secondstripe
                 tenancy:
                     description:
                         - "Value of the Identity Cloud Service tenancy.
                           Example: `idcs-8416ebdd0d674f84803f4193cce026e9`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: idcs-8416ebdd0d674f84803f4193cce026e9
         instance_usage_type:
             description:
                 - Instance type based on its usage
             returned: on success
-            type: string
+            type: str
             sample: PRIMARY
         object_storage_namespace:
             description:
                 - Object Storage Namespace of tenancy
             returned: on success
-            type: string
+            type: str
             sample: object_storage_namespace_example
         admin_email:
             description:
                 - Admin Email for Notification
             returned: on success
-            type: string
+            type: str
             sample: admin_email_example
         waf_primary_domain:
             description:
                 - Web Application Firewall(WAF) primary domain
             returned: on success
-            type: string
+            type: str
             sample: waf_primary_domain_example
         instance_access_type:
             description:
                 - Flag indicating whether the instance access is private or public
             returned: on success
-            type: string
+            type: str
             sample: PUBLIC
         instance_license_type:
             description:
                 - Flag indicating whether the instance license is new cloud or bring your own license
             returned: on success
-            type: string
+            type: str
             sample: NEW
         time_created:
             description:
                 - The time the the OceInstance was created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the OceInstance was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the file system.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         state_message:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: state_message_example
         freeform_tags:
             description:
@@ -539,7 +539,7 @@ def main():
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             tenancy_id=dict(type="str"),
-            idcs_access_token=dict(type="str"),
+            idcs_access_token=dict(type="str", no_log=True),
             identity_stripe=dict(
                 type="dict",
                 options=dict(

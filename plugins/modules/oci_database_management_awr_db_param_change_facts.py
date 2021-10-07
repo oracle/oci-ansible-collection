@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,13 +23,13 @@ module: oci_database_management_awr_db_param_change_facts
 short_description: Fetches details about a AwrDbParamChange resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AwrDbParamChange resource in Oracle Cloud Infrastructure
-    - "Summarizes the AWR database parameter change history for one database parameter of the specified Managed Database. One change history record contains
+    - "Summarizes the database parameter change history for one database parameter of the specified database in AWR. One change history record contains
       the previous value, the changed value, and the corresponding time range. If the database parameter value was changed multiple times within the time range,
       then multiple change history records are created for the same parameter.
       Note that this API only returns information on change history details for one database parameter.
       To get a list of all the database parameters whose values were changed during a specified time range, use the following API endpoint:
       /managedDatabases/{managedDatabaseId}/awrDbs/{awrDbId}/awrDbParameters"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -41,7 +41,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -85,7 +85,7 @@ options:
             - "NAME"
     sort_order:
         description:
-            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the the default order.
+            - The option to sort information in ascending ('ASC') or descending ('DESC') order. Descending order is the default order.
         type: str
         choices:
             - "ASC"
@@ -113,14 +113,14 @@ awr_db_param_change:
             description:
                 - The start time of the interval.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_end:
             description:
                 - The end time of the interval.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         instance_number:
             description:
                 - The database instance number.
@@ -131,13 +131,13 @@ awr_db_param_change:
             description:
                 - The previous value of the database parameter.
             returned: on success
-            type: string
+            type: str
             sample: previous_value_example
         value:
             description:
                 - The current value of the database parameter.
             returned: on success
-            type: string
+            type: str
             sample: value_example
         snapshot_id:
             description:
@@ -155,7 +155,7 @@ awr_db_param_change:
                    - SYSTEM_MOD - Parameter has been modified with ALTER SYSTEM (which causes all the currently logged in sessions' values to be modified)
                    - FALSE - Parameter has not been modified after instance startup"
             returned: on success
-            type: string
+            type: str
             sample: value_modified_example
         is_default:
             description:

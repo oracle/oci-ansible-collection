@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a CrossConnectStatus resource in Oracle
 description:
     - Fetches details about a CrossConnectStatus resource in Oracle Cloud Infrastructure
     - Gets the status of the specified cross-connect.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cross_connect_id:
@@ -54,13 +54,13 @@ cross_connect_status:
             description:
                 - The OCID of the cross-connect.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx"
         interface_state:
             description:
                 - Whether Oracle's side of the interface is up or down.
             returned: on success
-            type: string
+            type: str
             sample: UP
         light_level_ind_bm:
             description:
@@ -78,7 +78,7 @@ cross_connect_status:
                 - " * **BAD:** There's measurable light but the signal-to-noise ratio is bad"
                 - " * **GOOD:** Good light level"
             returned: on success
-            type: string
+            type: str
             sample: NO_LIGHT
     sample: {
         "cross_connect_id": "ocid1.crossconnect.oc1..xxxxxxEXAMPLExxxxxx",

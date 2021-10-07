@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,8 +23,8 @@ module: oci_database_management_awr_db_report_facts
 short_description: Fetches details about a AwrDbReport resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AwrDbReport resource in Oracle Cloud Infrastructure
-    - Gets the AWR report for the specified Managed Database.
-version_added: "2.9"
+    - Gets the AWR report for the specific database.
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_database_id:
@@ -36,7 +36,7 @@ options:
         description:
             - "The parameter to filter the database by internal ID.
               Note that the internal ID of the database can be retrieved from the following endpoint:
-              /managedDatabases/{managedDatabaseId}/awrDbs:"
+              /managedDatabases/{managedDatabaseId}/awrDbs"
         type: str
         aliases: ["id"]
         required: true
@@ -44,6 +44,7 @@ options:
         description:
             - The optional multiple value query parameter to filter the database instance numbers.
         type: list
+        elements: int
     begin_sn_id_greater_than_or_equal_to:
         description:
             - The optional greater than or equal to filter on the snapshot ID.
@@ -102,19 +103,19 @@ awr_db_report:
             description:
                 - The name of the query result.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         version:
             description:
                 - The version of the query result.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         query_key:
             description:
                 - The ID assigned to the query instance.
             returned: on success
-            type: string
+            type: str
             sample: query_key_example
         db_query_time_in_secs:
             description:
@@ -126,19 +127,19 @@ awr_db_report:
             description:
                 - The result type of AWR query.
             returned: on success
-            type: string
+            type: str
             sample: AWRDB_SET
         content:
             description:
                 - The content of the report.
             returned: on success
-            type: string
+            type: str
             sample: content_example
         format:
             description:
                 - The format of the report.
             returned: on success
-            type: string
+            type: str
             sample: HTML
     sample: {
         "name": "name_example",
@@ -212,7 +213,7 @@ def main():
         dict(
             managed_database_id=dict(type="str", required=True),
             awr_db_id=dict(aliases=["id"], type="str", required=True),
-            inst_nums=dict(type="list"),
+            inst_nums=dict(type="list", elements="int"),
             begin_sn_id_greater_than_or_equal_to=dict(type="int"),
             end_sn_id_less_than_or_equal_to=dict(type="int"),
             time_greater_than_or_equal_to=dict(type="str"),

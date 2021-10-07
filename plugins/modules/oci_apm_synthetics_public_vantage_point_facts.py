@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple PublicVantagePoint reso
 description:
     - Fetches details about one or multiple PublicVantagePoint resources in Oracle Cloud Infrastructure
     - Returns a list of public vantage points.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     apm_domain_id:
@@ -76,13 +76,13 @@ public_vantage_points:
             description:
                 - Unique name that can be edited. The name should not contain any confidential information.
             returned: on success
-            type: string
+            type: str
             sample: exampleName
         name:
             description:
                 - Unique permanent name of the vantage point.
             returned: on success
-            type: string
+            type: str
             sample: ap-seol
         geo:
             description:
@@ -95,25 +95,25 @@ public_vantage_points:
                         - The ISO 3166-2 code for this location's first-level administrative division, either a US state or Canadian province.
                           Only included for locations in the US or Canada. For a list of codes, see Country Codes.
                     returned: on success
-                    type: string
+                    type: str
                     sample: kr
                 city_name:
                     description:
                         - Common English-language name for the city.
                     returned: on success
-                    type: string
+                    type: str
                     sample: seoul
                 country_code:
                     description:
                         - The ISO 3166-1 alpha-2 country code. For a list of codes, see Country Codes.
                     returned: on success
-                    type: string
+                    type: str
                     sample: kr
                 country_name:
                     description:
                         - The common English-language name for the country.
                     returned: on success
-                    type: string
+                    type: str
                     sample: South Korea
                 latitude:
                     description:

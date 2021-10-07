@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_management_database_parameter_actions_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_database_management_database_parameter_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_database_management_database_parameter_actions -- Perform actions
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -180,7 +190,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-change_parameters" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -322,6 +332,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-credentials/secret_id"></div>
+                    <b>secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-credentials/secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the secret containing the user password.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-credentials/user_name"></div>
                     <b>user_name</b>
                     <a class="ansibleOptionLink" href="#parameter-credentials/user_name" title="Permalink to this option"></a>
@@ -422,6 +448,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -479,9 +508,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-database_parameter"></div>
-                    <b>database_parameter</b>
-                    <a class="ansibleOptionLink" href="#return-database_parameter" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-update_database_parameters_result"></div>
+                    <b>update_database_parameters_result</b>
+                    <a class="ansibleOptionLink" href="#return-update_database_parameters_result" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -497,9 +526,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-database_parameter/status"></div>
+                    <div class="ansibleOptionAnchor" id="return-update_database_parameters_result/status"></div>
                     <b>status</b>
-                    <a class="ansibleOptionLink" href="#return-database_parameter/status" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-update_database_parameters_result/status" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -514,9 +543,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-database_parameter/status/error_code"></div>
+                    <div class="ansibleOptionAnchor" id="return-update_database_parameters_result/status/error_code"></div>
                     <b>error_code</b>
-                    <a class="ansibleOptionLink" href="#return-database_parameter/status/error_code" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-update_database_parameters_result/status/error_code" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -533,9 +562,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-database_parameter/status/error_message"></div>
+                    <div class="ansibleOptionAnchor" id="return-update_database_parameters_result/status/error_message"></div>
                     <b>error_message</b>
-                    <a class="ansibleOptionLink" href="#return-database_parameter/status/error_message" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-update_database_parameters_result/status/error_message" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -552,9 +581,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-database_parameter/status/status"></div>
+                    <div class="ansibleOptionAnchor" id="return-update_database_parameters_result/status/status"></div>
                     <b>status</b>
-                    <a class="ansibleOptionLink" href="#return-database_parameter/status/status" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-update_database_parameters_result/status/status" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>

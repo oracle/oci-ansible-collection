@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=change_compartment), moves a compute capacity reservation into a different compartment. For information about
       moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     capacity_reservation_id:
@@ -72,14 +72,14 @@ compute_capacity_reservation:
                 - The availability domain of the compute capacity reservation.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
                   containing the compute capacity reservation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -94,7 +94,7 @@ compute_capacity_reservation:
                 - A user-friendly name for the compute capacity reservation.
                   It does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -109,7 +109,7 @@ compute_capacity_reservation:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compute capacity reservation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_default_reservation:
             description:
@@ -132,7 +132,7 @@ compute_capacity_reservation:
                           If a value is not supplied, this reservation configuration is applicable to all fault domains in the specified availability domain.
                           For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: fault_domain_example
                 instance_shape:
                     description:
@@ -142,7 +142,7 @@ compute_capacity_reservation:
                           You can list all available shapes by calling L(ListComputeCapacityReservationInstanceShapes,https://docs.cloud.oracle.com/en-
                           us/iaas/api/#/en/iaas/computeCapacityReservationInstanceShapes/ListComputeCapacityReservationInstanceShapes).
                     returned: on success
-                    type: string
+                    type: str
                     sample: instance_shape_example
                 instance_shape_config:
                     description:
@@ -178,7 +178,7 @@ compute_capacity_reservation:
             description:
                 - The current state of the compute capacity reservation.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         reserved_instance_count:
             description:
@@ -194,15 +194,15 @@ compute_capacity_reservation:
                 - The date and time the compute capacity reservation was updated, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_created:
             description:
                 - The date and time the compute capacity reservation was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         used_instance_count:
             description:
                 - The total number of instances currently consuming space in

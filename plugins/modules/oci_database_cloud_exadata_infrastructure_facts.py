@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CloudExadataInfrastructure resources in Oracle Cloud Infrastructure
     - Gets a list of the cloud Exadata infrastructure resources in the specified compartment. Applies to Exadata Cloud Service instances only.
     - If I(cloud_exadata_infrastructure_id) is specified, the details of a single CloudExadataInfrastructure will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     cloud_exadata_infrastructure_id:
@@ -96,37 +96,37 @@ cloud_exadata_infrastructures:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         display_name:
             description:
                 - The user-friendly name for the cloud Exadata infrastructure resource. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         shape:
             description:
                 - The model name of the cloud Exadata infrastructure resource.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         availability_domain:
             description:
                 - The name of the availability domain that the cloud Exadata infrastructure resource is located in.
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compute_count:
             description:
@@ -156,13 +156,13 @@ cloud_exadata_infrastructures:
             description:
                 - The date and time the cloud Exadata infrastructure resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         maintenance_window:
             description:
@@ -174,7 +174,7 @@ cloud_exadata_infrastructures:
                     description:
                         - The maintenance window scheduling preference.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NO_PREFERENCE
                 months:
                     description:
@@ -186,7 +186,7 @@ cloud_exadata_infrastructures:
                             description:
                                 - Name of the month of the year.
                             returned: on success
-                            type: string
+                            type: str
                             sample: JANUARY
                 weeks_of_month:
                     description:
@@ -209,7 +209,7 @@ cloud_exadata_infrastructures:
                             description:
                                 - Name of the day of the week.
                             returned: on success
-                            type: string
+                            type: str
                             sample: MONDAY
                 hours_of_day:
                     description:
@@ -231,13 +231,13 @@ cloud_exadata_infrastructures:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         next_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -267,7 +267,7 @@ cloud_exadata_infrastructures:
                     description:
                         - The email address used by Oracle to send notifications regarding databases and infrastructure.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

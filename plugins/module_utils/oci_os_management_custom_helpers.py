@@ -231,3 +231,17 @@ class SoftwareSourceActionsHelperCustom:
         return super(SoftwareSourceActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class EventContentActionsHelperCustom:
+    def get_resource(self):
+        """
+        upload action is not idempotent. We don't need to get the actual content of the resource.
+        upload action returns None. oci_resource_utils calls the get_resource when the action returns None.
+        So overriding get_resource for upload action so that upload action response wont be a binary stream
+        """
+        action = self.module.params.get("action").lower()
+        if action != "upload":
+            return super(EventContentActionsHelperCustom, self).get_resource()
+        else:
+            return oci_common_utils.get_default_response_from_resource(None)

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -50,7 +50,7 @@ description:
       - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs,
         or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of
         the update."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     vcn_id:
@@ -139,7 +139,7 @@ vcn:
                 - Deprecated. The first CIDR IP address from cidrBlocks.
                 - "Example: `172.16.0.0/16`"
             returned: on success
-            type: string
+            type: str
             sample: 172.16.0.0/16
         cidr_blocks:
             description:
@@ -151,25 +151,25 @@ vcn:
             description:
                 - The OCID of the compartment containing the VCN.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         default_dhcp_options_id:
             description:
                 - The OCID for the VCN's default set of DHCP options.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx"
         default_route_table_id:
             description:
                 - The OCID for the VCN's default route table.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx"
         default_security_list_id:
             description:
                 - The OCID for the VCN's default security list.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -184,7 +184,7 @@ vcn:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         dns_label:
             description:
@@ -199,7 +199,7 @@ vcn:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1`"
             returned: on success
-            type: string
+            type: str
             sample: vcn1
         freeform_tags:
             description:
@@ -214,7 +214,7 @@ vcn:
             description:
                 - The VCN's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         ipv6_cidr_blocks:
             description:
@@ -227,15 +227,15 @@ vcn:
             description:
                 - The VCN's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         time_created:
             description:
                 - The date and time the VCN was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_domain_name:
             description:
                 - The VCN's domain name, which consists of the VCN's DNS label, and the
@@ -244,7 +244,7 @@ vcn:
                   L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
                 - "Example: `vcn1.oraclevcn.com`"
             returned: on success
-            type: string
+            type: str
             sample: vcn1.oraclevcn.com
     sample: {
         "cidr_block": "172.16.0.0/16",

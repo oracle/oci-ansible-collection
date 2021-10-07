@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a CustomTable resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a CustomTable resource in Oracle Cloud Infrastructure
     - For I(state=present), returns the created custom table.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -57,6 +57,7 @@ options:
                           \\"compartmentName\\", \\"compartmentPath\\", \\"compartmentId\\", \\"platform\\", \\"region\\", \\"logicalAd\\",
                           \\"resourceId\\", \\"tenantId\\", \\"tenantName\\"]`"
                 type: list
+                elements: str
             column_group_by:
                 description:
                     - "The column groupBy key list.
@@ -65,12 +66,14 @@ options:
                           \\"compartmentName\\", \\"compartmentPath\\", \\"compartmentId\\", \\"platform\\", \\"region\\", \\"logicalAd\\",
                           \\"resourceId\\", \\"tenantId\\", \\"tenantName\\"]`"
                 type: list
+                elements: str
             group_by_tag:
                 description:
                     - "GroupBy a specific tagKey. Provide the tagNamespace and tagKey in the tag object. Only one tag in the list is supported.
                       For example:
                         `[{\\"namespace\\":\\"oracle\\", \\"key\\":\\"createdBy\\"]`"
                 type: list
+                elements: dict
                 suboptions:
                     namespace:
                         description:
@@ -143,19 +146,19 @@ custom_table:
             description:
                 - The custom table OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         saved_report_id:
             description:
                 - The custom table associated saved report OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The custom table compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         saved_custom_table:
             description:
@@ -167,7 +170,7 @@ custom_table:
                     description:
                         - The name of the custom table.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 row_group_by:
                     description:
@@ -201,19 +204,19 @@ custom_table:
                             description:
                                 - The tag namespace.
                             returned: on success
-                            type: string
+                            type: str
                             sample: namespace_example
                         key:
                             description:
                                 - The tag key.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         value:
                             description:
                                 - The tag value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                 compartment_depth:
                     description:
@@ -381,14 +384,14 @@ def main():
                 type="dict",
                 options=dict(
                     display_name=dict(aliases=["name"], type="str", required=True),
-                    row_group_by=dict(type="list"),
-                    column_group_by=dict(type="list"),
+                    row_group_by=dict(type="list", elements="str"),
+                    column_group_by=dict(type="list", elements="str"),
                     group_by_tag=dict(
                         type="list",
                         elements="dict",
                         options=dict(
                             namespace=dict(type="str"),
-                            key=dict(type="str"),
+                            key=dict(type="str", no_log=True),
                             value=dict(type="str"),
                         ),
                     ),

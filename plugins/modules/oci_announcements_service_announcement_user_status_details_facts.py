@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a AnnouncementUserStatusDetails resourc
 description:
     - Fetches details about a AnnouncementUserStatusDetails resource in Oracle Cloud Infrastructure
     - Gets information about whether a specific announcement was acknowledged by a user.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     announcement_id:
@@ -54,21 +54,21 @@ announcement_user_status_details:
             description:
                 - The OCID of the announcement that this status is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx"
         user_id:
             description:
                 - The OCID of the user that this status is associated with.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         time_acknowledged:
             description:
                 - "The date and time the announcement was acknowledged, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
                   Example: `2019-01-01T17:43:01.389+0000`"
             returned: on success
-            type: string
-            sample: 2019-01-01T17:43:01.389+0000
+            type: str
+            sample: "2019-01-01T17:43:01.389+0000"
     sample: {
         "user_status_announcement_id": "ocid1.userstatusannouncement.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",

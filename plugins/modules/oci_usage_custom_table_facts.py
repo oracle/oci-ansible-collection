@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple CustomTable resources in Oracle Cloud Infrastructure
     - Returns the saved custom table list.
     - If I(custom_table_id) is specified, the details of a single CustomTable will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     custom_table_id:
@@ -83,19 +83,19 @@ custom_tables:
             description:
                 - The custom table OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         saved_report_id:
             description:
                 - The custom table associated saved report OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The custom table compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         saved_custom_table:
             description:
@@ -107,7 +107,7 @@ custom_tables:
                     description:
                         - The name of the custom table.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 row_group_by:
                     description:
@@ -141,19 +141,19 @@ custom_tables:
                             description:
                                 - The tag namespace.
                             returned: on success
-                            type: string
+                            type: str
                             sample: namespace_example
                         key:
                             description:
                                 - The tag key.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         value:
                             description:
                                 - The tag value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                 compartment_depth:
                     description:

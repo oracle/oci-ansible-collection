@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple WaasPolicy resources in Oracle Cloud Infrastructure
     - Gets a list of WAAS policies.
     - If I(waas_policy_id) is specified, the details of a single WaasPolicy will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -59,11 +59,13 @@ options:
         description:
             - Filter policies using a list of display names.
         type: list
+        elements: str
         aliases: ["name"]
     lifecycle_state:
         description:
             - Filter policies using a list of lifecycle states.
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "ACTIVE"
@@ -104,25 +106,25 @@ waas_policies:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the WAAS policy. The name can be changed and does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         domain:
             description:
                 - The web application domain that the WAAS policy protects.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         additional_domains:
             description:
@@ -134,20 +136,20 @@ waas_policies:
             description:
                 - The CNAME record to add to your DNS configuration to route traffic for the domain, and all additional domains, through the WAF.
             returned: on success
-            type: string
+            type: str
             sample: cname_example
         lifecycle_state:
             description:
                 - The current lifecycle state of the WAAS policy.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         origins:
             description:
                 - "A map of host servers (origins) and their keys for the web application. Origin keys are used to associate origins to specific protection
@@ -159,7 +161,7 @@ waas_policies:
                     description:
                         - The URI of the origin. Does not support paths. Port numbers should be specified in the `httpPort` and `httpsPort` fields.
                     returned: on success
-                    type: string
+                    type: str
                     sample: uri_example
                 http_port:
                     description:
@@ -185,13 +187,13 @@ waas_policies:
                             description:
                                 - The name of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         value:
                             description:
                                 - The value of the header.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
         origin_groups:
             description:
@@ -210,7 +212,7 @@ waas_policies:
                             description:
                                 - The IP address or CIDR notation of the origin server.
                             returned: on success
-                            type: string
+                            type: str
                             sample: origin_example
                         weight:
                             description:
@@ -229,7 +231,7 @@ waas_policies:
                     description:
                         - The OCID of the SSL certificate to use if HTTPS is supported.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
                 is_https_enabled:
                     description:
@@ -284,7 +286,7 @@ waas_policies:
                         - "- **CLIENT_IP:** Corresponds to `Client-Ip` header name."
                         - "- **TRUE_CLIENT_IP:** Corresponds to `True-Client-Ip` header name."
                     returned: on success
-                    type: string
+                    type: str
                     sample: "X-Client-Ip: 11.1.1.1, 13.3.3.3"
                 is_cache_control_respected:
                     description:
@@ -313,7 +315,7 @@ waas_policies:
                             SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:!DES-
                             CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: DEFAULT
                 load_balancing_method:
                     description:
@@ -337,20 +339,20 @@ waas_policies:
                                   client's next request contains the cookie value, and nginx routes the request to the origin server that responded to the first
                                   request. STICKY_COOKIE load balancing method falls back to Round Robin for the first request."
                             returned: on success
-                            type: string
+                            type: str
                             sample: IP_HASH
                         name:
                             description:
                                 - The name of the cookie used to track the persistence.
                                   Can contain any US-ASCII character except separator or control character.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         domain:
                             description:
                                 - The domain for which the cookie is set, defaults to WAAS policy domain.
                             returned: on success
-                            type: string
+                            type: str
                             sample: domain_example
                         expiration_time_in_seconds:
                             description:
@@ -392,13 +394,13 @@ waas_policies:
                             description:
                                 - An HTTP verb (i.e. HEAD, GET, or POST) to use when performing the health check.
                             returned: on success
-                            type: string
+                            type: str
                             sample: GET
                         path:
                             description:
                                 - Path to visit on your origins when performing the health check.
                             returned: on success
-                            type: string
+                            type: str
                             sample: path_example
                         headers:
                             description:
@@ -431,7 +433,7 @@ waas_policies:
                                 - Health check will search for the given text in a case-sensitive manner within the response body and will fail if the text is
                                   not found.
                             returned: on success
-                            type: string
+                            type: str
                             sample: expected_response_text_example
                         interval_in_seconds:
                             description:
@@ -474,7 +476,7 @@ waas_policies:
                             description:
                                 - The unique name of the access rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         criteria:
                             description:
@@ -547,13 +549,13 @@ waas_policies:
                                           - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                                           *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: URL_IS
                                 value:
                                     description:
                                         - The criteria value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 is_case_sensitive:
                                     description:
@@ -573,14 +575,14 @@ waas_policies:
                                 - "- **SHOW_CAPTCHA:** Show a CAPTCHA Challenge page instead of the requested page."
                                 - Regardless of action, no further rules are processed once a rule is matched.
                             returned: on success
-                            type: string
+                            type: str
                             sample: ALLOW
                         block_action:
                             description:
                                 - The method used to block requests if `action` is set to `BLOCK` and the access criteria are met. If unspecified, defaults to
                                   `SET_RESPONSE_CODE`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SET_RESPONSE_CODE
                         block_response_code:
                             description:
@@ -596,21 +598,21 @@ waas_policies:
                                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   access criteria are met. If unspecified, defaults to 'Access to the website is blocked.'
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_message_example
                         block_error_page_code:
                             description:
                                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   access criteria are met. If unspecified, defaults to 'Access rules'.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_code_example
                         block_error_page_description:
                             description:
                                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                   the access criteria are met. If unspecified, defaults to 'Access blocked by website owner. Please contact support.'
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_description_example
                         bypass_challenges:
                             description:
@@ -626,7 +628,7 @@ waas_policies:
                             description:
                                 - The target to which the request should be redirected, represented as a URI reference. Required when `action` is `REDIRECT`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: redirect_url_example
                         redirect_response_code:
                             description:
@@ -634,34 +636,34 @@ waas_policies:
                                 - "- **MOVED_PERMANENTLY:** Used for designating the permanent movement of a page (numerical code - 301)."
                                 - "- **FOUND:** Used for designating the temporary movement of a page (numerical code - 302)."
                             returned: on success
-                            type: string
+                            type: str
                             sample: MOVED_PERMANENTLY
                         captcha_title:
                             description:
                                 - The title used when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is challenged.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_title_example
                         captcha_header:
                             description:
                                 - The text to show in the header when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is
                                   challenged.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_header_example
                         captcha_footer:
                             description:
                                 - The text to show in the footer when showing a CAPTCHA challenge when `action` is set to `SHOW_CAPTCHA` and the request is
                                   challenged.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_footer_example
                         captcha_submit_label:
                             description:
                                 - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `SHOW_CAPTCHA` and the request is
                                   challenged.
                             returned: on success
-                            type: string
+                            type: str
                             sample: captcha_submit_label_example
                         response_header_manipulation:
                             description:
@@ -674,21 +676,21 @@ waas_policies:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: EXTEND_HTTP_RESPONSE_HEADER
                                 header:
                                     description:
                                         - A header field name that conforms to RFC 7230.
                                         - "Example: `example_header_name`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: example_header_name
                                 value:
                                     description:
                                         - A header field value that conforms to RFC 7230.
                                         - "Example: `example_value`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: example_value
                 address_rate_limiting:
                     description:
@@ -732,7 +734,7 @@ waas_policies:
                             description:
                                 - The unique URL path at which to show the CAPTCHA challenge.
                             returned: on success
-                            type: string
+                            type: str
                             sample: url_example
                         session_expiration_in_seconds:
                             description:
@@ -744,7 +746,7 @@ waas_policies:
                             description:
                                 - The title used when displaying a CAPTCHA challenge. If unspecified, defaults to `Are you human?`
                             returned: on success
-                            type: string
+                            type: str
                             sample: title_example
                         header_text:
                             description:
@@ -752,26 +754,26 @@ waas_policies:
                                   number of attempts to access this website. To help us keep this site secure, please let us know that you are not a robot by
                                   entering the text from the image below.'
                             returned: on success
-                            type: string
+                            type: str
                             sample: header_text_example
                         footer_text:
                             description:
                                 - The text to show in the footer when showing a CAPTCHA challenge. If unspecified, defaults to 'Enter the letters and numbers as
                                   they are shown in the image above.'
                             returned: on success
-                            type: string
+                            type: str
                             sample: footer_text_example
                         failure_message:
                             description:
                                 - The text to show when incorrect CAPTCHA text is entered. If unspecified, defaults to `The CAPTCHA was incorrect. Try again.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: failure_message_example
                         submit_label:
                             description:
                                 - The text to show on the label of the CAPTCHA challenge submit button. If unspecified, defaults to `Yes, I am human`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: submit_label_example
                 device_fingerprint_challenge:
                     description:
@@ -790,7 +792,7 @@ waas_policies:
                             description:
                                 - The action to take on requests from detected bots. If unspecified, defaults to `DETECT`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: DETECT
                         failure_threshold:
                             description:
@@ -833,7 +835,7 @@ waas_policies:
                                         - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                           `SHOW_ERROR_PAGE`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: SET_RESPONSE_CODE
                                 block_response_code:
                                     description:
@@ -850,7 +852,7 @@ waas_policies:
                                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                           the request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_message_example
                                 block_error_page_description:
                                     description:
@@ -858,21 +860,21 @@ waas_policies:
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please
                                           contact support.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_description_example
                                 block_error_page_code:
                                     description:
                                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`
                                           and the request is blocked. If unspecified, defaults to `403`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_code_example
                                 captcha_title:
                                     description:
                                         - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_title_example
                                 captcha_header:
                                     description:
@@ -881,7 +883,7 @@ waas_policies:
                                           attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by
                                           entering the text from captcha below.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_header_example
                                 captcha_footer:
                                     description:
@@ -889,14 +891,14 @@ waas_policies:
                                           to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are
                                           shown in image above`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_footer_example
                                 captcha_submit_label:
                                     description:
                                         - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is
                                           set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_submit_label_example
                 good_bots:
                     description:
@@ -908,13 +910,13 @@ waas_policies:
                             description:
                                 - The unique key for the bot.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         name:
                             description:
                                 - The bot name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         is_enabled:
                             description:
@@ -926,7 +928,7 @@ waas_policies:
                             description:
                                 - The description of the bot.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                 human_interaction_challenge:
                     description:
@@ -945,7 +947,7 @@ waas_policies:
                             description:
                                 - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: DETECT
                         failure_threshold:
                             description:
@@ -988,13 +990,13 @@ waas_policies:
                                     description:
                                         - The name of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - The value of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         challenge_settings:
                             description:
@@ -1007,7 +1009,7 @@ waas_policies:
                                         - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                           `SHOW_ERROR_PAGE`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: SET_RESPONSE_CODE
                                 block_response_code:
                                     description:
@@ -1024,7 +1026,7 @@ waas_policies:
                                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                           the request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_message_example
                                 block_error_page_description:
                                     description:
@@ -1032,21 +1034,21 @@ waas_policies:
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please
                                           contact support.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_description_example
                                 block_error_page_code:
                                     description:
                                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`
                                           and the request is blocked. If unspecified, defaults to `403`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_code_example
                                 captcha_title:
                                     description:
                                         - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_title_example
                                 captcha_header:
                                     description:
@@ -1055,7 +1057,7 @@ waas_policies:
                                           attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by
                                           entering the text from captcha below.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_header_example
                                 captcha_footer:
                                     description:
@@ -1063,14 +1065,14 @@ waas_policies:
                                           to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are
                                           shown in image above`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_footer_example
                                 captcha_submit_label:
                                     description:
                                         - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is
                                           set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_submit_label_example
                         is_nat_enabled:
                             description:
@@ -1096,7 +1098,7 @@ waas_policies:
                             description:
                                 - The action to take against requests from detected bots. If unspecified, defaults to `DETECT`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: DETECT
                         failure_threshold:
                             description:
@@ -1121,13 +1123,13 @@ waas_policies:
                                     description:
                                         - The name of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - The value of the header.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         challenge_settings:
                             description:
@@ -1140,7 +1142,7 @@ waas_policies:
                                         - The method used to block requests that fail the challenge, if `action` is set to `BLOCK`. If unspecified, defaults to
                                           `SHOW_ERROR_PAGE`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: SET_RESPONSE_CODE
                                 block_response_code:
                                     description:
@@ -1157,7 +1159,7 @@ waas_policies:
                                         - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and
                                           the request is blocked. If unspecified, defaults to `Access to the website is blocked`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_message_example
                                 block_error_page_description:
                                     description:
@@ -1165,21 +1167,21 @@ waas_policies:
                                           `SHOW_ERROR_PAGE`, and the request is blocked. If unspecified, defaults to `Access blocked by website owner. Please
                                           contact support.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_description_example
                                 block_error_page_code:
                                     description:
                                         - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`
                                           and the request is blocked. If unspecified, defaults to `403`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: block_error_page_code_example
                                 captcha_title:
                                     description:
                                         - The title used when showing a CAPTCHA challenge when `action` is set to `BLOCK`, `blockAction` is set to
                                           `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Are you human?`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_title_example
                                 captcha_header:
                                     description:
@@ -1188,7 +1190,7 @@ waas_policies:
                                           attempts to access this webapp. To help us keep this webapp secure, please let us know that you are not a robot by
                                           entering the text from captcha below.`
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_header_example
                                 captcha_footer:
                                     description:
@@ -1196,14 +1198,14 @@ waas_policies:
                                           to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, default to `Enter the letters and numbers as they are
                                           shown in image above`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_footer_example
                                 captcha_submit_label:
                                     description:
                                         - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is
                                           set to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: captcha_submit_label_example
                         are_redirects_challenged:
                             description:
@@ -1283,13 +1285,13 @@ waas_policies:
                                           - **USER_AGENT_IS_NOT:** Matches if the requesting user agent is not identical to the contents of the `value` field.
                                           *Example:* `Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0`"
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: URL_IS
                                 value:
                                     description:
                                         - The criteria value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 is_case_sensitive:
                                     description:
@@ -1309,7 +1311,7 @@ waas_policies:
                         - The key in the map of origins referencing the origin used for the Web Application Firewall. The origin must already be included in
                           `Origins`. Required when creating the `WafConfig` resource, but not on update.
                     returned: on success
-                    type: string
+                    type: str
                     sample: origin_example
                 caching_rules:
                     description:
@@ -1321,13 +1323,13 @@ waas_policies:
                             description:
                                 - The unique key for the caching rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         name:
                             description:
                                 - The name of the caching rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         action:
                             description:
@@ -1335,7 +1337,7 @@ waas_policies:
                                   - **CACHE:** Caches requested content when the criteria of the rule are met."
                                 - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
                             returned: on success
-                            type: string
+                            type: str
                             sample: CACHE
                         caching_duration:
                             description:
@@ -1344,7 +1346,7 @@ waas_policies:
                                   Only applies when the `action` is set to `CACHE`.
                                   Example: `PT1H`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: PT1H
                         is_client_caching_enabled:
                             description:
@@ -1361,7 +1363,7 @@ waas_policies:
                                   supported. Only applies when the `action` is set to `CACHE`.
                                   Example: `PT1H`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: PT1H
                         criteria:
                             description:
@@ -1384,13 +1386,13 @@ waas_policies:
                                         - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'`
                                           `&` `?` symbols. Resources to cache can only be specified by a URL, any query parameters are ignored.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: URL_IS
                                 value:
                                     description:
                                         - The value of the caching rule criteria.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                 custom_protection_rules:
                     description:
@@ -1402,7 +1404,7 @@ waas_policies:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the custom protection rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         action:
                             description:
@@ -1410,7 +1412,7 @@ waas_policies:
                                   `DETECT` - Logs the request when the criteria of the custom protection rule are met. `BLOCK` - Blocks the request when the
                                   criteria of the custom protection rule are met."
                             returned: on success
-                            type: string
+                            type: str
                             sample: DETECT
                         exclusions:
                             description:
@@ -1422,7 +1424,7 @@ waas_policies:
                                     description:
                                         - The target of the exclusion.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: REQUEST_COOKIES
                                 exclusions:
                                     description:
@@ -1448,7 +1450,7 @@ waas_policies:
                             description:
                                 - The unique key of the protection rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         mod_security_rule_ids:
                             description:
@@ -1461,19 +1463,19 @@ waas_policies:
                             description:
                                 - The name of the protection rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         description:
                             description:
                                 - The description of the protection rule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                         action:
                             description:
                                 - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: OFF
                         labels:
                             description:
@@ -1492,7 +1494,7 @@ waas_policies:
                                     description:
                                         - The target of the exclusion.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: REQUEST_COOKIES
                                 exclusions:
                                     description:
@@ -1511,7 +1513,7 @@ waas_policies:
                                 - If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If
                                   unspecified, defaults to `SET_RESPONSE_CODE`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SHOW_ERROR_PAGE
                         block_response_code:
                             description:
@@ -1526,14 +1528,14 @@ waas_policies:
                                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   traffic is detected as malicious by a protection rule. If unspecified, defaults to 'Access to the website is blocked.'
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_message_example
                         block_error_page_code:
                             description:
                                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the
                                   traffic is detected as malicious by a protection rule. If unspecified, defaults to `403`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_code_example
                         block_error_page_description:
                             description:
@@ -1541,7 +1543,7 @@ waas_policies:
                                   the traffic is detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner.
                                   Please contact support.`
                             returned: on success
-                            type: string
+                            type: str
                             sample: block_error_page_description_example
                         max_argument_count:
                             description:
@@ -1637,26 +1639,26 @@ waas_policies:
                             description:
                                 - The unique key of the threat intelligence feed.
                             returned: on success
-                            type: string
+                            type: str
                             sample: key_example
                         name:
                             description:
                                 - The name of the threat intelligence feed.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         action:
                             description:
                                 - The action to take when traffic is flagged as malicious by data from the threat intelligence feed. If unspecified, defaults to
                                   `OFF`.
                             returned: on success
-                            type: string
+                            type: str
                             sample: OFF
                         description:
                             description:
                                 - The description of the threat intelligence feed.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                 whitelists:
                     description:
@@ -1668,7 +1670,7 @@ waas_policies:
                             description:
                                 - The unique name of the whitelist.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         addresses:
                             description:
@@ -2013,9 +2015,10 @@ def main():
             compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["id", "displayName", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            display_name=dict(aliases=["name"], type="list"),
+            display_name=dict(aliases=["name"], type="list", elements="str"),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "ACTIVE",

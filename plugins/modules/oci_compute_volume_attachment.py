@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a VolumeAttachment resource in Oracle Cloud Infrastruc
 description:
     - This module allows the user to create, update and delete a VolumeAttachment resource in Oracle Cloud Infrastructure
     - For I(state=present), attaches the specified storage volume to the specified instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     device:
@@ -170,26 +170,26 @@ volume_attachment:
             description:
                 - The type of volume attachment.
             returned: on success
-            type: string
+            type: str
             sample: emulated
         availability_domain:
             description:
                 - The availability domain of an instance.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         device:
             description:
                 - The device name.
             returned: on success
-            type: string
+            type: str
             sample: device_example
         display_name:
             description:
@@ -197,19 +197,19 @@ volume_attachment:
                   Avoid entering confidential information.
                 - "Example: `My volume attachment`"
             returned: on success
-            type: string
+            type: str
             sample: My volume attachment
         id:
             description:
                 - The OCID of the volume attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the volume is attached to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         is_read_only:
             description:
@@ -230,20 +230,20 @@ volume_attachment:
             description:
                 - The current state of the volume attachment.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
         time_created:
             description:
                 - The date and time the volume was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         volume_id:
             description:
                 - The OCID of the volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
         is_pv_encryption_in_transit_enabled:
             description:
@@ -262,7 +262,7 @@ volume_attachment:
                 - The iscsi login state of the volume attachment. For a multipath volume attachment,
                   all iscsi sessions need to be all logged-in or logged-out to be in logged-in or logged-out state.
             returned: on success
-            type: string
+            type: str
             sample: UNKNOWN
         chap_secret:
             description:
@@ -270,7 +270,7 @@ volume_attachment:
                   valid for the associated CHAP user name.
                   (Also called the \\"CHAP password\\".)"
             returned: on success
-            type: string
+            type: str
             sample: chap_secret_example
         chap_username:
             description:
@@ -278,14 +278,14 @@ volume_attachment:
                   (CHAP) user name. See L(RFC 1994,https://tools.ietf.org/html/rfc1994) for more on CHAP.
                 - "Example: `ocid1.volume.oc1.phx.<unique_ID>`"
             returned: on success
-            type: string
+            type: str
             sample: ocid1.volume.oc1.phx.<unique_ID>
         ipv4:
             description:
                 - The volume's iSCSI IP address.
                 - "Example: `169.254.0.2`"
             returned: on success
-            type: string
+            type: str
             sample: 169.254.0.2
         iqn:
             description:
@@ -293,7 +293,7 @@ volume_attachment:
                   by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
                 - "Example: `iqn.2015-12.us.oracle.com:<CHAP_username>`"
             returned: on success
-            type: string
+            type: str
             sample: iqn.2015-12.us.oracle.com:<CHAP_username>
         port:
             description:
@@ -313,7 +313,7 @@ volume_attachment:
                         - The volume's iSCSI IP address.
                         - "Example: `169.254.2.2`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 169.254.2.2
                 iqn:
                     description:
@@ -321,7 +321,7 @@ volume_attachment:
                           by L(RFC 3720,https://tools.ietf.org/html/rfc3720#page-32).
                         - "Example: `iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: iqn.2015-12.com.oracleiaas:40b7ee03-883f-46c6-a951-63d2841d2195
                 port:
                     description:
@@ -335,7 +335,7 @@ volume_attachment:
                 - Refer the top-level definition of encryptionInTransitType.
                   The default value is NONE.
             returned: on success
-            type: string
+            type: str
             sample: NONE
         iscsi_attach_commands:
             description:

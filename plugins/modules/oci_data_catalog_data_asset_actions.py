@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
     - For I(action=remove_data_selector_patterns), remove data selector pattern from the data asset.
     - For I(action=synchronous_export), export technical objects from a Data Asset
     - For I(action=validate_connection), validate connection by connecting to the data asset using credentials in metadata.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     catalog_id:
@@ -48,6 +48,7 @@ options:
             - Collection of pattern Ids.
             - Required for I(action=add_data_selector_patterns), I(action=remove_data_selector_patterns).
         type: list
+        elements: str
     connection_detail:
         description:
             - ""
@@ -72,6 +73,7 @@ options:
                 description:
                     - The list of customized properties along with the values for this object
                 type: list
+                elements: dict
                 suboptions:
                     key:
                         description:
@@ -136,6 +138,7 @@ options:
                         description:
                             - Allowed values for the custom property if any
                         type: list
+                        elements: str
             properties:
                 description:
                     - "A map of maps that contains the properties which are specific to the connection type. Each connection type
@@ -230,6 +233,7 @@ options:
             - Type of import.
             - Required for I(action=import_data_asset).
         type: list
+        elements: str
         choices:
             - "CUSTOM_PROPERTY_VALUES"
             - "ALL"
@@ -264,6 +268,7 @@ options:
             - Array of objects and their child types to be selected for export.
             - Applicable only for I(action=synchronous_export).
         type: list
+        elements: dict
         suboptions:
             object_key:
                 description:
@@ -273,11 +278,13 @@ options:
                 description:
                     - Array of type keys selected for export.
                 type: list
+                elements: str
     export_type:
         description:
             - Type of export.
             - Required for I(action=synchronous_export).
         type: list
+        elements: str
         choices:
             - "CUSTOM_PROPERTY_VALUES"
             - "ALL"
@@ -354,81 +361,81 @@ data_asset:
             description:
                 - Unique data asset key that is immutable.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         display_name:
             description:
                 - A user-friendly display name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Detailed description of the data asset.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         catalog_id:
             description:
                 - The data catalog's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         external_key:
             description:
                 - External URI that can be used to reference the object. Format will differ based on the type of object.
             returned: on success
-            type: string
+            type: str
             sample: external_key_example
         type_key:
             description:
                 - The key of the object type. Type key's can be found via the '/types' endpoint.
             returned: on success
-            type: string
+            type: str
             sample: type_key_example
         lifecycle_state:
             description:
                 - The current state of the data asset.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - "The date and time the data asset was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                   Example: `2019-03-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2019-03-25T21:10:29.600Z
+            type: str
+            sample: "2019-03-25T21:10:29.600Z"
         time_updated:
             description:
                 - The last time that any change was made to the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_harvested:
             description:
                 - The last time that a harvest was performed on the data asset. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         created_by_id:
             description:
                 - OCID of the user who created the data asset.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
         updated_by_id:
             description:
                 - OCID of the user who last modified the data asset.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         uri:
             description:
                 - URI to the data asset instance in the API.
             returned: on success
-            type: string
+            type: str
             sample: uri_example
         custom_property_members:
             description:
@@ -440,43 +447,43 @@ data_asset:
                     description:
                         - Unique Identifier of the attribute which is ID
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - Display name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 value:
                     description:
                         - The custom property value
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
                 data_type:
                     description:
                         - The data type of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: TEXT
                 namespace_name:
                     description:
                         - Namespace name of the custom property
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_name_example
                 namespace_key:
                     description:
                         - Unique namespace key that is immutable
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_key_example
                 is_multi_valued:
                     description:
@@ -530,45 +537,45 @@ data_asset:
                     description:
                         - Unique pattern key that is immutable.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 display_name:
                     description:
                         - A user-friendly display name. Does not have to be unique, and it's changeable.
                           Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Detailed description of the pattern.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 catalog_id:
                     description:
                         - The data catalog's OCID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
                 time_created:
                     description:
                         - "The date and time the pattern was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                           Example: `2019-03-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-03-25T21:10:29.600Z
+                    type: str
+                    sample: "2019-03-25T21:10:29.600Z"
                 expression:
                     description:
                         - The expression used in the pattern that may include qualifiers.
                     returned: on success
-                    type: string
+                    type: str
                     sample: expression_example
                 lifecycle_state:
                     description:
                         - State of the pattern.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
         properties:
             description:
@@ -876,19 +883,19 @@ def main():
     module_args.update(
         dict(
             catalog_id=dict(type="str", required=True),
-            data_asset_key=dict(type="str", required=True),
-            items=dict(type="list"),
+            data_asset_key=dict(type="str", required=True, no_log=True),
+            items=dict(type="list", elements="str"),
             connection_detail=dict(
                 type="dict",
                 options=dict(
                     description=dict(type="str"),
                     display_name=dict(aliases=["name"], type="str"),
-                    type_key=dict(type="str"),
+                    type_key=dict(type="str", no_log=True),
                     custom_property_members=dict(
                         type="list",
                         elements="dict",
                         options=dict(
-                            key=dict(type="str"),
+                            key=dict(type="str", no_log=True),
                             display_name=dict(aliases=["name"], type="str"),
                             value=dict(type="str"),
                             namespace_name=dict(type="str"),
@@ -903,25 +910,25 @@ def main():
                                     "DATE",
                                 ],
                             ),
-                            namespace_key=dict(type="str"),
+                            namespace_key=dict(type="str", no_log=True),
                             is_multi_valued=dict(type="bool"),
                             is_hidden=dict(type="bool"),
                             is_editable=dict(type="bool"),
                             is_shown_in_list=dict(type="bool"),
                             is_event_enabled=dict(type="bool"),
                             is_list_type=dict(type="bool"),
-                            allowed_values=dict(type="list"),
+                            allowed_values=dict(type="list", elements="str"),
                         ),
                     ),
                     properties=dict(type="dict"),
                     enc_properties=dict(type="dict"),
                     is_default=dict(type="bool"),
-                    key=dict(type="str"),
+                    key=dict(type="str", no_log=True),
                     time_created=dict(type="str"),
                     time_updated=dict(type="str"),
                     created_by_id=dict(type="str"),
                     updated_by_id=dict(type="str"),
-                    external_key=dict(type="str"),
+                    external_key=dict(type="str", no_log=True),
                     time_status_updated=dict(type="str"),
                     lifecycle_state=dict(
                         type="str",
@@ -936,26 +943,31 @@ def main():
                             "MOVING",
                         ],
                     ),
-                    data_asset_key=dict(type="str"),
+                    data_asset_key=dict(type="str", no_log=True),
                     uri=dict(type="str"),
                 ),
             ),
             connection_payload=dict(type="str"),
             import_file_contents=dict(type="str"),
-            import_type=dict(type="list", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]),
+            import_type=dict(
+                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
+            ),
             is_missing_value_ignored=dict(type="bool"),
             wallet_secret_id=dict(type="str"),
             wallet_secret_name=dict(type="str"),
-            connection_key=dict(type="str"),
+            connection_key=dict(type="str", no_log=True),
             dest=dict(type="str"),
             export_scope=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    object_key=dict(type="str"), export_type_ids=dict(type="list")
+                    object_key=dict(type="str", no_log=True),
+                    export_type_ids=dict(type="list", elements="str"),
                 ),
             ),
-            export_type=dict(type="list", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]),
+            export_type=dict(
+                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
+            ),
             action=dict(
                 type="str",
                 required=True,

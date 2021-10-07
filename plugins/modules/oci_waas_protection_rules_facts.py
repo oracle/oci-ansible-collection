@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       Firewall.
       The list is sorted by `key`, in ascending order.
     - If I(protection_rule_key) is specified, the details of a single ProtectionRules will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -45,10 +45,12 @@ options:
         description:
             - Filter rules using a list of ModSecurity rule IDs.
         type: list
+        elements: str
     action:
         description:
             - Filter rules using a list of actions.
         type: list
+        elements: str
         choices:
             - "OFF"
             - "DETECT"
@@ -79,7 +81,7 @@ protection_rules:
             description:
                 - The unique key of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         mod_security_rule_ids:
             description:
@@ -92,19 +94,19 @@ protection_rules:
             description:
                 - The name of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description of the protection rule.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         action:
             description:
                 - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
             returned: on success
-            type: string
+            type: str
             sample: OFF
         labels:
             description:
@@ -123,7 +125,7 @@ protection_rules:
                     description:
                         - The target of the exclusion.
                     returned: on success
-                    type: string
+                    type: str
                     sample: REQUEST_COOKIES
                 exclusions:
                     description:
@@ -215,9 +217,11 @@ def main():
     module_args.update(
         dict(
             waas_policy_id=dict(type="str", required=True),
-            protection_rule_key=dict(type="str"),
-            mod_security_rule_id=dict(type="list"),
-            action=dict(type="list", choices=["OFF", "DETECT", "BLOCK"]),
+            protection_rule_key=dict(type="str", no_log=True),
+            mod_security_rule_id=dict(type="list", elements="str"),
+            action=dict(
+                type="list", elements="str", choices=["OFF", "DETECT", "BLOCK"]
+            ),
             name=dict(type="str"),
         )
     )

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
       Monitoring might throttle this call to reject an otherwise valid request when the total rate of alarm operations exceeds 10 requests,
       or transactions, per second (TPS) for a given tenancy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     alarm_id:
@@ -78,7 +78,7 @@ alarm_history_collection:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm for which to retrieve history.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx"
         is_enabled:
             description:
@@ -95,27 +95,27 @@ alarm_history_collection:
             contains:
                 summary:
                     description:
-                        - Description for this alarm history entry. Avoid entering confidential information.
+                        - Description for this alarm history entry.
                         - "Example 1 - alarm state history entry: `The alarm state is FIRING`"
                         - "Example 2 - alarm state transition history entry: `State transitioned from OK to Firing`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: summary_example
                 timestamp:
                     description:
                         - Timestamp for this alarm history entry. Format defined by RFC3339.
                         - "Example: `2019-02-01T01:02:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T01:02:29.600Z
+                    type: str
+                    sample: "2019-02-01T01:02:29.600Z"
                 timestamp_triggered:
                     description:
                         - "Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing.
                           Available for state transition entries only. Note: A three-minute lag for this value accounts for any late-arriving metrics."
                         - "Example: `2019-02-01T0:59:00.789Z`"
                     returned: on success
-                    type: string
-                    sample: 2019-02-01T0:59:00.789Z
+                    type: str
+                    sample: "2019-02-01T0:59:00.789Z"
     sample: {
         "alarm_id": "ocid1.alarm.oc1..xxxxxxEXAMPLExxxxxx",
         "is_enabled": true,

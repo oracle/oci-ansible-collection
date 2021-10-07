@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Returns response with usage time series data (endTimestamp, usage, capacity) with breakdown by tablespaceName for the time period specified.
       The maximum time range for analysis is 2 years, hence this is intentionally not paginated.
       Either databaseId or id must be specified.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -86,13 +86,13 @@ tablespace_usage_trend:
             description:
                 - The name of tablespace.
             returned: on success
-            type: string
+            type: str
             sample: tablespace_name_example
         tablespace_type:
             description:
                 - Type of tablespace
             returned: on success
-            type: string
+            type: str
             sample: tablespace_type_example
         usage_data:
             description:
@@ -104,8 +104,8 @@ tablespace_usage_trend:
                     description:
                         - The timestamp in which the current sampling period ends in RFC 3339 format.
                     returned: on success
-                    type: string
-                    sample: 2020-05-01T00:00:00.000Z
+                    type: str
+                    sample: "2020-05-01T00:00:00.000Z"
                 usage:
                     description:
                         - Total amount used of the resource metric type (CPU, STORAGE).

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a Template resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a private template in the specified compartment.
     - "This resource has the following action operations in the M(oci_template_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -160,39 +160,39 @@ template:
             description:
                 - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) for the template.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this template.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         category_id:
             description:
                 - Unique identifier for the category where the template is located.
                   Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.category.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Human-readable name of the template.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Brief description of the template.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         long_description:
             description:
                 - Detailed description of the template. This description is displayed in the Console page listing templates when the template is expanded. Avoid
                   entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: long_description_example
         is_free_tier:
             description:
@@ -206,8 +206,8 @@ template:
                   Format is defined by RFC3339.
                   Example: `2020-11-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-11-25T21:10:29.600Z
+            type: str
+            sample: "2020-11-25T21:10:29.600Z"
         template_config_source:
             description:
                 - ""
@@ -218,13 +218,13 @@ template:
                     description:
                         - The type of configuration source to use for the template configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ZIP_UPLOAD
         lifecycle_state:
             description:
                 - The current lifecycle state of the template.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         freeform_tags:
             description:

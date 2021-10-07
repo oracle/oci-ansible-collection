@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
          1.  The agent OCID is not already being used for an existing hostInsight.
          2.  The agent availabilityStatus = 'ACTIVE'
          3.  The agent lifecycleState = 'ACTIVE'"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -71,19 +71,19 @@ importable_agent_entities:
             description:
                 - Source of the importable agent entity.
             returned: on success
-            type: string
+            type: str
             sample: MACS_MANAGED_EXTERNAL_HOST
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_display_name:
             description:
                 - The L(Display Name,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm#Display) of the Management Agent
             returned: on success
-            type: string
+            type: str
             sample: management_agent_display_name_example
     sample: [{
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",

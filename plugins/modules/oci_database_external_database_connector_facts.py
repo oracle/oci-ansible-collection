@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ExternalDatabaseConnector resources in Oracle Cloud Infrastructure
     - Gets a list of the external database connectors in the specified compartment.
     - If I(external_database_connector_id) is specified, the details of a single ExternalDatabaseConnector will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     external_database_connector_id:
@@ -104,7 +104,7 @@ external_database_connectors:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -128,7 +128,7 @@ external_database_connectors:
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
                   The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
@@ -136,50 +136,50 @@ external_database_connectors:
                   L(external database connector,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current lifecycle state of the external database connector resource.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the external connector was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         connector_type:
             description:
                 - The type of connector used by the external database resource.
             returned: on success
-            type: string
+            type: str
             sample: MACS
         external_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external database resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
         connection_status:
             description:
                 - The status of connectivity to the external database.
             returned: on success
-            type: string
+            type: str
             sample: connection_status_example
         time_connection_status_last_updated:
             description:
                 - The date and time the connectionStatus of this external connector was last updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         connection_string:
             description:
                 - ""
@@ -190,7 +190,7 @@ external_database_connectors:
                     description:
                         - The host name of the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hostname_example
                 port:
                     description:
@@ -202,13 +202,13 @@ external_database_connectors:
                     description:
                         - The name of the service alias used to connect to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_example
                 protocol:
                     description:
                         - The protocol used to connect to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: TCP
         connection_credentials:
             description:
@@ -220,7 +220,7 @@ external_database_connectors:
                     description:
                         - The type of credential used to connect to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: NAME_REFERENCE
                 credential_name:
                     description:
@@ -233,25 +233,25 @@ external_database_connectors:
                           using the name."
                         - "For example: inventorydb.abc112233445566778899"
                     returned: on success
-                    type: string
+                    type: str
                     sample: credential_name_example
                 username:
                     description:
                         - The username that will be used to connect to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: username_example
                 password:
                     description:
                         - The password that will be used to connect to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: password_example
                 role:
                     description:
                         - The role of the user that will be connecting to the database.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SYSDBA
         connector_agent_id:
             description:
@@ -259,7 +259,7 @@ external_database_connectors:
                   L(external database connector,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

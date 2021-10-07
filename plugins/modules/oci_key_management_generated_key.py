@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a GeneratedKey resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a GeneratedKey resource in Oracle Cloud Infrastructure
     - For I(state=present), generates a key that you can use to encrypt or decrypt data.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     associated_data:
@@ -118,7 +118,7 @@ generated_key:
             description:
                 - The encrypted data encryption key generated from a master encryption key.
             returned: on success
-            type: string
+            type: str
             sample: ciphertext_example
         plaintext:
             description:
@@ -126,7 +126,7 @@ generated_key:
                   included if the L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
                   request includes the `includePlaintextKey` parameter and sets its value to \\"true\\"."
             returned: on success
-            type: string
+            type: str
             sample: plaintext_example
         plaintext_checksum:
             description:
@@ -134,7 +134,7 @@ generated_key:
                   L(GenerateDataEncryptionKey,https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey)
                   request includes the `includePlaintextKey` parameter and sets its value to \\"true\\"."
             returned: on success
-            type: string
+            type: str
             sample: plaintext_checksum_example
     sample: {
         "ciphertext": "ciphertext_example",
@@ -205,11 +205,12 @@ def main():
     module_args.update(
         dict(
             associated_data=dict(type="dict"),
-            include_plaintext_key=dict(type="bool", required=True),
+            include_plaintext_key=dict(type="bool", required=True, no_log=True),
             key_id=dict(type="str", required=True),
             key_shape=dict(
                 type="dict",
                 required=True,
+                no_log=False,
                 options=dict(
                     algorithm=dict(
                         type="str", required=True, choices=["AES", "RSA", "ECDSA"]

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple NetworkLoadBalancerHealth resources in Oracle Cloud Infrastructure
     - Lists the summary health statuses for all network load balancers in the specified compartment.
     - If I(network_load_balancer_id) is specified, the details of a single NetworkLoadBalancerHealth will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_load_balancer_id:
@@ -90,7 +90,7 @@ network_load_balancer_healths:
                          sets return a status of `WARNING` or `CRITICAL`, and the network load balancer life cycle state is `ACTIVE`."
                 - "   *  The system could not retrieve metrics for any reason."
             returned: on success
-            type: string
+            type: str
             sample: OK
         warning_state_backend_set_names:
             description:
@@ -128,7 +128,7 @@ network_load_balancer_healths:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer with which the health status
                   is associated.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "status": "OK",

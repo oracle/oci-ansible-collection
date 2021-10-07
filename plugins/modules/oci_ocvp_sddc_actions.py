@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -30,7 +30,7 @@ description:
     - For I(action=downgrade_hcx), downgrade the specified SDDC from HCX Enterprise to HCX Advanced
     - For I(action=refresh_hcx_license_status), refresh HCX on-premise licenses status of the specified SDDC.
     - For I(action=upgrade_hcx), upgrade the specified SDDC from HCX Advanced to HCX Enterprise.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sddc_id:
@@ -50,6 +50,7 @@ options:
             - The HCX on-premise licenses keys to be reserved when downgrade from HCX Enterprise to HCX Advanced.
             - Required for I(action=downgrade_hcx).
         type: list
+        elements: str
     action:
         description:
             - The action to perform on the Sddc.
@@ -104,14 +105,14 @@ sddc:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
                 - The availability domain the ESXi hosts are running in.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         display_name:
             description:
@@ -119,7 +120,7 @@ sddc:
                   whitespaces, dashes and underscores.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         instance_display_name_prefix:
             description:
@@ -128,7 +129,7 @@ sddc:
                 - For example, if the value is `MySDDC`, the ESXi hosts are named `MySDDC-1`,
                   `MySDDC-2`, and so on.
             returned: on success
-            type: string
+            type: str
             sample: instance_display_name_prefix_example
         vmware_software_version:
             description:
@@ -146,14 +147,14 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vmwareSoftwareVersion` with that new version.
             returned: on success
-            type: string
+            type: str
             sample: vmware_software_version_example
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that
                   contains the SDDC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         esxi_hosts_count:
             description:
@@ -168,21 +169,21 @@ sddc:
                   HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
                   L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
             returned: on success
-            type: string
+            type: str
             sample: HOUR
         vcenter_fqdn:
             description:
                 - The FQDN for vCenter.
                 - "Example: `vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
-            type: string
+            type: str
             sample: vcenter-my-sddc.sddc.us-phoenix-1.oraclecloud.com
         nsx_manager_fqdn:
             description:
                 - The FQDN for NSX Manager.
                 - "Example: `nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
-            type: string
+            type: str
             sample: nsx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
         vcenter_private_ip_id:
             description:
@@ -190,7 +191,7 @@ sddc:
                   the virtual IP (VIP) for vCenter. For information about `PrivateIp` objects, see the
                   Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_manager_private_ip_id:
             description:
@@ -198,35 +199,35 @@ sddc:
                   the virtual IP (VIP) for NSX Manager. For information about `PrivateIp` objects, see the
                   Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         vcenter_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. Make sure
                   to change this initial vCenter password to a different value.
             returned: on success
-            type: string
+            type: str
             sample: vcenter_initial_password_example
         nsx_manager_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. Make sure
                   to change this initial NSX Manager password to a different value.
             returned: on success
-            type: string
+            type: str
             sample: nsx_manager_initial_password_example
         vcenter_username:
             description:
                 - The SDDC includes an administrator username and initial password for vCenter. You can
                   change this initial username to a different value in vCenter.
             returned: on success
-            type: string
+            type: str
             sample: vcenter_username_example
         nsx_manager_username:
             description:
                 - The SDDC includes an administrator username and initial password for NSX Manager. You
                   can change this initial username to a different value in NSX Manager.
             returned: on success
-            type: string
+            type: str
             sample: nsx_manager_username_example
         ssh_authorized_keys:
             description:
@@ -242,21 +243,21 @@ sddc:
                   SSH keys, you should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update
                   the SDDC's `sshAuthorizedKeys` with the new public keys.
             returned: on success
-            type: string
+            type: str
             sample: ssh_authorized_keys_example
         workload_network_cidr:
             description:
                 - The CIDR block for the IP addresses that VMware VMs in the SDDC use to run application
                   workloads.
             returned: on success
-            type: string
+            type: str
             sample: workload_network_cidr_example
         nsx_overlay_segment_name:
             description:
                 - The VMware NSX overlay workload segment to host your application. Connect to workload
                   portgroup in vCenter to access this overlay segment.
             returned: on success
-            type: string
+            type: str
             sample: nsx_overlay_segment_name_example
         nsx_edge_uplink_ip_id:
             description:
@@ -265,14 +266,14 @@ sddc:
                   route table rules when setting up connectivity between the SDDC and other networks.
                   For information about `PrivateIp` objects, see the Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_subnet_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the management subnet used
                   to provision the SDDC.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         vsphere_vlan_id:
             description:
@@ -288,7 +289,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsphereVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id:
             description:
@@ -304,7 +305,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vmotionVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
         vsan_vlan_id:
             description:
@@ -320,7 +321,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `vsanVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_v_tep_vlan_id:
             description:
@@ -336,7 +337,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxVTepVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_v_tep_vlan_id:
             description:
@@ -352,7 +353,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeVTepVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink1_vlan_id:
             description:
@@ -368,7 +369,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink1VlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx"
         nsx_edge_uplink2_vlan_id:
             description:
@@ -384,21 +385,21 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `nsxEdgeUplink2VlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         replication_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
                   for the vSphere Replication component of the VMware environment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_vlan_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VLAN used by the SDDC
                   for the Provisioning component of the VMware environment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_private_ip_id:
             description:
@@ -406,21 +407,21 @@ sddc:
                   the virtual IP (VIP) for HCX Manager. For information about `PrivateIp` objects, see the
                   Core Services API.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx"
         hcx_fqdn:
             description:
                 - The FQDN for HCX Manager.
                 - "Example: `hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com`"
             returned: on success
-            type: string
+            type: str
             sample: hcx-my-sddc.sddc.us-phoenix-1.oraclecloud.com
         hcx_initial_password:
             description:
                 - The SDDC includes an administrator username and initial password for HCX Manager. Make sure
                   to change this initial HCX Manager password to a different value.
             returned: on success
-            type: string
+            type: str
             sample: hcx_initial_password_example
         hcx_vlan_id:
             description:
@@ -436,7 +437,7 @@ sddc:
                   should use L(UpdateSddc,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/Sddc/UpdateSddc) to update the SDDC's
                   `hcxVlanId` with that new VLAN's OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         is_hcx_enabled:
             description:
@@ -449,7 +450,7 @@ sddc:
                 - The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
                   Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.
             returned: on success
-            type: string
+            type: str
             sample: hcx_on_prem_key_example
         is_hcx_enterprise_enabled:
             description:
@@ -473,55 +474,55 @@ sddc:
                     description:
                         - HCX on-premise license key value
                     returned: on success
-                    type: string
+                    type: str
                     sample: activation_key_example
                 status:
                     description:
                         - status of HCX on-premise license
                     returned: on success
-                    type: string
+                    type: str
                     sample: AVAILABLE
                 system_name:
                     description:
                         - Name of the system that consumed the HCX on-premise license
                     returned: on success
-                    type: string
+                    type: str
                     sample: system_name_example
         time_hcx_billing_cycle_end:
             description:
                 - The date and time current HCX Enterprise billing cycle ends, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_hcx_license_status_updated:
             description:
                 - The date and time the SDDC's HCX on-premise license status was updated, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_updated:
             description:
                 - The date and time the SDDC was updated, in the format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the SDDC.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:
@@ -749,7 +750,9 @@ def main():
         dict(
             sddc_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
-            reserving_hcx_on_premise_license_keys=dict(type="list"),
+            reserving_hcx_on_premise_license_keys=dict(
+                type="list", elements="str", no_log=True
+            ),
             action=dict(
                 type="str",
                 required=True,

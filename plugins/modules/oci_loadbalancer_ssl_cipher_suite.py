@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a SslCipherSuite resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a SslCipherSuite resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a custom SSL cipher suite.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     name:
@@ -144,6 +144,7 @@ options:
             - "example: `[\\"ECDHE-RSA-AES256-GCM-SHA384\\",\\"ECDHE-ECDSA-AES256-GCM-SHA384\\",\\"ECDHE-RSA-AES128-GCM-SHA256\\"]`"
             - Required for create using I(state=present), update using I(state=present) with name present.
         type: list
+        elements: str
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated load balancer.
@@ -205,7 +206,7 @@ ssl_cipher_suite:
                   * oci-customized-ssl-cipher-suite"
                 - "example: `example_cipher_suite`"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         ciphers:
             description:
@@ -459,7 +460,7 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str", required=True),
-            ciphers=dict(type="list"),
+            ciphers=dict(type="list", elements="str"),
             load_balancer_id=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

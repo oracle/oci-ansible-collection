@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a ResourceStatistics resource in Oracle Cloud Infrastructure
     - Lists the Resource statistics (usage,capacity, usage change percent, utilization percent, base capacity, isAutoScalingEnabled) for each database filtered
       by utilization level
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -67,6 +67,7 @@ options:
             - Filter by one or more database type.
               Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
+        elements: str
         choices:
             - "ADW-S"
             - "ATP-S"
@@ -78,10 +79,12 @@ options:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
         type: list
+        elements: str
     id:
         description:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
+        elements: str
     percentile:
         description:
             - Percentile values of daily usage to be used for computing the aggregate resource usage.
@@ -117,6 +120,7 @@ options:
         description:
             - Filter by one or more hostname.
         type: list
+        elements: str
     is_database_instance_level_metrics:
         description:
             - Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied.
@@ -130,12 +134,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -145,6 +151,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -152,6 +159,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -174,25 +182,25 @@ resource_statistics:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         resource_metric:
             description:
                 - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
-            type: string
+            type: str
             sample: STORAGE
         usage_unit:
             description:
                 - Displays usage unit ( CORES, GB)
             returned: on success
-            type: string
+            type: str
             sample: CORES
         items:
             description:
@@ -210,37 +218,37 @@ resource_statistics:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database insight resource.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         database_id:
                             description:
                                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
                         database_name:
                             description:
                                 - The database name. The database name is unique within the tenancy.
                             returned: on success
-                            type: string
+                            type: str
                             sample: database_name_example
                         database_display_name:
                             description:
                                 - The user-friendly name for the database. The name does not have to be unique.
                             returned: on success
-                            type: string
+                            type: str
                             sample: database_display_name_example
                         database_type:
                             description:
                                 - Operations Insights internal representation of the database type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: database_type_example
                         database_version:
                             description:
                                 - The version of the database.
                             returned: on success
-                            type: string
+                            type: str
                             sample: database_version_example
                         instances:
                             description:
@@ -252,13 +260,13 @@ resource_statistics:
                                     description:
                                         - The hostname of the database insight resource.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: host_name_example
                                 instance_name:
                                     description:
                                         - The instance name of the database insight resource.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: instance_name_example
                 current_statistics:
                     description:
@@ -411,6 +419,7 @@ def main():
             time_interval_end=dict(type="str"),
             database_type=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ADW-S",
                     "ATP-S",
@@ -420,8 +429,8 @@ def main():
                     "EXTERNAL-NONCDB",
                 ],
             ),
-            database_id=dict(type="list"),
-            id=dict(type="list"),
+            database_id=dict(type="list", elements="str"),
+            id=dict(type="list", elements="str"),
             percentile=dict(type="int"),
             insight_by=dict(type="str"),
             forecast_days=dict(type="int"),
@@ -436,12 +445,12 @@ def main():
                     "databaseType",
                 ],
             ),
-            host_name=dict(type="list"),
+            host_name=dict(type="list", elements="str"),
             is_database_instance_level_metrics=dict(type="bool"),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

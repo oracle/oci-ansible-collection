@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       Use the [StartPluggableDatabase](#/en/database/latest/PluggableDatabase/StartPluggableDatabase] and
       [StopPluggableDatabase](#/en/database/latest/PluggableDatabase/StopPluggableDatabase] APIs to start and stop the pluggable database.
     - "This resource has the following action operations in the M(oci_pluggable_database_actions) module: local_clone, remote_clone, start, stop."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     pdb_name:
@@ -120,13 +120,13 @@ pluggable_database:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the pluggable database.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         container_database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CDB.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name:
             description:
@@ -134,26 +134,26 @@ pluggable_database:
                   us/iaas/api/#/en/database/latest/Database/). The name must begin with an alphabetic character and can contain a maximum of thirty alphanumeric
                   characters. Special characters are not permitted. The pluggable database name should not be same as the container database name.
             returned: on success
-            type: string
+            type: str
             sample: pdb_name_example
         lifecycle_state:
             description:
                 - The current state of the pluggable database.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         lifecycle_details:
             description:
                 - Detailed message for the lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the pluggable database was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         connection_strings:
             description:
                 - ""
@@ -164,13 +164,13 @@ pluggable_database:
                     description:
                         - A host name-based PDB connection string.
                     returned: on success
-                    type: string
+                    type: str
                     sample: pdb_default_example
                 pdb_ip_default:
                     description:
                         - An IP-based PDB connection string.
                     returned: on success
-                    type: string
+                    type: str
                     sample: pdb_ip_default_example
                 all_connection_strings:
                     description:
@@ -183,7 +183,7 @@ pluggable_database:
                 - The mode that pluggable database is in. Open mode can only be changed to READ_ONLY or MIGRATE directly from the backend (within the Oracle
                   Database software).
             returned: on success
-            type: string
+            type: str
             sample: READ_ONLY
         is_restricted:
             description:
@@ -196,7 +196,7 @@ pluggable_database:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:

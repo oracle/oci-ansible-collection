@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Perform actions on a ContainerImage resource in Oracle Cloud Infrastructure
     - For I(action=remove_container_version), remove version from container image.
     - For I(action=restore), restore a container image.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     image_id:
@@ -76,19 +76,19 @@ container_image:
             description:
                 - The compartment OCID to which the container image belongs. Inferred from the container repository.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the user or principal that created the resource.
             returned: on success
-            type: string
+            type: str
             sample: created_by_example
         digest:
             description:
                 - The container image digest.
             returned: on success
-            type: string
+            type: str
             sample: digest_example
         display_name:
             description:
@@ -97,14 +97,14 @@ container_image:
                   If the last known version is unavailable, then 'unknown' is used instead of the version.
                 - "Example: `ubuntu:latest` or `ubuntu:latest@sha256:45b23dee08af5e43a7fea6c4cf9c25ccf269ee113168c19722f87876677c5cb2`"
             returned: on success
-            type: string
+            type: str
             sample: ubuntu:latest
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container image.
                 - "Example: `ocid1.containerimage.oc1..exampleuniqueID`"
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.containerimage.oc1..exampleuniqueID"
         layers:
             description:
@@ -116,7 +116,7 @@ container_image:
                     description:
                         - The sha256 digest of the image layer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: digest_example
                 size_in_bytes:
                     description:
@@ -128,8 +128,8 @@ container_image:
                     description:
                         - An RFC 3339 timestamp indicating when the layer was created.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         layers_size_in_bytes:
             description:
                 - The total size of the container image layers in bytes.
@@ -140,7 +140,7 @@ container_image:
             description:
                 - The current state of the container image.
             returned: on success
-            type: string
+            type: str
             sample: AVAILABLE
         manifest_size_in_bytes:
             description:
@@ -158,31 +158,31 @@ container_image:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the container repository.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         repository_name:
             description:
                 - The container repository name.
             returned: on success
-            type: string
+            type: str
             sample: repository_name_example
         time_created:
             description:
                 - An RFC 3339 timestamp indicating when the image was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_pulled:
             description:
                 - An RFC 3339 timestamp indicating when the image was last pulled.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         version:
             description:
                 - The most recent version associated with this image.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         versions:
             description:
@@ -194,19 +194,19 @@ container_image:
                     description:
                         - The OCID of the user or principal that pushed the version.
                     returned: on success
-                    type: string
+                    type: str
                     sample: created_by_example
                 time_created:
                     description:
                         - The creation time of the version.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 version:
                     description:
                         - The version name.
                     returned: on success
-                    type: string
+                    type: str
                     sample: version_example
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

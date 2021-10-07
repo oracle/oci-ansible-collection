@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple DrgRouteDistributionSta
 description:
     - Fetches details about one or multiple DrgRouteDistributionStatements resources in Oracle Cloud Infrastructure
     - Lists the statements for the specified route distribution.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     drg_route_distribution_id:
@@ -74,26 +74,26 @@ drg_route_distribution_statements:
                     description:
                         - The type of the match criteria for a route distribution statement.
                     returned: on success
-                    type: string
+                    type: str
                     sample: DRG_ATTACHMENT_TYPE
                 drg_attachment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.drgattachment.oc1..xxxxxxEXAMPLExxxxxx"
                 attachment_type:
                     description:
                         - The type of the network resource to be included in this match. A match for a network type implies that all
                           DRG attachments of that type insert routes into the table.
                     returned: on success
-                    type: string
+                    type: str
                     sample: VCN
         action:
             description:
                 - "`ACCEPT` indicates the route should be imported or exported as-is."
             returned: on success
-            type: string
+            type: str
             sample: ACCEPT
         priority:
             description:
@@ -110,7 +110,7 @@ drg_route_distribution_statements:
             description:
                 - The Oracle-assigned ID of the route distribution statement.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "match_criteria": [{

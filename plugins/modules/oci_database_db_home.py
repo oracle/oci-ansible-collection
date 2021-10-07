@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DbHome resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Database Home in the specified database system based on the request parameters you provide. Applies to bare metal DB
       systems, Exadata systems, and Exadata Cloud@Customer systems.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -204,6 +204,7 @@ options:
                             - Backup destination details.
                             - Applicable when source is 'NONE'
                         type: list
+                        elements: dict
                         suboptions:
                             type:
                                 description:
@@ -297,6 +298,7 @@ options:
             - List of one-off patches for Database Homes.
             - This parameter is updatable.
         type: list
+        elements: str
     perform_final_backup:
         description:
             - Whether to perform a final backup of the database or not. Default is false.
@@ -372,74 +374,74 @@ db_home:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-provided name for the Database Home. The name does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         last_patch_history_entry_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as
                   a patch operation is started.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the Database Home.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         db_version:
             description:
                 - The Oracle Database version.
             returned: on success
-            type: string
+            type: str
             sample: db_version_example
         db_home_location:
             description:
                 - The location of the Oracle Database Home.
             returned: on success
-            type: string
+            type: str
             sample: db_home_location_example
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the Database Home was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         kms_key_id:
             description:
                 - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         one_off_patches:
             description:
@@ -451,7 +453,7 @@ db_home:
             description:
                 - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -712,7 +714,7 @@ def main():
                     action=dict(type="str", choices=["APPLY", "PRECHECK"]),
                 ),
             ),
-            one_off_patches=dict(type="list"),
+            one_off_patches=dict(type="list", elements="str"),
             perform_final_backup=dict(type="bool"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

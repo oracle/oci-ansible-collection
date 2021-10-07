@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Gets a list of IP addresses of OCI nameservers for inbound and outbound transfer of zones in the specified
       compartment (which must be the root compartment of a tenancy) that transfer zone data with external master or
       downstream nameservers.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -62,7 +62,7 @@ zone_transfer_servers:
             description:
                 - The server's IP address (IPv4 or IPv6).
             returned: on success
-            type: string
+            type: str
             sample: address_example
         port:
             description:

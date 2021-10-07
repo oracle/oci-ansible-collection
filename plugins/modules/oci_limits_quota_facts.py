@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Quota resources in Oracle Cloud Infrastructure
     - Lists all quotas on resources from the given compartment.
     - If I(quota_id) is specified, the details of a single Quota will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     quota_id:
@@ -89,20 +89,20 @@ quotas:
             description:
                 - The OCID of the quota.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment containing the resource this quota applies to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name you assign to the quota during creation. The name must be unique across all quotas
                   in the tenancy and cannot be changed.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         statements:
             description:
@@ -114,21 +114,21 @@ quotas:
             description:
                 - The description you assign to the quota.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - "Date and time the quota was created, in the format defined by RFC 3339.
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         lifecycle_state:
             description:
                 - The quota's current state. After creating a quota, make sure its `lifecycleState` is set to
                   ACTIVE before using it.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         freeform_tags:
             description:

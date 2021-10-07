@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Sender resources in Oracle Cloud Infrastructure
     - Gets a collection of approved sender email addresses and sender IDs.
     - If I(sender_id) is specified, the details of a single Sender will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sender_id:
@@ -98,19 +98,19 @@ senders:
             description:
                 - The OCID for the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email_address:
             description:
                 - Email address of the sender.
             returned: on success
-            type: string
+            type: str
             sample: email_address_example
         id:
             description:
                 - The unique OCID of the sender.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_spf:
             description:
@@ -123,20 +123,20 @@ senders:
             description:
                 - The sender's current lifecycle state.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - "The date and time the approved sender was added in \\"YYYY-MM-ddThh:mmZ\\"
                   format with a Z offset, as defined by RFC 3339."
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         email_domain_id:
             description:
                 - The email domain used to assert responsibility for emails sent from this sender.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.emaildomain.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an EnterpriseManagerBridge resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Enterprise Manager bridge in Operations Insights.
     - "This resource has the following action operations in the M(oci_enterprise_manager_bridge_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -125,44 +125,44 @@ enterprise_manager_bridge:
             description:
                 - Enterprise Manager bridge identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - Compartment identifier of the Enterprise Manager bridge
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - User-friedly name of Enterprise Manager Bridge that does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Description of Enterprise Manager Bridge
             returned: on success
-            type: string
+            type: str
             sample: description_example
         object_storage_namespace_name:
             description:
                 - Object Storage Namespace Name
             returned: on success
-            type: string
+            type: str
             sample: object_storage_namespace_name_example
         object_storage_bucket_name:
             description:
                 - Object Storage Bucket Name
             returned: on success
-            type: string
+            type: str
             sample: object_storage_bucket_name_example
         object_storage_bucket_status_details:
             description:
                 - A message describing status of the object storage bucket of this resource. For example, it can be used to provide actionable information about
                   the permission and content validity of the bucket.
             returned: on success
-            type: string
+            type: str
             sample: object_storage_bucket_status_details_example
         freeform_tags:
             description:
@@ -189,26 +189,26 @@ enterprise_manager_bridge:
             description:
                 - The time the the Enterprise Manager bridge was first created. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Enterprise Manager bridge was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Enterprise Manager bridge.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

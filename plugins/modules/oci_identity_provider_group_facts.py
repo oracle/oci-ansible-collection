@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple IdentityProviderGroup r
 description:
     - Fetches details about one or multiple IdentityProviderGroup resources in Oracle Cloud Infrastructure
     - Lists the identity provider groups.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     identity_provider_id:
@@ -67,46 +67,46 @@ identity_provider_groups:
             description:
                 - The OCID of the `IdentityProviderGroup`.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         identity_provider_id:
             description:
                 - The OCID of the `IdentityProvider` this group belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Display name of the group
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
                 - Display name of the group
             returned: on success
-            type: string
+            type: str
             sample: name_example
         external_identifier:
             description:
                 - Identifier of the group in the identity provider
             returned: on success
-            type: string
+            type: str
             sample: external_identifier_example
         time_created:
             description:
                 - Date and time the `IdentityProviderGroup` was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         time_modified:
             description:
                 - Date and time the `IdentityProviderGroup` was last modified, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "identity_provider_id": "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a NodePoolOptions resource in Oracle Cl
 description:
     - Fetches details about a NodePoolOptions resource in Oracle Cloud Infrastructure
     - Get options available for node pools.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     node_pool_option_id:
@@ -89,19 +89,19 @@ node_pool_options:
                         - The source type of this option.
                           `IMAGE` means the OCID is of an image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: IMAGE
                 source_name:
                     description:
                         - The user-friendly name of the entity corresponding to the OCID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_name_example
                 image_id:
                     description:
                         - The OCID of the image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "kubernetes_versions": [],

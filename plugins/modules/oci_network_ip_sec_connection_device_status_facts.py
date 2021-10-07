@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a IpSecConnectionDeviceStatus resource in Oracle Cloud Infrastructure
     - Deprecated. To get the tunnel status, instead use
       L(GetIPSecConnectionTunnel,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnectionTunnel/GetIPSecConnectionTunnel).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -55,21 +55,21 @@ ip_sec_connection_device_status:
             description:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The IPSec connection's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         tunnels:
             description:
                 - Two L(TunnelStatus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/TunnelStatus/) objects.
@@ -81,28 +81,28 @@ ip_sec_connection_device_status:
                         - The IP address of Oracle's VPN headend.
                         - "Example: `203.0.113.50`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 203.0.113.50
                 lifecycle_state:
                     description:
                         - The tunnel's current state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: UP
                 time_created:
                     description:
                         - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
+                    type: str
+                    sample: "2016-08-25T21:10:29.600Z"
                 time_state_modified:
                     description:
                         - When the state of the tunnel last changed, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
+                    type: str
+                    sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

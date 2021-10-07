@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a ServiceCatalogAssociation resource in Oracle Cloud I
 description:
     - This module allows the user to create and delete a ServiceCatalogAssociation resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an association between service catalog and a resource.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     service_catalog_id:
@@ -83,32 +83,32 @@ service_catalog_association:
             description:
                 - Identifier of the association.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         service_catalog_id:
             description:
                 - Identifier of the service catalog.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx"
         entity_id:
             description:
                 - Identifier of the entity being associated with service catalog.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx"
         entity_type:
             description:
                 - The type of the entity that is associated with the service catalog.
             returned: on success
-            type: string
+            type: str
             sample: entity_type_example
         time_created:
             description:
                 - Timestamp of when the resource was associated with service catalog.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "service_catalog_id": "ocid1.servicecatalog.oc1..xxxxxxEXAMPLExxxxxx",

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
     - Gets the confirmation details for the specified subscription.
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     id:
@@ -76,39 +76,39 @@ subscription_confirmation:
             description:
                 - The name of the subscribed topic.
             returned: on success
-            type: string
+            type: str
             sample: topic_name_example
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic associated with the specified
                   subscription.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint:
             description:
                 - A locator that corresponds to the subscription protocol.
                   For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
             returned: on success
-            type: string
+            type: str
             sample: abc@oracle.com
         unsubscribe_url:
             description:
                 - The URL for unsubscribing from the topic.
             returned: on success
-            type: string
+            type: str
             sample: unsubscribe_url_example
         message:
             description:
                 - A human-readable string indicating the status of the subscription confirmation.
             returned: on success
-            type: string
+            type: str
             sample: The subscription has been confirmed
         subscription_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription specified in the request.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "topic_name": "topic_name_example",
@@ -170,7 +170,7 @@ def main():
     module_args.update(
         dict(
             id=dict(type="str", required=True),
-            token=dict(type="str", required=True),
+            token=dict(type="str", required=True, no_log=True),
             protocol=dict(type="str", required=True),
         )
     )

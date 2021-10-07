@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple HostInsight resources in Oracle Cloud Infrastructure
     - Gets a list of host insights based on the query parameters specified. Either compartmentId or id query parameter must be specified.
     - If I(host_insight_id) is specified, the details of a single HostInsight will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     host_insight_id:
@@ -42,6 +42,7 @@ options:
         description:
             - Resource Status
         type: list
+        elements: str
         choices:
             - "DISABLED"
             - "ENABLED"
@@ -50,6 +51,7 @@ options:
         description:
             - Lifecycle states
         type: list
+        elements: str
         choices:
             - "CREATING"
             - "UPDATING"
@@ -63,11 +65,13 @@ options:
             - Filter by one or more host types.
               Possible value is EXTERNAL-HOST.
         type: list
+        elements: str
     platform_type:
         description:
             - Filter by one or more platform types.
               Possible value is LINUX.
         type: list
+        elements: str
         choices:
             - "LINUX"
     sort_order:
@@ -109,37 +113,37 @@ host_insights:
             description:
                 - Source of the host entity.
             returned: on success
-            type: string
+            type: str
             sample: MACS_MANAGED_EXTERNAL_HOST
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host insight resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         host_name:
             description:
                 - The host name. The host name is unique amongst the hosts managed by the same management agent.
             returned: on success
-            type: string
+            type: str
             sample: host_name_example
         host_display_name:
             description:
                 - The user-friendly name for the host. The name does not have to be unique.
             returned: on success
-            type: string
+            type: str
             sample: host_display_name_example
         host_type:
             description:
                 - Operations Insights internal representation of the host type. Possible value is EXTERNAL-HOST.
             returned: on success
-            type: string
+            type: str
             sample: host_type_example
         processor_count:
             description:
@@ -172,56 +176,56 @@ host_insights:
             description:
                 - Indicates the status of a host insight in Operations Insights
             returned: on success
-            type: string
+            type: str
             sample: ENABLED
         time_created:
             description:
                 - The time the the host insight was first enabled. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the host insight was updated. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the host.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         platform_name:
             description:
                 - Platform name.
             returned: on success
-            type: string
+            type: str
             sample: platform_name_example
         platform_type:
             description:
                 - Platform type.
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         platform_version:
             description:
                 - Platform version.
             returned: on success
-            type: string
+            type: str
             sample: platform_version_example
     sample: [{
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
@@ -311,9 +315,14 @@ def main():
         dict(
             host_insight_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            status=dict(type="list", choices=["DISABLED", "ENABLED", "TERMINATED"]),
+            status=dict(
+                type="list",
+                elements="str",
+                choices=["DISABLED", "ENABLED", "TERMINATED"],
+            ),
             lifecycle_state=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "CREATING",
                     "UPDATING",
@@ -324,8 +333,8 @@ def main():
                     "NEEDS_ATTENTION",
                 ],
             ),
-            host_type=dict(type="list"),
-            platform_type=dict(type="list", choices=["LINUX"]),
+            host_type=dict(type="list", elements="str"),
+            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["hostName", "hostType"]),
         )

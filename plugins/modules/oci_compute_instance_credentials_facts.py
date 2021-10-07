@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a InstanceCredentials resource in Oracle Cloud Infrastructure
     - Gets the generated credentials for the instance. Only works for instances that require a password to log in, such as Windows.
       For certain operating systems, users will be forced to change the initial credentials.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_id:
@@ -55,13 +55,13 @@ instance_credentials:
             description:
                 - The password for the username.
             returned: on success
-            type: string
+            type: str
             sample: password_example
         username:
             description:
                 - The username.
             returned: on success
-            type: string
+            type: str
             sample: username_example
     sample: {
         "password": "password_example",

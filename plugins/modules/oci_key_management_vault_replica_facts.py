@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       the total number of requests across all provisioning write operations. Key Management might
       throttle this call to reject an otherwise valid request when the total rate of provisioning
       write operations exceeds 10 requests per second for a given tenancy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     vault_id:
@@ -73,26 +73,26 @@ vault_replicas:
             description:
                 - The vault replica's crypto endpoint
             returned: on success
-            type: string
+            type: str
             sample: crypto_endpoint_example
         management_endpoint:
             description:
                 - The vault replica's management endpoint
             returned: on success
-            type: string
+            type: str
             sample: management_endpoint_example
         region:
             description:
                 - Region to which vault is replicated to
             returned: on success
-            type: string
+            type: str
             sample: region_example
         status:
             description:
                 - "The value to assign to the status property of this VaultReplicaSummary. Allowed values for this property are: 'CREATING', 'CREATED',
                   'DELETING', 'DELETED', 'UNKNOWN_ENUM_VALUE'. Any unrecognized values returned by a service will be mapped to 'UNKNOWN_ENUM_VALUE'."
             returned: on success
-            type: string
+            type: str
             sample: CREATING
     sample: [{
         "crypto_endpoint": "crypto_endpoint_example",

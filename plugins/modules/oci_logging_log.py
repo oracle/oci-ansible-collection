@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a log within the specified log group. This call fails if a log group has already been created
       with the same displayName or (service, resource, category) triplet.
     - "This resource has the following action operations in the M(oci_log_actions) module: change_log_log_group."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     log_group_id:
@@ -191,32 +191,32 @@ log:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         tenancy_id:
             description:
                 - The OCID of the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx"
         log_group_id:
             description:
                 - Log group OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         log_type:
             description:
                 - The logType that the log object is for, whether custom or service.
             returned: on success
-            type: string
+            type: str
             sample: CUSTOM
         is_enabled:
             description:
@@ -251,7 +251,7 @@ log:
                     description:
                         - The OCID of the compartment that the resource belongs to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 source:
                     description:
@@ -264,25 +264,25 @@ log:
                                 - "The log source.
                                   * **OCISERVICE:** Oracle Service."
                             returned: on success
-                            type: string
+                            type: str
                             sample: OCISERVICE
                         service:
                             description:
                                 - Service generating log.
                             returned: on success
-                            type: string
+                            type: str
                             sample: service_example
                         resource:
                             description:
                                 - The unique identifier of the resource emitting the log.
                             returned: on success
-                            type: string
+                            type: str
                             sample: resource_example
                         category:
                             description:
                                 - Log object category.
                             returned: on success
-                            type: string
+                            type: str
                             sample: category_example
                         parameters:
                             description:
@@ -306,20 +306,20 @@ log:
             description:
                 - The pipeline state.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         time_created:
             description:
                 - Time the resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_modified:
             description:
                 - Time the resource was last modified.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         retention_duration:
             description:
                 - Log retention duration in 30-day increments (30, 60, 90 and so on).
@@ -330,7 +330,7 @@ log:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

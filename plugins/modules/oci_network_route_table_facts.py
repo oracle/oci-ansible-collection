@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       The response includes the default route table that automatically comes with
       each VCN in the specified compartment, plus any route tables you've created.
     - If I(rt_id) is specified, the details of a single RouteTable will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     rt_id:
@@ -107,7 +107,7 @@ route_tables:
             description:
                 - The OCID of the compartment containing the route table.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -122,7 +122,7 @@ route_tables:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -137,13 +137,13 @@ route_tables:
             description:
                 - The route table's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The route table's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         route_rules:
             description:
@@ -160,7 +160,7 @@ route_tables:
                         - Cannot be an IPv6 CIDR.
                         - "Example: `0.0.0.0/0`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 0.0.0.0/0
                 destination:
                     description:
@@ -176,7 +176,7 @@ route_tables:
                               setting up a route rule for traffic destined for a particular `Service` through
                               a service gateway. For example: `oci-phx-objectstorage`."
                     returned: on success
-                    type: string
+                    type: str
                     sample: destination_example
                 destination_type:
                     description:
@@ -186,7 +186,7 @@ route_tables:
                               L(Service,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Service/) (the rule is for traffic destined for a
                               particular `Service` through a service gateway)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CIDR_BLOCK
                 network_entity_id:
                     description:
@@ -194,26 +194,26 @@ route_tables:
                           targets you can specify, see
                           L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
                 description:
                     description:
                         - An optional description of your choice for the rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
         time_created:
             description:
                 - The date and time the route table was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN the route table list belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

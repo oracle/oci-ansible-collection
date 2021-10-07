@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a BootVolumeKmsKey resource in Oracle C
 description:
     - Fetches details about a BootVolumeKmsKey resource in Oracle Cloud Infrastructure
     - Gets the Key Management encryption key assigned to the specified boot volume.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     boot_volume_id:
@@ -55,7 +55,7 @@ boot_volume_kms_key:
                 - The OCID of the Key Management key assigned to this volume. If the volume is not using Key Management, then the `kmsKeyId` will be a null
                   string.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"

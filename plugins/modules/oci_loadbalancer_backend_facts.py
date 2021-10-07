@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Backend resources in Oracle Cloud Infrastructure
     - Lists the backend servers for a given load balancer and backend set.
     - If I(backend_name) is specified, the details of a single Backend will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -76,14 +76,14 @@ backends:
                 - A read-only field showing the IP address and port that uniquely identify this backend server in the backend set.
                 - "Example: `10.0.0.3:8080`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.0.3:8080
         ip_address:
             description:
                 - The IP address of the backend server.
                 - "Example: `10.0.0.3`"
             returned: on success
-            type: string
+            type: str
             sample: 10.0.0.3
         port:
             description:

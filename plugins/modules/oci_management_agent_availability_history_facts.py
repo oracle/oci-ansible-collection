@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple AvailabilityHistory res
 description:
     - Fetches details about one or multiple AvailabilityHistory resources in Oracle Cloud Infrastructure
     - Lists the availability history records of Management Agent
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     management_agent_id:
@@ -78,26 +78,26 @@ availability_histories:
             description:
                 - agent identifier
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         availability_status:
             description:
                 - The availability status of managementAgent
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_availability_status_started:
             description:
                 - The time at which the Management Agent moved to the availability status. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_availability_status_ended:
             description:
                 - The time till which the Management Agent was known to be in the availability status. An RFC3339 formatted datetime string
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "availability_status": "ACTIVE",

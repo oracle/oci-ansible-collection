@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -34,7 +34,7 @@ description:
     - For I(action=change_compartment), moves a virtual circuit into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     virtual_circuit_id:
@@ -48,6 +48,7 @@ options:
             - The public IP prefixes (CIDRs) to add to the public virtual circuit.
             - Required for I(action=bulk_add_virtual_circuit_public_prefixes), I(action=bulk_delete_virtual_circuit_public_prefixes).
         type: list
+        elements: dict
         suboptions:
             cidr_block:
                 description:
@@ -114,7 +115,7 @@ virtual_circuit:
                         - An individual public IP prefix (CIDR) to add to the public virtual circuit.
                           All prefix sizes are allowed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: cidr_block_example
     sample: {
         "public_prefixes": [{

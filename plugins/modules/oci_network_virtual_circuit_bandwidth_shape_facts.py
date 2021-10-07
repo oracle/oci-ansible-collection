@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple VirtualCircuitBandwidthShape resources in Oracle Cloud Infrastructure
     - The deprecated operation lists available bandwidth levels for virtual circuits. For the compartment ID, provide the OCID of your tenancy (the root
       compartment).
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -62,7 +62,7 @@ virtual_circuit_bandwidth_shapes:
                 - The name of the bandwidth shape.
                 - "Example: `10 Gbps`"
             returned: on success
-            type: string
+            type: str
             sample: 10 Gbps
     sample: [{
         "bandwidth_in_mbps": 10000,

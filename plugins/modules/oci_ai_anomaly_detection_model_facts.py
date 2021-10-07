@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
     - Returns a list of Models.
     - If I(model_id) is specified, the details of a single Model will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     model_id:
@@ -102,19 +102,19 @@ models:
             description:
                 - The OCID of the model that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly display name for the resource. It does not have to be unique and can be modified. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The OCID for the model's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         model_training_details:
             description:
@@ -169,7 +169,7 @@ models:
                     description:
                         - A warning message to explain the reason when targetFap cannot be achieved for trained model
                     returned: on success
-                    type: string
+                    type: str
                     sample: warning_example
                 signal_details:
                     description:
@@ -181,7 +181,7 @@ models:
                             description:
                                 - The name of a signal.
                             returned: on success
-                            type: string
+                            type: str
                             sample: signal_name_example
                         mvi_ratio:
                             description:
@@ -226,13 +226,13 @@ models:
                                    * DROPPED - the signal does not meet requirement, and is dropped before training the model.
                                    * OTHER - placeholder for other status"
                             returned: on success
-                            type: string
+                            type: str
                             sample: ACCEPTED
                         details:
                             description:
                                 - detailed information for a signal.
                             returned: on success
-                            type: string
+                            type: str
                             sample: details_example
                 row_reduction_details:
                     description:
@@ -258,44 +258,44 @@ models:
                                     * DELETE_ROW - delete rows with equal intervals
                                     * AVERAGE_ROW - average multiple rows to one row"
                             returned: on success
-                            type: string
+                            type: str
                             sample: DELETE_ROW
         project_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - A short description of the Model.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
                 - The time the the Model was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time the Model was updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The state of the model.
             returned: on success
-            type: string
+            type: str
             sample: DELETING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

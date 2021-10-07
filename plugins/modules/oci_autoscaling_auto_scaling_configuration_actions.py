@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -28,7 +28,7 @@ description:
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
       When you move an autoscaling configuration to a different compartment, associated resources such as instance
       pools are not moved.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     auto_scaling_configuration_id:
@@ -74,7 +74,7 @@ auto_scaling_configuration:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the autoscaling
                   configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -88,7 +88,7 @@ auto_scaling_configuration:
             description:
                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -103,7 +103,7 @@ auto_scaling_configuration:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         cool_down_in_seconds:
             description:
@@ -130,14 +130,14 @@ auto_scaling_configuration:
                     description:
                         - The type of resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: instancePool
                 id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource that is managed by the autoscaling
                           configuration.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policies:
             description:
@@ -183,27 +183,27 @@ auto_scaling_configuration:
                     description:
                         - The ID of the autoscaling policy that is assigned after creation.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 policy_type:
                     description:
                         - The type of autoscaling policy.
                     returned: on success
-                    type: string
+                    type: str
                     sample: scheduled
                 time_created:
                     description:
                         - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
                         - "Example: `2016-08-25T21:10:29.600Z`"
                     returned: on success
-                    type: string
-                    sample: 2016-08-25T21:10:29.600Z
+                    type: str
+                    sample: "2016-08-25T21:10:29.600Z"
                 is_enabled:
                     description:
                         - Whether the autoscaling policy is enabled.
@@ -220,13 +220,13 @@ auto_scaling_configuration:
                             description:
                                 - The type of execution schedule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: cron
                         timezone:
                             description:
                                 - The time zone for the execution schedule.
                             returned: on success
-                            type: string
+                            type: str
                             sample: UTC
                         expression:
                             description:
@@ -236,7 +236,7 @@ auto_scaling_configuration:
                                 - You must specify `0` as the value for seconds.
                                 - "Example: `0 15 10 ? * *`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: "0 15 10 ? * *"
                 resource_action:
                     description:
@@ -248,13 +248,13 @@ auto_scaling_configuration:
                             description:
                                 - The type of resource action.
                             returned: on success
-                            type: string
+                            type: str
                             sample: power
                         action:
                             description:
                                 - ""
                             returned: on success
-                            type: string
+                            type: str
                             sample: STOP
                 rules:
                     description:
@@ -272,7 +272,7 @@ auto_scaling_configuration:
                                     description:
                                         - The type of action to take.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: CHANGE_COUNT_BY
                                 value:
                                     description:
@@ -285,13 +285,13 @@ auto_scaling_configuration:
                             description:
                                 - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         id:
                             description:
                                 - ID of the condition that is assigned after creation.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         metric:
                             description:
@@ -303,7 +303,7 @@ auto_scaling_configuration:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: CPU_UTILIZATION
                                 threshold:
                                     description:
@@ -316,7 +316,7 @@ auto_scaling_configuration:
                                                 - The comparison operator to use. Options are greater than (`GT`), greater than or equal to
                                                   (`GTE`), less than (`LT`), and less than or equal to (`LTE`).
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: GT
                                         value:
                                             description:
@@ -329,8 +329,8 @@ auto_scaling_configuration:
                 - The date and time the autoscaling configuration was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         max_resource_count:
             description:
                 - The maximum number of resources to scale out to.

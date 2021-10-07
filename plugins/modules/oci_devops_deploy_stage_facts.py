@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DeployStage resources in Oracle Cloud Infrastructure
     - Retrieves a list of deployment stages.
     - If I(deploy_stage_id) is specified, the details of a single DeployStage will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deploy_stage_id:
@@ -98,68 +98,68 @@ deploy_stages:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Optional description about the deployment stage.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - Deployment stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         project_id:
             description:
                 - The OCID of a project.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_id:
             description:
                 - The OCID of a pipeline.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of a compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_type:
             description:
                 - Deployment stage type.
             returned: on success
-            type: string
+            type: str
             sample: WAIT
         time_created:
             description:
                 - Time the deployment stage was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the deployment stage was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the deployment stage.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         deploy_stage_predecessor_collection:
             description:
@@ -177,7 +177,7 @@ deploy_stages:
                             description:
                                 - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -205,13 +205,13 @@ deploy_stages:
             description:
                 - A compute instance group environment OCID for rolling deployment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_spec_deploy_artifact_id:
             description:
                 - The OCID of the artifact that contains the deployment specification.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids:
             description:
@@ -229,7 +229,7 @@ deploy_stages:
                     description:
                         - The type of policy used for rolling out a deployment stage.
                     returned: on success
-                    type: string
+                    type: str
                     sample: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT
                 batch_delay_in_seconds:
                     description:
@@ -265,7 +265,7 @@ deploy_stages:
                     description:
                         - Specifies type of the deployment stage rollback policy.
                     returned: on success
-                    type: string
+                    type: str
                     sample: AUTOMATED_STAGE_ROLLBACK_POLICY
         failure_policy:
             description:
@@ -277,7 +277,7 @@ deploy_stages:
                     description:
                         - Specifies if the failure instance size is given by absolute number or by percentage.
                     returned: on success
-                    type: string
+                    type: str
                     sample: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT
                 failure_count:
                     description:
@@ -302,13 +302,13 @@ deploy_stages:
                     description:
                         - The OCID of the load balancer.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
                 listener_name:
                     description:
                         - Name of the load balancer listener.
                     returned: on success
-                    type: string
+                    type: str
                     sample: listener_name_example
                 backend_port:
                     description:
@@ -320,13 +320,13 @@ deploy_stages:
             description:
                 - Function environment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         docker_image_deploy_artifact_id:
             description:
                 - A Docker image artifact OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         config:
             description:
@@ -350,7 +350,7 @@ deploy_stages:
             description:
                 - Optional binary artifact OCID user may provide to this stage.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         is_async:
             description:
@@ -392,7 +392,7 @@ deploy_stages:
             description:
                 - Specifies the target or destination backend set.
             returned: on success
-            type: string
+            type: str
             sample: AUTO_SELECT
         approval_policy:
             description:
@@ -404,7 +404,7 @@ deploy_stages:
                     description:
                         - Approval policy type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: COUNT_BASED_APPROVAL
                 number_of_approvals_required:
                     description:
@@ -416,7 +416,7 @@ deploy_stages:
             description:
                 - Kubernetes cluster environment OCID for deployment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
@@ -428,7 +428,7 @@ deploy_stages:
             description:
                 - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
         wait_criteria:
             description:
@@ -440,14 +440,14 @@ deploy_stages:
                     description:
                         - Wait criteria type.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ABSOLUTE_WAIT
                 wait_duration:
                     description:
                         - The absolute wait duration. An ISO 8601 formatted duration string. Minimum waitDuration should be 5 seconds. Maximum waitDuration can
                           be up to 2 days.
                     returned: on success
-                    type: string
+                    type: str
                     sample: PT10M5S
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

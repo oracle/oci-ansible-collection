@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a NetworkLoadBalancer resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a network load balancer.
     - "This resource has the following action operations in the M(oci_network_load_balancer_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -53,6 +53,7 @@ options:
         description:
             - An array of reserved Ips.
         type: list
+        elements: dict
         suboptions:
             id:
                 description:
@@ -154,48 +155,48 @@ network_load_balancer:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the network load balancer.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - A user-friendly name, which does not have to be unique, and can be changed.
                 - "Example: `example_load_balancer`"
             returned: on success
-            type: string
+            type: str
             sample: example_load_balancer
         lifecycle_state:
             description:
                 - The current state of the network load balancer.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail.
                   For example, can be used to provide actionable information for a resource in Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the network load balancer was created, in the format defined by RFC3339.
                 - "Example: `2020-05-01T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-05-01T21:10:29.600Z
+            type: str
+            sample: "2020-05-01T21:10:29.600Z"
         time_updated:
             description:
                 - The time the network load balancer was updated. An RFC3339 formatted date-time string.
                 - "Example: `2020-05-01T22:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2020-05-01T22:10:29.600Z
+            type: str
+            sample: "2020-05-01T22:10:29.600Z"
         ip_addresses:
             description:
                 - An array of IP addresses.
@@ -207,7 +208,7 @@ network_load_balancer:
                         - An IP address.
                         - "Example: `192.168.0.3`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 192.168.0.3
                 is_public:
                     description:
@@ -235,7 +236,7 @@ network_load_balancer:
                                   from the network load balancer.
                                 - "Example: \\"ocid1.publicip.oc1.phx.unique_ID\\""
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_private:
             description:
@@ -264,7 +265,7 @@ network_load_balancer:
             description:
                 - "The subnet in which the network load balancer is spawned L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).\\""
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         network_security_group_ids:
             description:
@@ -291,14 +292,14 @@ network_load_balancer:
                         - A friendly name for the listener. It must be unique and it cannot be changed.
                         - "Example: `example_listener`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_listener
                 default_backend_set_name:
                     description:
                         - The name of the associated backend set.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
                 port:
                     description:
@@ -318,7 +319,7 @@ network_load_balancer:
                           operation.
                         - "Example: `TCP`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: TCP
         backend_sets:
             description:
@@ -333,14 +334,14 @@ network_load_balancer:
                           contain spaces. Avoid entering confidential information.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
                 policy:
                     description:
                         - The network load balancer policy for the backend set.
                         - "Example: `FIVE_TUPLE`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: FIVE_TUPLE
                 is_preserve_source:
                     description:
@@ -362,21 +363,21 @@ network_load_balancer:
                                 - A read-only field showing the IP address/IP OCID and port that uniquely identify this backend server in the backend set.
                                 - "Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:443` or `10.0.0.3:0`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.0.0.3:8080
                         ip_address:
                             description:
                                 - "The IP address of the backend server.
                                   Example: `10.0.0.3`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: 10.0.0.3
                         target_id:
                             description:
                                 - "The IP OCID/Instance OCID associated with the backend server.
                                   Example: `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.privateip..oc1.unique_ID"
                         port:
                             description:
@@ -432,7 +433,7 @@ network_load_balancer:
                                 - The protocol the health check must use; either HTTP or HTTPS, or UDP or TCP.
                                 - "Example: `HTTP`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: HTTP
                         port:
                             description:
@@ -471,14 +472,14 @@ network_load_balancer:
                                 - The path against which to run the health check.
                                 - "Example: `/healthcheck`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: /healthcheck
                         response_body_regex:
                             description:
                                 - A regular expression for parsing the response body from the backend server.
                                 - "Example: `^((?!false).|\\\\s)*$`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: "^((?!false).|\\\\s)*$"
                         return_code:
                             description:
@@ -492,13 +493,13 @@ network_load_balancer:
                             description:
                                 - Base64 encoded pattern to be sent as UDP or TCP health check probe.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "example_request_data"
                         response_data:
                             description:
                                 - Base64 encoded pattern to be validated as UDP or TCP health check probe response.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "example_response_data"
         freeform_tags:
             description:

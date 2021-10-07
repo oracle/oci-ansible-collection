@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple GoodBots resources in Oracle Cloud Infrastructure
     - Gets the list of good bots defined in the Web Application Firewall configuration for a WAAS policy.
     - The list is sorted by `key`, in ascending order.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -54,13 +54,13 @@ good_bots:
             description:
                 - The unique key for the bot.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         name:
             description:
                 - The bot name.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         is_enabled:
             description:
@@ -72,7 +72,7 @@ good_bots:
             description:
                 - The description of the bot.
             returned: on success
-            type: string
+            type: str
             sample: description_example
     sample: [{
         "key": "key_example",

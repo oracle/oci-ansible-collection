@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a MeasuredBootReport resource in Oracle Cl
 description:
     - Perform actions on a MeasuredBootReport resource in Oracle Cloud Infrastructure
     - For I(action=accept_shielded_integrity_policy), accept the changes to the PCR values in the Measured Boot Report.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     instance_id:
@@ -80,19 +80,19 @@ measured_boot_report:
                             description:
                                 - The index of the policy.
                             returned: on success
-                            type: string
+                            type: str
                             sample: pcr_index_example
                         value:
                             description:
                                 - The hashed PCR value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                         hash_algorithm:
                             description:
                                 - The type of algorithm used to calculate the hash.
                             returned: on success
-                            type: string
+                            type: str
                             sample: hash_algorithm_example
                 actual:
                     description:
@@ -104,19 +104,19 @@ measured_boot_report:
                             description:
                                 - The index of the policy.
                             returned: on success
-                            type: string
+                            type: str
                             sample: pcr_index_example
                         value:
                             description:
                                 - The hashed PCR value.
                             returned: on success
-                            type: string
+                            type: str
                             sample: value_example
                         hash_algorithm:
                             description:
                                 - The type of algorithm used to calculate the hash.
                             returned: on success
-                            type: string
+                            type: str
                             sample: hash_algorithm_example
     sample: {
         "is_policy_verification_successful": true,

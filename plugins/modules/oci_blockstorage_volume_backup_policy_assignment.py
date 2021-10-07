@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), assigns a volume backup policy to the specified volume. Note that a given volume can
       only have one backup policy assigned to it. If this operation is used for a volume that already
       has a different backup policy assigned, the prior backup policy will be silently unassigned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     asset_id:
@@ -81,27 +81,27 @@ volume_backup_policy_assignment:
             description:
                 - The OCID of the volume the policy has been assigned to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the volume backup policy assignment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         policy_id:
             description:
                 - The OCID of the volume backup policy that has been assigned to the volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.policy.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the volume backup policy was assigned to the volume. The format is
                   defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "asset_id": "ocid1.asset.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

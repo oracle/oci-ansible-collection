@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), creates a new backup volume group of the specified volume group.
       For more information, see L(Volume Groups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/volumegroups.htm).
     - "This resource has the following action operations in the M(oci_volume_group_backup_actions) module: change_compartment, copy."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -135,7 +135,7 @@ volume_group_backup:
             description:
                 - The OCID of the compartment that contains the volume group backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -150,7 +150,7 @@ volume_group_backup:
                 - A user-friendly name for the volume group backup. Does not have
                   to be unique and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         expiration_time:
             description:
@@ -160,8 +160,8 @@ volume_group_backup:
                   created volume group backups, it will be absent, signifying that there is no expiration
                   time and the backup will last forever until manually deleted.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -175,13 +175,13 @@ volume_group_backup:
             description:
                 - The OCID of the volume group backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of a volume group backup.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         size_in_mbs:
             description:
@@ -200,27 +200,27 @@ volume_group_backup:
                 - Specifies whether the volume group backup was created manually, or via scheduled
                   backup policy.
             returned: on success
-            type: string
+            type: str
             sample: MANUAL
         time_created:
             description:
                 - The date and time the volume group backup was created. This is the time the actual point-in-time image
                   of the volume group data was taken. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_request_received:
             description:
                 - The date and time the request to create the volume group backup was received. Format defined by
                   L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         type:
             description:
                 - The type of backup.
             returned: on success
-            type: string
+            type: str
             sample: FULL
         unique_size_in_mbs:
             description:
@@ -248,13 +248,13 @@ volume_group_backup:
             description:
                 - The OCID of the source volume group.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         source_volume_group_backup_id:
             description:
                 - The OCID of the source volume group backup.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcevolumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

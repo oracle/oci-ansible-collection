@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a Tenancy resource in Oracle Cloud Infr
 description:
     - Fetches details about a Tenancy resource in Oracle Cloud Infrastructure
     - Get the specified tenancy's information.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tenancy_id:
@@ -54,19 +54,19 @@ tenancy:
             description:
                 - The OCID of the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         description:
             description:
                 - The description of the tenancy.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         home_region_key:
             description:
@@ -74,7 +74,7 @@ tenancy:
                   L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm).
                 - "Example: `PHX`"
             returned: on success
-            type: string
+            type: str
             sample: PHX
         freeform_tags:
             description:

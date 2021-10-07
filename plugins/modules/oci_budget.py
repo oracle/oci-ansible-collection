@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Budget resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Budget resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Budget.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -84,6 +84,7 @@ options:
                 If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\".
               Curerntly, the array should contain EXACT ONE item."
         type: list
+        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -168,13 +169,13 @@ budget:
             description:
                 - The OCID of the budget
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
@@ -182,19 +183,19 @@ budget:
                   targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
                   For all other scenarios, this property will be left empty."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the budget.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - The description of the budget.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         amount:
             description:
@@ -206,7 +207,7 @@ budget:
             description:
                 - The reset period for the budget.
             returned: on success
-            type: string
+            type: str
             sample: MONTHLY
         budget_processing_period_start_offset:
             description:
@@ -220,7 +221,7 @@ budget:
             description:
                 - The type of target on which the budget is applied.
             returned: on success
-            type: string
+            type: str
             sample: COMPARTMENT
         targets:
             description:
@@ -234,7 +235,7 @@ budget:
             description:
                 - The current state of the budget.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         alert_rule_count:
             description:
@@ -264,20 +265,20 @@ budget:
             description:
                 - The time that the budget spend was last computed
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - Time that budget was created
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time that budget was updated
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -462,7 +463,7 @@ def main():
             reset_period=dict(type="str", choices=["MONTHLY"]),
             budget_processing_period_start_offset=dict(type="int"),
             target_type=dict(type="str", choices=["COMPARTMENT", "TAG"]),
-            targets=dict(type="list"),
+            targets=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             budget_id=dict(aliases=["id"], type="str"),

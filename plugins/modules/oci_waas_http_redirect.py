@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a HttpRedirect resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new HTTP Redirect on the WAF edge.
     - "This resource has the following action operations in the M(oci_http_redirect_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -186,25 +186,25 @@ http_redirect:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the HTTP Redirect's compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The user-friendly name of the HTTP Redirect. The name can be changed and does not need to be unique.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         domain:
             description:
                 - The domain from which traffic will be redirected.
             returned: on success
-            type: string
+            type: str
             sample: domain_example
         target:
             description:
@@ -216,13 +216,13 @@ http_redirect:
                     description:
                         - The protocol used for the target, http or https.
                     returned: on success
-                    type: string
+                    type: str
                     sample: HTTP
                 host:
                     description:
                         - The host portion of the redirect.
                     returned: on success
-                    type: string
+                    type: str
                     sample: host_example
                 port:
                     description:
@@ -240,7 +240,7 @@ http_redirect:
                           \\"{path}\\", which will be replaced with the path component of the request URL (including its initial \\"/\\"). Only one such
                           replacement token is allowed."
                     returned: on success
-                    type: string
+                    type: str
                     sample: path_example
                 query:
                     description:
@@ -250,7 +250,7 @@ http_redirect:
                           followed by other query characters. A request-copying value must exactly match \\"{query}\\", and will be replaced with the query
                           component of the request URL (including a leading \\"?\\" if and only if the request URL includes a query component)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: query_example
         response_code:
             description:
@@ -263,13 +263,13 @@ http_redirect:
             description:
                 - The date and time the policy was created, expressed in RFC 3339 timestamp format.
             returned: on success
-            type: string
-            sample: 2018-11-16T21:10:29Z
+            type: str
+            sample: "2018-11-16T21:10:29Z"
         lifecycle_state:
             description:
                 - The current lifecycle state of the HTTP Redirect.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:

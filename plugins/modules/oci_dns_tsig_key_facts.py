@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple TsigKey resources in Oracle Cloud Infrastructure
     - Gets a list of all TSIG keys in the specified compartment.
     - If I(tsig_key_id) is specified, the details of a single TsigKey will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tsig_key_id:
@@ -110,25 +110,25 @@ tsig_keys:
                   Applicable algorithms include: hmac-sha1, hmac-sha224, hmac-sha256,
                   hmac-sha512. For more information on these algorithms, see L(RFC 4635,https://tools.ietf.org/html/rfc4635#section-2)."
             returned: on success
-            type: string
+            type: str
             sample: algorithm_example
         name:
             description:
                 - A globally unique domain name identifying the key for a given pair of hosts.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         compartment_id:
             description:
                 - The OCID of the compartment containing the TSIG key.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         secret:
             description:
                 - A base64 string encoding the binary shared secret.
             returned: on success
-            type: string
+            type: str
             sample: secret_example
         freeform_tags:
             description:
@@ -150,34 +150,34 @@ tsig_keys:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         _self:
             description:
                 - The canonical absolute URL of the resource.
             returned: on success
-            type: string
+            type: str
             sample: _self_example
         time_created:
             description:
                 - The date and time the resource was created, expressed in RFC 3339 timestamp format.
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         time_updated:
             description:
                 - The date and time the resource was last updated, expressed in RFC 3339 timestamp format.
                 - "**Example:** `2016-07-22T17:23:59:60Z`"
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "algorithm": "algorithm_example",
         "name": "name_example",

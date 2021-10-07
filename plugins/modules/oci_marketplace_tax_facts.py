@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Tax resources in Oracle
 description:
     - Fetches details about one or multiple Tax resources in Oracle Cloud Infrastructure
     - Returns list of all tax implications that current tenant may be liable to once they launch the listing.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -57,25 +57,25 @@ taxes:
             description:
                 - Unique code for the tax.
             returned: on success
-            type: string
+            type: str
             sample: "example_code"
         name:
             description:
                 - Name of the tax code.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         country:
             description:
                 - Country, which imposes the tax.
             returned: on success
-            type: string
+            type: str
             sample: country_example
         url:
             description:
                 - The URL with more details about this tax.
             returned: on success
-            type: string
+            type: str
             sample: url_example
     sample: [{
         "code": UNKNOWN TYPE - str,

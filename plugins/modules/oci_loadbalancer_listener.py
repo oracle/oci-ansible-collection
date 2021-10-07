@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Listener resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Listener resource in Oracle Cloud Infrastructure
     - For I(state=present), adds a listener to a load balancer.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     default_backend_set_name:
@@ -53,6 +53,7 @@ options:
             - An array of hostname resource names.
             - This parameter is updatable.
         type: list
+        elements: str
     path_route_set_name:
         description:
             - Deprecated. Please use `routingPolicies` instead.
@@ -104,6 +105,7 @@ options:
                          displays a list of SSL protocols currently used by those resources."
                     - "example: `[\\"TLSv1.1\\", \\"TLSv1.2\\"]`"
                 type: list
+                elements: str
             cipher_suite_name:
                 description:
                     - The name of the cipher suite to use for HTTPS or SSL connections.
@@ -178,6 +180,7 @@ options:
             - "Example: [\\"example_rule_set\\"]"
             - This parameter is updatable.
         type: list
+        elements: str
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer on which to add a listener.
@@ -232,14 +235,14 @@ listener:
                 - A friendly name for the listener. It must be unique and it cannot be changed.
                 - "Example: `example_listener`"
             returned: on success
-            type: string
+            type: str
             sample: example_listener
         default_backend_set_name:
             description:
                 - The name of the associated backend set.
                 - "Example: `example_backend_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_backend_set
         port:
             description:
@@ -256,7 +259,7 @@ listener:
                   operation.
                 - "Example: `HTTP`"
             returned: on success
-            type: string
+            type: str
             sample: HTTP
         hostname_names:
             description:
@@ -272,7 +275,7 @@ listener:
                   applied to this listener's traffic.
                 - "Example: `example_path_route_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_path_route_set
         ssl_configuration:
             description:
@@ -301,7 +304,7 @@ listener:
                           Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                         - "Example: `example_certificate_bundle`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_certificate_bundle
                 server_order_preference:
                     description:
@@ -310,7 +313,7 @@ listener:
                         - "**Note:** This configuration is applicable only when the load balancer is acting as an SSL/HTTPS server. This
                                     field is ignored when the `SSLConfiguration` object is associated with a backend set."
                     returned: on success
-                    type: string
+                    type: str
                     sample: ENABLED
                 cipher_suite_name:
                     description:
@@ -336,7 +339,7 @@ listener:
                              this field."
                         - "example: `example_cipher_suite`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: cipher_suite_name_example
                 protocols:
                     description:
@@ -395,7 +398,7 @@ listener:
                 - The name of the routing policy applied to this listener's traffic.
                 - "Example: `example_routing_policy_name`"
             returned: on success
-            type: string
+            type: str
             sample: example_routing_policy_name
     sample: {
         "name": "example_listener",
@@ -533,7 +536,7 @@ def main():
             default_backend_set_name=dict(type="str"),
             port=dict(type="int"),
             protocol=dict(type="str"),
-            hostname_names=dict(type="list"),
+            hostname_names=dict(type="list", elements="str"),
             path_route_set_name=dict(type="str"),
             ssl_configuration=dict(
                 type="dict",
@@ -541,7 +544,7 @@ def main():
                     verify_depth=dict(type="int"),
                     verify_peer_certificate=dict(type="bool"),
                     certificate_name=dict(type="str"),
-                    protocols=dict(type="list"),
+                    protocols=dict(type="list", elements="str"),
                     cipher_suite_name=dict(type="str"),
                     server_order_preference=dict(
                         type="str", choices=["ENABLED", "DISABLED"]
@@ -557,7 +560,7 @@ def main():
             ),
             name=dict(type="str", required=True),
             routing_policy_name=dict(type="str"),
-            rule_set_names=dict(type="list"),
+            rule_set_names=dict(type="list", elements="str"),
             load_balancer_id=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

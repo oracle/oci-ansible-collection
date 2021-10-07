@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a Erratum resource in Oracle Cloud Infr
 description:
     - Fetches details about a Erratum resource in Oracle Cloud Infrastructure
     - Returns a specific erratum.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     erratum_id:
@@ -54,67 +54,67 @@ erratum:
             description:
                 - Advisory name
             returned: on success
-            type: string
+            type: str
             sample: name_example
         id:
             description:
                 - OCID for the Erratum.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - OCID for the Compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         synopsis:
             description:
                 - Summary description of the erratum.
             returned: on success
-            type: string
+            type: str
             sample: synopsis_example
         issued:
             description:
                 - date the erratum was issued
             returned: on success
-            type: string
+            type: str
             sample: issued_example
         description:
             description:
                 - Details describing the erratum.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         updated:
             description:
                 - most recent date the erratum was updated
             returned: on success
-            type: string
+            type: str
             sample: updated_example
         advisory_type:
             description:
                 - Type of the erratum.
             returned: on success
-            type: string
+            type: str
             sample: SECURITY
         _from:
             description:
                 - Information specifying from where the erratum was release.
             returned: on success
-            type: string
+            type: str
             sample: _from_example
         solution:
             description:
                 - Information describing how the erratum can be resolved.
             returned: on success
-            type: string
+            type: str
             sample: solution_example
         references:
             description:
                 - Information describing how to find more information about the erratum.
             returned: on success
-            type: string
+            type: str
             sample: references_example
         affected_instances:
             description:
@@ -126,13 +126,13 @@ erratum:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         related_cves:
             description:
@@ -150,13 +150,13 @@ erratum:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         packages:
             description:
@@ -168,43 +168,43 @@ erratum:
                     description:
                         - Package name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 name:
                     description:
                         - "Unique identifier for the package. NOTE - This is not an OCID"
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 type:
                     description:
                         - Type of the package
                     returned: on success
-                    type: string
+                    type: str
                     sample: type_example
                 version:
                     description:
                         - Version of the package
                     returned: on success
-                    type: string
+                    type: str
                     sample: version_example
                 architecture:
                     description:
                         - the architecture for which this software was built
                     returned: on success
-                    type: string
+                    type: str
                     sample: architecture_example
                 checksum:
                     description:
                         - checksum of the package
                     returned: on success
-                    type: string
+                    type: str
                     sample: checksum_example
                 checksum_type:
                     description:
                         - type of the checksum
                     returned: on success
-                    type: string
+                    type: str
                     sample: checksum_type_example
     sample: {
         "name": "name_example",

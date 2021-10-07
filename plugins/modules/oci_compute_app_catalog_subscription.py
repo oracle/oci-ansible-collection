@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage an AppCatalogSubscription resource in Oracle Cloud Inf
 description:
     - This module allows the user to create and delete an AppCatalogSubscription resource in Oracle Cloud Infrastructure
     - For I(state=present), create a subscription for listing resource version for a compartment. It will take some time to propagate to all regions.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -104,51 +104,51 @@ app_catalog_subscription:
             description:
                 - Name of the publisher who published this listing.
             returned: on success
-            type: string
+            type: str
             sample: publisher_name_example
         listing_id:
             description:
                 - The ocid of the listing resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Listing resource version.
             returned: on success
-            type: string
+            type: str
             sample: listing_resource_version_example
         listing_resource_id:
             description:
                 - Listing resource id.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - The display name of the listing.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         summary:
             description:
                 - The short summary to the listing.
             returned: on success
-            type: string
+            type: str
             sample: summary_example
         compartment_id:
             description:
                 - The compartmentID of the subscription.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - "Date and time at which the subscription was created, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
-            type: string
-            sample: 2018-03-20T12:32:53.532Z
+            type: str
+            sample: "2018-03-20T12:32:53.532Z"
     sample: {
         "publisher_name": "publisher_name_example",
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",

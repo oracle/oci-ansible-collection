@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the subscriptions in the specified compartment or topic.
     - "Transactions Per Minute (TPM) per-tenancy limit for this operation: 60."
     - If I(subscription_id) is specified, the details of a single Subscription will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     subscription_id:
@@ -70,13 +70,13 @@ subscriptions:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         topic_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
         protocol:
             description:
@@ -92,27 +92,27 @@ subscriptions:
                 - For information about subscription protocols, see
                   L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             returned: on success
-            type: string
+            type: str
             sample: EMAIL
         endpoint:
             description:
                 - A locator that corresponds to the subscription protocol.
                   For example, an email address for a subscription that uses the `EMAIL` protocol, or a URL for a subscription that uses an HTTP-based protocol.
             returned: on success
-            type: string
+            type: str
             sample: endpoint_example
         lifecycle_state:
             description:
                 - The lifecycle state of the subscription. The status of a new subscription is PENDING; when confirmed, the subscription status changes to
                   ACTIVE.
             returned: on success
-            type: string
+            type: str
             sample: PENDING
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_time:
             description:
@@ -124,13 +124,13 @@ subscriptions:
             description:
                 - The delivery policy of the subscription. Stored as a JSON string.
             returned: on success
-            type: string
+            type: str
             sample: deliver_policy_example
         etag:
             description:
                 - For optimistic concurrency control. See `if-match`.
             returned: on success
-            type: string
+            type: str
             sample: etag_example
         freeform_tags:
             description:
@@ -170,7 +170,7 @@ subscriptions:
                             description:
                                 - The type of delivery policy.
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXPONENTIAL
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

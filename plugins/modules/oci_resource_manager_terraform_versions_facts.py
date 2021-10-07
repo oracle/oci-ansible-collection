@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple TerraformVersions resou
 description:
     - Fetches details about one or multiple TerraformVersions resources in Oracle Cloud Infrastructure
     - Returns a list of supported Terraform versions for use with stacks.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -53,7 +53,7 @@ terraform_versions:
             description:
                 - "A supported Terraform version. Example: `0.12.x`"
             returned: on success
-            type: string
+            type: str
             sample: 0.12.x
         is_default:
             description:

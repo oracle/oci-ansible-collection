@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ContainerConfiguration resource in Or
 description:
     - Fetches details about a ContainerConfiguration resource in Oracle Cloud Infrastructure
     - Get container configuration.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -60,7 +60,7 @@ container_configuration:
             description:
                 - The tenancy namespace used in the container repository path.
             returned: on success
-            type: string
+            type: str
             sample: namespace_example
     sample: {
         "is_repository_created_on_first_push": true,

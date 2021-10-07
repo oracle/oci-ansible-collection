@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -41,7 +41,7 @@ description:
       Lastly, to launch the instance, use the image ID of the listing resource version to issue a L(LaunchInstance,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance) API call.
     - If I(listing_id) is specified, the details of a single Listing will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -58,6 +58,7 @@ options:
         description:
             - The name of the listing.
         type: list
+        elements: str
     publisher_id:
         description:
             - Limit results to just this publisher.
@@ -86,11 +87,13 @@ options:
             - Name of the product category or categories. If you specify multiple categories, then Marketplace returns any listing with
               one or more matching categories.
         type: list
+        elements: str
     pricing:
         description:
             - Name of the pricing type. If multiple pricing types are provided, then any listing with
               one or more matching pricing models will be returned.
         type: list
+        elements: str
         choices:
             - "FREE"
             - "BYOL"
@@ -103,6 +106,7 @@ options:
         description:
             - The type of the listing.
         type: list
+        elements: str
         choices:
             - "COMMUNITY"
             - "PARTNER"
@@ -111,6 +115,7 @@ options:
         description:
             - The operating system of the listing.
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -136,73 +141,73 @@ listings:
             description:
                 - The unique identifier for the listing in Marketplace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The name of the listing.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         version:
             description:
                 - The version of the listing.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         tagline:
             description:
                 - The tagline of the listing.
             returned: on success
-            type: string
+            type: str
             sample: tagline_example
         keywords:
             description:
                 - Keywords associated with the listing.
             returned: on success
-            type: string
+            type: str
             sample: keywords_example
         short_description:
             description:
                 - A short description of the listing.
             returned: on success
-            type: string
+            type: str
             sample: short_description_example
         usage_information:
             description:
                 - Usage information for the listing.
             returned: on success
-            type: string
+            type: str
             sample: usage_information_example
         long_description:
             description:
                 - A long description of the listing.
             returned: on success
-            type: string
+            type: str
             sample: long_description_example
         license_model_description:
             description:
                 - A description of the publisher's licensing model for the listing.
             returned: on success
-            type: string
+            type: str
             sample: license_model_description_example
         system_requirements:
             description:
                 - System requirements for the listing.
             returned: on success
-            type: string
+            type: str
             sample: system_requirements_example
         time_released:
             description:
                 - The release date of the listing.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         release_notes:
             description:
                 - Release notes for the listing.
             returned: on success
-            type: string
+            type: str
             sample: release_notes_example
         categories:
             description:
@@ -220,19 +225,19 @@ listings:
                     description:
                         - Unique identifier for the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 name:
                     description:
                         - The name of the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 description:
                     description:
                         - A description of the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 year_founded:
                     description:
@@ -244,25 +249,25 @@ listings:
                     description:
                         - The publisher's website.
                     returned: on success
-                    type: string
+                    type: str
                     sample: website_url_example
                 contact_email:
                     description:
                         - The email address of the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: contact_email_example
                 contact_phone:
                     description:
                         - The phone number of the publisher.
                     returned: on success
-                    type: string
+                    type: str
                     sample: contact_phone_example
                 hq_address:
                     description:
                         - The address of the publisher's headquarters.
                     returned: on success
-                    type: string
+                    type: str
                     sample: hq_address_example
                 logo:
                     description:
@@ -274,25 +279,25 @@ listings:
                             description:
                                 - The name used to refer to the upload data.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         content_url:
                             description:
                                 - The content URL of the upload data.
                             returned: on success
-                            type: string
+                            type: str
                             sample: content_url_example
                         mime_type:
                             description:
                                 - The MIME type of the upload data.
                             returned: on success
-                            type: string
+                            type: str
                             sample: mime_type_example
                         file_extension:
                             description:
                                 - The file extension of the upload data.
                             returned: on success
-                            type: string
+                            type: str
                             sample: file_extension_example
                 links:
                     description:
@@ -304,13 +309,13 @@ listings:
                             description:
                                 - Reference links to the previous page, next page, and other pages.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SELF
                         href:
                             description:
                                 - The anchor tag.
                             returned: on success
-                            type: string
+                            type: str
                             sample: href_example
         languages:
             description:
@@ -322,13 +327,13 @@ listings:
                     description:
                         - The name of the item.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 code:
                     description:
                         - A code assigned to the item.
                     returned: on success
-                    type: string
+                    type: str
                     sample: code_example
         screenshots:
             description:
@@ -340,31 +345,31 @@ listings:
                     description:
                         - The name of the screenshot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 description:
                     description:
                         - A description of the screenshot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 content_url:
                     description:
                         - The content URL of the screenshot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the screenshot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
                 file_extension:
                     description:
                         - The file extension of the screenshot.
                     returned: on success
-                    type: string
+                    type: str
                     sample: file_extension_example
         videos:
             description:
@@ -376,13 +381,13 @@ listings:
                     description:
                         - Text that describes the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 url:
                     description:
                         - The URL of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: url_example
         support_contacts:
             description:
@@ -394,25 +399,25 @@ listings:
                     description:
                         - The name of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 phone:
                     description:
                         - The phone number of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: phone_example
                 email:
                     description:
                         - The email of the contact.
                     returned: on success
-                    type: string
+                    type: str
                     sample: email_example
                 subject:
                     description:
                         - The email subject line to use when contacting support.
                     returned: on success
-                    type: string
+                    type: str
                     sample: subject_example
         support_links:
             description:
@@ -424,13 +429,13 @@ listings:
                     description:
                         - Text that describes the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 url:
                     description:
                         - The URL of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: url_example
         documentation_links:
             description:
@@ -442,19 +447,19 @@ listings:
                     description:
                         - Text that describes the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 url:
                     description:
                         - The URL of the resource.
                     returned: on success
-                    type: string
+                    type: str
                     sample: url_example
                 document_category:
                     description:
                         - The category that the document belongs to.
                     returned: on success
-                    type: string
+                    type: str
                     sample: document_category_example
         icon:
             description:
@@ -466,25 +471,25 @@ listings:
                     description:
                         - The name used to refer to the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 content_url:
                     description:
                         - The content URL of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
                 file_extension:
                     description:
                         - The file extension of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: file_extension_example
         banner:
             description:
@@ -496,25 +501,25 @@ listings:
                     description:
                         - The name used to refer to the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 content_url:
                     description:
                         - The content URL of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: content_url_example
                 mime_type:
                     description:
                         - The MIME type of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mime_type_example
                 file_extension:
                     description:
                         - The file extension of the upload data.
                     returned: on success
-                    type: string
+                    type: str
                     sample: file_extension_example
         regions:
             description:
@@ -526,13 +531,13 @@ listings:
                     description:
                         - The name of the region.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 code:
                     description:
                         - The code of the region.
                     returned: on success
-                    type: string
+                    type: str
                     sample: code_example
                 countries:
                     description:
@@ -544,25 +549,25 @@ listings:
                             description:
                                 - The name of the item.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         code:
                             description:
                                 - A code assigned to the item.
                             returned: on success
-                            type: string
+                            type: str
                             sample: code_example
         package_type:
             description:
                 - The listing's package type.
             returned: on success
-            type: string
+            type: str
             sample: ORCHESTRATION
         default_package_version:
             description:
                 - The default package version.
             returned: on success
-            type: string
+            type: str
             sample: default_package_version_example
         links:
             description:
@@ -574,13 +579,13 @@ listings:
                     description:
                         - Reference links to the previous page, next page, and other pages.
                     returned: on success
-                    type: string
+                    type: str
                     sample: SELF
                 href:
                     description:
                         - The anchor tag.
                     returned: on success
-                    type: string
+                    type: str
                     sample: href_example
         is_featured:
             description:
@@ -592,7 +597,7 @@ listings:
             description:
                 - The publisher category to which the listing belongs. The publisher category informs where the listing appears for use.
             returned: on success
-            type: string
+            type: str
             sample: COMMUNITY
         supported_operating_systems:
             description:
@@ -604,7 +609,7 @@ listings:
                     description:
                         - The name of the operating system.
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
         pricing_types:
             description:
@@ -790,18 +795,20 @@ def main():
         dict(
             listing_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
-            name=dict(type="list"),
+            name=dict(type="list", elements="str"),
             publisher_id=dict(type="str"),
             package_type=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMERELEASED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            category=dict(type="list"),
-            pricing=dict(type="list", choices=["FREE", "BYOL", "PAYGO"]),
+            category=dict(type="list", elements="str"),
+            pricing=dict(
+                type="list", elements="str", choices=["FREE", "BYOL", "PAYGO"]
+            ),
             is_featured=dict(type="bool"),
             listing_types=dict(
-                type="list", choices=["COMMUNITY", "PARTNER", "PRIVATE"]
+                type="list", elements="str", choices=["COMMUNITY", "PARTNER", "PRIVATE"]
             ),
-            operating_systems=dict(type="list"),
+            operating_systems=dict(type="list", elements="str"),
         )
     )
 

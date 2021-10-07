@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ModelProvenance resource in Oracle Cl
 description:
     - Fetches details about a ModelProvenance resource in Oracle Cloud Infrastructure
     - Gets provenance information for specified model.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     model_id:
@@ -54,38 +54,38 @@ model_provenance:
             description:
                 - For model reproducibility purposes. URL of the git repository associated with model training.
             returned: on success
-            type: string
+            type: str
             sample: http://git-remote.com/my-repo
         git_branch:
             description:
                 - For model reproducibility purposes. Branch of the git repository associated with model training.
             returned: on success
-            type: string
+            type: str
             sample: master
         git_commit:
             description:
                 - For model reproducibility purposes. Commit ID of the git repository associated with model training.
             returned: on success
-            type: string
+            type: str
             sample: 0978b63
         script_dir:
             description:
                 - For model reproducibility purposes. Path to model artifacts.
             returned: on success
-            type: string
+            type: str
             sample: script_dir_example
         training_script:
             description:
                 - "For model reproducibility purposes. Path to the python script or notebook in which the model was trained.\\""
             returned: on success
-            type: string
+            type: str
             sample: model-dev/model1/model-training.ipynb
         training_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a training session(Job or NotebookSession) in which
                   the model was trained. It is used for model reproducibility purposes.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.datasciencenotebooksession.oc1.iad.amaaaaaav66vvniaxe2qpktdlwtcvhkuq467mz2n46pf2swol23bmjh3..."
     sample: {
         "repository_url": "http://git-remote.com/my-repo",

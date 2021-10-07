@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Perform actions on a Deployment resource in Oracle Cloud Infr
 description:
     - Perform actions on a Deployment resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), changes the deployment compartment.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deployment_id:
@@ -69,13 +69,13 @@ deployment:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         gateway_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -83,14 +83,14 @@ deployment:
                   Avoid entering confidential information.
                 - "Example: `My new resource`"
             returned: on success
-            type: string
+            type: str
             sample: My new resource
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
                   resource is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         path_prefix:
             description:
@@ -99,13 +99,13 @@ deployment:
                   L(Deploying an API on an API Gateway by Creating an API
                   Deployment,https://docs.cloud.oracle.com/iaas/Content/APIGateway/Tasks/apigatewaycreatingdeployment.htm).
             returned: on success
-            type: string
+            type: str
             sample: path_prefix_example
         endpoint:
             description:
                 - The endpoint to access this deployment on the gateway.
             returned: on success
-            type: string
+            type: str
             sample: endpoint_example
         specification:
             description:
@@ -136,33 +136,33 @@ deployment:
                                     description:
                                         - Type of the authentication policy to use.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: CUSTOM_AUTHENTICATION
                                 function_id:
                                     description:
                                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
                                           resource.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 token_header:
                                     description:
                                         - The name of the header containing the authentication token.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: Authorization
                                 token_query_param:
                                     description:
                                         - The name of the query parameter containing the authentication token.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: key
                                 token_auth_scheme:
                                     description:
                                         - "The authentication scheme that is to be used when authenticating
                                           the token. This must to be provided if \\"tokenHeader\\" is specified."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: Bearer
                                 issuers:
                                     description:
@@ -186,7 +186,7 @@ deployment:
                                             description:
                                                 - Name of the claim.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: iss
                                         values:
                                             description:
@@ -221,14 +221,14 @@ deployment:
                                             description:
                                                 - Type of the public key set.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: STATIC_KEYS
                                         uri:
                                             description:
                                                 - The uri from which to retrieve the key. It must be accessible
                                                   without authentication.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: uri_example
                                         is_ssl_verify_disabled:
                                             description:
@@ -254,25 +254,25 @@ deployment:
                                                         - "A unique key ID. This key will be used to verify the signature of a
                                                           JWT with matching \\"kid\\"."
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: kid_example
                                                 format:
                                                     description:
                                                         - The format of the public key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: JSON_WEB_KEY
                                                 kty:
                                                     description:
                                                         - The key type.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: RSA
                                                 use:
                                                     description:
                                                         - The intended use of the public key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: sig
                                                 key_ops:
                                                     description:
@@ -284,27 +284,27 @@ deployment:
                                                     description:
                                                         - The algorithm intended for use with this key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: alg_example
                                                 n:
                                                     description:
                                                         - The base64 url encoded modulus of the RSA public key represented
                                                           by this key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: n_example
                                                 e:
                                                     description:
                                                         - The base64 url encoded exponent of the RSA public key represented
                                                           by this key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: e_example
                                                 key:
                                                     description:
                                                         - The content of the PEM-encoded public key.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: -----BEGIN PUBLIC KEY-----
                         rate_limiting:
                             description:
@@ -322,7 +322,7 @@ deployment:
                                     description:
                                         - The key used to group requests together.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: CLIENT_IP
                         cors:
                             description:
@@ -420,7 +420,7 @@ deployment:
                                         - Specifies the log level used to control logging output of execution logs.
                                           Enabling logging at a given level also enables logging at all higher levels.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: INFO
                 routes:
                     description:
@@ -433,7 +433,7 @@ deployment:
                                 - A URL path pattern that must be matched on this route. The path pattern may contain a subset of RFC 6570 identifiers
                                   to allow wildcard and parameterized matching.
                             returned: on success
-                            type: string
+                            type: str
                             sample: /todos
                         methods:
                             description:
@@ -461,7 +461,7 @@ deployment:
                                                   authentication
                                                   policy."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: ANONYMOUS
                                         allowed_scope:
                                             description:
@@ -541,7 +541,7 @@ deployment:
                                                     description:
                                                         - Parameter name.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: name_example
                                         validation_mode:
                                             description:
@@ -552,7 +552,7 @@ deployment:
                                                   will follow the normal path.
                                                 - "`DISABLED` type turns the validation off."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: ENFORCING
                                 header_validations:
                                     description:
@@ -576,7 +576,7 @@ deployment:
                                                     description:
                                                         - Parameter name.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: name_example
                                         validation_mode:
                                             description:
@@ -587,7 +587,7 @@ deployment:
                                                   will follow the normal path.
                                                 - "`DISABLED` type turns the validation off."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: ENFORCING
                                 body_validation:
                                     description:
@@ -621,7 +621,7 @@ deployment:
                                                         - Validation type defines the content validation method.
                                                         - Make the validation to first parse the body as the respective format.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: NONE
                                         validation_mode:
                                             description:
@@ -632,7 +632,7 @@ deployment:
                                                   will follow the normal path.
                                                 - "`DISABLED` type turns the validation off."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: ENFORCING
                                 header_transformations:
                                     description:
@@ -657,7 +657,7 @@ deployment:
                                                                 - The case-insensitive name of the header.  This name must be unique across transformation
                                                                   policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-CorrelationID
                                                         values:
                                                             description:
@@ -673,7 +673,7 @@ deployment:
                                                                   value,
                                                                   APPEND will append to the existing value, or SKIP will keep the existing value.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: OVERWRITE
                                         rename_headers:
                                             description:
@@ -692,13 +692,13 @@ deployment:
                                                                 - The original case-insensitive name of the header.  This name must be unique across
                                                                   transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-Username
                                                         to:
                                                             description:
                                                                 - The new name of the header.  This name must be unique across transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-User-ID
                                         filter_headers:
                                             description:
@@ -711,7 +711,7 @@ deployment:
                                                         - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
                                                           permits only the headers in the list and removes all others, so it acts as an inclusion list.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: ALLOW
                                                 items:
                                                     description:
@@ -724,7 +724,7 @@ deployment:
                                                                 - The case-insensitive name of the header.  This name must be unique across transformation
                                                                   policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: User-Agent
                                 query_parameter_transformations:
                                     description:
@@ -749,7 +749,7 @@ deployment:
                                                                 - The case-sensitive name of the query parameter.  This name must be unique across
                                                                   transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: bookIsbn
                                                         values:
                                                             description:
@@ -765,7 +765,7 @@ deployment:
                                                                   overwrite the value,
                                                                   APPEND will append to the existing value, or SKIP will keep the existing value.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: OVERWRITE
                                         rename_query_parameters:
                                             description:
@@ -785,13 +785,13 @@ deployment:
                                                                   transformation
                                                                   policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: bookId
                                                         to:
                                                             description:
                                                                 - The new name of the query parameter.  This name must be unique across transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: bookIsbn
                                         filter_query_parameters:
                                             description:
@@ -805,7 +805,7 @@ deployment:
                                                           ALLOW
                                                           permits only the parameters in the list and removes all others, so it acts as an inclusion list.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: ALLOW
                                                 items:
                                                     description:
@@ -817,7 +817,7 @@ deployment:
                                                             description:
                                                                 - The case-sensitive name of the query parameter.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: bookIsbn
                                 response_cache_lookup:
                                     description:
@@ -829,7 +829,7 @@ deployment:
                                             description:
                                                 - Type of the Response Cache Store Policy.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: SIMPLE_LOOKUP_POLICY
                                         is_enabled:
                                             description:
@@ -884,7 +884,7 @@ deployment:
                                                                 - The case-insensitive name of the header.  This name must be unique across transformation
                                                                   policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-CorrelationID
                                                         values:
                                                             description:
@@ -900,7 +900,7 @@ deployment:
                                                                   value,
                                                                   APPEND will append to the existing value, or SKIP will keep the existing value.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: OVERWRITE
                                         rename_headers:
                                             description:
@@ -919,13 +919,13 @@ deployment:
                                                                 - The original case-insensitive name of the header.  This name must be unique across
                                                                   transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-Username
                                                         to:
                                                             description:
                                                                 - The new name of the header.  This name must be unique across transformation policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: X-User-ID
                                         filter_headers:
                                             description:
@@ -938,7 +938,7 @@ deployment:
                                                         - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
                                                           permits only the headers in the list and removes all others, so it acts as an inclusion list.
                                                     returned: on success
-                                                    type: string
+                                                    type: str
                                                     sample: ALLOW
                                                 items:
                                                     description:
@@ -951,7 +951,7 @@ deployment:
                                                                 - The case-insensitive name of the header.  This name must be unique across transformation
                                                                   policies.
                                                             returned: on success
-                                                            type: string
+                                                            type: str
                                                             sample: User-Agent
                                 response_cache_store:
                                     description:
@@ -963,7 +963,7 @@ deployment:
                                             description:
                                                 - Type of the Response Cache Store Policy.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: FIXED_TTL_STORE_POLICY
                                         time_to_live_in_seconds:
                                             description:
@@ -1018,7 +1018,7 @@ deployment:
                                                 - Specifies the log level used to control logging output of execution logs.
                                                   Enabling logging at a given level also enables logging at all higher levels.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: INFO
                         backend:
                             description:
@@ -1030,13 +1030,13 @@ deployment:
                                     description:
                                         - Type of the API backend.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: ORACLE_FUNCTIONS_BACKEND
                                 url:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: https://1.2.3.4:9999
                                 connect_timeout_in_seconds:
                                     description:
@@ -1067,13 +1067,13 @@ deployment:
                                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
                                           resource.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
                                 body:
                                     description:
                                         - The body of the stock response from the mock backend.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: Hello World!
                                 status:
                                     description:
@@ -1091,31 +1091,31 @@ deployment:
                                             description:
                                                 - Name of the header.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: Content-Type
                                         value:
                                             description:
                                                 - Value of the header.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: application/json
         time_created:
             description:
                 - The time this resource was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time this resource was last updated. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the deployment.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
@@ -1123,7 +1123,7 @@ deployment:
                   For example, can be used to provide actionable information for a
                   resource in a Failed state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:

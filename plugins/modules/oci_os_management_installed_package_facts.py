@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple InstalledPackage resour
 description:
     - Fetches details about one or multiple InstalledPackage resources in Oracle Cloud Infrastructure
     - Returns a list of installed packages on the Managed Instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -77,43 +77,43 @@ installed_packages:
             description:
                 - Package name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
                 - "Unique identifier for the package. NOTE - This is not an OCID"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         type:
             description:
                 - Type of the package
             returned: on success
-            type: string
+            type: str
             sample: type_example
         version:
             description:
                 - Version of the installed package
             returned: on success
-            type: string
+            type: str
             sample: version_example
         architecture:
             description:
                 - The architecture for which this package was built
             returned: on success
-            type: string
+            type: str
             sample: architecture_example
         install_time:
             description:
                 - Install time of the package
             returned: on success
-            type: string
+            type: str
             sample: install_time_example
         issued:
             description:
                 - date the package was issued by a providing erratum (if available)
             returned: on success
-            type: string
+            type: str
             sample: issued_example
         software_sources:
             description:
@@ -125,13 +125,13 @@ installed_packages:
                     description:
                         - software source name
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 id:
                     description:
                         - software source identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",

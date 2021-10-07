@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple RegionSubscription reso
 description:
     - Fetches details about one or multiple RegionSubscription resources in Oracle Cloud Infrastructure
     - Lists the region subscriptions for the specified tenancy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tenancy_id:
@@ -55,7 +55,7 @@ region_subscriptions:
                   for the full list of supported 3-letter region codes.
                 - "Example: `PHX`"
             returned: on success
-            type: string
+            type: str
             sample: PHX
         region_name:
             description:
@@ -63,13 +63,13 @@ region_subscriptions:
                   for the full list of supported region names.
                 - "Example: `us-phoenix-1`"
             returned: on success
-            type: string
+            type: str
             sample: us-phoenix-1
         status:
             description:
                 - The region subscription status.
             returned: on success
-            type: string
+            type: str
             sample: READY
         is_home_region:
             description:

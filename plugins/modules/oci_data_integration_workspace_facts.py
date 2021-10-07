@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
     - Retrieves a list of Data Integration workspaces.
     - If I(workspace_id) is specified, the details of a single Workspace will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     workspace_id:
@@ -100,25 +100,25 @@ workspaces:
             description:
                 - The OCID of the VCN the subnet is in.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
                 - The OCID of the subnet for customer connected databases.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         dns_server_ip:
             description:
                 - The IP of the custom DNS.
             returned: on success
-            type: string
+            type: str
             sample: dns_server_ip_example
         dns_server_zone:
             description:
                 - The DNS zone of the custom DNS to use to resolve names.
             returned: on success
-            type: string
+            type: str
             sample: dns_server_zone_example
         is_private_network_enabled:
             description:
@@ -146,32 +146,32 @@ workspaces:
             description:
                 - A detailed description for the workspace.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - A user-friendly display name for the workspace. Does not have to be unique, and can be modified. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - The OCID of the compartment containing the workspace.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The date and time the workspace was created, in the timestamp format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2019-08-25T21:10:29.410+0000
+            type: str
+            sample: "2019-08-25T21:10:29.410+0000"
         time_updated:
             description:
                 - The date and time the workspace was updated, in the timestamp format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2019-08-25T21:10:29.410+0000
+            type: str
+            sample: "2019-08-25T21:10:29.410+0000"
         lifecycle_state:
             description:
                 - "Lifecycle states for workspaces in Data Integration Service
@@ -187,20 +187,20 @@ workspaces:
                   STOPPING - The resource is in the process of Stopping and may not be usable until it Stops or fails
                   STOPPED  - The resource is in Stopped state due to stop operation."
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         state_message:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: state_message_example
         id:
             description:
                 - A system-generated and immutable identifier assigned to the workspace upon creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",

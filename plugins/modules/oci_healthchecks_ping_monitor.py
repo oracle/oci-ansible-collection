@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,7 +27,7 @@ description:
       and probes will be initiated from each vantage point to each of the targets at the frequency
       specified by `intervalInSeconds`.
     - "This resource has the following action operations in the M(oci_ping_monitor_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -43,11 +43,13 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     vantage_point_names:
         description:
             - A list of names of vantage points from which to execute the probe.
             - This parameter is updatable.
         type: list
+        elements: str
     port:
         description:
             - The port on which to probe endpoints. If unspecified, probes will use the
@@ -165,31 +167,31 @@ ping_monitor:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         results_url:
             description:
                 - A URL for fetching the probe results.
             returned: on success
-            type: string
+            type: str
             sample: results_url_example
         home_region:
             description:
                 - The region where updates must be made and where results must be fetched from.
             returned: on success
-            type: string
+            type: str
             sample: home_region_example
         time_created:
             description:
                 - The RFC 3339-formatted creation date and time of the probe.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         targets:
             description:
@@ -221,13 +223,13 @@ ping_monitor:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: ICMP
         display_name:
             description:
                 - A user-friendly and mutable name suitable for display in a user interface.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         interval_in_seconds:
             description:
@@ -417,8 +419,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            targets=dict(type="list"),
-            vantage_point_names=dict(type="list"),
+            targets=dict(type="list", elements="str"),
+            vantage_point_names=dict(type="list", elements="str"),
             port=dict(type="int"),
             timeout_in_seconds=dict(type="int"),
             protocol=dict(type="str", choices=["ICMP", "TCP"]),

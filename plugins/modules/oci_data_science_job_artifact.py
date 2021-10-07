@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a JobArtifact resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create a JobArtifact resource in Oracle Cloud Infrastructure
     - For I(state=present), uploads a job artifact.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     job_id:
@@ -36,6 +36,11 @@ options:
         description:
             - The content length of the body.
         type: int
+    job_artifact_file:
+        description:
+            - The job artifact file path to upload
+        type: str
+        required: true
     content_disposition:
         description:
             - "This header allows you to specify a filename during upload. This file name is used to dispose of the file contents
@@ -46,11 +51,6 @@ options:
                          \\"Content-Length\\": \\"2347\\"
                          \\"Content-Type\\": \\"application/gzip\\"}`"
         type: str
-    job_artifact_file:
-        description:
-            - The job artifact file path to upload
-        type: str
-        required: true
     state:
         description:
             - The state of the JobArtifact.
@@ -138,8 +138,8 @@ def main():
         dict(
             job_id=dict(type="str", required=True),
             content_length=dict(type="int"),
-            content_disposition=dict(type="str"),
             job_artifact_file=dict(type="str", required=True),
+            content_disposition=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

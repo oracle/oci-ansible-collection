@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a AppCatalogListingResourceVersionAgree
 description:
     - Fetches details about a AppCatalogListingResourceVersionAgreement resource in Oracle Cloud Infrastructure
     - Retrieves the agreements for a particular resource version of a listing.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     listing_id:
@@ -61,38 +61,38 @@ app_catalog_listing_resource_version_agreement:
             description:
                 - The OCID of the listing associated with these agreements.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version:
             description:
                 - Listing resource version associated with these agreements.
             returned: on success
-            type: string
+            type: str
             sample: listing_resource_version_example
         oracle_terms_of_use_link:
             description:
                 - Oracle TOU link
             returned: on success
-            type: string
+            type: str
             sample: oracle_terms_of_use_link_example
         eula_link:
             description:
                 - EULA link
             returned: on success
-            type: string
+            type: str
             sample: eula_link_example
         time_retrieved:
             description:
                 - "Date and time the agreements were retrieved, in L(RFC3339,https://tools.ietf.org/html/rfc3339) format.
                   Example: `2018-03-20T12:32:53.532Z`"
             returned: on success
-            type: string
-            sample: 2018-03-20T12:32:53.532Z
+            type: str
+            sample: "2018-03-20T12:32:53.532Z"
         signature:
             description:
                 - A generated signature for this agreement retrieval operation which should be used in the create subscription call.
             returned: on success
-            type: string
+            type: str
             sample: signature_example
     sample: {
         "listing_id": "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx",

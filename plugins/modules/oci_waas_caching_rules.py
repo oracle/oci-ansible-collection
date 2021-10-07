@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_waas_caching_rules
 short_description: Manage a CachingRules resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a CachingRules resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -36,6 +36,7 @@ options:
         description:
             - ""
         type: list
+        elements: dict
         required: true
         suboptions:
             key:
@@ -88,6 +89,7 @@ options:
                     - The array of the rule criteria with condition and value. The caching rule would be applied for the requests that matched any of the listed
                       conditions.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     condition:
@@ -149,13 +151,13 @@ caching_rules:
             description:
                 - The unique key for the caching rule.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         name:
             description:
                 - The name of the caching rule.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         action:
             description:
@@ -163,7 +165,7 @@ caching_rules:
                   - **CACHE:** Caches requested content when the criteria of the rule are met."
                 - "- **BYPASS_CACHE:** Allows requests to bypass the cache and be directed to the origin when the criteria of the rule is met."
             returned: on success
-            type: string
+            type: str
             sample: CACHE
         caching_duration:
             description:
@@ -172,7 +174,7 @@ caching_rules:
                   `action` is set to `CACHE`.
                   Example: `PT1H`"
             returned: on success
-            type: string
+            type: str
             sample: PT1H
         is_client_caching_enabled:
             description:
@@ -189,7 +191,7 @@ caching_rules:
                   `action` is set to `CACHE`.
                   Example: `PT1H`"
             returned: on success
-            type: string
+            type: str
             sample: PT1H
         criteria:
             description:
@@ -208,13 +210,13 @@ caching_rules:
                         - URLs must start with a `/`. URLs can't contain restricted double slashes `//`. URLs can't contain the restricted `'` `&` `?` symbols.
                           Resources to cache can only be specified by a URL, any query parameters are ignored.
                     returned: on success
-                    type: string
+                    type: str
                     sample: URL_IS
                 value:
                     description:
                         - The value of the caching rule criteria.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
     sample: {
         "key": "key_example",
@@ -336,7 +338,7 @@ def main():
                 elements="dict",
                 required=True,
                 options=dict(
-                    key=dict(type="str"),
+                    key=dict(type="str", no_log=True),
                     name=dict(type="str", required=True),
                     action=dict(
                         type="str", required=True, choices=["CACHE", "BYPASS_CACHE"]

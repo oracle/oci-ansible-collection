@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple PathRouteSet resources in Oracle Cloud Infrastructure
     - Lists all path route sets associated with the specified load balancer.
     - If I(path_route_set_name) is specified, the details of a single PathRouteSet will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -68,7 +68,7 @@ path_route_sets:
                 - The unique name for this set of path route rules. Avoid entering confidential information.
                 - "Example: `example_path_route_set`"
             returned: on success
-            type: string
+            type: str
             sample: example_path_route_set
         path_routes:
             description:
@@ -84,7 +84,7 @@ path_route_sets:
                         - "*  Regular expressions are not supported."
                         - "Example: `/example/video/123`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: /example/video/123
                 path_match_type:
                     description:
@@ -105,14 +105,14 @@ path_route_sets:
                                 - For a full description of how the system handles `matchType` in a path route set containing multiple rules, see
                                   L(Managing Request Routing,https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm).
                             returned: on success
-                            type: string
+                            type: str
                             sample: EXACT_MATCH
                 backend_set_name:
                     description:
                         - The name of the target backend set for requests where the incoming URI matches the specified path.
                         - "Example: `example_backend_set`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: example_backend_set
     sample: [{
         "name": "example_path_route_set",

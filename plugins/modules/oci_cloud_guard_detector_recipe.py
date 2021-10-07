@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DetectorRecipe resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a DetectorRecipe
     - "This resource has the following action operations in the M(oci_detector_recipe_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     display_name:
@@ -58,6 +58,7 @@ options:
             - Detector Rules to override from source detector recipe
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             detector_rule_id:
                 description:
@@ -90,6 +91,7 @@ options:
                         description:
                             - Configuration details
                         type: list
+                        elements: dict
                         suboptions:
                             config_key:
                                 description:
@@ -113,6 +115,7 @@ options:
                                 description:
                                     - List of configuration values
                                 type: list
+                                elements: dict
                                 suboptions:
                                     list_type:
                                         description:
@@ -213,6 +216,7 @@ options:
                         description:
                             - user defined labels for a detector rule
                         type: list
+                        elements: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -294,43 +298,43 @@ detector_recipe:
             description:
                 - Ocid for detector recipe
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - DisplayName of detector recipe
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         description:
             description:
                 - Detector recipe description
             returned: on success
-            type: string
+            type: str
             sample: description_example
         compartment_id:
             description:
                 - compartmentId of detector recipe
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_detector_recipe_id:
             description:
                 - Recipe Ocid of the Source Recipe to be cloned
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         owner:
             description:
                 - Owner of detector recipe
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER
         detector:
             description:
                 - Type of detector
             returned: on success
-            type: string
+            type: str
             sample: IAAS_ACTIVITY_DETECTOR
         detector_rules:
             description:
@@ -342,43 +346,43 @@ detector_recipe:
                     description:
                         - The unique identifier of the detector rule
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - displayName
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description for DetectorRecipeDetectorRule
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 recommendation:
                     description:
                         - Recommendation for DetectorRecipeDetectorRule
                     returned: on success
-                    type: string
+                    type: str
                     sample: recommendation_example
                 detector:
                     description:
                         - detector for the rule
                     returned: on success
-                    type: string
+                    type: str
                     sample: IAAS_ACTIVITY_DETECTOR
                 service_type:
                     description:
                         - service type of the configuration to which the rule is applied
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_type_example
                 resource_type:
                     description:
                         - resource type of the configuration to which the rule is applied
                     returned: on success
-                    type: string
+                    type: str
                     sample: resource_type_example
                 details:
                     description:
@@ -396,7 +400,7 @@ detector_recipe:
                             description:
                                 - The Risk Level
                             returned: on success
-                            type: string
+                            type: str
                             sample: CRITICAL
                         configurations:
                             description:
@@ -408,25 +412,25 @@ detector_recipe:
                                     description:
                                         - Unique name of the configuration
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: config_key_example
                                 name:
                                     description:
                                         - configuration name
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - configuration value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 data_type:
                                     description:
                                         - configuration data type
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: data_type_example
                                 values:
                                     description:
@@ -438,19 +442,19 @@ detector_recipe:
                                             description:
                                                 - configuration list item type, either CUSTOM or MANAGED
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: MANAGED
                                         managed_list_type:
                                             description:
                                                 - type of the managed list
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: managed_list_type_example
                                         value:
                                             description:
                                                 - configuration value
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                         condition:
                             description:
@@ -462,7 +466,7 @@ detector_recipe:
                                     description:
                                         - Type of condition object
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: COMPOSITE
                                 left_operand:
                                     description:
@@ -474,13 +478,13 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 right_operand:
                                     description:
@@ -492,31 +496,31 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: parameter_example
                                 operator:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: IN
                                 value:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 value_type:
                                     description:
                                         - type of value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: MANAGED
                         labels:
                             description:
@@ -546,13 +550,13 @@ detector_recipe:
                             description:
                                 - The unique identifier of the Responder rule
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - The display name of the Responder rule
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         is_preferred:
                             description:
@@ -564,26 +568,26 @@ detector_recipe:
                     description:
                         - The date and time the detector recipe rule was created. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The date and time the detector recipe rule was updated. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the DetectorRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
                 lifecycle_details:
                     description:
                         - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
                           Failed state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
         effective_detector_rules:
             description:
@@ -595,43 +599,43 @@ detector_recipe:
                     description:
                         - The unique identifier of the detector rule
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - displayName
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description for DetectorRecipeDetectorRule
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 recommendation:
                     description:
                         - Recommendation for DetectorRecipeDetectorRule
                     returned: on success
-                    type: string
+                    type: str
                     sample: recommendation_example
                 detector:
                     description:
                         - detector for the rule
                     returned: on success
-                    type: string
+                    type: str
                     sample: IAAS_ACTIVITY_DETECTOR
                 service_type:
                     description:
                         - service type of the configuration to which the rule is applied
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_type_example
                 resource_type:
                     description:
                         - resource type of the configuration to which the rule is applied
                     returned: on success
-                    type: string
+                    type: str
                     sample: resource_type_example
                 details:
                     description:
@@ -649,7 +653,7 @@ detector_recipe:
                             description:
                                 - The Risk Level
                             returned: on success
-                            type: string
+                            type: str
                             sample: CRITICAL
                         configurations:
                             description:
@@ -661,25 +665,25 @@ detector_recipe:
                                     description:
                                         - Unique name of the configuration
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: config_key_example
                                 name:
                                     description:
                                         - configuration name
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: name_example
                                 value:
                                     description:
                                         - configuration value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 data_type:
                                     description:
                                         - configuration data type
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: data_type_example
                                 values:
                                     description:
@@ -691,19 +695,19 @@ detector_recipe:
                                             description:
                                                 - configuration list item type, either CUSTOM or MANAGED
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: MANAGED
                                         managed_list_type:
                                             description:
                                                 - type of the managed list
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: managed_list_type_example
                                         value:
                                             description:
                                                 - configuration value
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                         condition:
                             description:
@@ -715,7 +719,7 @@ detector_recipe:
                                     description:
                                         - Type of condition object
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: COMPOSITE
                                 left_operand:
                                     description:
@@ -727,13 +731,13 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 composite_operator:
                                     description:
                                         - ""
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 right_operand:
                                     description:
@@ -745,31 +749,31 @@ detector_recipe:
                                             description:
                                                 - Type of condition object
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: COMPOSITE
                                 parameter:
                                     description:
                                         - parameter Key
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: parameter_example
                                 operator:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: IN
                                 value:
                                     description:
                                         - type of operator
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                                 value_type:
                                     description:
                                         - type of value
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: MANAGED
                         labels:
                             description:
@@ -799,13 +803,13 @@ detector_recipe:
                             description:
                                 - The unique identifier of the Responder rule
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - The display name of the Responder rule
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         is_preferred:
                             description:
@@ -817,44 +821,44 @@ detector_recipe:
                     description:
                         - The date and time the detector recipe rule was created. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_updated:
                     description:
                         - The date and time the detector recipe rule was updated. Format defined by RFC3339.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 lifecycle_state:
                     description:
                         - The current state of the DetectorRule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: CREATING
                 lifecycle_details:
                     description:
                         - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in
                           Failed state.
                     returned: on success
-                    type: string
+                    type: str
                     sample: lifecycle_details_example
         time_created:
             description:
                 - The date and time the detector recipe was created. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The date and time the detector recipe was updated. Format defined by RFC3339.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:
@@ -1160,7 +1164,9 @@ def main():
                                 type="list",
                                 elements="dict",
                                 options=dict(
-                                    config_key=dict(type="str", required=True),
+                                    config_key=dict(
+                                        type="str", required=True, no_log=True
+                                    ),
                                     name=dict(type="str", required=True),
                                     value=dict(type="str"),
                                     data_type=dict(type="str"),
@@ -1228,7 +1234,7 @@ def main():
                                     ),
                                 ),
                             ),
-                            labels=dict(type="list"),
+                            labels=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

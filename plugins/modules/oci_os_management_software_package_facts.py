@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple SoftwarePackage resources in Oracle Cloud Infrastructure
     - Lists Software Packages in a Software Source
     - If I(software_package_name) is specified, the details of a single SoftwarePackage will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     software_source_id:
@@ -88,55 +88,55 @@ software_packages:
             description:
                 - Package name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         name:
             description:
                 - "Unique identifier for the package. NOTE - This is not an OCID"
             returned: on success
-            type: string
+            type: str
             sample: name_example
         type:
             description:
                 - Type of the package
             returned: on success
-            type: string
+            type: str
             sample: type_example
         version:
             description:
                 - Version of the package
             returned: on success
-            type: string
+            type: str
             sample: version_example
         architecture:
             description:
                 - the architecture for which this software was built
             returned: on success
-            type: string
+            type: str
             sample: architecture_example
         last_modified_date:
             description:
                 - date of the last update to the package
             returned: on success
-            type: string
+            type: str
             sample: last_modified_date_example
         checksum:
             description:
                 - checksum of the package
             returned: on success
-            type: string
+            type: str
             sample: checksum_example
         checksum_type:
             description:
                 - type of the checksum
             returned: on success
-            type: string
+            type: str
             sample: checksum_type_example
         description:
             description:
                 - description of the package
             returned: on success
-            type: string
+            type: str
             sample: description_example
         size_in_bytes:
             description:
@@ -154,19 +154,19 @@ software_packages:
                     description:
                         - the software package's dependency
                     returned: on success
-                    type: string
+                    type: str
                     sample: dependency_example
                 dependency_type:
                     description:
                         - the type of the dependency
                     returned: on success
-                    type: string
+                    type: str
                     sample: dependency_type_example
                 dependency_modifier:
                     description:
                         - the modifier for the dependency
                     returned: on success
-                    type: string
+                    type: str
                     sample: dependency_modifier_example
         files:
             description:
@@ -178,32 +178,32 @@ software_packages:
                     description:
                         - file path
                     returned: on success
-                    type: string
+                    type: str
                     sample: path_example
                 type:
                     description:
                         - type of the file
                     returned: on success
-                    type: string
+                    type: str
                     sample: type_example
                 time_modified:
                     description:
                         - The date and time of the last modification to this file, as described
                           in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339), section 14.29.
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 checksum:
                     description:
                         - checksum of the file
                     returned: on success
-                    type: string
+                    type: str
                     sample: checksum_example
                 checksum_type:
                     description:
                         - type of the checksum
                     returned: on success
-                    type: string
+                    type: str
                     sample: checksum_type_example
                 size_in_bytes:
                     description:
@@ -221,13 +221,13 @@ software_packages:
                     description:
                         - software source name
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 id:
                     description:
                         - software source identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "display_name": "display_name_example",

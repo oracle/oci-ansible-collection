@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,13 +24,14 @@ short_description: Perform actions on a ManagementAgent resource in Oracle Cloud
 description:
     - Perform actions on a ManagementAgent resource in Oracle Cloud Infrastructure
     - For I(action=deploy_plugins), deploys Plugins to a given list of agentIds.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     plugin_ids:
         description:
             - Plugin Id
         type: list
+        elements: str
         required: true
     agent_compartment_id:
         description:
@@ -41,6 +42,7 @@ options:
         description:
             - List of Agent identifiers
         type: list
+        elements: str
         required: true
     action:
         description:
@@ -131,9 +133,9 @@ def main():
     )
     module_args.update(
         dict(
-            plugin_ids=dict(type="list", required=True),
+            plugin_ids=dict(type="list", elements="str", required=True),
             agent_compartment_id=dict(type="str", required=True),
-            agent_ids=dict(type="list", required=True),
+            agent_ids=dict(type="list", elements="str", required=True),
             action=dict(type="str", required=True, choices=["deploy_plugins"]),
         )
     )

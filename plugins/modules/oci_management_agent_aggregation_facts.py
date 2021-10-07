@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple ManagementAgentAggregation resources in Oracle Cloud Infrastructure
     - "Gets count of the inventory of agents for a given compartment id, group by, and isPluginDeployed parameters.
       Supported groupBy parameters: availabilityStatus, platformType, version"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -37,6 +37,7 @@ options:
         description:
             - The field by which to group Management Agents. Currently, only one groupBy dimension is supported at a time.
         type: list
+        elements: str
         choices:
             - "availabilityStatus"
             - "platformType"
@@ -74,19 +75,19 @@ management_agent_aggregations:
                     description:
                         - The availability status of managementAgent
                     returned: on success
-                    type: string
+                    type: str
                     sample: ACTIVE
                 platform_type:
                     description:
                         - Platform Type
                     returned: on success
-                    type: string
+                    type: str
                     sample: LINUX
                 version:
                     description:
                         - Agent image version
                     returned: on success
-                    type: string
+                    type: str
                     sample: version_example
                 has_plugins:
                     description:
@@ -171,6 +172,7 @@ def main():
             compartment_id=dict(type="str", required=True),
             group_by=dict(
                 type="list",
+                elements="str",
                 required=True,
                 choices=["availabilityStatus", "platformType", "version"],
             ),

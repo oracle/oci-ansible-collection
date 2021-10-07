@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Certificate resources i
 description:
     - Fetches details about one or multiple Certificate resources in Oracle Cloud Infrastructure
     - Lists all SSL certificates bundles associated with a given load balancer.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     load_balancer_id:
@@ -62,7 +62,7 @@ certificates:
                   Certificate bundle names cannot contain spaces. Avoid entering confidential information.
                 - "Example: `example_certificate_bundle`"
             returned: on success
-            type: string
+            type: str
             sample: example_certificate_bundle
         public_certificate:
             description:
@@ -76,7 +76,7 @@ certificates:
                       ...
                       -----END CERTIFICATE-----"
             returned: on success
-            type: string
+            type: str
             sample: public_certificate_example
         ca_certificate:
             description:
@@ -90,7 +90,7 @@ certificates:
                       ...
                       -----END CERTIFICATE-----"
             returned: on success
-            type: string
+            type: str
             sample: ca_certificate_example
     sample: [{
         "certificate_name": "example_certificate_bundle",

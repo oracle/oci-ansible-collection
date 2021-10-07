@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -40,7 +40,7 @@ description:
     - For I(action=install_package_update), updates a package on a managed instance.
     - For I(action=install_windows_update), installs a Windows update on a managed instance.
     - For I(action=remove_package), removes an installed package from a managed instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     managed_instance_id:
@@ -170,31 +170,31 @@ managed_instance:
             description:
                 - Managed Instance identifier
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         id:
             description:
                 - OCID for the managed instance
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Information specified by the user about the managed instance
             returned: on success
-            type: string
+            type: str
             sample: description_example
         last_checkin:
             description:
                 - Time at which the instance last checked in
             returned: on success
-            type: string
+            type: str
             sample: last_checkin_example
         last_boot:
             description:
                 - Time at which the instance last booted
             returned: on success
-            type: string
+            type: str
             sample: last_boot_example
         updates_available:
             description:
@@ -206,31 +206,31 @@ managed_instance:
             description:
                 - Operating System Name
             returned: on success
-            type: string
+            type: str
             sample: os_name_example
         os_version:
             description:
                 - Operating System Version
             returned: on success
-            type: string
+            type: str
             sample: os_version_example
         os_kernel_version:
             description:
                 - Operating System Kernel Version
             returned: on success
-            type: string
+            type: str
             sample: os_kernel_version_example
         compartment_id:
             description:
                 - OCID for the Compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - status of the managed instance.
             returned: on success
-            type: string
+            type: str
             sample: NORMAL
         parent_software_source:
             description:
@@ -242,13 +242,13 @@ managed_instance:
                     description:
                         - software source name
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 id:
                     description:
                         - software source identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         child_software_sources:
             description:
@@ -260,13 +260,13 @@ managed_instance:
                     description:
                         - software source name
                     returned: on success
-                    type: string
+                    type: str
                     sample: name_example
                 id:
                     description:
                         - software source identifier
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         managed_instance_groups:
             description:
@@ -279,19 +279,19 @@ managed_instance:
                     description:
                         - unique identifier that is immutable on creation
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 display_name:
                     description:
                         - User friendly name
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
         os_family:
             description:
                 - The Operating System type of the managed instance.
             returned: on success
-            type: string
+            type: str
             sample: LINUX
         is_reboot_required:
             description:
@@ -303,13 +303,13 @@ managed_instance:
             description:
                 - OCID of the ONS topic used to send notification to users
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.notificationtopic.oc1..xxxxxxEXAMPLExxxxxx"
         ksplice_effective_kernel_version:
             description:
                 - The ksplice effective kernel version
             returned: on success
-            type: string
+            type: str
             sample: ksplice_effective_kernel_version_example
         is_data_collection_authorized:
             description:

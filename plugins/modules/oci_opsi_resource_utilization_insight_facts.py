@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ResourceUtilizationInsight resource i
 description:
     - Fetches details about a ResourceUtilizationInsight resource in Oracle Cloud Infrastructure
     - Gets resources with current utilization (high and low) and projected utilization (high and low) for a resource type over specified time period.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -66,6 +66,7 @@ options:
             - Filter by one or more database type.
               Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
+        elements: str
         choices:
             - "ADW-S"
             - "ATP-S"
@@ -77,10 +78,12 @@ options:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
         type: list
+        elements: str
     id:
         description:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
+        elements: str
     forecast_days:
         description:
             - Number of days used for utilization forecast analysis.
@@ -89,6 +92,7 @@ options:
         description:
             - Filter by one or more hostname.
         type: list
+        elements: str
     is_database_instance_level_metrics:
         description:
             - Flag to indicate if database instance level metrics should be returned. The flag is ignored when a host name filter is not applied.
@@ -102,12 +106,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -117,6 +123,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -124,6 +131,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -146,19 +154,19 @@ resource_utilization_insight:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         resource_metric:
             description:
                 - "Defines the type of resource metric (example: CPU, STORAGE)"
             returned: on success
-            type: string
+            type: str
             sample: STORAGE
         projected_utilization:
             description:
@@ -176,7 +184,7 @@ resource_utilization_insight:
                             description:
                                 - Db id
                             returned: on success
-                            type: string
+                            type: str
                             sample: id1
                         days_to_reach:
                             description:
@@ -194,7 +202,7 @@ resource_utilization_insight:
                             description:
                                 - Db id
                             returned: on success
-                            type: string
+                            type: str
                             sample: id1
                         days_to_reach:
                             description:
@@ -317,6 +325,7 @@ def main():
             time_interval_end=dict(type="str"),
             database_type=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ADW-S",
                     "ATP-S",
@@ -326,15 +335,15 @@ def main():
                     "EXTERNAL-NONCDB",
                 ],
             ),
-            database_id=dict(type="list"),
-            id=dict(type="list"),
+            database_id=dict(type="list", elements="str"),
+            id=dict(type="list", elements="str"),
             forecast_days=dict(type="int"),
-            host_name=dict(type="list"),
+            host_name=dict(type="list", elements="str"),
             is_database_instance_level_metrics=dict(type="bool"),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

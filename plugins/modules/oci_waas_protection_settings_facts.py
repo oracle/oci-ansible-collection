@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about a ProtectionSettings resource in Oracle
 description:
     - Fetches details about a ProtectionSettings resource in Oracle Cloud Infrastructure
     - Gets the protection settings in the Web Application Firewall configuration for a WAAS policy.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     waas_policy_id:
@@ -55,7 +55,7 @@ protection_settings:
                 - If `action` is set to `BLOCK`, this specifies how the traffic is blocked when detected as malicious by a protection rule. If unspecified,
                   defaults to `SET_RESPONSE_CODE`.
             returned: on success
-            type: string
+            type: str
             sample: SHOW_ERROR_PAGE
         block_response_code:
             description:
@@ -70,21 +70,21 @@ protection_settings:
                 - The message to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is detected
                   as malicious by a protection rule. If unspecified, defaults to 'Access to the website is blocked.'
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_message_example
         block_error_page_code:
             description:
                 - The error code to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                   detected as malicious by a protection rule. If unspecified, defaults to `403`.
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_code_example
         block_error_page_description:
             description:
                 - The description text to show on the error page when `action` is set to `BLOCK`, `blockAction` is set to `SHOW_ERROR_PAGE`, and the traffic is
                   detected as malicious by a protection rule. If unspecified, defaults to `Access blocked by website owner. Please contact support.`
             returned: on success
-            type: string
+            type: str
             sample: block_error_page_description_example
         max_argument_count:
             description:

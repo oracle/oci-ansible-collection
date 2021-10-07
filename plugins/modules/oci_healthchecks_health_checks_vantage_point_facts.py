@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple HealthChecksVantagePoin
 description:
     - Fetches details about one or multiple HealthChecksVantagePoint resources in Oracle Cloud Infrastructure
     - Gets information about all vantage points available to the user.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     sort_by:
@@ -70,7 +70,7 @@ health_checks_vantage_points:
                 - The display name for the vantage point. Display names are determined by
                   the best information available and may change over time.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         provider_name:
             description:
@@ -78,13 +78,13 @@ health_checks_vantage_points:
                   Provider names are not unique, as Oracle Cloud Infrastructure maintains
                   many vantage points in each major provider.
             returned: on success
-            type: string
+            type: str
             sample: provider_name_example
         name:
             description:
                 - The unique, permanent name for the vantage point.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         geo:
             description:
@@ -96,7 +96,7 @@ health_checks_vantage_points:
                     description:
                         - An opaque identifier for the geographic location of the vantage point.
                     returned: on success
-                    type: string
+                    type: str
                     sample: geo_key_example
                 admin_div_code:
                     description:
@@ -105,26 +105,26 @@ health_checks_vantage_points:
                           in the US or Canada. For a list of codes, see
                           L(Country Codes,https://www.iso.org/obp/ui/#search).
                     returned: on success
-                    type: string
+                    type: str
                     sample: admin_div_code_example
                 city_name:
                     description:
                         - Common English-language name for the city.
                     returned: on success
-                    type: string
+                    type: str
                     sample: city_name_example
                 country_code:
                     description:
                         - The ISO 3166-1 alpha-2 country code. For a list of codes,
                           see L(Country Codes,https://www.iso.org/obp/ui/#search).
                     returned: on success
-                    type: string
+                    type: str
                     sample: country_code_example
                 country_name:
                     description:
                         - The common English-language name for the country.
                     returned: on success
-                    type: string
+                    type: str
                     sample: country_name_example
                 latitude:
                     description:
@@ -157,7 +157,7 @@ health_checks_vantage_points:
                         - The registry label for `asn`, usually the name of the organization that
                           owns the ASN. May be omitted or null.
                     returned: on success
-                    type: string
+                    type: str
                     sample: as_label_example
                 asn:
                     description:
@@ -171,7 +171,7 @@ health_checks_vantage_points:
                         - An IP prefix (CIDR syntax) that is less specific than
                           `address`, through which `address` is routed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: prefix_example
                 weight:
                     description:

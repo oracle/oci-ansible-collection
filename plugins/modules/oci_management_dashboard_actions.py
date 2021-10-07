@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -34,7 +34,7 @@ description:
       and change the compartmentId to the desired compartment OCID.
       Here is an example of how you can use CLI to do import:
       oci management-dashboard dashboard import --from-json file://Import.json"
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     export_dashboard_id:
@@ -48,6 +48,7 @@ options:
             - Array of dashboards.
             - Required for I(action=import_dashboard).
         type: list
+        elements: dict
         suboptions:
             dashboard_id:
                 description:
@@ -73,6 +74,7 @@ options:
                 description:
                     - Array of dashboard tiles.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     display_name:
@@ -120,6 +122,7 @@ options:
                         description:
                             - Array of JSON that contain data source options.
                         type: list
+                        elements: dict
                         required: true
                     state:
                         description:
@@ -195,6 +198,7 @@ options:
                 description:
                     - Array of JSON that contain data source options.
                 type: list
+                elements: dict
                 required: true
             type:
                 description:
@@ -210,6 +214,7 @@ options:
                 description:
                     - Array of saved searches in the dashboard.
                 type: list
+                elements: dict
                 required: true
                 suboptions:
                     id:
@@ -278,6 +283,7 @@ options:
                         description:
                             - Array of JSON that contain data source options.
                         type: list
+                        elements: dict
                         required: true
                     screen_image:
                         description:
@@ -313,10 +319,12 @@ options:
                         description:
                             - Defines parameters for the saved search.
                         type: list
+                        elements: dict
             parameters_config:
                 description:
                     - Defines parameters for the dashboard.
                 type: list
+                elements: dict
             freeform_tags:
                 description:
                     - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -416,25 +424,25 @@ management_dashboard:
                     description:
                         - ID of the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.dashboard.oc1..xxxxxxEXAMPLExxxxxx"
                 provider_id:
                     description:
                         - ID of the service (for example log-analytics) that owns the dashboard. Each service has a unique ID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                 provider_name:
                     description:
                         - Name of the service (for example, Logging Analytics) that owns the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: provider_name_example
                 provider_version:
                     description:
                         - Version of the service that owns the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: provider_version_example
                 tiles:
                     description:
@@ -446,13 +454,13 @@ management_dashboard:
                             description:
                                 - Display name of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         saved_search_id:
                             description:
                                 - ID of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
                         row:
                             description:
@@ -500,7 +508,7 @@ management_dashboard:
                             description:
                                 - Current state of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: DELETED
                         drilldown_config:
                             description:
@@ -518,19 +526,19 @@ management_dashboard:
                     description:
                         - Display name of the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 description:
                     description:
                         - Description of the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 compartment_id:
                     description:
                         - OCID of the compartment in which the dashboard resides.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 is_oob_dashboard:
                     description:
@@ -549,7 +557,7 @@ management_dashboard:
                     description:
                         - Version of the metadata.
                     returned: on success
-                    type: string
+                    type: str
                     sample: metadata_version_example
                 is_show_description:
                     description:
@@ -561,7 +569,7 @@ management_dashboard:
                     description:
                         - Screen image of the dashboard.
                     returned: on success
-                    type: string
+                    type: str
                     sample: screen_image_example
                 nls:
                     description:
@@ -585,7 +593,7 @@ management_dashboard:
                     description:
                         - Type of dashboard. NORMAL denotes a single dashboard and SET denotes a dashboard set.
                     returned: on success
-                    type: string
+                    type: str
                     sample: type_example
                 is_favorite:
                     description:
@@ -603,37 +611,37 @@ management_dashboard:
                             description:
                                 - ID of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         provider_id:
                             description:
                                 - ID of the service (for example log-analytics) that owns the saved search. Each service has a unique ID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.provider.oc1..xxxxxxEXAMPLExxxxxx"
                         provider_version:
                             description:
                                 - Version of the service that owns this saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: provider_version_example
                         provider_name:
                             description:
                                 - Name of the service (for example, Logging Analytics) that owns the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: provider_name_example
                         compartment_id:
                             description:
                                 - OCID of the compartment in which the saved search resides.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                         is_oob_saved_search:
                             description:
@@ -646,7 +654,7 @@ management_dashboard:
                             description:
                                 - Description of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
                         nls:
                             description:
@@ -658,7 +666,7 @@ management_dashboard:
                             description:
                                 - Determines how the saved search is displayed in a dashboard.
                             returned: on success
-                            type: string
+                            type: str
                             sample: SEARCH_SHOW_IN_DASHBOARD
                         ui_config:
                             description:
@@ -676,25 +684,25 @@ management_dashboard:
                             description:
                                 - Screen image of the saved search.
                             returned: on success
-                            type: string
+                            type: str
                             sample: screen_image_example
                         metadata_version:
                             description:
                                 - Version of the metadata.
                             returned: on success
-                            type: string
+                            type: str
                             sample: metadata_version_example
                         widget_template:
                             description:
                                 - Reference to the HTML file of the widget.
                             returned: on success
-                            type: string
+                            type: str
                             sample: widget_template_example
                         widget_vm:
                             description:
                                 - Reference to the view model of the widget.
                             returned: on success
-                            type: string
+                            type: str
                             sample: widget_vm_example
                         freeform_tags:
                             description:
@@ -904,7 +912,9 @@ def main():
                             width=dict(type="int", required=True),
                             nls=dict(type="dict", required=True),
                             ui_config=dict(type="dict", required=True),
-                            data_config=dict(type="list", required=True),
+                            data_config=dict(
+                                type="list", elements="dict", required=True
+                            ),
                             state=dict(
                                 type="str",
                                 required=True,
@@ -924,7 +934,7 @@ def main():
                     screen_image=dict(type="str", required=True),
                     nls=dict(type="dict", required=True),
                     ui_config=dict(type="dict", required=True),
-                    data_config=dict(type="list", required=True),
+                    data_config=dict(type="list", elements="dict", required=True),
                     type=dict(type="str", required=True),
                     is_favorite=dict(type="bool", required=True),
                     saved_searches=dict(
@@ -954,17 +964,19 @@ def main():
                                 ],
                             ),
                             ui_config=dict(type="dict", required=True),
-                            data_config=dict(type="list", required=True),
+                            data_config=dict(
+                                type="list", elements="dict", required=True
+                            ),
                             screen_image=dict(type="str", required=True),
                             metadata_version=dict(type="str", required=True),
                             widget_template=dict(type="str", required=True),
                             widget_vm=dict(type="str", required=True),
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
-                            parameters_config=dict(type="list"),
+                            parameters_config=dict(type="list", elements="dict"),
                         ),
                     ),
-                    parameters_config=dict(type="list"),
+                    parameters_config=dict(type="list", elements="dict"),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
                 ),

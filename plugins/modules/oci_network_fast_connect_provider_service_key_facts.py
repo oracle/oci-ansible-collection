@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a FastConnectProviderServiceKey resource in Oracle Cloud Infrastructure
     - Gets the specified provider service key's information. Use this operation to validate a
       provider service key. An invalid key returns a 404 error.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     provider_service_id:
@@ -67,7 +67,7 @@ fast_connect_provider_service_key:
                   L(GetFastConnectProviderServiceKey,https://docs.cloud.oracle.com/en-
                   us/iaas/api/#/en/iaas/latest/FastConnectProviderServiceKey/GetFastConnectProviderServiceKey).
             returned: on success
-            type: string
+            type: str
             sample: name_example
         bandwidth_shape_name:
             description:
@@ -77,13 +77,13 @@ fast_connect_provider_service_key:
                   us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
-            type: string
+            type: str
             sample: 10 Gbps
         peering_location:
             description:
                 - The provider's peering location.
             returned: on success
-            type: string
+            type: str
             sample: peering_location_example
     sample: {
         "name": "name_example",

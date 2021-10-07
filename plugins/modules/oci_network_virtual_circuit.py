@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -43,7 +43,7 @@ description:
       L(Route Tables,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingroutetables.htm)."
     - "This resource has the following action operations in the M(oci_virtual_circuit_actions) module: bulk_add_virtual_circuit_public_prefixes,
       bulk_delete_virtual_circuit_public_prefixes, change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     bandwidth_shape_name:
@@ -68,6 +68,7 @@ options:
               group this virtual circuit will run on.
             - This parameter is updatable.
         type: list
+        elements: dict
         suboptions:
             bgp_md5_auth_key:
                 description:
@@ -140,6 +141,7 @@ options:
               By default, routing information is shared for all routes in the same market."
             - This parameter is updatable.
         type: list
+        elements: str
         choices:
             - "ORACLE_SERVICE_NETWORK"
             - "REGIONAL"
@@ -220,6 +222,7 @@ options:
             - For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to
               advertise across the connection.
         type: list
+        elements: dict
         suboptions:
             cidr_block:
                 description:
@@ -335,32 +338,32 @@ virtual_circuit:
                   us/iaas/api/#/en/iaas/latest/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes).
                 - "Example: `10 Gbps`"
             returned: on success
-            type: string
+            type: str
             sample: 10 Gbps
         bgp_management:
             description:
                 - Deprecated. Instead use the information in
                   L(FastConnectProviderService,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/FastConnectProviderService/).
             returned: on success
-            type: string
+            type: str
             sample: CUSTOMER_MANAGED
         bgp_session_state:
             description:
                 - The state of the Ipv4 BGP session associated with the virtual circuit.
             returned: on success
-            type: string
+            type: str
             sample: UP
         bgp_ipv6_session_state:
             description:
                 - The state of the Ipv6 BGP session associated with the virtual circuit.
             returned: on success
-            type: string
+            type: str
             sample: UP
         compartment_id:
             description:
                 - The OCID of the compartment containing the virtual circuit.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cross_connect_mappings:
             description:
@@ -376,7 +379,7 @@ virtual_circuit:
                           requires MD5 authentication. If empty or not set (null), that
                           means you don't use BGP MD5 authentication.
                     returned: on success
-                    type: string
+                    type: str
                     sample: bgp_md5_auth_key_example
                 cross_connect_or_cross_connect_group_id:
                     description:
@@ -385,7 +388,7 @@ virtual_circuit:
                           customer if the customer is colocated with Oracle, or the provider if the
                           customer is connecting via provider).
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
                 customer_bgp_peering_ip:
                     description:
@@ -397,7 +400,7 @@ virtual_circuit:
                         - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                         - "Example: `10.0.0.18/31`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.18/31
                 oracle_bgp_peering_ip:
                     description:
@@ -408,7 +411,7 @@ virtual_circuit:
                         - "There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses."
                         - "Example: `10.0.0.19/31`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.0.19/31
                 customer_bgp_peering_ipv6:
                     description:
@@ -422,7 +425,7 @@ virtual_circuit:
                           L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                         - "Example: `2001:db8::1/64`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 2001:db8::1/64
                 oracle_bgp_peering_ipv6:
                     description:
@@ -435,7 +438,7 @@ virtual_circuit:
                           L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
                         - "Example: `2001:db8::2/64`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 2001:db8::2/64
                 vlan:
                     description:
@@ -487,7 +490,7 @@ virtual_circuit:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -503,13 +506,13 @@ virtual_circuit:
                 - The OCID of the customer's L(dynamic routing gateway (DRG),https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Drg)
                   that this virtual circuit uses. Applicable only to private virtual circuits.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The virtual circuit's Oracle ID (OCID).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
@@ -517,7 +520,7 @@ virtual_circuit:
                   the different states, see
                   L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
-            type: string
+            type: str
             sample: PENDING_PROVIDER
         oracle_bgp_asn:
             description:
@@ -529,25 +532,25 @@ virtual_circuit:
             description:
                 - Deprecated. Instead use `providerServiceId`.
             returned: on success
-            type: string
+            type: str
             sample: provider_name_example
         provider_service_id:
             description:
                 - The OCID of the service offered by the provider (if the customer is connecting via a provider).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name:
             description:
                 - The service key name offered by the provider (if the customer is connecting via a provider).
             returned: on success
-            type: string
+            type: str
             sample: provider_service_key_name_example
         provider_service_name:
             description:
                 - Deprecated. Instead use `providerServiceId`.
             returned: on success
-            type: string
+            type: str
             sample: provider_service_name_example
         provider_state:
             description:
@@ -557,7 +560,7 @@ virtual_circuit:
                   INACTIVE means the provider has not yet provisioned the virtual
                   circuit, or has de-provisioned it.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         public_prefixes:
             description:
@@ -571,20 +574,20 @@ virtual_circuit:
                 - Provider-supplied reference information about this virtual circuit
                   (if the customer is connecting via a provider).
             returned: on success
-            type: string
+            type: str
             sample: reference_comment_example
         region:
             description:
                 - The Oracle Cloud Infrastructure region where this virtual
                   circuit is located.
             returned: on success
-            type: string
+            type: str
             sample: region_example
         service_type:
             description:
                 - Provider service type.
             returned: on success
-            type: string
+            type: str
             sample: COLOCATED
         time_created:
             description:
@@ -592,14 +595,14 @@ virtual_circuit:
                   in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         type:
             description:
                 - Whether the virtual circuit supports private or public peering. For more information,
                   see L(FastConnect Overview,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).
             returned: on success
-            type: string
+            type: str
             sample: PUBLIC
     sample: {
         "bandwidth_shape_name": "10 Gbps",
@@ -787,7 +790,7 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    bgp_md5_auth_key=dict(type="str"),
+                    bgp_md5_auth_key=dict(type="str", no_log=True),
                     cross_connect_or_cross_connect_group_id=dict(type="str"),
                     customer_bgp_peering_ip=dict(type="str"),
                     oracle_bgp_peering_ip=dict(type="str"),
@@ -798,6 +801,7 @@ def main():
             ),
             routing_policy=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ORACLE_SERVICE_NETWORK",
                     "REGIONAL",

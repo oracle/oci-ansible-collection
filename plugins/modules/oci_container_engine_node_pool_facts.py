@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple NodePool resources in Oracle Cloud Infrastructure
     - List all the node pools in a compartment, and optionally filter by cluster.
     - If I(node_pool_id) is specified, the details of a single NodePool will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     node_pool_id:
@@ -87,31 +87,31 @@ node_pools:
             description:
                 - The OCID of the node pool.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
         compartment_id:
             description:
                 - The OCID of the compartment in which the node pool exists.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..aaaaaaaafqm2df7ckwmmbtdsl2bgxsw4fcpvkoojytxrqst24yww2tdmtqcq"
         cluster_id:
             description:
                 - The OCID of the cluster to which this node pool is attached.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.cluster.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgy4wgyldmy3dcmtcmmyw
         name:
             description:
                 - The name of the node pool.
             returned: on success
-            type: string
+            type: str
             sample: My Node Pool
         kubernetes_version:
             description:
                 - The version of Kubernetes running on the nodes in the node pool.
             returned: on success
-            type: string
+            type: str
             sample: v1.9.4
         node_metadata:
             description:
@@ -123,13 +123,13 @@ node_pools:
             description:
                 - Deprecated. see `nodeSource`. The OCID of the image running on the nodes in the node pool.
             returned: on success
-            type: string
+            type: str
             sample: ocid1.image.oc1.phx.aaaaaaaanclh465xnfvajjojj5bbjzqytunslgvnyvf3fepiiltalnglekoa
         node_image_name:
             description:
                 - Deprecated. see `nodeSource`. The name of the image running on the nodes in the node pool.
             returned: on success
-            type: string
+            type: str
             sample: Oracle-Linux-7.4
         node_shape_config:
             description:
@@ -161,19 +161,19 @@ node_pools:
                         - The source type of this option.
                           `IMAGE` means the OCID is of an image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: IMAGE
                 source_name:
                     description:
                         - The user-friendly name of the entity corresponding to the OCID.
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_name_example
                 image_id:
                     description:
                         - The OCID of the image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         node_source_details:
             description:
@@ -186,13 +186,13 @@ node_pools:
                         - The source type for the node.
                           Use `IMAGE` when specifying an OCID of an image.
                     returned: on success
-                    type: string
+                    type: str
                     sample: IMAGE
                 image_id:
                     description:
                         - The OCID of the image used to boot the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
                 boot_volume_size_in_gbs:
                     description:
@@ -205,7 +205,7 @@ node_pools:
             description:
                 - The name of the node shape of the nodes in the node pool.
             returned: on success
-            type: string
+            type: str
             sample: VM.Standard2.4
         initial_node_labels:
             description:
@@ -217,19 +217,19 @@ node_pools:
                     description:
                         - The key of the pair.
                     returned: on success
-                    type: string
+                    type: str
                     sample: mykey
                 value:
                     description:
                         - The value of the pair.
                     returned: on success
-                    type: string
+                    type: str
                     sample: myvalue
         ssh_public_key:
             description:
                 - The SSH public key on each node in the node pool on launch.
             returned: on success
-            type: string
+            type: str
             sample: "ssh-rsa AAAAB3NzaC1yc2abc123..."
         quantity_per_subnet:
             description:
@@ -253,55 +253,55 @@ node_pools:
                     description:
                         - The OCID of the compute instance backing this node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.instance.oc1.iad.aaaaaaaaga3tombrmq3wgyrvmi3gcn3bmfsdizjwgyswgycdoy3tcmtctmyw
                 name:
                     description:
                         - The name of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: My Kubernetes Node
                 kubernetes_version:
                     description:
                         - The version of Kubernetes this node is running.
                     returned: on success
-                    type: string
+                    type: str
                     sample: v1.9.4
                 availability_domain:
                     description:
                         - The name of the availability domain in which this node is placed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: Uocm:PHX-AD-1
                 subnet_id:
                     description:
                         - The OCID of the subnet in which this node is placed.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.subnet.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3ofzxtlyit
                 node_pool_id:
                     description:
                         - The OCID of the node pool to which this node belongs.
                     returned: on success
-                    type: string
+                    type: str
                     sample: ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq
                 fault_domain:
                     description:
                         - The fault domain of this node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: FAULT-DOMAIN-1
                 private_ip:
                     description:
                         - The private IP address of this node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: 10.0.1.1
                 public_ip:
                     description:
                         - The public IP address of this node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: 129.1.2.3
                 node_error:
                     description:
@@ -314,38 +314,38 @@ node_pools:
                                 - A short error code that defines the upstream error, meant for programmatic parsing. See L(API Errors,https://docs.us-
                                   phoenix-1.oraclecloud.com/Content/API/References/apierrors.htm).
                             returned: on success
-                            type: string
+                            type: str
                             sample: LimitExceeded
                         message:
                             description:
                                 - A human-readable error string of the upstream error.
                             returned: on success
-                            type: string
+                            type: str
                             sample: error validating payload
                         status:
                             description:
                                 - The status of the HTTP response encountered in the upstream error.
                             returned: on success
-                            type: string
+                            type: str
                             sample: 429
                         opc_request_id:
                             description:
                                 - Unique Oracle-assigned identifier for the upstream request. If you need to contact Oracle about a particular upstream request,
                                   please provide the request ID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: BDA258F920471CFA70CF3655A836EAC3/AC26D111CE04292D5398192DCACCD85F/D74FF67547281CFA70CF3655A60B6DF5
                 lifecycle_state:
                     description:
                         - The state of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: UPDATING
                 lifecycle_details:
                     description:
                         - Details about the state of the node.
                     returned: on success
-                    type: string
+                    type: str
                     sample: waiting for SSH
         node_config_details:
             description:
@@ -381,13 +381,13 @@ node_pools:
                                 - "The availability domain in which to place nodes.
                                   Example: `Uocm:PHX-AD-1`"
                             returned: on success
-                            type: string
+                            type: str
                             sample: Uocm:PHX-AD-1
                         subnet_id:
                             description:
                                 - The OCID of the subnet in which to place nodes.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.nodepool.oc1.iad.aaaaaaaanifpelnyzmkvnepohbz4ntswkpl35syzzsugdxceth3oihe8hcfq",

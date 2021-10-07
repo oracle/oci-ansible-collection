@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_os_management_event_content_actions_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_os_management_event_content_actions -- Perform actions on an Even
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_os_management_event_content_actions -- Perform actions on an Even
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -280,6 +290,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -329,14 +342,4 @@ Authors
 
 
 .. Parsing errors
-
-There were some errors parsing the documentation for this plugin.  Please file a bug with the collection.
-
-The errors were:
-
-* ::
-
-        Unable to normalize oci_os_management_event_content_actions: return due to: 1 validation error for PluginReturnSchema
-        return -> event_content -> contains
-          value is not a valid dict (type=type_error.dict)
 

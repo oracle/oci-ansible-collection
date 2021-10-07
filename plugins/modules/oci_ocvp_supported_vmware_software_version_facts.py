@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple SupportedVmwareSoftwareVersion resources in Oracle Cloud Infrastructure
     - Lists the versions of bundled VMware software supported by the Oracle Cloud
       VMware Solution.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -54,13 +54,13 @@ supported_vmware_software_versions:
             description:
                 - A short, unique string that identifies the version of bundled software.
             returned: on success
-            type: string
+            type: str
             sample: version_example
         description:
             description:
                 - A description of the software in the bundle.
             returned: on success
-            type: string
+            type: str
             sample: description_example
     sample: [{
         "version": "version_example",

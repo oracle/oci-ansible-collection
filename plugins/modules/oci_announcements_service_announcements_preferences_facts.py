@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple AnnouncementsPreferences resources in Oracle Cloud Infrastructure
     - Gets the current preferences of the tenancy regarding receiving announcements by email.
     - If I(preference_id) is specified, the details of a single AnnouncementsPreferences will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     preference_id:
@@ -65,20 +65,20 @@ announcements_preferences:
             description:
                 - The entity type, which specifies either an object or a summary object for announcement email preferences.
             returned: on success
-            type: string
+            type: str
             sample: type_example
         compartment_id:
             description:
                 - The OCID of the compartment for which the email preferences apply. Because announcements are
                   specific to a tenancy, specify the tenancy by providing the root compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The ID of the preferences.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         is_unsubscribed:
             description:
@@ -91,19 +91,19 @@ announcements_preferences:
             description:
                 - When the preferences were set initially.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - When the preferences were last updated.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         preference_type:
             description:
                 - The string representing the user's preference regarding receiving announcements by email.
             returned: on success
-            type: string
+            type: str
             sample: preference_type_example
     sample: [{
         "type": "type_example",

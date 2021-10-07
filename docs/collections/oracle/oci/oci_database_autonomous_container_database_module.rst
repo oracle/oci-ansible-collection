@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_database_autonomous_container_database_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -226,7 +236,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-backup_config/backup_destination_details" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -403,7 +413,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The `DB_UNIQUE_NAME` of the Oracle Database being backed up.</div>
+                                            <div>**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a value for this field will cause Terraform operations to fail.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,7 +571,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/days_of_week" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -604,7 +614,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/hours_of_day" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=integer</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -636,7 +646,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/months" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -704,7 +714,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/weeks_of_month" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=integer</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -757,7 +767,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-peer_autonomous_container_database_backup_config/backup_destination_details" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=string</span>                                            </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -946,7 +956,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association.</div>
+                                            <div>**Deprecated.** The `DB_UNIQUE_NAME` of the peer Autonomous Container Database in a Data Guard association is set by Oracle Cloud Infrastructure. Do not specify a value for this parameter. Specifying a value for this field will cause Terraform operations to fail.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1106,6 +1116,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -1127,8 +1140,8 @@ Examples
     
     - name: Create autonomous_container_database
       oci_database_autonomous_container_database:
-        display_name: containerdatabases2
-        compartment_id: "ocid.compartment.oc1..unique_ID"
+        display_name: containerDatabase2
+        compartment_id: "ocid1.tenancy.oc1..unique_ID"
         patch_model: RELEASE_UPDATES
 
     - name: Update autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -1146,8 +1159,8 @@ Examples
 
     - name: Delete autonomous_container_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_container_database:
-        display_name: containerdatabases2
-        compartment_id: "ocid.compartment.oc1..unique_ID"
+        display_name: containerDatabase2
+        compartment_id: "ocid1.tenancy.oc1..unique_ID"
         state: absent
 
 
@@ -1426,7 +1439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The `DB_UNIQUE_NAME` of the Oracle Database being backed up.</div>
+                                            <div>**Deprecated.** The `DB_UNIQUE_NAME` value is set by Oracle Cloud Infrastructure.  Do not specify a value for this parameter. Specifying a value for this field will cause Terraform operations to fail.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_unique_name_example</div>

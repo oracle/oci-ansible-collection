@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple EmailDomain resources in Oracle Cloud Infrastructure
     - Lists email domains in the specified compartment.
     - If I(email_domain_id) is specified, the details of a single EmailDomain will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     email_domain_id:
@@ -99,32 +99,32 @@ email_domains:
                 - The name of the email domain in the Internet Domain Name System (DNS).
                 - "Example: `example.net`"
             returned: on success
-            type: string
+            type: str
             sample: example.net
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the email domain.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains this email domain.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the email domain.
             returned: on success
-            type: string
+            type: str
             sample: ACTIVE
         active_dkim_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DKIM key
                   that will be used to sign mail sent from this email domain.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.activedkim.oc1..xxxxxxEXAMPLExxxxxx"
         is_spf:
             description:
@@ -137,7 +137,7 @@ email_domains:
             description:
                 - The description of a email domain.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         time_created:
             description:
@@ -145,8 +145,8 @@ email_domains:
                   timestamp format, \\"YYYY-MM-ddThh:mmZ\\"."
                 - "Example: `2021-02-12T22:47:12.613Z`"
             returned: on success
-            type: string
-            sample: 2021-02-12T22:47:12.613Z
+            type: str
+            sample: "2021-02-12T22:47:12.613Z"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.

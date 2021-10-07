@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(action=add), adds one or more security rules to the specified network security group.
     - For I(action=remove), removes one or more security rules from the specified network security group.
     - For I(action=update), updates one or more security rules in the specified network security group.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     network_security_group_id:
@@ -40,6 +40,7 @@ options:
             - The NSG security rules to add.
             - Applicable only for I(action=add)I(action=update).
         type: list
+        elements: dict
         suboptions:
             description:
                 description:
@@ -227,6 +228,7 @@ options:
             - The Oracle-assigned ID of each L(SecurityRule,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityRule/) to be deleted.
             - Applicable only for I(action=remove).
         type: list
+        elements: str
     action:
         description:
             - The action to perform on the NetworkSecurityGroupSecurityRule.
@@ -301,7 +303,7 @@ network_security_group_security_rule:
                     description:
                         - An optional description of your choice for the rule.
                     returned: on success
-                    type: string
+                    type: str
                     sample: description_example
                 destination:
                     description:
@@ -319,7 +321,7 @@ network_security_group_security_rule:
                               VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                               traffic between VNICs in the same NSG."
                     returned: on success
-                    type: string
+                    type: str
                     sample: destination_example
                 destination_type:
                     description:
@@ -332,14 +334,14 @@ network_security_group_security_rule:
                         - " * `NETWORK_SECURITY_GROUP`: If the rule's `destination` is the OCID of a
                               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CIDR_BLOCK
                 direction:
                     description:
                         - Direction of the security rule. Set to `EGRESS` for rules to allow outbound IP packets,
                           or `INGRESS` for rules to allow inbound IP packets.
                     returned: on success
-                    type: string
+                    type: str
                     sample: EGRESS
                 icmp_options:
                     description:
@@ -365,7 +367,7 @@ network_security_group_security_rule:
                           update or delete the rule.
                         - "Example: `04ABEC`"
                     returned: on success
-                    type: string
+                    type: str
                     sample: 04ABEC
                 is_stateless:
                     description:
@@ -392,7 +394,7 @@ network_security_group_security_rule:
                           L(Protocol Numbers,http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
                           Options are supported only for ICMP (\\"1\\"), TCP (\\"6\\"), UDP (\\"17\\"), and ICMPv6 (\\"58\\")."
                     returned: on success
-                    type: string
+                    type: str
                     sample: protocol_example
                 source:
                     description:
@@ -410,7 +412,7 @@ network_security_group_security_rule:
                               VCN. The value can be the NSG that the rule belongs to if the rule's intent is to control
                               traffic between VNICs in the same NSG."
                     returned: on success
-                    type: string
+                    type: str
                     sample: source_example
                 source_type:
                     description:
@@ -422,7 +424,7 @@ network_security_group_security_rule:
                         - " * `NETWORK_SECURITY_GROUP`: If the rule's `source` is the OCID of a
                               L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/NetworkSecurityGroup/)."
                     returned: on success
-                    type: string
+                    type: str
                     sample: CIDR_BLOCK
                 tcp_options:
                     description:
@@ -472,8 +474,8 @@ network_security_group_security_rule:
                     description:
                         - The date and time the security rule was created. Format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                     returned: on success
-                    type: string
-                    sample: 2013-10-20T19:20:30+01:00
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 udp_options:
                     description:
                         - ""
@@ -765,7 +767,7 @@ def main():
                     id=dict(type="str"),
                 ),
             ),
-            security_rule_ids=dict(type="list"),
+            security_rule_ids=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )

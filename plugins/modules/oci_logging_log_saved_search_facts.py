@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple LogSavedSearch resources in Oracle Cloud Infrastructure
     - Lists Logging Saved Searches for this compartment.
     - If I(log_saved_search_id) is specified, the details of a single LogSavedSearch will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     log_saved_search_id:
@@ -84,44 +84,44 @@ log_saved_searches:
             description:
                 - The OCID of the resource.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment that the resource belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
                 - The user-friendly display name. This must be unique within the enclosing resource,
                   and it's changeable. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: name_example
         time_created:
             description:
                 - Time the resource was created.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_modified:
             description:
                 - Time the resource was last modified.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         description:
             description:
                 - Description for this resource.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         query:
             description:
                 - The search query that is saved.
             returned: on success
-            type: string
+            type: str
             sample: query_example
         defined_tags:
             description:
@@ -144,7 +144,7 @@ log_saved_searches:
             description:
                 - The state of the LogSavedSearch
             returned: on success
-            type: string
+            type: str
             sample: CREATING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

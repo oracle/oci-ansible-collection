@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,9 +23,10 @@ module: oci_database_migration_migration_facts
 short_description: Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
-    - List all Migrations.
+    - "Note: Deprecated. Use the new resource model APIs instead.
+      List all Migrations."
     - If I(migration_id) is specified, the details of a single Migration will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     migration_id:
@@ -108,68 +109,68 @@ migrations:
             description:
                 - The OCID of the resource
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
                 - Migration Display Name
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         compartment_id:
             description:
                 - OCID of the compartment
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type:
             description:
                 - Migration type.
             returned: on success
-            type: string
+            type: str
             sample: ONLINE
         wait_after:
             description:
                 - Name of a migration phase. The Job will wait after executing this
                   phase until the Resume Job endpoint is called.
             returned: on success
-            type: string
+            type: str
             sample: ODMS_VALIDATE_TGT
         agent_id:
             description:
                 - The OCID of the registered on-premises ODMS Agent. Only valid for Offline Migrations.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
         credentials_secret_id:
             description:
                 - OCID of the Secret in the OCI vault containing the Migration credentials. Used to store GoldenGate administrator user credentials.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_connection_id:
             description:
                 - The OCID of the Source Database Connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
         source_container_database_connection_id:
             description:
                 - The OCID of the Source Container Database Connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
         target_database_connection_id:
             description:
                 - The OCID of the Target Database Connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
         executing_job_id:
             description:
                 - OCID of the current ODMS Job in execution for the Migration, if any.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx"
         data_transfer_medium_details:
             description:
@@ -187,7 +188,7 @@ migrations:
                             description:
                                 - Name of database link from OCI database to on-premise database. ODMS will create link, if the link does not already exist.
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                 object_storage_details:
                     description:
@@ -199,13 +200,13 @@ migrations:
                             description:
                                 - Namespace name of the object store bucket.
                             returned: on success
-                            type: string
+                            type: str
                             sample: namespace_name_example
                         bucket_name:
                             description:
                                 - Bucket name.
                             returned: on success
-                            type: string
+                            type: str
                             sample: bucket_name_example
         datapump_settings:
             description:
@@ -219,7 +220,7 @@ migrations:
                           Refer to L(Data Pump Export Modes ,https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump-export-
                           utility.html#GUID-8E497131-6B9B-4CC8-AA50-35F480CAC2C4)
                     returned: on success
-                    type: string
+                    type: str
                     sample: FULL
                 data_pump_parameters:
                     description:
@@ -237,13 +238,13 @@ migrations:
                             description:
                                 - Estimate size of dumps that will be generated.
                             returned: on success
-                            type: string
+                            type: str
                             sample: BLOCKS
                         table_exists_action:
                             description:
                                 - "IMPORT: Specifies the action to be performed when data is loaded into a preexisting table."
                             returned: on success
-                            type: string
+                            type: str
                             sample: TRUNCATE
                         exclude_parameters:
                             description:
@@ -277,19 +278,19 @@ migrations:
                                 - Type of remap. Refer to L(METADATA_REMAP Procedure ,https://docs.oracle.com/en/database/oracle/oracle-
                                   database/19/arpls/DBMS_DATAPUMP.html#GUID-0FC32790-91E6-4781-87A3-229DE024CB3D)
                             returned: on success
-                            type: string
+                            type: str
                             sample: SCHEMA
                         old_value:
                             description:
                                 - Specifies the value which needs to be reset.
                             returned: on success
-                            type: string
+                            type: str
                             sample: old_value_example
                         new_value:
                             description:
                                 - Specifies the new value that oldValue should be translated into.
                             returned: on success
-                            type: string
+                            type: str
                             sample: new_value_example
                 export_directory_object:
                     description:
@@ -301,13 +302,13 @@ migrations:
                             description:
                                 - Name of directory object in database
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         path:
                             description:
                                 - Absolute path of directory on database server
                             returned: on success
-                            type: string
+                            type: str
                             sample: path_example
                 import_directory_object:
                     description:
@@ -319,13 +320,13 @@ migrations:
                             description:
                                 - Name of directory object in database
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         path:
                             description:
                                 - Absolute path of directory on database server
                             returned: on success
-                            type: string
+                            type: str
                             sample: path_example
         exclude_objects:
             description:
@@ -337,13 +338,13 @@ migrations:
                     description:
                         - Owner of the object (regular expression is allowed)
                     returned: on success
-                    type: string
+                    type: str
                     sample: owner_example
                 object_name:
                     description:
                         - Name of the object (regular expression is allowed)
                     returned: on success
-                    type: string
+                    type: str
                     sample: object_name_example
         golden_gate_details:
             description:
@@ -367,7 +368,7 @@ migrations:
                                     description:
                                         - Administrator username
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: username_example
                         source_db_admin_credentials:
                             description:
@@ -379,7 +380,7 @@ migrations:
                                     description:
                                         - Administrator username
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: username_example
                         source_container_db_admin_credentials:
                             description:
@@ -391,7 +392,7 @@ migrations:
                                     description:
                                         - Administrator username
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: username_example
                         target_db_admin_credentials:
                             description:
@@ -403,7 +404,7 @@ migrations:
                                     description:
                                         - Administrator username
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: username_example
                         url:
                             description:
@@ -411,25 +412,25 @@ migrations:
                                   Refer to
                                   https://docs.oracle.com/en/middleware/goldengate/core/19.1/securing/network.html#GUID-A709DA55-111D-455E-8942-C9BDD1E38CAA
                             returned: on success
-                            type: string
+                            type: str
                             sample: url_example
                         source_microservices_deployment_name:
                             description:
                                 - Name of GoldenGate deployment to operate on source database
                             returned: on success
-                            type: string
+                            type: str
                             sample: source_microservices_deployment_name_example
                         target_microservices_deployment_name:
                             description:
                                 - Name of GoldenGate deployment to operate on target database
                             returned: on success
-                            type: string
+                            type: str
                             sample: target_microservices_deployment_name_example
                         compute_id:
                             description:
                                 - OCID of GoldenGate compute instance.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
                 settings:
                     description:
@@ -447,7 +448,7 @@ migrations:
                                     description:
                                         - Extract performance.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: LOW
                                 long_trans_duration:
                                     description:
@@ -497,49 +498,49 @@ migrations:
                     description:
                         - OCID of the compartment where the secret containing the credentials will be created.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 vault_id:
                     description:
                         - OCID of the vault
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
                 key_id:
                     description:
                         - OCID of the vault encryption key
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The time the Migration was created. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - The time of the last Migration details update. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_last_migration:
             description:
                 - The time of last Migration. An RFC3339 formatted datetime string.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the Migration resource.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - Additional status related to the execution and current state of the Migration.
             returned: on success
-            type: string
+            type: str
             sample: READY
         freeform_tags:
             description:

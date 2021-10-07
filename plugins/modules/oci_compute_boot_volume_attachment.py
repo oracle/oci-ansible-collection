@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a BootVolumeAttachment resource in Oracle Cloud Infras
 description:
     - This module allows the user to create and delete a BootVolumeAttachment resource in Oracle Cloud Infrastructure
     - For I(state=present), attaches the specified boot volume to the specified instance.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     boot_volume_id:
@@ -116,19 +116,19 @@ boot_volume_attachment:
                 - The availability domain of an instance.
                 - "Example: `Uocm:PHX-AD-1`"
             returned: on success
-            type: string
+            type: str
             sample: Uocm:PHX-AD-1
         boot_volume_id:
             description:
                 - The OCID of the boot volume.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
@@ -136,33 +136,33 @@ boot_volume_attachment:
                   Avoid entering confidential information.
                 - "Example: `My boot volume`"
             returned: on success
-            type: string
+            type: str
             sample: My boot volume
         id:
             description:
                 - The OCID of the boot volume attachment.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id:
             description:
                 - The OCID of the instance the boot volume is attached to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the boot volume attachment.
             returned: on success
-            type: string
+            type: str
             sample: ATTACHING
         time_created:
             description:
                 - The date and time the boot volume was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         is_pv_encryption_in_transit_enabled:
             description:
                 - Whether in-transit encryption for the boot volume's paravirtualized attachment is enabled or not.
@@ -174,7 +174,7 @@ boot_volume_attachment:
                 - Refer the top-level definition of encryptionInTransitType.
                   The default value is NONE.
             returned: on success
-            type: string
+            type: str
             sample: NONE
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",

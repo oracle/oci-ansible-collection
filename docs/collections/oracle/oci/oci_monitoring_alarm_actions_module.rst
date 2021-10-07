@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_monitoring_alarm_actions_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_monitoring_alarm_actions -- Perform actions on an Alarm resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_monitoring_alarm_actions -- Perform actions on an Alarm resource 
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -268,6 +278,9 @@ Parameters
                         </table>
     <br/>
 
+.. Attributes
+
+
 .. Notes
 
 Notes
@@ -333,7 +346,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Alarm resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;body&#x27;: &#x27;High CPU usage alert. Follow runbook instructions for resolution.&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;High CPU Utilization&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;pending_duration&#x27;: &#x27;PT5M&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;PT2H&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;Planned outage due to change IT-1234.&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2019-02-01T02:02:29.600Z&#x27;}, &#x27;time_created&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2019-02-03T01:02:29.600Z&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;body&#x27;: &#x27;High CPU usage alert. Follow runbook instructions for resolution.&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;High CPU Utilization&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;pending_duration&#x27;: &#x27;PT5M&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;PT2H&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;Planned outage due to change IT-1234.&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2019-02-01T02:02:29.600Z&#x27;}, &#x27;time_created&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;time_updated&#x27;: &#x27;2019-02-03T01:02:29.600Z&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -348,7 +361,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information.</div>
+                                            <div>The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices.</div>
                                             <div>Example: `High CPU usage alert. Follow runbook instructions for resolution.`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -419,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly name for the alarm. It does not have to be unique, and it&#x27;s changeable. Avoid entering confidential information.</div>
+                                            <div>A user-friendly name for the alarm. It does not have to be unique, and it&#x27;s changeable.</div>
                                             <div>This name is sent as the title for notifications related to this alarm.</div>
                                             <div>Example: `High CPU Utilization`</div>
                                         <br/>
@@ -499,6 +512,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DELETED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/message_format"></div>
+                    <b>message_format</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/message_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The format to use for notification messages sent from this alarm. The formats are: * `RAW` - Raw JSON blob. Default value. * `PRETTY_JSON`: JSON with new lines and indents. * `ONS_OPTIMIZED`: Simplified, user-friendly layout. Applies only to messages sent through the Notifications service to the following subscription types: Email.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RAW</div>
                                     </td>
             </tr>
                                 <tr>
@@ -591,7 +622,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval: `1m`-`60m` (also `1h`). You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
+                                            <div>The Monitoring Query Language (MQL) expression to evaluate for the alarm. The Alarms feature of the Monitoring service interprets results for each returned time series as Boolean values, where zero represents false and a non-zero value represents true. A true value means that the trigger rule condition has been met. The query must specify a metric, statistic, interval, and trigger rule (threshold or absence). Supported values for interval depend on the specified time range. More interval values are supported for smaller time ranges. You can optionally specify dimensions and grouping functions. Supported grouping functions: `grouping()`, `groupBy()`. For details about Monitoring Query Language (MQL), see L(Monitoring Query Language (MQL) Reference,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See <a href='https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices'>Supported Services</a>.</div>
                                             <div>Example of threshold alarm:</div>
                                             <div>-----</div>
                                             <div>CpuUtilization[1m]{availabilityDomain=&quot;cumS:PHX-AD-1&quot;}.groupBy(availabilityDomain).percentile(0.9) &gt; 85</div>
@@ -655,7 +686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Resource group specified as a filter for metric data retrieved by the alarm. A resource group is a custom string that can be used as a filter. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($). Avoid entering confidential information.</div>
+                                            <div>Resource group to match for metric data retrieved by the alarm. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
@@ -735,7 +766,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -755,7 +786,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T02:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T02:02:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T02:02:29.600Z</div>
                                     </td>
             </tr>
                     
@@ -775,7 +806,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
                                     </td>
             </tr>
                                 <tr>
@@ -794,7 +825,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Example: `2019-02-03T01:02:29.600Z`</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-03T01:02:29.600000+00:00</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-03T01:02:29.600Z</div>
                                     </td>
             </tr>
                     

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple Usage resources in Orac
 description:
     - Fetches details about one or multiple Usage resources in Oracle Cloud Infrastructure
     - Returns usage for the given account.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     tenant_id:
@@ -104,12 +104,14 @@ options:
                   \\"compartmentName\\", \\"compartmentPath\\", \\"compartmentId\\", \\"platform\\", \\"region\\", \\"logicalAd\\",
                   \\"resourceId\\", \\"tenantId\\", \\"tenantName\\"]`"
         type: list
+        elements: str
     group_by_tag:
         description:
             - "GroupBy a specific tagKey. Provide the tagNamespace and tagKey in the tag object. Only supports one tag in the list.
               For example:
                 `[{\\"namespace\\":\\"oracle\\", \\"key\\":\\"createdBy\\"]`"
         type: list
+        elements: dict
         suboptions:
             namespace:
                 description:
@@ -144,6 +146,7 @@ options:
                 description:
                     - The dimensions to filter on.
                 type: list
+                elements: dict
                 suboptions:
                     key:
                         description:
@@ -159,6 +162,7 @@ options:
                 description:
                     - The tags to filter on.
                 type: list
+                elements: dict
                 suboptions:
                     namespace:
                         description:
@@ -176,6 +180,7 @@ options:
                 description:
                     - The nested filter object.
                 type: list
+                elements: dict
                 suboptions:
                     operator:
                         description:
@@ -189,14 +194,17 @@ options:
                         description:
                             - The dimensions to filter on.
                         type: list
+                        elements: dict
                     tags:
                         description:
                             - The tags to filter on.
                         type: list
+                        elements: dict
                     filters:
                         description:
                             - The nested filter object.
                         type: list
+                        elements: dict
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -221,61 +229,61 @@ usages:
             description:
                 - The tenancy OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
         tenant_name:
             description:
                 - The tenancy name.
             returned: on success
-            type: string
+            type: str
             sample: tenant_name_example
         compartment_id:
             description:
                 - The compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_path:
             description:
                 - The compartment path, starting from root.
             returned: on success
-            type: string
+            type: str
             sample: compartment_path_example
         compartment_name:
             description:
                 - The compartment name.
             returned: on success
-            type: string
+            type: str
             sample: compartment_name_example
         service:
             description:
                 - The service name that is incurring the cost.
             returned: on success
-            type: string
+            type: str
             sample: service_example
         resource_name:
             description:
                 - The resource name that is incurring the cost.
             returned: on success
-            type: string
+            type: str
             sample: resource_name_example
         resource_id:
             description:
                 - The resource OCID that is incurring the cost.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         region:
             description:
                 - The region of the usage.
             returned: on success
-            type: string
+            type: str
             sample: region_example
         ad:
             description:
                 - The availability domain of the usage.
             returned: on success
-            type: string
+            type: str
             sample: ad_example
         weight:
             description:
@@ -287,25 +295,25 @@ usages:
             description:
                 - The resource shape.
             returned: on success
-            type: string
+            type: str
             sample: shape_example
         sku_part_number:
             description:
                 - The SKU part number.
             returned: on success
-            type: string
+            type: str
             sample: sku_part_number_example
         sku_name:
             description:
                 - The SKU friendly name.
             returned: on success
-            type: string
+            type: str
             sample: sku_name_example
         unit:
             description:
                 - The usage unit.
             returned: on success
-            type: string
+            type: str
             sample: unit_example
         discount:
             description:
@@ -323,20 +331,20 @@ usages:
             description:
                 - Platform for the cost.
             returned: on success
-            type: string
+            type: str
             sample: platform_example
         time_usage_started:
             description:
                 - The usage start time.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_usage_ended:
             description:
                 - The usage end time.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         computed_amount:
             description:
                 - The computed cost.
@@ -353,7 +361,7 @@ usages:
             description:
                 - The SPM OverageFlag.
             returned: on success
-            type: string
+            type: str
             sample: overages_flag_example
         unit_price:
             description:
@@ -365,19 +373,19 @@ usages:
             description:
                 - The price currency.
             returned: on success
-            type: string
+            type: str
             sample: currency_example
         subscription_id:
             description:
                 - The subscription ID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
         overage:
             description:
                 - The overage usage.
             returned: on success
-            type: string
+            type: str
             sample: overage_example
         is_forecast:
             description:
@@ -395,19 +403,19 @@ usages:
                     description:
                         - The tag namespace.
                     returned: on success
-                    type: string
+                    type: str
                     sample: namespace_example
                 key:
                     description:
                         - The tag key.
                     returned: on success
-                    type: string
+                    type: str
                     sample: key_example
                 value:
                     description:
                         - The tag value.
                     returned: on success
-                    type: string
+                    type: str
                     sample: value_example
     sample: [{
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
@@ -521,13 +529,13 @@ def main():
                 type="str",
                 choices=["USAGE", "COST", "CREDIT", "EXPIREDCREDIT", "ALLCREDIT"],
             ),
-            group_by=dict(type="list"),
+            group_by=dict(type="list", elements="str"),
             group_by_tag=dict(
                 type="list",
                 elements="dict",
                 options=dict(
                     namespace=dict(type="str"),
-                    key=dict(type="str"),
+                    key=dict(type="str", no_log=True),
                     value=dict(type="str"),
                 ),
             ),
@@ -540,7 +548,7 @@ def main():
                         type="list",
                         elements="dict",
                         options=dict(
-                            key=dict(type="str", required=True),
+                            key=dict(type="str", required=True, no_log=True),
                             value=dict(type="str", required=True),
                         ),
                     ),
@@ -549,7 +557,7 @@ def main():
                         elements="dict",
                         options=dict(
                             namespace=dict(type="str"),
-                            key=dict(type="str"),
+                            key=dict(type="str", no_log=True),
                             value=dict(type="str"),
                         ),
                     ),
@@ -558,9 +566,9 @@ def main():
                         elements="dict",
                         options=dict(
                             operator=dict(type="str", choices=["AND", "NOT", "OR"]),
-                            dimensions=dict(type="list"),
-                            tags=dict(type="list"),
-                            filters=dict(type="list"),
+                            dimensions=dict(type="list", elements="dict"),
+                            tags=dict(type="list", elements="dict"),
+                            filters=dict(type="list", elements="dict"),
                         ),
                     ),
                 ),

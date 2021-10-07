@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about a SqlInsights resource in Oracle Cloud Infrastructure
     - Query SQL Warehouse to get the performance insights for SQLs taking greater than X% database time for a given time period across the given databases or
       database types.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -38,6 +38,7 @@ options:
             - Filter by one or more database type.
               Possible values are ADW-S, ATP-S, ADW-D, ATP-D, EXTERNAL-PDB, EXTERNAL-NONCDB.
         type: list
+        elements: str
         choices:
             - "ADW-S"
             - "ATP-S"
@@ -49,14 +50,17 @@ options:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
         type: list
+        elements: str
     id:
         description:
             - Optional list of database insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
         type: list
+        elements: str
     host_name:
         description:
             - Filter by one or more hostname.
         type: list
+        elements: str
     database_time_pct_greater_than:
         description:
             - Filter sqls by percentage of db time.
@@ -91,12 +95,14 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_equals:
         description:
             - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
               The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
               Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
     defined_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
@@ -106,6 +112,7 @@ options:
               Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
               Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
         type: list
+        elements: str
     freeform_tag_exists:
         description:
             - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
@@ -113,6 +120,7 @@ options:
               Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
               Multiple values for different tag names are interpreted as \\"AND\\"."
         type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -134,14 +142,14 @@ sql_insights:
             description:
                 - The start timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         time_interval_end:
             description:
                 - The end timestamp that was passed into the request.
             returned: on success
-            type: string
-            sample: 2020-12-06T00:00:00.000Z
+            type: str
+            sample: "2020-12-06T00:00:00.000Z"
         inventory:
             description:
                 - ""
@@ -182,7 +190,7 @@ sql_insights:
                             `2 of the 2 variant SQLs have plan changes`,
                             `Inefficient SQLs have increasing CPU Time above 50%
                     returned: on success
-                    type: string
+                    type: str
                     sample: text_example
                 values:
                     description:
@@ -218,7 +226,7 @@ sql_insights:
                           INEFFICIENT_INCREASING_INEFFICIENT_WAIT,
                           INEFFICIENT_CHANGING_PLANS_AND_INCREASING_INEFFICIENT_WAIT
                     returned: on success
-                    type: string
+                    type: str
                     sample: category_example
         thresholds:
             description:
@@ -363,6 +371,7 @@ def main():
             compartment_id=dict(type="str", required=True),
             database_type=dict(
                 type="list",
+                elements="str",
                 choices=[
                     "ADW-S",
                     "ATP-S",
@@ -372,17 +381,17 @@ def main():
                     "EXTERNAL-NONCDB",
                 ],
             ),
-            database_id=dict(type="list"),
-            id=dict(type="list"),
-            host_name=dict(type="list"),
+            database_id=dict(type="list", elements="str"),
+            id=dict(type="list", elements="str"),
+            host_name=dict(type="list", elements="str"),
             database_time_pct_greater_than=dict(type="float"),
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            defined_tag_equals=dict(type="list"),
-            freeform_tag_equals=dict(type="list"),
-            defined_tag_exists=dict(type="list"),
-            freeform_tag_exists=dict(type="list"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

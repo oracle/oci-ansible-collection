@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -29,7 +29,7 @@ description:
       a URL for fetching the next page.  Use `sortOrder` to set the order of the
       results.  If `sortOrder` is unspecified, results are sorted in ascending order by
       `startTime`.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     probe_configuration_id:
@@ -78,13 +78,13 @@ ping_probe_results:
                 - A value identifying this specific probe result. The key is only unique within
                   the results of its probe configuration. The key may be reused after 90 days.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         probe_configuration_id:
             description:
                 - The OCID of the monitor or on-demand probe responsible for creating this result.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.probeconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         start_time:
             description:
@@ -99,13 +99,13 @@ ping_probe_results:
             description:
                 - The target hostname or IP address of the probe.
             returned: on success
-            type: string
+            type: str
             sample: target_example
         vantage_point_name:
             description:
                 - The name of the vantage point that executed the probe.
             returned: on success
-            type: string
+            type: str
             sample: vantage_point_name_example
         is_timed_out:
             description:
@@ -132,19 +132,19 @@ ping_probe_results:
                   * NETWORK - Network-related errors, for example a \\"network unreachable\\" error.
                   * SYSTEM - Internal system errors."
             returned: on success
-            type: string
+            type: str
             sample: NONE
         error_message:
             description:
                 - The error information indicating why a probe execution failed.
             returned: on success
-            type: string
+            type: str
             sample: error_message_example
         protocol:
             description:
                 - ""
             returned: on success
-            type: string
+            type: str
             sample: ICMP
         connection:
             description:
@@ -156,7 +156,7 @@ ping_probe_results:
                     description:
                         - The connection IP address.
                     returned: on success
-                    type: string
+                    type: str
                     sample: address_example
                 port:
                     description:

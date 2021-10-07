@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - For I(state=present), allows specifying a custom host name to be used to access the analytics instance.  This requires prior setup of DNS entry and
       certificate
       for this host.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     analytics_instance_id:
@@ -43,6 +43,7 @@ options:
             - List of fully qualified hostnames supported by this vanity URL definition (max of 3).
             - Required for create using I(state=present).
         type: list
+        elements: str
     passphrase:
         description:
             - Passphrase for the PEM Private key (if any).
@@ -117,13 +118,13 @@ vanity_url:
             description:
                 - The vanity url unique identifier key.
             returned: on success
-            type: string
+            type: str
             sample: key_example
         description:
             description:
                 - Description of the vanity url.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         urls:
             description:
@@ -141,7 +142,7 @@ vanity_url:
             description:
                 - PEM certificate for HTTPS connections.
             returned: on success
-            type: string
+            type: str
             sample: public_certificate_example
     sample: {
         "key": "key_example",
@@ -251,12 +252,12 @@ def main():
         dict(
             analytics_instance_id=dict(type="str", required=True),
             description=dict(type="str"),
-            hosts=dict(type="list"),
+            hosts=dict(type="list", elements="str"),
             passphrase=dict(type="str", no_log=True),
             private_key=dict(type="str", no_log=True),
             public_certificate=dict(type="str"),
             ca_certificate=dict(type="str"),
-            vanity_url_key=dict(type="str"),
+            vanity_url_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_data_safe_configuration
 short_description: Manage a Configuration resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update a Configuration resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     is_enabled:
@@ -72,25 +72,25 @@ configuration:
             description:
                 - The URL of the Data Safe service.
             returned: on success
-            type: string
+            type: str
             sample: url_example
         compartment_id:
             description:
                 - The OCID of the tenancy used to enable Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_enabled:
             description:
                 - The date and time Data Safe was enabled, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of Data Safe.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         freeform_tags:
             description:

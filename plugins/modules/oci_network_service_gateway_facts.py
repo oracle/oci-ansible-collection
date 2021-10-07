@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,7 +26,7 @@ description:
     - Lists the service gateways in the specified compartment. You may optionally specify a VCN OCID
       to filter the results by VCN.
     - If I(service_gateway_id) is specified, the details of a single ServiceGateway will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     service_gateway_id:
@@ -109,7 +109,7 @@ service_gateways:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment that contains the
                   service gateway.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -124,7 +124,7 @@ service_gateways:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         freeform_tags:
             description:
@@ -139,13 +139,13 @@ service_gateways:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service gateway.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The service gateway's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         route_table_id:
             description:
@@ -154,7 +154,7 @@ service_gateways:
                   L(Transit Routing: Private Access to Oracle
                   Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)."
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         services:
             description:
@@ -169,27 +169,27 @@ service_gateways:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service.
                     returned: on success
-                    type: string
+                    type: str
                     sample: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
                 service_name:
                     description:
                         - The name of the service.
                     returned: on success
-                    type: string
+                    type: str
                     sample: service_name_example
         time_created:
             description:
                 - The date and time the service gateway was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
         vcn_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the service gateway
                   belongs to.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "block_traffic": true,

@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.32.0] - 2021-10-07
+
+## Added
+- Support for creating autonomous database and clones on shared infrastructure that do not require mTLS
+- Support to check if an autonomous database on shared infrastructure requires mTLS, with added field `is_mtls_connection_required`
+- Support to get connection string profiles for an autonomous database on shared infrastructure, with added field profiles in connectionStrings
+- Support for setting message format when creating and updating alarms in the Monitoring service.
+- Support for network security groups in the Functions service.
+- Support for signed container images in the Functions service.
+- Support for using Network Security Groups with API Gateway
+- Support for scheduled jobs in Database Management service
+- Get a summary of job execution status for Database Management service
+- Support for storage modules for Logging Analytics service.
+- Support for software package search in os management
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.47.0
+- Return None response for upload action in os management event content
+
+
 ## [2.31.0] - 2021-09-23
 
 ## Added

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DeployPipeline resources in Oracle Cloud Infrastructure
     - Returns a list of deployment pipelines.
     - If I(deploy_pipeline_id) is specified, the details of a single DeployPipeline will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     deploy_pipeline_id:
@@ -99,31 +99,31 @@ deploy_pipelines:
             description:
                 - Unique identifier that is immutable on creation.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         description:
             description:
                 - Optional description about the deployment pipeline.
             returned: on success
-            type: string
+            type: str
             sample: description_example
         display_name:
             description:
                 - Deployment pipeline display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         project_id:
             description:
                 - The OCID of a project.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The OCID of the compartment where the pipeline is created.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
@@ -141,13 +141,13 @@ deploy_pipelines:
                             description:
                                 - The OCID of an artifact
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the artifact. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         deploy_pipeline_stages:
                             description:
@@ -165,13 +165,13 @@ deploy_pipelines:
                                             description:
                                                 - The OCID of a stage
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
                                         display_name:
                                             description:
                                                 - Display name of the stage. Avoid entering confidential information.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: display_name_example
         deploy_pipeline_environments:
             description:
@@ -189,13 +189,13 @@ deploy_pipelines:
                             description:
                                 - The OCID of an Environment
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
                         display_name:
                             description:
                                 - Display name of the environment. Avoid entering confidential information.
                             returned: on success
-                            type: string
+                            type: str
                             sample: display_name_example
                         deploy_pipeline_stages:
                             description:
@@ -213,38 +213,38 @@ deploy_pipelines:
                                             description:
                                                 - The OCID of a stage
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
                                         display_name:
                                             description:
                                                 - Display name of the stage. Avoid entering confidential information.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: display_name_example
         time_created:
             description:
                 - Time the deployment pipeline was created. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
                 - Time the deployment pipeline was updated. Format defined by L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339).
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The current state of the deployment pipeline.
             returned: on success
-            type: string
+            type: str
             sample: CREATING
         lifecycle_details:
             description:
                 - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
                   state.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         deploy_pipeline_parameters:
             description:
@@ -262,19 +262,19 @@ deploy_pipelines:
                             description:
                                 - "Name of the parameter (case-sensitive). Parameter name must be ^[a-zA-Z][a-zA-Z_0-9]*$."
                             returned: on success
-                            type: string
+                            type: str
                             sample: name_example
                         default_value:
                             description:
                                 - Default value of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: default_value_example
                         description:
                             description:
                                 - Description of the parameter.
                             returned: on success
-                            type: string
+                            type: str
                             sample: description_example
         freeform_tags:
             description:

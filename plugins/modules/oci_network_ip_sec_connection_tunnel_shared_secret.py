@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_network_ip_sec_connection_tunnel_shared_secret
 short_description: Manage an IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to update an IpSecConnectionTunnelSharedSecret resource in Oracle Cloud Infrastructure
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     ipsc_id:
@@ -73,7 +73,7 @@ ip_sec_connection_tunnel_shared_secret:
             description:
                 - The tunnel's shared secret (pre-shared key).
             returned: on success
-            type: string
+            type: str
             sample: shared_secret_example
     sample: {
         "shared_secret": "shared_secret_example"
@@ -161,7 +161,7 @@ def main():
         dict(
             ipsc_id=dict(type="str", required=True),
             tunnel_id=dict(aliases=["id"], type="str", required=True),
-            shared_secret=dict(type="str"),
+            shared_secret=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

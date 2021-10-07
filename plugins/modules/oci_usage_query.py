@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,7 +24,7 @@ short_description: Manage a Query resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Query resource in Oracle Cloud Infrastructure
     - For I(state=present), returns the created query.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -125,12 +125,14 @@ options:
                                   \\"compartmentName\\", \\"compartmentPath\\", \\"compartmentId\\", \\"platform\\", \\"region\\", \\"logicalAd\\",
                                   \\"resourceId\\", \\"tenantId\\", \\"tenantName\\"]`"
                         type: list
+                        elements: str
                     group_by_tag:
                         description:
                             - "GroupBy a specific tagKey. Provide the tagNamespace and tagKey in the tag object. Only supports one tag in the list.
                               For example:
                                 `[{\\"namespace\\":\\"oracle\\", \\"key\\":\\"createdBy\\"]`"
                         type: list
+                        elements: dict
                         suboptions:
                             namespace:
                                 description:
@@ -165,6 +167,7 @@ options:
                                 description:
                                     - The dimensions to filter on.
                                 type: list
+                                elements: dict
                                 suboptions:
                                     key:
                                         description:
@@ -180,6 +183,7 @@ options:
                                 description:
                                     - The tags to filter on.
                                 type: list
+                                elements: dict
                                 suboptions:
                                     namespace:
                                         description:
@@ -197,6 +201,7 @@ options:
                                 description:
                                     - The nested filter object.
                                 type: list
+                                elements: dict
                                 suboptions:
                                     operator:
                                         description:
@@ -210,14 +215,17 @@ options:
                                         description:
                                             - The dimensions to filter on.
                                         type: list
+                                        elements: dict
                                     tags:
                                         description:
                                             - The tags to filter on.
                                         type: list
+                                        elements: dict
                                     filters:
                                         description:
                                             - The nested filter object.
                                         type: list
+                                        elements: dict
                     date_range_name:
                         description:
                             - The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.
@@ -314,13 +322,13 @@ query:
             description:
                 - The query OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
                 - The compartment OCID.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         query_definition:
             description:
@@ -332,7 +340,7 @@ query:
                     description:
                         - The query display name. Avoid entering confidential information.
                     returned: on success
-                    type: string
+                    type: str
                     sample: display_name_example
                 report_query:
                     description:
@@ -344,20 +352,20 @@ query:
                             description:
                                 - Tenant ID.
                             returned: on success
-                            type: string
+                            type: str
                             sample: "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx"
                         time_usage_started:
                             description:
                                 - The usage start time.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         time_usage_ended:
                             description:
                                 - The usage end time.
                             returned: on success
-                            type: string
-                            sample: 2013-10-20T19:20:30+01:00
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
                         granularity:
                             description:
                                 - "The usage granularity.
@@ -366,7 +374,7 @@ query:
                                   MONTHLY - Monthly data aggregation.
                                   TOTAL - Not yet supported."
                             returned: on success
-                            type: string
+                            type: str
                             sample: HOURLY
                         is_aggregate_by_time:
                             description:
@@ -385,20 +393,20 @@ query:
                                         - BASIC uses the exponential smoothing (ETS) model to project future usage/costs based on history data. The basis for
                                           projections is a periodic set of equivalent historical days for which the projection is being made.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: BASIC
                                 time_forecast_started:
                                     description:
                                         - The forecast start time. Defaults to UTC-1 if not specified.
                                     returned: on success
-                                    type: string
-                                    sample: 2013-10-20T19:20:30+01:00
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
                                 time_forecast_ended:
                                     description:
                                         - The forecast end time.
                                     returned: on success
-                                    type: string
-                                    sample: 2013-10-20T19:20:30+01:00
+                                    type: str
+                                    sample: "2013-10-20T19:20:30+01:00"
                         query_type:
                             description:
                                 - "The query usage type. COST by default if it is missing.
@@ -408,7 +416,7 @@ query:
                                   ExpiredCredit - Query the expired credits data
                                   AllCredit - Query the credit adjustments and expired credit"
                             returned: on success
-                            type: string
+                            type: str
                             sample: USAGE
                         group_by:
                             description:
@@ -432,19 +440,19 @@ query:
                                     description:
                                         - The tag namespace.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: namespace_example
                                 key:
                                     description:
                                         - The tag key.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: key_example
                                 value:
                                     description:
                                         - The tag value.
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: value_example
                         compartment_depth:
                             description:
@@ -462,7 +470,7 @@ query:
                                     description:
                                         - "The filter operator. Example: 'AND', 'OR', 'NOT'."
                                     returned: on success
-                                    type: string
+                                    type: str
                                     sample: AND
                                 dimensions:
                                     description:
@@ -474,13 +482,13 @@ query:
                                             description:
                                                 - The dimension key.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: key_example
                                         value:
                                             description:
                                                 - The dimension value.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                                 tags:
                                     description:
@@ -492,19 +500,19 @@ query:
                                             description:
                                                 - The tag namespace.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: namespace_example
                                         key:
                                             description:
                                                 - The tag key.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: key_example
                                         value:
                                             description:
                                                 - The tag value.
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: value_example
                                 filters:
                                     description:
@@ -516,7 +524,7 @@ query:
                                             description:
                                                 - "The filter operator. Example: 'AND', 'OR', 'NOT'."
                                             returned: on success
-                                            type: string
+                                            type: str
                                             sample: AND
                                         dimensions:
                                             description:
@@ -540,7 +548,7 @@ query:
                             description:
                                 - The UI date range, for example, LAST_THREE_MONTHS. Conflicts with timeUsageStarted and timeUsageEnded.
                             returned: on success
-                            type: string
+                            type: str
                             sample: LAST_SEVEN_DAYS
                 cost_analysis_ui:
                     description:
@@ -552,7 +560,7 @@ query:
                             description:
                                 - The graph type.
                             returned: on success
-                            type: string
+                            type: str
                             sample: BARS
                         is_cumulative_graph:
                             description:
@@ -778,13 +786,13 @@ def main():
                                     "ALLCREDIT",
                                 ],
                             ),
-                            group_by=dict(type="list"),
+                            group_by=dict(type="list", elements="str"),
                             group_by_tag=dict(
                                 type="list",
                                 elements="dict",
                                 options=dict(
                                     namespace=dict(type="str"),
-                                    key=dict(type="str"),
+                                    key=dict(type="str", no_log=True),
                                     value=dict(type="str"),
                                 ),
                             ),
@@ -799,7 +807,9 @@ def main():
                                         type="list",
                                         elements="dict",
                                         options=dict(
-                                            key=dict(type="str", required=True),
+                                            key=dict(
+                                                type="str", required=True, no_log=True
+                                            ),
                                             value=dict(type="str", required=True),
                                         ),
                                     ),
@@ -808,7 +818,7 @@ def main():
                                         elements="dict",
                                         options=dict(
                                             namespace=dict(type="str"),
-                                            key=dict(type="str"),
+                                            key=dict(type="str", no_log=True),
                                             value=dict(type="str"),
                                         ),
                                     ),
@@ -819,9 +829,11 @@ def main():
                                             operator=dict(
                                                 type="str", choices=["AND", "NOT", "OR"]
                                             ),
-                                            dimensions=dict(type="list"),
-                                            tags=dict(type="list"),
-                                            filters=dict(type="list"),
+                                            dimensions=dict(
+                                                type="list", elements="dict"
+                                            ),
+                                            tags=dict(type="list", elements="dict"),
+                                            filters=dict(type="list", elements="dict"),
                                         ),
                                     ),
                                 ),

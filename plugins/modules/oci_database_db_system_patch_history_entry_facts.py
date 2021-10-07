@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -25,7 +25,7 @@ description:
     - Fetches details about one or multiple DbSystemPatchHistoryEntry resources in Oracle Cloud Infrastructure
     - Gets the history of the patch actions performed on the specified DB system.
     - If I(patch_history_entry_id) is specified, the details of a single DbSystemPatchHistoryEntry will be returned.
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     db_system_id:
@@ -65,45 +65,45 @@ db_system_patch_history_entries:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch history entry.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         patch_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
         action:
             description:
                 - The action being performed or was completed.
             returned: on success
-            type: string
+            type: str
             sample: APPLY
         lifecycle_state:
             description:
                 - The current state of the action.
             returned: on success
-            type: string
+            type: str
             sample: IN_PROGRESS
         lifecycle_details:
             description:
                 - A descriptive text associated with the lifecycleState.
                   Typically contains additional displayable text.
             returned: on success
-            type: string
+            type: str
             sample: lifecycle_details_example
         time_started:
             description:
                 - The date and time when the patch action started.
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         time_ended:
             description:
                 - The date and time when the patch action completed
             returned: on success
-            type: string
-            sample: 2013-10-20T19:20:30+01:00
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "patch_id": "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx",

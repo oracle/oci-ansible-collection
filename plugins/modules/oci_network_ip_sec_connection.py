@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -47,7 +47,7 @@ description:
       (that is, the pre-shared key). For more information, see
       L(Configuring Your On-Premises Router for an IPSec VPN,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/configuringCPE.htm).
     - "This resource has the following action operations in the M(oci_ip_sec_connection_actions) module: change_compartment."
-version_added: "2.9"
+version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
@@ -128,12 +128,14 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
+        elements: str
     tunnel_configuration:
         description:
             - Information for creating the individual tunnels in the IPSec connection. You can provide a
               maximum of 2 `tunnelConfiguration` objects in the array (one for each of the
               two tunnels).
         type: list
+        elements: dict
         suboptions:
             display_name:
                 description:
@@ -235,10 +237,12 @@ options:
                         description:
                             - Lists IPv4 or IPv6-enabled subnets in your Oracle tenancy.
                         type: list
+                        elements: str
                     cpe_traffic_selector:
                         description:
                             - Lists IPv4 or IPv6-enabled subnets in your on-premises network.
                         type: list
+                        elements: str
     ipsc_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
@@ -309,13 +313,13 @@ ip_sec_connection:
             description:
                 - The OCID of the compartment containing the IPSec connection.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         cpe_id:
             description:
                 - The OCID of the L(Cpe,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/) object.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags:
             description:
@@ -330,13 +334,13 @@ ip_sec_connection:
                 - A user-friendly name. Does not have to be unique, and it's changeable.
                   Avoid entering confidential information.
             returned: on success
-            type: string
+            type: str
             sample: display_name_example
         drg_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
@@ -351,13 +355,13 @@ ip_sec_connection:
             description:
                 - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
             returned: on success
-            type: string
+            type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The IPSec connection's current state.
             returned: on success
-            type: string
+            type: str
             sample: PROVISIONING
         cpe_local_identifier:
             description:
@@ -372,14 +376,14 @@ ip_sec_connection:
                 - "Example IP address: `10.0.3.3`"
                 - "Example hostname: `cpe.example.com`"
             returned: on success
-            type: string
+            type: str
             sample: cpe_local_identifier_example
         cpe_local_identifier_type:
             description:
                 - The type of identifier for your CPE device. The value here must correspond to the value
                   for `cpeLocalIdentifier`.
             returned: on success
-            type: string
+            type: str
             sample: IP_ADDRESS
         static_routes:
             description:
@@ -401,8 +405,8 @@ ip_sec_connection:
                 - The date and time the IPSec connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
-            type: string
-            sample: 2016-08-25T21:10:29.600Z
+            type: str
+            sample: "2016-08-25T21:10:29.600Z"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cpe_id": "ocid1.cpe.oc1..xxxxxxEXAMPLExxxxxx",
@@ -571,7 +575,7 @@ def main():
             cpe_local_identifier_type=dict(
                 type="str", choices=["IP_ADDRESS", "HOSTNAME"]
             ),
-            static_routes=dict(type="list"),
+            static_routes=dict(type="list", elements="str"),
             tunnel_configuration=dict(
                 type="list",
                 elements="dict",
@@ -579,7 +583,7 @@ def main():
                     display_name=dict(aliases=["name"], type="str"),
                     routing=dict(type="str", choices=["BGP", "STATIC", "POLICY"]),
                     ike_version=dict(type="str", choices=["V1", "V2"]),
-                    shared_secret=dict(type="str"),
+                    shared_secret=dict(type="str", no_log=True),
                     bgp_session_config=dict(
                         type="dict",
                         options=dict(
@@ -593,8 +597,8 @@ def main():
                     encryption_domain_config=dict(
                         type="dict",
                         options=dict(
-                            oracle_traffic_selector=dict(type="list"),
-                            cpe_traffic_selector=dict(type="list"),
+                            oracle_traffic_selector=dict(type="list", elements="str"),
+                            cpe_traffic_selector=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

@@ -2,6 +2,16 @@
 
 :orphan:
 
+.. |antsibull-internal-nbsp| unicode:: 0xA0
+    :trim:
+
+.. role:: ansible-attribute-support-label
+.. role:: ansible-attribute-support-property
+.. role:: ansible-attribute-support-full
+.. role:: ansible-attribute-support-partial
+.. role:: ansible-attribute-support-none
+.. role:: ansible-attribute-support-na
+
 .. Anchors
 
 .. _ansible_collections.oracle.oci.oci_object_storage_object_actions_module:
@@ -20,7 +30,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.31.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -28,7 +38,7 @@ oracle.oci.oci_object_storage_object_actions -- Perform actions on an Object res
 
 .. version_added
 
-.. versionadded:: 2.9 of oracle.oci
+.. versionadded:: 2.9.0 of oracle.oci
 
 .. contents::
    :local:
@@ -448,7 +458,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The if-none-match entity tag (ETag) of the new object.</div>
+                                            <div>The if-none-match entity tag (ETag) of the new object. The only valid value is &#x27;*&#x27;, which indicates request should fail if the new object already exists.</div>
                                             <div>Applicable only for <em>action=rename</em>.</div>
                                                         </td>
             </tr>
@@ -561,6 +571,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The optional header that specifies the base64-encoded SHA256 hash of the encryption key. This value is used to check the integrity of the encryption key. For more information, see <a href='https://docs.cloud.oracle.com/Content/Object/Tasks/usingyourencryptionkeys.htm'>Using Your Own Keys for Server-Side Encryption</a>.</div>
+                                            <div>Applicable only for <em>action=copy</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-opc_sse_kms_key_id"></div>
+                    <b>opc_sse_kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-opc_sse_kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a master encryption key used to call the Key Management service to generate a data encryption key or to encrypt or decrypt a data encryption key.</div>
                                             <div>Applicable only for <em>action=copy</em>.</div>
                                                         </td>
             </tr>
@@ -883,6 +909,9 @@ Parameters
             </tr>
                         </table>
     <br/>
+
+.. Attributes
+
 
 .. Notes
 
