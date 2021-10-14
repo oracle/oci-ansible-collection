@@ -150,6 +150,9 @@ DOCUMENTATION = """
                                  compartment_name is used. OCID of the parent compartment. If None, root compartment
                                  is assumed to be parent.
                     type: str
+                skip_subcompartments:
+                    description: when fetching all subcompartments skip any which match the names or ocids listed here
+                    type: list
 """
 
 EXAMPLES = """
@@ -646,6 +649,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         self.compartments = dict()
 
+        import json
+        with open("/tmp/abc", "w") as fout:
+            fout.write(json.dumps(self.compartments_info))
+
         if self.compartments_info:
             fetching_hosts_from_all_compartments = False
             for key, value in self.compartments_info.items():
@@ -655,6 +662,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     compartment_name=value.get("compartment_name"),
                     fetch_hosts_from_subcompartments=value.get(
                         "fetch_hosts_from_subcompartments"
+                    ),
+                    skip_subcompartments=value.get(
+                        "skip_subcompartments"
                     ),
                 )
 
@@ -678,7 +688,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                     break
         else:
             # fetch all compartments in tenancy
-            compartments = self.get_compartments()
+            compartments = self.get_compartments(
+                skip_subcompartments=value.get("skip_subcompartments")
+            )
             for compartment in compartments:
                 self.compartments[compartment.id] = compartment
 
@@ -792,6 +804,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         parent_compartment_ocid=None,
         compartment_name=None,
         fetch_hosts_from_subcompartments=True,
+        skip_subcompartments=None,
     ):
         """
         Get the compartments based on the parameters passed. When compartment_name is None, all the compartments
@@ -812,10 +825,15 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         :param str fetch_hosts_from_subcompartments: (optional)
             Only applicable when compartment_name or compartment_ocid is specified. When set to true, the entire
             hierarchy of compartments of the given compartment is returned.
+        :param list skip_subcompartments: (optional)
+            Only applicable when fetch_hosts_from_subcompartments is true. Hierarchical query will skip all compartments
+            the ocid or name of which matches any of the list items here.
         :raises ServiceError: When the Service returned an Error response
         :raises MaximumWaitTimeExceededError: When maximum wait time is exceeded while invoking target_fn
         :return: list of :class:`~oci.identity.models.Compartment`
         """
+        if skip_subcompartments is None:
+            skip_subcompartments = []
         if compartment_ocid:
             try:
                 compartment_with_ocid = oci_common_utils.call_with_backoff(
@@ -833,7 +851,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             else:
                 if not fetch_hosts_from_subcompartments:
                     return [compartment_with_ocid]
-                return self.get_sub_compartments(compartment_with_ocid)
+                return self.get_sub_compartments(compartment_with_ocid, skip_subcompartments)
 
         if not self.params["tenancy"]:
             raise Exception(
@@ -895,7 +913,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         if not fetch_hosts_from_subcompartments:
             return [compartment_with_name]
 
-        return self.get_sub_compartments(compartment_with_name)
+        return self.get_sub_compartments(compartment_with_name, skip_subcompartments)
 
     @staticmethod
     def filter_resource(resource, **kwargs):
@@ -904,7 +922,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 return False
         return True
 
-    def get_sub_compartments(self, root):
+    def get_sub_compartments(self, root, skip_subcompartments):
         # OCI SDK does not support fetching sub-compartments for non root compartments
         # So traverse the compartment tree to fetch all the sub compartments
         compartments = []
@@ -924,7 +942,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 )
             ]
             for child_compartment in child_compartments:
-                queue.append(child_compartment)
+                if child_compartment.id not in skip_subcompartments:
+                    if child_compartment.name not in skip_subcompartments:
+                        queue.append(child_compartment)
         return compartments
 
     def build_inventory_for_instance(self, instance, region):
@@ -1230,7 +1250,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             if all(
                 True
                 if not self.filters.get(filter)
-                or getattr(resource, filter, None) == self.filters[filter]
+                   or getattr(resource, filter, None) == self.filters[filter]
                 else False
                 for filter in filters
             ):
@@ -1333,14 +1353,14 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         region=region,
                     )
                     for db_system in oci_common_utils.list_all_resources(
-                        target_fn=database_client.list_db_systems,
-                        compartment_id=compartment_ocid,
-                    )
+                    target_fn=database_client.list_db_systems,
+                    compartment_id=compartment_ocid,
+                )
                     for db_node in oci_common_utils.list_all_resources(
-                        database_client.list_db_nodes,
-                        compartment_id=compartment_ocid,
-                        db_system_id=db_system.id,
-                    )
+                    database_client.list_db_nodes,
+                    compartment_id=compartment_ocid,
+                    db_system_id=db_system.id,
+                )
                     if db_node.lifecycle_state == "AVAILABLE"
                 ],
                 compartment_ocid,
@@ -1555,6 +1575,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             if "fetch_hosts_from_subcompartments" in item:
                 self.compartments_info[it]["fetch_hosts_from_subcompartments"] = item[
                     "fetch_hosts_from_subcompartments"
+                ]
+            if "skip_subcompartments" in item:
+                self.compartments_info[it]["skip_subcompartments"] = item[
+                    "skip_subcompartments"
                 ]
             it += 1
 
