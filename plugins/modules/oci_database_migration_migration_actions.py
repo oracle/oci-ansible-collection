@@ -23,8 +23,7 @@ module: oci_database_migration_migration_actions
 short_description: Perform actions on a Migration resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Migration resource in Oracle Cloud Infrastructure
-    - "For I(action=change_compartment), note: Deprecated. Use the new resource model APIs instead.
-      Used to change the Migration compartment."
+    - For I(action=change_compartment), used to change the Migration compartment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -150,6 +149,24 @@ migration:
                             returned: on success
                             type: str
                             sample: name_example
+                        wallet_bucket:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                namespace_name:
+                                    description:
+                                        - Namespace name of the object store bucket.
+                                    returned: on success
+                                    type: str
+                                    sample: namespace_name_example
+                                bucket_name:
+                                    description:
+                                        - Bucket name.
+                                    returned: on success
+                                    type: str
+                                    sample: bucket_name_example
                 object_storage_details:
                     description:
                         - ""
@@ -168,6 +185,48 @@ migration:
                             returned: on success
                             type: str
                             sample: bucket_name_example
+        dump_transfer_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            returned: on success
+                            type: str
+                            sample: CURL
+                        oci_home:
+                            description:
+                                - Path to the OCI CLI installation in the node.
+                            returned: on success
+                            type: str
+                            sample: oci_home_example
+                target:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            returned: on success
+                            type: str
+                            sample: CURL
+                        oci_home:
+                            description:
+                                - Path to the OCI CLI installation in the node.
+                            returned: on success
+                            type: str
+                            sample: oci_home_example
         datapump_settings:
             description:
                 - ""
@@ -288,9 +347,28 @@ migration:
                             returned: on success
                             type: str
                             sample: path_example
+        advisor_settings:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_skip_advisor:
+                    description:
+                        - True to skip the Pre-Migration Advisor execution. Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_ignore_errors:
+                    description:
+                        - True to not interrupt migration execution due to Pre-Migration Advisor errors. Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
         exclude_objects:
             description:
-                - Database objects to exclude from migration.
+                - "Database objects to exclude from migration.
+                  If 'includeObjects' are specified, only exclude object types can be specified with general wildcards (.*) for owner and objectName."
             returned: on success
             type: complex
             contains:
@@ -306,6 +384,38 @@ migration:
                     returned: on success
                     type: str
                     sample: object_name_example
+                type:
+                    description:
+                        - Type of object to exclude.
+                          If not specified, matching owners and object names of type TABLE would be excluded.
+                    returned: on success
+                    type: str
+                    sample: type_example
+        include_objects:
+            description:
+                - Database objects to include from migration.
+            returned: on success
+            type: complex
+            contains:
+                owner:
+                    description:
+                        - Owner of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: owner_example
+                object_name:
+                    description:
+                        - Name of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                type:
+                    description:
+                        - Type of object to exclude.
+                          If not specified, matching owners and object names of type TABLE would be excluded.
+                    returned: on success
+                    type: str
+                    sample: type_example
         golden_gate_details:
             description:
                 - ""
@@ -537,11 +647,25 @@ migration:
         "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
         "data_transfer_medium_details": {
             "database_link_details": {
-                "name": "name_example"
+                "name": "name_example",
+                "wallet_bucket": {
+                    "namespace_name": "namespace_name_example",
+                    "bucket_name": "bucket_name_example"
+                }
             },
             "object_storage_details": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example"
+            }
+        },
+        "dump_transfer_details": {
+            "source": {
+                "kind": "CURL",
+                "oci_home": "oci_home_example"
+            },
+            "target": {
+                "kind": "CURL",
+                "oci_home": "oci_home_example"
             }
         },
         "datapump_settings": {
@@ -568,9 +692,19 @@ migration:
                 "path": "path_example"
             }
         },
+        "advisor_settings": {
+            "is_skip_advisor": true,
+            "is_ignore_errors": true
+        },
         "exclude_objects": [{
             "owner": "owner_example",
-            "object_name": "object_name_example"
+            "object_name": "object_name_example",
+            "type": "type_example"
+        }],
+        "include_objects": [{
+            "owner": "owner_example",
+            "object_name": "object_name_example",
+            "type": "type_example"
         }],
         "golden_gate_details": {
             "hub": {

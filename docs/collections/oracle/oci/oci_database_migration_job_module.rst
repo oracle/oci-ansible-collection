@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_job -- Manage a Job resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -428,12 +428,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-job"></div>
                     <b>job</b>
                     <a class="ansibleOptionLink" href="#return-job" title="Permalink to this return value"></a>
@@ -446,12 +446,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Job resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;migration_id&#x27;: &#x27;ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;progress&#x27;: {&#x27;current_phase&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;current_status&#x27;: &#x27;PENDING&#x27;, &#x27;phases&#x27;: [{&#x27;duration_in_ms&#x27;: 56, &#x27;name&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;progress&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;EVALUATION&#x27;, &#x27;unsupported_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;GOLDEN_GATE&#x27;}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;migration_id&#x27;: &#x27;ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;progress&#x27;: {&#x27;current_phase&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;current_status&#x27;: &#x27;PENDING&#x27;, &#x27;phases&#x27;: [{&#x27;duration_in_ms&#x27;: 56, &#x27;extract&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;type&#x27;: &#x27;ERROR&#x27;}], &#x27;is_advisor_report_available&#x27;: True, &#x27;log_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;}, &#x27;name&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;progress&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;EVALUATION&#x27;, &#x27;unsupported_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;GOLDEN_GATE&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-job/defined_tags" title="Permalink to this return value"></a>
@@ -469,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-job/display_name" title="Permalink to this return value"></a>
@@ -487,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-job/freeform_tags" title="Permalink to this return value"></a>
@@ -505,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-job/id" title="Permalink to this return value"></a>
@@ -523,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-job/lifecycle_details" title="Permalink to this return value"></a>
@@ -541,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-job/lifecycle_state" title="Permalink to this return value"></a>
@@ -559,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/migration_id"></div>
                     <b>migration_id</b>
                     <a class="ansibleOptionLink" href="#return-job/migration_id" title="Permalink to this return value"></a>
@@ -577,7 +577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/progress"></div>
                     <b>progress</b>
                     <a class="ansibleOptionLink" href="#return-job/progress" title="Permalink to this return value"></a>
@@ -594,7 +594,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/progress/current_phase"></div>
                     <b>current_phase</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/current_phase" title="Permalink to this return value"></a>
@@ -613,7 +613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/progress/current_status"></div>
                     <b>current_status</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/current_status" title="Permalink to this return value"></a>
@@ -632,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/progress/phases"></div>
                     <b>phases</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/phases" title="Permalink to this return value"></a>
@@ -650,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/progress/phases/duration_in_ms"></div>
                     <b>duration_in_ms</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/phases/duration_in_ms" title="Permalink to this return value"></a>
@@ -670,7 +670,170 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/extract"></div>
+                    <b>extract</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/extract" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Summary of phase status results.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/extract/message"></div>
+                    <b>message</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/extract/message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Message in entry.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/extract/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/extract/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of extract.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ERROR</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/is_advisor_report_available"></div>
+                    <b>is_advisor_report_available</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/is_advisor_report_available" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if a Pre-Migration Advisor report is available for this phase. False or null if no report is available.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/log_location"></div>
+                    <b>log_location</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/log_location" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/log_location/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/log_location/bucket_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the bucket containing the log file.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/log_location/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/log_location/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Object Storage namespace.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job/progress/phases/log_location/object_name"></div>
+                    <b>object_name</b>
+                    <a class="ansibleOptionLink" href="#return-job/progress/phases/log_location/object_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Log object name.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/progress/phases/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/phases/name" title="Permalink to this return value"></a>
@@ -690,7 +853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/progress/phases/progress"></div>
                     <b>progress</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/phases/progress" title="Permalink to this return value"></a>
@@ -710,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job/progress/phases/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-job/progress/phases/status" title="Permalink to this return value"></a>
@@ -730,7 +893,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-job/system_tags" title="Permalink to this return value"></a>
@@ -746,7 +909,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-job/time_created" title="Permalink to this return value"></a>
@@ -764,7 +927,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-job/time_updated" title="Permalink to this return value"></a>
@@ -782,7 +945,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-job/type" title="Permalink to this return value"></a>
@@ -800,7 +963,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job/unsupported_objects"></div>
                     <b>unsupported_objects</b>
                     <a class="ansibleOptionLink" href="#return-job/unsupported_objects" title="Permalink to this return value"></a>
@@ -817,7 +980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/unsupported_objects/object_name"></div>
                     <b>object_name</b>
                     <a class="ansibleOptionLink" href="#return-job/unsupported_objects/object_name" title="Permalink to this return value"></a>
@@ -836,7 +999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/unsupported_objects/owner"></div>
                     <b>owner</b>
                     <a class="ansibleOptionLink" href="#return-job/unsupported_objects/owner" title="Permalink to this return value"></a>
@@ -855,7 +1018,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/unsupported_objects/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-job/unsupported_objects/type" title="Permalink to this return value"></a>

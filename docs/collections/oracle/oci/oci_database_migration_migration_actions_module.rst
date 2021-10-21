@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_migration_actions -- Perform actions on a Migr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Migration resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, note: Deprecated. Use the new resource model APIs instead. Used to change the Migration compartment.
+- For *action=change_compartment*, used to change the Migration compartment.
 
 
 .. Aliases
@@ -338,10 +338,65 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Migration resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_id&#x27;: &#x27;ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials_secret_id&#x27;: &#x27;ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_transfer_medium_details&#x27;: {&#x27;database_link_details&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;object_storage_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;}}, &#x27;datapump_settings&#x27;: {&#x27;data_pump_parameters&#x27;: {&#x27;estimate&#x27;: &#x27;BLOCKS&#x27;, &#x27;exclude_parameters&#x27;: [], &#x27;export_parallelism_degree&#x27;: 56, &#x27;import_parallelism_degree&#x27;: 56, &#x27;is_cluster&#x27;: True, &#x27;table_exists_action&#x27;: &#x27;TRUNCATE&#x27;}, &#x27;export_directory_object&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;}, &#x27;import_directory_object&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;}, &#x27;job_mode&#x27;: &#x27;FULL&#x27;, &#x27;metadata_remaps&#x27;: [{&#x27;new_value&#x27;: &#x27;new_value_example&#x27;, &#x27;old_value&#x27;: &#x27;old_value_example&#x27;, &#x27;type&#x27;: &#x27;SCHEMA&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exclude_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;}], &#x27;executing_job_id&#x27;: &#x27;ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;golden_gate_details&#x27;: {&#x27;hub&#x27;: {&#x27;compute_id&#x27;: &#x27;ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rest_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_container_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_microservices_deployment_name&#x27;: &#x27;source_microservices_deployment_name_example&#x27;, &#x27;target_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target_microservices_deployment_name&#x27;: &#x27;target_microservices_deployment_name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}, &#x27;settings&#x27;: {&#x27;acceptable_lag&#x27;: 56, &#x27;extract&#x27;: {&#x27;long_trans_duration&#x27;: 56, &#x27;performance_profile&#x27;: &#x27;LOW&#x27;}, &#x27;replicat&#x27;: {&#x27;map_parallelism&#x27;: 56, &#x27;max_apply_parallelism&#x27;: 56, &#x27;min_apply_parallelism&#x27;: 56}}}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;READY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;source_container_database_connection_id&#x27;: &#x27;ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_database_connection_id&#x27;: &#x27;ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;target_database_connection_id&#x27;: &#x27;ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_migration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;ONLINE&#x27;, &#x27;vault_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;wait_after&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;advisor_settings&#x27;: {&#x27;is_ignore_errors&#x27;: True, &#x27;is_skip_advisor&#x27;: True}, &#x27;agent_id&#x27;: &#x27;ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials_secret_id&#x27;: &#x27;ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_transfer_medium_details&#x27;: {&#x27;database_link_details&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;wallet_bucket&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;}}, &#x27;object_storage_details&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;}}, &#x27;datapump_settings&#x27;: {&#x27;data_pump_parameters&#x27;: {&#x27;estimate&#x27;: &#x27;BLOCKS&#x27;, &#x27;exclude_parameters&#x27;: [], &#x27;export_parallelism_degree&#x27;: 56, &#x27;import_parallelism_degree&#x27;: 56, &#x27;is_cluster&#x27;: True, &#x27;table_exists_action&#x27;: &#x27;TRUNCATE&#x27;}, &#x27;export_directory_object&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;}, &#x27;import_directory_object&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;}, &#x27;job_mode&#x27;: &#x27;FULL&#x27;, &#x27;metadata_remaps&#x27;: [{&#x27;new_value&#x27;: &#x27;new_value_example&#x27;, &#x27;old_value&#x27;: &#x27;old_value_example&#x27;, &#x27;type&#x27;: &#x27;SCHEMA&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dump_transfer_details&#x27;: {&#x27;source&#x27;: {&#x27;kind&#x27;: &#x27;CURL&#x27;, &#x27;oci_home&#x27;: &#x27;oci_home_example&#x27;}, &#x27;target&#x27;: {&#x27;kind&#x27;: &#x27;CURL&#x27;, &#x27;oci_home&#x27;: &#x27;oci_home_example&#x27;}}, &#x27;exclude_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;executing_job_id&#x27;: &#x27;ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;golden_gate_details&#x27;: {&#x27;hub&#x27;: {&#x27;compute_id&#x27;: &#x27;ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rest_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_container_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;source_microservices_deployment_name&#x27;: &#x27;source_microservices_deployment_name_example&#x27;, &#x27;target_db_admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target_microservices_deployment_name&#x27;: &#x27;target_microservices_deployment_name_example&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}, &#x27;settings&#x27;: {&#x27;acceptable_lag&#x27;: 56, &#x27;extract&#x27;: {&#x27;long_trans_duration&#x27;: 56, &#x27;performance_profile&#x27;: &#x27;LOW&#x27;}, &#x27;replicat&#x27;: {&#x27;map_parallelism&#x27;: 56, &#x27;max_apply_parallelism&#x27;: 56, &#x27;min_apply_parallelism&#x27;: 56}}}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;include_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;READY&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;source_container_database_connection_id&#x27;: &#x27;ocid1.sourcecontainerdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_database_connection_id&#x27;: &#x27;ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;target_database_connection_id&#x27;: &#x27;ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_migration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;ONLINE&#x27;, &#x27;vault_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;wait_after&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-migration/advisor_settings"></div>
+                    <b>advisor_settings</b>
+                    <a class="ansibleOptionLink" href="#return-migration/advisor_settings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/advisor_settings/is_ignore_errors"></div>
+                    <b>is_ignore_errors</b>
+                    <a class="ansibleOptionLink" href="#return-migration/advisor_settings/is_ignore_errors" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True to not interrupt migration execution due to Pre-Migration Advisor errors. Default is false.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/advisor_settings/is_skip_advisor"></div>
+                    <b>is_skip_advisor</b>
+                    <a class="ansibleOptionLink" href="#return-migration/advisor_settings/is_skip_advisor" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True to skip the Pre-Migration Advisor execution. Default is false.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-migration/agent_id"></div>
@@ -448,6 +503,67 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-migration/data_transfer_medium_details/database_link_details/wallet_bucket"></div>
+                    <b>wallet_bucket</b>
+                    <a class="ansibleOptionLink" href="#return-migration/data_transfer_medium_details/database_link_details/wallet_bucket" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration/data_transfer_medium_details/database_link_details/wallet_bucket/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration/data_transfer_medium_details/database_link_details/wallet_bucket/bucket_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Bucket name.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-migration/data_transfer_medium_details/database_link_details/wallet_bucket/namespace_name"></div>
+                    <b>namespace_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration/data_transfer_medium_details/database_link_details/wallet_bucket/namespace_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace name of the object store bucket.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_name_example</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -913,6 +1029,139 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details"></div>
+                    <b>dump_transfer_details</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/source"></div>
+                    <b>source</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/source/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/source/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of dump transfer to use during migration in source or target host. Default kind is CURL</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CURL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/source/oci_home"></div>
+                    <b>oci_home</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/source/oci_home" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Path to the OCI CLI installation in the node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_home_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/target"></div>
+                    <b>target</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/target" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/target/kind"></div>
+                    <b>kind</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/target/kind" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of dump transfer to use during migration in source or target host. Default kind is CURL</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CURL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-migration/dump_transfer_details/target/oci_home"></div>
+                    <b>oci_home</b>
+                    <a class="ansibleOptionLink" href="#return-migration/dump_transfer_details/target/oci_home" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Path to the OCI CLI installation in the node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_home_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-migration/exclude_objects"></div>
                     <b>exclude_objects</b>
                     <a class="ansibleOptionLink" href="#return-migration/exclude_objects" title="Permalink to this return value"></a>
@@ -922,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database objects to exclude from migration.</div>
+                                            <div>Database objects to exclude from migration. If &#x27;includeObjects&#x27; are specified, only exclude object types can be specified with general wildcards (.*) for owner and objectName.</div>
                                         <br/>
                                     </td>
             </tr>
@@ -962,6 +1211,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">owner_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/exclude_objects/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-migration/exclude_objects/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of object to exclude. If not specified, matching owners and object names of type TABLE would be excluded.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
                                     </td>
             </tr>
                     
@@ -1475,6 +1743,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-migration/include_objects"></div>
+                    <b>include_objects</b>
+                    <a class="ansibleOptionLink" href="#return-migration/include_objects" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Database objects to include from migration.</div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/include_objects/object_name"></div>
+                    <b>object_name</b>
+                    <a class="ansibleOptionLink" href="#return-migration/include_objects/object_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the object (regular expression is allowed)</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/include_objects/owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#return-migration/include_objects/owner" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Owner of the object (regular expression is allowed)</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">owner_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-migration/include_objects/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-migration/include_objects/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of object to exclude. If not specified, matching owners and object names of type TABLE would be excluded.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">

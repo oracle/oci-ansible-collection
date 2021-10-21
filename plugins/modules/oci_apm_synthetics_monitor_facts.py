@@ -171,6 +171,12 @@ monitors:
             returned: on success
             type: int
             sample: 600
+        is_run_once:
+            description:
+                - If runOnce is enabled, then the monitor will run once.
+            returned: on success
+            type: bool
+            sample: true
         timeout_in_seconds:
             description:
                 - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
@@ -264,6 +270,42 @@ monitors:
                             returned: on success
                             type: str
                             sample: searchString
+                network_configuration:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        number_of_hops:
+                            description:
+                                - Number of hops.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        probe_per_hop:
+                            description:
+                                - Number of probes per hop.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        transmission_rate:
+                            description:
+                                - Number of probe packets sent out simultaneously.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        protocol:
+                            description:
+                                - Type of protocol.
+                            returned: on success
+                            type: str
+                            sample: TCP
+                        probe_mode:
+                            description:
+                                - Type of probe mode when TCP protocol is selected.
+                            returned: on success
+                            type: str
+                            sample: SACK
                 is_redirection_enabled:
                     description:
                         - If redirection enabled, then redirects will be allowed while accessing target URL.
@@ -446,6 +488,7 @@ monitors:
         "script_name": "testScript",
         "status": "ENABLED",
         "repeat_interval_in_seconds": 600,
+        "is_run_once": true,
         "timeout_in_seconds": 56,
         "target": "https://www.oracle.com/index.html",
         "script_parameters": [{
@@ -463,6 +506,13 @@ monitors:
             "verify_texts": [{
                 "text": "searchString"
             }],
+            "network_configuration": {
+                "number_of_hops": 56,
+                "probe_per_hop": 56,
+                "transmission_rate": 56,
+                "protocol": "TCP",
+                "probe_mode": "SACK"
+            },
             "is_redirection_enabled": true,
             "request_method": "GET",
             "req_authentication_scheme": "NONE",

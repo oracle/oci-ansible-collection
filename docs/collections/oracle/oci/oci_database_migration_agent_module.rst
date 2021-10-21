@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_agent -- Manage an Agent resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -193,10 +193,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment.</div>
+                                            <div>The ID of the compartment in which to list resources.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -439,18 +438,18 @@ Examples
     
     - name: Update agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_migration_agent:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         version: version_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update agent
       oci_database_migration_agent:
         agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
     - name: Delete agent
       oci_database_migration_agent:
@@ -459,8 +458,8 @@ Examples
 
     - name: Delete agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_migration_agent:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

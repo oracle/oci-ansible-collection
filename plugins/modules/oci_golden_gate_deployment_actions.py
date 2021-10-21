@@ -148,6 +148,12 @@ deployment:
             returned: on success
             type: str
             sample: CREATING
+        lifecycle_sub_state:
+            description:
+                - Possible GGS lifecycle sub-states.
+            returned: on success
+            type: str
+            sample: RECOVERING
         lifecycle_details:
             description:
                 - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
@@ -251,6 +257,14 @@ deployment:
             returned: on success
             type: bool
             sample: true
+        time_upgrade_required:
+            description:
+                - The date the existing version in use will no longer be considered as usable and an upgrade will be required.  This date is typically 6 months
+                  after the version was released for use by GGS.  The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
+                  `2016-08-25T21:10:29.600Z`.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
                 - The deployment type.
@@ -276,6 +290,12 @@ deployment:
                     returned: on success
                     type: str
                     sample: oggadmin
+                ogg_version:
+                    description:
+                        - Version of OGG
+                    returned: on success
+                    type: str
+                    sample: ogg_version_example
                 certificate:
                     description:
                         - A PEM-encoded SSL certificate.
@@ -291,6 +311,7 @@ deployment:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "lifecycle_sub_state": "RECOVERING",
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -307,10 +328,12 @@ deployment:
         "deployment_url": "deployment_url_example",
         "system_tags": {},
         "is_latest_version": true,
+        "time_upgrade_required": "2013-10-20T19:20:30+01:00",
         "deployment_type": "OGG",
         "ogg_data": {
             "deployment_name": "deployment_name_example",
             "admin_username": "oggadmin",
+            "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         }
     }

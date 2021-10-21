@@ -48,6 +48,13 @@ options:
             - When set to true then agents that have at least one plugin deployed will be returned. When set to false only agents that have no plugins deployed
               will be returned.
         type: bool
+    install_type:
+        description:
+            - A filter to return either agents or gateway types depending upon install type selected by user. By default both install type will be returned.
+        type: str
+        choices:
+            - "AGENT"
+            - "GATEWAY"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -95,6 +102,12 @@ management_agent_aggregations:
                     returned: on success
                     type: bool
                     sample: true
+                install_type:
+                    description:
+                        - The install type, either AGENT or GATEWAY
+                    returned: on success
+                    type: str
+                    sample: AGENT
         count:
             description:
                 - The number of Management Agents in this group
@@ -106,7 +119,8 @@ management_agent_aggregations:
             "availability_status": "ACTIVE",
             "platform_type": "LINUX",
             "version": "version_example",
-            "has_plugins": true
+            "has_plugins": true,
+            "install_type": "AGENT"
         },
         "count": 56
     }]
@@ -139,6 +153,7 @@ class ManagementAgentAggregationFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "has_plugins",
+            "install_type",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -177,6 +192,7 @@ def main():
                 choices=["availabilityStatus", "platformType", "version"],
             ),
             has_plugins=dict(type="bool"),
+            install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),
         )
     )
 

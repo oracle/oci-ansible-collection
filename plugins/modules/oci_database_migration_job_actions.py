@@ -23,10 +23,8 @@ module: oci_database_migration_job_actions
 short_description: Perform actions on a Job resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Job resource in Oracle Cloud Infrastructure
-    - "For I(action=abort), note: Deprecated. Use the new resource model APIs instead.
-      Aborts a Migration Job (either Evaluation or Migration)."
-    - "For I(action=resume), note: Deprecated. Use the new resource model APIs instead.
-      Resume a migration Job."
+    - For I(action=abort), aborts a Migration Job (either Evaluation or Migration).
+    - For I(action=resume), resume a migration Job.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -45,10 +43,13 @@ options:
         choices:
             - "ODMS_VALIDATE_TGT"
             - "ODMS_VALIDATE_SRC"
+            - "ODMS_VALIDATE_PREMIGRATION_ADVISOR"
             - "ODMS_VALIDATE_GG_HUB"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC"
             - "ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT"
+            - "ODMS_VALIDATE_DATAPUMP_SRC"
+            - "ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC"
             - "ODMS_VALIDATE"
             - "ODMS_PREPARE"
             - "ODMS_INITIAL_LOAD_EXPORT"
@@ -168,6 +169,54 @@ job:
                             returned: on success
                             type: int
                             sample: 56
+                        is_advisor_report_available:
+                            description:
+                                - True if a Pre-Migration Advisor report is available for this phase. False or null if no report is available.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        extract:
+                            description:
+                                - Summary of phase status results.
+                            returned: on success
+                            type: complex
+                            contains:
+                                type:
+                                    description:
+                                        - Type of extract.
+                                    returned: on success
+                                    type: str
+                                    sample: ERROR
+                                message:
+                                    description:
+                                        - Message in entry.
+                                    returned: on success
+                                    type: str
+                                    sample: message_example
+                        log_location:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                bucket_name:
+                                    description:
+                                        - Name of the bucket containing the log file.
+                                    returned: on success
+                                    type: str
+                                    sample: bucket_name_example
+                                namespace:
+                                    description:
+                                        - Object Storage namespace.
+                                    returned: on success
+                                    type: str
+                                    sample: namespace_example
+                                object_name:
+                                    description:
+                                        - Log object name.
+                                    returned: on success
+                                    type: str
+                                    sample: object_name_example
                         progress:
                             description:
                                 - Percent progress of job phase.
@@ -246,6 +295,16 @@ job:
                 "name": "ODMS_VALIDATE_TGT",
                 "status": "PENDING",
                 "duration_in_ms": 56,
+                "is_advisor_report_available": true,
+                "extract": [{
+                    "type": "ERROR",
+                    "message": "message_example"
+                }],
+                "log_location": {
+                    "bucket_name": "bucket_name_example",
+                    "namespace": "namespace_example",
+                    "object_name": "object_name_example"
+                },
                 "progress": 56
             }]
         },
@@ -363,10 +422,13 @@ def main():
                 choices=[
                     "ODMS_VALIDATE_TGT",
                     "ODMS_VALIDATE_SRC",
+                    "ODMS_VALIDATE_PREMIGRATION_ADVISOR",
                     "ODMS_VALIDATE_GG_HUB",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS_SRC",
                     "ODMS_VALIDATE_DATAPUMP_SETTINGS_TGT",
+                    "ODMS_VALIDATE_DATAPUMP_SRC",
+                    "ODMS_VALIDATE_DATAPUMP_ESTIMATE_SRC",
                     "ODMS_VALIDATE",
                     "ODMS_PREPARE",
                     "ODMS_INITIAL_LOAD_EXPORT",

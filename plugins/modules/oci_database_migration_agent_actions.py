@@ -23,8 +23,7 @@ module: oci_database_migration_agent_actions
 short_description: Perform actions on an Agent resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Agent resource in Oracle Cloud Infrastructure
-    - "For I(action=change_compartment), note: Deprecated. Use the new resource model APIs instead.
-      Used to configure an ODMS Agent Compartment ID."
+    - For I(action=change_compartment), used to configure an ODMS Agent Compartment ID.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

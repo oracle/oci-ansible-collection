@@ -23,8 +23,7 @@ module: oci_database_migration_job_output_facts
 short_description: Fetches details about one or multiple JobOutput resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple JobOutput resources in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
-      List the Job Outputs"
+    - List the Job Outputs
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

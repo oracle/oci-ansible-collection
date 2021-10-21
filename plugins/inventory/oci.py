@@ -150,6 +150,28 @@ DOCUMENTATION = """
                                  compartment_name is used. OCID of the parent compartment. If None, root compartment
                                  is assumed to be parent.
                     type: str
+        exclude_compartments:
+            description: A dictionary of compartment identifier to filter the compartments from which  hosts should be listed from.
+                         This config parameter is optional.
+                         Suboption is not considered when both compartment_ocid, compartment_name are None
+            type: list
+            suboptions:
+                compartment_ocid:
+                    description: OCID of the compartment.
+                    type: str
+                compartment_name:
+                    description: Name of the compartment. If None and `compartment_ocid` is not set,
+                                 this option is not considered for filtering the compartments.
+                                 If both compartment_ocid and compartment_name are passed, compartment_ocid is considered
+                    type: str
+                skip_subcompartments:
+                    description: Flag used to skip the sub-compartments. Default value is set to True
+                    type: boolean
+                parent_compartment_ocid:
+                    description: This option is not needed when the compartment_ocid option is used, it is needed when
+                                 compartment_name is used. OCID of the parent compartment. If None, root compartment
+                                 is assumed to be parent.
+                    type: str
 """
 
 EXAMPLES = """
@@ -216,6 +238,15 @@ fetch_compute_hosts: True
 
 # Process only the primary vnic of a compute instance
 primary_vnic_only: True
+
+# Select compartment by ocid or name
+exclude_compartments:
+  - compartment_ocid: ocid1.compartment.oc1..xxxxxx
+    skip_subcompartments: false
+
+  - compartment_name: "test_skip_compartment"
+    parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
+
 """
 import os
 import re
@@ -273,6 +304,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.regions = {}
         self.enable_parallel_processing = True
         self.compartments_info = None
+        self.exclude_compartments_info = None
+        self.exclude_compartments = dict()
         self.params = {
             "config_file": os.path.join(os.path.expanduser("~"), ".oci", "config"),
             "profile": "DEFAULT",
@@ -635,6 +668,81 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             # terminate the pool
             pool.terminate()
 
+    def get_compartments_from_compartment_info(self, compartments_info_items):
+        """
+        gets the compartments from compartments_info which is passed in the option compartments
+        """
+        compartments_result = dict()
+        fetching_hosts_from_all_compartments = False
+        for key, value in compartments_info_items:
+            compartments = self.get_compartments(
+                compartment_ocid=value.get("compartment_ocid"),
+                parent_compartment_ocid=value.get("parent_compartment_ocid"),
+                compartment_name=value.get("compartment_name"),
+                fetch_hosts_from_subcompartments=value.get(
+                    "fetch_hosts_from_subcompartments"
+                ),
+            )
+
+            for compartment in compartments:
+                if compartment.id in compartments_result:
+                    self.debug(
+                        "Obtained the the compartment {0} twice, picking up the later entry in the list".format(
+                            compartment.id
+                        )
+                    )
+                if value.get("fetch_hosts_from_subcompartments") and (
+                    "tenancy" in compartment.id
+                ):
+                    fetching_hosts_from_all_compartments = True
+                    self.debug(
+                        "Config given to fetch hosts from all compartments, skipping reading the "
+                        "compartments list further if there are any present"
+                    )
+                compartments_result[compartment.id] = compartment
+            if fetching_hosts_from_all_compartments:
+                break
+        return compartments_result
+
+    def get_compartments_from_exclude_compartment_info(self):
+        """
+        gets the compartments with compartment_ocids from exclude_compartments
+        """
+        exclude_compartments = dict()
+        for key, value in self.exclude_compartments_info.items():
+            if value.get("compartment_ocid", None):
+                exclude_compartments.update({value.get("compartment_ocid"): value})
+            elif value.get("compartment_name", None):
+                compartment = self.get_compartment_from_compartment_name(
+                    parent_compartment_ocid=value.get("parent_compartment_ocid", None),
+                    compartment_name=value.get("compartment_name", None),
+                    fetch_hosts_from_subcompartments=False,
+                    exclude_compartments={},
+                )
+                exclude_compartments.update({compartment[0].id: value})
+        return exclude_compartments
+
+    def get_all_compartments(self):
+        """
+        gets all the compartments excluding the compartments configured in exclude_compartments
+        """
+        compartments_result = dict()
+        if self.exclude_compartments_info:
+            self.exclude_compartments = (
+                self.get_compartments_from_exclude_compartment_info()
+            )
+
+        if self.compartments_info:
+            compartments_result = self.get_compartments_from_compartment_info(
+                self.compartments_info.items()
+            )
+        else:
+            # fetch all compartments in tenancy
+            compartments = self.get_compartments()
+            for compartment in compartments:
+                compartments_result[compartment.id] = compartment
+        return compartments_result
+
     def _get_instances_by_region(self, regions):
         """
         :param regions: a list of regions in which to describe instances
@@ -644,43 +752,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         self.debug("Building inventory.")
 
-        self.compartments = dict()
-
-        if self.compartments_info:
-            fetching_hosts_from_all_compartments = False
-            for key, value in self.compartments_info.items():
-                compartments = self.get_compartments(
-                    compartment_ocid=value.get("compartment_ocid"),
-                    parent_compartment_ocid=value.get("parent_compartment_ocid"),
-                    compartment_name=value.get("compartment_name"),
-                    fetch_hosts_from_subcompartments=value.get(
-                        "fetch_hosts_from_subcompartments"
-                    ),
-                )
-
-                for compartment in compartments:
-                    if compartment.id in self.compartments:
-                        self.debug(
-                            "Obtained the the compartment {0} twice, picking up the later entry in the list".format(
-                                compartment.id
-                            )
-                        )
-                    if value.get("fetch_hosts_from_subcompartments") and (
-                        "tenancy" in compartment.id
-                    ):
-                        fetching_hosts_from_all_compartments = True
-                        self.debug(
-                            "Config given to fetch hosts from all compartments, skipping reading the "
-                            "compartments list further if there are any present"
-                        )
-                    self.compartments[compartment.id] = compartment
-                if fetching_hosts_from_all_compartments:
-                    break
-        else:
-            # fetch all compartments in tenancy
-            compartments = self.get_compartments()
-            for compartment in compartments:
-                self.compartments[compartment.id] = compartment
+        self.compartments = self.get_all_compartments()
 
         if not self.compartments:
             self.debug("No compartments matching the criteria.")
@@ -786,98 +858,58 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         return db_hosts
 
-    def get_compartments(
+    def get_compartment_from_compartment_name(
         self,
-        compartment_ocid=None,
+        compartment_name,
         parent_compartment_ocid=None,
-        compartment_name=None,
         fetch_hosts_from_subcompartments=True,
+        exclude_compartments=None,
     ):
         """
-        Get the compartments based on the parameters passed. When compartment_name is None, all the compartments
-        including the root compartment is returned.
+        Gets the compartments based on the compartment_name.
 
-        When compartment_name is passed, the compartment with that name and its hierarchy of compartments are returned
+        the compartment with that name and its hierarchy of compartments are returned
         if fetch_hosts_from_subcompartments is true.
 
         The tenancy is returned when compartment_name is the tenancy name.
-
-        :param str compartment_ocid: (optional)
-            OCID of the compartment. If None, root compartment is assumed to be parent.
-        :param str parent_compartment_ocid: (optional)
-            OCID of the parent compartment. If None, root compartment is assumed to be parent.
-        :param str compartment_name: (optional)
-            Name of the compartment. If None and :attr:`compartment_ocid` is not set, all the compartments including
-            the root compartment are returned.
-        :param str fetch_hosts_from_subcompartments: (optional)
-            Only applicable when compartment_name or compartment_ocid is specified. When set to true, the entire
-            hierarchy of compartments of the given compartment is returned.
-        :raises ServiceError: When the Service returned an Error response
-        :raises MaximumWaitTimeExceededError: When maximum wait time is exceeded while invoking target_fn
-        :return: list of :class:`~oci.identity.models.Compartment`
         """
-        if compartment_ocid:
-            try:
-                compartment_with_ocid = oci_common_utils.call_with_backoff(
-                    self.identity_client.get_compartment,
-                    compartment_id=compartment_ocid,
-                ).data
-            except ServiceError as se:
-                if se.status == 404:
-                    raise Exception(
-                        "Compartment with OCID {0} either does not exist or "
-                        "you do not have permission to access it.".format(
-                            compartment_ocid
-                        )
-                    )
-            else:
-                if not fetch_hosts_from_subcompartments:
-                    return [compartment_with_ocid]
-                return self.get_sub_compartments(compartment_with_ocid)
-
         if not self.params["tenancy"]:
             raise Exception(
                 "Tenancy OCID required to get the compartments in the tenancy."
             )
-
-        try:
-            tenancy = oci_common_utils.call_with_backoff(
-                self.identity_client.get_compartment,
-                compartment_id=self.params["tenancy"],
-            ).data
-        except ServiceError as se:
-            if se.status == 404:
-                raise Exception(
-                    "Either tenancy ocid is invalid or need inspect permission on root compartment to get the "
-                    "compartments in the tenancy."
-                )
-
-        all_compartments = [tenancy] + [
-            compartment
-            for compartment in oci_common_utils.list_all_resources(
-                target_fn=self.identity_client.list_compartments,
-                compartment_id=self.params["tenancy"],
-                compartment_id_in_subtree=True,
-            )
-            if self.filter_resource(
-                compartment, lifecycle_state=self.LIFECYCLE_ACTIVE_STATE
-            )
-        ]
-
-        # return all the compartments if compartment_name is not passed
         if not compartment_name:
-            return all_compartments
+            raise Exception("compartment_name is required")
 
-        if compartment_name == tenancy.name:
+        tenancy_compartments = self.get_compartment_including_sub_compartments(
+            compartment_id=self.params["tenancy"],
+            exclude_compartments=exclude_compartments,
+            fetch_child_compartments=False,
+        )
+
+        tenancy_name = (
+            tenancy_compartments[0].name if len(tenancy_compartments) > 0 else None
+        )
+        if compartment_name == tenancy_name:
             # return all the compartments when fetch_hosts_from_subcompartments is true
             if fetch_hosts_from_subcompartments:
-                return all_compartments
+                return self.get_compartment_including_sub_compartments(
+                    compartment_id=self.params["tenancy"],
+                    exclude_compartments=exclude_compartments,
+                    fetch_child_compartments=True,
+                )
             else:
-                return [tenancy]
+                return tenancy_compartments
 
         if not parent_compartment_ocid:
-            parent_compartment_ocid = tenancy.id
+            parent_compartment_ocid = (
+                tenancy_compartments[0].id if len(tenancy_compartments) > 0 else None
+            )
 
+        all_compartments = self.get_compartment_including_sub_compartments(
+            compartment_id=self.params["tenancy"],
+            exclude_compartments=exclude_compartments,
+            fetch_child_compartments=True,
+        )
         compartment_with_name = None
         for compartment in all_compartments:
             if (
@@ -894,8 +926,69 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
 
         if not fetch_hosts_from_subcompartments:
             return [compartment_with_name]
+        return self.get_compartment_including_sub_compartments(
+            compartment_id=compartment_with_name.id,
+            exclude_compartments=self.exclude_compartments,
+            fetch_child_compartments=True,
+        )
 
-        return self.get_sub_compartments(compartment_with_name)
+    def get_compartments(
+        self,
+        compartment_ocid=None,
+        parent_compartment_ocid=None,
+        compartment_name=None,
+        fetch_hosts_from_subcompartments=True,
+    ):
+        """
+        Get the compartments based on the parameters passed. When compartment_name is None, all the compartments
+        including the root compartment is returned.
+
+        When compartment_name is passed, the compartment with that name and its hierarchy of compartments are returned
+        if fetch_hosts_from_subcompartments is true.
+
+        The tenancy is returned when compartment_name is the tenancy name.
+
+        When both compartment_ocid and compartment_name are not passed, all the compartments are returned
+
+        :param str compartment_ocid: (optional)
+            OCID of the compartment. If None, root compartment is assumed to be parent.
+        :param str parent_compartment_ocid: (optional)
+            OCID of the parent compartment. If None, root compartment is assumed to be parent.
+        :param str compartment_name: (optional)
+            Name of the compartment. If None and :attr:`compartment_ocid` is not set, all the compartments including
+            the root compartment are returned.
+        :param str fetch_hosts_from_subcompartments: (optional)
+            Only applicable when compartment_name or compartment_ocid is specified. When set to true, the entire
+            hierarchy of compartments of the given compartment is returned.
+        :raises ServiceError: When the Service returned an Error response
+        :raises MaximumWaitTimeExceededError: When maximum wait time is exceeded while invoking target_fn
+        :return: list of :class:`~oci.identity.models.Compartment`
+        """
+        if compartment_ocid:
+            return self.get_compartment_including_sub_compartments(
+                compartment_id=compartment_ocid,
+                exclude_compartments=self.exclude_compartments,
+                fetch_child_compartments=fetch_hosts_from_subcompartments,
+            )
+        if compartment_name:
+            return self.get_compartment_from_compartment_name(
+                compartment_name=compartment_name,
+                parent_compartment_ocid=parent_compartment_ocid,
+                fetch_hosts_from_subcompartments=fetch_hosts_from_subcompartments,
+                exclude_compartments=self.exclude_compartments,
+            )
+        # return all the compartments if compartment_name is not passed
+        if not self.params["tenancy"]:
+            raise Exception(
+                "Tenancy OCID required to get the compartments in the tenancy."
+            )
+
+        all_compartments = self.get_compartment_including_sub_compartments(
+            compartment_id=self.params["tenancy"],
+            exclude_compartments=self.exclude_compartments,
+            fetch_child_compartments=True,
+        )
+        return all_compartments
 
     @staticmethod
     def filter_resource(resource, **kwargs):
@@ -904,27 +997,63 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 return False
         return True
 
-    def get_sub_compartments(self, root):
+    def get_compartment_including_sub_compartments(
+        self, compartment_id, exclude_compartments=None, fetch_child_compartments=True
+    ):
         # OCI SDK does not support fetching sub-compartments for non root compartments
         # So traverse the compartment tree to fetch all the sub compartments
         compartments = []
         queue = deque()
-        queue.append(root)
-        while len(queue) > 0:
-            parent_compartment = queue.popleft()
-            compartments.append(parent_compartment)
-            child_compartments = [
-                compartment
-                for compartment in oci_common_utils.list_all_resources(
-                    target_fn=self.identity_client.list_compartments,
-                    compartment_id=parent_compartment.id,
+        try:
+            exclude_compartments = (
+                exclude_compartments if exclude_compartments else dict()
+            )
+            # we should get the sub compartments when the compartment_id is not in exclude_compartments or
+            # when the compartment_id is in exclude_compartments and skip_subcompartments is False
+            if (compartment_id not in exclude_compartments) or (
+                compartment_id in exclude_compartments
+                and not exclude_compartments[compartment_id].get("skip_subcompartments")
+            ):
+                root_compartment = oci_common_utils.call_with_backoff(
+                    self.identity_client.get_compartment, compartment_id=compartment_id,
+                ).data
+                queue.append(root_compartment)
+            while len(queue) > 0:
+                parent_compartment = queue.popleft()
+
+                if parent_compartment.id not in exclude_compartments:
+                    compartments.append(parent_compartment)
+
+                if (
+                    parent_compartment.id not in exclude_compartments
+                    or (
+                        parent_compartment.id in exclude_compartments
+                        and not exclude_compartments[parent_compartment.id].get(
+                            "skip_subcompartments"
+                        )
+                    )
+                ) and fetch_child_compartments:
+                    child_compartments = [
+                        compartment
+                        for compartment in oci_common_utils.list_all_resources(
+                            target_fn=self.identity_client.list_compartments,
+                            compartment_id=parent_compartment.id,
+                            access_level="ACCESSIBLE",
+                        )
+                        if self.filter_resource(
+                            compartment, lifecycle_state=self.LIFECYCLE_ACTIVE_STATE
+                        )
+                    ]
+                    for child_compartment in child_compartments:
+                        queue.append(child_compartment)
+        except ServiceError as se:
+            if se.status == 404:
+                raise Exception(
+                    "Compartment either does not exist or you don't have permission to access it. complete error : {0}".format(
+                        str(se)
+                    )
                 )
-                if self.filter_resource(
-                    compartment, lifecycle_state=self.LIFECYCLE_ACTIVE_STATE
-                )
-            ]
-            for child_compartment in child_compartments:
-                queue.append(child_compartment)
+            raise
         return compartments
 
     def build_inventory_for_instance(self, instance, region):
@@ -1507,10 +1636,11 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             if path.endswith(".oci.yml") or path.endswith(".oci.yaml"):
                 return True
 
-    def _get_query_options(self, config_data):
+    def _process_query_options(self, config_data):
         """
             :param config_data: contents of the inventory config file
             :return A list of regions to query
+                    a list of filters
                     a list of possible hostnames
         """
         options = {
@@ -1518,6 +1648,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "compartments": {
                 "type_to_be": list,
                 "value": config_data.get("compartments", []),
+            },
+            "exclude_compartments": {
+                "type_to_be": list,
+                "value": config_data.get("exclude_compartments", []),
             },
             "filters": {"type_to_be": list, "value": config_data.get("filters", [])},
             "hostnames": {
@@ -1556,6 +1690,31 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 self.compartments_info[it]["fetch_hosts_from_subcompartments"] = item[
                     "fetch_hosts_from_subcompartments"
                 ]
+            it += 1
+
+        self.exclude_compartments_info = dict()
+        it = 0
+        for item in options["exclude_compartments"]["value"]:
+            self.debug("exclude_compartments item: {0}".format(item))
+            self.exclude_compartments_info[it] = dict()
+            if "compartment_ocid" in item:
+                self.exclude_compartments_info[it]["compartment_ocid"] = item[
+                    "compartment_ocid"
+                ]
+            if "parent_compartment_ocid" in item:
+                self.exclude_compartments_info[it]["parent_compartment_ocid"] = item[
+                    "parent_compartment_ocid"
+                ]
+            if "compartment_name" in item:
+                self.exclude_compartments_info[it]["compartment_name"] = item[
+                    "compartment_name"
+                ]
+            if "skip_subcompartments" in item:
+                self.exclude_compartments_info[it]["skip_subcompartments"] = item[
+                    "skip_subcompartments"
+                ]
+            else:
+                self.exclude_compartments_info[it]["skip_subcompartments"] = True
             it += 1
 
         regions = options["regions"]["value"]
@@ -1598,7 +1757,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         return option_value
 
     def parse(self, inventory, loader, path, cache=True):
-
         if not HAS_OCI_PY_SDK:
             raise AnsibleError(
                 "The oci dynamic inventory plugin requires oci python sdk."
@@ -1619,7 +1777,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self._get_key_file()
         self._get_pass_phrase()
 
-        regions, filters, hostnames = self._get_query_options(config_data)
+        regions, filters, hostnames = self._process_query_options(config_data)
 
         self._validate_hostname_format()
         if self.get_option("hostname_format_preferences"):

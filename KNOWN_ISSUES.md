@@ -7,6 +7,11 @@ When using the oci_compute_volume_attachment_facts module, it outputs Linux iscs
 
 This issue is fixed in v2.14.0 but only when fetching getting the of a specific volume attachment using volume_attachment_id. Please check [this](https://github.com/oracle/oci-ansible-collection/issues/15) for more details.
 
+### oci_nosql_table module is not idempotent
+The nosql service may change the user provided ddl_statement to a functinoally equivalent ddl_statement. 
+This can cause future runs of the playbook to fail because the module compares each attribute with existin values and this might cause a mismatch and thus attemps to perform the operation again. 
+For create operation, you can get around this problem by using `key_by` module parameter and not having `ddl_statement` in it.
+
 ## OCI Inventory Plugin
 
 ### fetch_db_host does not work with tag filters

@@ -64,6 +64,13 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+    install_type:
+        description:
+            - A filter to return either agents or gateway types depending upon install type selected by user. By default both install type will be returned.
+        type: str
+        choices:
+            - "AGENT"
+            - "GATEWAY"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -170,6 +177,7 @@ class ManagementAgentImageFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "name",
             "lifecycle_state",
+            "install_type",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -215,6 +223,7 @@ def main():
                     "FAILED",
                 ],
             ),
+            install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),
         )
     )
 

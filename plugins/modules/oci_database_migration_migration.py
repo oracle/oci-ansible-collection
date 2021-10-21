@@ -23,10 +23,9 @@ module: oci_database_migration_migration
 short_description: Manage a Migration resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Migration resource in Oracle Cloud Infrastructure
-    - "For I(state=present), note: Deprecated. Use the new resource model APIs instead.
-      Create a Migration resource that contains all the details to perform the
+    - For I(state=present), create a Migration resource that contains all the details to perform the
       database migration operation, such as source and destination database
-      details, credentials, etc."
+      details, credentials, etc.
     - "This resource has the following action operations in the M(oci_migration_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -93,7 +92,21 @@ options:
                             - Name of database link from OCI database to on-premise database. ODMS will create link, if the link does not already exist.
                             - This parameter is updatable.
                         type: str
-                        required: true
+                    wallet_bucket:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            namespace_name:
+                                description:
+                                    - Namespace name of the object store bucket.
+                                    - This parameter is updatable.
+                                type: str
+                            bucket_name:
+                                description:
+                                    - Bucket name.
+                                    - This parameter is updatable.
+                                type: str
             object_storage_details:
                 description:
                     - ""
@@ -108,6 +121,50 @@ options:
                         description:
                             - Bucket name.
                             - This parameter is updatable.
+                        type: str
+    dump_transfer_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            source:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    kind:
+                        description:
+                            - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            - This parameter is updatable.
+                        type: str
+                        choices:
+                            - "OCI_CLI"
+                            - "CURL"
+                    oci_home:
+                        description:
+                            - Path to the OCI CLI installation in the node.
+                            - This parameter is updatable.
+                            - Required when kind is 'OCI_CLI'
+                        type: str
+            target:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    kind:
+                        description:
+                            - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            - This parameter is updatable.
+                        type: str
+                        choices:
+                            - "OCI_CLI"
+                            - "CURL"
+                    oci_home:
+                        description:
+                            - Path to the OCI CLI installation in the node.
+                            - This parameter is updatable.
+                            - Required when kind is 'OCI_CLI'
                         type: str
     datapump_settings:
         description:
@@ -232,9 +289,25 @@ options:
                             - Absolute path of directory on database server
                             - This parameter is updatable.
                         type: str
+    advisor_settings:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_skip_advisor:
+                description:
+                    - True to skip the Pre-Migration Advisor execution. Default is false.
+                    - This parameter is updatable.
+                type: bool
+            is_ignore_errors:
+                description:
+                    - True to not interrupt migration execution due to Pre-Migration Advisor errors. Default is false.
+                    - This parameter is updatable.
+                type: bool
     exclude_objects:
         description:
-            - Database objects to exclude from migration.
+            - Database objects to exclude from migration, cannot be specified alongside 'includeObjects'
             - This parameter is updatable.
         type: list
         elements: dict
@@ -249,6 +322,33 @@ options:
                     - Name of the object (regular expression is allowed)
                 type: str
                 required: true
+            type:
+                description:
+                    - Type of object to exclude.
+                      If not specified, matching owners and object names of type TABLE would be excluded.
+                type: str
+    include_objects:
+        description:
+            - Database objects to include from migration, cannot be specified alongside 'excludeObjects'
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            owner:
+                description:
+                    - Owner of the object (regular expression is allowed)
+                type: str
+                required: true
+            object_name:
+                description:
+                    - Name of the object (regular expression is allowed)
+                type: str
+                required: true
+            type:
+                description:
+                    - Type of object to exclude.
+                      If not specified, matching owners and object names of type TABLE would be excluded.
+                type: str
     golden_gate_details:
         description:
             - ""
@@ -465,6 +565,9 @@ EXAMPLES = """
     exclude_objects:
     - owner: owner_example
       object_name: object_name_example
+    include_objects:
+    - owner: owner_example
+      object_name: object_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -579,6 +682,24 @@ migration:
                             returned: on success
                             type: str
                             sample: name_example
+                        wallet_bucket:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                namespace_name:
+                                    description:
+                                        - Namespace name of the object store bucket.
+                                    returned: on success
+                                    type: str
+                                    sample: namespace_name_example
+                                bucket_name:
+                                    description:
+                                        - Bucket name.
+                                    returned: on success
+                                    type: str
+                                    sample: bucket_name_example
                 object_storage_details:
                     description:
                         - ""
@@ -597,6 +718,48 @@ migration:
                             returned: on success
                             type: str
                             sample: bucket_name_example
+        dump_transfer_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                source:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            returned: on success
+                            type: str
+                            sample: CURL
+                        oci_home:
+                            description:
+                                - Path to the OCI CLI installation in the node.
+                            returned: on success
+                            type: str
+                            sample: oci_home_example
+                target:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        kind:
+                            description:
+                                - Type of dump transfer to use during migration in source or target host. Default kind is CURL
+                            returned: on success
+                            type: str
+                            sample: CURL
+                        oci_home:
+                            description:
+                                - Path to the OCI CLI installation in the node.
+                            returned: on success
+                            type: str
+                            sample: oci_home_example
         datapump_settings:
             description:
                 - ""
@@ -717,9 +880,28 @@ migration:
                             returned: on success
                             type: str
                             sample: path_example
+        advisor_settings:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_skip_advisor:
+                    description:
+                        - True to skip the Pre-Migration Advisor execution. Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_ignore_errors:
+                    description:
+                        - True to not interrupt migration execution due to Pre-Migration Advisor errors. Default is false.
+                    returned: on success
+                    type: bool
+                    sample: true
         exclude_objects:
             description:
-                - Database objects to exclude from migration.
+                - "Database objects to exclude from migration.
+                  If 'includeObjects' are specified, only exclude object types can be specified with general wildcards (.*) for owner and objectName."
             returned: on success
             type: complex
             contains:
@@ -735,6 +917,38 @@ migration:
                     returned: on success
                     type: str
                     sample: object_name_example
+                type:
+                    description:
+                        - Type of object to exclude.
+                          If not specified, matching owners and object names of type TABLE would be excluded.
+                    returned: on success
+                    type: str
+                    sample: type_example
+        include_objects:
+            description:
+                - Database objects to include from migration.
+            returned: on success
+            type: complex
+            contains:
+                owner:
+                    description:
+                        - Owner of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: owner_example
+                object_name:
+                    description:
+                        - Name of the object (regular expression is allowed)
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                type:
+                    description:
+                        - Type of object to exclude.
+                          If not specified, matching owners and object names of type TABLE would be excluded.
+                    returned: on success
+                    type: str
+                    sample: type_example
         golden_gate_details:
             description:
                 - ""
@@ -966,11 +1180,25 @@ migration:
         "executing_job_id": "ocid1.executingjob.oc1..xxxxxxEXAMPLExxxxxx",
         "data_transfer_medium_details": {
             "database_link_details": {
-                "name": "name_example"
+                "name": "name_example",
+                "wallet_bucket": {
+                    "namespace_name": "namespace_name_example",
+                    "bucket_name": "bucket_name_example"
+                }
             },
             "object_storage_details": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example"
+            }
+        },
+        "dump_transfer_details": {
+            "source": {
+                "kind": "CURL",
+                "oci_home": "oci_home_example"
+            },
+            "target": {
+                "kind": "CURL",
+                "oci_home": "oci_home_example"
             }
         },
         "datapump_settings": {
@@ -997,9 +1225,19 @@ migration:
                 "path": "path_example"
             }
         },
+        "advisor_settings": {
+            "is_skip_advisor": true,
+            "is_ignore_errors": true
+        },
         "exclude_objects": [{
             "owner": "owner_example",
-            "object_name": "object_name_example"
+            "object_name": "object_name_example",
+            "type": "type_example"
+        }],
+        "include_objects": [{
+            "owner": "owner_example",
+            "object_name": "object_name_example",
+            "type": "type_example"
         }],
         "golden_gate_details": {
             "hub": {
@@ -1196,13 +1434,42 @@ def main():
                 type="dict",
                 options=dict(
                     database_link_details=dict(
-                        type="dict", options=dict(name=dict(type="str", required=True))
+                        type="dict",
+                        options=dict(
+                            name=dict(type="str"),
+                            wallet_bucket=dict(
+                                type="dict",
+                                options=dict(
+                                    namespace_name=dict(type="str"),
+                                    bucket_name=dict(type="str"),
+                                ),
+                            ),
+                        ),
                     ),
                     object_storage_details=dict(
                         type="dict",
                         options=dict(
                             namespace_name=dict(type="str"),
                             bucket_name=dict(type="str"),
+                        ),
+                    ),
+                ),
+            ),
+            dump_transfer_details=dict(
+                type="dict",
+                options=dict(
+                    source=dict(
+                        type="dict",
+                        options=dict(
+                            kind=dict(type="str", choices=["OCI_CLI", "CURL"]),
+                            oci_home=dict(type="str"),
+                        ),
+                    ),
+                    target=dict(
+                        type="dict",
+                        options=dict(
+                            kind=dict(type="str", choices=["OCI_CLI", "CURL"]),
+                            oci_home=dict(type="str"),
                         ),
                     ),
                 ),
@@ -1257,12 +1524,29 @@ def main():
                     ),
                 ),
             ),
+            advisor_settings=dict(
+                type="dict",
+                options=dict(
+                    is_skip_advisor=dict(type="bool"),
+                    is_ignore_errors=dict(type="bool"),
+                ),
+            ),
             exclude_objects=dict(
                 type="list",
                 elements="dict",
                 options=dict(
                     owner=dict(type="str", required=True),
                     object_name=dict(type="str", required=True),
+                    type=dict(type="str"),
+                ),
+            ),
+            include_objects=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    owner=dict(type="str", required=True),
+                    object_name=dict(type="str", required=True),
+                    type=dict(type="str"),
                 ),
             ),
             golden_gate_details=dict(

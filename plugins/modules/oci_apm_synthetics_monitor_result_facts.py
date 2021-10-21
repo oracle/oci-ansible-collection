@@ -23,7 +23,7 @@ module: oci_apm_synthetics_monitor_result_facts
 short_description: Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
-    - Gets the results for a specific execution of a monitor identified by OCID. The results are in a HAR file, Screenshot, or Console Log.
+    - Gets the results for a specific execution of a monitor identified by OCID. The results are in a HAR file, Screenshot, Console Log or Network details.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -44,7 +44,7 @@ options:
         required: true
     result_type:
         description:
-            - The result type har or screenshot or log.
+            - The result type har, screenshot, log or network.
         type: str
         required: true
     result_content_type:
@@ -82,7 +82,7 @@ monitor_result:
         result_type:
             description:
                 - "Type of result.
-                  Example: HAR, Screenshot or Log."
+                  Example: HAR, Screenshot, Log or Network."
             returned: on success
             type: str
             sample: result_type_example

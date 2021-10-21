@@ -182,6 +182,54 @@ job:
                             returned: on success
                             type: int
                             sample: 56
+                        is_advisor_report_available:
+                            description:
+                                - True if a Pre-Migration Advisor report is available for this phase. False or null if no report is available.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        extract:
+                            description:
+                                - Summary of phase status results.
+                            returned: on success
+                            type: complex
+                            contains:
+                                type:
+                                    description:
+                                        - Type of extract.
+                                    returned: on success
+                                    type: str
+                                    sample: ERROR
+                                message:
+                                    description:
+                                        - Message in entry.
+                                    returned: on success
+                                    type: str
+                                    sample: message_example
+                        log_location:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                bucket_name:
+                                    description:
+                                        - Name of the bucket containing the log file.
+                                    returned: on success
+                                    type: str
+                                    sample: bucket_name_example
+                                namespace:
+                                    description:
+                                        - Object Storage namespace.
+                                    returned: on success
+                                    type: str
+                                    sample: namespace_example
+                                object_name:
+                                    description:
+                                        - Log object name.
+                                    returned: on success
+                                    type: str
+                                    sample: object_name_example
                         progress:
                             description:
                                 - Percent progress of job phase.
@@ -260,6 +308,16 @@ job:
                 "name": "ODMS_VALIDATE_TGT",
                 "status": "PENDING",
                 "duration_in_ms": 56,
+                "is_advisor_report_available": true,
+                "extract": [{
+                    "type": "ERROR",
+                    "message": "message_example"
+                }],
+                "log_location": {
+                    "bucket_name": "bucket_name_example",
+                    "namespace": "namespace_example",
+                    "object_name": "object_name_example"
+                },
                 "progress": 56
             }]
         },

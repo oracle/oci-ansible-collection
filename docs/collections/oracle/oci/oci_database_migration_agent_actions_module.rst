@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_agent_actions -- Perform actions on an Agent r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Perform actions on an Agent resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, note: Deprecated. Use the new resource model APIs instead. Used to configure an ODMS Agent Compartment ID.
+- For *action=change_compartment*, used to configure an ODMS Agent Compartment ID.
 
 
 .. Aliases

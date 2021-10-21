@@ -23,8 +23,7 @@ module: oci_database_migration_agent_facts
 short_description: Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Agent resources in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
-      Display the name of all the existing ODMS Agents in the server."
+    - Display the name of all the existing ODMS Agents in the server.
     - If I(agent_id) is specified, the details of a single Agent will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

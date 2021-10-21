@@ -23,8 +23,7 @@ module: oci_database_migration_agent_image_facts
 short_description: Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
-      Get details of the ODMS Agent Images available to install on-premises."
+    - Get details of the ODMS Agent Images available to install on-premises.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -432,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Monitor resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;auth_token&#x27;: &#x27;token&#x27;, &#x27;auth_url&#x27;: &#x27;https://www.example.com/token&#x27;, &#x27;auth_user_name&#x27;: &#x27;user&#x27;, &#x27;auth_user_password&#x27;: &#x27;password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;NONE&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;sortOrder&#x27;, &#x27;param_value&#x27;: &#x27;asc&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;^searchText*&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;searchString&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva&#x27;, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 600, &#x27;script_id&#x27;: &#x27;ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq&#x27;, &#x27;script_name&#x27;: &#x27;testScript&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: False, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;testName&#x27;, &#x27;param_value&#x27;: &#x27;openPageMonitor&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;https://www.oracle.com/index.html&#x27;, &#x27;time_created&#x27;: &#x27;2020-02-12T22:47:12.613Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-02-13T22:47:12.613Z&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 2, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;name&#x27;: &#x27;us_phoenix&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;auth_token&#x27;: &#x27;token&#x27;, &#x27;auth_url&#x27;: &#x27;https://www.example.com/token&#x27;, &#x27;auth_user_name&#x27;: &#x27;user&#x27;, &#x27;auth_user_password&#x27;: &#x27;password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;NONE&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;content-type&#x27;, &#x27;header_value&#x27;: &#x27;json&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;openPageMonitor&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;sortOrder&#x27;, &#x27;param_value&#x27;: &#x27;asc&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;^searchText*&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;searchString&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva&#x27;, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 600, &#x27;script_id&#x27;: &#x27;ocid1.apmsyntheticscript.oc1.phx.aaaaaaaanmvshzvtvvv7uh43f73f37wytshyh46zj2hinnavme6xzbfiw7tq&#x27;, &#x27;script_name&#x27;: &#x27;testScript&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: False, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;testName&#x27;, &#x27;param_value&#x27;: &#x27;openPageMonitor&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;https://www.oracle.com/index.html&#x27;, &#x27;time_created&#x27;: &#x27;2020-02-12T22:47:12.613Z&#x27;, &#x27;time_updated&#x27;: &#x27;2020-02-13T22:47:12.613Z&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 2, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;name&#x27;: &#x27;us_phoenix&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -527,6 +527,124 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration"></div>
+                    <b>network_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                    </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration/number_of_hops"></div>
+                    <b>number_of_hops</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration/number_of_hops" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Number of hops.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration/probe_mode"></div>
+                    <b>probe_mode</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration/probe_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of probe mode when TCP protocol is selected.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SACK</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration/probe_per_hop"></div>
+                    <b>probe_per_hop</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration/probe_per_hop" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Number of probes per hop.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration/protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration/protocol" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of protocol.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TCP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/network_configuration/transmission_rate"></div>
+                    <b>transmission_rate</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/network_configuration/transmission_rate" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Number of probe packets sent out simultaneously.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1064,6 +1182,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.apmsyntheticmonitor.oc1.phx.aaaaaaaaztadaitwuj3z2w6txyrqo5khbrkbank5avu7t3jglkbux3aifhva</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/is_run_once"></div>
+                    <b>is_run_once</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/is_run_once" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If runOnce is enabled, then the monitor will run once.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

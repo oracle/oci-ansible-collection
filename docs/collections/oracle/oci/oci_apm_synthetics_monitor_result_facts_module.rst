@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor_result_facts -- Fetches details about a Mo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
-- Gets the results for a specific execution of a monitor identified by OCID. The results are in a HAR file, Screenshot, or Console Log.
+- Gets the results for a specific execution of a monitor identified by OCID. The results are in a HAR file, Screenshot, Console Log or Network details.
 
 
 .. Aliases
@@ -280,7 +280,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The result type har or screenshot or log.</div>
+                                            <div>The result type har, screenshot, log or network.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -544,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of result. Example: HAR, Screenshot or Log.</div>
+                                            <div>Type of result. Example: HAR, Screenshot, Log or Network.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">result_type_example</div>

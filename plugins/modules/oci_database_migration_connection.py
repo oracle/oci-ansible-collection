@@ -23,9 +23,8 @@ module: oci_database_migration_connection
 short_description: Manage a Connection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
-    - "For I(state=present), note: Deprecated. Use the new resource model APIs instead.
-      Create a Database Connection resource that contains the details to connect to either a Source or Target Database
-      in the migration."
+    - For I(state=present), create a Database Connection resource that contains the details to connect to either a Source or Target Database
+      in the migration.
     - "This resource has the following action operations in the M(oci_connection_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)

@@ -92,6 +92,13 @@ options:
         description:
             - true, if the agent image is manually downloaded and installed. false, if the agent is deployed as a plugin in Oracle Cloud Agent.
         type: bool
+    install_type:
+        description:
+            - A filter to return either agents or gateway types depending upon install type selected by user. By default both install type will be returned.
+        type: str
+        choices:
+            - "AGENT"
+            - "GATEWAY"
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -175,6 +182,16 @@ management_agents:
             returned: on success
             type: str
             sample: version_example
+        resource_artifact_version:
+            description:
+                - Version of the deployment artifact instantiated by this Management Agent.
+                  The format for Standalone resourceMode is YYMMDD.HHMM, and the format for other modes
+                  (whose artifacts are based upon Standalone but can advance independently)
+                  is YYMMDD.HHMM.VVVVVVVVVVVV.
+                  VVVVVVVVVVVV is always a numeric value between 000000000000 and 999999999999
+            returned: on success
+            type: str
+            sample: resource_artifact_version_example
         host:
             description:
                 - Management Agent host machine name
@@ -237,7 +254,8 @@ management_agents:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
-                - true if the agent can be upgraded automatically; false if it must be upgraded manually.
+                - true if the agent can be upgraded automatically; false if it must be upgraded manually. This flag is derived from the tenancy level auto
+                  upgrade preference.
             returned: on success
             type: bool
             sample: true
@@ -285,6 +303,12 @@ management_agents:
             returned: on success
             type: bool
             sample: true
+        install_type:
+            description:
+                - The install type, either AGENT or GATEWAY
+            returned: on success
+            type: str
+            sample: AGENT
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -307,6 +331,7 @@ management_agents:
         "platform_name": "platform_name_example",
         "platform_version": "platform_version_example",
         "version": "version_example",
+        "resource_artifact_version": "resource_artifact_version_example",
         "host": "host_example",
         "host_id": "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx",
         "install_path": "install_path_example",
@@ -326,6 +351,7 @@ management_agents:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "is_customer_deployed": true,
+        "install_type": "AGENT",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
@@ -375,6 +401,7 @@ class ManagementAgentFactsHelperGen(OCIResourceFactsHelperBase):
             "host_id",
             "platform_type",
             "is_customer_deployed",
+            "install_type",
             "sort_order",
             "sort_by",
         ]
@@ -429,6 +456,7 @@ def main():
                 type="list", elements="str", choices=["LINUX", "WINDOWS"]
             ),
             is_customer_deployed=dict(type="bool"),
+            install_type=dict(type="str", choices=["AGENT", "GATEWAY"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(
                 type="str",
