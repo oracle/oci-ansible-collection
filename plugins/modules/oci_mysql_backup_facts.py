@@ -67,6 +67,7 @@ options:
         choices:
             - "MANUAL"
             - "AUTOMATIC"
+            - "OPERATOR"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Time fields are default ordered as descending.
@@ -159,7 +160,7 @@ backups:
             sample: FULL
         creation_type:
             description:
-                - If the backup was created automatically, or by a manual request.
+                - "Indicates how the backup was created: manually, automatic, or by an Operator."
             returned: on success
             type: str
             sample: MANUAL
@@ -604,7 +605,7 @@ def main():
             ),
             db_system_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            creation_type=dict(type="str", choices=["MANUAL", "AUTOMATIC"]),
+            creation_type=dict(type="str", choices=["MANUAL", "AUTOMATIC", "OPERATOR"]),
             sort_by=dict(
                 type="str", choices=["timeCreated", "timeUpdated", "displayName"]
             ),

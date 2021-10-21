@@ -34,13 +34,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The OCID of the compartment.
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable.
-        type: str
     display_name:
         description:
             - ODMS Agent name
@@ -75,6 +68,12 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    compartment_id:
+        description:
+            - The ID of the compartment in which to list resources.
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     state:
         description:
             - The state of the Agent.
@@ -90,18 +89,18 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_agent:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
     public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     version: version_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update agent
   oci_database_migration_agent:
     agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
 - name: Delete agent
   oci_database_migration_agent:
@@ -110,8 +109,8 @@ EXAMPLES = """
 
 - name: Delete agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_agent:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -338,13 +337,13 @@ def main():
     module_args.update(
         dict(
             agent_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             stream_id=dict(type="str"),
             public_key=dict(type="str"),
             version=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

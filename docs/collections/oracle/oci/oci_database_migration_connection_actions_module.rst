@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_connection_actions -- Perform actions on a Con
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Connection resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, note: Deprecated. Use the new resource model APIs instead. Used to change the Database Connection compartment.
+- For *action=change_compartment*, used to change the Database Connection compartment.
 
 
 .. Aliases

@@ -121,7 +121,7 @@ backup:
             sample: FULL
         creation_type:
             description:
-                - If the backup was created automatically, or by a manual request.
+                - "Indicates how the backup was created: manually, automatic, or by an Operator."
             returned: on success
             type: str
             sample: MANUAL

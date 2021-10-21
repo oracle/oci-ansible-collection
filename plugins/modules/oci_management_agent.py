@@ -34,11 +34,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    is_agent_auto_upgradable:
-        description:
-            - Setting of this flag is no longer supported.
-            - This parameter is updatable.
-        type: bool
     display_name:
         description:
             - New displayName of Agent.
@@ -79,7 +74,6 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 EXAMPLES = """
 - name: Update management_agent using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_management_agent:
-    is_agent_auto_upgradable: true
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -88,7 +82,7 @@ EXAMPLES = """
 - name: Update management_agent
   oci_management_agent:
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-    is_agent_auto_upgradable: true
+    display_name: display_name_example
 
 - name: Delete management_agent
   oci_management_agent:
@@ -152,6 +146,16 @@ management_agent:
             returned: on success
             type: str
             sample: version_example
+        resource_artifact_version:
+            description:
+                - Version of the deployment artifact instantiated by this Management Agent.
+                  The format for Standalone resourceMode is YYMMDD.HHMM, and the format for other modes
+                  (whose artifacts are based upon Standalone but can advance independently)
+                  is YYMMDD.HHMM.VVVVVVVVVVVV.
+                  VVVVVVVVVVVV is always a numeric value between 000000000000 and 999999999999
+            returned: on success
+            type: str
+            sample: resource_artifact_version_example
         host:
             description:
                 - Management Agent host machine name
@@ -214,7 +218,8 @@ management_agent:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         is_agent_auto_upgradable:
             description:
-                - true if the agent can be upgraded automatically; false if it must be upgraded manually.
+                - true if the agent can be upgraded automatically; false if it must be upgraded manually. This flag is derived from the tenancy level auto
+                  upgrade preference.
             returned: on success
             type: bool
             sample: true
@@ -262,6 +267,12 @@ management_agent:
             returned: on success
             type: bool
             sample: true
+        install_type:
+            description:
+                - The install type, either AGENT or GATEWAY
+            returned: on success
+            type: str
+            sample: AGENT
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -284,6 +295,7 @@ management_agent:
         "platform_name": "platform_name_example",
         "platform_version": "platform_version_example",
         "version": "version_example",
+        "resource_artifact_version": "resource_artifact_version_example",
         "host": "host_example",
         "host_id": "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx",
         "install_path": "install_path_example",
@@ -303,6 +315,7 @@ management_agent:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "is_customer_deployed": true,
+        "install_type": "AGENT",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -431,7 +444,6 @@ def main():
     module_args.update(
         dict(
             management_agent_id=dict(aliases=["id"], type="str"),
-            is_agent_auto_upgradable=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

@@ -23,8 +23,7 @@ module: oci_database_migration_job_content_facts
 short_description: Fetches details about a JobContent resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a JobContent resource in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
-      Get the migration Job Output content as a String."
+    - Get the migration Job Output content as a String.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

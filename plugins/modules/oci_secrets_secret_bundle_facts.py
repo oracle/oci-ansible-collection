@@ -28,10 +28,19 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    secret_name:
+        description:
+            - A user-friendly name for the secret. Secret names are unique within a vault. Secret names are case-sensitive.
+        type: str
+        required: true
+    vault_id:
+        description:
+            - The OCID of the vault that contains the secret
+        type: str
+        required: true
     secret_id:
         description:
             - The OCID of the secret.
-            - Required to get a specific secret_bundle.
         type: str
         aliases: ["id"]
     version_number:
@@ -52,23 +61,12 @@ options:
             - "LATEST"
             - "PREVIOUS"
             - "DEPRECATED"
-    secret_name:
-        description:
-            - A user-friendly name for the secret. Secret names are unique within a vault. Secret names are case-sensitive.
-            - Required to get a specific secret_bundle.
-        type: str
-    vault_id:
-        description:
-            - The OCID of the vault that contains the secret
-            - Required to get a specific secret_bundle.
-        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
 - name: Get a specific secret_bundle
   oci_secrets_secret_bundle_facts:
-    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     secret_name: SecretForIntegrationTests
     vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
 
@@ -219,6 +217,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            secret_name=dict(type="str", required=True),
+            vault_id=dict(type="str", required=True),
             secret_id=dict(aliases=["id"], type="str"),
             version_number=dict(type="int"),
             secret_version_name=dict(type="str"),
@@ -226,8 +226,6 @@ def main():
                 type="str",
                 choices=["CURRENT", "PENDING", "LATEST", "PREVIOUS", "DEPRECATED"],
             ),
-            secret_name=dict(type="str"),
-            vault_id=dict(type="str"),
         )
     )
 

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_backup -- Manage a DeploymentBackup resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -54,7 +54,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a DeploymentBackup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new DeploymentBackup.
-- This resource has the following action operations in the :ref:`oci_deployment_backup_actions <ansible_collections.oci_deployment_backup_actions_module>` module: change_compartment, restore_deployment.
+- This resource has the following action operations in the :ref:`oci_deployment_backup_actions <ansible_collections.oci_deployment_backup_actions_module>` module: cancel, change_compartment, restore_deployment.
 
 
 .. Aliases

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_database_registration_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -261,6 +261,11 @@ Parameters
                                                                                                                                                                                                 <li>DELETING</li>
                                                                                                                                                                                                 <li>DELETED</li>
                                                                                                                                                                                                 <li>FAILED</li>
+                                                                                                                                                                                                <li>NEEDS_ATTENTION</li>
+                                                                                                                                                                                                <li>IN_PROGRESS</li>
+                                                                                                                                                                                                <li>CANCELING</li>
+                                                                                                                                                                                                <li>CANCELED</li>
+                                                                                                                                                                                                <li>SUCCEEDED</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

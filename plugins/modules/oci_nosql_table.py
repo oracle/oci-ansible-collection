@@ -44,14 +44,7 @@ options:
         type: str
     ddl_statement:
         description:
-            - When creating a table this is the complete CREATE TABLE DDL statement.
-            - When updating a table this is the complete ALTER TABLE DDL statement.
-            - Note that UPDATEs for this field are not idempotent, any UPDATE will be retried against the service and may fail if the alteration has been
-              performed previously
-            - Also note that on creation, the nosql service may change the user provided ddl_statement to a functinoally equivalent ddl_statement. This can
-              cause future runs of the playbook to fail because the module will attempt to update the ddl_statement due to the mismatch between the user
-              provided value and the, not identical, but functionally equivalent service value.  The best way to prevent this is by copying the service
-              table.ddl_statement value into your playbook post creation so that the playbook value matches the service value.
+            - Complete CREATE TABLE DDL statement.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str

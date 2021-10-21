@@ -70,6 +70,12 @@ management_agent_plugin_counts:
                     returned: on success
                     type: str
                     sample: plugin_name_example
+                plugin_display_name:
+                    description:
+                        - Management Agent Plugin Display Name
+                    returned: on success
+                    type: str
+                    sample: plugin_display_name_example
         count:
             description:
                 - The number of Management Agent Plugins in this group
@@ -78,7 +84,8 @@ management_agent_plugin_counts:
             sample: 56
     sample: [{
         "dimensions": {
-            "plugin_name": "plugin_name_example"
+            "plugin_name": "plugin_name_example",
+            "plugin_display_name": "plugin_display_name_example"
         },
         "count": 56
     }]

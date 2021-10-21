@@ -130,3 +130,17 @@ class LogAnalyticsEntityTypeHelperCustom:
     def delete_resource(self):
         super(LogAnalyticsEntityTypeHelperCustom, self).delete_resource()
         return self.get_resource().data
+
+
+class LogAnalyticsObjectCollectionRuleHelperCustom:
+    # If is_enabled = false, Resource goes in INACTIVE state. After performing update operation,
+    # we currently wait for only ACTIVE state and FAILED state. Adding INACTIVE state as a wait state.
+    def get_wait_for_states_for_operation(self, operation):
+        if operation == oci_common_utils.UPDATE_OPERATION_KEY:
+            wait_for_states = self.get_resource_active_states()
+            wait_for_states.append("INACTIVE")
+            return wait_for_states
+        else:
+            return super(
+                LogAnalyticsObjectCollectionRuleHelperCustom, self
+            ).get_wait_for_states_for_operation(operation)

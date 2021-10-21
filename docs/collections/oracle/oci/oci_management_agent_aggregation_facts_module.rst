@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_aggregation_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -249,6 +249,25 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-install_type"></div>
+                    <b>install_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-install_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>AGENT</li>
+                                                                                                                                                                                                <li>GATEWAY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return either agents or gateway types depending upon install type selected by user. By default both install type will be returned.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -341,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementAgentAggregation resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;count&#x27;: 56, &#x27;dimensions&#x27;: {&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;has_plugins&#x27;: True, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;count&#x27;: 56, &#x27;dimensions&#x27;: {&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;has_plugins&#x27;: True, &#x27;install_type&#x27;: &#x27;AGENT&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -414,6 +433,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_aggregations/dimensions/install_type"></div>
+                    <b>install_type</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_aggregations/dimensions/install_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The install type, either AGENT or GATEWAY</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AGENT</div>
                                     </td>
             </tr>
                                 <tr>

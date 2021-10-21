@@ -23,6 +23,7 @@ module: oci_golden_gate_deployment_backup_actions
 short_description: Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
+    - For I(action=cancel), cancels a Deployment Backup creation process.
     - For I(action=change_compartment), moves a DeploymentBackup into a different compartment within the same tenancy.  When provided, If-Match is checked
       against ETag values of the resource.  For information about moving resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
@@ -36,30 +37,37 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    type:
+        description:
+            - The type of a deployment backup cancel
+            - Required for I(action=cancel), I(action=restore_deployment).
+        type: str
+        choices:
+            - "DEFAULT"
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             - Required for I(action=change_compartment).
         type: str
-    type:
-        description:
-            - The type of a deployment restore
-            - Required for I(action=restore_deployment).
-        type: str
-        choices:
-            - "DEFAULT"
     action:
         description:
             - The action to perform on the DeploymentBackup.
         type: str
         required: true
         choices:
+            - "cancel"
             - "change_compartment"
             - "restore_deployment"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action cancel on deployment_backup
+  oci_golden_gate_deployment_backup_actions:
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+    type: DEFAULT
+    action: cancel
+
 - name: Perform action change_compartment on deployment_backup
   oci_golden_gate_deployment_backup_actions:
     deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
@@ -231,6 +239,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.golden_gate import GoldenGateClient
+    from oci.golden_gate.models import CancelDeploymentBackupDetails
     from oci.golden_gate.models import ChangeDeploymentBackupCompartmentDetails
     from oci.golden_gate.models import RestoreDeploymentDetails
 
@@ -242,6 +251,7 @@ except ImportError:
 class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        cancel
         change_compartment
         restore_deployment
     """
@@ -260,6 +270,27 @@ class DeploymentBackupActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_deployment_backup,
             deployment_backup_id=self.module.params.get("deployment_backup_id"),
+        )
+
+    def cancel(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CancelDeploymentBackupDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.cancel_deployment_backup,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_backup_id=self.module.params.get("deployment_backup_id"),
+                cancel_deployment_backup_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_compartment(self):
@@ -325,12 +356,12 @@ def main():
     module_args.update(
         dict(
             deployment_backup_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str"),
             type=dict(type="str", choices=["DEFAULT"]),
+            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["change_compartment", "restore_deployment"],
+                choices=["cancel", "change_compartment", "restore_deployment"],
             ),
         )
     )

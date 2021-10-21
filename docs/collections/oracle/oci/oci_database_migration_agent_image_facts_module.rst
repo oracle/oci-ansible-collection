@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_agent_image_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AgentImage resources in Oracle Cloud Infrastructure
-- Note: Deprecated. Use the new resource model APIs instead. Get details of the ODMS Agent Images available to install on-premises.
+- Get details of the ODMS Agent Images available to install on-premises.
 
 
 .. Aliases

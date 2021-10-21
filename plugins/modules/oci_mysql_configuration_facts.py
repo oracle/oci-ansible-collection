@@ -283,10 +283,40 @@ configurations:
                     sample: true
                 binlog_expire_logs_seconds:
                     description:
-                        - "(\\"binlog_expire_logs_seconds\\") DEPRECATED -- variable should not be settable and will be ignored"
+                        - Sets the binary log expiration period in seconds.
+                          binlogExpireLogsSeconds corresponds to the MySQL binary logging system variable
+                          L(binlog_expire_logs_seconds,https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-
+                          log.html#sysvar_binlog_expire_logs_seconds).
                     returned: on success
                     type: int
                     sample: 56
+                binlog_row_metadata:
+                    description:
+                        - Configures the amount of table metadata added to the binary log when using row-based logging.
+                          binlogRowMetadata corresponds to the MySQL binary logging system variable
+                          L(binlog_row_metadata,https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_binlog_row_metadata).
+                    returned: on success
+                    type: str
+                    sample: FULL
+                binlog_row_value_options:
+                    description:
+                        - When set to PARTIAL_JSON, this enables use of a space-efficient binary log format for updates that modify only a small portion of a
+                          JSON document.
+                          binlogRowValueOptions corresponds to the MySQL binary logging system variable
+                          L(binlog_row_value_options,https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-
+                          log.html#sysvar_binlog_row_value_options).
+                    returned: on success
+                    type: str
+                    sample: binlog_row_value_options_example
+                binlog_transaction_compression:
+                    description:
+                        - Enables compression for transactions that are written to binary log files on this server.
+                          binlogTransactionCompression corresponds to the MySQL binary logging system variable
+                          L(binlog_transaction_compression,https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-
+                          log.html#sysvar_binlog_transaction_compression).
+                    returned: on success
+                    type: bool
+                    sample: true
                 innodb_buffer_pool_size:
                     description:
                         - "(\\"innodb_buffer_pool_size\\")"
@@ -551,6 +581,9 @@ configurations:
             "sql_require_primary_key": true,
             "sql_warnings": true,
             "binlog_expire_logs_seconds": 56,
+            "binlog_row_metadata": "FULL",
+            "binlog_row_value_options": "binlog_row_value_options_example",
+            "binlog_transaction_compression": true,
             "innodb_buffer_pool_size": 56,
             "innodb_ft_result_cache_limit": 56,
             "max_connections": 56,

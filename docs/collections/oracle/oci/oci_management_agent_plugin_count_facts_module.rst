@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_plugin_count_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -321,7 +321,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementAgentPluginCount resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;count&#x27;: 56, &#x27;dimensions&#x27;: {&#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;count&#x27;: 56, &#x27;dimensions&#x27;: {&#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -359,6 +359,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_plugin_counts/dimensions/plugin_display_name"></div>
+                    <b>plugin_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_plugin_counts/dimensions/plugin_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Management Agent Plugin Display Name</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">

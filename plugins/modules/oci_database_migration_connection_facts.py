@@ -23,8 +23,7 @@ module: oci_database_migration_connection_facts
 short_description: Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
-    - "Note: Deprecated. Use the new resource model APIs instead.
-      List all Database Connections."
+    - List all Database Connections.
     - If I(connection_id) is specified, the details of a single Connection will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

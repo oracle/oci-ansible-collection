@@ -198,7 +198,7 @@ EXAMPLES = """
   oci_database_external_database_connector:
     connection_credentials:
       username: "testUser"
-      password: "greatPassword2"
+      password: "example-password"
       role: "SYSDBA"
 
 - name: Update external_database_connector

@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_job_content_facts -- Fetches details about a J
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - Fetches details about a JobContent resource in Oracle Cloud Infrastructure
-- Note: Deprecated. Use the new resource model APIs instead. Get the migration Job Output content as a String.
+- Get the migration Job Output content as a String.
 
 
 .. Aliases

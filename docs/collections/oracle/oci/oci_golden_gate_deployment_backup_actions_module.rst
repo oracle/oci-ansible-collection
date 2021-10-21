@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_backup_actions -- Perform actions on a Dep
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,6 +53,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
+- For *action=cancel*, cancels a Deployment Backup creation process.
 - For *action=change_compartment*, moves a DeploymentBackup into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.  For information about moving resources between compartments, see `Moving Resources Between Compartments <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=restore_deployment*, restores a Deployment from a Deployment Backup created from the same Deployment.
 
@@ -94,7 +95,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                <li>cancel</li>
+                                                                                                                                                                                                <li>change_compartment</li>
                                                                                                                                                                                                 <li>restore_deployment</li>
                                                                                     </ul>
                                                                             </td>
@@ -290,8 +292,8 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of a deployment restore</div>
-                                            <div>Required for <em>action=restore_deployment</em>.</div>
+                                            <div>The type of a deployment backup cancel</div>
+                                            <div>Required for <em>action=cancel</em>, <em>action=restore_deployment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -353,6 +355,12 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action cancel on deployment_backup
+      oci_golden_gate_deployment_backup_actions:
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
+        type: DEFAULT
+        action: cancel
+
     - name: Perform action change_compartment on deployment_backup
       oci_golden_gate_deployment_backup_actions:
         deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"

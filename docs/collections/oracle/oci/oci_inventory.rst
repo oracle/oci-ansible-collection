@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -510,6 +510,100 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_compartments"></div>
+                    <b>exclude_compartments</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_compartments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>A dictionary of compartment identifier to filter the compartments from which  hosts should be listed from. This config parameter is optional. Suboption is not considered when both compartment_ocid, compartment_name are None</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_compartments/compartment_name"></div>
+                    <b>compartment_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_compartments/compartment_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>Name of the compartment. If None and `compartment_ocid` is not set, this option is not considered for filtering the compartments. If both compartment_ocid and compartment_name are passed, compartment_ocid is considered</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_compartments/compartment_ocid"></div>
+                    <b>compartment_ocid</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_compartments/compartment_ocid" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>OCID of the compartment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_compartments/parent_compartment_ocid"></div>
+                    <b>parent_compartment_ocid</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_compartments/parent_compartment_ocid" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>This option is not needed when the compartment_ocid option is used, it is needed when compartment_name is used. OCID of the parent compartment. If None, root compartment is assumed to be parent.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_compartments/skip_subcompartments"></div>
+                    <b>skip_subcompartments</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_compartments/skip_subcompartments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                    <td>
+                                                                                                                    </td>
+                                                <td>
+                                            <div>Flag used to skip the sub-compartments. Default value is set to True</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-exclude_host_filters"></div>
                     <b>exclude_host_filters</b>
                     <a class="ansibleOptionLink" href="#parameter-exclude_host_filters" title="Permalink to this option"></a>
@@ -938,6 +1032,15 @@ Examples
 
     # Process only the primary vnic of a compute instance
     primary_vnic_only: True
+
+    # Select compartment by ocid or name
+    exclude_compartments:
+      - compartment_ocid: ocid1.compartment.oc1..xxxxxx
+        skip_subcompartments: false
+
+      - compartment_name: "test_skip_compartment"
+        parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
+
 
 
 

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.33.0] - 2021-10-20
+
+## Added
+- Support for excluding compartments from which hosts should be listed from
+- Support for list and read DeploymentUpgrade, cancel and restore DeploymentBackup in the Golden Gate service
+- Support for the run-once monitor feature and network data collection in the Application Performance Monitoring service
+- Support new response value "OPERATOR" for backup creationType in list and get MDS backup api for Mysql.
+- Support for `object_collection_rule` and `scheduled_task` for LogAnalytics service.
+- Support for `get-auto-upgradable-config` and Additional `install-type` parameter added to List Management Agents, Images and Count operations for Management Agent service.
+- Support for uploading Datapump logs into Object Storage bucket, and filtering Database Objects in the Database Migration service.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.48.0
+
+### Breaking
+- Param `is_agent_auto_upgradable` is removed from Management Agent Service.
+
+
 ## [2.32.0] - 2021-10-07
 
 ## Added

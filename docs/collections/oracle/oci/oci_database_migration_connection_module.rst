@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_connection -- Manage a Connection resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.32.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Connection resource in Oracle Cloud Infrastructure
-- For *state=present*, note: Deprecated. Use the new resource model APIs instead. Create a Database Connection resource that contains the details to connect to either a Source or Target Database in the migration.
+- For *state=present*, create a Database Connection resource that contains the details to connect to either a Source or Target Database in the migration.
 - This resource has the following action operations in the :ref:`oci_connection_actions <ansible_collections.oci_connection_actions_module>` module: change_compartment.
 
 

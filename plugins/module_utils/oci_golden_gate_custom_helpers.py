@@ -51,3 +51,21 @@ class DatabaseRegistrationHelperCustom:
         return super(DatabaseRegistrationHelperCustom, self).is_update_necessary(
             existing_resource_dict
         )
+
+
+class DeploymentBackupActionsHelperCustom:
+
+    CANCEL_ACTION_KEY = "cancel"
+    BACKUP_CANCELLED_STATUS = ["CANCELED", "CANCELING"]
+
+    def is_cancel_necessary(self, resource):
+        if getattr(resource, "lifecycle_state", None) in self.BACKUP_CANCELLED_STATUS:
+            return False
+        return True
+
+    def is_action_necessary(self, action, resource=None):
+        if action.lower() == self.CANCEL_ACTION_KEY:
+            return self.is_cancel_necessary(resource)
+        return super(DeploymentBackupActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
