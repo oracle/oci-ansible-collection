@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -865,6 +865,24 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-db_home/database/sid_prefix"></div>
+                    <b>sid_prefix</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_home/database/sid_prefix" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies a prefix for the `Oracle SID` of the database to be created.</div>
+                                            <div>Applicable when source is one of [&#x27;NONE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-db_home/database/tde_wallet_password"></div>
                     <b>tde_wallet_password</b>
                     <a class="ansibleOptionLink" href="#parameter-db_home/database/tde_wallet_password" title="Permalink to this option"></a>
@@ -912,7 +930,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The database software image <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>.</div>
-                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                            <div>Applicable when source is one of [&#x27;NONE&#x27;, &#x27;DB_BACKUP&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>

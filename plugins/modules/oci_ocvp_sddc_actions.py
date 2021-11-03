@@ -23,11 +23,15 @@ module: oci_ocvp_sddc_actions
 short_description: Perform actions on a Sddc resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Sddc resource in Oracle Cloud Infrastructure
-    - For I(action=cancel_downgrade_hcx), cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced
+    - For I(action=cancel_downgrade_hcx), cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced.
     - For I(action=change_compartment), moves an SDDC into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
-    - For I(action=downgrade_hcx), downgrade the specified SDDC from HCX Enterprise to HCX Advanced
+    - For I(action=downgrade_hcx), downgrade the specified SDDC from HCX Enterprise to HCX Advanced.
+      Downgrading from HCX Enterprise to HCX Advanced reduces the number of provided license keys from 10 to 3.
+      Downgrade remains in a `PENDING` state until the end of the current billing cycle. You can use L(cancelDowngradeHcx,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/vmware/20200501/Sddc/CancelDowngradeHcx/)
+      to cancel the downgrade while it's still in a `PENDING` state.
     - For I(action=refresh_hcx_license_status), refresh HCX on-premise licenses status of the specified SDDC.
     - For I(action=upgrade_hcx), upgrade the specified SDDC from HCX Advanced to HCX Enterprise.
 version_added: "2.9.0"
@@ -47,7 +51,7 @@ options:
         type: str
     reserving_hcx_on_premise_license_keys:
         description:
-            - The HCX on-premise licenses keys to be reserved when downgrade from HCX Enterprise to HCX Advanced.
+            - The HCX on-premise license keys to be reserved when downgrading from HCX Enterprise to HCX Advanced.
             - Required for I(action=downgrade_hcx).
         type: list
         elements: str
@@ -164,10 +168,8 @@ sddc:
             sample: 56
         initial_sku:
             description:
-                - "Billing option selected during SDDC creation.
-                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
-                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+                - The billing option selected during SDDC creation.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             returned: on success
             type: str
             sample: HOUR
@@ -447,8 +449,9 @@ sddc:
             sample: true
         hcx_on_prem_key:
             description:
-                - The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
-                  Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.
+                - The activation keys to use on the on-premises HCX Enterprise appliances you site pair with HCX Manager in your VMware Solution.
+                  The number of keys provided depends on the HCX license type. HCX Advanced provides 3 activation keys.
+                  HCX Enterprise provides 10 activation keys.
             returned: on success
             type: str
             sample: hcx_on_prem_key_example
@@ -472,13 +475,13 @@ sddc:
             contains:
                 activation_key:
                     description:
-                        - HCX on-premise license key value
+                        - HCX on-premise license key value.
                     returned: on success
                     type: str
                     sample: activation_key_example
                 status:
                     description:
-                        - status of HCX on-premise license
+                        - status of HCX on-premise license.
                     returned: on success
                     type: str
                     sample: AVAILABLE

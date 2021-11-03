@@ -30,7 +30,7 @@ oracle.oci.oci_database_external_database_connector -- Manage an ExternalDatabas
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -688,7 +688,7 @@ Examples
           protocol: "TCP"
         connection_credentials:
           username: "testUser"
-          password: "greatPassword"
+          password: "example-password"
           role: "SYSDBA"
         connector_type: "MACS"
         connector_agent_id: "ocid"

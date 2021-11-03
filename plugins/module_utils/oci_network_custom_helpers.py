@@ -607,14 +607,12 @@ def patch_base_client_call_api(client):
 
     def call_api(*args, **kwargs):
         header_params = kwargs.pop("header_params", {})
-        logger.debug(header_params)
         for header_key in header_params:
             if (
                 header_key == "accept"
                 and header_params[header_key] == "text/plain; charset&#x3D;utf-8"
             ):
                 header_params[header_key] = "*/*"
-        logger.debug(header_params)
         return original_call_api(*args, header_params=header_params, **kwargs)
 
     client.base_client.call_api = call_api
@@ -787,15 +785,9 @@ class DrgRouteDistributionStatementsActionsHelperCustom:
 
     def is_action_necessary(self, action, resource=None):
         existing_statements = to_dict(resource or self.get_resource().data)
-        logger.debug("Existing statements: {0}".format(existing_statements))
         if action == self.ADD_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY:
             if not self.module.params.get("statements"):
                 return False
-            logger.debug(
-                "Original statements to add: {0}".format(
-                    self.module.params.get("statements")
-                )
-            )
             action_details = oci_common_utils.convert_input_data_to_model_class(
                 self.module.params, AddDrgRouteDistributionStatementsDetails
             )
@@ -804,7 +796,6 @@ class DrgRouteDistributionStatementsActionsHelperCustom:
             for statement in statements:
                 if not oci_common_utils.is_in_list(existing_statements, statement):
                     statements_to_add.append(statement)
-            logger.debug("Statements to add: {0}".format(statements_to_add))
             if statements_to_add:
                 self.module.params["statements"] = statements_to_add
                 return True
@@ -812,11 +803,6 @@ class DrgRouteDistributionStatementsActionsHelperCustom:
         elif action == self.UPDATE_DRG_ROUTE_DISTRIBUTION_STATEMENTS_KEY:
             if not self.module.params.get("statements"):
                 return False
-            logger.debug(
-                "Original statements to update: {0}".format(
-                    self.module.params.get("statements")
-                )
-            )
             action_details = oci_common_utils.convert_input_data_to_model_class(
                 self.module.params, UpdateDrgRouteDistributionStatementsDetails
             )
@@ -835,7 +821,6 @@ class DrgRouteDistributionStatementsActionsHelperCustom:
                     )
                 if not oci_common_utils.compare_dicts(statement, existing_statement):
                     statements_to_update.append(statement)
-            logger.debug("Statements to update: {0}".format(statements_to_update))
             if statements_to_update:
                 self.module.params["statements"] = statements_to_update
                 return True
@@ -848,12 +833,10 @@ class DrgRouteDistributionStatementsActionsHelperCustom:
                 existing_statement.get("id")
                 for existing_statement in existing_statements
             ]
-            logger.debug("Original statement_ids to remove: {0}".format(statement_ids))
             statement_ids_to_remove = []
             for statement_id in statement_ids:
                 if statement_id in existing_statement_ids:
                     statement_ids_to_remove.append(statement_id)
-            logger.debug("statement_ids to remove: {0}".format(statement_ids_to_remove))
             if statement_ids_to_remove:
                 self.module.params["statement_ids"] = statement_ids_to_remove
                 return True
@@ -892,15 +875,9 @@ class DrgRouteRulesActionsHelperCustom:
 
     def is_action_necessary(self, action, resource=None):
         existing_route_rules = to_dict(resource or self.get_resource().data)
-        logger.debug("Existing rules: {0}".format(existing_route_rules))
         if action == self.ADD_KEY:
             if not self.module.params.get("route_rules"):
                 return False
-            logger.debug(
-                "Original route rules to add: {0}".format(
-                    self.module.params.get("route_rules")
-                )
-            )
             action_details = oci_common_utils.convert_input_data_to_model_class(
                 self.module.params, AddDrgRouteRulesDetails
             )
@@ -909,7 +886,6 @@ class DrgRouteRulesActionsHelperCustom:
             for route_rule in route_rules:
                 if not oci_common_utils.is_in_list(existing_route_rules, route_rule):
                     route_rules_to_add.append(route_rule)
-            logger.debug("Route rules to add: {0}".format(route_rules_to_add))
             if route_rules_to_add:
                 self.module.params["route_rules"] = route_rules_to_add
                 return True
@@ -917,11 +893,6 @@ class DrgRouteRulesActionsHelperCustom:
         elif action == self.UPDATE_KEY:
             if not self.module.params.get("route_rules"):
                 return False
-            logger.debug(
-                "Original route rules to update: {0}".format(
-                    self.module.params.get("route_rules")
-                )
-            )
             action_details = oci_common_utils.convert_input_data_to_model_class(
                 self.module.params, UpdateDrgRouteRulesDetails
             )
@@ -940,7 +911,6 @@ class DrgRouteRulesActionsHelperCustom:
                     )
                 if not oci_common_utils.compare_dicts(route_rule, existing_route_rule):
                     route_rules_to_update.append(route_rule)
-            logger.debug("Route rules to update: {0}".format(route_rules_to_update))
             if route_rules_to_update:
                 self.module.params["route_rules"] = route_rules_to_update
                 return True
@@ -953,16 +923,10 @@ class DrgRouteRulesActionsHelperCustom:
                 existing_route_rule.get("id")
                 for existing_route_rule in existing_route_rules
             ]
-            logger.debug(
-                "Original route_rule_ids to remove: {0}".format(route_rule_ids)
-            )
             route_rule_ids_to_remove = []
             for route_rule_id in route_rule_ids:
                 if route_rule_id in existing_route_rule_ids:
                     route_rule_ids_to_remove.append(route_rule_id)
-            logger.debug(
-                "route_rule_ids to remove: {0}".format(route_rule_ids_to_remove)
-            )
             if route_rule_ids_to_remove:
                 self.module.params["route_rule_ids"] = route_rule_ids_to_remove
                 return True

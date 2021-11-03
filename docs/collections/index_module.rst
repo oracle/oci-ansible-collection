@@ -52,6 +52,8 @@ oracle.oci
 * :ref:`oracle.oci.oci_apigateway_sdk_language_type_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_language_type_facts_module>` -- Fetches details about one or multiple SdkLanguageType resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apigateway_waas_certificate <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_module>` -- Manage a WaasCertificate resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apigateway_waas_certificate_facts <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_facts_module>` -- Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_apm_config_config <ansible_collections.oracle.oci.oci_apm_config_config_module>` -- Manage a Config resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_apm_config_config_facts <ansible_collections.oracle.oci.oci_apm_config_config_facts_module>` -- Fetches details about one or multiple Config resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apm_control_plane_apm_domain <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_module>` -- Manage an ApmDomain resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apm_control_plane_apm_domain_actions <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_actions_module>` -- Perform actions on an ApmDomain resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_apm_control_plane_apm_domain_facts <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_facts_module>` -- Fetches details about one or multiple ApmDomain resources in Oracle Cloud Infrastructure
@@ -260,6 +262,10 @@ oracle.oci
 * :ref:`oracle.oci.oci_data_integration_workspace <ansible_collections.oracle.oci.oci_data_integration_workspace_module>` -- Manage a Workspace resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_integration_workspace_actions <ansible_collections.oracle.oci.oci_data_integration_workspace_actions_module>` -- Perform actions on a Workspace resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_integration_workspace_facts <ansible_collections.oracle.oci.oci_data_integration_workspace_facts_module>` -- Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_labeling_service_annotation_format_facts <ansible_collections.oracle.oci.oci_data_labeling_service_annotation_format_facts_module>` -- Fetches details about one or multiple AnnotationFormat resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_labeling_service_dataset <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_module>` -- Manage a Dataset resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_labeling_service_dataset_actions <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_actions_module>` -- Perform actions on a Dataset resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_data_labeling_service_dataset_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_facts_module>` -- Fetches details about one or multiple Dataset resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_configuration <ansible_collections.oracle.oci.oci_data_safe_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_configuration_facts <ansible_collections.oracle.oci.oci_data_safe_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_data_safe_on_prem_connector <ansible_collections.oracle.oci.oci_data_safe_on_prem_connector_module>` -- Manage an OnPremConnector resource in Oracle Cloud Infrastructure
@@ -350,6 +356,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_db_home_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_db_home_patch_history_entry_facts_module>` -- Fetches details about one or multiple DbHomePatchHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_db_node_actions <ansible_collections.oracle.oci.oci_database_db_node_actions_module>` -- Perform actions on a DbNode resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_db_node_facts <ansible_collections.oracle.oci.oci_database_db_node_facts_module>` -- Fetches details about one or multiple DbNode resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_db_server_facts <ansible_collections.oracle.oci.oci_database_db_server_facts_module>` -- Fetches details about one or multiple DbServer resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_db_system <ansible_collections.oracle.oci.oci_database_db_system_module>` -- Manage a DbSystem resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_db_system_actions <ansible_collections.oracle.oci.oci_database_db_system_actions_module>` -- Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_db_system_facts <ansible_collections.oracle.oci.oci_database_db_system_facts_module>` -- Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
@@ -428,6 +435,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_database_migration_migration <ansible_collections.oracle.oci.oci_database_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_actions <ansible_collections.oracle.oci.oci_database_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_migration_migration_facts <ansible_collections.oracle.oci.oci_database_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_database_pdb_conversion_history_entry_facts <ansible_collections.oracle.oci.oci_database_pdb_conversion_history_entry_facts_module>` -- Fetches details about one or multiple PdbConversionHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pluggable_database <ansible_collections.oracle.oci.oci_database_pluggable_database_module>` -- Manage a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` -- Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_database_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_pluggable_database_facts_module>` -- Fetches details about one or multiple PluggableDatabase resources in Oracle Cloud Infrastructure
@@ -664,6 +672,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_log_analytics_entity_summary_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_summary_facts_module>` -- Fetches details about a LogAnalyticsEntitySummary resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_type <ansible_collections.oracle.oci.oci_log_analytics_entity_type_module>` -- Manage a LogAnalyticsEntityType resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_entity_type_facts <ansible_collections.oracle.oci.oci_log_analytics_entity_type_facts_module>` -- Fetches details about one or multiple LogAnalyticsEntityType resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_log_analytics_import_custom_content_actions <ansible_collections.oracle.oci.oci_log_analytics_import_custom_content_actions_module>` -- Perform actions on an ImportCustomContent resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_log_group <ansible_collections.oracle.oci.oci_log_analytics_log_group_module>` -- Manage a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_log_group_actions <ansible_collections.oracle.oci.oci_log_analytics_log_group_actions_module>` -- Perform actions on a LogAnalyticsLogGroup resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_log_analytics_log_group_facts <ansible_collections.oracle.oci.oci_log_analytics_log_group_facts_module>` -- Fetches details about one or multiple LogAnalyticsLogGroup resources in Oracle Cloud Infrastructure
@@ -926,6 +935,7 @@ oracle.oci
 * :ref:`oracle.oci.oci_ons_notification_topic <ansible_collections.oracle.oci.oci_ons_notification_topic_module>` -- Manage a NotificationTopic resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ons_notification_topic_actions <ansible_collections.oracle.oci.oci_ons_notification_topic_actions_module>` -- Perform actions on a NotificationTopic resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ons_notification_topic_facts <ansible_collections.oracle.oci.oci_ons_notification_topic_facts_module>` -- Fetches details about one or multiple NotificationTopic resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_ons_publish_result <ansible_collections.oracle.oci.oci_ons_publish_result_module>` -- Manage a PublishResult resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ons_subscription <ansible_collections.oracle.oci.oci_ons_subscription_module>` -- Manage a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ons_subscription_actions <ansible_collections.oracle.oci.oci_ons_subscription_actions_module>` -- Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_ons_subscription_confirmation_facts <ansible_collections.oracle.oci.oci_ons_subscription_confirmation_facts_module>` -- Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
@@ -1134,4 +1144,15 @@ oracle.oci
 * :ref:`oracle.oci.oci_waas_waf_traffic_datum_facts <ansible_collections.oracle.oci.oci_waas_waf_traffic_datum_facts_module>` -- Fetches details about one or multiple WafTrafficDatum resources in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_waas_whitelists <ansible_collections.oracle.oci.oci_waas_whitelists_module>` -- Manage a Whitelists resource in Oracle Cloud Infrastructure
 * :ref:`oracle.oci.oci_waas_whitelists_facts <ansible_collections.oracle.oci.oci_waas_whitelists_facts_module>` -- Fetches details about one or multiple Whitelists resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_network_address_list <ansible_collections.oracle.oci.oci_waf_network_address_list_module>` -- Manage a NetworkAddressList resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_network_address_list_actions <ansible_collections.oracle.oci.oci_waf_network_address_list_actions_module>` -- Perform actions on a NetworkAddressList resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_network_address_list_facts <ansible_collections.oracle.oci.oci_waf_network_address_list_facts_module>` -- Fetches details about one or multiple NetworkAddressList resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_protection_capability_facts <ansible_collections.oracle.oci.oci_waf_protection_capability_facts_module>` -- Fetches details about one or multiple ProtectionCapability resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_protection_capability_group_tag_facts <ansible_collections.oracle.oci.oci_waf_protection_capability_group_tag_facts_module>` -- Fetches details about one or multiple ProtectionCapabilityGroupTag resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall <ansible_collections.oracle.oci.oci_waf_web_app_firewall_module>` -- Manage a WebAppFirewall resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall_actions <ansible_collections.oracle.oci.oci_waf_web_app_firewall_actions_module>` -- Perform actions on a WebAppFirewall resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall_facts <ansible_collections.oracle.oci.oci_waf_web_app_firewall_facts_module>` -- Fetches details about one or multiple WebAppFirewall resources in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall_policy <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_module>` -- Manage a WebAppFirewallPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall_policy_actions <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_actions_module>` -- Perform actions on a WebAppFirewallPolicy resource in Oracle Cloud Infrastructure
+* :ref:`oracle.oci.oci_waf_web_app_firewall_policy_facts <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_facts_module>` -- Fetches details about one or multiple WebAppFirewallPolicy resources in Oracle Cloud Infrastructure
 

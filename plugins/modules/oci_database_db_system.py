@@ -270,7 +270,7 @@ options:
             database_software_image_id:
                 description:
                     - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-                    - Applicable when source is 'NONE'
+                    - Applicable when source is one of ['NONE', 'DB_BACKUP']
                 type: str
             database:
                 description:
@@ -437,6 +437,11 @@ options:
                               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                             - Applicable when source is one of ['DB_SYSTEM', 'NONE']
                         type: dict
+                    sid_prefix:
+                        description:
+                            - Specifies a prefix for the `Oracle SID` of the database to be created.
+                            - Applicable when source is one of ['NONE', 'DB_BACKUP']
+                        type: str
                     db_domain:
                         description:
                             - The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network
@@ -1459,6 +1464,7 @@ def main():
                             ),
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
+                            sid_prefix=dict(type="str"),
                             db_domain=dict(type="str"),
                             database_id=dict(type="str"),
                             backup_tde_password=dict(type="str", no_log=True),

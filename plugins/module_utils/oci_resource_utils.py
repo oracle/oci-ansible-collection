@@ -14,9 +14,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_custom_helpers_utils,
 )
 
-from ansible_collections.oracle.oci.plugins.module_utils.oci_common_utils import (
-    pretty_print_json,
-)
 
 import os
 
@@ -722,24 +719,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 resource
             )
 
-            _debug(
-                "Comparing create model dict values {0} against an existing resource's "
-                "values {1}".format(
-                    pretty_print_json(create_model_dict),
-                    pretty_print_json(resource_dict),
-                )
-            )
-
             if oci_common_utils.compare_dicts(
                 source_dict=create_model_dict,
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
             ):
-                _debug(
-                    "Resource with same attributes found: {0}.".format(
-                        pretty_print_json(resource_dict)
-                    )
-                )
+                _debug("Resource with same attributes found.")
 
                 return resource
 
@@ -759,9 +744,8 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             resource_matched = self.get_matching_resource()
             if resource_matched:
                 _debug(
-                    "found matching {resource_type} resource: {resource_dict}".format(
+                    "found matching {resource_type}".format(
                         resource_type=self.get_response_field_name(),
-                        resource_dict=to_dict(resource_matched),
                     )
                 )
             else:

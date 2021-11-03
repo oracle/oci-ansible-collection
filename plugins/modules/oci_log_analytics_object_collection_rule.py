@@ -120,6 +120,14 @@ options:
               Supported matchType for override are \\"contains\\"."
             - This parameter is updatable.
         type: dict
+    object_name_filters:
+        description:
+            - "When the filters are provided, only the objects matching the filters are picked up for processing.
+              The matchType supported is exact match and accommodates wildcard \\"*\\".
+              For more information on filters, see L(Event Filters,https://docs.oracle.com/en-us/iaas/Content/Events/Concepts/filterevents.htm)."
+            - This parameter is updatable.
+        type: list
+        elements: str
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -329,6 +337,14 @@ log_analytics_object_collection_rule:
             returned: on success
             type: bool
             sample: true
+        object_name_filters:
+            description:
+                - "When the filters are provided, only the objects matching the filters are picked up for processing.
+                  The matchType supported is exact match and accommodates wildcard \\"*\\".
+                  For more information on filters, see L(Event Filters,https://docs.oracle.com/en-us/iaas/Content/Events/Concepts/filterevents.htm)."
+            returned: on success
+            type: list
+            sample: []
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -363,6 +379,7 @@ log_analytics_object_collection_rule:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "is_enabled": true,
+        "object_name_filters": [],
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "freeform_tags": {'Department': 'Finance'}
     }
@@ -547,6 +564,7 @@ def main():
             char_encoding=dict(type="str"),
             is_enabled=dict(type="bool"),
             overrides=dict(type="dict"),
+            object_name_filters=dict(type="list", elements="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             log_analytics_object_collection_rule_id=dict(aliases=["id"], type="str"),

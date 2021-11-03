@@ -881,6 +881,41 @@ class CloudVmClusterHelperCustom:
         ]
 
 
+class VmClusterActionsHelperCustom:
+    ADD_VIRTUAL_MACHINE_ACTION = "add_virtual_machine"
+    REMOVE_VIRTUAL_MACHINE_ACTION = "remove_virtual_machine"
+
+    def is_action_necessary(self, action, resource=None):
+        resource_dict = to_dict(resource)
+        if action.lower() == self.ADD_VIRTUAL_MACHINE_ACTION:
+            db_servers_list = self.module.params.get("db_servers")
+            source_list = [item.get("db_server_id") for item in db_servers_list]
+            target_list = resource_dict.get("db_servers")
+            if all(
+                [
+                    oci_common_utils.is_in_list(target_list, element)
+                    for element in source_list
+                ]
+            ):
+                return False
+            return True
+        elif action.lower() == self.REMOVE_VIRTUAL_MACHINE_ACTION:
+            db_servers_list = self.module.params.get("db_servers")
+            source_list = [item.get("db_server_id") for item in db_servers_list]
+            target_list = resource_dict.get("db_servers")
+            if any(
+                [
+                    oci_common_utils.is_in_list(target_list, element)
+                    for element in source_list
+                ]
+            ):
+                return True
+            return False
+        return super(VmClusterActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )
+
+
 class CloudVmClusterIormConfigHelperCustom:
     def is_update_necessary(self, existing_resource_dict):
         existing_db_plans_list = existing_resource_dict["db_plans"]
@@ -1116,3 +1151,21 @@ class PluggableDatabaseActionsHelperCustom:
         return super(PluggableDatabaseActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
+
+
+class AutonomousDatabaseHelperCustom:
+    def get_create_model(self):
+        source = self.module.params.get("source")
+        if source == "BACKUP_FROM_TIMESTAMP":
+            source_autonomous_database_id = self.module.params.get(
+                "source_autonomous_database_id",
+            )
+            create_model = super(
+                AutonomousDatabaseHelperCustom, self
+            ).get_create_model()
+            setattr(
+                create_model, "autonomous_database_id", source_autonomous_database_id
+            )
+            return create_model
+
+        return super(AutonomousDatabaseHelperCustom, self).get_create_model()

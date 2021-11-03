@@ -1,0 +1,12 @@
+---
+- name: Get namespace name
+  hosts: AnsibleIntegrationTestCompartment1
+  collections:
+    - oracle.oci
+  tasks:
+    - name: Get namespace name
+      oci_object_storage_namespace_facts:
+      register: output
+    - name: Print namespace name
+      debug:
+        msg: "{{ output }}"

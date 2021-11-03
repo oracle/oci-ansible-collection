@@ -151,6 +151,12 @@ customer_secret_key:
             returned: on success
             type: int
             sample: 56
+        key:
+            description:
+                - The secret key. Key will be returned only for create operation.
+            returned: on success
+            type: str
+            sample: example-key
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
@@ -158,7 +164,8 @@ customer_secret_key:
         "time_created": "2016-08-25T21:10:29.600Z",
         "time_expires": "2016-08-25T21:10:29.600Z",
         "lifecycle_state": "CREATING",
-        "inactive_status": 56
+        "inactive_status": 56,
+        "key": "example-key"
     }
 """
 

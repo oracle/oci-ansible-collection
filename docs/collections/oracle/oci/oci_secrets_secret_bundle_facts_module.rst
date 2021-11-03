@@ -30,7 +30,7 @@ oracle.oci.oci_secrets_secret_bundle_facts -- Fetches details about a SecretBund
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -231,7 +231,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-secret_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -298,7 +298,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-vault_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -348,8 +348,6 @@ Examples
     
     - name: Get a specific secret_bundle
       oci_secrets_secret_bundle_facts:
-        secret_name: SecretForIntegrationTests
-        vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
 
 
 

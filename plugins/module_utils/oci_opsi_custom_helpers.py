@@ -88,7 +88,6 @@ class ResourceStatisticsFactsHelperCustom:
             resource_metric=self.module.params.get("resource_metric"),
             **optional_kwargs
         ):
-            _debug("Response is " + str(response.data))
             resourceStatisticsAggregationCollection.resource_metric = (
                 response.data.resource_metric
             )

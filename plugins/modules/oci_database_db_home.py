@@ -110,6 +110,11 @@ options:
                     - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     - Required when source is one of ['VM_CLUSTER_BACKUP', 'DB_BACKUP']
                 type: str
+            sid_prefix:
+                description:
+                    - Specifies a prefix for the `Oracle SID` of the database to be created.
+                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW', 'NONE', 'DB_BACKUP']
+                type: str
             database_software_image_id:
                 description:
                     - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
@@ -649,6 +654,7 @@ def main():
                     db_name=dict(type="str"),
                     time_stamp_for_point_in_time_recovery=dict(type="str"),
                     backup_id=dict(type="str"),
+                    sid_prefix=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
                     tde_wallet_password=dict(type="str", no_log=True),

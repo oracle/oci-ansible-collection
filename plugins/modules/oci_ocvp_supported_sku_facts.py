@@ -23,8 +23,7 @@ module: oci_ocvp_supported_sku_facts
 short_description: Fetches details about one or multiple SupportedSku resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple SupportedSku resources in Oracle Cloud Infrastructure
-    - "Lists supported SKUs. Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
-      HOUR, MONTH, ONE_YEAR, and THREE_YEARS."
+    - Lists supported SKUs.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

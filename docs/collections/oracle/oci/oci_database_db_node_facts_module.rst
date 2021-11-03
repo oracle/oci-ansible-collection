@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_node_facts -- Fetches details about one or multiple D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -229,6 +229,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_server_id"></div>
+                    <b>db_server_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_server_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Exacc Db server.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-db_system_id"></div>
                     <b>db_system_id</b>
                     <a class="ansibleOptionLink" href="#parameter-db_system_id" title="Permalink to this option"></a>
@@ -418,7 +433,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbNode resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: &#x27;additional_details_example&#x27;, &#x27;backup_ip_id&#x27;: &#x27;ocid1.backupip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;backup_vnic2_id&#x27;: &#x27;ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;backup_vnic_id&#x27;: &#x27;ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;host_ip_id&#x27;: &#x27;ocid1.hostip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_type&#x27;: &#x27;VMDB_REBOOT_MIGRATION&#x27;, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;software_storage_size_in_gb&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_window_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_window_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vnic2_id&#x27;: &#x27;ocid1.vnic2.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_details&#x27;: &#x27;additional_details_example&#x27;, &#x27;backup_ip_id&#x27;: &#x27;ocid1.backupip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;backup_vnic2_id&#x27;: &#x27;ocid1.backupvnic2.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;backup_vnic_id&#x27;: &#x27;ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_server_id&#x27;: &#x27;ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domain&#x27;: &#x27;fault_domain_example&#x27;, &#x27;host_ip_id&#x27;: &#x27;ocid1.hostip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_type&#x27;: &#x27;VMDB_REBOOT_MIGRATION&#x27;, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;primary_private_ip&#x27;: &#x27;10.0.0.10&#x27;, &#x27;primary_public_ip&#x27;: &#x27;140.34.93.209&#x27;, &#x27;software_storage_size_in_gb&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_window_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_window_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vnic2_id&#x27;: &#x27;ocid1.vnic2.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vnic_id&#x27;: &#x27;ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -493,6 +508,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.backupvnic.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_nodes/cpu_core_count"></div>
+                    <b>cpu_core_count</b>
+                    <a class="ansibleOptionLink" href="#return-db_nodes/cpu_core_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of CPU cores enabled on the Db node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_nodes/db_node_storage_size_in_gbs"></div>
+                    <b>db_node_storage_size_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_nodes/db_node_storage_size_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The allocated local node storage in GBs on the Db node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_nodes/db_server_id"></div>
+                    <b>db_server_id</b>
+                    <a class="ansibleOptionLink" href="#return-db_nodes/db_server_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Exacc Db server associated with the database node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -620,6 +689,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VMDB_REBOOT_MIGRATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_nodes/memory_size_in_gbs"></div>
+                    <b>memory_size_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-db_nodes/memory_size_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The allocated memory in GBs on the Db node.</div>
+                                        <br/>
+                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

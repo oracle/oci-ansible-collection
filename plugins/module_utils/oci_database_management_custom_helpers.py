@@ -213,11 +213,6 @@ class ManagedDatabaseGroupActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         managed_dbs_list = getattr(resource, "managed_databases", None) or []
-        _debug(
-            "MDB Resource details {0} {1} {2}".format(
-                managed_dbs_list, action, self.module.params.get("managed_database_id")
-            )
-        )
         if action == "add_managed_database":
             if managed_dbs_list:
                 managed_db_ids = [

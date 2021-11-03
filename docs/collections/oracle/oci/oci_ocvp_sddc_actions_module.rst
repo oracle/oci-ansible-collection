@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_sddc_actions -- Perform actions on a Sddc resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,9 +53,9 @@ Synopsis
 .. Description
 
 - Perform actions on a Sddc resource in Oracle Cloud Infrastructure
-- For *action=cancel_downgrade_hcx*, cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced
+- For *action=cancel_downgrade_hcx*, cancel the pending SDDC downgrade from HCX Enterprise to HCX Advanced.
 - For *action=change_compartment*, moves an SDDC into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
-- For *action=downgrade_hcx*, downgrade the specified SDDC from HCX Enterprise to HCX Advanced
+- For *action=downgrade_hcx*, downgrade the specified SDDC from HCX Enterprise to HCX Advanced. Downgrading from HCX Enterprise to HCX Advanced reduces the number of provided license keys from 10 to 3. Downgrade remains in a `PENDING` state until the end of the current billing cycle. You can use `cancelDowngradeHcx <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/vmware/20200501/Sddc/CancelDowngradeHcx/>`_ to cancel the downgrade while it's still in a `PENDING` state.
 - For *action=refresh_hcx_license_status*, refresh HCX on-premise licenses status of the specified SDDC.
 - For *action=upgrade_hcx*, upgrade the specified SDDC from HCX Advanced to HCX Enterprise.
 
@@ -262,7 +262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The HCX on-premise licenses keys to be reserved when downgrade from HCX Enterprise to HCX Advanced.</div>
+                                            <div>The HCX on-premise license keys to be reserved when downgrading from HCX Enterprise to HCX Advanced.</div>
                                             <div>Required for <em>action=downgrade_hcx</em>.</div>
                                                         </td>
             </tr>
@@ -580,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution. Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.</div>
+                                            <div>The activation keys to use on the on-premises HCX Enterprise appliances you site pair with HCX Manager in your VMware Solution. The number of keys provided depends on the HCX license type. HCX Advanced provides 3 activation keys. HCX Enterprise provides 10 activation keys.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hcx_on_prem_key_example</div>
@@ -615,7 +615,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HCX on-premise license key value</div>
+                                            <div>HCX on-premise license key value.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">activation_key_example</div>
@@ -634,7 +634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>status of HCX on-premise license</div>
+                                            <div>status of HCX on-premise license.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AVAILABLE</div>
@@ -728,7 +728,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Billing option selected during SDDC creation. Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs: HOUR, MONTH, ONE_YEAR, and THREE_YEARS. <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus'>ListSupportedSkus</a>.</div>
+                                            <div>The billing option selected during SDDC creation. <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus'>ListSupportedSkus</a>.</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HOUR</div>

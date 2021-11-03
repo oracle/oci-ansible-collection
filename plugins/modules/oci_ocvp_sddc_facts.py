@@ -166,10 +166,8 @@ sddcs:
             sample: 56
         initial_sku:
             description:
-                - "Billing option selected during SDDC creation.
-                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
-                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+                - The billing option selected during SDDC creation.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             returned: on success
             type: str
             sample: HOUR
@@ -449,8 +447,9 @@ sddcs:
             sample: true
         hcx_on_prem_key:
             description:
-                - The activation key to use on the on-premises HCX Enterprise appliance you site pair with HCX Manager in your VMware Solution.
-                  Your implementation might need more than one activation key. To obtain additional keys, contact Oracle Support.
+                - The activation keys to use on the on-premises HCX Enterprise appliances you site pair with HCX Manager in your VMware Solution.
+                  The number of keys provided depends on the HCX license type. HCX Advanced provides 3 activation keys.
+                  HCX Enterprise provides 10 activation keys.
             returned: on success
             type: str
             sample: hcx_on_prem_key_example
@@ -474,13 +473,13 @@ sddcs:
             contains:
                 activation_key:
                     description:
-                        - HCX on-premise license key value
+                        - HCX on-premise license key value.
                     returned: on success
                     type: str
                     sample: activation_key_example
                 status:
                     description:
-                        - status of HCX on-premise license
+                        - status of HCX on-premise license.
                     returned: on success
                     type: str
                     sample: AVAILABLE

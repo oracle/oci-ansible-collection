@@ -188,7 +188,7 @@ EXAMPLES = """
       protocol: "TCP"
     connection_credentials:
       username: "testUser"
-      password: "greatPassword"
+      password: "example-password"
       role: "SYSDBA"
     connector_type: "MACS"
     connector_agent_id: "ocid"

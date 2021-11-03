@@ -10,12 +10,6 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
-try:
-    from oci.util import to_dict
-
-    HAS_OCI_PY_SDK = True
-except ImportError:
-    HAS_OCI_PY_SDK = False
 
 logger = oci_common_utils.get_logger("oci_blockchain_custom_helpers")
 
@@ -74,10 +68,8 @@ class BlockchainPlatformOsnHelperCustom:
         # Create operation waits on work request and does not return the identifier of the osn created. So we will
         # have to compare before and after to fetch the newly created osn
         before_osns = self.list_resources()
-        _debug("Osns before create: {0}".format(to_dict(before_osns)))
         super(BlockchainPlatformOsnHelperCustom, self).create_resource()
         after_osns = self.list_resources()
-        _debug("Osns after create: {0}".format(to_dict(after_osns)))
         created_osn = difference(after_osns, before_osns, key="osn_key")
         if not created_osn or len(created_osn) > 1:
             self.module.fail_json(msg="Error fetching the created Osn resource.")
@@ -117,10 +109,8 @@ class BlockchainPlatformPeerHelperCustom:
         # Create operation waits on work request and does not return the identifier of the osn created. So we will
         # have to compare before and after to fetch the newly created osn
         before_peers = self.list_resources()
-        _debug("Peers before create: {0}".format(to_dict(before_peers)))
         super(BlockchainPlatformPeerHelperCustom, self).create_resource()
         after_peers = self.list_resources()
-        _debug("Peers after create: {0}".format(to_dict(after_peers)))
         created_peer = difference(after_peers, before_peers, key="peer_key")
         if not created_peer or len(created_peer) > 1:
             self.module.fail_json(msg="Error fetching the created Peer resource.")
