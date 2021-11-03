@@ -24,7 +24,8 @@ short_description: Manage a VmCluster resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates an Exadata Cloud@Customer VM cluster.
-    - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oci_vm_cluster_actions) module: add_virtual_machine, change_compartment,
+      remove_virtual_machine."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -107,6 +108,11 @@ options:
             - The Oracle Grid Infrastructure software version for the VM cluster.
             - Required for create using I(state=present).
         type: str
+    db_servers:
+        description:
+            - The list of Db server.
+        type: list
+        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -186,13 +192,23 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create vm_cluster
   oci_database_vm_cluster:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
-    exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    cpu_core_count: 10
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
-    gi_version: gi_version_example
+    display_name: "vmCluster"
+    compartment_id: "ocid1.tenancy.oc1.unique_ID"
+    exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
+    vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
+    cpu_core_count: "4"
+    memory_size_in_gbs: "30"
+    db_node_storage_size_in_gbs: "60"
+    data_storage_size_in_tbs: "84"
+    ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    license_model: "LICENSE_INCLUDED"
+    is_sparse_diskgroup_enabled: "false"
+    is_local_backup_enabled: "true"
+    time_zone: "PST"
+    gi_version: "19.1.0.0"
+    db_servers:
+    - "ocid1.dbserver.oc1.<example_unique_ID>"
+    - "ocid1.dbserver.oc1.<example_unique_ID>"
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -209,8 +225,8 @@ EXAMPLES = """
 
 - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
+    compartment_id: ocid1.tenancy.oc1.unique_ID
+    display_name: vmCluster
     state: absent
 
 """
@@ -351,6 +367,12 @@ vm_cluster:
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
+        db_servers:
+            description:
+                - The list of Db server.
+            returned: on success
+            type: list
+            sample: []
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -388,6 +410,7 @@ vm_cluster:
         "system_version": "system_version_example",
         "ssh_public_keys": [ ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz... ],
         "license_model": "LICENSE_INCLUDED",
+        "db_servers": [],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -552,6 +575,7 @@ def main():
             is_local_backup_enabled=dict(type="bool"),
             time_zone=dict(type="str"),
             gi_version=dict(type="str"),
+            db_servers=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             vm_cluster_id=dict(aliases=["id"], type="str"),

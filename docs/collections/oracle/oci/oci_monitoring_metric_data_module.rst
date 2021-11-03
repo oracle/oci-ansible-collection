@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

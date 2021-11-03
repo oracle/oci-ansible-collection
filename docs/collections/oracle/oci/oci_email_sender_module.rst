@@ -30,7 +30,7 @@ oracle.oci.oci_email_sender -- Manage a Sender resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 

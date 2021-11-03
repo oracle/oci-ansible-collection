@@ -32,12 +32,10 @@ options:
         description:
             - A user-friendly name for the secret. Secret names are unique within a vault. Secret names are case-sensitive.
         type: str
-        required: true
     vault_id:
         description:
             - The OCID of the vault that contains the secret
         type: str
-        required: true
     secret_id:
         description:
             - The OCID of the secret.
@@ -67,8 +65,6 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 EXAMPLES = """
 - name: Get a specific secret_bundle
   oci_secrets_secret_bundle_facts:
-    secret_name: SecretForIntegrationTests
-    vault_id: ocid1.vault.oc1.iad.xxxxxxEXAMPLExxxxxx
 
 """
 
@@ -217,8 +213,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            secret_name=dict(type="str", required=True),
-            vault_id=dict(type="str", required=True),
+            secret_name=dict(type="str"),
+            vault_id=dict(type="str"),
             secret_id=dict(aliases=["id"], type="str"),
             version_number=dict(type="int"),
             secret_version_name=dict(type="str"),

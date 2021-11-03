@@ -453,6 +453,12 @@ database:
             returned: on success
             type: str
             sample: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cdb:
+            description:
+                - True if the database is a container database.
+            returned: on success
+            type: bool
+            sample: true
         database_management_config:
             description:
                 - ""
@@ -471,6 +477,12 @@ database:
                     returned: on success
                     type: str
                     sample: BASIC
+        sid_prefix:
+            description:
+                - Specifies a prefix for the `Oracle SID` of the database to be created.
+            returned: on success
+            type: str
+            sample: sid_prefix_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -509,10 +521,12 @@ database:
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cdb": true,
         "database_management_config": {
             "management_status": "ENABLING",
             "management_type": "BASIC"
-        }
+        },
+        "sid_prefix": "sid_prefix_example"
     }
 """
 

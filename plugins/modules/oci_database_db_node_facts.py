@@ -75,6 +75,10 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAILED"
+    db_server_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exacc Db server.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -202,6 +206,30 @@ db_nodes:
             returned: on success
             type: str
             sample: additional_details_example
+        cpu_core_count:
+            description:
+                - The number of CPU cores enabled on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        memory_size_in_gbs:
+            description:
+                - The allocated memory in GBs on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The allocated local node storage in GBs on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        db_server_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exacc Db server associated with the database node.
+            returned: on success
+            type: str
+            sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
         primary_private_ip:
             description:
                 - The private IP of the primary VNIC attached to this db node
@@ -232,6 +260,10 @@ db_nodes:
         "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
         "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
         "additional_details": "additional_details_example",
+        "cpu_core_count": 56,
+        "memory_size_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx",
         "primary_private_ip": "10.0.0.10",
         "primary_public_ip": "140.34.93.209"
     }]
@@ -277,6 +309,7 @@ class DbNodeFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "sort_order",
             "lifecycle_state",
+            "db_server_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -321,6 +354,7 @@ def main():
                     "FAILED",
                 ],
             ),
+            db_server_id=dict(type="str"),
         )
     )
 

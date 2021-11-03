@@ -102,8 +102,8 @@ EXAMPLES = """
 - name: Create waas_certificate
   oci_waas_certificate:
     compartment_id: "ocid1.compartment.oc1.."
-    certificate_data: "-----BEGIN CERTIFICATE-----this-is-not-the-secret-----END CERTIFICATE-----"
-    private_key_data: "-----BEGIN PRIVATE KEY-----this-is-not-the-secret-----END PRIVATE KEY-----"
+    certificate_data: "this-is-not-the-secret"
+    private_key_data: "this-is-not-the-secret"
 
 - name: Update waas_certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waas_certificate:

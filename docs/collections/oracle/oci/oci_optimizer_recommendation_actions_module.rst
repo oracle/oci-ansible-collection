@@ -30,7 +30,7 @@ oracle.oci.oci_optimizer_recommendation_actions -- Perform actions on a Recommen
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -358,7 +358,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique OCIDs of the resource actions that recommendations are applied to. The recommendation will be applied to the given OCIDs irrespective of the existing status.</div>
+                                            <div>The unique OCIDs of the resource actions that recommendations are applied to.</div>
+                                            <div>This field is deprecated.</div>
                                                         </td>
             </tr>
                                 <tr>

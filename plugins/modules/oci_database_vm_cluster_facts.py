@@ -227,6 +227,12 @@ vm_clusters:
             returned: on success
             type: str
             sample: LICENSE_INCLUDED
+        db_servers:
+            description:
+                - The list of Db server.
+            returned: on success
+            type: list
+            sample: []
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -264,6 +270,7 @@ vm_clusters:
         "system_version": "system_version_example",
         "ssh_public_keys": [ ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz... ],
         "license_model": "LICENSE_INCLUDED",
+        "db_servers": [],
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

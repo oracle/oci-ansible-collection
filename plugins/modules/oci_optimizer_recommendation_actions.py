@@ -35,8 +35,8 @@ options:
         required: true
     resource_action_ids:
         description:
-            - The unique OCIDs of the resource actions that recommendations are applied to. The recommendation will be applied to the given OCIDs irrespective
-              of the existing status.
+            - The unique OCIDs of the resource actions that recommendations are applied to.
+            - This field is deprecated.
         type: list
         elements: str
     actions:

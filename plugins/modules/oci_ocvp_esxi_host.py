@@ -53,10 +53,8 @@ options:
         aliases: ["name"]
     current_sku:
         description:
-            - "Billing option selected during SDDC creation.
-              Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
-              HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
-              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+            - The billing option currently used by the ESXi host.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
         type: str
         choices:
             - "HOUR"
@@ -65,8 +63,8 @@ options:
             - "THREE_YEARS"
     next_sku:
         description:
-            - Billing option to switch to once existing billing cycle ends.
-              If nextSku is null or empty, currentSku will be used to continue with next billing term.
+            - The billing option to switch to after the existing billing cycle ends.
+              If `nextSku` is null or empty, `currentSku` continues to the next billing cycle.
               L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             - This parameter is updatable.
         type: str
@@ -204,24 +202,23 @@ esxi_host:
             sample: CREATING
         current_sku:
             description:
-                - "Billing option selected during SDDC creation.
-                  Oracle Cloud Infrastructure VMware Solution supports the following billing interval SKUs:
-                  HOUR, MONTH, ONE_YEAR, and THREE_YEARS.
-                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus)."
+                - The billing option currently used by the ESXi host.
+                  L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             returned: on success
             type: str
             sample: HOUR
         next_sku:
             description:
-                - Billing option to switch to once existing billing cycle ends.
+                - The billing option to switch to after the current billing cycle ends.
+                  If `nextSku` is null or empty, `currentSku` continues to the next billing cycle.
                   L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
             returned: on success
             type: str
             sample: HOUR
         billing_contract_end_date:
             description:
-                - "Current billing cycle end date. If nextSku is different from existing SKU, then we switch to newSKu
-                  after this contractEndDate
+                - "Current billing cycle end date. If the value in `currentSku` and `nextSku` are different, the value specified in `nextSku`
+                  becomes the new `currentSKU` when the `contractEndDate` is reached.
                   Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str

@@ -384,6 +384,11 @@ options:
         choices:
             - "RESTRICTED"
             - "UNRESTRICTED"
+    source_autonomous_database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
+              a new Autonomous Database. Required when source is 'BACKUP_FROM_TIMESTAMP'
+        type: str
     state:
         description:
             - The state of the AutonomousDatabase.
@@ -1513,6 +1518,7 @@ def main():
             peer_db_id=dict(type="str"),
             open_mode=dict(type="str", choices=["READ_ONLY", "READ_WRITE"]),
             permission_level=dict(type="str", choices=["RESTRICTED", "UNRESTRICTED"]),
+            source_autonomous_database_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

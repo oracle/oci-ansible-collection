@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster -- Manage a VmCluster resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -54,7 +54,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a VmCluster resource in Oracle Cloud Infrastructure
 - For *state=present*, creates an Exadata Cloud@Customer VM cluster.
-- This resource has the following action operations in the :ref:`oci_vm_cluster_actions <ansible_collections.oci_vm_cluster_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oci_vm_cluster_actions <ansible_collections.oci_vm_cluster_actions_module>` module: add_virtual_machine, change_compartment, remove_virtual_machine.
 
 
 .. Aliases
@@ -259,6 +259,21 @@ Parameters
                                                                 <td>
                                             <div>The local node storage to be allocated in GBs.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_servers"></div>
+                    <b>db_servers</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_servers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of Db server.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -758,13 +773,23 @@ Examples
     
     - name: Create vm_cluster
       oci_database_vm_cluster:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
-        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-        cpu_core_count: 10
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
-        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
-        gi_version: gi_version_example
+        display_name: "vmCluster"
+        compartment_id: "ocid1.tenancy.oc1.unique_ID"
+        exadata_infrastructure_id: "ocid1.tenancy.oc1.oc1.unique_ID"
+        vm_cluster_network_id: "ocid1.vmclusternetwork.oc1.unique_ID"
+        cpu_core_count: "4"
+        memory_size_in_gbs: "30"
+        db_node_storage_size_in_gbs: "60"
+        data_storage_size_in_tbs: "84"
+        ssh_public_keys: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        license_model: "LICENSE_INCLUDED"
+        is_sparse_diskgroup_enabled: "false"
+        is_local_backup_enabled: "true"
+        time_zone: "PST"
+        gi_version: "19.1.0.0"
+        db_servers:
+        - "ocid1.dbserver.oc1.<example_unique_ID>"
+        - "ocid1.dbserver.oc1.<example_unique_ID>"
 
     - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster:
@@ -781,8 +806,8 @@ Examples
 
     - name: Delete vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_vm_cluster:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
+        compartment_id: ocid1.tenancy.oc1.unique_ID
+        display_name: vmCluster
         state: absent
 
 
@@ -820,7 +845,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VmCluster resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gi_version&#x27;: &#x27;gi_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_sparse_diskgroup_enabled&#x27;: True, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;system_version&#x27;: &#x27;system_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_servers&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gi_version&#x27;: &#x27;gi_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_sparse_diskgroup_enabled&#x27;: True, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;system_version&#x27;: &#x27;system_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -893,6 +918,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster/db_servers"></div>
+                    <b>db_servers</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster/db_servers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of Db server.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

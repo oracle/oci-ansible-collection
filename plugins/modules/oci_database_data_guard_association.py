@@ -95,6 +95,14 @@ options:
             - "NewDbSystem"
             - "ExistingVmCluster"
             - "ExistingDbSystem"
+    peer_db_unique_name:
+        description:
+            - Specifies the `DB_UNIQUE_NAME` of the peer database to be created.
+        type: str
+    peer_sid_prefix:
+        description:
+            - Specifies a prefix for the `Oracle SID` of the database to be created.
+        type: str
     display_name:
         description:
             - The user-friendly name of the DB system that will contain the the standby database. The display name does not have to be unique.
@@ -412,6 +420,8 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
             "database_software_image_id",
             "database_admin_password",
             "creation_type",
+            "peer_db_unique_name",
+            "peer_sid_prefix",
             "display_name",
             "availability_domain",
             "shape",
@@ -490,6 +500,8 @@ def main():
                 type="str",
                 choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
             ),
+            peer_db_unique_name=dict(type="str"),
+            peer_sid_prefix=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
             shape=dict(type="str"),

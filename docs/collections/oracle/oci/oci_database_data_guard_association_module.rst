@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -432,6 +432,36 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system in which to create the standby database. You must supply this value if creationType is `ExistingDbSystem`.</div>
                                             <div>Applicable when creation_type is &#x27;ExistingDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_db_unique_name"></div>
+                    <b>peer_db_unique_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_db_unique_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the `DB_UNIQUE_NAME` of the peer database to be created.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-peer_sid_prefix"></div>
+                    <b>peer_sid_prefix</b>
+                    <a class="ansibleOptionLink" href="#parameter-peer_sid_prefix" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies a prefix for the `Oracle SID` of the database to be created.</div>
                                                         </td>
             </tr>
                                 <tr>

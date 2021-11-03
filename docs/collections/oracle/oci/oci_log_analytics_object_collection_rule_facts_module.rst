@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_object_collection_rule_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -415,7 +415,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of LogAnalyticsObjectCollectionRule resources</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;char_encoding&#x27;: &#x27;char_encoding_example&#x27;, &#x27;collection_type&#x27;: &#x27;LIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;entity_id&#x27;: &#x27;ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_source_name&#x27;: &#x27;log_source_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;os_bucket_name&#x27;: &#x27;os_bucket_name_example&#x27;, &#x27;os_namespace&#x27;: &#x27;os_namespace_example&#x27;, &#x27;overrides&#x27;: {}, &#x27;poll_since&#x27;: &#x27;poll_since_example&#x27;, &#x27;poll_till&#x27;: &#x27;poll_till_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;char_encoding&#x27;: &#x27;char_encoding_example&#x27;, &#x27;collection_type&#x27;: &#x27;LIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;entity_id&#x27;: &#x27;ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_source_name&#x27;: &#x27;log_source_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name_filters&#x27;: [], &#x27;os_bucket_name&#x27;: &#x27;os_bucket_name_example&#x27;, &#x27;os_namespace&#x27;: &#x27;os_namespace_example&#x27;, &#x27;overrides&#x27;: {}, &#x27;poll_since&#x27;: &#x27;poll_since_example&#x27;, &#x27;poll_till&#x27;: &#x27;poll_till_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -668,6 +668,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/object_name_filters"></div>
+                    <b>object_name_filters</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/object_name_filters" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When the filters are provided, only the objects matching the filters are picked up for processing. The matchType supported is exact match and accommodates wildcard &quot;*&quot;. For more information on filters, see <a href='https://docs.oracle.com/en-us/iaas/Content/Events/Concepts/filterevents.htm'>Event Filters</a>.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

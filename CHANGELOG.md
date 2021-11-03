@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.34.0] - 2021-11-03
+
+## Added
+- Support for Web Application Firewall service
+- Support for Application Performance Monitoring Configuration service
+- Support for Data Labeling Service
+- Support for `object_name_filters` to object collection rule and added `import_custom_content` action for Log Analytics service.
+- Support for `publish_result` for ONS service.
+- Support for Node subsetting feature for VmCluster resources for ExaCC.
+- Support to optionally provide SID prefix during database creation in ExaCS and ExaCC.
+- Support to optionally provide peer database unique name and SID prefix during creation of Data Guard association in ExaCS and ExaCC.
+- Support for creating db system from the backup with database software image.
+
+## Fixed
+- Fixed documentation issue for oci_identity_customer_secret_key for key parameter.
+- Earlier we had made secret_name & vault_id mandatory in release 2.33.0, which we have now made optional again.
+- Added `source_autonomous_database_id` parameter in the `oci_database_autonomous_database` module, to support creating autonomous database when `source` is set as `BACKUP_FROM_TIMESTAMP`.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.49.1
+
+
 ## [2.33.0] - 2021-10-20
 
 ## Added

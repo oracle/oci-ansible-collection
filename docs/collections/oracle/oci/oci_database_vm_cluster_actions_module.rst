@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster_actions -- Perform actions on a VmCluster res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.33.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
 
     To install it use: :code:`ansible-galaxy collection install oracle.oci`.
 
@@ -53,7 +53,9 @@ Synopsis
 .. Description
 
 - Perform actions on a VmCluster resource in Oracle Cloud Infrastructure
+- For *action=add_virtual_machine*, add Virtual Machines to the VM cluster. Applies to Exadata Cloud@Customer instances only.
 - For *action=change_compartment*, moves a VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud@Customer instances only. To move a cloud VM cluster in an Exadata Cloud Service instance to another compartment, use the `ChangeCloudVmClusterCompartment  <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/ChangeCloudVmClusterCompartment>`_ operation.
+- For *action=remove_virtual_machine*, remove Virtual Machines from the VM cluster. Applies to Exadata Cloud@Customer instances only.
 
 
 .. Aliases
@@ -78,12 +80,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -93,7 +95,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                <li>add_virtual_machine</li>
+                                                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>remove_virtual_machine</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -101,7 +105,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -116,7 +120,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -131,7 +135,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -146,7 +150,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -161,7 +165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -182,22 +186,23 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to move the VM cluster to.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -212,7 +217,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -227,7 +232,40 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-db_servers"></div>
+                    <b>db_servers</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_servers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of Exacc DB servers for the cluster to be added.</div>
+                                            <div>Required for <em>action=add_virtual_machine</em>, <em>action=remove_virtual_machine</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_servers/db_server_id"></div>
+                    <b>db_server_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_servers/db_server_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of Exacc Db server.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -242,7 +280,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -257,7 +295,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-vm_cluster_id"></div>
                     <b>vm_cluster_id</b>
                     <a class="ansibleOptionLink" href="#parameter-vm_cluster_id" title="Permalink to this option"></a>
@@ -273,7 +311,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -292,7 +330,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -331,11 +369,27 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action add_virtual_machine on vm_cluster
+      oci_database_vm_cluster_actions:
+        db_servers:
+        - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+        - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "add_virtual_machine"
+
     - name: Perform action change_compartment on vm_cluster
       oci_database_vm_cluster_actions:
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action remove_virtual_machine on vm_cluster
+      oci_database_vm_cluster_actions:
+        db_servers:
+        - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+        - db_server_id: "ocid1.dbserver.oc1.<example_unique_ID>"
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+        action: "remove_virtual_machine"
 
 
 
@@ -372,7 +426,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VmCluster resource acted upon by the current operation</div>
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gi_version&#x27;: &#x27;gi_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_sparse_diskgroup_enabled&#x27;: True, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;system_version&#x27;: &#x27;system_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_servers&#x27;: [], &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gi_version&#x27;: &#x27;gi_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_local_backup_enabled&#x27;: True, &#x27;is_sparse_diskgroup_enabled&#x27;: True, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;system_version&#x27;: &#x27;system_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;vm_cluster_network_id&#x27;: &#x27;ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -445,6 +499,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                             <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster/db_servers"></div>
+                    <b>db_servers</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster/db_servers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of Db server.</div>
+                                        <br/>
                                     </td>
             </tr>
                                 <tr>

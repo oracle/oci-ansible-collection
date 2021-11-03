@@ -64,7 +64,6 @@ class AnnouncementsPreferencesHelperCustom:
     # `type` we input in module params = `UpdateAnnouncementsPreferencesDetails`
     # due to mismatch in type we are updating the type of existing resource by input param to handle idempotence
     def is_update_necessary(self, existing_resource_dict):
-        logger.debug("Existing Dict {0}".format(existing_resource_dict))
         existing_resource_dict["type"] = self.module.params.get("type")
         return super(AnnouncementsPreferencesHelperCustom, self).is_update_necessary(
             existing_resource_dict

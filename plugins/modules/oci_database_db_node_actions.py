@@ -193,6 +193,30 @@ db_node:
             returned: on success
             type: str
             sample: additional_details_example
+        cpu_core_count:
+            description:
+                - The number of CPU cores enabled on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        memory_size_in_gbs:
+            description:
+                - The allocated memory in GBs on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The allocated local node storage in GBs on the Db node.
+            returned: on success
+            type: int
+            sample: 56
+        db_server_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exacc Db server associated with the database node.
+            returned: on success
+            type: str
+            sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
@@ -210,7 +234,11 @@ db_node:
         "maintenance_type": "VMDB_REBOOT_MIGRATION",
         "time_maintenance_window_start": "2013-10-20T19:20:30+01:00",
         "time_maintenance_window_end": "2013-10-20T19:20:30+01:00",
-        "additional_details": "additional_details_example"
+        "additional_details": "additional_details_example",
+        "cpu_core_count": 56,
+        "memory_size_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

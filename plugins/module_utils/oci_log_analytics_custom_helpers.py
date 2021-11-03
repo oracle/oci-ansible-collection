@@ -144,3 +144,27 @@ class LogAnalyticsObjectCollectionRuleHelperCustom:
             return super(
                 LogAnalyticsObjectCollectionRuleHelperCustom, self
             ).get_wait_for_states_for_operation(operation)
+
+
+class ImportCustomContentActionsHelperCustom:
+    # As we have created separate module for this action,
+    # we are copying get_resource() method from actual resource.
+    def get_resource(self):
+        return oci_common_utils.call_with_backoff(
+            self.client.get_namespace,
+            namespace_name=self.module.params.get("namespace_name"),
+        )
+
+    # Adding this override to handle passing file path instead of passing binary data.
+    def import_custom_content(self):
+        file_path = self.module.params.get("import_custom_content_file_body_input_file")
+        try:
+            with open(file_path, "rb") as input_file:
+                self.module.params["import_custom_content_file_body"] = input_file
+                resource = super(
+                    ImportCustomContentActionsHelperCustom, self
+                ).import_custom_content()
+                self.module.params.pop("import_custom_content_file_body", None)
+                return resource
+        finally:
+            self.module.params.pop("import_custom_content_file_body", None)

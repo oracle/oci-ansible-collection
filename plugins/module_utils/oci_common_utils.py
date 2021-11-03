@@ -237,27 +237,25 @@ def list_all_resources(target_fn, **kwargs):
 def compare_dicts(
     source_dict, target_dict, attrs=None, ignore_attr_if_not_in_target=False
 ):
-    if source_dict is None or target_dict is None:
-        _debug(
-            "dict is not subset because source_dict: {source_dict} or target dict: {target_dict} is None".format(
-                source_dict=source_dict, target_dict=target_dict
-            )
-        )
+    if source_dict is None:
+        _debug("dict is not subset because source dict is None")
         return False
-    if not (isinstance(source_dict, dict) and isinstance(target_dict, dict)):
-        _debug(
-            "dict is not subset because source_dict: {source_dict} or target dict: {target_dict} is not a dict".format(
-                source_dict=source_dict, target_dict=target_dict
-            )
-        )
+
+    if target_dict is None:
+        _debug("dict is not subset because target dict is None")
         return False
+
+    if not isinstance(source_dict, dict):
+        _debug("dict is not subset because source_dict is not a dict")
+        return False
+
+    if not isinstance(target_dict, dict):
+        _debug("dict is not subset because target_dict is not a dict")
+        return False
+
     # handle the case when source dict is empty but target dict has values
     if not source_dict and target_dict:
-        _debug(
-            "dicts are not equal because source dict is empty and target is not: {target_dict}".format(
-                target_dict=target_dict
-            )
-        )
+        _debug("dicts are not equal because source dict is empty and target is not")
         return False
     if not attrs:
         attrs = list(source_dict)
@@ -283,8 +281,8 @@ def compare_dicts(
         if isinstance(source_val, dict):
             if not isinstance(target_val, dict):
                 _debug(
-                    "dict is not subset because attribute '{attr}' source value is a dict and target value is not: {target_val}".format(
-                        attr=attr, target_val=target_val
+                    "dict is not subset because attribute '{attr}' source value is a dict and target value is not".format(
+                        attr=attr
                     )
                 )
                 return False
@@ -297,8 +295,8 @@ def compare_dicts(
         elif isinstance(source_val, list):
             if not isinstance(target_val, list):
                 _debug(
-                    "dict is not subset because attribute '{attr}' source value is list and target value is not: {target_val}".format(
-                        attr=attr, target_val=target_val
+                    "dict is not subset because attribute '{attr}' source value is list and target value is not".format(
+                        attr=attr
                     )
                 )
                 return False
@@ -309,8 +307,8 @@ def compare_dicts(
                 if deserialize_datetime(source_val) == deserialize_datetime(target_val):
                     return True
             _debug(
-                "dict is not subset because attribute '{attr}' value in source: {source_val} does not match target: {target_val}".format(
-                    attr=attr, source_val=source_val, target_val=target_val
+                "dict is not subset because attribute '{attr}' value in source does not match target".format(
+                    attr=attr
                 )
             )
             return False
@@ -318,19 +316,20 @@ def compare_dicts(
 
 
 def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
-    if source_list is None or target_list is None:
-        _debug(
-            "list is not subset because source list: {source_list} or target list: {target_list} is None".format(
-                source_list=source_list, target_list=target_list
-            )
-        )
+    if source_list is None:
+        _debug("list is not subset because source list is None")
         return False
-    if not (isinstance(source_list, list) and isinstance(target_list, list)):
-        _debug(
-            "list is not subset because source list: {source_list} or target list: {target_list} is not a list".format(
-                source_list=source_list, target_list=target_list
-            )
-        )
+
+    if target_list is None:
+        _debug("list is not subset because target list is None")
+        return False
+
+    if not isinstance(source_list, list):
+        _debug("list is not subset because source list is not a list")
+        return False
+
+    if not isinstance(target_list, list):
+        _debug("list is not subset because target list is not a list")
         return False
 
     if len(source_list) != len(target_list):
@@ -341,22 +340,20 @@ def compare_lists(source_list, target_list, ignore_attr_if_not_in_target=False):
         )
         return False
 
-    if all(
-        [
-            is_in_list(
-                target_list,
-                element,
-                ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+    for index, element in enumerate(source_list):
+        if not is_in_list(
+            target_list,
+            element,
+            ignore_attr_if_not_in_target=ignore_attr_if_not_in_target,
+        ):
+            _debug(
+                "list is not subset because element at index {} in source list, is not present in target list".format(
+                    index
+                )
             )
-            for element in source_list
-        ]
-    ):
-        return True
+            return False
 
-    _debug(
-        "list is not subset because not all elements in source list are in target list"
-    )
-    return False
+    return True
 
 
 def is_in_list(target_list, element, ignore_attr_if_not_in_target=False):
@@ -388,11 +385,6 @@ def is_in_list(target_list, element, ignore_attr_if_not_in_target=False):
         if element in target_list:
             return True
 
-        _debug(
-            "element {element} is not in list: {list}".format(
-                element=element, list=target_list
-            )
-        )
     return False
 
 
@@ -723,3 +715,86 @@ def threaded_worker_pool(*args, **kwargs):
 
 
 logger = get_logger("oci_common_utils")
+
+
+def replace_values_in_object_with_stubs(input_object):
+    """
+    Takes an input object of Any type and returns the
+    object with all values in it stubbed out.
+
+    @param: input_object: Any, input object that needs to be stubbed out.
+    :returns: Stubbed object with type Optional[Union[List, Dict, str]]
+              based on the input type
+    """
+
+    if input_object is None:
+        return None
+
+    if isinstance(input_object, dict):
+        return replace_values_in_dict_with_stubs(input_object)
+    elif isinstance(input_object, list):
+        return replace_values_in_list_with_stubs(input_object)
+    else:
+        return "STUBBED_VALUE"
+
+
+def replace_values_in_list_with_stubs(input_list):
+    """
+    Takes an input list and replaces all values in the list
+    recursively with stubs.
+    If the item in list is a list/dict - recurse else stub out.
+
+    @param input_dict: dict, that will be stubbed out for values
+    :returns: dict - the stubbed dict
+    :raises: TypeError, if input_list is not of type list.
+    """
+
+    if input_list is None:
+        return input_list
+
+    if not isinstance(input_list, list):
+        raise TypeError("input list has unexpected type {}".format(type(input_list)))
+
+    new_list = []
+    for item in input_list:
+        if isinstance(item, dict):
+            new_list.append(replace_values_in_dict_with_stubs(item))
+        elif isinstance(item, list):
+            new_list.append(replace_values_in_list_with_stubs(item))
+        else:
+            # for all other types str, bool, int, float etc.
+            # we add this explicit string to make sure someone
+            # reading the value does not mistake it to be a real value.
+            new_list.append("STUBBED_VALUE")
+
+    return new_list
+
+
+def replace_values_in_dict_with_stubs(input_dict):
+    """
+    Takes an input dict and replaces all values in the dict
+    recursively with stubs.
+
+    @param input_dict: dict, that will be stubbed out for values
+    :returns: dict - the stubbed dict
+    :raises: TypeError, if input_dict is not of type dict.
+    """
+
+    if input_dict is None:
+        return input_dict
+
+    if not isinstance(input_dict, dict):
+        raise TypeError("input dict has unexpected type {}".format(type(input_dict)))
+
+    for key, value in input_dict.items():
+        if isinstance(value, dict):
+            input_dict[key] = replace_values_in_dict_with_stubs(value)
+        elif isinstance(value, list):
+            input_dict[key] = replace_values_in_list_with_stubs(value)
+        else:
+            # for all other types str, bool, int, float etc.
+            # we add this explicit string to make sure someone
+            # reading the value does not mistake it to be a real value.
+            input_dict[key] = "STUBBED_VALUE"
+
+    return input_dict
