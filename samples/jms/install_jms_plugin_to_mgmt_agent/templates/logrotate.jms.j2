@@ -1,0 +1,11 @@
+/var/log/java/usagetracker.log {
+    daily
+    rotate 5
+    size 20M
+    notifempty
+    compress
+    missingok
+    postrotate
+        /usr/bin/touch /var/log/java/usagetracker.log && /usr/bin/chmod 666 /var/log/java/usagetracker.log && /usr/bin/chown mgmt_agent /var/log/java/usagetracker.log
+    endscript
+}

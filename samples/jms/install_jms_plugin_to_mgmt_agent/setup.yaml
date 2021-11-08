@@ -1,0 +1,61 @@
+---
+# Copyright (c) 2017, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+#==================================================================================================================================
+
+- name: Get Agents info from MACS
+  run_once: true
+  delegate_to: localhost
+  become: false
+  oci_management_agent_image_facts:
+    compartment_id: "{{ compute_compartment_id }}"
+  register: macs_agents_response
+
+- name: Parse JSON response from MACS and register Agent URL
+  run_once: true
+  delegate_to: localhost
+  become: false
+  set_fact:
+    linux_agent_url_response: "{{ macs_agents_response | community.general.json_query(get_linux_agent_url_query) | first }}"
+  vars:
+    agent_platform: "LINUX"
+    get_linux_agent_url_query: "management_agent_images[?platform_type=='{{agent_platform}}'].object_url"
+
+#==================================================================================================================================
+# Configure Agent install key: create new install key on MACS.
+- name: Create new management agent install key
+  when: (mgmt_agent_create_key_name is defined) and (mgmt_agent_create_key_name|length > 0)
+  run_once: true
+  delegate_to: localhost
+  become: false
+  oci_management_agent_install_key:
+    display_name: "{{ mgmt_agent_create_key_name }}"
+    compartment_id: "{{ compute_compartment_id }}"
+  register: macs_agent_key_response
+
+- name: Parse create new key response from MACS and register Agent install key
+  when: (mgmt_agent_create_key_name is defined) and (mgmt_agent_create_key_name|length > 0)
+  run_once: true
+  delegate_to: localhost
+  become: false
+  debug:
+    msg: "{{ macs_agent_key_response | community.general.json_query(get_agent_query) }}"
+  vars:
+    get_agent_query: "management_agent_install_key.key"
+  register: query_parsed_key_response
+- set_fact:
+    mgmt_agent_install_key_value: "{{ query_parsed_key_response.msg }}"
+  when: (mgmt_agent_create_key_name is defined) and (mgmt_agent_create_key_name|length > 0)
+
+#==================================================================================================================================
+# Set path facts in fact cache
+- name: Setting path facts so that they will be persisted in the fact cache
+  set_fact:
+    usagetracker_directory: "/etc/oracle/java/"
+    usagetracker_properties_file: "/etc/oracle/java/usagetracker.properties"
+    usagetrackerlogs_directory: "/var/log/java"
+    usagetrackerlogs_file: "/var/log/java/usagetracker.log"
+    logrotate_file: "/etc/logrotate.d/jms"

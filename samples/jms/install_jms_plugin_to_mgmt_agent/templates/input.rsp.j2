@@ -1,0 +1,21 @@
+#
+# Copyright (c) 2021, 2021, Oracle and/or its affiliates. All rights reserved.
+# ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+#
+
+########################################################################
+# Refer Agent Installation Guide for more details
+#
+# https://docs.oracle.com/en-us/iaas/management-agents/doc/install-management-agent-chapter.html
+# https://docs.oracle.com/en-us/iaas/jms/doc/installing-management-agent-java-management-service.html
+#
+# Since this file has sensitive information, please make sure that after
+# executing setup.sh you either delete this file or store it in a secure
+# location
+#
+########################################################################
+ManagementAgentInstallKey = {{mgmt_agent_install_key_value}}
+Service.plugin.jms.download = true
+{% if mgmt_agent_display_name is defined %}
+AgentDisplayName = {{mgmt_agent_display_name}}
+{% endif %}

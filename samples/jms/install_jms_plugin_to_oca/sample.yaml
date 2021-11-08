@@ -1,0 +1,151 @@
+---
+- name : Enable OCA-MACS Plugin and JMS Service Plugin
+  hosts: agents
+  collections:
+    - oracle.oci
+  become: yes
+  vars:
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    instance_id_list: ["ocid1.instance.oc1.<unique_id1>","ocid1.instance.oc1.<unique_id2>"]
+
+  tasks:
+    - block:
+      - import_tasks: setup.yaml
+      #==========================================================================================
+      #Enable OCA-MACS Plugin for all instances in {{ instance_id_list }} 
+      
+      - name: Enable OCA-MACS Plugin
+        run_once: true
+        delegate_to: localhost
+        become: false
+        oci_compute_instance:
+          instance_id: "{{ item }}"
+          agent_config:
+            are_all_plugins_disabled: no
+            is_management_disabled: no
+            is_monitoring_disabled: no
+            plugins_config: [{name: "Management Agent", desired_state: "ENABLED"}]
+        register: instance_result
+        loop: "{{ instance_id_list }}"
+        when: (instance_id_list is defined) and (instance_id_list|length > 0)
+      - set_fact:
+          instances_compartment_id: "{{ instance_result.results[0].instance.compartment_id }}"
+        when: (instances_compartment_id is not defined) or (instances_compartment_id|length == 0)
+
+      #==========================================================================================
+      #Obtain JMS Plugin Id and set in {{ jms_plugin_id }} 
+
+      - name: Obtain JMS Plugin Id
+        run_once: true
+        delegate_to: localhost
+        become: false
+        oci_management_agent_plugin_facts:
+          compartment_id: "{{ instances_compartment_id }}"
+          name: "jms"
+        register: jms_plugin_result
+      - set_fact:
+          jms_plugin_id: "{{ jms_plugin_result.management_agent_plugins[0].id }}"
+      
+      - pause:
+          minutes: 10  
+      #==========================================================================================
+
+      #Obtain management agent ids and set in {{ instances_mgmt_agent_id }} 
+
+      - name: Get List of Management Agents
+        run_once: true
+        delegate_to: localhost
+        become: false
+        oci_management_agent_facts:
+          compartment_id: "{{ instances_compartment_id }}"
+          host_id: "{{ item }}"
+        loop: "{{ instance_id_list }}"
+        register: mgmt_agent_result
+        when: (instance_id_list is defined) and (instance_id_list|length > 0)
+      - set_fact:
+          instances_mgmt_agent_id: "{{ instances_mgmt_agent_id + [item.management_agents[0].id] }}"
+        with_items: 
+          - "{{ mgmt_agent_result.results }}"
+          
+      #==========================================================================================
+
+      # Enable JMS Service Plugin for instances
+
+      - name: Enable OCA-MACS JMS Service Plugin
+        run_once: true
+        delegate_to: localhost
+        become: false
+        oci_management_agent_actions:
+          agent_compartment_id: "{{ instances_compartment_id }}"
+          action: deploy_plugins
+          agent_ids: "{{ instances_mgmt_agent_id }}"
+          plugin_ids: ["{{ jms_plugin_id }}"]
+        when: (instance_id_list is defined) and (instance_id_list|length > 0)
+      #==========================================================================================
+
+      # Set up Java Usage Tracker 
+      
+      - name: Create directory for usagetracker
+        file:
+          path: "{{ usagetracker_directory }}"
+          state: directory
+          mode: 0555
+          owner: root
+          recurse: yes
+
+      - name: Create properties file for usagetracker
+        file:
+          path: "{{ usagetracker_properties_file }}"
+          state: touch
+          mode: 0444
+          owner: root
+
+      - template:
+          src: ./templates/usagetracker.jms.j2
+          dest: "{{ usagetracker_properties_file }}" 
+
+      - name: Create directory for usagetracker logs
+        file:
+          path: "{{ usagetrackerlogs_directory }}"
+          state: directory
+          mode: 0711
+          owner: root
+
+      - name: Create file for usagetracker logs
+        file:
+          path: "{{ usagetrackerlogs_file }}"
+          state: touch
+          mode: 0666
+          owner: root
+          group: root
+
+      #==========================================================================================
+
+      # Set up Log Rotator
+
+      - name: Install logrotate
+        yum:
+          name: [ "logrotate" ]
+          state: present
+          update_cache: yes
+
+      - template:
+          src: ./templates/logrotate.jms.j2
+          dest: "{{ logrotate_file }}"
+
+      - pause:
+          minutes: 5  
+#==========================================================================================
+      - import_tasks: teardown.yaml
+
+      rescue:
+      - import_tasks: teardown.yaml
+        ignore_errors: yes
+
+      - fail:
+          msg: "{{ ansible_failed_result }}"

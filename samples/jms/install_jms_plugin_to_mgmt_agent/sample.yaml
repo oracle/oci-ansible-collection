@@ -1,0 +1,130 @@
+---
+# Copyright (c) 2020, 2021 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Setup Agents on [agents] machines
+  hosts: agents
+  collections:
+    - oracle.oci
+    - community.general
+  become: yes
+  vars:
+    mgmt_agent_create_key_name: "sample-agent-install-key-${USER}-${TIME}"
+
+    #########################################
+    # Tenancy specific configuration
+    # *Note* - Override the following variables based on your tenancy
+    # or set a valid value for the corresponding environment variable
+    #########################################
+    compute_compartment_id: "ocid1.compartment.oc1..<unique_id>"
+    mgmt_agent_jdk_home: "/usr/lib/jvm/sample_location"
+    
+  tasks:
+    - block:
+      - import_tasks: setup.yaml
+
+      #==========================================================================================
+
+      #Download and Install Management Agent
+      - name: Download Agent
+        get_url:
+          url: "{{ linux_agent_url_response }}"
+          dest: /tmp/oracle.mgmt_agent.rpm
+          mode: 'a+rwx'
+
+      - set_fact:
+          JAVA_HOME: "{{ mgmt_agent_jdk_home }}"
+        when: (mgmt_agent_jdk_home is defined) and (mgmt_agent_jdk_home|length > 0)
+
+      - name: Install Agent
+        yum:
+          name: [ '/tmp/oracle.mgmt_agent.rpm' ]
+          state: present
+          update_cache: yes
+        environment:
+          JAVA_HOME: "{{ JAVA_HOME }}"
+
+      - template:
+          src: ./templates/input.rsp.j2
+          dest: /tmp/input.rsp
+          mode: 0444
+          owner: mgmt_agent
+          group: mgmt_agent
+
+      - name: Setup Agent
+        shell: "/opt/oracle/mgmt_agent/agent_inst/bin/setup.sh opts=/tmp/input.rsp"
+
+      - name: Remove input.rsp file
+        file:
+          path: /tmp/input.rsp
+          state: absent
+
+      - name: Remove agent rpm file
+        file:
+          path: /tmp/oracle.mgmt_agent.rpm
+          state: absent
+
+      #==========================================================================================
+
+      # Enable JMS Usage Tracker
+
+      - name: Create directory for usagetracker
+        file:
+          path: "{{ usagetracker_directory }}"
+          state: directory
+          mode: 0555
+          owner: mgmt_agent
+          recurse: yes
+
+      - name: Create properties file for usagetracker
+        file:
+          path: "{{ usagetracker_properties_file }}"
+          state: touch
+          mode: 0444
+          owner: mgmt_agent
+
+      - template:
+          src: ./templates/usagetracker.jms.j2
+          dest: "{{ usagetracker_properties_file }}" 
+
+      - name: Create directory for usagetracker logs
+        file:
+          path: "{{ usagetrackerlogs_directory }}"
+          state: directory
+          mode: 0711
+          owner: mgmt_agent
+
+      - name: Create file for usagetracker logs
+        file:
+          path: "{{ usagetrackerlogs_file }}"
+          state: touch
+          mode: 0666
+          owner: mgmt_agent
+          group: mgmt_agent
+      
+#==========================================================================================
+
+      # Install Logrotate
+      
+      - name: Install logrotate
+        yum:
+          name: [ "logrotate" ]
+          state: present
+          update_cache: yes
+
+      - template:
+          src: ./templates/logrotate.jms.j2
+          dest: "{{ logrotate_file }}"
+
+  #==========================================================================================
+      - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"
