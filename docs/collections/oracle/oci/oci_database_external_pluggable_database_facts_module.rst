@@ -30,9 +30,13 @@ oracle.oci.oci_database_external_pluggable_database_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_external_pluggable_database_facts`.
 
@@ -417,7 +421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of ExternalPluggableDatabase resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_configuration&#x27;: &#x27;RAC&#x27;, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_config&#x27;: {&#x27;database_management_connection_id&#x27;: &#x27;ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;}, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_packs&#x27;: &#x27;db_packs_example&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_container_database_id&#x27;: &#x27;ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;operations_insights_config&#x27;: {&#x27;operations_insights_connector_id&#x27;: &#x27;ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;operations_insights_status&#x27;: &#x27;ENABLING&#x27;}, &#x27;source_id&#x27;: &#x27;ocid1.source.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -435,7 +439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The character set of the external database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">character_set_example</div>
                                     </td>
             </tr>
@@ -453,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -471,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database configuration</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RAC</div>
                                     </td>
             </tr>
@@ -489,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database edition.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STANDARD_EDITION</div>
                                     </td>
             </tr>
@@ -507,7 +511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -524,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails'>external database connector</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -543,7 +547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status of the Database Management service.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING</div>
                                     </td>
             </tr>
@@ -562,7 +566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle license model that applies to the external database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LICENSE_INCLUDED</div>
                                     </td>
             </tr>
@@ -581,7 +585,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database version.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_version_example</div>
                                     </td>
             </tr>
@@ -599,7 +603,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database ID, which identifies an Oracle Database located outside of Oracle Cloud.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.db.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -617,7 +621,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The database packs licensed for the external Oracle Database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_packs_example</div>
                                     </td>
             </tr>
@@ -635,7 +639,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The `DB_UNIQUE_NAME` of the external database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_unique_name_example</div>
                                     </td>
             </tr>
@@ -653,7 +657,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -671,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user-friendly name for the external database. The name does not have to be unique.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -689,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalContainerDatabaseDetails'>external container database</a> that contains the specified <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalPluggableDatabaseDetails'>external pluggable database</a> resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -708,7 +712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -726,7 +730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure external database resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -744,7 +748,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Additional information about the current lifecycle state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -762,7 +766,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the Oracle Cloud Infrastructure external database resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -780,7 +784,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The national character of the external database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ncharacter_set_example</div>
                                     </td>
             </tr>
@@ -798,7 +802,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -815,7 +819,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails'>external database connector</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.operationsinsightsconnector.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -834,7 +838,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status of Operations Insights</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING</div>
                                     </td>
             </tr>
@@ -853,7 +857,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the the non-container database that was converted to a pluggable database to create this resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.source.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -871,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the database was created.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -889,7 +893,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time zone of the external database. It is a time zone offset (a character type in the format &#x27;[+|-]TZH:TZM&#x27;) or a time zone region name, depending on how the time zone value was specified when the database was created / last altered.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_zone_example</div>
                                     </td>
             </tr>

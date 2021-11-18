@@ -30,9 +30,13 @@ oracle.oci.oci_object_storage_retention_rule_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_object_storage_retention_rule_facts`.
 
@@ -356,7 +360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of RetentionRule resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;duration&#x27;: {&#x27;time_amount&#x27;: 56, &#x27;time_unit&#x27;: &#x27;YEARS&#x27;}, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_rule_locked&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
@@ -374,7 +378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>User specified name for the retention rule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -392,7 +396,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -409,7 +413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The timeAmount is interpreted in units defined by the timeUnit parameter, and is calculated in relation to each object&#x27;s Last-Modified timestamp.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -428,7 +432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unit that should be used to interpret timeAmount.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">YEARS</div>
                                     </td>
             </tr>
@@ -447,7 +451,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The entity tag (ETag) for the retention rule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
                                     </td>
             </tr>
@@ -465,7 +469,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique identifier for the retention rule.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -483,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time that the retention rule was created as per <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -501,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time that the retention rule was modified as per <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -519,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time as per <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> after which this rule becomes locked. and can only be deleted by deleting the bucket.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

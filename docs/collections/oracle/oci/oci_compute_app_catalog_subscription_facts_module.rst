@@ -30,9 +30,13 @@ oracle.oci.oci_compute_app_catalog_subscription_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_app_catalog_subscription_facts`.
 
@@ -370,7 +374,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of AppCatalogSubscription resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;listing_id&#x27;: &#x27;ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_id&#x27;: &#x27;ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;listing_resource_version&#x27;: &#x27;listing_resource_version_example&#x27;, &#x27;publisher_name&#x27;: &#x27;publisher_name_example&#x27;, &#x27;summary&#x27;: &#x27;summary_example&#x27;, &#x27;time_created&#x27;: &#x27;2018-03-20T12:32:53.532Z&#x27;}]</div>
                                     </td>
             </tr>
@@ -388,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The compartmentID of the subscription.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -406,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The display name of the listing.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -424,7 +428,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ocid of the listing resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -442,7 +446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Listing resource id.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.listingresource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -460,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Listing resource version.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listing_resource_version_example</div>
                                     </td>
             </tr>
@@ -478,7 +482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the publisher who published this listing.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">publisher_name_example</div>
                                     </td>
             </tr>
@@ -496,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The short summary to the listing.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">summary_example</div>
                                     </td>
             </tr>
@@ -514,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Date and time at which the subscription was created, in <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a> format. Example: `2018-03-20T12:32:53.532Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-03-20T12:32:53.532Z</div>
                                     </td>
             </tr>

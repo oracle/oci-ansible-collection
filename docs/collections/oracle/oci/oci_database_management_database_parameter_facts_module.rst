@@ -30,9 +30,13 @@ oracle.oci.oci_database_management_database_parameter_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_management_database_parameter_facts`.
 
@@ -391,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of DatabaseParameter resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;allowed_values&#x27;: [{&#x27;is_default&#x27;: True, &#x27;ordinal&#x27;: 10, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;category&#x27;: &#x27;category_example&#x27;, &#x27;constraint&#x27;: &#x27;UNIQUE&#x27;, &#x27;container_id&#x27;: 10, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_value&#x27;: &#x27;display_value_example&#x27;, &#x27;is_adjusted&#x27;: True, &#x27;is_basic&#x27;: True, &#x27;is_default&#x27;: True, &#x27;is_deprecated&#x27;: True, &#x27;is_instance_modifiable&#x27;: True, &#x27;is_modified&#x27;: &#x27;MODIFIED&#x27;, &#x27;is_pdb_modifiable&#x27;: True, &#x27;is_session_modifiable&#x27;: True, &#x27;is_specified&#x27;: True, &#x27;is_system_modifiable&#x27;: &#x27;IMMEDIATE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;number&#x27;: 10, &#x27;ordinal&#x27;: 10, &#x27;sid&#x27;: &#x27;sid_example&#x27;, &#x27;type&#x27;: &#x27;BOOLEAN&#x27;, &#x27;update_comment&#x27;: &#x27;update_comment_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -409,7 +413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of allowed values for this parameter.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -426,7 +430,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the given ordinal value is the default value for the parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -445,7 +449,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ordinal number in the list (1-based).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
@@ -464,7 +468,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter value at ordinal.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>
@@ -483,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter category.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">category_example</div>
                                     </td>
             </tr>
@@ -501,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Applicable in case of Oracle Real Application Clusters (Oracle RAC) databases. A `UNIQUE` parameter is one which is unique to each Oracle Real Application Clusters (Oracle RAC) instance. For example, the parameter `INSTANCE_NUMBER` must have different values in each instance. An `IDENTICAL` parameter must have the same value for every instance. For example, the parameter `DB_BLOCK_SIZE` must have the same value in all instances.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UNIQUE</div>
                                     </td>
             </tr>
@@ -519,7 +523,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ID of the database container to which the data pertains. Possible values include: - `0`: This value is used for data that pertain to the entire CDB. This value is also used for data in non-CDBs. - `1`: This value is used for data that pertain to only the root container. - `n`: Where n is the applicable container ID for the data.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
@@ -537,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The description of the parameter.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -555,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter value in a user-friendly format. For example, if the `value` property shows the value 262144 for a big integer parameter, then the `displayValue` property will show the value 256K.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_value_example</div>
                                     </td>
             </tr>
@@ -573,7 +577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether Oracle adjusted the input value to a more suitable value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -591,7 +595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter is a basic parameter (`TRUE`) or not (`FALSE`).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -609,7 +613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter is set to the default value (`TRUE`) or the parameter value was specified in the parameter file (`FALSE`).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -627,7 +631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter has been deprecated (`TRUE`) or not (`FALSE`).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -645,7 +649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>For parameters that can be changed with `ALTER SYSTEM`, indicates whether the value of the parameter can be different for every instance (`TRUE`) or whether the parameter must have the same value for all Real Application Clusters instances (`FALSE`). For other parameters, this is always `FALSE`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -663,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates how the parameter was modified. If an `ALTER SYSTEM` was performed, the value will be `MODIFIED`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MODIFIED</div>
                                     </td>
             </tr>
@@ -681,7 +685,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter can be modified on a per-PDB basis (`TRUE`) or not (`FALSE`). In a non-CDB, the value of this property is `null`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -699,7 +703,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter can be changed with `ALTER SESSION` (`TRUE`) or not (`FALSE`)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -717,7 +721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter was specified in the server parameter file (`TRUE`) or not (`FALSE`). Applicable only when the parameter source is `SPFILE`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -735,7 +739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Indicates whether the parameter can be changed with `ALTER SYSTEM` and when the change takes effect: - IMMEDIATE: Parameter can be changed with `ALTER SYSTEM` regardless of the type of parameter file used to start the instance. The change takes effect immediately. - DEFERRED: Parameter can be changed with `ALTER SYSTEM` regardless of the type of parameter file used to start the instance. The change takes effect in subsequent sessions. - FALSE: Parameter cannot be changed with `ALTER SYSTEM` unless a server parameter file was used to start the instance. The change takes effect in subsequent instances.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IMMEDIATE</div>
                                     </td>
             </tr>
@@ -753,7 +757,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter name.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -771,7 +775,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter number.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
@@ -789,7 +793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The position (ordinal number) of the parameter value. Useful only for parameters whose values are lists of strings.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
                                     </td>
             </tr>
@@ -807,7 +811,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The database instance SID for which the parameter is defined.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sid_example</div>
                                     </td>
             </tr>
@@ -825,7 +829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter type.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BOOLEAN</div>
                                     </td>
             </tr>
@@ -843,7 +847,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The comments associated with the most recent update.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">update_comment_example</div>
                                     </td>
             </tr>
@@ -861,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The parameter value.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
                                     </td>
             </tr>

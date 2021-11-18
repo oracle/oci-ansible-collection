@@ -30,9 +30,13 @@ oracle.oci.oci_monitoring_metric_data_actions -- Perform actions on a MetricData
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_monitoring_metric_data_actions`.
 
@@ -442,7 +446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the MetricData resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;aggregated_datapoints&#x27;: [{&#x27;timestamp&#x27;: &#x27;2019-02-01T01:02:29.600Z&#x27;, &#x27;value&#x27;: 10.4}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..exampleuniqueID&#x27;, &#x27;dimensions&#x27;: {}, &#x27;metadata&#x27;: {}, &#x27;name&#x27;: &#x27;CpuUtilization&#x27;, &#x27;namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;resolution&#x27;: &#x27;5m&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;}</div>
                                     </td>
             </tr>
@@ -460,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request. For important limits information related to data points, see MetricData Reference at the top of this page.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -478,7 +482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time associated with the value of this data point. Format defined by RFC3339.</div>
                                             <div>Example: `2019-02-01T01:02:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2019-02-01T01:02:29.600Z</div>
                                     </td>
             </tr>
@@ -498,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Numeric value of the metric.</div>
                                             <div>Example: `10.4`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.4</div>
                                     </td>
             </tr>
@@ -517,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the resources from which the aggregated data was returned.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -536,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Qualifiers provided in the definition of the returned metric. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
                                             <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -553,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The references provided in a metric definition to indicate extra information about the metric.</div>
                                             <div>Example: `&quot;unit&quot;: &quot;bytes&quot;`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -570,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the metric.</div>
                                             <div>Example: `CpuUtilization`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CpuUtilization</div>
                                     </td>
             </tr>
@@ -589,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The reference provided in a metric definition to indicate the source service or application that emitted the metric.</div>
                                             <div>Example: `oci_computeagent`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_computeagent</div>
                                     </td>
             </tr>
@@ -608,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The time between calculated aggregation windows. Use with the query interval to vary the frequency at which aggregated data points are returned. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: `1m`-`60m`, `1h`-`24h`, `1d`.</div>
                                             <div>Example: `5m`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">5m</div>
                                     </td>
             </tr>
@@ -627,7 +631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">frontend-fleet</div>
                                     </td>
             </tr>

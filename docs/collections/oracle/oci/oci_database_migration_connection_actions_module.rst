@@ -30,9 +30,13 @@ oracle.oci.oci_database_migration_connection_actions -- Perform actions on a Con
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_migration_connection_actions`.
 
@@ -337,7 +341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admin_credentials&#x27;: {&#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;certificate_tdn&#x27;: &#x27;certificate_tdn_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connect_descriptor&#x27;: {&#x27;connect_string&#x27;: &#x27;connect_string_example&#x27;, &#x27;database_service_name&#x27;: &#x27;database_service_name_example&#x27;, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56}, &#x27;credentials_secret_id&#x27;: &#x27;ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_type&#x27;: &#x27;MANUAL&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;private_endpoint&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;ssh_details&#x27;: {&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;sudo_location&#x27;: &#x27;sudo_location_example&#x27;, &#x27;user&#x27;: &#x27;user_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vault_details&#x27;: {&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}</div>
                                     </td>
             </tr>
@@ -355,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -372,7 +376,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Administrator username</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
                                     </td>
             </tr>
@@ -391,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This name is the distinguished name used while creating the certificate on target database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">certificate_tdn_example</div>
                                     </td>
             </tr>
@@ -409,7 +413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the compartment</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -427,7 +431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -444,7 +448,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Connect string.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connect_string_example</div>
                                     </td>
             </tr>
@@ -463,7 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Database service name.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">database_service_name_example</div>
                                     </td>
             </tr>
@@ -482,7 +486,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Host of the connect descriptor.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
                                     </td>
             </tr>
@@ -501,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Port of the connect descriptor.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -520,7 +524,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the Secret in the OCI vault containing the Database Connection credentials.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.credentialssecret.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -538,7 +542,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the cloud database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.database.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -556,7 +560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Database connection type.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MANUAL</div>
                                     </td>
             </tr>
@@ -574,7 +578,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -592,7 +596,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Database Connection display name identifier.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -610,7 +614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -628,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -646,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -664,7 +668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the Connection resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
@@ -682,7 +686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -699,7 +703,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to contain the private endpoint.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -718,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div><a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a previously created Private Endpoint.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -737,7 +741,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the customer&#x27;s subnet where the private endpoint VNIC will reside.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -756,7 +760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN where the Private Endpoint will be bound to.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -775,7 +779,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -792,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the host the SSH key is valid for.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_example</div>
                                     </td>
             </tr>
@@ -811,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Sudo location</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sudo_location_example</div>
                                     </td>
             </tr>
@@ -830,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>SSH user</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_example</div>
                                     </td>
             </tr>
@@ -849,7 +853,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -865,7 +869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time the Connection resource was created. An RFC3339 formatted datetime string.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -883,7 +887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time of the last Connection resource details update. An RFC3339 formatted datetime string.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -901,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -918,7 +922,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the compartment where the secret containing the credentials will be created.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -937,7 +941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the vault encryption key</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.key.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -956,7 +960,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the vault</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

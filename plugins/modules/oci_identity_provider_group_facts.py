@@ -23,6 +23,7 @@ module: oci_identity_provider_group_facts
 short_description: Fetches details about one or multiple IdentityProviderGroup resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple IdentityProviderGroup resources in Oracle Cloud Infrastructure
+    - "**Deprecated.** For more information, see L(Deprecated IAM Service APIs,https://docs.cloud.oracle.com/Content/Identity/Reference/deprecatediamapis.htm)."
     - Lists the identity provider groups.
 version_added: "2.9.0"
 author: Oracle (@oracle)

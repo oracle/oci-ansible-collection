@@ -73,6 +73,12 @@ options:
             - "MONTH"
             - "ONE_YEAR"
             - "THREE_YEARS"
+    compute_availability_domain:
+        description:
+            - The availability domain to create the ESXi host in.
+              If keep empty, for AD-specific SDDC, new ESXi host will be created in the same availability domain;
+              for multi-AD SDDC, new ESXi host will be auto assigned to the next availability domain following evenly distribution strategy.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -223,6 +229,12 @@ esxi_host:
             returned: on success
             type: str
             sample: "2016-08-25T21:10:29.600Z"
+        compute_availability_domain:
+            description:
+                - The availability domain of the ESXi host.
+            returned: on success
+            type: str
+            sample: compute_availability_domain_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -252,6 +264,7 @@ esxi_host:
         "current_sku": "HOUR",
         "next_sku": "HOUR",
         "billing_contract_end_date": "2016-08-25T21:10:29.600Z",
+        "compute_availability_domain": "compute_availability_domain_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -399,6 +412,7 @@ def main():
             next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
             ),
+            compute_availability_domain=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

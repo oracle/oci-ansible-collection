@@ -30,9 +30,13 @@ oracle.oci.oci_optimizer_history_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_optimizer_history_facts`.
 
@@ -467,7 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of History resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;action&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;type&#x27;: &#x27;KB_ARTICLE&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}, &#x27;category_id&#x27;: &#x27;ocid1.category.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;estimated_cost_saving&#x27;: 1.2, &#x27;extended_metadata&#x27;: {}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;metadata&#x27;: {}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;recommendation_id&#x27;: &#x27;ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;recommendation_name&#x27;: &#x27;recommendation_name_example&#x27;, &#x27;resource_action_id&#x27;: &#x27;ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;status&#x27;: &#x27;PENDING&#x27;, &#x27;time_created&#x27;: &#x27;2020-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
@@ -485,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -502,7 +506,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Text describing the recommended action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -521,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The status of the resource action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">KB_ARTICLE</div>
                                     </td>
             </tr>
@@ -540,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The URL path to documentation that explains how to perform the action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
                                     </td>
             </tr>
@@ -559,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID associated with the category.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.category.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -577,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -595,7 +599,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name assigned to the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compartment_name_example</div>
                                     </td>
             </tr>
@@ -613,7 +617,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The estimated cost savings, in dollars, for the resource action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
@@ -634,7 +638,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>For example:</div>
                                             <div>`{&quot;CurrentShape&quot;: {&quot;name&quot;:&quot;VM.Standard2.16&quot;}, &quot;RecommendedShape&quot;: {&quot;name&quot;:&quot;VM.Standard2.8&quot;}}`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -650,7 +654,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID associated with the recommendation history.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -668,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The recommendation history&#x27;s current state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -688,7 +692,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Metadata Example**</div>
                                             <div>&quot;metadata&quot; : { &quot;cpuRecommendedShape&quot;: &quot;VM.Standard1.1&quot;, &quot;computeMemoryUtilization&quot;: &quot;26.05734124418388&quot;, &quot;currentShape&quot;: &quot;VM.Standard1.2&quot;, &quot;instanceRecommendedShape&quot;: &quot;VM.Standard1.1&quot;, &quot;computeCpuUtilization&quot;: &quot;7.930035319720132&quot;, &quot;memoryRecommendedShape&quot;: &quot;None&quot; }</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -704,7 +708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name assigned to the resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -722,7 +726,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID associated with the recommendation.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -740,7 +744,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name assigned to the recommendation.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">recommendation_name_example</div>
                                     </td>
             </tr>
@@ -758,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID associated with the resource action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resourceaction.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -776,7 +780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The unique OCID associated with the resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -794,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The kind of resource.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">resource_type_example</div>
                                     </td>
             </tr>
@@ -812,7 +816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current status of the resource action.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PENDING</div>
                                     </td>
             </tr>
@@ -830,7 +834,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the recommendation history was created, in the format defined by RFC3339.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>

@@ -30,9 +30,13 @@ oracle.oci.oci_apm_synthetics_public_vantage_point_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_apm_synthetics_public_vantage_point_facts`.
 
@@ -369,7 +373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of PublicVantagePoint resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;exampleName&#x27;, &#x27;geo&#x27;: {&#x27;admin_div_code&#x27;: &#x27;kr&#x27;, &#x27;city_name&#x27;: &#x27;seoul&#x27;, &#x27;country_code&#x27;: &#x27;kr&#x27;, &#x27;country_name&#x27;: &#x27;South Korea&#x27;, &#x27;latitude&#x27;: 37.5665, &#x27;longitude&#x27;: 126.978}, &#x27;name&#x27;: &#x27;ap-seol&#x27;}]</div>
                                     </td>
             </tr>
@@ -387,7 +391,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique name that can be edited. The name should not contain any confidential information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">exampleName</div>
                                     </td>
             </tr>
@@ -405,7 +409,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -422,7 +426,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ISO 3166-2 code for this location&#x27;s first-level administrative division, either a US state or Canadian province. Only included for locations in the US or Canada. For a list of codes, see Country Codes.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">kr</div>
                                     </td>
             </tr>
@@ -441,7 +445,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Common English-language name for the city.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">seoul</div>
                                     </td>
             </tr>
@@ -460,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ISO 3166-1 alpha-2 country code. For a list of codes, see Country Codes.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">kr</div>
                                     </td>
             </tr>
@@ -479,7 +483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The common English-language name for the country.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">South Korea</div>
                                     </td>
             </tr>
@@ -498,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Degrees north of the Equator.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">37.5665</div>
                                     </td>
             </tr>
@@ -517,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Degrees east of the prime meridian.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">126.978</div>
                                     </td>
             </tr>
@@ -536,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Unique permanent name of the vantage point.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ap-seol</div>
                                     </td>
             </tr>

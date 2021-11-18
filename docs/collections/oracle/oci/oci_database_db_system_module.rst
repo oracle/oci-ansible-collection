@@ -30,9 +30,13 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_database_db_system`.
 
@@ -58,7 +62,7 @@ Synopsis
 - **Note:** Deprecated for Exadata Cloud Service systems. Use the `new resource model APIs <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_ instead.
 - For Exadata Cloud Service instances, support for this API will end on May 15th, 2021. See `Switching an Exadata DB System to the New Resource Model and APIs <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem_topic-resource_model_conversion.htm>`_ for details on converting existing Exadata DB systems to the new resource model.
 - Use the `CreateCloudExadataInfrastructure <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/>`_ and `CreateCloudVmCluster <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/>`_ APIs to provision a new Exadata Cloud Service instance.
-- This resource has the following action operations in the :ref:`oci_db_system_actions <ansible_collections.oci_db_system_actions_module>` module: change_compartment, migrate_exadata_db_system_resource_model.
+- This resource has the following action operations in the M(oci_db_system_actions) module: change_compartment, migrate_exadata_db_system_resource_model.
 
 
 .. Aliases
@@ -1903,7 +1907,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_name&#x27;: &#x27;scan_dns_name_example&#x27;, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: [], &#x27;zone_id&#x27;: &#x27;ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
@@ -1921,7 +1925,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the availability domain that the DB system is located in.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Uocm:PHX-AD-1</div>
                                     </td>
             </tr>
@@ -1939,7 +1943,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. Applicable only to Exadata systems.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1956,7 +1960,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup network subnet the DB system is associated with. Applicable only to Exadata DB systems.</div>
                                             <div>**Subnet Restriction:** See the subnet restrictions information for **subnetId**.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1974,7 +1978,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">cluster_name_example</div>
                                     </td>
             </tr>
@@ -1992,7 +1996,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2010,7 +2014,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The number of CPU cores enabled on the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2028,7 +2032,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The percentage assigned to DATA storage (user data and database files). The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Accepted values are 40 and 80. The default is 80 percent assigned to DATA storage. Not applicable for virtual machine DB systems.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2046,7 +2050,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The data storage size, in gigabytes, that is currently available to the DB system. Applies only for virtual machine DB systems.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2064,7 +2068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database edition that applies to all the databases on the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STANDARD_EDITION</div>
                                     </td>
             </tr>
@@ -2082,7 +2086,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2099,7 +2103,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The storage option used in DB system. ASM - Automatic storage management LVM - Logical Volume management</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ASM</div>
                                     </td>
             </tr>
@@ -2118,7 +2122,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -2136,7 +2140,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of redundancy configured for the DB system. NORMAL is 2-way redundancy. HIGH is 3-way redundancy.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HIGH</div>
                                     </td>
             </tr>
@@ -2154,7 +2158,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The user-friendly name for the DB system. The name does not have to be unique.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -2172,7 +2176,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The domain name for the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">domain_example</div>
                                     </td>
             </tr>
@@ -2190,7 +2194,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of the Fault Domains in which this DB system is provisioned.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2207,7 +2211,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -2225,7 +2229,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The hostname for the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hostname_example</div>
                                     </td>
             </tr>
@@ -2243,7 +2247,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2261,7 +2265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2278,7 +2282,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An array of IORM settings for all the database in the Exadata DB system.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2296,7 +2300,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The database name. For the default `DbPlan`, the `dbName` is `default`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_name_example</div>
                                     </td>
             </tr>
@@ -2316,7 +2320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The flash cache limit for this database. This value is internally configured based on the share value assigned to the database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">flash_cache_limit_example</div>
                                     </td>
             </tr>
@@ -2336,7 +2340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The relative priority of this database.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2356,7 +2360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Additional information about the current `lifecycleState`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -2375,7 +2379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of IORM configuration for the Exadata DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BOOTSTRAPPING</div>
                                     </td>
             </tr>
@@ -2394,7 +2398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current value for the IORM objective. The default is `AUTO`.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LOW_LATENCY</div>
                                     </td>
             </tr>
@@ -2413,7 +2417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2431,7 +2435,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the last maintenance run.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2449,7 +2453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the last patch history. This value is updated as soon as a patch operation starts.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2467,7 +2471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LICENSE_INCLUDED</div>
                                     </td>
             </tr>
@@ -2485,7 +2489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Additional information about the current lifecycle state.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
                                     </td>
             </tr>
@@ -2503,7 +2507,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROVISIONING</div>
                                     </td>
             </tr>
@@ -2521,7 +2525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The port number configured for the listener on the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2539,7 +2543,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2556,7 +2560,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Days during the week when maintenance should be performed.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2574,7 +2578,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the day of the week.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MONDAY</div>
                                     </td>
             </tr>
@@ -2594,7 +2598,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2611,7 +2615,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2630,7 +2634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Months during the year when maintenance should be performed.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2648,7 +2652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Name of the month of the year.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JANUARY</div>
                                     </td>
             </tr>
@@ -2668,7 +2672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The maintenance window scheduling preference.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NO_PREFERENCE</div>
                                     </td>
             </tr>
@@ -2687,7 +2691,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a duration of 7 days. Weeks start and end based on calendar dates, not days of the week. For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2. Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days. Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the week and hours that maintenance will be performed.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                     
                                 <tr>
@@ -2704,7 +2708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the next maintenance run.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2722,7 +2726,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The number of nodes in the DB system. For RAC DB systems, the value is greater than 1.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2740,7 +2744,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. **NsgIds restrictions:** - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2756,7 +2760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The point in time for a cloned database system when the data disks were cloned from the source database system, as described in <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -2774,7 +2778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The RECO/REDO storage size, in gigabytes, that is currently allocated to the DB system. Applies only for virtual machine DB systems.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2792,7 +2796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The FQDN of the DNS record for the SCAN IP addresses that are associated with the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">scan_dns_name_example</div>
                                     </td>
             </tr>
@@ -2810,7 +2814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DNS record for the SCAN IP addresses that are associated with the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2829,7 +2833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Single Client Access Name (SCAN) IP addresses associated with the DB system. SCAN IP addresses are typically used for load balancing and are not assigned to any interface. Oracle Clusterware directs the requests to the appropriate nodes in the cluster.</div>
                                             <div>**Note:** For a single-node DB system, this list is empty.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2845,7 +2849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The shape of the DB system. The shape determines resources to allocate to the DB system. - For virtual machine shapes, the number of CPU cores and memory - For bare metal and Exadata shapes, the number of CPU cores, storage, and memory</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_example</div>
                                     </td>
             </tr>
@@ -2863,7 +2867,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2881,7 +2885,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>True, if Sparse Diskgroup is configured for Exadata dbsystem, False, if Sparse diskgroup was not configured.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2899,7 +2903,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The public key portion of one or more key pairs used for SSH access to the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;]</div>
                                     </td>
             </tr>
@@ -2919,7 +2923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>**Subnet Restrictions:** - For bare metal DB systems and for single node virtual machine DB systems, do not use a subnet that overlaps with 192.168.16.16/28. - For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.</div>
                                             <div>These subnets are used by the Oracle Clusterware private interconnect on the database instance. Specifying an overlapping subnet will cause the private interconnect to malfunction. This restriction applies to both the client subnet and backup subnet.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -2937,7 +2941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the DB system was created.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -2955,7 +2959,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The time zone of the DB system. For details, see <a href='https://docs.cloud.oracle.com/Content/Database/References/timezones.htm'>DB System Time Zones</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_zone_example</div>
                                     </td>
             </tr>
@@ -2973,7 +2977,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Oracle Database version of the DB system.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">version_example</div>
                                     </td>
             </tr>
@@ -2992,7 +2996,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the virtual IP (VIP) addresses associated with the DB system. The Cluster Ready Services (CRS) creates and maintains one VIP address for each node in the DB system to enable failover. If one node fails, the VIP is reassigned to another active node in the cluster.</div>
                                             <div>**Note:** For a single-node DB system, this list is empty.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -3008,7 +3012,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the zone the DB system is associated with.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>

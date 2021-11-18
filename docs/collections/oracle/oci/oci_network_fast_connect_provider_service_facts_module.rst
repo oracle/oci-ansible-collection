@@ -30,9 +30,13 @@ oracle.oci.oci_network_fast_connect_provider_service_facts -- Fetches details ab
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_fast_connect_provider_service_facts`.
 
@@ -326,7 +330,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of FastConnectProviderService resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwith_shape_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;customer_asn_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;description&#x27;: &#x27;https://example.com&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_peering_bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_key_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;public_peering_bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;required_total_cross_connects&#x27;: 56, &#x27;supported_virtual_circuit_types&#x27;: [], &#x27;type&#x27;: &#x27;LAYER2&#x27;}]</div>
                                     </td>
             </tr>
@@ -344,7 +348,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Who is responsible for managing the virtual circuit bandwidth.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -362,7 +366,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Who is responsible for managing the ASN information for the network at the other end of the connection from Oracle.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -381,7 +385,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The location of the provider&#x27;s website or portal. This portal is where you can get information about the provider service, create a virtual circuit connection from the provider to Oracle Cloud Infrastructure, and retrieve your provider service key for that virtual circuit connection.</div>
                                             <div>Example: `https://example.com`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">https://example.com</div>
                                     </td>
             </tr>
@@ -399,7 +403,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the service offered by the provider.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -417,7 +421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Who is responsible for managing the private peering BGP information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -435,7 +439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the provider.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_name_example</div>
                                     </td>
             </tr>
@@ -453,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Who is responsible for managing the provider service key.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -471,7 +475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the service offered by the provider.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">provider_service_name_example</div>
                                     </td>
             </tr>
@@ -489,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Who is responsible for managing the public peering BGP information.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER_MANAGED</div>
                                     </td>
             </tr>
@@ -507,7 +511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total number of cross-connect or cross-connect groups required for the virtual circuit.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -525,7 +529,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An array of virtual circuit types supported by this service.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -541,7 +545,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Provider service type.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">LAYER2</div>
                                     </td>
             </tr>

@@ -30,9 +30,13 @@ oracle.oci.oci_opsi_host_insight_resource_usage_summary_facts -- Fetches details
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_opsi_host_insight_resource_usage_summary_facts`.
 
@@ -470,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>HostInsightResourceUsageSummary resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;capacity&#x27;: 222.3, &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;time_interval_start&#x27;: &#x27;2020-12-06T00:00:00.000Z&#x27;, &#x27;usage&#x27;: 34.5, &#x27;usage_change_percent&#x27;: 10.23, &#x27;usage_unit&#x27;: &#x27;GB&#x27;}</div>
                                     </td>
             </tr>
@@ -488,7 +492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">222.3</div>
                                     </td>
             </tr>
@@ -506,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defines the type of resource metric (CPU, Physical Memory, Logical Memory)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU</div>
                                     </td>
             </tr>
@@ -524,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The end timestamp that was passed into the request.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -542,7 +546,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The start timestamp that was passed into the request.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-12-06T00:00:00.000Z</div>
                                     </td>
             </tr>
@@ -560,7 +564,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Total amount used of the resource metric type (CPU, STORAGE).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">34.5</div>
                                     </td>
             </tr>
@@ -578,7 +582,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Percentage change in resource usage during the current period calculated using linear regression functions</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.23</div>
                                     </td>
             </tr>
@@ -596,7 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Displays usage unit (CORES, GB)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GB</div>
                                     </td>
             </tr>

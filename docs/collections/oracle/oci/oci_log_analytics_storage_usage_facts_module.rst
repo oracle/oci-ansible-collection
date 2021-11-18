@@ -30,9 +30,13 @@ oracle.oci.oci_log_analytics_storage_usage_facts -- Fetches details about a Stor
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_log_analytics_storage_usage_facts`.
 
@@ -301,7 +305,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>StorageUsage resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;active_data_size_in_bytes&#x27;: 56, &#x27;archived_data_size_in_bytes&#x27;: 56, &#x27;recalled_archived_data_size_in_bytes&#x27;: 56}</div>
                                     </td>
             </tr>
@@ -319,7 +323,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This is the number of bytes of active data (non-archived)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -337,7 +341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This is the number of bytes of archived data in object storage</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -355,7 +359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>This is the number of bytes of recalled data from archived in object store</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>

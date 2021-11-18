@@ -113,8 +113,8 @@ sddc:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
-                - The availability domain the ESXi hosts are running in.
-                - "Example: `Uocm:PHX-AD-1`"
+                - The availability domain the ESXi hosts are running in. For Multi-AD SDDC, it is `multi-AD`.
+                - "Example: `Uocm:PHX-AD-1`, `multi-AD`"
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1

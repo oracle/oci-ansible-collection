@@ -405,6 +405,18 @@ cloud_vm_clusters:
             returned: on success
             type: str
             sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
+        scan_listener_port_tcp:
+            description:
+                - The TCP Single Client Access Name (SCAN) port. The default port is 1521.
+            returned: on success
+            type: int
+            sample: 56
+        scan_listener_port_tcp_ssl:
+            description:
+                - The TCPS Single Client Access Name (SCAN) port. The default port is 2484.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -452,7 +464,9 @@ cloud_vm_clusters:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "scan_dns_name": "scan_dns_name_example",
-        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
+        "scan_listener_port_tcp": 56,
+        "scan_listener_port_tcp_ssl": 56
     }]
 """
 

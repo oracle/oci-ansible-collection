@@ -421,7 +421,7 @@ deployment:
                                 - Deployment stage type.
                             returned: on success
                             type: str
-                            sample: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+                            sample: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
                         deploy_stage_id:
                             description:
                                 - The OCID of the stage.
@@ -648,7 +648,7 @@ deployment:
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
-                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
+                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
                 "time_started": "2013-10-20T19:20:30+01:00",
                 "time_finished": "2013-10-20T19:20:30+01:00",

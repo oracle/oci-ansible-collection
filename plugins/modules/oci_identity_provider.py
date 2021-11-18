@@ -23,7 +23,9 @@ module: oci_identity_provider
 short_description: Manage an IdentityProvider resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an IdentityProvider resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new identity provider in your tenancy. For more information, see
+    - "For I(state=present), **Deprecated.** For more information, see L(Deprecated IAM Service
+      APIs,https://docs.cloud.oracle.com/Content/Identity/Reference/deprecatediamapis.htm)."
+    - Creates a new identity provider in your tenancy. For more information, see
       L(Identity Providers and Federation,https://docs.cloud.oracle.com/Content/Identity/Concepts/federation.htm).
     - You must specify your tenancy's OCID as the compartment ID in the request object.
       Remember that the tenancy is simply the root compartment. For information about

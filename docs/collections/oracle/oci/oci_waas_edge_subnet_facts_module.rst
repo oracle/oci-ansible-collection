@@ -30,9 +30,13 @@ oracle.oci.oci_waas_edge_subnet_facts -- Fetches details about one or multiple W
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_waas_edge_subnet_facts`.
 
@@ -324,7 +328,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of WaasEdgeSubnet resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr&#x27;: &#x27;192.0.2.0/24&#x27;, &#x27;region&#x27;: &#x27;US-Central&#x27;, &#x27;time_modified&#x27;: &#x27;2018-11-16T21:10:29Z&#x27;}]</div>
                                     </td>
             </tr>
@@ -342,7 +346,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>An edge node subnet. This can include /24 or /8 addresses.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">192.0.2.0/24</div>
                                     </td>
             </tr>
@@ -360,7 +364,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the region containing the indicated subnet.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">US-Central</div>
                                     </td>
             </tr>
@@ -378,7 +382,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the last change was made to the indicated edge node subnet, expressed in RFC 3339 timestamp format.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2018-11-16T21:10:29Z</div>
                                     </td>
             </tr>

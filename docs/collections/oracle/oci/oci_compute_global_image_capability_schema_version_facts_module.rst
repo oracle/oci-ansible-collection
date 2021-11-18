@@ -30,9 +30,13 @@ oracle.oci.oci_compute_global_image_capability_schema_version_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_compute_global_image_capability_schema_version_facts`.
 
@@ -377,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of ComputeGlobalImageCapabilitySchemaVersion resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compute_global_image_capability_schema_id&#x27;: &#x27;ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;schema_data&#x27;: {&#x27;boolean_default_value&#x27;: True, &#x27;descriptor_type&#x27;: &#x27;boolean&#x27;, &#x27;enum_integer_default_value&#x27;: 56, &#x27;enum_integer_values&#x27;: [], &#x27;enum_string_default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;enum_string_values&#x27;: [], &#x27;source&#x27;: &#x27;GLOBAL&#x27;}, &#x27;time_created&#x27;: &#x27;2016-08-25T21:10:29.600Z&#x27;}]</div>
                                     </td>
             </tr>
@@ -395,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The ocid of the compute global image capability schema</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeglobalimagecapabilityschema.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -413,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A user-friendly name for the compute global image capability schema</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -431,7 +435,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the compute global image capability schema version</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -449,7 +453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The map of each capability name to its ImageCapabilityDescriptor.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -466,7 +470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -485,7 +489,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The image capability schema descriptor type for the capability</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">boolean</div>
                                     </td>
             </tr>
@@ -504,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -523,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the list of values for the enum</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -540,7 +544,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the default value</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">default_value_example</div>
                                     </td>
             </tr>
@@ -559,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>the list of values for the enum</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -576,7 +580,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GLOBAL</div>
                                     </td>
             </tr>
@@ -596,7 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the compute global image capability schema version was created, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2016-08-25T21:10:29.600Z</div>
                                     </td>
             </tr>

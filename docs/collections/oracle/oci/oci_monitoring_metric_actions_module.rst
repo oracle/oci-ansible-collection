@@ -30,9 +30,13 @@ oracle.oci.oci_monitoring_metric_actions -- Perform actions on a Metric resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_monitoring_metric_actions`.
 
@@ -480,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Metric resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..exampleuniqueID&#x27;, &#x27;dimensions&#x27;: {}, &#x27;name&#x27;: &#x27;CpuUtilization&#x27;, &#x27;namespace&#x27;: &#x27;oci_computeagent&#x27;, &#x27;resource_group&#x27;: &#x27;frontend-fleet&#x27;}</div>
                                     </td>
             </tr>
@@ -498,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the resources monitored by the metric.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..exampleuniqueID</div>
                                     </td>
             </tr>
@@ -517,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair.</div>
                                             <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -534,7 +538,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the metric.</div>
                                             <div>Example: `CpuUtilization`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CpuUtilization</div>
                                     </td>
             </tr>
@@ -553,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The source service or application emitting the metric.</div>
                                             <div>Example: `oci_computeagent`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">oci_computeagent</div>
                                     </td>
             </tr>
@@ -572,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Resource group provided with the posted metric. A resource group is a custom string that you can match when retrieving custom metrics. Only one resource group can be applied per metric. A valid resourceGroup value starts with an alphabetical character and includes only alphanumeric characters, periods (.), underscores (_), hyphens (-), and dollar signs ($).</div>
                                             <div>Example: `frontend-fleet`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">frontend-fleet</div>
                                     </td>
             </tr>

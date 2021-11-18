@@ -30,9 +30,13 @@ oracle.oci.oci_mysql_configuration -- Manage a Configuration resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_mysql_configuration`.
 
@@ -1478,7 +1482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Configuration resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;parent_configuration_id&#x27;: &#x27;ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DEFAULT&#x27;, &#x27;variables&#x27;: {&#x27;autocommit&#x27;: True, &#x27;binlog_expire_logs_seconds&#x27;: 56, &#x27;binlog_row_metadata&#x27;: &#x27;FULL&#x27;, &#x27;binlog_row_value_options&#x27;: &#x27;binlog_row_value_options_example&#x27;, &#x27;binlog_transaction_compression&#x27;: True, &#x27;completion_type&#x27;: &#x27;NO_CHAIN&#x27;, &#x27;connect_timeout&#x27;: 56, &#x27;cte_max_recursion_depth&#x27;: 56, &#x27;default_authentication_plugin&#x27;: &#x27;mysql_native_password&#x27;, &#x27;foreign_key_checks&#x27;: True, &#x27;generated_random_password_length&#x27;: 56, &#x27;group_replication_consistency&#x27;: &#x27;EVENTUAL&#x27;, &#x27;information_schema_stats_expiry&#x27;: 56, &#x27;innodb_buffer_pool_instances&#x27;: 56, &#x27;innodb_buffer_pool_size&#x27;: 56, &#x27;innodb_ft_enable_stopword&#x27;: True, &#x27;innodb_ft_max_token_size&#x27;: 56, &#x27;innodb_ft_min_token_size&#x27;: 56, &#x27;innodb_ft_num_word_optimize&#x27;: 56, &#x27;innodb_ft_result_cache_limit&#x27;: 56, &#x27;innodb_ft_server_stopword_table&#x27;: &#x27;innodb_ft_server_stopword_table_example&#x27;, &#x27;innodb_lock_wait_timeout&#x27;: 56, &#x27;innodb_max_purge_lag&#x27;: 56, &#x27;innodb_max_purge_lag_delay&#x27;: 56, &#x27;local_infile&#x27;: True, &#x27;mandatory_roles&#x27;: &#x27;mandatory_roles_example&#x27;, &#x27;max_connections&#x27;: 56, &#x27;max_execution_time&#x27;: 56, &#x27;max_prepared_stmt_count&#x27;: 56, &#x27;mysql_firewall_mode&#x27;: True, &#x27;mysql_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_connect_timeout&#x27;: 56, &#x27;mysqlx_deflate_default_compression_level&#x27;: 56, &#x27;mysqlx_deflate_max_client_compression_level&#x27;: 56, &#x27;mysqlx_document_id_unique_prefix&#x27;: 56, &#x27;mysqlx_enable_hello_notice&#x27;: True, &#x27;mysqlx_idle_worker_thread_timeout&#x27;: 56, &#x27;mysqlx_interactive_timeout&#x27;: 56, &#x27;mysqlx_lz4_default_compression_level&#x27;: 56, &#x27;mysqlx_lz4_max_client_compression_level&#x27;: 56, &#x27;mysqlx_max_allowed_packet&#x27;: 56, &#x27;mysqlx_min_worker_threads&#x27;: 56, &#x27;mysqlx_read_timeout&#x27;: 56, &#x27;mysqlx_wait_timeout&#x27;: 56, &#x27;mysqlx_write_timeout&#x27;: 56, &#x27;mysqlx_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_zstd_max_client_compression_level&#x27;: 56, &#x27;parser_max_mem_size&#x27;: 56, &#x27;query_alloc_block_size&#x27;: 56, &#x27;query_prealloc_size&#x27;: 56, &#x27;sql_mode&#x27;: &#x27;sql_mode_example&#x27;, &#x27;sql_require_primary_key&#x27;: True, &#x27;sql_warnings&#x27;: True, &#x27;transaction_isolation&#x27;: &#x27;READ-UNCOMMITTED&#x27;}}</div>
                                     </td>
             </tr>
@@ -1496,7 +1500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>OCID of the Compartment the Configuration exists in.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1514,7 +1518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
                                     </td>
             </tr>
@@ -1532,7 +1536,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>User-provided data about the Configuration.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
@@ -1550,7 +1554,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The display name of the Configuration.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
@@ -1568,7 +1572,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
                                     </td>
             </tr>
@@ -1586,7 +1590,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the Configuration.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1604,7 +1608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current state of the Configuration.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
                                     </td>
             </tr>
@@ -1622,7 +1626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the Configuration from which this Configuration is &quot;derived&quot;. This is entirely a metadata relationship. There is no relation between the values in this Configuration and its parent.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -1640,7 +1644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the associated Shape.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_name_example</div>
                                     </td>
             </tr>
@@ -1658,7 +1662,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the Configuration was created, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1676,7 +1680,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the Configuration was last updated, as described by <a href='https://tools.ietf.org/rfc/rfc3339'>RFC 3339</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -1694,7 +1698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The Configuration type, DEFAULT or CUSTOM.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEFAULT</div>
                                     </td>
             </tr>
@@ -1712,7 +1716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div></div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1729,7 +1733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;autocommit&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1748,7 +1752,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Sets the binary log expiration period in seconds. binlogExpireLogsSeconds corresponds to the MySQL binary logging system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary- log.html#sysvar_binlog_expire_logs_seconds'>binlog_expire_logs_seconds</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1767,7 +1771,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Configures the amount of table metadata added to the binary log when using row-based logging. binlogRowMetadata corresponds to the MySQL binary logging system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_binlog_row_metadata'>binlog_row_metadata</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FULL</div>
                                     </td>
             </tr>
@@ -1786,7 +1790,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>When set to PARTIAL_JSON, this enables use of a space-efficient binary log format for updates that modify only a small portion of a JSON document. binlogRowValueOptions corresponds to the MySQL binary logging system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary- log.html#sysvar_binlog_row_value_options'>binlog_row_value_options</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">binlog_row_value_options_example</div>
                                     </td>
             </tr>
@@ -1805,7 +1809,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Enables compression for transactions that are written to binary log files on this server. binlogTransactionCompression corresponds to the MySQL binary logging system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary- log.html#sysvar_binlog_transaction_compression'>binlog_transaction_compression</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1824,7 +1828,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;completion_type&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NO_CHAIN</div>
                                     </td>
             </tr>
@@ -1843,7 +1847,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;connect_timeout&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1862,7 +1866,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;cte_max_recursion_depth&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1881,7 +1885,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;default_authentication_plugin&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mysql_native_password</div>
                                     </td>
             </tr>
@@ -1900,7 +1904,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;foreign_key_checks&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -1919,7 +1923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;generated_random_password_length&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1938,7 +1942,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>- EVENTUAL: Both RO and RW transactions do not wait for preceding transactions to be applied before executing. A RW transaction does not wait for other members to apply a transaction. This means that a transaction could be externalized on one member before the others. This also means that in the event of a primary failover, the new primary can accept new RO and RW transactions before the previous primary transactions are all applied. RO transactions could result in outdated values, RW transactions could result in a rollback due to conflicts. - BEFORE_ON_PRIMARY_FAILOVER: New RO or RW transactions with a newly elected primary that is applying backlog from the old primary are held (not applied) until any backlog has been applied. This ensures that when a primary failover happens, intentionally or not, clients always see the latest value on the primary. This guarantees consistency, but means that clients must be able to handle the delay in the event that a backlog is being applied. Usually this delay should be minimal, but does depend on the size of the backlog. - BEFORE: A RW transaction waits for all preceding transactions to complete before being applied. A RO transaction waits for all preceding transactions to complete before being executed. This ensures that this transaction reads the latest value by only affecting the latency of the transaction. This reduces the overhead of synchronization on every RW transaction, by ensuring synchronization is used only on RO transactions. This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER. - AFTER: A RW transaction waits until its changes have been applied to all of the other members. This value has no effect on RO transactions. This mode ensures that when a transaction is committed on the local member, any subsequent transaction reads the written value or a more recent value on any group member. Use this mode with a group that is used for predominantly RO operations to ensure that applied RW transactions are applied everywhere once they commit. This could be used by your application to ensure that subsequent reads fetch the latest data which includes the latest writes. This reduces the overhead of synchronization on every RO transaction, by ensuring synchronization is used only on RW transactions. This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER. - BEFORE_AND_AFTER: A RW transaction waits for 1) all preceding transactions to complete before being applied and 2) until its changes have been applied on other members. A RO transaction waits for all preceding transactions to complete before execution takes place. This consistency level also includes the consistency guarantees provided by BEFORE_ON_PRIMARY_FAILOVER.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EVENTUAL</div>
                                     </td>
             </tr>
@@ -1957,7 +1961,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;information_schema_stats_expiry&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1976,7 +1980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_buffer_pool_instances&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -1995,7 +1999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_buffer_pool_size&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2014,7 +2018,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_enable_stopword&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2033,7 +2037,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_max_token_size&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2052,7 +2056,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_min_token_size&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2071,7 +2075,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_num_word_optimize&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2090,7 +2094,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_result_cache_limit&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2109,7 +2113,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_ft_server_stopword_table&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">innodb_ft_server_stopword_table_example</div>
                                     </td>
             </tr>
@@ -2128,7 +2132,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_lock_wait_timeout&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2147,7 +2151,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_max_purge_lag&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2166,7 +2170,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;innodb_max_purge_lag_delay&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2185,7 +2189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;local_infile&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2204,7 +2208,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mandatory_roles&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">mandatory_roles_example</div>
                                     </td>
             </tr>
@@ -2223,7 +2227,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;max_connections&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2242,7 +2246,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;max_execution_time&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2261,7 +2265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;max_prepared_stmt_count&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2280,7 +2284,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysql_firewall_mode&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2299,7 +2303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>DEPRECATED -- typo of mysqlx_zstd_default_compression_level. variable will be ignored.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2318,7 +2322,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_connect_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2337,7 +2341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Set the default compression level for the deflate algorithm. (&quot;mysqlx_deflate_default_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2356,7 +2360,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Limit the upper bound of accepted compression levels for the deflate algorithm. (&quot;mysqlx_deflate_max_client_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2375,7 +2379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_document_id_unique_prefix&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2394,7 +2398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_enable_hello_notice&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2413,7 +2417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_idle_worker_thread_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2432,7 +2436,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_interactive_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2451,7 +2455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Set the default compression level for the lz4 algorithm. (&quot;mysqlx_lz4_default_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2470,7 +2474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Limit the upper bound of accepted compression levels for the lz4 algorithm. (&quot;mysqlx_lz4_max_client_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2489,7 +2493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_max_allowed_packet&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2508,7 +2512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_min_worker_threads&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2527,7 +2531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_read_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2546,7 +2550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_wait_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2565,7 +2569,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;mysqlx_write_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2584,7 +2588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Set the default compression level for the zstd algorithm. (&quot;mysqlx_zstd_default_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2603,7 +2607,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Limit the upper bound of accepted compression levels for the zstd algorithm. (&quot;mysqlx_zstd_max_client_compression_level&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2622,7 +2626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;parser_max_mem_size&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2641,7 +2645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;query_alloc_block_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2660,7 +2664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;query_prealloc_size&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -2679,7 +2683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;sql_mode&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sql_mode_example</div>
                                     </td>
             </tr>
@@ -2698,7 +2702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;sql_require_primary_key&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2717,7 +2721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;sql_warnings&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
@@ -2736,7 +2740,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>(&quot;transaction_isolation&quot;)</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ-UNCOMMITTED</div>
                                     </td>
             </tr>

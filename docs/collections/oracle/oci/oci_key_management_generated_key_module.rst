@@ -30,9 +30,13 @@ oracle.oci.oci_key_management_generated_key -- Manage a GeneratedKey resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_generated_key`.
 
@@ -497,7 +501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the GeneratedKey resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;ciphertext&#x27;: &#x27;ciphertext_example&#x27;, &#x27;plaintext&#x27;: &#x27;plaintext_example&#x27;, &#x27;plaintext_checksum&#x27;: &#x27;plaintext_checksum_example&#x27;}</div>
                                     </td>
             </tr>
@@ -515,7 +519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The encrypted data encryption key generated from a master encryption key.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ciphertext_example</div>
                                     </td>
             </tr>
@@ -533,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The plaintext data encryption key, a base64-encoded sequence of random bytes, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plaintext_example</div>
                                     </td>
             </tr>
@@ -551,7 +555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The checksum of the plaintext data encryption key, which is included if the <a href='https://docs.cloud.oracle.com/api/#/en/key/latest/GeneratedKey/GenerateDataEncryptionKey'>GenerateDataEncryptionKey</a> request includes the `includePlaintextKey` parameter and sets its value to &quot;true&quot;.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plaintext_checksum_example</div>
                                     </td>
             </tr>

@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts`.
 
@@ -324,7 +328,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of SslCipherSuite resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;ciphers&#x27;: [], &#x27;name&#x27;: &#x27;name_example&#x27;}]</div>
                                     </td>
             </tr>
@@ -348,7 +352,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>&quot;AES128-SHA&quot; &quot;AES256-SHA&quot; &quot;CAMELLIA128-SHA&quot; &quot;CAMELLIA256-SHA&quot; &quot;DES-CBC3-SHA&quot; &quot;DH-DSS-AES128-SHA&quot; &quot;DH-DSS-AES256-SHA&quot; &quot;DH-DSS-CAMELLIA128-SHA&quot; &quot;DH-DSS-CAMELLIA256-SHA&quot; &quot;DH-DSS-DES-CBC3-SHAv&quot; &quot;DH-DSS-SEED-SHA&quot; &quot;DH-RSA-AES128-SHA&quot; &quot;DH-RSA-AES256-SHA&quot; &quot;DH-RSA-CAMELLIA128-SHA&quot; &quot;DH-RSA-CAMELLIA256-SHA&quot; &quot;DH-RSA-DES-CBC3-SHA&quot; &quot;DH-RSA-SEED-SHA&quot; &quot;DHE-DSS-AES128-SHA&quot; &quot;DHE-DSS-AES256-SHA&quot; &quot;DHE-DSS-CAMELLIA128-SHA&quot; &quot;DHE-DSS-CAMELLIA256-SHA&quot; &quot;DHE-DSS-DES-CBC3-SHA&quot; &quot;DHE-DSS-SEED-SHA&quot; &quot;DHE-RSA-AES128-SHA&quot; &quot;DHE-RSA-AES256-SHA&quot; &quot;DHE-RSA-CAMELLIA128-SHA&quot; &quot;DHE-RSA-CAMELLIA256-SHA&quot; &quot;DHE-RSA-DES-CBC3-SHA&quot; &quot;DHE-RSA-SEED-SHA&quot; &quot;ECDH-ECDSA-AES128-SHA&quot; &quot;ECDH-ECDSA-AES256-SHA&quot; &quot;ECDH-ECDSA-DES-CBC3-SHA&quot; &quot;ECDH-ECDSA-RC4-SHA&quot; &quot;ECDH-RSA-AES128-SHA&quot; &quot;ECDH-RSA-AES256-SHA&quot; &quot;ECDH-RSA-DES-CBC3-SHA&quot; &quot;ECDH-RSA-RC4-SHA&quot; &quot;ECDHE-ECDSA-AES128-SHA&quot; &quot;ECDHE-ECDSA-AES256-SHA&quot; &quot;ECDHE-ECDSA-DES-CBC3-SHA&quot; &quot;ECDHE-ECDSA-RC4-SHA&quot; &quot;ECDHE-RSA-AES128-SHA&quot; &quot;ECDHE-RSA-AES256-SHA&quot; &quot;ECDHE-RSA-DES-CBC3-SHA&quot; &quot;ECDHE-RSA-RC4-SHA&quot; &quot;IDEA-CBC-SHA&quot; &quot;KRB5-DES-CBC3-MD5&quot; &quot;KRB5-DES-CBC3-SHA&quot; &quot;KRB5-IDEA-CBC-MD5&quot; &quot;KRB5-IDEA-CBC-SHA&quot; &quot;KRB5-RC4-MD5&quot; &quot;KRB5-RC4-SHA&quot; &quot;PSK-3DES-EDE-CBC-SHA&quot; &quot;PSK-AES128-CBC-SHA&quot; &quot;PSK-AES256-CBC-SHA&quot; &quot;PSK-RC4-SHA&quot; &quot;RC4-MD5&quot; &quot;RC4-SHA&quot; &quot;SEED-SHA&quot;</div>
                                             <div>example: `[&quot;ECDHE-RSA-AES256-GCM-SHA384&quot;,&quot;ECDHE-ECDSA-AES256-GCM-SHA384&quot;,&quot;ECDHE-RSA-AES128-GCM-SHA256&quot;]`</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -367,7 +371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* oci-default-ssl-cipher-suite-v1 * oci-modern-ssl-cipher-suite-v1 * oci-compatible-ssl-cipher-suite-v1 * oci-wider-compatible-ssl-cipher-suite-v1 * oci-customized-ssl-cipher-suite</div>
                                             <div>example: `example_cipher_suite`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
