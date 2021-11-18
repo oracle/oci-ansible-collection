@@ -1,0 +1,42 @@
+---
+# Copyright (c) 2021, Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Find installed mgmt_agent
+  shell: "rpm -qa | grep -i mgmt_agent"
+  register: find_mgmt_agent
+  ignore_errors: true
+
+- name: Remove mgmt_agent
+  when: find_mgmt_agent.stdout != ""
+  yum:
+    name: [ "{{ find_mgmt_agent.stdout }}" ]
+    state: absent
+
+- name: Remove user 'mgmt_agent'
+  user:
+    name: mgmt_agent
+    state: absent
+
+- name: Remove group 'mgmt_agent'
+  group:
+    name: mgmt_agent
+    state: absent
+
+- name: Remove logrotate config
+  file:
+    state: absent
+    path: "{{ logrotate_file }}"
+
+- name: Remove Usage Tracker logs folder
+  file:
+    state: absent
+    path: "{{ usagetrackerlogs_directory }}"
+
+- name: Remove Usage Tracker properties folder
+  file:
+    state: absent
+    path: "{{ usagetracker_directory }}"

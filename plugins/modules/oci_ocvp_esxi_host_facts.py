@@ -185,6 +185,12 @@ esxi_hosts:
             returned: on success
             type: str
             sample: "2016-08-25T21:10:29.600Z"
+        compute_availability_domain:
+            description:
+                - The availability domain of the ESXi host.
+            returned: on success
+            type: str
+            sample: compute_availability_domain_example
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -214,6 +220,7 @@ esxi_hosts:
         "current_sku": "HOUR",
         "next_sku": "HOUR",
         "billing_contract_end_date": "2016-08-25T21:10:29.600Z",
+        "compute_availability_domain": "compute_availability_domain_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

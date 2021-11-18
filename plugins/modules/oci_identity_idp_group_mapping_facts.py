@@ -23,6 +23,7 @@ module: oci_identity_idp_group_mapping_facts
 short_description: Fetches details about one or multiple IdpGroupMapping resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple IdpGroupMapping resources in Oracle Cloud Infrastructure
+    - "**Deprecated.** For more information, see L(Deprecated IAM Service APIs,https://docs.cloud.oracle.com/Content/Identity/Reference/deprecatediamapis.htm)."
     - Lists the group mappings for the specified identity provider.
     - If I(mapping_id) is specified, the details of a single IdpGroupMapping will be returned.
 version_added: "2.9.0"

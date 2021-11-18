@@ -132,6 +132,13 @@ pdb_conversion_history_entries:
             returned: on success
             type: str
             sample: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        cdb_name:
+            description:
+                - The database name. The name must begin with an alphabetic character and can contain a maximum of 8 alphanumeric characters. Special characters
+                  are not permitted. The database name must be unique in the tenancy.
+            returned: on success
+            type: str
+            sample: cdb_name_example
         lifecycle_state:
             description:
                 - Status of an operation performed during the conversion of a non-container database to a pluggable database.
@@ -168,6 +175,7 @@ pdb_conversion_history_entries:
         "target": "NEW_DATABASE",
         "source_database_id": "ocid1.sourcedatabase.oc1..xxxxxxEXAMPLExxxxxx",
         "target_database_id": "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx",
+        "cdb_name": "cdb_name_example",
         "lifecycle_state": "SUCCEEDED",
         "lifecycle_details": "lifecycle_details_example",
         "time_started": "2013-10-20T19:20:30+01:00",

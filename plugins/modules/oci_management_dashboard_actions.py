@@ -320,9 +320,19 @@ options:
                             - Defines parameters for the saved search.
                         type: list
                         elements: dict
+                    drilldown_config:
+                        description:
+                            - Drill-down configuration to define the destination of a drill-down action.
+                        type: list
+                        elements: dict
             parameters_config:
                 description:
                     - Defines parameters for the dashboard.
+                type: list
+                elements: dict
+            drilldown_config:
+                description:
+                    - Drill-down configuration to define the destination of a drill-down action.
                 type: list
                 elements: dict
             freeform_tags:
@@ -724,9 +734,21 @@ management_dashboard:
                             returned: on success
                             type: list
                             sample: []
+                        drilldown_config:
+                            description:
+                                - Drill-down configuration to define the destination of a drill-down action.
+                            returned: on success
+                            type: list
+                            sample: []
                 parameters_config:
                     description:
                         - Defines parameters for the dashboard.
+                    returned: on success
+                    type: list
+                    sample: []
+                drilldown_config:
+                    description:
+                        - Drill-down configuration to define the destination of a drill-down action.
                     returned: on success
                     type: list
                     sample: []
@@ -796,9 +818,11 @@ management_dashboard:
                 "widget_vm": "widget_vm_example",
                 "freeform_tags": {'Department': 'Finance'},
                 "defined_tags": {'Operations': {'CostCenter': 'US'}},
-                "parameters_config": []
+                "parameters_config": [],
+                "drilldown_config": []
             }],
             "parameters_config": [],
+            "drilldown_config": [],
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}}
         }]
@@ -974,9 +998,11 @@ def main():
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
                             parameters_config=dict(type="list", elements="dict"),
+                            drilldown_config=dict(type="list", elements="dict"),
                         ),
                     ),
                     parameters_config=dict(type="list", elements="dict"),
+                    drilldown_config=dict(type="list", elements="dict"),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
                 ),

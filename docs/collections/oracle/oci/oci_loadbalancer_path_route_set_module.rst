@@ -30,9 +30,13 @@ oracle.oci.oci_loadbalancer_path_route_set -- Manage a PathRouteSet resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_loadbalancer_path_route_set`.
 
@@ -527,7 +531,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the PathRouteSet resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;name&#x27;: &#x27;example_path_route_set&#x27;, &#x27;path_routes&#x27;: [{&#x27;backend_set_name&#x27;: &#x27;example_backend_set&#x27;, &#x27;path&#x27;: &#x27;/example/video/123&#x27;, &#x27;path_match_type&#x27;: {&#x27;match_type&#x27;: &#x27;EXACT_MATCH&#x27;}}]}</div>
                                     </td>
             </tr>
@@ -546,7 +550,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The unique name for this set of path route rules. Avoid entering confidential information.</div>
                                             <div>Example: `example_path_route_set`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_path_route_set</div>
                                     </td>
             </tr>
@@ -564,7 +568,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The set of path route rules.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -582,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The name of the target backend set for requests where the incoming URI matches the specified path.</div>
                                             <div>Example: `example_backend_set`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example_backend_set</div>
                                     </td>
             </tr>
@@ -605,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  Regular expressions are not supported.</div>
                                             <div>Example: `/example/video/123`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">/example/video/123</div>
                                     </td>
             </tr>
@@ -624,7 +628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The type of matching to apply to incoming URIs.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -647,7 +651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*  **SUFFIX_MATCH** - Looks for a `path` string that matches the ending portion of the incoming URI path.</div>
                                             <div>For a full description of how the system handles `matchType` in a path route set containing multiple rules, see <a href='https://docs.cloud.oracle.com/Content/Balance/Tasks/managingrequest.htm'>Managing Request Routing</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXACT_MATCH</div>
                                     </td>
             </tr>

@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.35.0] - 2021-11-18
+
+## Added
+- Support for devops build and repository
+- Support for Database Tools service
+- Support for Certificates service
+- Support for Certificates Management service
+- Support for Oracle support reward (usage_proxy) service
+- Support for Identity domains
+- Support for scan listener port TCP and TCP SSL on cloud VM clusters in the Database service
+- Support for OCI Certificates integration with the Load Balancer Service
+- Support for creating hosts in specific availability domains in the VMWare Solution service
+- Support for drill-down metadata in the Management Dashboard service
+- Support for Default homepage preference & unprocessed data bucket for Logging Analytics service.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.51.0
+
+
+
+
 ## [2.34.0] - 2021-11-03
 
 ## Added

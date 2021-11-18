@@ -79,6 +79,18 @@ options:
                     - Whether the load balancer listener should verify peer certificates.
                     - "Example: `true`"
                 type: bool
+            trusted_certificate_authority_ids:
+                description:
+                    - Ids for OCI certificates service CA or CA bundles for the load balancer to trust.
+                    - "Example: `[ocid1.cabundle.oc1.us-ashburn-1.amaaaaaaav3bgsaagl4zzyqdop5i2vuwoqewdvauuw34llqa74otq2jdsfyq]`"
+                type: list
+                elements: str
+            certificate_ids:
+                description:
+                    - Ids for OCI certificates service certificates. Currently only a single Id may be passed.
+                    - "Example: `[ocid1.certificate.oc1.us-ashburn-1.amaaaaaaav3bgsaa5o2q7rh5nfmkkukfkogasqhk6af2opufhjlqg7m6jqzq]`"
+                type: list
+                elements: str
             certificate_name:
                 description:
                     - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -297,6 +309,20 @@ listener:
                     returned: on success
                     type: bool
                     sample: true
+                trusted_certificate_authority_ids:
+                    description:
+                        - Ids for OCI certificates service CA or CA bundles for the load balancer to trust.
+                        - "Example: `[ocid1.cabundle.oc1.us-ashburn-1.amaaaaaaav3bgsaagl4zzyqdop5i2vuwoqewdvauuw34llqa74otq2jdsfyq]`"
+                    returned: on success
+                    type: list
+                    sample: []
+                certificate_ids:
+                    description:
+                        - Ids for OCI certificates service certificates. Currently only a single Id may be passed.
+                        - "Example: `[ocid1.certificate.oc1.us-ashburn-1.amaaaaaaav3bgsaa5o2q7rh5nfmkkukfkogasqhk6af2opufhjlqg7m6jqzq]`"
+                    returned: on success
+                    type: list
+                    sample: []
                 certificate_name:
                     description:
                         - A friendly name for the certificate bundle. It must be unique and it cannot be changed.
@@ -410,6 +436,8 @@ listener:
         "ssl_configuration": {
             "verify_depth": 3,
             "verify_peer_certificate": true,
+            "trusted_certificate_authority_ids": [],
+            "certificate_ids": [],
             "certificate_name": "example_certificate_bundle",
             "server_order_preference": "ENABLED",
             "cipher_suite_name": "cipher_suite_name_example",
@@ -543,6 +571,8 @@ def main():
                 options=dict(
                     verify_depth=dict(type="int"),
                     verify_peer_certificate=dict(type="bool"),
+                    trusted_certificate_authority_ids=dict(type="list", elements="str"),
+                    certificate_ids=dict(type="list", elements="str"),
                     certificate_name=dict(type="str"),
                     protocols=dict(type="list", elements="str"),
                     cipher_suite_name=dict(type="str"),

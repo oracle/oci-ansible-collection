@@ -99,24 +99,29 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 EXAMPLES = """
 - name: Create routing_policy
   oci_loadbalancer_routing_policy:
-    name: example_routing_rules
-    condition_language_version: V1
+    name: "example_routing_rules"
+    condition_language_version: "V1"
     rules:
-    - name: name_example
-      condition: condition_example
+    - name: "HR_mobile_user_rule"
+      condition: "all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))"
       actions:
-      - name: FORWARD_TO_BACKENDSET
+      - name: "FORWARD_TO_BACKENDSET"
+        backend_set_name: "backendSetForHRMobileUsers"
+    - name: "Documents_rule"
+      condition: "any(http.request.url.path eq (i '/documents'), http.request.headers[(i 'host')] eq (i 'doc.myapp.com'))"
+      actions:
+      - name: "FORWARD_TO_BACKENDSET"
+        backend_set_name: "backendSetForDocuments"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update routing_policy
   oci_loadbalancer_routing_policy:
-    name: example_routing_rules
-    condition_language_version: V1
     rules:
-    - name: name_example
-      condition: condition_example
+    - name: "HR_mobile_user_rule"
+      condition: "all(http.request.headers[(i 'user-agent')] eq (i 'mobile'), http.request.url.query[(i 'department')] eq (i 'HR'))"
       actions:
-      - name: FORWARD_TO_BACKENDSET
+      - name: "FORWARD_TO_BACKENDSET"
+        backend_set_name: "backendSetForHRMobileUsers"
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete routing_policy

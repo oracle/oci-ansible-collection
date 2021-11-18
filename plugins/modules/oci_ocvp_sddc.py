@@ -36,7 +36,7 @@ author: Oracle (@oracle)
 options:
     compute_availability_domain:
         description:
-            - The availability domain to create the SDDC's ESXi hosts in.
+            - The availability domain to create the SDDC's ESXi hosts in. For multi-AD SDDC deployment, set to `multi-AD`.
             - Required for create using I(state=present).
         type: str
     display_name:
@@ -291,8 +291,8 @@ sddc:
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
-                - The availability domain the ESXi hosts are running in.
-                - "Example: `Uocm:PHX-AD-1`"
+                - The availability domain the ESXi hosts are running in. For Multi-AD SDDC, it is `multi-AD`.
+                - "Example: `Uocm:PHX-AD-1`, `multi-AD`"
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1

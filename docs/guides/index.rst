@@ -12,5 +12,5 @@ You may check the following documents:
     Idempotence <idempotence-guide.md>
     Wait Configuration <wait-timeout.md>
     AWX <awx.md>
-    AWX Deployment<guides/awx/index>
+    AWX Deployment<awx/index>
 

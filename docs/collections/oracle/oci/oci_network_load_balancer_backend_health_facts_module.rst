@@ -30,9 +30,13 @@ oracle.oci.oci_network_load_balancer_backend_health_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_load_balancer_backend_health_facts`.
 
@@ -336,7 +340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>BackendHealth resource</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;health_check_results&#x27;: [{&#x27;health_check_status&#x27;: &#x27;OK&#x27;, &#x27;timestamp&#x27;: &#x27;2020-05-01T18:28:11+00:00&#x27;}], &#x27;status&#x27;: &#x27;OK&#x27;}</div>
                                     </td>
             </tr>
@@ -354,7 +358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>A list of the most recent health check results returned for the specified backend server.</div>
                                         <br/>
-                                    </td>
+                                                        </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -371,7 +375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The result of the most recent health check.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
                                     </td>
             </tr>
@@ -391,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The date and time the data was retrieved, in the format defined by RFC3339.</div>
                                             <div>Example: `2020-05-01T18:28:11+00:00`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2020-05-01T18:28:11+00:00</div>
                                     </td>
             </tr>
@@ -413,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>*   **WARNING:** At least one of the health check probes does not return `OK`</div>
                                             <div>*   **CRITICAL:** None of the health check probes return `OK`. * *   **UNKNOWN:** One of the health checks probes return `UNKNOWN`, *   or the system is unable to retrieve metrics at this time.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
                                     </td>
             </tr>

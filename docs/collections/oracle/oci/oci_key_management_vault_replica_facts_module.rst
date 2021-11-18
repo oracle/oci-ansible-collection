@@ -30,9 +30,13 @@ oracle.oci.oci_key_management_vault_replica_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_key_management_vault_replica_facts`.
 
@@ -340,7 +344,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of VaultReplica resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;crypto_endpoint&#x27;: &#x27;crypto_endpoint_example&#x27;, &#x27;management_endpoint&#x27;: &#x27;management_endpoint_example&#x27;, &#x27;region&#x27;: &#x27;region_example&#x27;, &#x27;status&#x27;: &#x27;CREATING&#x27;}]</div>
                                     </td>
             </tr>
@@ -358,7 +362,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The vault replica&#x27;s crypto endpoint</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">crypto_endpoint_example</div>
                                     </td>
             </tr>
@@ -376,7 +380,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The vault replica&#x27;s management endpoint</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">management_endpoint_example</div>
                                     </td>
             </tr>
@@ -394,7 +398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Region to which vault is replicated to</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">region_example</div>
                                     </td>
             </tr>
@@ -412,7 +416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The value to assign to the status property of this VaultReplicaSummary. Allowed values for this property are: &#x27;CREATING&#x27;, &#x27;CREATED&#x27;, &#x27;DELETING&#x27;, &#x27;DELETED&#x27;, &#x27;UNKNOWN_ENUM_VALUE&#x27;. Any unrecognized values returned by a service will be mapped to &#x27;UNKNOWN_ENUM_VALUE&#x27;.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>

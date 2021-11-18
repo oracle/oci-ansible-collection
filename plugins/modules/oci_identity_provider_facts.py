@@ -23,6 +23,7 @@ module: oci_identity_provider_facts
 short_description: Fetches details about one or multiple IdentityProvider resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple IdentityProvider resources in Oracle Cloud Infrastructure
+    - "**Deprecated.** For more information, see L(Deprecated IAM Service APIs,https://docs.cloud.oracle.com/Content/Identity/Reference/deprecatediamapis.htm)."
     - Lists all the identity providers in your tenancy. You must specify the identity provider type (e.g., `SAML2` for
       identity providers using the SAML2.0 protocol). You must specify your tenancy's OCID as the value for the
       compartment ID (remember that the tenancy is simply the root compartment).

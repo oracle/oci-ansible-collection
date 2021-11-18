@@ -23,7 +23,9 @@ module: oci_identity_idp_group_mapping
 short_description: Manage an IdpGroupMapping resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an IdpGroupMapping resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a single mapping between an IdP group and an IAM Service
+    - "For I(state=present), **Deprecated.** For more information, see L(Deprecated IAM Service
+      APIs,https://docs.cloud.oracle.com/Content/Identity/Reference/deprecatediamapis.htm)."
+    - Creates a single mapping between an IdP group and an IAM Service
       L(group,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Group/).
 version_added: "2.9.0"
 author: Oracle (@oracle)

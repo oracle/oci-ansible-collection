@@ -30,9 +30,13 @@ oracle.oci.oci_network_cross_connect_mapping_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_network_cross_connect_mapping_facts`.
 
@@ -301,7 +305,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>List of CrossConnectMapping resources</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;10.0.0.18/31&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;2001:db8::1/64&#x27;, &#x27;ipv4_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;ipv6_bgp_status&#x27;: &#x27;UP&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;10.0.0.19/31&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;2001:db8::2/64&#x27;, &#x27;vlan&#x27;: 200}]</div>
                                     </td>
             </tr>
@@ -319,7 +323,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The key for BGP MD5 authentication. Only applicable if your system requires MD5 authentication. If empty or not set (null), that means you don&#x27;t use BGP MD5 authentication.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bgp_md5_auth_key_example</div>
                                     </td>
             </tr>
@@ -337,7 +341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The OCID of the cross-connect or cross-connect group for this mapping. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider).</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
@@ -357,7 +361,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.18/31`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.18/31</div>
                                     </td>
             </tr>
@@ -377,7 +381,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses.</div>
                                             <div>Example: `2001:db8::1/64`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::1/64</div>
                                     </td>
             </tr>
@@ -395,7 +399,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the Ipv4 BGP session.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -413,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The state of the Ipv6 BGP session.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">UP</div>
                                     </td>
             </tr>
@@ -433,7 +437,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv4 addresses.</div>
                                             <div>Example: `10.0.0.19/31`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10.0.0.19/31</div>
                                     </td>
             </tr>
@@ -453,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>There&#x27;s one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses.</div>
                                             <div>Example: `2001:db8::2/64`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2001:db8::2/64</div>
                                     </td>
             </tr>
@@ -472,7 +476,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The number of the specific VLAN (on the cross-connect or cross-connect group) that is assigned to this virtual circuit. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider).</div>
                                             <div>Example: `200`</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">200</div>
                                     </td>
             </tr>

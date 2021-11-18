@@ -30,9 +30,13 @@ oracle.oci.oci_object_storage_object -- Manage an Object resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_object_storage_object`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update and delete an Object resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oci_object_actions <ansible_collections.oci_object_actions_module>` module: copy, reencrypt, rename, restore, update_object_storage_tier.
+- This resource has the following action operations in the M(oci_object_actions) module: copy, reencrypt, rename, restore, update_object_storage_tier.
 
 
 .. Aliases
@@ -667,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Details of the Object resource acted upon by the current operation</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;archival_state&#x27;: &#x27;Archived&#x27;, &#x27;etag&#x27;: &#x27;etag_example&#x27;, &#x27;headers&#x27;: {&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}, &#x27;md5&#x27;: &#x27;md5_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;size&#x27;: 56, &#x27;storage_tier&#x27;: &#x27;Standard&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_modified&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
@@ -685,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Archival state of an object. This field is set only for objects in Archive tier.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Archived</div>
                                     </td>
             </tr>
@@ -703,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The current entity tag (ETag) for the object.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">etag_example</div>
                                     </td>
             </tr>
@@ -721,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>response headers for the object</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Content-Length&#x27;: &#x27;37&#x27;, &#x27;opc-meta-key1&#x27;: &#x27;value1&#x27;}</div>
                                     </td>
             </tr>
@@ -739,7 +743,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Base64-encoded MD5 hash of the object data.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">md5_example</div>
                                     </td>
             </tr>
@@ -757,7 +761,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The name of the object. Avoid entering confidential information. Example: test/object1.log</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
                                     </td>
             </tr>
@@ -775,7 +779,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Size of the object in bytes.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
@@ -793,7 +797,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The storage tier that the object is stored in.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">Standard</div>
                                     </td>
             </tr>
@@ -811,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the object was created, as described in <a href='https://tools.ietf.org/html/rfc2616#section-14.29'>RFC 2616</a>.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
@@ -829,7 +833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>The date and time the object was modified, as described in <a href='https://tools.ietf.org/rfc/rfc2616'>RFC 2616</a>, section 14.29.</div>
                                         <br/>
-                                            <div style="font-size: smaller"><b>Sample:</b></div>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>

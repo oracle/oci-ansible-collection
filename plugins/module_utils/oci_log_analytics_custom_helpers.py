@@ -168,3 +168,14 @@ class ImportCustomContentActionsHelperCustom:
                 return resource
         finally:
             self.module.params.pop("import_custom_content_file_body", None)
+
+
+class PreferencesManagementActionsHelperCustom:
+    # Preferences Management resource doesn't support get operation.
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(
+            oci_common_utils.list_all_resources(
+                self.client.get_preferences,
+                namespace_name=self.module.params.get("namespace_name"),
+            )
+        )

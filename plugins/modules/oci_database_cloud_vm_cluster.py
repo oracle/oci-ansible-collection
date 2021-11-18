@@ -131,6 +131,14 @@ options:
             - The time zone to use for the cloud VM cluster. For details, see L(Time
               Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
         type: str
+    scan_listener_port_tcp:
+        description:
+            - The TCP Single Client Access Name (SCAN) port. The default port is 1521.
+        type: int
+    scan_listener_port_tcp_ssl:
+        description:
+            - The TCPS Single Client Access Name (SCAN) port. The default port is 2484.
+        type: int
     nsg_ids:
         description:
             - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
@@ -578,6 +586,18 @@ cloud_vm_cluster:
             returned: on success
             type: str
             sample: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
+        scan_listener_port_tcp:
+            description:
+                - The TCP Single Client Access Name (SCAN) port. The default port is 1521.
+            returned: on success
+            type: int
+            sample: 56
+        scan_listener_port_tcp_ssl:
+            description:
+                - The TCPS Single Client Access Name (SCAN) port. The default port is 2484.
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -625,7 +645,9 @@ cloud_vm_cluster:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "scan_dns_name": "scan_dns_name_example",
-        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
+        "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
+        "scan_listener_port_tcp": 56,
+        "scan_listener_port_tcp_ssl": 56
     }
 """
 
@@ -791,6 +813,8 @@ def main():
             is_sparse_diskgroup_enabled=dict(type="bool"),
             is_local_backup_enabled=dict(type="bool"),
             time_zone=dict(type="str"),
+            scan_listener_port_tcp=dict(type="int"),
+            scan_listener_port_tcp_ssl=dict(type="int"),
             nsg_ids=dict(type="list", elements="str"),
             backup_network_nsg_ids=dict(type="list", elements="str"),
             gi_version=dict(type="str"),

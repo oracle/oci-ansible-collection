@@ -30,9 +30,13 @@ oracle.oci.oci_os_management_event_content -- Manage an EventContent resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.34.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.35.0).
 
-    To install it use: :code:`ansible-galaxy collection install oracle.oci`.
+    You might already have this collection installed if you are using the ``ansible`` package.
+    It is not included in ``ansible-core``.
+    To check whether it is installed, run :code:`ansible-galaxy collection list`.
+
+    To install it, use: :code:`ansible-galaxy collection install oracle.oci`.
 
     To use it in a playbook, specify: :code:`oracle.oci.oci_os_management_event_content`.
 
@@ -53,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to delete an EventContent resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oci_event_content_actions <ansible_collections.oci_event_content_actions_module>` module: upload.
+- This resource has the following action operations in the M(oci_event_content_actions) module: upload.
 
 
 .. Aliases

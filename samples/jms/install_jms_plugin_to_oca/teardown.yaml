@@ -1,0 +1,36 @@
+---
+# Copyright (c) 2021, Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Remove logrotate config
+  file:
+    state: absent
+    path: "{{ logrotate_file }}"
+
+- name: Remove Usage Tracker logs folder
+  file:
+    state: absent
+    path: "{{ usagetrackerlogs_directory }}"
+
+- name: Remove Usage Tracker properties folder
+  file:
+    state: absent
+    path: "{{ usagetracker_directory }}"
+
+- name: Disable OCA-MACS Plugin
+  run_once: true
+  delegate_to: localhost
+  become: false
+  oci_compute_instance:
+    instance_id: "{{ item }}"
+    agent_config:
+      are_all_plugins_disabled: no
+      is_management_disabled: no
+      is_monitoring_disabled: no
+      plugins_config: [{name: "Management Agent", desired_state: "DISABLED"}]
+  loop: "{{ instance_id_list }}"
+  when: (instance_id_list is defined) and (instance_id_list|length > 0)
+  

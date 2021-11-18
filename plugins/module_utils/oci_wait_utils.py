@@ -95,7 +95,6 @@ class BaseWaiter(Waiter):
     def wait(self):
         if self.resource_helper.module.params.get("wait") is False:
             return self.operation_response.data
-
         fetch_func = self.get_fetch_func()
         initial_response = fetch_func()
         wait_response = oci.wait_until(
@@ -158,6 +157,19 @@ class LifecycleStateWaiter(LifecycleStateWaiterBase):
         super(LifecycleStateWaiter, self).__init__(
             client, resource_helper, operation_response, wait_for_states
         )
+
+
+class CertificateAuthorityVersionLifecycleStateWaiter(LifecycleStateWaiter):
+    def get_fetch_func(self):
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_certificate_authority,
+            certificate_authority_id=self.resource_helper.module.params.get(
+                "certificate_authority_id"
+            ),
+        )
+
+    def get_resource_from_wait_response(self, wait_response):
+        return self.resource_helper.get_resource().data
 
 
 class CreateOperationLifecycleStateWaiter(LifecycleStateWaiterBase):
@@ -1050,6 +1062,53 @@ _WAITER_OVERRIDE_MAP = {
         "managed_instance_group",
         "{0}_{1}".format("INSTALL_ALL_UPDATES", oci_common_utils.ACTION_OPERATION_KEY,),
     ): NoneWaiter,
+    ("devops", "repository_ref", oci_common_utils.UPDATE_OPERATION_KEY,): NoneWaiter,
+    (
+        "certificates_management",
+        "certificate_authority_version",
+        "{0}_{1}".format(
+            "CANCEL_CERTIFICATE_AUTHORITY_VERSION_DELETION",
+            oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): CertificateAuthorityVersionLifecycleStateWaiter,
+    (
+        "certificates_management",
+        "certificate_authority_version",
+        "{0}_{1}".format(
+            "SCHEDULE_CERTIFICATE_AUTHORITY_VERSION_DELETION",
+            oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): CertificateAuthorityVersionLifecycleStateWaiter,
+    (
+        "certificates_management",
+        "certificate_authority",
+        "{0}_{1}".format(
+            "SCHEDULE_CERTIFICATE_AUTHORITY_DELETION",
+            oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): LifecycleStateWaiter,
+    (
+        "certificates_management",
+        "certificate_authority",
+        "{0}_{1}".format(
+            "CANCEL_CERTIFICATE_AUTHORITY_DELETION",
+            oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): LifecycleStateWaiter,
+    (
+        "certificates_management",
+        "certificate",
+        "{0}_{1}".format(
+            "CANCEL_CERTIFICATE_DELETION", oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): LifecycleStateWaiter,
+    (
+        "certificates_management",
+        "certificate",
+        "{0}_{1}".format(
+            "SCHEDULE_CERTIFICATE_DELETION", oci_common_utils.ACTION_OPERATION_KEY,
+        ),
+    ): LifecycleStateWaiter,
 }
 
 
